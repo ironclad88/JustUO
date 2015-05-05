@@ -1326,7 +1326,7 @@ namespace Server.Mobiles
             DisguiseTimers.StopTimer(from);
         }
 
-        public override void RevealingAction(bool disruptive)
+        public override void RevealingAction()
         {
             if (m_DesignContext != null)
             {
@@ -1335,7 +1335,7 @@ namespace Server.Mobiles
 
             InvisibilitySpell.RemoveTimer(this);
 
-            base.RevealingAction(disruptive);
+            base.RevealingAction();
         }
 
         public override void OnHiddenChanged()
@@ -2585,7 +2585,7 @@ namespace Server.Mobiles
         {
             if (!item.Deleted && (item.LootType == LootType.Blessed || item.Insured))
             {
-                if (Backpack != item.Parent)
+                if (Backpack != item.ParentEntity)
                 {
                     return true;
                 }

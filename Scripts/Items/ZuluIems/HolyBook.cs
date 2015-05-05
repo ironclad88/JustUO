@@ -1,18 +1,20 @@
+﻿using Server.Gumps.Zulugumps;
 using System;
 
 namespace Server.Items
 {
-    public class IngotStone : Item
+    public class HolyBook : Item
     {
         [Constructable]
-        public IngotStone()
-            : base(0xED4)
+        public HolyBook()
+            : base(0xFF2) //0xFF2
         {
-            this.Movable = false;
-            this.Hue = 0x480;
+            this.Movable = true;
+            this.Hue = 0x49E;
+            this.LootType = LootType.Blessed;
         }
 
-        public IngotStone(Serial serial)
+        public HolyBook(Serial serial)
             : base(serial)
         {
         }
@@ -21,19 +23,14 @@ namespace Server.Items
         {
             get
             {
-                return "an Ingot stone";
+                return "Codex Caelestis";
             }
         }
         public override void OnDoubleClick(Mobile from)
         {
-            BagOfingots ingotBag = new BagOfingots(5000);
 
-            //            from.SetAllSkills(1300);
-
-
-
-            if (!from.AddToBackpack(ingotBag))
-                ingotBag.Delete();
+            from.CloseGump(typeof(ebookgump));
+            from.SendGump(new ebookgump(from));
         }
 
         public override void Serialize(GenericWriter writer)
