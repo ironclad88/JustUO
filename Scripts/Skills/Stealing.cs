@@ -51,7 +51,7 @@ namespace Server.SkillHandlers
             {
                 Item stolen = null;
 
-                object root = toSteal.RootParent;
+                IEntity root = toSteal.RootParent;
 
                 StealableArtifactsSpawner.StealableInstance si = null;
                 if (toSteal.Parent == null || !toSteal.Movable)

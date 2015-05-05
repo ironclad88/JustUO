@@ -2585,7 +2585,7 @@ namespace Server.Mobiles
         {
             if (!item.Deleted && (item.LootType == LootType.Blessed || item.Insured))
             {
-                if (Backpack != item.ParentEntity)
+                if (Backpack != item.Parent)
                 {
                     return true;
                 }
