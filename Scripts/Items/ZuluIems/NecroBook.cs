@@ -1,18 +1,21 @@
+﻿using Server.Gumps.Zulugumps;
 using System;
 
 namespace Server.Items
 {
-    public class IngotStone : Item
+    public class NecroBook : Item
     {
         [Constructable]
-        public IngotStone()
-            : base(0xED4)
+        public NecroBook()
+            : base(0x1C13) //0xFF2
         {
-            this.Movable = false;
-            this.Hue = 0x480;
+            this.Movable = true;
+            this.Hue = 0x66D;
+            this.LootType = LootType.Blessed;
+          //  this.        
         }
 
-        public IngotStone(Serial serial)
+        public NecroBook(Serial serial)
             : base(serial)
         {
         }
@@ -21,19 +24,14 @@ namespace Server.Items
         {
             get
             {
-                return "an Ingot stone";
+                return "Codex Damnorum";
             }
         }
         public override void OnDoubleClick(Mobile from)
         {
-            BagOfingots ingotBag = new BagOfingots(5000);
 
-            //            from.SetAllSkills(1300);
-
-
-
-            if (!from.AddToBackpack(ingotBag))
-                ingotBag.Delete();
+            from.CloseGump(typeof(ebookgump));
+            from.SendGump(new ebookgump(from));
         }
 
         public override void Serialize(GenericWriter writer)

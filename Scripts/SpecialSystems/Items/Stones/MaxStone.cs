@@ -1,18 +1,18 @@
-using System;
+﻿using System;
 
 namespace Server.Items
 {
-    public class IngotStone : Item
+    public class MaxStone : Item
     {
         [Constructable]
-        public IngotStone()
+        public MaxStone()
             : base(0xED4)
         {
             this.Movable = false;
-            this.Hue = 0x480;
+            this.Hue = 1160;
         }
 
-        public IngotStone(Serial serial)
+        public MaxStone(Serial serial)
             : base(serial)
         {
         }
@@ -21,19 +21,16 @@ namespace Server.Items
         {
             get
             {
-                return "an Ingot stone";
+                return "an Max Skills stone";
             }
         }
         public override void OnDoubleClick(Mobile from)
         {
-            BagOfingots ingotBag = new BagOfingots(5000);
+            from.SetAllSkills(130);
+            from.Str = 130;
+            from.Dex = 130;
+            from.Int = 130;
 
-            //            from.SetAllSkills(1300);
-
-
-
-            if (!from.AddToBackpack(ingotBag))
-                ingotBag.Delete();
         }
 
         public override void Serialize(GenericWriter writer)

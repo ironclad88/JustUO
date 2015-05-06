@@ -1,18 +1,21 @@
-using System;
+﻿using System;
+using Server.Gumps;
+using Server.Gumps.RaceGumps;
 
 namespace Server.Items
 {
-    public class IngotStone : Item
+    public class GoblinGate : Item
     {
         [Constructable]
-        public IngotStone()
-            : base(0xED4)
+        public GoblinGate()
+            : base(0xF6C)
         {
             this.Movable = false;
-            this.Hue = 0x480;
+            this.Hue = 34186;
+            this.Light = LightType.Circle300;
         }
 
-        public IngotStone(Serial serial)
+        public GoblinGate(Serial serial)
             : base(serial)
         {
         }
@@ -21,19 +24,14 @@ namespace Server.Items
         {
             get
             {
-                return "an Ingot stone";
+                return "a goblin race gate";
             }
         }
-        public override void OnDoubleClick(Mobile from)
+        public override bool OnMoveOver(Mobile m)
         {
-            BagOfingots ingotBag = new BagOfingots(5000);
-
-            //            from.SetAllSkills(1300);
-
-
-
-            if (!from.AddToBackpack(ingotBag))
-                ingotBag.Delete();
+            m.CloseGump(typeof(GoblinGump));
+            m.SendGump(new GoblinGump(m));
+            return false;
         }
 
         public override void Serialize(GenericWriter writer)
