@@ -88,7 +88,7 @@ namespace Server.Items
 		private Mobile m_Crafter;
 		private Poison m_Poison;
 		private int m_PoisonCharges;
-		private bool m_Identified;
+        //private bool m_Identified;
 		private int m_Hits;
 		private int m_MaxHits;
 		private SlayerName m_Slayer;
@@ -270,16 +270,16 @@ namespace Server.Items
 		public bool Immolating { get { return m_Immolating; } set { m_Immolating = value; } }
 		#endregion
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public bool Identified
-		{
-			get { return m_Identified; }
-			set
-			{
-				m_Identified = value;
-				InvalidateProperties();
-			}
-		}
+        //[CommandProperty(AccessLevel.GameMaster)]
+        //public bool Identified
+        //{
+        //    get { return m_Identified; }
+        //    set
+        //    {
+        //        m_Identified = value;
+        //        InvalidateProperties();
+        //    }
+        //}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public int HitPoints
@@ -3631,7 +3631,7 @@ namespace Server.Items
             Poison = 0x00000080,
             PoisonCharges = 0x00000100,
             Crafter = 0x00000200,
-            Identified = 0x00000400,
+            //Identified = 0x00000400,
             StrReq = 0x00000800,
             DexReq = 0x00001000,
             IntReq = 0x00002000,
