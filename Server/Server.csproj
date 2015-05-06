@@ -212,6 +212,7 @@
     <Compile Include="Serial.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="Skills.cs" />
+    <Compile Include="SpecLevels.cs" />
     <Compile Include="StartupReader.cs" />
     <Compile Include="Targeting\LandTarget.cs" />
     <Compile Include="Targeting\MultiTarget.cs" />
