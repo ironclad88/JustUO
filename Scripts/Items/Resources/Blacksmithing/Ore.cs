@@ -189,7 +189,7 @@ namespace Server.Items
 
         private static int RandomSize()
         {
-            double rand = Utility.RandomDouble();
+           // double rand = Utility.RandomDouble();
 
             /*if (rand < 0.12)
                 return 0x19B7;
