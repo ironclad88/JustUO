@@ -45,9 +45,14 @@ namespace Server.Items
         {
             get
             {
-                if (this.m_Resource >= CraftResource.SpinedLeather && this.m_Resource <= CraftResource.BarbedLeather)
-                    return 1049684 + (int)(this.m_Resource - CraftResource.SpinedLeather);
-
+                if (this.m_Resource >= CraftResource.SpinedLeather && this.m_Resource <= CraftResource.DragonLeather)
+                {
+                    return 1049684 + (int)(this.m_Resource - CraftResource.DragonLeather);
+                }
+                if (this.m_Resource == CraftResource.DragonLeather)
+                {
+                    return 1063505;
+                }
                 return 1047022;
             }
         }
@@ -80,7 +85,7 @@ namespace Server.Items
 
             int version = reader.ReadInt();
 
-            switch ( version )
+            switch (version)
             {
                 case 2: // Reset from Resource System
                     this.m_Resource = this.DefaultResource;
@@ -270,4 +275,42 @@ namespace Server.Items
             int version = reader.ReadInt();
         }
     }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class DragonLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.DragonLeather; } }
+
+        [Constructable]
+        public DragonLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public DragonLeather(int amount)
+            : base(CraftResource.DragonLeather, amount)
+        {
+        }
+
+        public DragonLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
 }

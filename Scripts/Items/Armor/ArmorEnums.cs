@@ -52,6 +52,7 @@ namespace Server.Items
         Ringmail,
         Chainmail,
         Plate,
+        DragonL,
         Dragon	// On OSI, Dragon is seen and considered its own type.
     }
 

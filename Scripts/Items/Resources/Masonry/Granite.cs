@@ -61,7 +61,7 @@ namespace Server.Items
 
             int version = reader.ReadInt();
 
-            switch ( version )
+            switch (version)
             {
                 case 1:
                 case 0:
@@ -70,7 +70,7 @@ namespace Server.Items
                         break;
                     }
             }
-			
+
             if (version < 1)
                 this.Stackable = Core.ML;
         }
@@ -324,6 +324,34 @@ namespace Server.Items
         }
 
         public ValoriteGranite(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    public class ZuluGranite : BaseGranite
+    {
+        [Constructable]
+        public ZuluGranite()
+            : base(CraftResource.Valorite)
+        {
+        }
+
+        public ZuluGranite(Serial serial)
             : base(serial)
         {
         }
