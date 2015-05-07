@@ -2405,7 +2405,6 @@ namespace Server
             None = 0x00000000,
             Direction = 0x00000001,
             Bounce = 0x00000002,
-            Identified = 0x00000003,
             LootType = 0x00000004,
             LocationFull = 0x00000008,
             ItemID = 0x00000010,
@@ -2431,7 +2430,8 @@ namespace Server
             IntWeight = 0x01000000,
             SavedFlags = 0x02000000,
             NullWeight = 0x04000000,
-            GhostVisible = 0x08000000
+            GhostVisible = 0x08000000,
+            Identified = 0x10000000
         }
 
         private static void SetSaveFlag(ref SaveFlag flags, SaveFlag toSet, bool setIf)
