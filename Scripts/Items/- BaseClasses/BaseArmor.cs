@@ -2292,7 +2292,7 @@ namespace Server.Items
                 list.Add(1050043, this.m_Crafter.Name); // crafted by ~1_NAME~
 
             #region ItemID Modifications
-            if (base.Identified)
+            if (!base.Unidentified)
             {
                 #region Factions
                 if (this.m_FactionState != null)
@@ -2491,7 +2491,7 @@ namespace Server.Items
             if (this.m_Quality == ArmorQuality.Exceptional)
                 attrs.Add(new EquipInfoAttribute(1018305 - (int)this.m_Quality));
 
-            if (base.Identified || from.AccessLevel >= AccessLevel.GameMaster)
+            if (base.Unidentified || from.AccessLevel >= AccessLevel.GameMaster)
             {
                 if (this.m_Durability != ArmorDurabilityLevel.Regular)
                     attrs.Add(new EquipInfoAttribute(1038000 + (int)this.m_Durability));

@@ -756,7 +756,7 @@ namespace Server
         private Map m_Map;
         private LootType m_LootType;
         private DateTime m_LastMovedTime;
-        private bool m_Identified;
+        private bool m_Unidentified;
         private Direction m_Direction;
         #endregion
 
@@ -2431,7 +2431,7 @@ namespace Server
             SavedFlags = 0x02000000,
             NullWeight = 0x04000000,
             GhostVisible = 0x08000000,
-            Identified = 0x10000000
+            Unidentified = 0x10000000
         }
 
         private static void SetSaveFlag(ref SaveFlag flags, SaveFlag toSet, bool setIf)
@@ -2489,9 +2489,9 @@ namespace Server
 
             CompactInfo info = LookupCompactInfo();
             List<Item> items = LookupItems();
-            if (m_Identified)
+            if (m_Unidentified)
             {
-                flags |= SaveFlag.Identified;
+                flags |= SaveFlag.Unidentified;
             }
             if (m_Direction != Direction.North)
             {
@@ -2634,9 +2634,9 @@ namespace Server
             writer.WriteEncodedInt((int)minutes);
             /* end */
 
-            if (GetSaveFlag(flags, SaveFlag.Identified))
+            if (GetSaveFlag(flags, SaveFlag.Unidentified))
             {
-                writer.Write((bool)m_Identified);
+                writer.Write((bool)m_Unidentified);
             }
 
             if (GetSaveFlag(flags, SaveFlag.Direction))
@@ -2956,9 +2956,9 @@ namespace Server
                             }
                         }
 
-                        if (GetSaveFlag(flags, SaveFlag.Identified))
+                        if (GetSaveFlag(flags, SaveFlag.Unidentified))
                         {
-                            m_Identified = (bool)reader.ReadBool();
+                            m_Unidentified = (bool)reader.ReadBool();
                         }
 
                         if (GetSaveFlag(flags, SaveFlag.Direction))
@@ -3340,7 +3340,7 @@ namespace Server
                 case 4: // Just removed variables
                 case 3:
                     {
-                        m_Identified = (bool)reader.ReadBool();
+                        m_Unidentified = (bool)reader.ReadBool();
                         m_Direction = (Direction)reader.ReadInt();
 
                         goto case 2;
@@ -4602,12 +4602,12 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Identified
+        public bool Unidentified
         {
-            get { return m_Identified; }
+            get { return m_Unidentified; }
             set
             {
-                m_Identified = value;
+                m_Unidentified = value;
                 InvalidateProperties();
             }
         }

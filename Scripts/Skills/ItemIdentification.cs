@@ -34,14 +34,8 @@ namespace Server.Items
                 {
                     if (from.CheckTargetSkill(SkillName.ItemID, o, 0, 100))
                     {
-                        if (o is BaseWeapon)
-                            ((BaseWeapon)o).Identified = true;
-                        else if (o is BaseArmor)
-                            ((BaseArmor)o).Identified = true;
-                        else if (o is BaseJewel)
-                            ((BaseJewel)o).Identified = true;
-                        else if (o is BaseClothing)
-                            ((BaseClothing)o).Identified = true;
+                        if (o is Item)
+                            ((Item)o).Unidentified = false;
 
                         if (!Core.AOS)
                             ((Item)o).OnSingleClick(from);

@@ -38,10 +38,8 @@ namespace Server.Items
 
         public override bool OnWandTarget(Mobile from, object o)
         {
-            if (o is BaseWeapon)
-                ((BaseWeapon)o).Identified = true;
-            else if (o is BaseArmor)
-                ((BaseArmor)o).Identified = true;
+            if (o is Item)
+                ((Item)o).Unidentified = false;
 
             if (!Core.AOS && o is Item)
                 ((Item)o).OnSingleClick(from);

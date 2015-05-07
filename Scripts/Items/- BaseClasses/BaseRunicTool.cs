@@ -18,7 +18,6 @@ namespace Server.Items
             SkillName.Healing,
             SkillName.Magery,
             SkillName.Meditation,
-            SkillName.EvalInt,
             SkillName.MagicResist,
             SkillName.AnimalTaming,
             SkillName.AnimalLore,
@@ -109,6 +108,11 @@ namespace Server.Items
         {
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
+
+            if (attributeCount != 0)
+            {
+                weapon.Unidentified = true;
+            }
 
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
@@ -354,6 +358,11 @@ namespace Server.Items
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
 
+            if(attributeCount != 0)
+            {
+                armor.Unidentified = true;
+            }
+
             AosAttributes primary = armor.Attributes;
             AosArmorAttributes secondary = armor.ArmorAttributes;
 
@@ -481,6 +490,11 @@ namespace Server.Items
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
 
+            if (attributeCount != 0)
+            {
+                hat.Unidentified = true;
+            }
+
             AosAttributes primary = hat.Attributes;
             AosArmorAttributes secondary = hat.ClothingAttributes;
             AosElementAttributes resists = hat.Resistances;
@@ -566,6 +580,11 @@ namespace Server.Items
         {
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
+
+            if (attributeCount != 0)
+            {
+                jewelry.Unidentified = true;
+            }
 
             AosAttributes primary = jewelry.Attributes;
             AosElementAttributes resists = jewelry.Resistances;
@@ -667,6 +686,11 @@ namespace Server.Items
         {
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
+
+            if (attributeCount != 0)
+            {
+                spellbook.Unidentified = true;
+            }
 
             AosAttributes primary = spellbook.Attributes;
             AosSkillBonuses skills = spellbook.SkillBonuses;

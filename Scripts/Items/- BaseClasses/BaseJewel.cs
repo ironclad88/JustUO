@@ -499,7 +499,7 @@ namespace Server.Items
             #endregion
 
             #region ItemID Modifications
-            if (base.Identified)
+            if (!base.Unidentified)
             {
 
                 #region Mondain's Legacy

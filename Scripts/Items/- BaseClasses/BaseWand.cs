@@ -289,7 +289,7 @@ namespace Server.Items
                     attrs.Add(new EquipInfoAttribute(1049643)); // cursed
             }
 
-            if (!this.Identified)
+            if (!this.Unidentified)
             {
                 attrs.Add(new EquipInfoAttribute(1038000)); // Unidentified
             }

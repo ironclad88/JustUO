@@ -4538,7 +4538,7 @@ namespace Server.Items
             #endregion
 
             #region ItemID Modifications
-            if (base.Identified)
+            if (!base.Unidentified)
             {
                 #region Mondain's Legacy Sets
                 if (IsSetItem)
@@ -5109,7 +5109,7 @@ namespace Server.Items
                 attrs.Add(new EquipInfoAttribute(1018305 - (int)m_Quality));
             }
 
-            if (base.Identified || from.AccessLevel >= AccessLevel.GameMaster)
+            if (base.Unidentified || from.AccessLevel >= AccessLevel.GameMaster)
             {
                 if (m_Slayer != SlayerName.None)
                 {
@@ -5278,21 +5278,21 @@ namespace Server.Items
                         {
                             case CraftResource.DullCopper:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Durable;
                                     AccuracyLevel = WeaponAccuracyLevel.Accurate;
                                     break;
                                 }
                             case CraftResource.ShadowIron:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Durable;
                                     DamageLevel = WeaponDamageLevel.Ruin;
                                     break;
                                 }
                             case CraftResource.Copper:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Fortified;
                                     DamageLevel = WeaponDamageLevel.Ruin;
                                     AccuracyLevel = WeaponAccuracyLevel.Surpassingly;
@@ -5300,7 +5300,7 @@ namespace Server.Items
                                 }
                             case CraftResource.Bronze:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Fortified;
                                     DamageLevel = WeaponDamageLevel.Might;
                                     AccuracyLevel = WeaponAccuracyLevel.Surpassingly;
@@ -5308,7 +5308,7 @@ namespace Server.Items
                                 }
                             case CraftResource.Gold:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Indestructible;
                                     DamageLevel = WeaponDamageLevel.Force;
                                     AccuracyLevel = WeaponAccuracyLevel.Eminently;
@@ -5316,7 +5316,7 @@ namespace Server.Items
                                 }
                             case CraftResource.Agapite:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Indestructible;
                                     DamageLevel = WeaponDamageLevel.Power;
                                     AccuracyLevel = WeaponAccuracyLevel.Eminently;
@@ -5324,7 +5324,7 @@ namespace Server.Items
                                 }
                             case CraftResource.Verite:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Indestructible;
                                     DamageLevel = WeaponDamageLevel.Power;
                                     AccuracyLevel = WeaponAccuracyLevel.Exceedingly;
@@ -5332,7 +5332,7 @@ namespace Server.Items
                                 }
                             case CraftResource.Valorite:
                                 {
-                                    Identified = true;
+                                    Unidentified = false;
                                     DurabilityLevel = WeaponDurabilityLevel.Indestructible;
                                     DamageLevel = WeaponDamageLevel.Vanq;
                                     AccuracyLevel = WeaponAccuracyLevel.Supremely;

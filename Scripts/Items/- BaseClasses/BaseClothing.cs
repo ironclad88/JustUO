@@ -953,7 +953,7 @@ namespace Server.Items
                 list.Add(1050043, this.m_Crafter.Name); // crafted by ~1_NAME~
 
             #region ItemID Modifications
-            if (base.Identified)
+            if (!base.Unidentified)
             {
                 #region Factions
                 if (this.m_FactionState != null)
