@@ -178,7 +178,7 @@ namespace Server.SkillHandlers
 						{
 							from.SendLocalizedMessage(1049611); // You have too many followers to tame that creature.
 						}
-						else if (creature.Owners.Count >= BaseCreature.MaxOwners && !creature.Owners.Contains(from))
+						/*else if (creature.Owners.Count >= BaseCreature.MaxOwners && !creature.Owners.Contains(from))
 						{
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1005615, from.NetState);
 								// This animal has had too many owners and is too upset for you to tame.
@@ -187,7 +187,7 @@ namespace Server.SkillHandlers
 						{
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1054025, from.NetState);
 								// You must subdue this creature before you can tame it!
-						}
+						}*/
 						else if (CheckMastery(from, creature) || from.Skills[SkillName.AnimalTaming].Value >= creature.MinTameSkill)
 						{
 							FactionWarHorse warHorse = creature as FactionWarHorse;

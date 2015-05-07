@@ -276,15 +276,19 @@ namespace Server.Mobiles
             {
                 case 0:
                     this.m_Mobile.DebugSay("Blood Oath");
+                    this.m_Mobile.Say("In Jux Mani Xen");
                     return new BloodOathSpell(this.m_Mobile, null);
                 case 1:
-                    this.m_Mobile.DebugSay("Corpse Skin");
+                    this.m_Mobile.DebugSay("In Agle Corp Ylem");
+                     this.m_Mobile.Say("In Jux Mani Xen");
                     return new CorpseSkinSpell(this.m_Mobile, null);
                 case 2:
                     this.m_Mobile.DebugSay("Evil Omen");
+                    this.m_Mobile.Say("Pas Tym An Sanct");
                     return new EvilOmenSpell(this.m_Mobile, null);
                 default:
                     this.m_Mobile.DebugSay("Mind Rot");
+                    this.m_Mobile.Say("Wis An Ben");
                     return new MindRotSpell(this.m_Mobile, null);
             }
         }
@@ -354,7 +358,11 @@ namespace Server.Mobiles
                     double psDamage = ((this.m_Mobile.Skills[SkillName.SpiritSpeak].Value - c.Skills[SkillName.MagicResist].Value) / 10) + (c.Player ? 18 : 30);
 
                     if (psDamage > c.Hits)
+                    {
+                        this.m_Mobile.Say("In Sar");
                         return new PainSpikeSpell(this.m_Mobile, null);
+                    }
+                        
                 }
 
                 switch (Utility.Random(16))
@@ -366,14 +374,15 @@ namespace Server.Mobiles
                                 goto default;
 
                             this.m_Mobile.DebugSay("Attempting to poison");
-
+                            this.m_Mobile.Say("In Nox");
                             spell = new PoisonSpell(this.m_Mobile, null);
+                            
                             break;
                         }
                     case 2:	// Bless ourselves
                         {
                             this.m_Mobile.DebugSay("Blessing myself");
-
+                            this.m_Mobile.Say("Rel Sanct");
                             spell = new BlessSpell(this.m_Mobile, null);
                             break;
                         }
@@ -381,7 +390,8 @@ namespace Server.Mobiles
                     case 4: // Curse them
                         {
                             this.m_Mobile.DebugSay("Attempting to curse");
-
+                            this.m_Mobile.Say("Des Sanct");
+                           
                             spell = this.GetRandomCurseSpell();
                             break;
                         }
@@ -391,14 +401,14 @@ namespace Server.Mobiles
                                 goto default;
 
                             this.m_Mobile.DebugSay("Attempting to paralyze");
-
+                            this.m_Mobile.Say("An Ex Por");
                             spell = new ParalyzeSpell(this.m_Mobile, null);
                             break;
                         }
                     case 6: // Drain mana
                         {
                             this.m_Mobile.DebugSay("Attempting to drain mana");
-
+                            this.m_Mobile.Say("Ort Rel");
                             spell = this.GetRandomManaDrainSpell();
                             break;
                         }
@@ -408,14 +418,65 @@ namespace Server.Mobiles
                                 goto default;
 
                             this.m_Mobile.DebugSay("Attempting to invis myself");
-
+                            this.m_Mobile.Say("An Lor Xen");
+                            
                             spell = new InvisibilitySpell(this.m_Mobile, null);
+                            break;
+                        }
+                    case 8: // teleport
+                        {
+                            if (Utility.RandomBool())
+                                goto default;
+
+                            this.m_Mobile.DebugSay("Teleporting");
+                            this.m_Mobile.Say("Rel Por");
+                            spell = new TeleportSpell(this.m_Mobile, null);
+                            break;
+                        }
+                    case 9: // dispel
+                        {
+                            if (Utility.RandomBool())
+                                goto default;
+
+                            this.m_Mobile.DebugSay("Dispel");
+                            this.m_Mobile.Say("An Ort");
+                            spell = new DispelSpell(this.m_Mobile, null);
+                            break;
+                        }
+                    case 10: // mass dispel
+                        {
+                            if (Utility.RandomBool())
+                                goto default;
+
+                            this.m_Mobile.DebugSay("Mass Dispel");
+                            this.m_Mobile.Say("Vas An Ort");
+                            spell = new MassDispelSpell(this.m_Mobile, null);
+                            break;
+                        }
+                    case 11: // Energy Blast
+                        {
+                            if (Utility.RandomBool())
+                                goto default;
+
+                            this.m_Mobile.DebugSay("Energy blast");
+                            this.m_Mobile.Say("Corp Por");
+                            spell = new EnergyBoltSpell(this.m_Mobile, null);
+                            break;
+                        }
+                    case 12: // Lightning
+                        {
+                            if (Utility.RandomBool())
+                                goto default;
+
+                            this.m_Mobile.DebugSay("Lightning");
+                            this.m_Mobile.Say("Por Ort Grav");
+                            spell = new LightningSpell(this.m_Mobile, null);
                             break;
                         }
                     default: // Damage them
                         {
                             this.m_Mobile.DebugSay("Just doing damage");
-
+                           
                             spell = this.GetRandomDamageSpell();
                             break;
                         }
@@ -487,20 +548,27 @@ namespace Server.Mobiles
 
             if (this.m_Combo == 0)
             {
+
+                this.m_Mobile.Say("Vas Ort Flam");
                 spell = new ExplosionSpell(this.m_Mobile, null);
                 ++this.m_Combo; // Move to next spell
             }
             else if (this.m_Combo == 1)
             {
+                this.m_Mobile.Say("Des Mani");
                 spell = new WeakenSpell(this.m_Mobile, null);
                 ++this.m_Combo; // Move to next spell
             }
             else if (this.m_Combo == 2)
             {
-                if (!c.Poisoned)
+                if (!c.Poisoned){
+                    this.m_Mobile.Say("In Nox");
                     spell = new PoisonSpell(this.m_Mobile, null);
-                else if (this.IsNecromancer)
+                }
+                else if (this.IsNecromancer) {
+                    this.m_Mobile.Say("In Bal Nox");
                     spell = new StrangleSpell(this.m_Mobile, null);
+                }
 
                 ++this.m_Combo; // Move to next spell
             }

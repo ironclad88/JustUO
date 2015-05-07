@@ -1364,7 +1364,7 @@ namespace Server.Mobiles
 
                 if (curWeight > maxWeight)
                 {
-                    SendLocalizedMessage(1019035, true, String.Format(" : {0} / {1}", curWeight, maxWeight));
+                   // SendLocalizedMessage(1019035, true, String.Format(" : {0} / {1}", curWeight, maxWeight));
                 }
             }
         }
@@ -1542,7 +1542,7 @@ namespace Server.Mobiles
             {
                 if (Core.ML && IsPlayer())
                 {
-                    return Math.Min(base.Str, 150);
+                    return Math.Min(base.Str, 350);
                 }
 
                 return base.Str;
@@ -1557,7 +1557,7 @@ namespace Server.Mobiles
             {
                 if (Core.ML && IsPlayer())
                 {
-                    return Math.Min(base.Int, 150);
+                    return Math.Min(base.Int, 350);
                 }
 
                 return base.Int;
@@ -1572,7 +1572,7 @@ namespace Server.Mobiles
             {
                 if (Core.ML && IsPlayer())
                 {
-                    return Math.Min(base.Dex, 150);
+                    return Math.Min(base.Dex, 350);
                 }
 
                 return base.Dex;

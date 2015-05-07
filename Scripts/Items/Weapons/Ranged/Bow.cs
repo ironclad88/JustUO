@@ -85,7 +85,7 @@ namespace Server.Items
         {
             get
             {
-                return 4.25f;
+                return 7.25f;
             }
         }
         public override int OldStrengthReq

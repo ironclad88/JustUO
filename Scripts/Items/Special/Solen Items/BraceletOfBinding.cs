@@ -336,7 +336,7 @@ namespace Server.Items
             }
             else if (Server.Misc.WeightOverloading.IsOverloaded(from))
             {
-                from.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
+                //from.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
                 return false;
             }
             else if (from.Region.IsPartOf(typeof(Server.Regions.Jail)))

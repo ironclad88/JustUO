@@ -111,14 +111,14 @@ namespace Server.Misc
 
         public static int GetStamLoss(Mobile from, int overWeight, bool running)
         {
-            int loss = 5 + (overWeight / 25);
+           /* int loss = 5 + (overWeight / 25);
 
             if (from.Mounted)
                 loss /= 3;
 
             if (running)
                 loss *= 2;
-
+            */
             return 0;
         }
 

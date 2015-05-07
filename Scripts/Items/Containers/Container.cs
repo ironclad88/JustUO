@@ -232,7 +232,7 @@ namespace Server.Items
         public StrongBackpack()
         {
             this.Layer = Layer.Backpack;
-            this.Weight = 13.0;
+            this.Weight = 1.0;
         }
 
         public StrongBackpack(Serial serial)
@@ -244,7 +244,7 @@ namespace Server.Items
         {
             get
             {
-                return 1600;
+                return 60000;
             }
         }
         public override bool CheckHold(Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight)
@@ -304,7 +304,7 @@ namespace Server.Items
                     Mobile m = this.Parent as Mobile;
                     if (m != null && m.Player && m.Backpack == this)
                     {
-                        return 550;
+                        return 60000000;
                     }
                     else
                     {

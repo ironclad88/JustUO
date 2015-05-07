@@ -10,7 +10,7 @@ namespace Server.Misc
 {
     public class CharacterCreation
     {
-        private static readonly CityInfo m_NewHavenInfo = new CityInfo("Britain", "The Wayfarer's Inn", 1075074, 1602, 1591, 20, Map.Trammel);
+        private static readonly CityInfo m_NewHavenInfo = new CityInfo("Britain", "Town Centre", 1075074, 1475, 1645, 20, Map.Felucca);
         private static Mobile m_Mobile;
 
         [CallPriority(Int32.MinValue)]
@@ -40,7 +40,7 @@ namespace Server.Misc
 
             if (pack == null)
             {
-                pack = new Backpack();
+                pack = new StrongBackpack();
                 pack.Movable = false;
 
                 m.AddItem(pack);
@@ -687,7 +687,7 @@ namespace Server.Misc
             {
                 PlayerMobile pm = (PlayerMobile)newChar;
 
-                pm.Profession = args.Profession;
+               // pm.Profession = args.Profession;
 
                 if (pm.IsPlayer() && ((Account)pm.Account).Young)
                     young = pm.Young = false;
@@ -1081,14 +1081,14 @@ namespace Server.Misc
                             }
                             else if (human)
                             {
-                                /*  EquipItem(new BoneHarvester());
+                                  EquipItem(new BoneHarvester());
                                   EquipItem(NecroHue(new LeatherChest()));
                                   EquipItem(NecroHue(new LeatherArms()));
                                   EquipItem(NecroHue(new LeatherGloves()));
                                   EquipItem(NecroHue(new LeatherGorget()));
                                   EquipItem(NecroHue(new LeatherLegs()));
                                   EquipItem(NecroHue(new Skirt()));
-                                  EquipItem(new Sandals(0x8FD));*/
+                                  EquipItem(new Sandals(0x8FD));
                             }
                             else if (gargoyle)
                             {
@@ -1122,7 +1122,7 @@ namespace Server.Misc
                         }
                         else if (human)
                         {
-                            /*   EquipItem(new Broadsword());
+                               EquipItem(new Broadsword());
                                EquipItem(new Helmet());
                                EquipItem(new PlateGorget());
                                EquipItem(new RingmailArms());
@@ -1130,7 +1130,7 @@ namespace Server.Misc
                                EquipItem(new RingmailLegs());
                                EquipItem(new ThighBoots(0x748));
                                EquipItem(new Cloak(0xCF));
-                               EquipItem(new BodySash(0xCF));*/
+                               EquipItem(new BodySash(0xCF));
                         }
                         else if (gargoyle)
                         {
@@ -1153,16 +1153,16 @@ namespace Server.Misc
                     {
                         if (elf || human)
                         {
-                            /*  EquipItem(new HakamaShita(0x2C3));
+                              EquipItem(new HakamaShita(0x2C3));
                               EquipItem(new Hakama(0x2C3));
                               EquipItem(new SamuraiTabi(0x2C3));
                               EquipItem(new TattsukeHakama(0x22D));
-                              EquipItem(new Bokuto());*/
+                              EquipItem(new Bokuto());
 
                             //if (elf)
                             //  EquipItem(new RavenHelm());
                             // else
-                            //   EquipItem(new LeatherJingasa());
+                               EquipItem(new LeatherJingasa());
                         }
                         else if (gargoyle)
                         {
@@ -1189,15 +1189,15 @@ namespace Server.Misc
 
                         if (elf || human)
                         {
-                            /*  EquipItem(new Kasa());
+                              EquipItem(new Kasa());
                               EquipItem(new TattsukeHakama(hues[Utility.Random(hues.Length)]));
                               EquipItem(new HakamaShita(0x2C3));
                               EquipItem(new NinjaTabi(0x2C3));
 
-                              if (elf)
-                                  EquipItem(new AssassinSpike());
-                              else
-                                  EquipItem(new Tekagi());*/
+                             // if (elf)
+                            //      EquipItem(new AssassinSpike());
+                             // else
+                                  EquipItem(new Tekagi());
                         }
                         else if (gargoyle)
                         {
