@@ -13,7 +13,7 @@ namespace Server.Items
 			this.Attributes.BonusStam = 5;
 			this.Attributes.RegenStam = 3;
 			this.Attributes.LowerManaCost = 10;
-			this.Hue = 1863; // Hue not exact
+			this.IdHue = 1863; // Hue not exact
 			this.Name = ("Bronzed Armor of the Valkyrie");
         }
 

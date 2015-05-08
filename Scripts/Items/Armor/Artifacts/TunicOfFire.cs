@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public TunicOfFire()
         {
-            this.Hue = 0x54F;
+            this.IdHue = 0x54F;
             this.ArmorAttributes.SelfRepair = 5;
             this.Attributes.NightSight = 1;
             this.Attributes.ReflectPhysical = 15;
@@ -76,7 +76,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x54E)
-                    this.Hue = 0x54F;
+                    this.IdHue = 0x54F;
 
                 if (this.Attributes.NightSight == 0)
                     this.Attributes.NightSight = 1;

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public JackalsCollar()
         {
-            this.Hue = 0x6D1;
+            this.IdHue = 0x6D1;
             this.Attributes.BonusDex = 15;
             this.Attributes.RegenHits = 2;
         }
@@ -75,7 +75,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x54B)
-                    this.Hue = 0x6D1;
+                    this.IdHue = 0x6D1;
 
                 this.FireBonus = 0;
                 this.ColdBonus = 0;

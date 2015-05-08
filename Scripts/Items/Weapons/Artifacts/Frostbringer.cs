@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public Frostbringer()
         {
-            this.Hue = 0x4F2;
+            this.IdHue = 0x4F2;
             this.WeaponAttributes.HitDispel = 50;
             this.Attributes.RegenStam = 10;
             this.Attributes.WeaponDamage = 50;

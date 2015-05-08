@@ -8,7 +8,7 @@ namespace Server.Items
         public SerpentsFang()
         {
             this.ItemID = 0x1400;
-            this.Hue = 0x488;
+            this.IdHue = 0x488;
             this.WeaponAttributes.HitPoisonArea = 100;
             this.WeaponAttributes.ResistPoisonBonus = 20;
             this.Attributes.AttackChance = 15;

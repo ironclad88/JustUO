@@ -31,7 +31,7 @@ namespace Server.Items
         public DreadsRevenge()
             : base()
         {
-            this.Hue = 0x3A;
+            this.IdHue = 0x3A;
 			
             this.SkillBonuses.SetValues(0, SkillName.Fencing, 20.0);
 			

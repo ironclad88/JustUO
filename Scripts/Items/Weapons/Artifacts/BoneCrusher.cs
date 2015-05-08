@@ -8,7 +8,7 @@ namespace Server.Items
         public BoneCrusher()
         {
             this.ItemID = 0x1406;
-            this.Hue = 0x60C;
+            this.IdHue = 0x60C;
             this.WeaponAttributes.HitLowerDefend = 50;
             this.Attributes.BonusStr = 10;
             this.Attributes.WeaponDamage = 75;
@@ -61,7 +61,7 @@ namespace Server.Items
             int version = reader.ReadInt();
 
             if (this.Hue == 0x604)
-                this.Hue = 0x60C;
+                this.IdHue = 0x60C;
 
             if (this.ItemID == 0x1407)
                 this.ItemID = 0x1406;

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public MidnightBracers()
         {
-            this.Hue = 0x455;
+            this.IdHue = 0x455;
             this.SkillBonuses.SetValues(0, SkillName.Necromancy, 20.0);
             this.Attributes.SpellDamage = 10;
             this.ArmorAttributes.MageArmor = 1;

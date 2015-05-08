@@ -321,7 +321,7 @@ namespace Server.Items
             //Order is Cold, Energy, Fire, Poison -> Physical left
             //Cannot be looped, AoselementAttribute is 'out of order'
 
-            weapon.Hue = weapon.GetElementalDamageHue();
+            weapon.IdHue = weapon.GetElementalDamageHue();
         }
 
         public static SlayerName GetRandomSlayer()

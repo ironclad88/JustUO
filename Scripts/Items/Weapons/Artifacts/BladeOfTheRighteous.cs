@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public BladeOfTheRighteous()
         {
-            this.Hue = 0x47E;
+            this.IdHue = 0x47E;
             //Slayer = SlayerName.DaemonDismissal;
             this.Slayer = SlayerName.Exorcism;
             this.WeaponAttributes.HitLeechHits = 50;

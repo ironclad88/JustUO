@@ -9,7 +9,7 @@ namespace Server.Items
         {
             Name = ("Demon Hunter's Standard");
 		
-            Hue = 1377;	
+            IdHue = 1377;	
 			
             Attributes.CastSpeed = 1;			
             Attributes.WeaponSpeed = 25;

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public HolyKnightsBreastplate()
         {
-            this.Hue = 0x47E;
+            this.IdHue = 0x47E;
             this.Attributes.BonusHits = 10;
             this.Attributes.ReflectPhysical = 15;
         }

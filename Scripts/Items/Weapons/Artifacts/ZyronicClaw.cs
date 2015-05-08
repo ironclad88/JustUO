@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public ZyronicClaw()
         {
-            this.Hue = 0x485;
+            this.IdHue = 0x485;
             this.Slayer = SlayerName.ElementalBan;
             this.WeaponAttributes.HitLeechMana = 50;
             this.Attributes.AttackChance = 30;

@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Sword Of Shattered Hopes");
 		
-            this.Hue = 91;	
+            this.IdHue = 91;	
 			
             this.WeaponAttributes.HitDispel = 25;
             //WeaponAttributes.SplinteringWeapon = 20;

@@ -16,7 +16,7 @@ namespace Server.Items
         public ScepterOfTheChief()
             : base()
         {
-            this.Hue = 0x481;
+            this.IdHue = 0x481;
 			
             this.Slayer = SlayerName.Exorcism;
 			

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public StaffOfTheMagi()
         {
-            this.Hue = 0x481;
+            this.IdHue = 0x481;
             this.WeaponAttributes.MageWeapon = 30;
             this.Attributes.SpellChanneling = 1;
             this.Attributes.CastSpeed = 1;

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public VoiceOfTheFallenKing()
         {
-            this.Hue = 0x76D;
+            this.IdHue = 0x76D;
             this.Attributes.BonusStr = 8;
             this.Attributes.RegenHits = 5;
             this.Attributes.RegenStam = 3;
@@ -76,7 +76,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x551)
-                    this.Hue = 0x76D;
+                    this.IdHue = 0x76D;
 
                 this.ColdBonus = 0;
                 this.EnergyBonus = 0;

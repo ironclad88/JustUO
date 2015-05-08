@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Claws Of The Berserker");
 		
-            this.Hue = 1172;	
+            this.IdHue = 1172;	
 		
             this.WeaponAttributes.HitLightning = 45;	
             this.WeaponAttributes.HitLowerDefend = 50;

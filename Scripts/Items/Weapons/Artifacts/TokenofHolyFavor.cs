@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Token Of Holy Favor");
 		
-            this.Hue = 96;
+            this.IdHue = 96;
             this.Attributes.BonusHits = 5;
             this.Attributes.CastRecovery = 2;
             this.Attributes.CastSpeed = 1;
@@ -53,7 +53,7 @@ namespace Server.Items
             int version = reader.ReadInt();
 
             if (this.Hue == 0x12B)
-                this.Hue = 0x554;
+                this.IdHue = 0x554;
         }
     }
 }

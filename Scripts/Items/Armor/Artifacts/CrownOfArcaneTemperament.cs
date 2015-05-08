@@ -11,7 +11,7 @@ namespace Server.Items
 			this.Attributes.RegenMana = 3;
 			this.Attributes.SpellDamage = 8;
 			this.Attributes.LowerManaCost = 6;
-			this.Hue = 149; //Hue not exact
+			this.IdHue = 149; //Hue not exact
 			AbsorptionAttributes.CastingFocus = 2;
 			this.Name = ("Crown of Arcane Temperament");
         }

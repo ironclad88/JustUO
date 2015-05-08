@@ -89,6 +89,7 @@ namespace Server.Items
         private Poison m_Poison;
         private int m_PoisonCharges;
         //private bool m_Identified;
+        private int m_IdHue;
         private int m_Hits;
         private int m_MaxHits;
         private SlayerName m_Slayer;
@@ -280,6 +281,23 @@ namespace Server.Items
         //        InvalidateProperties();
         //    }
         //}
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int IdHue
+        {
+            get { return m_IdHue; }
+            set
+            {
+                if (m_IdHue == value)
+                {
+                    return;
+                }
+
+                m_IdHue = value;
+
+                InvalidateProperties();
+            }
+        }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int HitPoints
@@ -3367,7 +3385,10 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(11); // version
+            writer.Write(12); // version
+
+            // Version 12
+            writer.Write(m_IdHue);
 
             // Version 11
             writer.Write(m_TimesImbued);
@@ -3691,6 +3712,11 @@ namespace Server.Items
 
             switch (version)
             {
+                case 12:
+                    {
+                        m_IdHue = reader.ReadInt();
+                        goto case 11;
+                    }
                 case 11:
                     {
                         m_TimesImbued = reader.ReadInt();
@@ -4309,6 +4335,28 @@ namespace Server.Items
             set
             {
                 base.Hue = value;
+                InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public override bool Unidentified
+        {
+            get { return base.Unidentified; }
+            set
+            {
+                if(value == base.Unidentified)
+                {
+                    return;
+                }
+                if(value == true)
+                {
+                    Hue = 0;
+                }
+                else{
+                    Hue = IdHue;
+                }
+                base.Unidentified = value;
                 InvalidateProperties();
             }
         }

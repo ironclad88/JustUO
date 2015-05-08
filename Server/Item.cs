@@ -4602,11 +4602,15 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Unidentified
+        public virtual bool Unidentified
         {
             get { return m_Unidentified; }
             set
             {
+                if(m_Unidentified == value)
+                {
+                    return;
+                }
                 m_Unidentified = value;
                 InvalidateProperties();
             }

@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Legacy Of Despair");
 		
-            this.Hue = 48;
+            this.IdHue = 48;
 		
             this.Attributes.WeaponSpeed = 30;
             this.Attributes.WeaponDamage = 60;

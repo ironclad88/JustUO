@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Giant Steps");
 		
-            this.Hue = 656;		
+            this.IdHue = 656;		
 		
             this.Attributes.BonusStr = 5;
             this.Attributes.BonusDex = 5;

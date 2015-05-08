@@ -13,7 +13,7 @@ namespace Server.Items
 			this.Attributes.BonusStr = 5;
 			this.Attributes.WeaponSpeed = 20;
 			this.Attributes.WeaponDamage = 20;
-			this.Hue = 1651; //Hue not exact
+			this.IdHue = 1651; //Hue not exact
 			this.Name = ("Valkyrie's Glaive");
         }
 

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public HelmOfInsight()
         {
-            this.Hue = 0x554;
+            this.IdHue = 0x554;
             this.Attributes.BonusInt = 8;
             this.Attributes.BonusMana = 15;
             this.Attributes.RegenMana = 2;

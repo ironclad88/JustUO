@@ -23,7 +23,7 @@ namespace Server.Items
 			this.Attributes.WeaponDamage = -40;
 			this.Attributes.LowerManaCost = 5;
 			this.AosElementDamages.Poison = 100;
-			this.Hue = 1451; //Hue not exact
+			this.IdHue = 1451; //Hue not exact
 			this.Name = ("Staff of Resonance");
         }
 

@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Blade Of Battle");
 		
-            this.Hue = 2045;	
+            this.IdHue = 2045;	
 		
             this.WeaponAttributes.HitLowerDefend = 40;
             this.WeaponAttributes.BattleLust = 1;

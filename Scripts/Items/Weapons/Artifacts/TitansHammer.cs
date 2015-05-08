@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public TitansHammer()
         {
-            this.Hue = 0x482;
+            this.IdHue = 0x482;
             this.WeaponAttributes.HitEnergyArea = 100;
             this.Attributes.BonusStr = 15;
             this.Attributes.AttackChance = 15;

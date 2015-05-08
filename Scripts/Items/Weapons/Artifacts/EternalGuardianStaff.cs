@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Eternal Guardian Staff");
 		
-            this.Hue = 95;
+            this.IdHue = 95;
 			
             this.SkillBonuses.SetValues(0, SkillName.Mysticism, 15.0);		
             this.Attributes.SpellDamage = 10;

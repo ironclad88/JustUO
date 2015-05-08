@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Staff Of Shattered Dreams");
 		
-            this.Hue = 1151;
+            this.IdHue = 1151;
 		
             this.WeaponAttributes.HitDispel = 25;
             //WeaponAttributes.SplinteringWeapon = 20;

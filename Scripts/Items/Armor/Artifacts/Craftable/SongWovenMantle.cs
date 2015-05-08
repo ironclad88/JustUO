@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public SongWovenMantle()
         {
-            this.Hue = 0x493;
+            this.IdHue = 0x493;
 
             this.SkillBonuses.SetValues(0, SkillName.Musicianship, 10.0);
 

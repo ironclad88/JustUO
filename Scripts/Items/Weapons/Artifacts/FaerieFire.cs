@@ -16,7 +16,7 @@ namespace Server.Items
         public FaerieFire()
             : base()
         {
-            this.Hue = 0x489;
+            this.IdHue = 0x489;
             this.Balanced = true;
 			
             this.Attributes.BonusDex = 3;

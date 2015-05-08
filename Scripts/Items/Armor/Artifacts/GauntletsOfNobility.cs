@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public GauntletsOfNobility()
         {
-            this.Hue = 0x4FE;
+            this.IdHue = 0x4FE;
             this.Attributes.BonusStr = 8;
             this.Attributes.Luck = 100;
             this.Attributes.WeaponDamage = 20;
@@ -76,7 +76,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x562)
-                    this.Hue = 0x4FE;
+                    this.IdHue = 0x4FE;
 
                 this.PhysicalBonus = 0;
                 this.PoisonBonus = 0;

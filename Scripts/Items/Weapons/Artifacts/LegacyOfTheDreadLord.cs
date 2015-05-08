@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public LegacyOfTheDreadLord()
         {
-            this.Hue = 0x676;
+            this.IdHue = 0x676;
             this.Attributes.SpellChanneling = 1;
             this.Attributes.CastRecovery = 3;
             this.Attributes.WeaponSpeed = 30;
@@ -64,7 +64,7 @@ namespace Server.Items
                 this.Attributes.CastRecovery = 3;
 
             if (this.Hue == 0x4B9)
-                this.Hue = 0x676;
+                this.IdHue = 0x676;
         }
     }
 }

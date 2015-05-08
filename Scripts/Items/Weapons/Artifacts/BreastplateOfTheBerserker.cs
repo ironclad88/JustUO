@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Breastplate Of The Berserker");
 		
-            this.Hue = 1172;	
+            this.IdHue = 1172;	
 			this.Weight = 10;
 		
             this.Attributes.WeaponSpeed = 10;

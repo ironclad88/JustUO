@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Basilisk Hide Breastplate");
 		
-            this.Hue = 1366;	
+            this.IdHue = 1366;	
 		
             this.AbsorptionAttributes.EaterDamage = 10;
             this.Attributes.BonusDex = 5;

@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Cavalry's Folly");
 		
-            this.Hue = 1165;
+            this.IdHue = 1165;
 		
             this.Weight = 4.0;
             this.Attributes.BonusHits = 2;

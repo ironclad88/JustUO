@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public ArmorOfFortune()
         {
-            this.Hue = 0x501;
+            this.IdHue = 0x501;
             this.Attributes.Luck = 200;
             this.Attributes.DefendChance = 15;
             this.Attributes.LowerRegCost = 40;

@@ -8,7 +8,7 @@ namespace Server.Items
         public Mangler()
             : base()
         {
-            this.Hue = 2001;
+            this.IdHue = 2001;
 			
             this.Name = ("Mangler");
 		

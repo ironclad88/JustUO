@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public TheBeserkersMaul()
         {
-            this.Hue = 0x21;
+            this.IdHue = 0x21;
             this.Attributes.WeaponSpeed = 75;
             this.Attributes.WeaponDamage = 50;
         }

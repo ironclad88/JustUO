@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public OrnateCrownOfTheHarrower()
         {
-            this.Hue = 0x4F6;
+            this.IdHue = 0x4F6;
             this.Attributes.RegenHits = 2;
             this.Attributes.RegenStam = 3;
             this.Attributes.WeaponDamage = 25;
@@ -69,7 +69,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x55A)
-                    this.Hue = 0x4F6;
+                    this.IdHue = 0x4F6;
 
                 this.PoisonBonus = 0;
             }

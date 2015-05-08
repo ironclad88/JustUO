@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Standard Of Chaos");
 		
-            this.Hue = 2209;
+            this.IdHue = 2209;
 			
             this.WeaponAttributes.HitHarm = 30;	
             this.WeaponAttributes.HitFireball = 20;	

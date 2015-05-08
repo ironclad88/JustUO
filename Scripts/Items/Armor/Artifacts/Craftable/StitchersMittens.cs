@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public StitchersMittens()
         {
-            this.Hue = 0x481;
+            this.IdHue = 0x481;
 
             this.SkillBonuses.SetValues(0, SkillName.Healing, 10.0);
 

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public BrambleCoat()
         {
-            this.Hue = 0x1;
+            this.IdHue = 0x1;
 
             this.ArmorAttributes.SelfRepair = 3;
             this.Attributes.BonusHits = 4;

@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public InquisitorsResolution()
         {
-            this.Hue = 0x4F2;
+            this.IdHue = 0x4F2;
             this.Attributes.CastRecovery = 3;
             this.Attributes.LowerManaCost = 8;
             this.ArmorAttributes.MageArmor = 1;

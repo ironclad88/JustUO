@@ -15,7 +15,7 @@ namespace Server.Items
 			this.Attributes.CastSpeed = 1;
 			this.Attributes.WeaponSpeed = 20;
 			this.Attributes.WeaponDamage = 35;
-			this.Hue = 1072; //Hue not exact
+			this.IdHue = 1072; //Hue not exact
 			this.Name = ("Light in the Void");
         }
 

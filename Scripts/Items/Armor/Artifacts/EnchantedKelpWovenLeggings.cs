@@ -12,7 +12,7 @@ namespace Server.Items
 			this.Attributes.RegenMana = 2;
 			this.Attributes.SpellDamage = 8;
 			this.Attributes.LowerRegCost = 15;
-			this.Hue = 1267; // Hue probably not exact
+			this.IdHue = 1267; // Hue probably not exact
 			this.AbsorptionAttributes.CastingFocus = 4;
 			this.Name = ("Enchanted Kelp Woven Leggings");
         }

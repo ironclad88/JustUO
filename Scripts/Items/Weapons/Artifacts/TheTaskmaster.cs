@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public TheTaskmaster()
         {
-            this.Hue = 0x4F8;
+            this.IdHue = 0x4F8;
             this.WeaponAttributes.HitPoisonArea = 100;
             this.Attributes.BonusDex = 5;
             this.Attributes.AttackChance = 15;

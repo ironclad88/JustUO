@@ -31,6 +31,7 @@ namespace Server.Items
         private CraftResource m_Resource;
         private GemType m_GemType;
         private int m_TimesImbued;
+        private int m_IdHue;
 
         private Mobile m_BlessedBy;
 
@@ -209,6 +210,46 @@ namespace Server.Items
             {
                 this.m_TimesImbued = value;
                 this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int IdHue
+        {
+            get { return m_IdHue; }
+            set
+            {
+                if (m_IdHue == value)
+                {
+                    return;
+                }
+
+                m_IdHue = value;
+
+                InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public override bool Unidentified
+        {
+            get { return base.Unidentified; }
+            set
+            {
+                if(value == base.Unidentified)
+                {
+                    return;
+                }
+                if (value == true)
+                {
+                    Hue = 0;
+                }
+                else
+                {
+                    Hue = IdHue;
+                }
+                base.Unidentified = value;
+                InvalidateProperties();
             }
         }
 
@@ -665,7 +706,10 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(4); // version
+            writer.Write(5); // version
+
+            // Version 5
+            writer.Write(m_IdHue);
 
             // Version 4
             writer.WriteEncodedInt((int)this.m_TimesImbued);
@@ -701,6 +745,11 @@ namespace Server.Items
 
             switch (version)
             {
+                case 5:
+                    {
+                        m_IdHue = reader.ReadInt();
+                        goto case 4;
+                    }
                 case 4:
                     {
                         this.m_TimesImbued = reader.ReadEncodedInt();

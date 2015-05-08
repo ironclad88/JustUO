@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public TheDragonSlayer()
         {
-            this.Hue = 0x530;
+            this.IdHue = 0x530;
             this.Slayer = SlayerName.DragonSlaying;
             this.Attributes.Luck = 110;
             this.Attributes.WeaponDamage = 50;

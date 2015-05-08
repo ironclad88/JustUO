@@ -16,7 +16,7 @@ namespace Server.Items
         public MischiefMaker()
             : base()
         {
-            this.Hue = 0x8AB;
+            this.IdHue = 0x8AB;
             this.Balanced = true;
 			
             this.Slayer = SlayerName.Exorcism;

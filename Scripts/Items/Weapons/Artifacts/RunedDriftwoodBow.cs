@@ -12,7 +12,7 @@ namespace Server.Items
 			this.WeaponAttributes.HitLowerDefend = 40;
 			this.WeaponAttributes.HitLightning = 40;
 			//this.LowerAmmoCost = 15; Todo: add lower ammo cost prop to baseranged and have OnFired check for bow
-			this.Hue = 2034; // Hue not exact
+			this.IdHue = 2034; // Hue not exact
 			this.Name = ("Runed Driftwood Bow");
 	}
 

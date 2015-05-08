@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public BreathOfTheDead()
         {
-            this.Hue = 0x455;
+            this.IdHue = 0x455;
             this.WeaponAttributes.HitLeechHits = 100;
             this.WeaponAttributes.HitHarm = 25;
             this.Attributes.SpellDamage = 5;

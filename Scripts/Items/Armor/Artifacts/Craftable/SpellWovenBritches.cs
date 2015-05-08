@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public SpellWovenBritches()
         {
-            this.Hue = 0x487;
+            this.IdHue = 0x487;
 
             this.SkillBonuses.SetValues(0, SkillName.Meditation, 10.0);
 

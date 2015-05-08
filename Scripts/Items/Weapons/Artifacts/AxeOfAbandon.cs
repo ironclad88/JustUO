@@ -10,7 +10,7 @@ namespace Server.Items
         {
             this.Name = ("Axe Of Abandon");
 		
-            this.Hue = 556;	
+            this.IdHue = 556;	
 		
             this.WeaponAttributes.HitLowerDefend = 40;
             this.WeaponAttributes.BattleLust = 1;		

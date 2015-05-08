@@ -11,7 +11,7 @@ namespace Server.Items
             this.Name = ("Storm Caller");
 			this.Weight = 4;
 		
-            this.Hue = 456;
+            this.IdHue = 456;
             this.WeaponAttributes.BattleLust = 1;
             this.Attributes.BonusStr = 5;
             this.WeaponAttributes.HitLightning = 40;

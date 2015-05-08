@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public LeggingsOfBane()
         {
-            this.Hue = 0x4F5;
+            this.IdHue = 0x4F5;
             this.ArmorAttributes.DurabilityBonus = 100;
             this.HitPoints = this.MaxHitPoints = 255;	//Cause the Durability bonus and such and the min/max hits as well as all other hits being whole #'s...
             this.Attributes.BonusStam = 8;
@@ -76,7 +76,7 @@ namespace Server.Items
             if (version < 1)
             {
                 if (this.Hue == 0x559)
-                    this.Hue = 0x4F5;
+                    this.IdHue = 0x4F5;
 
                 if (this.ArmorAttributes.DurabilityBonus == 0)
                     this.ArmorAttributes.DurabilityBonus = 100;

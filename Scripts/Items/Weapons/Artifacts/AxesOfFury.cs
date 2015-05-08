@@ -9,7 +9,7 @@ namespace Server.Items
         {
             this.Name = ("Axes Of Fury");
 		
-            this.Hue = 33;	
+            this.IdHue = 33;	
 			
             this.WeaponAttributes.HitFireball = 45;
             this.WeaponAttributes.HitLowerDefend = 40;			

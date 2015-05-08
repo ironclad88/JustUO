@@ -7,7 +7,7 @@ namespace Server.Items
         [Constructable]
         public AxeOfTheHeavens()
         {
-            this.Hue = 0x4D5;
+            this.IdHue = 0x4D5;
             this.WeaponAttributes.HitLightning = 50;
             this.Attributes.AttackChance = 15;
             this.Attributes.DefendChance = 15;
