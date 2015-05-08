@@ -17,7 +17,7 @@ namespace Server.Items
             : base(itemID)
         {
             this.m_TreasureLevel = level;
-            this.Locked = true;
+            this.Locked = false;
             this.Movable = false;
 
             this.SetLockLevel();

@@ -9,7 +9,7 @@ namespace Server.Items
         public Bow()
             : base(0x13B2)
         {
-            this.Weight = 6.0;
+            this.Weight = 3.0;
             this.Layer = Layer.TwoHanded;
         }
 
@@ -85,7 +85,7 @@ namespace Server.Items
         {
             get
             {
-                return 7.25f;
+                return 2.25f;
             }
         }
         public override int OldStrengthReq

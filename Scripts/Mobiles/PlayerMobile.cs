@@ -1492,6 +1492,7 @@ namespace Server.Mobiles
         {
             get
             {
+                /*
                 int strBase;
                 int strOffs = GetStatOffset(StatType.Str);
 
@@ -1517,6 +1518,8 @@ namespace Server.Mobiles
                 }
 
                 return (strBase / 2) + 50 + strOffs;
+                */
+                return Str;
             }
         }
 
@@ -1528,8 +1531,8 @@ namespace Server.Mobiles
         {
             get
             {
-                return base.ManaMax + AosAttributes.GetValue(this, AosAttribute.BonusMana) +
-                       ((Core.ML && Race == Race.Elf) ? 20 : 0);
+                return base.ManaMax; /* +AosAttributes.GetValue(this, AosAttribute.BonusMana) +
+                       ((Core.ML && Race == Race.Elf) ? 20 : 0);*/
             }
         }
         #endregion
