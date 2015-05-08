@@ -5634,7 +5634,8 @@ namespace Server.Mobiles
 
         private static bool EnableRummaging = true;
 
-        private const double ChanceToRummage = 0.5; // 50%
+      //  private const double ChanceToRummage = 0.5; // 50%
+        private const double ChanceToRummage = 0.0; // 0%
 
         private const double MinutesToNextRummageMin = 1.0;
         private const double MinutesToNextRummageMax = 4.0;
