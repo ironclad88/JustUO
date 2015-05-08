@@ -207,7 +207,7 @@ namespace Server.Items
                 {
                     int maxWeight = MaxWeight;
 
-                    if (maxWeight != 0 && (TotalWeight + plusWeight + item.TotalWeight + item.PileWeight) > maxWeight)
+                    /*if (maxWeight != 0 && (TotalWeight + plusWeight + item.TotalWeight + item.PileWeight) > maxWeight)
                     {
                         if (message)
                         {
@@ -215,7 +215,7 @@ namespace Server.Items
                         }
 
                         return false;
-                    }
+                    }*/
                 }
             }
 
@@ -1553,7 +1553,7 @@ namespace Server.Items
         }
 
         private static int m_GlobalMaxItems = 210;
-        private static int m_GlobalMaxWeight = 600000;
+        private static int m_GlobalMaxWeight = 500;
 
         public static int GlobalMaxItems { get { return m_GlobalMaxItems; } set { m_GlobalMaxItems = value; } }
         public static int GlobalMaxWeight { get { return m_GlobalMaxWeight; } set { m_GlobalMaxWeight = value; } }

@@ -33,7 +33,8 @@ namespace Server.Items
         {
             get
             {
-                return (Core.ML ? (0.02 / 3) : 0.02);
+                //return (Core.ML ? (0.02 / 3) : 0.02);
+                return 0.001;
             }
         }
         public override int GetDropSound()

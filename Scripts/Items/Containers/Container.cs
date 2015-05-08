@@ -244,7 +244,7 @@ namespace Server.Items
         {
             get
             {
-                return 60000;
+                return 550;
             }
         }
         public override bool CheckHold(Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight)
@@ -304,7 +304,7 @@ namespace Server.Items
                     Mobile m = this.Parent as Mobile;
                     if (m != null && m.Player && m.Backpack == this)
                     {
-                        return 60000000;
+                        return 550;
                     }
                     else
                     {
