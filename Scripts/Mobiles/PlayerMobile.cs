@@ -519,8 +519,8 @@ namespace Server.Mobiles
                                 name = String.Format("#{0}", ammo.LabelNumber);
                             }
 
-                            PlaceInBackpack(ammo);
-                            SendLocalizedMessage(1073504, String.Format("{0}\t{1}", ammo.Amount, name)); // You recover ~1_NUM~ ~2_AMMO~.
+                            // PlaceInBackpack(ammo);
+                            // SendLocalizedMessage(1073504, String.Format("{0}\t{1}", ammo.Amount, name)); // You recover ~1_NUM~ ~2_AMMO~.
                         }
                     }
                 }
