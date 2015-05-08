@@ -225,6 +225,7 @@ namespace Server.Items
                 }
 
                 m_IdHue = value;
+                Unidentified = true;
 
                 InvalidateProperties();
             }

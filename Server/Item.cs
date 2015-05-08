@@ -1322,6 +1322,7 @@ namespace Server
         {
             get
             {
+                return false; //never display weight..
                 if (!Core.ML)
                 {
                     return false;
@@ -2397,6 +2398,70 @@ namespace Server
                     }
                 }
             }
+        }
+
+        public int GetElementalHue(ElementalTypes ele, int scalar)
+        {
+            if (scalar < 0) scalar = 0;
+            else if (scalar >= 5) scalar = 5;
+
+            switch(ele)
+            {
+                case ElementalTypes.Physical:
+                    {
+                        return (int)ElementalHueBase.Physical + scalar;
+                    }
+                case ElementalTypes.Fire:
+                    {
+                        return (int)ElementalHueBase.Fire + scalar;
+                    }
+                case ElementalTypes.Cold:
+                    {
+                        return (int)ElementalHueBase.Cold + scalar;
+                    }
+                case ElementalTypes.Poison:
+                    {
+                        return (int)ElementalHueBase.Poison + scalar;
+                    }
+                case ElementalTypes.Energy:
+                    {
+                        return (int)ElementalHueBase.Energy + scalar;
+                    }
+                case ElementalTypes.Chaos:
+                    {
+                        return (int)ElementalHueBase.Chaos;
+                    }
+                case ElementalTypes.Direct:
+                    {
+                        return (int)ElementalHueBase.Direct + scalar;
+                    }
+                default:
+                    {
+                        // invalid element
+                        return 0;
+                    }
+            }
+        }
+
+        public enum ElementalHueBase
+        {
+            Physical = 2340,
+            Fire = 1193,
+            Cold = 1087,
+            Poison = 2259,
+            Energy = 1346,
+            Chaos = 2320,
+            Direct = 1087
+        }
+        public enum ElementalTypes
+        {
+            Physical = 0,
+            Fire,
+            Cold,
+            Poison,
+            Energy,
+            Chaos,
+            Direct
         }
 
         [Flags]

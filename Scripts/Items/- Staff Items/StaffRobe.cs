@@ -5,7 +5,8 @@ namespace Server.Items
     public class StaffRobe : BaseSuit
     {
         private int _DecoratorHue = 0x0;
-        private int _OwnerHue, _CoOwnerHue = 0x481;
+        private int _OwnerHue = 0x481;
+        private int _CoOwnerHue = 0x481;
         private int _DeveloperHue = 0x497;
         private int _AdminHue = 0x47E;
         private int _SeerHue = 0x1D3;
@@ -159,12 +160,12 @@ namespace Server.Items
         }
 
 #if NEWPARENT
-		public override void OnRemoved(IEntity parent)
+        public override void OnRemoved(IEntity parent)
 #else
         public override void OnRemoved(object parent)
 #endif
-		{
-			base.OnRemoved(parent);
+        {
+            base.OnRemoved(parent);
 
             if (this.ItemID == 0x204F)
                 this.ItemID = 0x2683;
@@ -183,6 +184,7 @@ namespace Server.Items
                 case AccessLevel.Owner:
                     this.Name = "The Owner Robe";
                     this.Hue = this._OwnerHue;
+
                     break;
                 case AccessLevel.CoOwner:
                     this.Name = "A Co-Owner Robe";

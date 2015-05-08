@@ -116,8 +116,28 @@ namespace Server.Items
 
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
+            Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
+            int maxDamage;
+            int minDamage = /*(min < 35) ? min : 35*/ max / 5;
+            for (int i = 0; i < 10; i++)
+            {
+                maxDamage = 10 + (i * 10);
+                if (Utility.Random(2) == 1 || maxDamage >= max)
+                {
+                    ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, minDamage, (maxDamage > minDamage) ? maxDamage : minDamage);
+                    Console.WriteLine("wep dmg: {0}", primary[AosAttribute.WeaponDamage]);
+                    break;
+                }
+            }
 
             m_Props.SetAll(false);
+
+            m_Props.Set(2, true); //use best skill and mage wep
+            m_Props.Set(3, true); //wep damage, handled above
+            m_Props.Set(7, true); //luck
+            m_Props.Set(15, true); //stam leech
+            m_Props.Set(16, true); //stat req
+            m_Props.Set(24, true); //old elemental dmg
 
             if (weapon is BaseRanged)
             {
@@ -238,19 +258,32 @@ namespace Server.Items
                         ApplyAttribute(secondary, min, max, AosWeaponAttribute.LowerStatReq, 10, 100, 10);
                         break;
                     case 17:
-                        ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistPhysicalBonus, 1, 15);
+                        //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistPhysicalBonus, 1, 15);
+                        switch (Utility.Random(2))
+                        {
+                            case 0:
+                                GetElementalDamages(weapon, AosElementAttribute.Chaos);
+                                break;
+                            case 1:
+                                GetElementalDamages(weapon, AosElementAttribute.Direct);
+                                break;
+                        }
                         break;
                     case 18:
-                        ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistFireBonus, 1, 15);
+                        //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistFireBonus, 1, 15);
+                        GetElementalDamages(weapon, AosElementAttribute.Fire);
                         break;
                     case 19:
-                        ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistColdBonus, 1, 15);
+                        //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistColdBonus, 1, 15);
+                        GetElementalDamages(weapon, AosElementAttribute.Cold);
                         break;
                     case 20:
-                        ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistPoisonBonus, 1, 15);
+                        //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistPoisonBonus, 1, 15);
+                        GetElementalDamages(weapon, AosElementAttribute.Poison);
                         break;
                     case 21:
-                        ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistEnergyBonus, 1, 15);
+                        //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistEnergyBonus, 1, 15);
+                        GetElementalDamages(weapon, AosElementAttribute.Energy);
                         break;
                     case 22:
                         ApplyAttribute(secondary, min, max, AosWeaponAttribute.DurabilityBonus, 10, 100, 10);
@@ -276,6 +309,15 @@ namespace Server.Items
         public static void GetElementalDamages(BaseWeapon weapon)
         {
             GetElementalDamages(weapon, true);
+        }
+
+        public static void GetElementalDamages(BaseWeapon weapon, AosElementAttribute element)
+        {
+            int fire, phys, cold, nrgy, pois, chaos, direct;
+
+            weapon.GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
+
+            AssignElementalDamage(weapon, element, phys);
         }
 
         public static void GetElementalDamages(BaseWeapon weapon, bool randomizeOrder)
@@ -321,7 +363,6 @@ namespace Server.Items
             //Order is Cold, Energy, Fire, Poison -> Physical left
             //Cannot be looped, AoselementAttribute is 'out of order'
 
-            weapon.IdHue = weapon.GetElementalDamageHue();
         }
 
         public static SlayerName GetRandomSlayer()
@@ -381,6 +422,15 @@ namespace Server.Items
             }
             if (armor.RequiredRace == Race.Elf)
                 m_Props.Set(7, true); // elves inherently have night sight and elf only armor doesn't get night sight as a mod
+
+            //remove attributes we dont want here
+            m_Props.Set(4 - baseOffset, true); //lower stat req
+            m_Props.Set(9 - baseOffset, true); //stam reg
+            m_Props.Set(11 - baseOffset, true); //night sight
+            m_Props.Set(13 - baseOffset, true); //stamina bonus
+            m_Props.Set(15 - baseOffset, true); //lower mana
+            m_Props.Set(16 - baseOffset, true); //lower regs
+            m_Props.Set(17 - baseOffset, true); //luck
 
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -478,6 +528,7 @@ namespace Server.Items
                 /* End Armor */
                 }
             }
+            armor.IdHue = armor.GetElementalProtectionHue();
         }
 
         public static void ApplyAttributesTo(BaseHat hat, int attributeCount, int min, int max)
@@ -500,6 +551,15 @@ namespace Server.Items
             AosElementAttributes resists = hat.Resistances;
 
             m_Props.SetAll(false);
+
+            //remove attributes we dont want here
+            m_Props.Set(11 , true); //lower stat req
+            m_Props.Set(2, true); //stam reg
+            m_Props.Set(4 , true); //night sight
+            m_Props.Set(6 , true); //stamina bonus
+            m_Props.Set(10 , true); //luck
+            m_Props.Set(8 , true); //lower mana
+            m_Props.Set(9 , true); //lower regs
 
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -591,6 +651,13 @@ namespace Server.Items
             AosSkillBonuses skills = jewelry.SkillBonuses;
 
             m_Props.SetAll(false);
+
+            //remove attributes we dont want here
+            m_Props.Set(11, true); //enhance pots
+            m_Props.Set(8, true); //night sight
+            m_Props.Set(16, true); //luck
+            m_Props.Set(14, true); //lower mana
+            m_Props.Set(15, true); //lower regs
 
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -696,6 +763,10 @@ namespace Server.Items
             AosSkillBonuses skills = spellbook.SkillBonuses;
 
             m_Props.SetAll(false);
+
+            m_Props.Set(12, true); //lower mana req
+            m_Props.Set(13, true); //lower regs req
+
 
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -952,9 +1023,10 @@ namespace Server.Items
             if (totalDamage <= 0)
                 return 0;
 
-            int random = Utility.Random((int)(totalDamage / 10) + 1) * 10;
+            int random = (Utility.Random(5) + 1) * 5;
+            random = (random > totalDamage) ? totalDamage : random;
             weapon.AosElementDamages[attr] = random;
-
+            weapon.IdHue = weapon.GetElementalDamageHue();
             return (totalDamage - random);
         }
     }

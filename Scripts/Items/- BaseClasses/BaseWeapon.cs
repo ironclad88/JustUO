@@ -294,7 +294,7 @@ namespace Server.Items
                 }
 
                 m_IdHue = value;
-
+                Unidentified = true;
                 InvalidateProperties();
             }
         }
@@ -2793,13 +2793,13 @@ namespace Server.Items
 
         public virtual void AddBlood(Mobile attacker, Mobile defender, int damage)
         {
-            if (damage > 0)
+            if (damage >= 15)
             {
                 new Blood().MoveToWorld(defender.Location, defender.Map);
 
-                int extraBlood = (Core.SE ? Utility.RandomMinMax(3, 4) : Utility.RandomMinMax(0, 1));
+                int extraBlood = (Core.SE ? Utility.RandomMinMax(0, 5) : Utility.RandomMinMax(0, 1));
 
-                for (int i = 0; i < extraBlood; i++)
+                for (int i = 3; i < extraBlood; i++)
                 {
                     new Blood().MoveToWorld(
                         new Point3D(defender.X + Utility.RandomMinMax(-1, 1), defender.Y + Utility.RandomMinMax(-1, 1), defender.Z),
@@ -4367,31 +4367,47 @@ namespace Server.Items
             GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
             //Order is Cold, Energy, Fire, Poison, Physical left
 
-            int currentMax = 50;
+            int currentMax = 1;
             int hue = 0;
 
             if (pois >= currentMax)
             {
-                hue = 1267 + (pois - 50) / 10;
+                hue = GetElementalHue(Item.ElementalTypes.Poison, pois / 6);
+                //hue = 1267 + (pois - 50) / 10;
                 currentMax = pois;
             }
 
             if (fire >= currentMax)
             {
-                hue = 1255 + (fire - 50) / 10;
+                hue = GetElementalHue(Item.ElementalTypes.Fire, fire / 6);
+                //hue = 1255 + (fire - 50) / 10;
                 currentMax = fire;
             }
 
             if (nrgy >= currentMax)
             {
-                hue = 1273 + (nrgy - 50) / 10;
+                hue = GetElementalHue(Item.ElementalTypes.Energy, nrgy / 6);
+                //hue = 1273 + (nrgy - 50) / 10;
                 currentMax = nrgy;
             }
 
             if (cold >= currentMax)
             {
-                hue = 1261 + (cold - 50) / 10;
+                hue = GetElementalHue(Item.ElementalTypes.Cold, cold / 6);
+                //hue = 1261 + (cold - 50) / 10;
                 currentMax = cold;
+            }
+
+            if (chaos >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Chaos, chaos / 6);
+                currentMax = chaos;
+            }
+
+            if (direct >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Direct, direct / 6);
+                currentMax = direct;
             }
 
             return hue;
@@ -5021,10 +5037,10 @@ namespace Server.Items
                 }
                 #endregion
 
-                if (phys != 0)
-                {
-                    list.Add(1060403, phys.ToString()); // physical damage ~1_val~%
-                }
+                //if (phys != 0)
+                //{
+                //    list.Add(1060403, phys.ToString()); // physical damage ~1_val~%
+                //}
 
                 if (fire != 0)
                 {
@@ -5058,14 +5074,14 @@ namespace Server.Items
 
                 list.Add(1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString()); // weapon damage ~1_val~ - ~2_val~
 
-                if (Core.ML)
-                {
-                    list.Add(1061167, String.Format("{0}s", Speed)); // weapon speed ~1_val~
-                }
-                else
-                {
-                    list.Add(1061167, Speed.ToString());
-                }
+                //if (Core.ML)
+                //{
+                //    list.Add(1061167, String.Format("{0}s", Speed)); // weapon speed ~1_val~
+                //}
+                //else
+                //{
+                //    list.Add(1061167, Speed.ToString());
+                //}
 
                 if (MaxRange > 1)
                 {
@@ -5074,38 +5090,38 @@ namespace Server.Items
 
                 int strReq = AOS.Scale(StrRequirement, 100 - GetLowerStatReq());
 
-                if (strReq > 0)
-                {
-                    list.Add(1061170, strReq.ToString()); // strength requirement ~1_val~
-                }
+                //if (strReq > 0)
+                //{
+                //    list.Add(1061170, strReq.ToString()); // strength requirement ~1_val~
+                //}
 
-                if (Layer == Layer.TwoHanded)
-                {
-                    list.Add(1061171); // two-handed weapon
-                }
-                else
-                {
-                    list.Add(1061824); // one-handed weapon
-                }
+                //if (Layer == Layer.TwoHanded)
+                //{
+                //    list.Add(1061171); // two-handed weapon
+                //}
+                //else
+                //{
+                //    list.Add(1061824); // one-handed weapon
+                //}
 
-                if (Core.SE || m_AosWeaponAttributes.UseBestSkill == 0)
-                {
-                    switch (Skill)
-                    {
-                        case SkillName.Swords:
-                            list.Add(1061172);
-                            break; // skill required: swordsmanship
-                        case SkillName.Macing:
-                            list.Add(1061173);
-                            break; // skill required: mace fighting
-                        case SkillName.Fencing:
-                            list.Add(1061174);
-                            break; // skill required: fencing
-                        case SkillName.Archery:
-                            list.Add(1061175);
-                            break; // skill required: archery
-                    }
-                }
+                //if (Core.SE || m_AosWeaponAttributes.UseBestSkill == 0)
+                //{
+                //    switch (Skill)
+                //    {
+                //        case SkillName.Swords:
+                //            list.Add(1061172);
+                //            break; // skill required: swordsmanship
+                //        case SkillName.Macing:
+                //            list.Add(1061173);
+                //            break; // skill required: mace fighting
+                //        case SkillName.Fencing:
+                //            list.Add(1061174);
+                //            break; // skill required: fencing
+                //        case SkillName.Archery:
+                //            list.Add(1061175);
+                //            break; // skill required: archery
+                //    }
+                //}
 
                 XmlAttach.AddAttachmentProperties(this, list);
 

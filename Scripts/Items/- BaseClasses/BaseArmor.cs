@@ -529,6 +529,7 @@ namespace Server.Items
                 }
 
                 m_IdHue = value;
+                Unidentified = true;
 
                 InvalidateProperties();
             }
@@ -2204,6 +2205,53 @@ namespace Server.Items
                 base.Unidentified = value;
                 InvalidateProperties();
             }
+        }
+
+        public int GetElementalProtectionHue()
+        {
+            //int phys, fire, cold, pois, nrgy, chaos, direct;
+            //GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
+            //Order is Cold, Energy, Fire, Poison, Physical left
+
+            int currentMax = 5;
+            int hue = 0;
+
+            if (PoisonResistance >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Poison, PoisonResistance / 3);
+                //hue = 1267 + (pois - 50) / 10;
+                currentMax = PoisonResistance;
+            }
+
+            if (FireResistance >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Fire, FireResistance / 3);
+                //hue = 1255 + (fire - 50) / 10;
+                currentMax = FireResistance;
+            }
+
+            if (EnergyResistance >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Energy, EnergyResistance / 3);
+                //hue = 1273 + (nrgy - 50) / 10;
+                currentMax = EnergyResistance;
+            }
+
+            if (ColdResistance >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Cold, ColdResistance / 3);
+                //hue = 1261 + (cold - 50) / 10;
+                currentMax = ColdResistance;
+            }
+
+            if (PhysicalResistance >= currentMax)
+            {
+                hue = GetElementalHue(Item.ElementalTypes.Physical, PhysicalResistance / 3);
+                //hue = 1261 + (cold - 50) / 10;
+                currentMax = ColdResistance;
+            }
+
+            return hue;
         }
 
         public override void AddNameProperty(ObjectPropertyList list)
