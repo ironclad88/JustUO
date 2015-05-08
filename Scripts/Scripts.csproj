@@ -145,6 +145,7 @@
     <Compile Include="Commands\GMbody.cs" />
     <Compile Include="Commands\Handlers.cs" />
     <Compile Include="Commands\HelpInfo.cs" />
+    <Compile Include="Commands\Hungry.cs" />
     <Compile Include="Commands\Logging.cs" />
     <Compile Include="Commands\MoonGenDelete.cs" />
     <Compile Include="Commands\Profiling.cs" />
