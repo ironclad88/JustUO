@@ -127,7 +127,8 @@ namespace Server.Misc
             if (!m.Player || !m.Alive || m.IsStaff())
                 return false;
 
-            return ((Mobile.BodyWeight + m.TotalWeight) > (GetMaxWeight(m) + OverloadAllowance));
+            //return ((Mobile.BodyWeight + m.TotalWeight) > (GetMaxWeight(m) + OverloadAllowance));
+            return false;
         }
     }
 }

@@ -99,8 +99,14 @@ namespace Server.Items
             Spell spell = SpellRegistry.NewSpell(this.m_SpellID, from, this);
 
             if (spell != null)
-                spell.Cast();
+                if(spell.CheckFizzle() == true){
+                        spell.Cast();
+                }else{
+                    spell.DoFizzle();
+                }
+                    
             else
+               
                 from.SendLocalizedMessage(502345); // This spell has been temporarily disabled.
         }
     }
