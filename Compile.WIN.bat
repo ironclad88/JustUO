@@ -40,6 +40,10 @@
 @ECHO: Thanks, and Enjoy!
 @ECHO:
 
+
+
 @PAUSE
+
+start justuo.exe
 
 EXIT /B
