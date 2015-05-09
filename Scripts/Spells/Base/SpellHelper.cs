@@ -326,18 +326,14 @@ namespace Server.Spells
             double percent;
 
             /*if (curse)
-                percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100);
+                percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // dunno what this does, so i removed it ^^
             else*/
                 percent = 1 + (caster.Skills.Magery.Fixed / 130);
 
             percent *= 0.01;
 
-           // Console.WriteLine(percent);
-
             if (percent < 0)
                 percent = 0;
-
-          //  Console.WriteLine(percent);
 
             return percent;
         }
@@ -351,7 +347,7 @@ namespace Server.Spells
                     caster.CheckSkill(SkillName.Magery, 0.0, 130.0);
 
                     //if (curse)
-                   //     target.CheckSkill(SkillName.MagicResist, 0.0, 130.0);
+                    //     target.CheckSkill(SkillName.MagicResist, 0.0, 130.0);  // dunno what this does, so i removed it ^^
                 }
 
                 double percent = GetOffsetScalar(caster, target, curse);
