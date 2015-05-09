@@ -117,18 +117,23 @@ namespace Server.Items
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
             Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
-            int maxDamage;
-            int minDamage = /*(min < 35) ? min : 35*/ max / 5;
-            for (int i = 0; i < 10; i++)
+            int maxDamage = min;
+            int minDamage = min;
+            for (int i = 0; maxDamage < max; i++)
             {
-                maxDamage = 10 + (i * 10);
-                if (Utility.Random(2) == 1 || maxDamage >= max)
+                maxDamage = min + (i * 5);
+                if(maxDamage >= max)
                 {
-                    ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, minDamage, (maxDamage > minDamage) ? maxDamage : minDamage);
-                    Console.WriteLine("wep dmg: {0}", primary[AosAttribute.WeaponDamage]);
+                    maxDamage = max;
+                    break;
+                }
+                if (Utility.Random(5) < 1)
+                {
                     break;
                 }
             }
+            ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, minDamage, maxDamage);
+            Console.WriteLine("min + {1} = {0} ({2})", primary[AosAttribute.WeaponDamage], (primary[AosAttribute.WeaponDamage] - min), maxDamage);
 
             m_Props.SetAll(false);
 
