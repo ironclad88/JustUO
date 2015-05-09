@@ -12,7 +12,7 @@
 @ECHO: Ready to Compile JustUO (WIN)
 @ECHO:
 
-@PAUSE
+
 
 @DEL "%CURPATH%JustUO.exe"
 
@@ -26,7 +26,7 @@
 @ECHO: Done!
 @ECHO:
 
-@PAUSE
+
 
 @CLS
 
@@ -42,7 +42,7 @@
 
 
 
-@PAUSE
+
 
 start justuo.exe
 

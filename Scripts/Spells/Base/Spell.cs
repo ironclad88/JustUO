@@ -936,6 +936,8 @@ namespace Server.Spells
 
 			if (m_Caster.Deleted || !m_Caster.Alive || m_Caster.Spell != this || m_State != SpellState.Sequencing)
 			{
+                Console.WriteLine(m_Caster.Spell);
+                Console.WriteLine(SpellState.Sequencing);
 				DoFizzle();
 			}
 			else if (m_Scroll != null && !(m_Scroll is Runebook) &&
@@ -1027,14 +1029,12 @@ namespace Server.Spells
 						AOS.Damage(m_Caster, Utility.RandomMinMax(17, 23), 100, 0, 0, 0, 0);
 					}
 				}
-
 				return true;
 			}
 			else
 			{
 				DoFizzle();
 			}
-
 			return false;
 		}
 
