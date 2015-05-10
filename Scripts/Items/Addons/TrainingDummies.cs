@@ -98,7 +98,7 @@ namespace Server.Items
             from.Direction = from.GetDirectionTo(this.GetWorldLocation());
             weapon.PlaySwingAnimation(from);
 
-            from.CheckSkill(weapon.Skill, this.m_MinSkill, this.m_MaxSkill);
+            // from.CheckSkill(weapon.Skill, this.m_MinSkill, this.m_MaxSkill);
         }
 
         public override void OnDoubleClick(Mobile from)
