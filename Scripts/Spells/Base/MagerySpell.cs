@@ -33,12 +33,12 @@ namespace Server.Spells
 
         public override void GetCastSkills(out double min, out double max)
         {
-            int circle = (int)this.Circle;
+           // int circle = (int)this.Circle;
 
-            if (this.Scroll != null)
-                circle -= 2;
+          //  if (this.Scroll != null)
+          //      circle -= 2;
 
-            double avg = ChanceLength * circle;
+            double avg = ChanceLength * (int)this.Circle;
 
             min = avg - ChanceOffset;
             max = avg + ChanceOffset;

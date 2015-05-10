@@ -30,11 +30,11 @@ namespace Server.SkillHandlers
 
             protected override void OnTarget(Mobile from, object targeted)
             {
-                if (from == targeted)
+                /*if (from == targeted)
                 {
                     from.LocalOverheadMessage(MessageType.Regular, 0x3B2, 500910); // Hmm, that person looks really silly.
-                }
-                else if (targeted is TownCrier)
+                }*/
+                if (targeted is TownCrier)
                 {
                     ((TownCrier)targeted).PrivateOverheadMessage(MessageType.Regular, 0x3B2, 500907, from.NetState); // He looks smart enough to remember the news.  Ask him about it.
                 }

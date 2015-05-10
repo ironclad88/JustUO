@@ -302,7 +302,7 @@ namespace Server.Spells
         public static TimeSpan GetDuration(Mobile caster, Mobile target)
         {
             if (Core.AOS)
-                return TimeSpan.FromSeconds(((6 * caster.Skills.EvalInt.Fixed) / 50) + 1);
+                return TimeSpan.FromSeconds(((6 * caster.Skills.Magery.Fixed) / 50) + 1);
 
             return TimeSpan.FromSeconds(caster.Skills[SkillName.Magery].Value * 1.2);
         }
@@ -329,7 +329,7 @@ namespace Server.Spells
                 percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // dunno what this does, so i removed it ^^
             else*/
                 percent = 1 + (caster.Skills.Magery.Fixed / 130);
-
+             
             percent *= 0.01;
 
             if (percent < 0)

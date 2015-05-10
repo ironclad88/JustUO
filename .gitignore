@@ -1,6 +1,8 @@
 /Server/bin
 /JustUO.pdb
 /JustUO.exe
+/Docs
+/Docs/*
 /Server/obj
 /Server/Server.csproj.user
 /Scripts/bin

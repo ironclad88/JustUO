@@ -2780,8 +2780,11 @@
     <Compile Include="Items\Weapons\Wooden\HardenedWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\ThornedWildStaff.cs" />
     <Compile Include="Items\ZuluIems\BookOfTheEarth.cs" />
+    <Compile Include="Items\ZuluIems\DragonEgg.cs" />
+    <Compile Include="Items\ZuluIems\FrenziedOstardEgg.cs" />
     <Compile Include="Items\ZuluIems\HolyBook.cs" />
     <Compile Include="Items\ZuluIems\NecroBook.cs" />
+    <Compile Include="Items\ZuluIems\OstardEgg.cs" />
     <Compile Include="Items\ZuluIems\songBook.cs" />
     <Compile Include="Misc\AccountPrompt.cs" />
     <Compile Include="Misc\Animations.cs" />
@@ -2793,6 +2796,7 @@
     <Compile Include="Misc\BuffIcons.cs" />
     <Compile Include="Misc\CharacterCreation.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\NecroFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Monsters\Reptile\Melee\GoldenDragon.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRatingGump.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRating.cs" />
     <Compile Include="Misc\Cleanup.cs" />

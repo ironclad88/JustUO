@@ -1563,7 +1563,7 @@ namespace Server
         [CommandProperty(AccessLevel.GameMaster)]
         public int Hunger
         {
-            get { return _Hunger; }
+            get { return 20; }
             set
             {
                 int oldValue = _Hunger;
@@ -1572,7 +1572,7 @@ namespace Server
                 {
                     _Hunger = value;
 
-                    EventSink.InvokeHungerChanged(new HungerChangedEventArgs(this, oldValue));
+                   // EventSink.InvokeHungerChanged(new HungerChangedEventArgs(this, oldValue));
                 }
             }
         }
@@ -4007,8 +4007,12 @@ namespace Server
             }
         }
 
-        public virtual bool AllowSkillUse(SkillName name)
+        public virtual bool AllowSkillUse(SkillName name) // turn off skills here?
         {
+            if (SkillName.Focus == name) // test
+            {
+                return false;
+            }
             return true;
         }
 

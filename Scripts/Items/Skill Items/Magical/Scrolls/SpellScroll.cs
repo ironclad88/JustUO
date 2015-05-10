@@ -24,7 +24,7 @@ namespace Server.Items
             : base(itemID)
         {
             this.Stackable = true;
-            this.Weight = 1.0;
+            this.Weight = 0.3;
             this.Amount = amount;
 
             this.m_SpellID = spellID;
@@ -103,6 +103,7 @@ namespace Server.Items
                         spell.Cast();
                 }else{
                     spell.DoFizzle();
+                    spell.Scroll.Consume(1);
                 }
                     
             else
