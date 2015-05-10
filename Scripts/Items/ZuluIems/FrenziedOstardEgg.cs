@@ -35,14 +35,10 @@ namespace Server.Items
         }
         public override void OnDoubleClick(Mobile from)
         {
-            
             BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
-            creature.Summoned = false;
             TimeSpan duration;
             duration = TimeSpan.FromDays(1);
-            
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
-            creature.Summoned = false;
             this.Consume(1);
         }
 

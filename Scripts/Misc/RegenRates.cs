@@ -110,10 +110,9 @@ namespace Server.Misc
             if (from.Skills == null)
                 return Mobile.DefaultStamRate;
 
-           // CheckBonusSkill(from, from.Stam, from.StamMax, SkillName.Focus);
+            CheckBonusSkill(from, from.Stam, from.StamMax, SkillName.Focus);
 
-          //  int points = (int)(from.Skills[SkillName.Focus].Value * 0.1);
-            int points = 5;
+            int points = (int)(from.Skills[SkillName.Focus].Value * 0.1);
 
             if ((from is BaseCreature && ((BaseCreature)from).IsParagon) || from is Leviathan)
                 points += 40;
@@ -146,9 +145,9 @@ namespace Server.Misc
             if (from.Skills == null)
                 return Mobile.DefaultManaRate;
 
-          //  if (!from.Meditating)
-              //  CheckBonusSkill(from, from.Mana, from.ManaMax, SkillName.Meditation);
-            
+            if (!from.Meditating)
+                CheckBonusSkill(from, from.Mana, from.ManaMax, SkillName.Meditation);
+
             double rate;
             double armorPenalty = GetArmorOffset(from);
 

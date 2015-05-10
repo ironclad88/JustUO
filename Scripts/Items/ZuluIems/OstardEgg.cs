@@ -39,7 +39,6 @@ namespace Server.Items
             TimeSpan duration;
             duration = TimeSpan.FromDays(1);
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
-            creature.Summoned = false;
             this.Consume(1);
         }
 
