@@ -13,7 +13,7 @@ namespace Server.Custom
         public int D6Roll(int Rolls)
         {
         int sum=0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < Rolls; i++)
         {
             var roll = r.Next(1, 7);
             sum += roll;
@@ -24,7 +24,7 @@ namespace Server.Custom
         public int D8Roll(int Rolls)
         {
             int sum = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Rolls; i++)
             {
                 var roll = r.Next(1, 9);
                 sum += roll;
@@ -35,7 +35,7 @@ namespace Server.Custom
         public int D10Roll(int Rolls)
         {
             int sum = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Rolls; i++)
             {
                 var roll = r.Next(1, 11);
                 sum += roll;
@@ -46,7 +46,7 @@ namespace Server.Custom
         public int D12Roll(int Rolls)
         {
             int sum = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Rolls; i++)
             {
                 var roll = r.Next(1, 13);
                 sum += roll;
@@ -57,7 +57,7 @@ namespace Server.Custom
         public int D20Roll(int Rolls)
         {
             int sum = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Rolls; i++)
             {
                 var roll = r.Next(1, 21);
                 sum += roll;
