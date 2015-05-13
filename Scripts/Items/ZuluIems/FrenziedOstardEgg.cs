@@ -16,6 +16,7 @@ namespace Server.Items
             this.Stackable = true;
         }
 
+        [Constructable]
         public FrenziedOstardEgg(Serial serial)
             : base(serial)
         {

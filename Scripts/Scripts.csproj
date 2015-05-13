@@ -2782,6 +2782,15 @@
     <Compile Include="Items\ZuluIems\BookOfTheEarth.cs" />
     <Compile Include="Items\ZuluIems\DragonEgg.cs" />
     <Compile Include="Items\ZuluIems\FrenziedOstardEgg.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\ArmsofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\ChestofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\GlovesofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\GorgetofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\HelmofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\LegsofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Weapons\BaldersDead.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Weapons\LanceofLothian.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Weapons\RavensRazor.cs" />
     <Compile Include="Items\ZuluIems\HolyBook.cs" />
     <Compile Include="Items\ZuluIems\NecroBook.cs" />
     <Compile Include="Items\ZuluIems\OstardEgg.cs" />
