@@ -1,6 +1,7 @@
 ﻿using System;
 using Server.Mobiles;
 using Server.Spells;
+using Server.Custom;
 
 namespace Server.Items
 {
@@ -15,6 +16,7 @@ namespace Server.Items
             this.Stackable = true;
         }
 
+        [Constructable]
         public OstardEgg(Serial serial)
             : base(serial)
         {
@@ -39,6 +41,25 @@ namespace Server.Items
             TimeSpan duration;
             duration = TimeSpan.FromDays(1);
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
+            creature.Summoned = false;
+            RandomClass rnd = new RandomClass();
+            var diceRoll = rnd.D20Roll(1);
+            Console.WriteLine("D20 Dice roll: " + diceRoll);
+            if (diceRoll <= 2)
+            {
+                if (from.Skills.AnimalLore.Value >= 40)
+                {
+                    creature.Controlled = true;
+                }
+                else
+                {
+                    creature.Controlled = false;
+                }
+            }
+            else
+            {
+                creature.Controlled = true;
+            }
             this.Consume(1);
         }
 

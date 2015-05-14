@@ -1,32 +1,35 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Mobiles
+namespace Server.Mobiles.Animals.Mounts.ZuluOstards
 {
-    [CorpseName("an ostard corpse")]
-    public class ForestOstard : BaseMount
+    [CorpseName("an necro ostard corpse")]
+    public class NecroOstard : BaseMount
     {
         [Constructable]
-        public ForestOstard()
-            : this("a forest ostard")
+        public NecroOstard()
+            : this("a necro ostardd")
         {
         }
 
         [Constructable]
-        public ForestOstard(string name)
-            : base(name, 0xDB, 0x3EA5, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
+        public NecroOstard(string name)
+            : base(name, 0xDB, 0x3EA5, AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Hue = Utility.RandomSlimeHue() | 0x8000;
+            this.Hue = 1282;
 
             this.BaseSoundID = 0x270;
 
-            this.SetStr(94, 170);
-            this.SetDex(56, 75);
-            this.SetInt(6, 10);
+            this.SetStr(200, 250);
+            this.SetDex(200, 250);
+            this.SetInt(200, 250);
 
-            this.SetHits(71, 88);
-            this.SetMana(0);
+            this.SetHits(200, 250);
+            this.SetMana(500);
 
-            this.SetDamage(8, 14);
+            this.SetDamage(16, 35);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -41,10 +44,10 @@ namespace Server.Mobiles
 
             this.Tamable = true;
             this.ControlSlots = 1;
-            this.MinTameSkill = 50;
+            this.MinTameSkill = 110;
         }
 
-        public ForestOstard(Serial serial)
+        public NecroOstard(Serial serial)
             : base(serial)
         {
         }

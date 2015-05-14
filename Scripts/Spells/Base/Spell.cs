@@ -352,7 +352,7 @@ namespace Server.Spells
 			return m.Skills[SkillName.MagicResist].Value;
 		}
 
-		public virtual double GetDamageScalar(Mobile target)
+		public virtual double GetDamageScalar(Mobile target) // something to check out..  // Oscar      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		{
 			double scalar = 1.0;
 
