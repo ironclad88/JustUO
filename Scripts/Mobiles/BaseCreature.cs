@@ -235,6 +235,9 @@ namespace Server.Mobiles
         private int m_ColdResistance, m_ColdDamage;
         private int m_PoisonResistance, m_PoisonDamage;
         private int m_EnergyResistance, m_EnergyDamage;
+        private int m_EarthResistance, m_EarthDamage;
+        private int m_NecroResistance, m_NecroDamage;
+        private int m_HolyResistance, m_HolyDamage;
 
         private List<Mobile> m_Owners;
         private List<Mobile> m_Friends;
@@ -428,6 +431,9 @@ namespace Server.Mobiles
         public override int BaseColdResistance { get { return m_ColdResistance; } }
         public override int BasePoisonResistance { get { return m_PoisonResistance; } }
         public override int BaseEnergyResistance { get { return m_EnergyResistance; } }
+        public override int BaseEarthResistance { get { return m_EarthResistance; } }
+        public override int BaseNecroResistance { get { return m_NecroResistance; } }
+        public override int BaseHolyResistance { get { return m_HolyResistance; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int PhysicalResistanceSeed
@@ -485,6 +491,39 @@ namespace Server.Mobiles
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
+        public int EarthResistSeed
+        {
+            get { return m_EarthResistance; }
+            set
+            {
+                m_EarthResistance = value;
+                UpdateResistances();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int NecroResistSeed
+        {
+            get { return m_NecroResistance; }
+            set
+            {
+                m_NecroResistance = value;
+                UpdateResistances();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int HolyResistSeed
+        {
+            get { return m_HolyResistance; }
+            set
+            {
+                m_HolyResistance = value;
+                UpdateResistances();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public int PhysicalDamage { get { return m_PhysicalDamage; } set { m_PhysicalDamage = value; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -498,6 +537,15 @@ namespace Server.Mobiles
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int EnergyDamage { get { return m_EnergyDamage; } set { m_EnergyDamage = value; } }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int EarthDamage { get { return m_EarthDamage; } set { m_EarthDamage = value; } }
+        
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int NecroDamage { get { return m_NecroDamage; } set { m_NecroDamage = value; } }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int HolyDamage { get { return m_HolyDamage; } set { m_HolyDamage = value; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int ChaosDamage { get; set; }
@@ -1865,7 +1913,7 @@ namespace Server.Mobiles
         {
             base.Serialize(writer);
 
-            writer.Write(20); // version
+            writer.Write(21); // version
 
             writer.Write((int)m_CurrentAI);
             writer.Write((int)m_DefaultAI);
@@ -1998,6 +2046,14 @@ namespace Server.Mobiles
 
             //Version 20 Queens Loyalty
             writer.Write(m_QLPoints);
+
+            // Version 21
+            writer.Write(m_EarthResistance);
+            writer.Write(m_EarthDamage);
+            writer.Write(m_NecroResistance);
+            writer.Write(m_NecroDamage);
+            writer.Write(m_HolyResistance);
+            writer.Write(m_HolyDamage);
         }
 
         private static readonly double[] m_StandardActiveSpeeds = new[] { 0.175, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.8 };
@@ -2272,6 +2328,15 @@ namespace Server.Mobiles
             if (version >= 20)
             {
                 m_QLPoints = reader.ReadInt();
+            }
+            if (version >= 21)
+            {
+                m_EarthResistance = reader.ReadInt();
+                m_EarthDamage = reader.ReadInt();
+                m_NecroResistance = reader.ReadInt();
+                m_NecroDamage = reader.ReadInt();
+                m_HolyResistance = reader.ReadInt();
+                m_HolyDamage = reader.ReadInt();
             }
 
             if (version <= 14 && m_Paragon && Hue == 0x31)
@@ -4077,6 +4142,15 @@ namespace Server.Mobiles
                     break;
                 case ResistanceType.Energy:
                     m_EnergyResistance = val;
+                    break;
+                case ResistanceType.Earth:
+                    m_EarthResistance = val;
+                    break;
+                case ResistanceType.Necro:
+                    m_NecroResistance = val;
+                    break;
+                case ResistanceType.Holy:
+                    m_HolyResistance = val;
                     break;
             }
 

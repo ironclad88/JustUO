@@ -95,6 +95,9 @@ namespace Server.Items
         private int m_ArmorColdResist;
         private int m_ArmorPoisonResist;
         private int m_ArmorEnergyResist;
+        private int m_ArmorEarthResist;
+        private int m_ArmorNecroResist;
+        private int m_ArmorHolyResist;
         private int m_ArmorDurability;
         private int m_ArmorLuck;
         private int m_ArmorGoldIncrease;
@@ -269,6 +272,39 @@ namespace Server.Items
             set
             {
                 this.m_ArmorEnergyResist = value;
+            }
+        }
+        public int ArmorEarthResist
+        {
+            get
+            {
+                return this.m_ArmorEarthResist;
+            }
+            set
+            {
+                this.m_ArmorEarthResist = value;
+            }
+        }
+        public int ArmorNecroResist
+        {
+            get
+            {
+                return this.m_ArmorNecroResist;
+            }
+            set
+            {
+                this.m_ArmorNecroResist = value;
+            }
+        }
+        public int ArmorHolyResist
+        {
+            get
+            {
+                return this.m_ArmorHolyResist;
+            }
+            set
+            {
+                this.m_ArmorHolyResist = value;
             }
         }
         public int ArmorDurability
