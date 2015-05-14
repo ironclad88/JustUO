@@ -24,6 +24,8 @@ namespace Server.Mobiles
 
             this.SetDamage(20, 70);
 
+            this.BoostStr(1000);
+
             this.SetDamageType(ResistanceType.Physical, 100);
 
             this.SetResistance(ResistanceType.Physical, 50, 60);

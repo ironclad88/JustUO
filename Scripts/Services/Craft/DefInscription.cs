@@ -156,6 +156,8 @@ namespace Server.Engines.Craft
 
         private int m_Index;
 
+
+
         private void AddSpell(Type type, params Reg[] regs)
         {
             double minSkill, maxSkill;
@@ -241,6 +243,7 @@ namespace Server.Engines.Craft
             this.m_Circle = 0;
             this.m_Mana = 4;
 
+          //  this.AddSpel
             this.AddSpell(typeof(ReactiveArmorScroll), Reg.Garlic, Reg.SpidersSilk, Reg.SulfurousAsh);
             this.AddSpell(typeof(ClumsyScroll), Reg.Bloodmoss, Reg.Nightshade);
             this.AddSpell(typeof(CreateFoodScroll), Reg.Garlic, Reg.Ginseng, Reg.MandrakeRoot);
@@ -334,7 +337,7 @@ namespace Server.Engines.Craft
             this.AddSpell(typeof(SummonFireElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk, Reg.SulfurousAsh);
             this.AddSpell(typeof(SummonWaterElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 this.AddNecroSpell(0, 23, 39.6, typeof(AnimateDeadScroll), Reagent.GraveDust, Reagent.DaemonBlood);
                 this.AddNecroSpell(1, 13, 19.6, typeof(BloodOathScroll), Reagent.DaemonBlood);
@@ -353,10 +356,10 @@ namespace Server.Engines.Craft
                 this.AddNecroSpell(14, 23, 59.6, typeof(WitherScroll), Reagent.GraveDust, Reagent.NoxCrystal, Reagent.PigIron);
                 this.AddNecroSpell(15, 17, 79.6, typeof(WraithFormScroll), Reagent.NoxCrystal, Reagent.PigIron);
                 this.AddNecroSpell(16, 40, 79.6, typeof(ExorcismScroll), Reagent.NoxCrystal, Reagent.GraveDust);
-            }
+            }*/
 
             int index;
-			
+			/*
             if (Core.ML)
             {
                 index = this.AddCraft(typeof(EnchantedSwitch), 1044294, 1072893, 45.0, 95.0, typeof(BlankScroll), 1044377, 1, 1044378);
@@ -392,24 +395,24 @@ namespace Server.Engines.Craft
                 this.AddMysticSpell("Rising Colossus", 50, 75.0, typeof(RisingColossusScroll), Reagent.DaemonBone, Reagent.FertileDirt, Reagent.DragonBlood, Reagent.Nightshade, Reagent.MandrakeRoot);
                 //END
             }
-			
+			*/
             // Runebook
             index = this.AddCraft(typeof(Runebook), 1044294, 1041267, 45.0, 95.0, typeof(BlankScroll), 1044377, 8, 1044378);
             this.AddRes(index, typeof(RecallScroll), 1044445, 1, 1044253);
             this.AddRes(index, typeof(GateTravelScroll), 1044446, 1, 1044253);
-
+            /*
             if (Core.AOS)
             {
                 this.AddCraft(typeof(Engines.BulkOrders.BulkOrderBook), 1044294, 1028793, 65.0, 115.0, typeof(BlankScroll), 1044377, 10, 1044378);
             }
-
+            */
             if (Core.SE)
             {
                 this.AddCraft(typeof(Spellbook), 1044294, 1023834, 50.0, 126, typeof(BlankScroll), 1044377, 10, 1044378);
             }
 			
             #region Mondain's Legacy	
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = this.AddCraft(typeof(ScrappersCompendium), 1044294, 1072940, 75.0, 125.0, typeof(BlankScroll), 1044377, 100, 1044378);
                 this.AddRes(index, typeof(DreadHornMane), 1032682, 1, 1044253);
@@ -426,11 +429,11 @@ namespace Server.Engines.Craft
                 this.AddCraft(typeof(NecromancerSpellbook), 1044294, "Necromancer spellbook", 50.0, 100.0, typeof(BlankScroll), 1044377, 10, 1044378);
                 //	AddCraft(typeof(SpellweavingBook), 1044294, "Spellweaving book", 50.0, 100.0, typeof(BlankScroll), 1044377, 10, 1044378);
                 this.AddCraft(typeof(MysticBook), 1044294, "Mysticism spellbook", 50.0, 100.0, typeof(BlankScroll), 1044377, 10, 1044378);
-            }
+            }*/
             #endregion
 
             #region OS-Edit for SA items
-            if (Core.SA)
+          /*  if (Core.SA)
             {
                 index = this.AddCraft(typeof(GargoyleBook100), 1044294, 1113290, 60.0, 100.0, typeof(BlankScroll), 1044377, 40, 1044378);
                 this.AddRes(index, typeof(Beeswax), 1025154, 2, "You do not have enough beeswax.");
@@ -439,7 +442,7 @@ namespace Server.Engines.Craft
                 this.AddRes(index, typeof(Beeswax), 1025154, 4, "You do not have enough beeswax.");
 
                 index = AddCraft(typeof(ScrollBinderDeed), 1044294, ("Scroll Binder"), 75.0, 100.0, typeof(WoodPulp), ("Wood Pulp"), 1, ("You do not have enough Wood Pulp")); //Todo check Clilocs
-            }
+            }*/
             #endregion
 
             this.MarkOption = true;

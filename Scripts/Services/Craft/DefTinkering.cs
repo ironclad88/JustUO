@@ -191,12 +191,12 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(Axle), 1044042, 1024187, -25.0, 25.0, typeof(Board), 1044041, 2, 1044351);
             this.AddCraft(typeof(RollingPin), 1044042, 1024163, 0.0, 50.0, typeof(Board), 1044041, 5, 1044351);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(Nunchaku), 1044042, 1030158, 70.0, 120.0, typeof(IronIngot), 1044036, 3, 1044037);
                 this.AddRes(index, typeof(Board), 1044041, 8, 1044351);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
             #endregion
 
             #region Tools
@@ -225,14 +225,14 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(ScribesPen), 1044046, 1044168, 25.0, 75.0, typeof(IronIngot), 1044036, 1, 1044037);
 
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 this.AddCraft(typeof(MetalContainerEngraver), 1044046, 1072154, 75.0, 100.0, typeof(IronIngot), 1044036, 4, 1044037);
                 this.AddRes(index, typeof(Springs), 1044171, 1, 1044253);
                 this.AddRes(index, typeof(Gears), 1044254, 2, 1044253);
                 this.AddRes(index, typeof(Diamond), 1062608, 1, 1044240);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             #endregion
@@ -247,13 +247,13 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(Hinge), 1044047, 1024181, 5.0, 55.0, typeof(IronIngot), 1044036, 2, 1044037);
             this.AddCraft(typeof(BolaBall), 1044047, 1023699, 45.0, 95.0, typeof(IronIngot), 1044036, 10, 1044037);
             
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(JeweledFiligree), 1044047, 1072894, 70.0, 110.0, typeof(IronIngot), 1044036, 2, 1044037);
                 this.AddRes(index, typeof(StarSapphire), 1044231, 1, 1044253);
                 this.AddRes(index, typeof(Ruby), 1044234, 1, 1044253);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             
             #endregion
 
@@ -282,7 +282,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(Lantern), 1044050, 1022597, 30.0, 80.0, typeof(IronIngot), 1044036, 2, 1044037);
             this.AddCraft(typeof(HeatingStand), 1044050, 1026217, 60.0, 110.0, typeof(IronIngot), 1044036, 4, 1044037);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(ShojiLantern), 1044050, 1029404, 65.0, 115.0, typeof(IronIngot), 1044036, 10, 1044037);
                 this.AddRes(index, typeof(Board), 1044041, 5, 1044351);
@@ -301,7 +301,7 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(FancyWindChimes), 1044050, 1030291, 80.0, 130.0, typeof(IronIngot), 1044036, 15, 1044037);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
             #endregion
 
             #region Jewelry
@@ -342,7 +342,7 @@ namespace Server.Engines.Craft
             this.AddRes(index, typeof(BarrelLid), 1044251, 1, 1044253);
             this.AddRes(index, typeof(BarrelTap), 1044252, 1, 1044253);
             
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 index = this.AddCraft(typeof(ModifiedClockworkAssembly), 1044051, 1113031, 65.0, 115.0, typeof(ClockworkAssembly), 1073426, 1, 502910);
                 this.AddRes(index, typeof(PowerCrystal), 1112811, 1, 502910);
@@ -361,10 +361,10 @@ namespace Server.Engines.Craft
                 this.AddRes(index, typeof(VoidEssence), 1112327, 3, 502910);
                 this.SetNeededExpansion(index, Expansion.SA);
                 this.ForceNonExceptional(index);
-            }
+            }*/
 
             #region Hitching Post
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = this.AddCraft(typeof(HitchingRope), 1044051, 1071124, 60.0, 120.0, typeof(Rope), 1020934, 1, 1044253);
                 this.AddSkill(index, SkillName.AnimalLore, 15.0, 100.0);
@@ -374,14 +374,14 @@ namespace Server.Engines.Craft
                 this.AddRes(index, typeof(AnimalPheromone), 1071200, 1, 1044253);
                 this.AddRes(index, typeof(HitchingRope), 1071124, 2, 1044253);
                 this.AddRes(index, typeof(PhillipsWoodenSteed), 1063488, 1, 1044253);
-            }
+            }*/
             #endregion
 
             #endregion
 
             #region Traps
             // Dart Trap
-            index = this.AddCraft(typeof(DartTrapCraft), 1044052, 1024396, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
+           /* index = this.AddCraft(typeof(DartTrapCraft), 1044052, 1024396, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
             this.AddRes(index, typeof(Bolt), 1044570, 1, 1044253);
 
             // Poison Trap
@@ -415,10 +415,11 @@ namespace Server.Engines.Craft
             // Faction trap removal kit
             index = this.AddCraft(typeof(FactionTrapRemovalKit), 1044052, 1046445, 90.0, 115.0, typeof(Silver), 1044572, 500, 1044253);
             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+            */
             #endregion
 
             #region Mondain's Legacy Magic Jewlery
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(BrilliantAmberBracelet), 1073107, 1073453, 75.0, 125.0, typeof(IronIngot), 1044036, 5, 1044037);
                 this.AddRes(index, typeof(Amber), 1062607, 20, 1044240);
@@ -501,7 +502,7 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(GargishEarrings), 1044049, 1095787, 65.0, 115.0, typeof(IronIngot), 1044036, 4, 1044037);
                 this.AddRes(index, typeof(BlueDiamond), 1032696, 1, 1044253);
                 this.SetNeededExpansion(index, Expansion.SA);  
-            }               
+            }   */            
             #endregion
 
             // Set the overridable material
@@ -521,7 +522,7 @@ namespace Server.Engines.Craft
 
             this.MarkOption = true;
             this.Repair = true;
-            this.CanEnhance = Core.AOS;
+            this.CanEnhance = false;
         }
     }
 

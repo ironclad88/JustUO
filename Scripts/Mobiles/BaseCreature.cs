@@ -4074,6 +4074,21 @@ namespace Server.Mobiles
             Stam = StamMax;
         }
 
+        public void BoostStr(int val)
+        {
+            Str += val;
+        }
+
+        public void BoostInt(int val)
+        {
+            Int += val;
+        }
+
+        public void BoostDex(int val)
+        {
+            Dex += val;
+        }
+
         public void SetDex(int min, int max)
         {
             RawDex = Utility.RandomMinMax(min, max);
