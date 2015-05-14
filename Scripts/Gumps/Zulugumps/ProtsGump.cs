@@ -42,7 +42,7 @@ namespace Server.Gumps.Zulugumps
             int holy = owner.HolyResistance;
 
             AddPage(0);
-            AddBackground(90, 30, 400, 325, 9200);
+            AddBackground(90, 30, 400, 300, 9200);
             AddLabel(150, 50, 0, @"Protections & Mods");
             AddItem(100, 50, 7107);
             int startX = 100;
@@ -58,7 +58,7 @@ namespace Server.Gumps.Zulugumps
 
             startX += 250;
             startY = 100;
-            AddLabel(startX, startY += 25, 0, armor.ToString());
+            AddLabel(startX, startY, 0, armor.ToString());
             AddLabel(startX, startY += 25, 0, phys.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, fire.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, water.ToString() + @"%");

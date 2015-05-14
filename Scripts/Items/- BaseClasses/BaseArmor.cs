@@ -2538,6 +2538,9 @@ namespace Server.Items
                 if ((prop = this.ArtifactRarity) > 0)
                     list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
 
+                if ((prop = (int)this.ArmorRating) != 0 && this.m_AosArmorAttributes.MageArmor == 0)
+                    list.Add(1061182, prop.ToString()); // armor rating ~1_val~
+
                 if ((prop = this.m_AosAttributes.WeaponDamage) != 0)
                     list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
 
