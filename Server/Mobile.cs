@@ -463,7 +463,10 @@ namespace Server
         Fire,
         Cold,
         Poison,
-        Energy
+        Energy,
+        Earth,
+        Necro,
+        Holy
     }
 
     public enum ApplyPoisonResult
@@ -857,6 +860,9 @@ namespace Server
         public virtual int BaseColdResistance { get { return 0; } }
         public virtual int BasePoisonResistance { get { return 0; } }
         public virtual int BaseEnergyResistance { get { return 0; } }
+        public virtual int BaseEarthResistance { get { return 0; } }
+        public virtual int BaseNecroResistance { get { return 0; } }
+        public virtual int BaseHolyResistance { get { return 0; } }
 
         public virtual void ComputeLightLevels(out int global, out int personal)
         {
@@ -892,11 +898,20 @@ namespace Server
         [CommandProperty(AccessLevel.Counselor)]
         public virtual int EnergyResistance { get { return GetResistance(ResistanceType.Energy); } }
 
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int EarthResistance { get { return GetResistance(ResistanceType.Earth); } }
+
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int NecroResistance { get { return GetResistance(ResistanceType.Necro); } }
+
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int HolyResistance { get { return GetResistance(ResistanceType.Holy); } }
+
         public virtual void UpdateResistances()
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             bool delta = false;
@@ -992,6 +1007,9 @@ namespace Server
             _Resistances[2] += BaseColdResistance;
             _Resistances[3] += BasePoisonResistance;
             _Resistances[4] += BaseEnergyResistance;
+            _Resistances[5] += BaseEarthResistance;
+            _Resistances[6] += BaseNecroResistance;
+            _Resistances[7] += BaseHolyResistance;
 
             for (int i = 0; _ResistMods != null && i < _ResistMods.Count; ++i)
             {
@@ -1018,6 +1036,9 @@ namespace Server
                 _Resistances[2] += item.ColdResistance;
                 _Resistances[3] += item.PoisonResistance;
                 _Resistances[4] += item.EnergyResistance;
+                _Resistances[5] += item.EarthResistance;
+                _Resistances[6] += item.NecroResistance;
+                _Resistances[7] += item.HolyResistance;
             }
 
             for (int i = 0; i < _Resistances.Length; ++i)

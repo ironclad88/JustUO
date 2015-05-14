@@ -1297,7 +1297,7 @@ namespace Server
 
             if (v != 0)
             {
-                list.Add(1060445, v.ToString()); // cold resist ~1_val~%
+                list.Add(1060445, v.ToString()); // water resist ~1_val~%
             }
 
             v = PoisonResistance;
@@ -1311,7 +1311,28 @@ namespace Server
 
             if (v != 0)
             {
-                list.Add(1060446, v.ToString()); // energy resist ~1_val~%
+                list.Add(1060446, v.ToString()); // air resist ~1_val~%
+            }
+
+            v = EarthResistance;
+
+            if (v != 0)
+            {
+                list.Add(1060526, v.ToString()); // earth resist ~1_val~%
+            }
+
+            v = NecroResistance;
+
+            if (v != 0)
+            {
+                list.Add(1060527, v.ToString()); // necro resist ~1_val~%
+            }
+
+            v = HolyResistance;
+
+            if (v != 0)
+            {
+                list.Add(1060528, v.ToString()); // holy resist ~1_val~%
             }
         }
 
@@ -1323,17 +1344,17 @@ namespace Server
             get
             {
                 return false; //never display weight..
-                if (!Core.ML)
-                {
-                    return false;
-                }
+                //if (!Core.ML)
+                //{
+                //    return false;
+                //}
 
-                if (!Movable && !(IsLockedDown || IsSecure) && ItemData.Weight == 255)
-                {
-                    return false;
-                }
+                //if (!Movable && !(IsLockedDown || IsSecure) && ItemData.Weight == 255)
+                //{
+                //    return false;
+                //}
 
-                return true;
+                //return true;
             }
         }
 
@@ -4477,6 +4498,9 @@ namespace Server
         public virtual int ColdResistance { get { return 0; } }
         public virtual int PoisonResistance { get { return 0; } }
         public virtual int EnergyResistance { get { return 0; } }
+        public virtual int EarthResistance { get { return 0; } }
+        public virtual int NecroResistance { get { return 0; } }
+        public virtual int HolyResistance { get { return 0; } }
 
         [CommandProperty(AccessLevel.Counselor)]
         public Serial Serial { get { return m_Serial; } }

@@ -90,7 +90,7 @@ namespace Server.Spells.Zulu.NecroSpells
                         m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }*/
                     damage *= this.GetDamageScalar(m);
-                    SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
+                    SpellHelper.Damage(this, m, damage, 0, 20, 0, 0, 0, 0, 80, 0);
                     
              //   }
 

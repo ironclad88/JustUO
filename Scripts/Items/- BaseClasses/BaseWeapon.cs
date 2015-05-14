@@ -2216,6 +2216,9 @@ namespace Server.Items
                 cold,
                 pois,
                 nrgy,
+                0,
+                0,
+                0,
                 chaos,
                 direct,
                 false,
@@ -2811,6 +2814,13 @@ namespace Server.Items
         public virtual void GetDamageTypes(
             Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct)
         {
+            int earth, necro, holy;
+            Console.WriteLine("warning, skipping earth, necro and holy in GetDamageTypes.");
+            GetDamageTypes(wielder, out phys, out fire, out cold, out pois, out nrgy, out earth, out necro, out holy, out chaos, out direct);
+        }
+        public virtual void GetDamageTypes(
+            Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int earth, out int necro, out int holy, out int chaos, out int direct)
+        {
             if (wielder is BaseCreature)
             {
                 BaseCreature bc = (BaseCreature)wielder;
@@ -2820,6 +2830,9 @@ namespace Server.Items
                 cold = bc.ColdDamage;
                 pois = bc.PoisonDamage;
                 nrgy = bc.EnergyDamage;
+                earth = bc.EarthDamage;
+                necro = bc.NecroDamage;
+                holy = bc.HolyDamage;
                 chaos = bc.ChaosDamage;
                 direct = bc.DirectDamage;
             }
@@ -2829,10 +2842,13 @@ namespace Server.Items
                 cold = m_AosElementDamages.Cold;
                 pois = m_AosElementDamages.Poison;
                 nrgy = m_AosElementDamages.Energy;
+                earth = m_AosElementDamages.Earth;
+                necro = m_AosElementDamages.Necro;
+                holy = m_AosElementDamages.Holy;
                 chaos = m_AosElementDamages.Chaos;
                 direct = m_AosElementDamages.Direct;
 
-                phys = 100 - fire - cold - pois - nrgy - chaos - direct;
+                phys = 100 - fire - cold - pois - nrgy - earth - necro - holy - chaos - direct;
 
                 CraftResourceInfo resInfo = CraftResources.GetInfo(m_Resource);
 
@@ -2848,6 +2864,9 @@ namespace Server.Items
                         left = ApplyCraftAttributeElementDamage(attrInfo.WeaponEnergyDamage, ref nrgy, left);
                         left = ApplyCraftAttributeElementDamage(attrInfo.WeaponFireDamage, ref fire, left);
                         left = ApplyCraftAttributeElementDamage(attrInfo.WeaponPoisonDamage, ref pois, left);
+                        left = ApplyCraftAttributeElementDamage(attrInfo.WeaponPoisonDamage, ref earth, left);
+                        left = ApplyCraftAttributeElementDamage(attrInfo.WeaponPoisonDamage, ref necro, left);
+                        left = ApplyCraftAttributeElementDamage(attrInfo.WeaponPoisonDamage, ref holy, left);
                         left = ApplyCraftAttributeElementDamage(attrInfo.WeaponChaosDamage, ref chaos, left);
                         left = ApplyCraftAttributeElementDamage(attrInfo.WeaponDirectDamage, ref direct, left);
 
@@ -5021,9 +5040,9 @@ namespace Server.Items
                 }
                 #endregion
 
-                int phys, fire, cold, pois, nrgy, chaos, direct;
+                int phys, fire, cold, pois, nrgy, earth, necro, holy, chaos, direct;
 
-                GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
+                GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out earth, out necro, out holy, out chaos, out direct);
 
                 #region Mondain's Legacy
                 if (chaos != 0)
@@ -5049,7 +5068,7 @@ namespace Server.Items
 
                 if (cold != 0)
                 {
-                    list.Add(1060404, cold.ToString()); // cold damage ~1_val~%
+                    list.Add(1060404, cold.ToString()); // water damage ~1_val~%
                 }
 
                 if (pois != 0)
@@ -5059,7 +5078,22 @@ namespace Server.Items
 
                 if (nrgy != 0)
                 {
-                    list.Add(1060407, nrgy.ToString()); // energy damage ~1_val
+                    list.Add(1060407, nrgy.ToString()); // air damage ~1_val
+                }
+
+                if (earth != 0)
+                {
+                    list.Add(1060529, nrgy.ToString()); // earth damage ~1_val
+                }
+
+                if (nrgy != 0)
+                {
+                    list.Add(1060530, nrgy.ToString()); // necro damage ~1_val
+                }
+
+                if (nrgy != 0)
+                {
+                    list.Add(1060531, nrgy.ToString()); // holy damage ~1_val
                 }
 
                 if (Core.ML && chaos != 0)

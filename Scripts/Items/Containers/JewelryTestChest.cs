@@ -339,7 +339,7 @@ namespace Server.Items
                         }
 
                         BaseRunicTool.ApplyAttributesTo((BaseJewel)item, attributeCount, min, max);
-
+                        item.Unidentified = false;
                         cont.DropItem(item);
                     }
                 }

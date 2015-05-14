@@ -59,6 +59,9 @@ namespace Server.Items
                 this.ColdBonus = 0;
                 this.PoisonBonus = 0;
                 this.EnergyBonus = 0;
+                this.EarthBonus = 0;
+                this.NecroBonus = 0;
+                this.HolyBonus = 0;
             }
         }
 

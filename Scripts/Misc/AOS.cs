@@ -35,32 +35,41 @@ namespace Server
             return Damage(m, null, damage, phys, fire, cold, pois, nrgy);
         }
 
+        public static int Damage(Mobile m, Mobile from, int damage, int phys, int fire, int cold, int pois, int nrgy, int earth, int necro, int holy)
+        {
+            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, earth, necro, holy, 0, 0, false, false, false);
+        }
+
         public static int Damage(Mobile m, Mobile from, int damage, int phys, int fire, int cold, int pois, int nrgy)
         {
-            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, 0, 0, false, false, false);
+            Console.WriteLine("warning, skipping earth, necro and holy in AOS.Damage.");
+            return Damage(m, from, damage, phys, fire, cold, pois, nrgy, 0, 0, 0);
         }
 
         public static int Damage(Mobile m, Mobile from, int damage, int phys, int fire, int cold, int pois, int nrgy, int chaos)
         {
-            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, chaos, 0, false, false, false);
+            Console.WriteLine("warning, skipping earth, necro and holy in AOS.Damage.");
+            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, 0, 0, 0, chaos, 0, false, false, false);
         }
 
         public static int Damage(Mobile m, Mobile from, int damage, bool ignoreArmor, int phys, int fire, int cold, int pois, int nrgy)
         {
-            return Damage(m, from, damage, ignoreArmor, phys, fire, cold, pois, nrgy, 0, 0, false, false, false);
+            Console.WriteLine("warning, skipping earth, necro and holy in AOS.Damage.");
+            return Damage(m, from, damage, ignoreArmor, phys, fire, cold, pois, nrgy, 0, 0, 0, 0, 0, false, false, false);
         }
 
         public static int Damage(Mobile m, Mobile from, int damage, int phys, int fire, int cold, int pois, int nrgy, bool keepAlive)
         {
-            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, 0, 0, keepAlive, false, false);
+            Console.WriteLine("warning, skipping earth, necro and holy in AOS.Damage.");
+            return Damage(m, from, damage, false, phys, fire, cold, pois, nrgy, 0, 0, 0, 0, 0, keepAlive, false, false);
         }
 
-        public static int Damage(Mobile m, Mobile from, int damage, bool ignoreArmor, int phys, int fire, int cold, int pois, int nrgy, int chaos, int direct, bool keepAlive, bool archer, bool deathStrike)
+        public static int Damage(Mobile m, Mobile from, int damage, bool ignoreArmor, int phys, int fire, int cold, int pois, int nrgy, int earth, int necro, int holy, int chaos, int direct, bool keepAlive, bool archer, bool deathStrike)
         {
             if (m == null || m.Deleted || !m.Alive || damage <= 0)
                 return 0;
 
-            if (phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0)
+            if (phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0 && earth == 0 && necro == 0 && holy == 0)
                 Mobiles.MeerMage.StopEffect(m, true);
 
             if (!Core.AOS)
@@ -74,12 +83,15 @@ namespace Server
             Fix(ref cold);
             Fix(ref pois);
             Fix(ref nrgy);
+            Fix(ref earth);
+            Fix(ref necro);
+            Fix(ref holy);
             Fix(ref chaos);
             Fix(ref direct);
 
             if (Core.ML && chaos > 0)
             {
-                switch (Utility.Random(5))
+                switch (Utility.Random(8))
                 {
                     case 0:
                         phys += chaos;
@@ -95,6 +107,15 @@ namespace Server
                         break;
                     case 4:
                         nrgy += chaos;
+                        break;
+                    case 5:
+                        earth += chaos;
+                        break;
+                    case 6:
+                        necro += chaos;
+                        break;
+                    case 7:
+                        holy += chaos;
                         break;
                 }
             }
@@ -116,12 +137,15 @@ namespace Server
                 int coldDamage = damage * cold * (100 - m.ColdResistance);
                 int poisonDamage = damage * pois * (100 - m.PoisonResistance);
                 int energyDamage = damage * nrgy * (100 - m.EnergyResistance);
+                int earthDamage = damage * earth * (100 - m.EarthResistance);
+                int necroDamage = damage * necro * (100 - m.NecroResistance);
+                int holyDamage = damage * holy * (100 - m.HolyResistance);
 
                 int[] amounts = new int[] { physDamage, fireDamage, coldDamage, poisonDamage, energyDamage };
                 DamageEater(m, amounts);
                 SoulCharge(m, amounts);
 
-                totalDamage = physDamage + fireDamage + coldDamage + poisonDamage + energyDamage;
+                totalDamage = physDamage + fireDamage + coldDamage + poisonDamage + energyDamage + earthDamage + necroDamage + holyDamage;
                 totalDamage /= 10000;
 
                 int soulcharge = AosArmorAttributes.GetValue(m, AosArmorAttribute.SoulCharge);
@@ -2239,7 +2263,10 @@ namespace Server
         Poison = 0x00000008,
         Energy = 0x00000010,
         Chaos = 0x00000020,
-        Direct = 0x00000040
+        Direct = 0x00000040,
+        Earth = 0x00000080,
+        Necro = 0x00000100,
+        Holy = 0x00000200
     }
 
     public sealed class AosElementAttributes : BaseAttributes
@@ -2352,6 +2379,45 @@ namespace Server
             set
             {
                 this[AosElementAttribute.Energy] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Earth
+        {
+            get
+            {
+                return this[AosElementAttribute.Earth];
+            }
+            set
+            {
+                this[AosElementAttribute.Earth] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Necro
+        {
+            get
+            {
+                return this[AosElementAttribute.Necro];
+            }
+            set
+            {
+                this[AosElementAttribute.Necro] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Holy
+        {
+            get
+            {
+                return this[AosElementAttribute.Holy];
+            }
+            set
+            {
+                this[AosElementAttribute.Holy] = value;
             }
         }
 
