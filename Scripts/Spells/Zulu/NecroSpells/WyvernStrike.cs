@@ -1,4 +1,5 @@
-﻿using Server.Targeting;
+﻿using Server.Spells.Necromancy;
+using Server.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Server.Spells.Zulu.NecroSpells
 {
-    public class WyvernStrike : MagerySpell
+    public class WyvernStrikeSpell : NecromancerSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
             "WyvernStrike", "Umbrae Tenebrae Venarent",
@@ -14,15 +15,8 @@ namespace Server.Spells.Zulu.NecroSpells
             9051,
             Reagent.Nightshade);
 
-        public override SpellCircle Circle
-        {
-            get
-            {
-                return SpellCircle.Third;
-            }
-        }
 
-        public WyvernStrike(Mobile caster, Item scroll)
+        public WyvernStrikeSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
@@ -30,6 +24,35 @@ namespace Server.Spells.Zulu.NecroSpells
         public override void OnCast()
         {
             this.Caster.Target = new InternalTarget(this);
+        }
+
+        public override TimeSpan CastDelayBase
+        {
+            get
+            {
+                return TimeSpan.FromSeconds(1.5);
+            }
+        }
+        public override double RequiredSkill
+        {
+            get
+            {
+                return 60.0;
+            }
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 23;
+            }
+        }
+        public override bool DelayedDamage
+        {
+            get
+            {
+                return false;
+            }
         }
 
         public void Target(Mobile m)
@@ -42,7 +65,7 @@ namespace Server.Spells.Zulu.NecroSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
+                //  SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m); // had to remove this if inherit from NecromancerSpell
 
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();
@@ -60,12 +83,12 @@ namespace Server.Spells.Zulu.NecroSpells
                     Console.WriteLine("Wyvern Strike DMG: " + damage);
                     Console.WriteLine("Applying PSN: Lethal");
                     m.ApplyPoison(this.Caster, Poison.GetPoison("Lethal"));
-                    if (this.CheckResisted(m))
+                    /*if (this.CheckResisted(m)) // had to remove this if inherit from NecromancerSpell
                     {
                         damage *= 0.75;
 
                         m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                    }
+                    }*/
                     damage *= this.GetDamageScalar(m);
                     SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
                     
@@ -82,9 +105,9 @@ namespace Server.Spells.Zulu.NecroSpells
 
         private class InternalTarget : Target
         {
-            private readonly WyvernStrike m_Owner;
+            private readonly WyvernStrikeSpell m_Owner;
 
-            public InternalTarget(WyvernStrike owner)
+            public InternalTarget(WyvernStrikeSpell owner)
                 : base(Core.ML ? 10 : 12, false, TargetFlags.Harmful)
             {
                 this.m_Owner = owner;

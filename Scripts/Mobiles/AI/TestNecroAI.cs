@@ -207,7 +207,7 @@ namespace Server.Mobiles
 
 
             this.m_Mobile.Say("Umbrae Tenebrae Venarent");
-            return new WyvernStrike(this.m_Mobile, null);
+            return new WyvernStrikeSpell(this.m_Mobile, null);
                   
 
 
@@ -224,7 +224,7 @@ namespace Server.Mobiles
             double damage = ((this.m_Mobile.Skills[SkillName.SpiritSpeak].Value - c.Skills[SkillName.MagicResist].Value) / 10) + (c.Player ? 18 : 30);
 
             this.m_Mobile.Say("Umbrae Tenebrae Venarent");
-           spell = new WyvernStrike(this.m_Mobile, null);
+           spell = new WyvernStrikeSpell(this.m_Mobile, null);
 
 
 

@@ -25,7 +25,7 @@ namespace VitaNex
 		public static string[] CircleNames = new[]
 		{
 			"First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Necromancy", "Chivalry", "Bushido",
-			"Ninjitsu", "Spellweaving"
+			"Ninjitsu", "Spellweaving", "Necro", "Earth", "Holy"
 		};
 
 		public static Dictionary<Type, SpellInfo> SpellsInfo { get; private set; }
