@@ -5,21 +5,21 @@ using System.Text;
 
 namespace Server.Items.Resources.Reagents.ZuluReags
 {
-    public class ExecutionersCap : BaseReagent, ICommodity
+    public class VolcanicAsh : BaseReagent, ICommodity
     {
         [Constructable]
-        public ExecutionersCap()
+        public VolcanicAsh()
             : this(1)
         {
         }
 
         [Constructable]
-        public ExecutionersCap(int amount)
-            : base(0x0F83, amount)
+        public VolcanicAsh(int amount)
+            : base(0xf8f, amount)
         {
         }
 
-        public ExecutionersCap(Serial serial)
+        public VolcanicAsh(Serial serial)
             : base(serial)
         {
         }

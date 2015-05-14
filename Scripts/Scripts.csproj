@@ -1913,7 +1913,16 @@
     <Compile Include="Items\Resources\Reagents\SpidersSilk.cs" />
     <Compile Include="Items\Resources\Reagents\SulfurousAsh.cs" />
     <Compile Include="Items\Resources\Reagents\ZuluReags\BlackMoor.cs" />
-    <Compile Include="Items\Resources\Reagents\ZuluReags\ExecutionersCap.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\BloodSpawn.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\BrimStone.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\DragonsBlood.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\EyeofNewt.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\ObsidianReag.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\Pumice.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\SerpentsScales.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\VialofBlood.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\VolcanicAsh.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\Wormsheart.cs" />
     <Compile Include="Items\Resources\Tailor\BoltOfCloth.cs" />
     <Compile Include="Items\Resources\Tailor\Bone.cs" />
     <Compile Include="Items\Resources\Tailor\Cloth.cs" />
@@ -2116,6 +2125,7 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\TeleportScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\UnlockScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\WallOfStoneScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\KillScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\WyvernStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Spellbook.cs" />
     <Compile Include="Items\Skill Items\Magical\SpellStone.cs" />
@@ -5197,7 +5207,10 @@
     <Compile Include="Spells\Third\Unlock.cs" />
     <Compile Include="Spells\Third\WallOfStone.cs" />
     <Compile Include="Spells\UnsummonTimer.cs" />
-    <Compile Include="Spells\Zulu\NecroSpells\WyvernStrike.cs" />
+    <Compile Include="Spells\Zulu\NecroSpells\KillSpell.cs" />
+    <Compile Include="Spells\Zulu\NecroSpells\LicheSpell.cs" />
+    <Compile Include="Spells\Zulu\NecroSpells\NecroSpell.cs" />
+    <Compile Include="Spells\Zulu\NecroSpells\WyvernStrikeSpell.cs" />
     <Compile Include="Targets\BladedItemTarget.cs" />
     <Compile Include="Targets\MoveTarget.cs" />
     <Compile Include="Targets\PickMoveTarget.cs" />

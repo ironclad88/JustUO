@@ -7,13 +7,17 @@ using System.Text;
 
 namespace Server.Spells.Zulu.NecroSpells
 {
-    public class WyvernStrikeSpell : NecromancerSpell
+    public class WyvernStrikeSpell : NecroSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
             "WyvernStrike", "Umbrae Tenebrae Venarent",
             203,
             9051,
-            Reagent.Nightshade);
+            Reagent.DragonBlood,
+            Reagent.SerpentsScales,
+            Reagent.BlackMoor,
+            Reagent.BloodSpawn,
+            Reagent.VolcanicAsh);
 
 
         public WyvernStrikeSpell(Mobile caster, Item scroll)
@@ -37,14 +41,14 @@ namespace Server.Spells.Zulu.NecroSpells
         {
             get
             {
-                return 60.0;
+                return 100;
             }
         }
         public override int RequiredMana
         {
             get
             {
-                return 23;
+                return 35;
             }
         }
         public override bool DelayedDamage

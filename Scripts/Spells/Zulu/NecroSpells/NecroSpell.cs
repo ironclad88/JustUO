@@ -1,32 +1,36 @@
-using System;
-using Server.Items;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Spells.Necromancy
+namespace Server.Spells.Zulu.NecroSpells
 {
-    public abstract class NecromancerSpell : Spell
+    public abstract class NecroSpell : Spell
     {
-        public NecromancerSpell(Mobile caster, Item scroll, SpellInfo info)
+        public NecroSpell(Mobile caster, Item scroll, SpellInfo info)
             : base(caster, scroll, info)
         {
         }
 
         public abstract double RequiredSkill { get; }
         public abstract int RequiredMana { get; }
+
         public override SkillName CastSkill
         {
             get
             {
-                return SkillName.Necromancy;
+                return SkillName.Magery;
             }
         }
         public override SkillName DamageSkill
         {
             get
             {
-                return SkillName.SpiritSpeak;
+                return SkillName.Magery;
+                // return SkillName.EvalInt; // not sure about this one
             }
         }
-        
+        //public override int CastDelayBase{ get{ return base.CastDelayBase; } } // Reference, 3
         public override bool ClearHandsOnCast
         {
             get
@@ -41,7 +45,7 @@ namespace Server.Spells.Necromancy
                 return (Core.SE ? base.CastDelayFastScalar : 0);
             }
         }// Necromancer spells are not affected by fast cast items, though they are by fast cast recovery
-        /*public override int ComputeKarmaAward()
+        public override int ComputeKarmaAward()
         {
             //TODO: Verify this formula being that Necro spells don't HAVE a circle.
             //int karma = -(70 + (10 * (int)Circle));
@@ -51,7 +55,7 @@ namespace Server.Spells.Necromancy
                 karma += AOS.Scale(karma, AosAttributes.GetValue(this.Caster, AosAttribute.IncreasedKarmaLoss));
 
             return karma;
-        } */
+        }
 
         public override void GetCastSkills(out double min, out double max)
         {
@@ -59,16 +63,6 @@ namespace Server.Spells.Necromancy
             max = this.Scroll != null ? min : this.RequiredSkill + 40.0;
         }
 
-        public override bool ConsumeReagents()
-        {
-            if (base.ConsumeReagents())
-                return true;
-
-            /*if (ArcaneGem.ConsumeCharges(this.Caster, 1))
-                return true;
-            */
-            return false;
-        }
 
         public override int GetMana()
         {
