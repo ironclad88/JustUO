@@ -1,29 +1,32 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Mobiles
+namespace Server.Mobiles.Animals.Mounts.ZuluOstards
 {
-    [CorpseName("an ostard corpse")]
-    public class ForestOstard : BaseMount
+    [CorpseName("an tropical frenzied ostard corpse")]
+    public class TropicalFrenziedOstard : BaseMount
     {
         [Constructable]
-        public ForestOstard()
-            : this("a forest ostard")
+        public TropicalFrenziedOstard()
+            : this("a tropical frenzied ostardd")
         {
         }
 
         [Constructable]
-        public ForestOstard(string name)
-            : base(name, 0xDB, 0x3EA5, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
+        public TropicalFrenziedOstard(string name)
+            : base(name, 0xDA, 0x3EA5, AIType.AI_Animal, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Hue = Utility.RandomSlimeHue() | 0x8000;
+            this.Hue = 1645;
 
             this.BaseSoundID = 0x270;
 
-            this.SetStr(94, 170);
-            this.SetDex(56, 75);
+            this.SetStr(150, 170);
+            this.SetDex(110, 175);
             this.SetInt(6, 10);
 
-            this.SetHits(71, 88);
+            this.SetHits(120, 130);
             this.SetMana(0);
 
             this.SetDamage(8, 14);
@@ -41,10 +44,10 @@ namespace Server.Mobiles
 
             this.Tamable = true;
             this.ControlSlots = 1;
-            this.MinTameSkill = 50;
+            this.MinTameSkill = 105;
         }
 
-        public ForestOstard(Serial serial)
+        public TropicalFrenziedOstard(Serial serial)
             : base(serial)
         {
         }

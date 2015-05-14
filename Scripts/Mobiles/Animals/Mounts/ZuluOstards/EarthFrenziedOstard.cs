@@ -1,50 +1,53 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Mobiles
+namespace Server.Mobiles.Animals.Mounts.ZuluOstards
 {
-    [CorpseName("an ostard corpse")]
-    public class ForestOstard : BaseMount
+    [CorpseName("an earth frenzied ostard corpse")]
+    public class EarthFrenziedOstard : BaseMount
     {
         [Constructable]
-        public ForestOstard()
-            : this("a forest ostard")
+        public EarthFrenziedOstard()
+            : this("a earth frenzied ostardd")
         {
         }
 
         [Constructable]
-        public ForestOstard(string name)
-            : base(name, 0xDB, 0x3EA5, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
+        public EarthFrenziedOstard(string name)
+            : base(name, 0xDA, 0x3EA5, AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Hue = Utility.RandomSlimeHue() | 0x8000;
+            this.Hue = 1183;
 
             this.BaseSoundID = 0x270;
 
-            this.SetStr(94, 170);
-            this.SetDex(56, 75);
-            this.SetInt(6, 10);
+            this.SetStr(250, 300);
+            this.SetDex(250, 300);
+            this.SetInt(300, 400);
 
-            this.SetHits(71, 88);
-            this.SetMana(0);
+            this.SetHits(250, 300);
+            this.SetMana(450);
 
-            this.SetDamage(8, 14);
+            this.SetDamage(35, 50);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
             this.SetResistance(ResistanceType.Physical, 15, 20);
 
-            this.SetSkill(SkillName.MagicResist, 27.1, 32.0);
-            this.SetSkill(SkillName.Tactics, 29.3, 44.0);
-            this.SetSkill(SkillName.Wrestling, 29.3, 44.0);
+            this.SetSkill(SkillName.MagicResist, 100, 120);
+            this.SetSkill(SkillName.Tactics, 100, 120);
+            this.SetSkill(SkillName.Wrestling, 100, 120);
 
             this.Fame = 450;
             this.Karma = 0;
 
             this.Tamable = true;
             this.ControlSlots = 1;
-            this.MinTameSkill = 50;
+            this.MinTameSkill = 120;
         }
 
-        public ForestOstard(Serial serial)
+        public EarthFrenziedOstard(Serial serial)
             : base(serial)
         {
         }

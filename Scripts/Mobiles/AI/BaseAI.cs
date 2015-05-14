@@ -37,7 +37,8 @@ namespace Server.Mobiles
 		AI_NecroMage,
 		AI_OrcScout,
 		AI_Spellbinder,
-		AI_OmniAI
+		AI_OmniAI,
+        AI_NecroTest
 	}
 
 	public enum ActionType

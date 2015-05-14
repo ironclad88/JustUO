@@ -2639,6 +2639,9 @@ namespace Server.Mobiles
                 case AIType.AI_NecroMage:
                     m_AI = new NecroMageAI(this);
                     break;
+                case AIType.AI_NecroTest:
+                    m_AI = new TestNecroAI(this);
+                    break;
                 case AIType.AI_OrcScout:
                     m_AI = new OrcScoutAI(this);
                     break;

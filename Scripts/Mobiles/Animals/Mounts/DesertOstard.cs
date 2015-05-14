@@ -40,7 +40,7 @@ namespace Server.Mobiles
 
             this.Tamable = true;
             this.ControlSlots = 1;
-            this.MinTameSkill = 29.1;
+            this.MinTameSkill = 45;
         }
 
         public DesertOstard(Serial serial)

@@ -66,7 +66,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return FoodType.Meat | FoodType.Fish | FoodType.Eggs | FoodType.FruitsAndVegies;
+                return FoodType.Meat;
             }
         }
         public override PackInstinct PackInstinct

@@ -14,7 +14,6 @@ namespace Server.Items.ZuluIems.GMItems.Armor.Ryous
             this.Name = "Plate Helm of Ryous";
             this.Weight = 10.0;
             this.Hue = 1413;
-
         }
 
         public HelmofRyous(Serial serial)

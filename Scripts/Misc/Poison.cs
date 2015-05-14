@@ -19,11 +19,19 @@ namespace Server
 		{
 			if (Core.AOS)
 			{
-				Register(new PoisonImpl("Lesser", 0, 4, 16, 7.5, 3.0, 2.25, 10, 4));
+				/*Register(new PoisonImpl("Lesser", 0, 4, 16, 7.5, 3.0, 2.25, 10, 4));
 				Register(new PoisonImpl("Regular", 1, 8, 18, 10.0, 3.0, 3.25, 10, 3));
 				Register(new PoisonImpl("Greater", 2, 12, 20, 15.0, 3.0, 4.25, 10, 2));
 				Register(new PoisonImpl("Deadly", 3, 16, 30, 30.0, 3.0, 5.25, 15, 2));
 				Register(new PoisonImpl("Lethal", 4, 20, 50, 35.0, 3.0, 5.25, 20, 2));
+                 * */
+
+
+                Register(new PoisonImpl("Lesser", 0, 4, 16, 7.5, 3.0, 2.25, 15, 4));        // buffed poison abit
+                Register(new PoisonImpl("Regular", 1, 8, 18, 10.0, 3.0, 3.25, 15, 3));
+                Register(new PoisonImpl("Greater", 2, 12, 20, 15.0, 3.0, 4.25, 15, 2));
+                Register(new PoisonImpl("Deadly", 3, 20, 40, 35.0, 3.0, 4.25, 20, 2));
+                Register(new PoisonImpl("Lethal", 4, 40, 70, 45.0, 3.0, 4.25, 30, 2));
 			}
 			else
 			{

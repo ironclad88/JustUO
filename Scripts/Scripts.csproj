@@ -2804,8 +2804,53 @@
     <Compile Include="Misc\Broadcasts.cs" />
     <Compile Include="Misc\BuffIcons.cs" />
     <Compile Include="Misc\CharacterCreation.cs" />
+    <Compile Include="Mobiles\AI\TestNecroAI.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\BloodOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\EarthFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\EarthOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\EmeraldFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\EmeraldOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\FireFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\FireOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\GoldenFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\GoldenOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\HeavenlyFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\HeavenlyOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\HighlandFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\HighlandOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\IceFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\IceOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\MistFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\MistOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\MountainFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\MountainOstard.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\NecroFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\NecroOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\PhasedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\PlainsFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\RubyFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\RubyOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SapphireFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SapphireOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\ShadowFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\ShadowOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SnowFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SnowOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\StoneFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\StoneOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SwampFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\SwampOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\TerrorOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\TropicalFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\TropicalOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\ValleyFrenziedOstard.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\WindOstard.cs" />
     <Compile Include="Mobiles\Monsters\Reptile\Melee\GoldenDragon.cs" />
+    <Compile Include="Mobiles\Monsters\ZuluMobs\Behemoth.cs" />
+    <Compile Include="Mobiles\Monsters\ZuluMobs\BlackWisp.cs" />
+    <Compile Include="Mobiles\Monsters\ZuluMobs\NecroTestMob.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRatingGump.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRating.cs" />
     <Compile Include="Misc\Cleanup.cs" />
@@ -5143,6 +5188,7 @@
     <Compile Include="Spells\Third\Unlock.cs" />
     <Compile Include="Spells\Third\WallOfStone.cs" />
     <Compile Include="Spells\UnsummonTimer.cs" />
+    <Compile Include="Spells\Zulu\NecroSpells\WyvernStrike.cs" />
     <Compile Include="Targets\BladedItemTarget.cs" />
     <Compile Include="Targets\MoveTarget.cs" />
     <Compile Include="Targets\PickMoveTarget.cs" />
@@ -5292,7 +5338,10 @@
       <Name>Server</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Spells\Zulu\EarthSpells\" />
+    <Folder Include="Spells\Zulu\HolySpells\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
