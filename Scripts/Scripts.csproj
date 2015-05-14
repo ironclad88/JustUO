@@ -2116,6 +2116,7 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\TeleportScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\UnlockScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\WallOfStoneScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\WyvernStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Spellbook.cs" />
     <Compile Include="Items\Skill Items\Magical\SpellStone.cs" />
     <Compile Include="Items\Skill Items\Magical\SpellweavingBook.cs" />
@@ -5347,6 +5348,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\" />
+    <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\" />
     <Folder Include="Spells\Zulu\EarthSpells\" />
     <Folder Include="Spells\Zulu\HolySpells\" />
   </ItemGroup>

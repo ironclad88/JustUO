@@ -87,8 +87,10 @@ namespace Server.Items
 
         public override void OnDoubleClick(Mobile from)
         {
-            if (!Multis.DesignContext.Check(from))
+            if (!Multis.DesignContext.Check(from)) {
+                Console.WriteLine("test");
                 return; // They are customizing
+            }
 
             if (!this.IsChildOf(from.Backpack))
             {
@@ -97,18 +99,18 @@ namespace Server.Items
             }
 
             Spell spell = SpellRegistry.NewSpell(this.m_SpellID, from, this);
-
             if (spell != null)
                 if(spell.CheckFizzle() == true){
                         spell.Cast();
+                        spell.Scroll.Consume(1);
                 }else{
                     spell.DoFizzle();
                     spell.Scroll.Consume(1);
                 }
-                    
-            else
-               
+
+            else { 
                 from.SendLocalizedMessage(502345); // This spell has been temporarily disabled.
+            }
         }
     }
 }
