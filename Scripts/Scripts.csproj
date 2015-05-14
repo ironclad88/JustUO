@@ -1910,6 +1910,8 @@
     <Compile Include="Items\Resources\Reagents\PigIron.cs" />
     <Compile Include="Items\Resources\Reagents\SpidersSilk.cs" />
     <Compile Include="Items\Resources\Reagents\SulfurousAsh.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\BlackMoor.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\ExecutionersCap.cs" />
     <Compile Include="Items\Resources\Tailor\BoltOfCloth.cs" />
     <Compile Include="Items\Resources\Tailor\Bone.cs" />
     <Compile Include="Items\Resources\Tailor\Cloth.cs" />
