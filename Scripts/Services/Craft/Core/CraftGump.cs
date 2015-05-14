@@ -74,8 +74,8 @@ namespace Server.Engines.Craft
             this.AddButton(270, 542, 4005, 4007, GetButtonID(6, 2), GumpButtonType.Reply, 0);
             this.AddHtmlLocalized(305, 545, 150, 18, 1044013, LabelColor, false, false); // MAKE LAST
 
-            this.AddButton(270, 522, 4005, 4007, GetButtonID(6, 10), GumpButtonType.Reply, 0);
-            this.AddHtmlLocalized(305, 525, 150, 18, 1112533 + (context == null ? 0 : (int)context.QuestOption), LabelColor, false, false); // QUEST ITEM
+           // this.AddButton(270, 522, 4005, 4007, GetButtonID(6, 10), GumpButtonType.Reply, 0);
+           // this.AddHtmlLocalized(305, 525, 150, 18, 1112533 + (context == null ? 0 : (int)context.QuestOption), LabelColor, false, false); // QUEST ITEM
 
             this.AddButton(115, 542, 4017, 4019, GetButtonID(6, 11), GumpButtonType.Reply, 0);
             this.AddHtmlLocalized(150, 545, 150, 18, 1112698, LabelColor, false, false); // CANCEL MAKE
@@ -105,19 +105,19 @@ namespace Server.Engines.Craft
             // ****************************************
 
             // Enhance option
-            if (craftSystem.CanEnhance)
+            /*if (craftSystem.CanEnhance)
             {
                 this.AddButton(270, 482, 4005, 4007, GetButtonID(6, 8), GumpButtonType.Reply, 0);
                 this.AddHtmlLocalized(305, 485, 150, 18, 1061001, LabelColor, false, false); // ENHANCE ITEM
-            }
+            }*/
             // ****************************************
 			
 			// Alter option
-            if (craftSystem.CanAlter)
+            /*if (craftSystem.CanAlter)
             {
 				this.AddButton(270, 502, 4005, 4007, GetButtonID(6, 9), GumpButtonType.Reply, 0);
 				this.AddHtmlLocalized(304, 505, 1152, 18, 1094726, LabelColor, false, false); // ALTER ITEM
-            }
+            }*/
             // ****************************************
 
             if (notice is int && (int)notice > 0)
@@ -172,7 +172,7 @@ namespace Server.Engines.Craft
             // ****************************************
 
             // For dragon scales
-            if (craftSystem.CraftSubRes2.Init)
+            /*if (craftSystem.CraftSubRes2.Init)
             {
                 string nameString = craftSystem.CraftSubRes2.NameString;
                 int nameNumber = craftSystem.CraftSubRes2.NameNumber;
@@ -206,7 +206,7 @@ namespace Server.Engines.Craft
                     this.AddHtmlLocalized(50, 485, 250, 18, nameNumber, resourceCount.ToString(), LabelColor, false, false);
                 else
                     this.AddLabel(50, 485, LabelHue, String.Format("{0} ({1} Available)", nameString, resourceCount));
-            }
+            }*/
             // ****************************************
 
             this.CreateGroupList();

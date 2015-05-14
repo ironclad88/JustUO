@@ -136,18 +136,18 @@ namespace Server.Engines.Craft
             this.AddRes(index, typeof(Feather), 1044562, 1, 1044563);
             this.SetUseAllRes(index, true);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(FukiyaDarts), 1044565, 1030246, 50.0, 90.0, typeof(Board), 1044041, 1, 1044351);
                 this.SetUseAllRes(index, true);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             // Weapons
             this.AddCraft(typeof(Bow), 1044566, 1025042, 30.0, 70.0, typeof(Board), 1044041, 7, 1044351);
             this.AddCraft(typeof(Crossbow), 1044566, 1023919, 60.0, 100.0, typeof(Board), 1044041, 7, 1044351);
             this.AddCraft(typeof(HeavyCrossbow), 1044566, 1025117, 80.0, 120.0, typeof(Board), 1044041, 10, 1044351);
-
+            /*
             if (Core.AOS)
             {
                 this.AddCraft(typeof(CompositeBow), 1044566, 1029922, 70.0, 110.0, typeof(Board), 1044041, 7, 1044351);
@@ -159,9 +159,9 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(Yumi), 1044566, 1030224, 90.0, 130.0, typeof(Board), 1044041, 10, 1044351);
                 this.SetNeededExpansion(index, Expansion.SE);
             }
-
+            */
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(ElvenCompositeLongbow), 1044566, 1031562, 95.0, 145.0, typeof(Board), 1044041, 20, 1044351);
                 this.SetNeededExpansion(index, Expansion.ML);
@@ -248,7 +248,7 @@ namespace Server.Engines.Craft
                 this.AddRes(index, typeof(DarkSapphire), 1026249, 1, 1053098);
                 this.AddRecipe(index, (int)BowRecipes.AssassinsShortbow);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
 
             this.SetSubRes(typeof(Board), 1072643);
 
