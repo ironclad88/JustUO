@@ -541,6 +541,11 @@ namespace Server.Items
             ApplyAttributesTo(hat, false, 0, attributeCount, min, max);
         }
 
+        public static void ApplyAttributesTo(BaseClothing clothing, int attributeCount, int min, int max)
+        {
+            ApplyAttributesTo(clothing, false, 0, attributeCount, min, max);
+        }
+
         public static void ApplyAttributesTo(BaseHat hat, bool isRunicTool, int luckChance, int attributeCount, int min, int max)
         {
             m_IsRunicTool = isRunicTool;
@@ -574,6 +579,101 @@ namespace Server.Items
                     break;
 
                 switch ( random )
+                {
+                    case 0:
+                        ApplyAttribute(primary, min, max, AosAttribute.ReflectPhysical, 1, 15);
+                        break;
+                    case 1:
+                        ApplyAttribute(primary, min, max, AosAttribute.RegenHits, 1, 2);
+                        break;
+                    case 2:
+                        ApplyAttribute(primary, min, max, AosAttribute.RegenStam, 1, 3);
+                        break;
+                    case 3:
+                        ApplyAttribute(primary, min, max, AosAttribute.RegenMana, 1, 2);
+                        break;
+                    case 4:
+                        ApplyAttribute(primary, min, max, AosAttribute.NightSight, 1, 1);
+                        break;
+                    case 5:
+                        ApplyAttribute(primary, min, max, AosAttribute.BonusHits, 1, 5);
+                        break;
+                    case 6:
+                        ApplyAttribute(primary, min, max, AosAttribute.BonusStam, 1, 8);
+                        break;
+                    case 7:
+                        ApplyAttribute(primary, min, max, AosAttribute.BonusMana, 1, 8);
+                        break;
+                    case 8:
+                        ApplyAttribute(primary, min, max, AosAttribute.LowerManaCost, 1, 8);
+                        break;
+                    case 9:
+                        ApplyAttribute(primary, min, max, AosAttribute.LowerRegCost, 1, 20);
+                        break;
+                    case 10:
+                        ApplyAttribute(primary, min, max, AosAttribute.Luck, 1, 100);
+                        break;
+                    case 11:
+                        ApplyAttribute(secondary, min, max, AosArmorAttribute.LowerStatReq, 10, 100, 10);
+                        break;
+                    case 12:
+                        ApplyAttribute(secondary, min, max, AosArmorAttribute.SelfRepair, 1, 5);
+                        break;
+                    case 13:
+                        ApplyAttribute(secondary, min, max, AosArmorAttribute.DurabilityBonus, 10, 100, 10);
+                        break;
+                    case 14:
+                        ApplyAttribute(resists, min, max, AosElementAttribute.Physical, 1, 15);
+                        break;
+                    case 15:
+                        ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 15);
+                        break;
+                    case 16:
+                        ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 15);
+                        break;
+                    case 17:
+                        ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 15);
+                        break;
+                    case 18:
+                        ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 15);
+                        break;
+                }
+            }
+        }
+
+        public static void ApplyAttributesTo(BaseClothing clothing, bool isRunicTool, int luckChance, int attributeCount, int min, int max)
+        {
+            m_IsRunicTool = isRunicTool;
+            m_LuckChance = luckChance;
+
+            if (attributeCount != 0)
+            {
+                clothing.Unidentified = true;
+            }
+
+            AosAttributes primary = clothing.Attributes;
+            AosArmorAttributes secondary = clothing.ClothingAttributes;
+            AosElementAttributes resists = clothing.Resistances;
+
+            m_Props.SetAll(false);
+
+            //remove attributes we dont want here
+            m_Props.Set(11, true); //lower stat req
+            m_Props.Set(2, true); //stam reg
+            m_Props.Set(4, true); //night sight
+            m_Props.Set(6, true); //stamina bonus
+            m_Props.Set(10, true); //luck
+            m_Props.Set(8, true); //lower mana
+            m_Props.Set(9, true); //lower regs
+
+            for (int i = 0; i < attributeCount; ++i)
+            {
+                int random = GetUniqueRandom(19);
+
+                if (random == -1)
+                    break;
+
+                switch (random)
                 {
                     case 0:
                         ApplyAttribute(primary, min, max, AosAttribute.ReflectPhysical, 1, 15);

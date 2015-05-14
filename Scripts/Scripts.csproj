@@ -1626,9 +1626,12 @@
     <Compile Include="Items\Construction\Walls\ThinBrickWall.cs" />
     <Compile Include="Items\Construction\Walls\ThinStoneWall.cs" />
     <Compile Include="Items\Construction\Walls\WhiteStoneWall.cs" />
+    <Compile Include="Items\Containers\ClothingTestChest.cs" />
     <Compile Include="Items\Containers\Container.cs" />
     <Compile Include="Items\Containers\FillableContainers.cs" />
     <Compile Include="Items\Containers\FurnitureContainer.cs" />
+    <Compile Include="Items\Containers\ArmorTestChest.cs" />
+    <Compile Include="Items\Containers\WeaponTestChest.cs" />
     <Compile Include="Items\Containers\LockableContainer.cs" />
     <Compile Include="Items\Containers\MarkContainer.cs" />
     <Compile Include="Items\Containers\More Bones.cs" />
@@ -1637,6 +1640,7 @@
     <Compile Include="Items\Containers\Strongbox.cs" />
     <Compile Include="Items\Containers\TrapableContainer.cs" />
     <Compile Include="Items\Containers\TreasureChest.cs" />
+    <Compile Include="Items\Containers\JewelryTestChest.cs" />
     <Compile Include="Items\Containers\TreasureMapChest.cs" />
     <Compile Include="Items\Containers\UnknownSkeletons.cs" />
     <Compile Include="Items\Decoration Artifacts\DoomDecorationArtifacts.cs" />
