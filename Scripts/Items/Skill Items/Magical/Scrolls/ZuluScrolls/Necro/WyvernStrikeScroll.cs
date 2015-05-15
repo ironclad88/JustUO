@@ -3,41 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server.Items.Resources.Reagents.ZuluReags
+namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Necro
 {
-    public class ExecutionersCap : BaseReagent, ICommodity
+    public class WyvernStrikeScroll : SpellScroll
     {
         [Constructable]
-        public ExecutionersCap()
+        public WyvernStrikeScroll()
             : this(1)
         {
         }
 
         [Constructable]
-        public ExecutionersCap(int amount)
-            : base(0x0F83, amount)
+        public WyvernStrikeScroll(int amount)
+            : base(70, 0x1f3c, amount)
         {
+            this.Hue = 0x66D;
+            this.Name = "Wyvern strike scroll";
         }
 
-        public ExecutionersCap(Serial serial)
+        public WyvernStrikeScroll(Serial serial)
             : base(serial)
         {
         }
 
-        int ICommodity.DescriptionNumber
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

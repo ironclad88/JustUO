@@ -1480,7 +1480,7 @@ namespace Server.Mobiles
         {
             BaseArmor ar = armor as BaseArmor;
 
-            if (ar != null && (!Core.AOS || ar.ArmorAttributes.MageArmor == 0))
+            if (ar != null && (/*!Core.AOS || */ ar.ArmorAttributes.MageArmor == 0))
             {
                 rating += ar.ArmorRatingScaled;
             }

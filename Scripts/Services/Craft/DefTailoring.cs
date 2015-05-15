@@ -146,7 +146,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(TricorneHat), 1011375, 1025915, 6.2, 31.2, typeof(Cloth), 1044286, 12, 1044287);
             this.AddCraft(typeof(JesterHat), 1011375, 1025916, 7.2, 32.2, typeof(Cloth), 1044286, 15, 1044287);
 
-            if (Core.AOS)
+            /*if (Core.AOS)
                 this.AddCraft(typeof(FlowerGarland), 1011375, 1028965, 10.0, 35.0, typeof(Cloth), 1044286, 5, 1044287);
 
             if (Core.SE)
@@ -156,7 +156,7 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(Kasa), 1011375, 1030211, 60.0, 85.0, typeof(Cloth), 1044286, 12, 1044287);	
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
             #endregion
 
             #region Shirts
@@ -171,7 +171,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(Robe), 1015269, 1027939, 53.9, 78.9, typeof(Cloth), 1044286, 16, 1044287);
             this.AddCraft(typeof(JesterSuit), 1015269, 1028095, 8.2, 33.2, typeof(Cloth), 1044286, 24, 1044287);
 
-            if (Core.AOS)
+            /*if (Core.AOS)
             {
                 this.AddCraft(typeof(FurCape), 1015269, 1028969, 35.0, 60.0, typeof(Cloth), 1044286, 13, 1044287);
                 this.AddCraft(typeof(GildedDress), 1015269, 1028973, 37.5, 62.5, typeof(Cloth), 1044286, 16, 1044287);
@@ -192,10 +192,10 @@ namespace Server.Engines.Craft
                 this.SetNeededExpansion(index, Expansion.SE);
                 index = this.AddCraft(typeof(JinBaori), 1015269, 1030220, 30.0, 55.0, typeof(Cloth), 1044286, 12, 1044287);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = this.AddCraft(typeof(ElvenShirt), 1015269, 1032661, 80.0, 105.0, typeof(Cloth), 1044286, 10, 1044287);
                 this.SetNeededExpansion(index, Expansion.ML);
@@ -208,7 +208,7 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(FemaleElvenRobe), 1015269, 1032660, 80.0, 105.0, typeof(Cloth), 1044286, 30, 1044287);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             // Pants
@@ -220,7 +220,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(Kilt), 1015279, 1025431, 20.7, 45.7, typeof(Cloth), 1044286, 8, 1044287);
             this.AddCraft(typeof(Skirt), 1015279, 1025398, 29.0, 54.0, typeof(Cloth), 1044286, 10, 1044287);
 
-            if (Core.AOS)
+            /*if (Core.AOS)
                 this.AddCraft(typeof(FurSarong), 1015279, 1028971, 35.0, 60.0, typeof(Cloth), 1044286, 12, 1044287);
 
             if (Core.SE)
@@ -229,17 +229,17 @@ namespace Server.Engines.Craft
                 this.SetNeededExpansion(index, Expansion.SE);
                 index = this.AddCraft(typeof(TattsukeHakama), 1015279, 1030214, 50.0, 75.0, typeof(Cloth), 1044286, 16, 1044287);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(ElvenPants), 1015279, 1032665, 80.0, 105.0, typeof(Cloth), 1044286, 12, 1044287);
                 this.SetNeededExpansion(index, Expansion.ML);
 
                 index = this.AddCraft(typeof(WoodlandBelt), 1015279, 1032639, 80.0, 105.0, typeof(Cloth), 1044286, 10, 1044287);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             #endregion
@@ -249,7 +249,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(HalfApron), 1015283, 1025435, 20.7, 45.7, typeof(Cloth), 1044286, 6, 1044287);
             this.AddCraft(typeof(FullApron), 1015283, 1025437, 29.0, 54.0, typeof(Cloth), 1044286, 10, 1044287);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(Obi), 1015283, 1030219, 20.0, 45.0, typeof(Cloth), 1044286, 6, 1044287);
                 this.SetNeededExpansion(index, Expansion.SE);
@@ -288,9 +288,9 @@ namespace Server.Engines.Craft
                 this.AddRes(index, typeof(Dyes), 1024009, 6, 1044253);
                 this.SetNeededExpansion(index, Expansion.ML);
                 #endregion
-            }
+            }*/
 
-            this.AddCraft(typeof(OilCloth), 1015283, 1041498, 74.6, 99.6, typeof(Cloth), 1044286, 1, 1044287);
+            /*this.AddCraft(typeof(OilCloth), 1015283, 1041498, 74.6, 99.6, typeof(Cloth), 1044286, 1, 1044287);
 
             if (Core.SE)
             {
@@ -310,13 +310,13 @@ namespace Server.Engines.Craft
                 this.SetNeededExpansion(index, Expansion.SE);
                 index = this.AddCraft(typeof(BrocadeSquareGozaMatSouthDeed), 1015283, 1030410, 55.0, 80.0, typeof(Cloth), 1044286, 25, 1044287);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
             #region SA
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 this.AddCraft(typeof(GargishSash), 1015283, 1115388, 4.1, 29.1, typeof(Cloth), 1044286, 4, 1044287);
                 this.AddCraft(typeof(GargishApron), 1015283, 1099568, 20.7, 45.7, typeof(Cloth), 1044286, 6, 1044287);
-            }
+            }*/
             
             #endregion
             #endregion
@@ -324,14 +324,14 @@ namespace Server.Engines.Craft
             #region Footwear
 
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = this.AddCraft(typeof(ElvenBoots), 1015283, 1072902, 80.0, 105.0, typeof(Leather), 1044462, 15, 1044463);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
-            if (Core.AOS)
+           /* if (Core.AOS)
                 this.AddCraft(typeof(FurBoots), 1015288, 1028967, 50.0, 75.0, typeof(Cloth), 1044286, 12, 1044287);
 
             if (Core.SE)
@@ -341,23 +341,24 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(SamuraiTabi), 1015288, 1030209, 20.0, 45.0, typeof(Cloth), 1044286, 6, 1044287);
                 this.SetNeededExpansion(index, Expansion.SE);
             }
-
+            */
             this.AddCraft(typeof(Sandals), 1015288, 1025901, 12.4, 37.4, typeof(Leather), 1044462, 4, 1044463);
             this.AddCraft(typeof(Shoes), 1015288, 1025904, 16.5, 41.5, typeof(Leather), 1044462, 6, 1044463);
             this.AddCraft(typeof(Boots), 1015288, 1025899, 33.1, 58.1, typeof(Leather), 1044462, 8, 1044463);
             this.AddCraft(typeof(ThighBoots), 1015288, 1025906, 41.4, 66.4, typeof(Leather), 1044462, 10, 1044463);
             #region SA
-            if (Core.SA)
+           /* if (Core.SA)
             {
                 this.AddCraft(typeof(LeatherTalons), 1015288, 1095728, 40.4, 65.4, typeof(Leather), 1044462, 6, 1044453);
             }
+            */
             #endregion
             #endregion
 
             #region Leather Armor
 
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(SpellWovenBritches), 1015293, 1072929, 92.5, 117.5, typeof(Leather), 1044462, 15, 1044463);
                 this.AddRes(index, typeof(EyeOfTheTravesty), 1032685, 1, 1044253);
@@ -382,7 +383,7 @@ namespace Server.Engines.Craft
                 this.AddRecipe(index, (int)TailorRecipe.StitchersMittens);
                 this.ForceNonExceptional(index);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             this.AddCraft(typeof(LeatherGorget), 1015293, 1025063, 53.9, 78.9, typeof(Leather), 1044462, 4, 1044463);
@@ -392,7 +393,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(LeatherLegs), 1015293, 1025067, 66.3, 91.3, typeof(Leather), 1044462, 10, 1044463);
             this.AddCraft(typeof(LeatherChest), 1015293, 1025068, 70.5, 95.5, typeof(Leather), 1044462, 12, 1044463);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(LeatherJingasa), 1015293, 1030177, 45.0, 70.0, typeof(Leather), 1044462, 4, 1044463);
                 this.SetNeededExpansion(index, Expansion.SE);
@@ -416,19 +417,19 @@ namespace Server.Engines.Craft
                 this.SetNeededExpansion(index, Expansion.SE);
                 index = this.AddCraft(typeof(LeatherNinjaHood), 1015293, 1030201, 90.0, 115.0, typeof(Leather), 1044462, 14, 1044463);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
             #region SA
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 this.AddCraft(typeof(GargishLeatherArms), 1015293, 1095327, 53.9, 78.9, typeof(Leather), 1044462, 8, 1044463);
                 this.AddCraft(typeof(GargishLeatherChest), 1015293, 1095329, 70.5, 95.5, typeof(Leather), 1044462, 8, 1044463);
                 this.AddCraft(typeof(GargishLeatherKilt), 1015293, 1095331, 58.0, 83.0, typeof(Leather), 1044462, 6, 1044463);
                 this.AddCraft(typeof(GargishLeatherLegs), 1015293, 1095333, 66.3, 91.3, typeof(Leather), 1044462, 10, 1044463);
                 this.AddCraft(typeof(GargishLeatherWingArmor), 1015293, 1096662, 65.0, 90.0, typeof(Leather), 1044462, 12, 1044463);
-            }
+            }*/
             #endregion
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = this.AddCraft(typeof(LeafChest), 1015293, 1032667, 75.0, 100.0, typeof(Leather), 1044462, 15, 1044463);
                 this.SetNeededExpansion(index, Expansion.ML);
@@ -447,12 +448,12 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(LeafTonlet), 1015293, 1032672, 70.0, 95.0, typeof(Leather), 1044462, 12, 1044463);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             #endregion
             #region Gargish Clothing
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 #region SA
                 index = AddCraft(typeof(GargishClothArms), 1111748, 1112737, 46.3, 96.3, typeof(Cloth), 1044286, 6, 1044287);
@@ -468,7 +469,7 @@ namespace Server.Engines.Craft
                 SetNeededExpansion(index, Expansion.SA);
 
                 #endregion
-            }
+            }*/
             #endregion
             #region Studded Armor
             this.AddCraft(typeof(StuddedGorget), 1015300, 1025078, 78.8, 103.8, typeof(Leather), 1044462, 6, 1044463);
@@ -476,7 +477,7 @@ namespace Server.Engines.Craft
             this.AddCraft(typeof(StuddedArms), 1015300, 1025076, 87.1, 112.1, typeof(Leather), 1044462, 10, 1044463);
             this.AddCraft(typeof(StuddedLegs), 1015300, 1025082, 91.2, 116.2, typeof(Leather), 1044462, 12, 1044463);
             this.AddCraft(typeof(StuddedChest), 1015300, 1025083, 94.0, 119.0, typeof(Leather), 1044462, 14, 1044463);
-
+            /*
             if (Core.SE)
             {
                 index = this.AddCraft(typeof(StuddedMempo), 1015300, 1030216, 80.0, 105.0, typeof(Leather), 1044462, 8, 1044463);
@@ -490,9 +491,9 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(StuddedHaidate), 1015300, 1030198, 92.0, 117.0, typeof(Leather), 1044462, 14, 1044463);
                 this.SetNeededExpansion(index, Expansion.SE);
             }
-
+            */
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = this.AddCraft(typeof(HideChest), 1015300, 1032651, 85.0, 110.0, typeof(Leather), 1044462, 15, 1044463);
                 this.SetNeededExpansion(index, Expansion.ML);
@@ -508,7 +509,7 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(HideGorget), 1015300, 1032653, 90.0, 115.0, typeof(Leather), 1044462, 12, 1044463);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             #endregion
@@ -542,14 +543,14 @@ namespace Server.Engines.Craft
             this.AddRes(index, typeof(Bone), 1049064, 10, 1049063);
             #endregion
             #region Cloth Armor
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 this.AddCraft(typeof(GargishClothArms), 1111748, 1021027, 53.9, 78.9, typeof(Cloth), 1044462, 8, 1044463);
                 this.AddCraft(typeof(GargishClothChest), 1111748, 1021029, 6.2, 31.2, typeof(Cloth), 1044462, 8, 1044463);
                 this.AddCraft(typeof(GargishClothKilt), 1111748, 1021031, 51.8, 76.8, typeof(Cloth), 1044462, 6, 1044463);
                 this.AddCraft(typeof(GargishClothLegs), 1111748, 1021033, 53.9, 78.9, typeof(Cloth), 1044462, 10, 1044463);
                 this.AddCraft(typeof(GargishClothWingArmor), 1111748, 1115393, 66.3, 91.3, typeof(Cloth), 1044462, 12, 1044463);
-            }
+            }*/
             #endregion
 
             // Set the overridable material
@@ -564,8 +565,8 @@ namespace Server.Engines.Craft
 
             this.MarkOption = true;
             this.Repair = Core.AOS;
-            this.CanEnhance = Core.ML;
-			this.CanAlter = Core.SA;
+            this.CanEnhance = false;
+            this.CanAlter = false;
         }
     }
 }

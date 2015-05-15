@@ -148,6 +148,10 @@ namespace Server.Spells
             "Bushido",
             "Ninjitsu",
             "Spellweaving",
+            "Necro",
+            "Holy",
+            "Zulu.NecroSpells", // test
+            "Earth",
             #region Stygian Abyss
             "Mystic"
             #endregion

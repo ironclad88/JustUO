@@ -146,26 +146,28 @@ namespace Server.Engines.Craft
                 AddRes(index, typeof(BlankScroll), 1044377, 10, 1044378);
                 SetNeededExpansion(index, Expansion.SE);
 
-                index = AddCraft(typeof(ShojiScreen), 1044294, 1029423, 80.0, 105.0, typeof(Board), 1044041, 75, 1044351);
+                /*index = AddCraft(typeof(ShojiScreen), 1044294, 1029423, 80.0, 105.0, typeof(Board), 1044041, 75, 1044351);
                 AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
                 AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
                 SetNeededExpansion(index, Expansion.SE);
 
+                 
                 index = AddCraft(typeof(BambooScreen), 1044294, 1029428, 80.0, 105.0, typeof(Board), 1044041, 75, 1044351);
                 AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
                 AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
                 SetNeededExpansion(index, Expansion.SE);
+                 * */
             }
 
-            if (Core.AOS)	//Duplicate Entries to preserve ordering depending on era
+           /* if (Core.AOS)	//Duplicate Entries to preserve ordering depending on era
             {
                 index = AddCraft(typeof(FishingPole), 1044294, 1023519, 68.4, 93.4, typeof(Board), 1044041, 5, 1044351); //This is in the categor of Other during AoS
                 AddSkill(index, SkillName.Tailoring, 40.0, 45.0);
                 AddRes(index, typeof(Cloth), 1044286, 5, 1044287);
-            }
+            }*/
 
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = AddCraft(typeof(WoodenContainerEngraver), 1044294, 1072153, 75.0, 100.0, typeof(Board), 1044041, 4, 1044351);
                 AddRes(index, typeof(IronIngot), 1044036, 2, 1044037);
@@ -227,7 +229,8 @@ namespace Server.Engines.Craft
                 AddSkill(index, SkillName.Tailoring, 75.0, 105.0);
                 AddRes(index, typeof(Cloth), 1044286, 50, 1044287);
                 SetNeededExpansion(index, Expansion.SA);
-            }            
+            }   
+            */
             #endregion
 
             // Furniture
@@ -287,7 +290,7 @@ namespace Server.Engines.Craft
                 SetNeededExpansion(index, Expansion.ML);
             }
 
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 index = AddCraft(typeof(GargishCouchEastDeed), 1044291, 1111776, 90.0, 115.0, typeof(Board), 1044041, 75, 1044351);           
                 SetNeededExpansion(index, Expansion.SA);
@@ -300,7 +303,7 @@ namespace Server.Engines.Craft
  
                 index = AddCraft(typeof(TerMurDresserSouthDeed), 1044291, 1111783, 90.0, 115.0, typeof(Board), 1044041, 60, 1044351);
                 SetNeededExpansion(index, Expansion.SA);
-            }            
+            }*/           
             #endregion
 
             // Containers
@@ -418,14 +421,14 @@ namespace Server.Engines.Craft
             AddCraft(typeof(GnarledStaff), 1044295, 1025112, 78.9, 103.9, typeof(Board), 1044041, 7, 1044351);
             AddCraft(typeof(WoodenShield), 1044295, 1027034, 52.6, 77.6, typeof(Board), 1044041, 9, 1044351);
 
-            if (!Core.AOS)	//Duplicate Entries to preserve ordering depending on era
+            /*if (!Core.AOS)	//Duplicate Entries to preserve ordering depending on era
             {
                 index = AddCraft(typeof(FishingPole), 1044295, 1023519, 68.4, 93.4, typeof(Board), 1044041, 5, 1044351); //This is in the categor of Other during AoS
                 AddSkill(index, SkillName.Tailoring, 40.0, 45.0);
                 AddRes(index, typeof(Cloth), 1044286, 5, 1044287);
             }
-
-            if (Core.SE)
+            */
+           /* if (Core.SE)
             {
                 index = AddCraft(typeof(Bokuto), 1044295, 1030227, 70.0, 95.0, typeof(Board), 1044041, 6, 1044351);
                 SetNeededExpansion(index, Expansion.SE);
@@ -435,10 +438,10 @@ namespace Server.Engines.Craft
 
                 index = AddCraft(typeof(Tetsubo), 1044295, 1030225, 80.0, 140.3, typeof(Board), 1044041, 10, 1044351);
                 SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = AddCraft(typeof(PhantomStaff), 1044566, 1072919, 90.0, 130.0, typeof(Board), 1044041, 16, 1044351);
                 AddRes(index, typeof(DiseasedBark), 1032683, 1, 1053098);
@@ -468,9 +471,10 @@ namespace Server.Engines.Craft
                 AddRecipe(index, (int)CarpRecipes.HardenedWildStaff);
                 SetNeededExpansion(index, Expansion.ML);
             }
+            */
             #endregion
             #region SA
-            if (Core.SA)
+            /*if (Core.SA)
             {
                 index = AddCraft(typeof(SerpentStoneStaff), 1044566, 1095367, 63.8, 113.8, typeof(Board), 1044041, 16,
                 1044351);
@@ -478,13 +482,14 @@ namespace Server.Engines.Craft
                 index = AddCraft(typeof(GargishGnarledStaff), 1044566, 1097488, 78.9, 103.9, typeof(Board), 1044041, 7,
                 1044351);
             }
+            */
             #endregion
 
             AddCraft(typeof(Club), 1044566, 1025043, 65, 115.0, typeof(Board), 1044041, 10, 1044351);
             AddCraft(typeof(BlackStaff), 1044566, 1023568, 81.5, 106.5, typeof(Board), 1044041, 9, 1044351);
 
             #region Mondain's Legacy
-            if (Core.ML)
+           /* if (Core.ML)
             {
                 index = AddCraft(typeof(WoodlandChest), 1062760, 1031111, 90.0, 115.0, typeof(Board), 1044041, 20, 1044351);
                 AddRes(index, typeof(BarkFragment), 1032687, 6, 1053098);
@@ -578,7 +583,7 @@ namespace Server.Engines.Craft
                 AddRes(index, typeof(Muculent), 1032680, 10, 1053098);
                 ForceNonExceptional(index);
                 SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             // Instruments
@@ -606,16 +611,16 @@ namespace Server.Engines.Craft
             AddSkill(index, SkillName.Musicianship, 45.0, 50.0);
             AddRes(index, typeof(Cloth), 1044286, 15, 1044287);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = AddCraft(typeof(BambooFlute), 1044293, 1030247, 80.0, 105.0, typeof(Board), 1044041, 15, 1044351);
                 AddSkill(index, SkillName.Musicianship, 45.0, 50.0);
                 SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             // Misc
             #region Mondain's Legacy
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 index = AddCraft(typeof(ParrotPerchAddonDeed), 1044290, 1072617, 50.0, 85.0, typeof(Board), 1044041, 100, 1044351);
                 ForceNonExceptional(index);
@@ -667,7 +672,7 @@ namespace Server.Engines.Craft
                 index = AddCraft(typeof(AlchemistTableEastDeed), 1044290, 1074903, 85.0, 110.0, typeof(Board), 1044041, 70, 1044351);
                 ForceNonExceptional(index);
                 SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             index = AddCraft(typeof(SmallBedSouthDeed), 1044290, 1044321, 94.7, 119.8, typeof(Board), 1044041, 100, 1044351);
@@ -692,11 +697,11 @@ namespace Server.Engines.Craft
             AddSkill(index, SkillName.Magery, 50.0, 55.0);
             AddRes(index, typeof(IronIngot), 1044036, 40, 1044037);
 
-            if (Core.AOS)
+            /*if (Core.AOS)
             {
                 AddCraft(typeof(PlayerBBEast), 1044290, 1062420, 85.0, 110.0, typeof(Board), 1044041, 50, 1044351);
                 AddCraft(typeof(PlayerBBSouth), 1044290, 1062421, 85.0, 110.0, typeof(Board), 1044041, 50, 1044351);
-            }
+            }*/
 
             // Blacksmithy
             #region Mondain's Legacy
@@ -725,7 +730,7 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(IronIngot), 1044036, 150, 1044037);
 
             // Training
-            index = AddCraft(typeof(TrainingDummyEastDeed), 1044297, 1044335, 68.4, 93.4, typeof(Board), 1044041, 55, 1044351);
+            /*index = AddCraft(typeof(TrainingDummyEastDeed), 1044297, 1044335, 68.4, 93.4, typeof(Board), 1044041, 55, 1044351);
             AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
             AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
             index = AddCraft(typeof(TrainingDummySouthDeed), 1044297, 1044336, 68.4, 93.4, typeof(Board), 1044041, 55, 1044351);
@@ -737,7 +742,7 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(PickpocketDipSouthDeed), 1044297, 1044338, 73.6, 98.6, typeof(Board), 1044041, 65, 1044351);
             AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
             AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
-
+            */
             // Tailoring
             index = AddCraft(typeof(Dressform), 1044298, 1044339, 63.1, 88.1, typeof(Board), 1044041, 25, 1044351);
             AddSkill(index, SkillName.Tailoring, 65.0, 70.0);

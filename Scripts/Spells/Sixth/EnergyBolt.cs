@@ -75,7 +75,7 @@ namespace Server.Spells.Sixth
                 source.PlaySound(0x20A);
 
                 // Deal the damage
-                SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
+                SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100, 0, 0, 0);
             }
 
             this.FinishSequence();

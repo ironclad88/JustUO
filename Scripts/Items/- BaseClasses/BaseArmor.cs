@@ -61,7 +61,7 @@ namespace Server.Items
         private bool m_PlayerConstructed;
         //private bool m_Identified;
         private int m_IdHue;
-        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus;
+        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus;
         private int m_TimesImbued;
 
         private AosAttributes m_AosAttributes;
@@ -848,6 +848,48 @@ namespace Server.Items
             }
         }
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int EarthBonus
+        {
+            get
+            {
+                return this.m_EarthBonus;
+            }
+            set
+            {
+                this.m_EarthBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int NecroBonus
+        {
+            get
+            {
+                return this.m_NecroBonus;
+            }
+            set
+            {
+                this.m_NecroBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int HolyBonus
+        {
+            get
+            {
+                return this.m_HolyBonus;
+            }
+            set
+            {
+                this.m_HolyBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
         public virtual int BasePhysicalResistance
         {
             get
@@ -877,6 +919,27 @@ namespace Server.Items
             }
         }
         public virtual int BaseEnergyResistance
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public virtual int BaseEarthResistance
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public virtual int BaseNecroResistance
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public virtual int BaseHolyResistance
         {
             get
             {
@@ -921,6 +984,30 @@ namespace Server.Items
             get
             {
                 return this.BaseEnergyResistance + this.GetProtOffset() + this.GetResourceAttrs().ArmorEnergyResist + this.m_EnergyBonus + (this.m_SetEquipped ? this.m_SetEnergyBonus : 0);
+            }
+        }
+
+        public override int EarthResistance
+        {
+            get
+            {
+                return this.BaseEarthResistance + this.GetProtOffset() + this.GetResourceAttrs().ArmorEarthResist + this.m_EarthBonus + (this.m_SetEquipped ? this.m_SetEarthBonus : 0);
+            }
+        }
+
+        public override int NecroResistance
+        {
+            get
+            {
+                return this.BaseNecroResistance + this.GetProtOffset() + this.GetResourceAttrs().ArmorNecroResist + this.m_NecroBonus + (this.m_SetEquipped ? this.m_SetNecroBonus : 0);
+            }
+        }
+
+        public override int HolyResistance
+        {
+            get
+            {
+                return this.BaseHolyResistance + this.GetProtOffset() + this.GetResourceAttrs().ArmorHolyResist + this.m_HolyBonus + (this.m_SetEquipped ? this.m_SetHolyBonus : 0);
             }
         }
 
@@ -975,7 +1062,7 @@ namespace Server.Items
         {
             for (int i = 0; i < amount; ++i)
             {
-                switch (Utility.Random(5))
+                switch (Utility.Random(8))
                 {
                     case 0:
                         ++this.m_PhysicalBonus;
@@ -991,6 +1078,15 @@ namespace Server.Items
                         break;
                     case 4:
                         ++this.m_EnergyBonus;
+                        break;
+                    case 5:
+                        ++this.m_EarthBonus;
+                        break;
+                    case 6:
+                        ++this.m_NecroBonus;
+                        break;
+                    case 7:
+                        ++this.m_HolyBonus;
                         break;
                 }
             }
@@ -1342,7 +1438,14 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write((int)9); // version
+            writer.Write((int)10); // version
+
+            writer.Write(this.m_SetEarthBonus);
+            writer.Write(this.m_SetNecroBonus);
+            writer.Write(this.m_SetHolyBonus);
+            writer.Write(this.m_EarthBonus);
+            writer.Write(this.m_NecroBonus);
+            writer.Write(this.m_HolyBonus);
 
             // Version 9
             writer.Write(m_IdHue);
@@ -1511,9 +1614,16 @@ namespace Server.Items
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
-
             switch (version)
             {
+                case 10:
+                    m_SetEarthBonus = reader.ReadInt();
+                    m_SetNecroBonus = reader.ReadInt();
+                    m_SetHolyBonus = reader.ReadInt();
+                    m_EarthBonus = reader.ReadInt();
+                    m_NecroBonus = reader.ReadInt();
+                    m_HolyBonus = reader.ReadInt();
+                    goto case 9;
                 case 9:
                     {
                         m_IdHue = reader.ReadInt();
@@ -2190,7 +2300,7 @@ namespace Server.Items
             get { return base.Unidentified; }
             set
             {
-                if(value == base.Unidentified)
+                if (value == base.Unidentified)
                 {
                     return;
                 }
@@ -2428,6 +2538,9 @@ namespace Server.Items
                 if ((prop = this.ArtifactRarity) > 0)
                     list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
 
+                if ((prop = (int)this.ArmorRating) != 0 && this.m_AosArmorAttributes.MageArmor == 0)
+                    list.Add(1061182, prop.ToString()); // armor rating ~1_val~
+
                 if ((prop = this.m_AosAttributes.WeaponDamage) != 0)
                     list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
 
@@ -2547,8 +2660,8 @@ namespace Server.Items
                 if ((prop = this.GetDurabilityBonus()) > 0)
                     list.Add(1060410, prop.ToString()); // durability ~1_val~%
 
-                if ((prop = this.ComputeStatReq(StatType.Str)) > 0)
-                    list.Add(1061170, prop.ToString()); // strength requirement ~1_val~
+                //if ((prop = this.ComputeStatReq(StatType.Str)) > 0)
+                //    list.Add(1061170, prop.ToString()); // strength requirement ~1_val~
 
                 if (this.m_HitPoints >= 0 && this.m_MaxHitPoints > 0)
                     list.Add(1060639, "{0}\t{1}", this.m_HitPoints, this.m_MaxHitPoints); // durability ~1_val~ / ~2_val~
@@ -2664,7 +2777,7 @@ namespace Server.Items
 
                     for (int i = 0; i < bonus; i++)
                     {
-                        switch (Utility.Random(5))
+                        switch (Utility.Random(8))
                         {
                             case 0:
                                 this.m_PhysicalBonus++;
@@ -2680,6 +2793,15 @@ namespace Server.Items
                                 break;
                             case 4:
                                 this.m_PoisonBonus++;
+                                break;
+                            case 5:
+                                this.m_EarthBonus++;
+                                break;
+                            case 6:
+                                this.m_NecroBonus++;
+                                break;
+                            case 7:
+                                this.m_HolyBonus++;
                                 break;
                         }
                     }
@@ -2872,7 +2994,7 @@ namespace Server.Items
             }
         }
 
-        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus;
+        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus, m_SetEarthBonus, m_SetNecroBonus, m_SetHolyBonus;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int SetPhysicalBonus
@@ -2940,6 +3062,48 @@ namespace Server.Items
             set
             {
                 this.m_SetEnergyBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int SetEarthBonus
+        {
+            get
+            {
+                return this.m_SetEarthBonus;
+            }
+            set
+            {
+                this.m_SetEarthBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int SetNecroBonus
+        {
+            get
+            {
+                return this.m_SetNecroBonus;
+            }
+            set
+            {
+                this.m_SetNecroBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int SetHolyBonus
+        {
+            get
+            {
+                return this.m_SetHolyBonus;
+            }
+            set
+            {
+                this.m_SetHolyBonus = value;
                 this.InvalidateProperties();
             }
         }

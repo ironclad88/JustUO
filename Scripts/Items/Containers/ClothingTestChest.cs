@@ -323,7 +323,7 @@ namespace Server.Items
                         }
 
                         BaseRunicTool.ApplyAttributesTo((BaseClothing)item, attributeCount, min, max);
-
+                        item.Unidentified = false;
                         cont.DropItem(item);
                     }
                     else if (item is BaseJewel)

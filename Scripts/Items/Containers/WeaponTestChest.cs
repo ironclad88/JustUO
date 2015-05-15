@@ -280,7 +280,7 @@ namespace Server.Items
                         }
 
                         BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, attributeCount, min, max);
-
+                        item.Unidentified = false;
                         cont.DropItem(item);
                     }
                     else if (item is BaseArmor)

@@ -415,7 +415,7 @@ namespace Server.Items
             m_Props.SetAll(false);
 
             bool isShield = (armor is BaseShield);
-            int baseCount = (isShield ? 7 : 20);
+            int baseCount = (isShield ? 7 : 23);
             int baseOffset = (isShield ? 0 : 4);
 
             if (!isShield && armor.MeditationAllowance == ArmorMeditationAllowance.All)
@@ -529,6 +529,15 @@ namespace Server.Items
                         break;
                     case 23:
                         ApplyResistance(armor, min, max, ResistanceType.Energy, 1, 15);
+                        break;
+                    case 24:
+                        ApplyResistance(armor, min, max, ResistanceType.Earth, 1, 15);
+                        break;
+                    case 25:
+                        ApplyResistance(armor, min, max, ResistanceType.Necro, 1, 15);
+                        break;
+                    case 26:
+                        ApplyResistance(armor, min, max, ResistanceType.Holy, 1, 15);
                         break;
                 /* End Armor */
                 }
@@ -1119,6 +1128,15 @@ namespace Server.Items
                     break;
                 case ResistanceType.Energy:
                     ar.EnergyBonus += Scale(min, max, low, high);
+                    break;
+                case ResistanceType.Earth:
+                    ar.EarthBonus += Scale(min, max, low, high);
+                    break;
+                case ResistanceType.Necro:
+                    ar.NecroBonus += Scale(min, max, low, high);
+                    break;
+                case ResistanceType.Holy:
+                    ar.HolyBonus += Scale(min, max, low, high);
                     break;
             }
         }
