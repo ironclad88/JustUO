@@ -69,12 +69,6 @@ namespace Server.Spells.Zulu.NecroSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-<<<<<<< HEAD:Scripts/Spells/Zulu/NecroSpells/WyvernStrike.cs
-                // SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
-=======
-                //  SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m); // had to remove this if inherit from NecromancerSpell
->>>>>>> 9b1b75bde5e69405f791e29ced500105ddcd2620:Scripts/Spells/Zulu/NecroSpells/WyvernStrikeSpell.cs
-
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();
 
