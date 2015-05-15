@@ -14,13 +14,6 @@ namespace Server.Spells.Zulu.NecroSpells
             9051,
             Reagent.Nightshade);
 
-        public override SpellCircle Circle
-        {
-            get
-            {
-                return SpellCircle.Third;
-            }
-        }
 
         public WyvernStrike(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
@@ -42,7 +35,7 @@ namespace Server.Spells.Zulu.NecroSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
+                // SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
 
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();
