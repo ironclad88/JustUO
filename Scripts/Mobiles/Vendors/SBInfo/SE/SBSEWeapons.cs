@@ -31,7 +31,7 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(NoDachi), 82, 20, 0x27A2, 0));
+                /*this.Add(new GenericBuyInfo(typeof(NoDachi), 82, 20, 0x27A2, 0));
                 this.Add(new GenericBuyInfo(typeof(Tessen), 83, 20, 0x27A3, 0));
                 this.Add(new GenericBuyInfo(typeof(Wakizashi), 38, 20, 0x27A4, 0));
                 this.Add(new GenericBuyInfo(typeof(Tetsubo), 43, 20, 0x27A6, 0));
@@ -40,7 +40,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Tekagi), 55, 20, 0x27AB, 0));
                 this.Add(new GenericBuyInfo(typeof(Shuriken), 18, 20, 0x27AC, 0));
                 this.Add(new GenericBuyInfo(typeof(Kama), 61, 20, 0x27AD, 0));
-                this.Add(new GenericBuyInfo(typeof(Sai), 56, 20, 0x27AF, 0));		
+                this.Add(new GenericBuyInfo(typeof(Sai), 56, 20, 0x27AF, 0));		*/
             }
         }
 

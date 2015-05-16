@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -33,7 +34,7 @@ namespace Server.Mobiles
             {
                 this.Add(new GenericBuyInfo(typeof(BlankMap), 5, 40, 0x14EC, 0));
                 this.Add(new GenericBuyInfo(typeof(MapmakersPen), 8, 20, 0x0FBF, 0));
-                this.Add(new GenericBuyInfo(typeof(BlankScroll), 12, 40, 0xEF3, 0));
+                this.Add(new GenericBuyInfo(typeof(BlankScroll), 12, GlobalSettings.BlankAmount, 0xEF3, 0));
 				
                 for (int i = 0; i < PresetMapEntry.Table.Length; ++i)
                     this.Add(new PresetMapBuyInfo(PresetMapEntry.Table[i], Utility.RandomMinMax(7, 10), 20));

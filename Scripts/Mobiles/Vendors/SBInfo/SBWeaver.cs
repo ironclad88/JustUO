@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -32,8 +33,8 @@ namespace Server.Mobiles
             public InternalBuyInfo() 
             { 
                 this.Add(new GenericBuyInfo(typeof(Dyes), 8, 20, 0xFA9, 0)); 
-                this.Add(new GenericBuyInfo(typeof(DyeTub), 8, 20, 0xFAB, 0)); 
-
+                this.Add(new GenericBuyInfo(typeof(DyeTub), 8, 20, 0xFAB, 0));
+                /*
                 this.Add(new GenericBuyInfo(typeof(UncutCloth), 3, 20, 0x1761, 0)); 
                 this.Add(new GenericBuyInfo(typeof(UncutCloth), 3, 20, 0x1762, 0)); 
                 this.Add(new GenericBuyInfo(typeof(UncutCloth), 3, 20, 0x1763, 0)); 
@@ -43,11 +44,12 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(BoltOfCloth), 100, 20, 0xf9C, 0)); 
                 this.Add(new GenericBuyInfo(typeof(BoltOfCloth), 100, 20, 0xf96, 0)); 
                 this.Add(new GenericBuyInfo(typeof(BoltOfCloth), 100, 20, 0xf97, 0)); 
-
+                
                 this.Add(new GenericBuyInfo(typeof(DarkYarn), 18, 20, 0xE1D, 0));
                 this.Add(new GenericBuyInfo(typeof(LightYarn), 18, 20, 0xE1E, 0));
                 this.Add(new GenericBuyInfo(typeof(LightYarnUnraveled), 18, 20, 0xE1F, 0));
-
+                */
+                this.Add(new GenericBuyInfo(typeof(SpoolOfThread), 18, GlobalSettings.SpoolOfThreadAmount, 0xFA0, 0));
                 this.Add(new GenericBuyInfo(typeof(Scissors), 11, 20, 0xF9F, 0));
             }
         }

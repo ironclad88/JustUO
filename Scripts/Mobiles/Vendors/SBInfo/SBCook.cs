@@ -42,7 +42,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(LambLeg), 8, 20, 0x160A, 0));
                 this.Add(new GenericBuyInfo(typeof(ChickenLeg), 5, 20, 0x1608, 0));
 
-                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCarrots), 3, 20, 0x15F9, 0));
+            /*    this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCarrots), 3, 20, 0x15F9, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCorn), 3, 20, 0x15FA, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfLettuce), 3, 20, 0x15FB, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfPeas), 3, 20, 0x15FC, 0));
@@ -52,14 +52,14 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(PewterBowlOfPeas), 3, 20, 0x1600, 0));
                 this.Add(new GenericBuyInfo(typeof(PewterBowlOfPotatos), 3, 20, 0x1601, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfStew), 3, 20, 0x1604, 0));
-                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfTomatoSoup), 3, 20, 0x1606, 0));
+                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfTomatoSoup), 3, 20, 0x1606, 0)); */
 
                 this.Add(new GenericBuyInfo(typeof(RoastPig), 106, 20, 0x9BB, 0));
                 this.Add(new GenericBuyInfo(typeof(SackFlour), 3, 20, 0x1039, 0));
                 this.Add(new GenericBuyInfo(typeof(JarHoney), 3, 20, 0x9EC, 0));
                 this.Add(new GenericBuyInfo(typeof(RollingPin), 2, 20, 0x1043, 0));
                 this.Add(new GenericBuyInfo(typeof(FlourSifter), 2, 20, 0x103E, 0));
-                this.Add(new GenericBuyInfo("1044567", typeof(Skillet), 3, 20, 0x97F, 0));
+              //  this.Add(new GenericBuyInfo("1044567", typeof(Skillet), 3, 20, 0x97F, 0));
             }
         }
 

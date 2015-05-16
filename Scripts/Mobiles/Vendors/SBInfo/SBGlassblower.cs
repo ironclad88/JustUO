@@ -55,9 +55,9 @@ namespace Server.Mobiles
 
                 this.Add(new GenericBuyInfo(typeof(HeatingStand), 2, 100, 0x1849, 0)); 
 
-                this.Add(new GenericBuyInfo("Crafting Glass With Glassblowing", typeof(GlassblowingBook), 10637, 30, 0xFF4, 0));
-                this.Add(new GenericBuyInfo("Finding Glass-Quality Sand", typeof(SandMiningBook), 10637, 30, 0xFF4, 0));
-                this.Add(new GenericBuyInfo("1044608", typeof(Blowpipe), 21, 100, 0xE8A, 0x3B9));
+             //   this.Add(new GenericBuyInfo("Crafting Glass With Glassblowing", typeof(GlassblowingBook), 10637, 30, 0xFF4, 0));
+             //   this.Add(new GenericBuyInfo("Finding Glass-Quality Sand", typeof(SandMiningBook), 10637, 30, 0xFF4, 0));
+             //   this.Add(new GenericBuyInfo("1044608", typeof(Blowpipe), 21, 100, 0xE8A, 0x3B9));
             }
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -33,8 +34,8 @@ namespace Server.Mobiles
             {
                 this.Add(new GenericBuyInfo(typeof(Bandage), 5, 20, 0xE21, 0));
                 this.Add(new GenericBuyInfo(typeof(LesserHealPotion), 15, 20, 0xF0C, 0));
-                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, 20, 0xF85, 0));
-                this.Add(new GenericBuyInfo(typeof(Garlic), 3, 20, 0xF84, 0));
+                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, GlobalSettings.ReagAmount, 0xF85, 0));
+                this.Add(new GenericBuyInfo(typeof(Garlic), 3, GlobalSettings.ReagAmount, 0xF84, 0));
                 this.Add(new GenericBuyInfo(typeof(RefreshPotion), 15, 20, 0xF0B, 0));
             }
         }

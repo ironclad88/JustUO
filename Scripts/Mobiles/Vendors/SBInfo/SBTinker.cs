@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -47,12 +48,12 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo("1024112", typeof(Key), 8, 20, 0x1010, 0));
                 this.Add(new GenericBuyInfo("1024115", typeof(Key), 8, 20, 0x1013, 0));
                 this.Add(new GenericBuyInfo(typeof(KeyRing), 8, 20, 0x1010, 0));
-                this.Add(new GenericBuyInfo(typeof(Lockpick), 12, 20, 0x14FC, 0));
+                this.Add(new GenericBuyInfo(typeof(Lockpick), 12, GlobalSettings.LockPickAmount, 0x14FC, 0));
 
                 this.Add(new GenericBuyInfo(typeof(TinkersTools), 7, 20, 0x1EBC, 0));
-                this.Add(new GenericBuyInfo(typeof(Board), 3, 20, 0x1BD7, 0));
-                this.Add(new GenericBuyInfo(typeof(IronIngot), 5, 16, 0x1BF2, 0));
-                this.Add(new GenericBuyInfo(typeof(SewingKit), 3, 20, 0xF9D, 0));
+              //  this.Add(new GenericBuyInfo(typeof(Board), 3, 20, 0x1BD7, 0));
+              //  this.Add(new GenericBuyInfo(typeof(IronIngot), 5, 16, 0x1BF2, 0));
+              //  this.Add(new GenericBuyInfo(typeof(SewingKit), 3, 20, 0xF9D, 0));
 
                 this.Add(new GenericBuyInfo(typeof(DrawKnife), 10, 20, 0x10E4, 0));
                 this.Add(new GenericBuyInfo(typeof(Froe), 10, 20, 0x10E5, 0));
@@ -65,7 +66,7 @@ namespace Server.Mobiles
 
                 this.Add(new GenericBuyInfo(typeof(Tongs), 13, 14, 0xFBB, 0));
 
-                this.Add(new GenericBuyInfo(typeof(DovetailSaw), 12, 20, 0x1028, 0));
+              //  this.Add(new GenericBuyInfo(typeof(DovetailSaw), 12, 20, 0x1028, 0));
                 this.Add(new GenericBuyInfo(typeof(Saw), 15, 20, 0x1034, 0));
 
                 this.Add(new GenericBuyInfo(typeof(Hammer), 17, 20, 0x102A, 0));
@@ -74,7 +75,7 @@ namespace Server.Mobiles
 
                 this.Add(new GenericBuyInfo(typeof(Shovel), 12, 20, 0xF39, 0));
 
-                this.Add(new GenericBuyInfo(typeof(MouldingPlane), 11, 20, 0x102C, 0));
+              /*  this.Add(new GenericBuyInfo(typeof(MouldingPlane), 11, 20, 0x102C, 0));
                 this.Add(new GenericBuyInfo(typeof(JointingPlane), 10, 20, 0x1030, 0));
                 this.Add(new GenericBuyInfo(typeof(SmoothingPlane), 11, 20, 0x1032, 0));
 
@@ -83,7 +84,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Drums), 21, 20, 0x0E9C, 0));
                 this.Add(new GenericBuyInfo(typeof(Tambourine), 21, 20, 0x0E9E, 0));
                 this.Add(new GenericBuyInfo(typeof(LapHarp), 21, 20, 0x0EB2, 0));
-                this.Add(new GenericBuyInfo(typeof(Lute), 21, 20, 0x0EB3, 0));
+                this.Add(new GenericBuyInfo(typeof(Lute), 21, 20, 0x0EB3, 0));*/
             }
         }
 

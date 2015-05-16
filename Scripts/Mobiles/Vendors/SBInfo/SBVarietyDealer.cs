@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -31,9 +32,9 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(Bandage), 5, 20, 0xE21, 0));
+                //this.Add(new GenericBuyInfo(typeof(Bandage), 5, 20, 0xE21, 0));
 
-                this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, 999, 0x0E34, 0));
+                this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, GlobalSettings.BlankAmount, 0x0E34, 0));
 
                 this.Add(new GenericBuyInfo(typeof(NightSightPotion), 15, 10, 0xF06, 0));
                 this.Add(new GenericBuyInfo(typeof(AgilityPotion), 15, 10, 0xF08, 0));
@@ -47,16 +48,16 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Bolt), 6, Utility.Random(30, 60), 0x1BFB, 0));
                 this.Add(new GenericBuyInfo(typeof(Arrow), 3, Utility.Random(30, 60), 0xF3F, 0));
 
-                this.Add(new GenericBuyInfo(typeof(BlackPearl), 5, 999, 0xF7A, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, 999, 0xF7B, 0)); 
-                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, 999, 0xF86, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Garlic), 3, 999, 0xF84, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, 999, 0xF85, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, 999, 0xF88, 0)); 
-                this.Add(new GenericBuyInfo(typeof(SpidersSilk), 3, 999, 0xF8D, 0)); 
-                this.Add(new GenericBuyInfo(typeof(SulfurousAsh), 3, 999, 0xF8C, 0)); 
+                this.Add(new GenericBuyInfo(typeof(BlackPearl), 5, GlobalSettings.ReagAmount, 0xF7A, 0));
+                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, GlobalSettings.ReagAmount, 0xF7B, 0));
+                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, GlobalSettings.ReagAmount, 0xF86, 0));
+                this.Add(new GenericBuyInfo(typeof(Garlic), 3, GlobalSettings.ReagAmount, 0xF84, 0));
+                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, GlobalSettings.ReagAmount, 0xF85, 0));
+                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, GlobalSettings.ReagAmount, 0xF88, 0));
+                this.Add(new GenericBuyInfo(typeof(SpidersSilk), 3, GlobalSettings.ReagAmount, 0xF8D, 0));
+                this.Add(new GenericBuyInfo(typeof(SulfurousAsh), 3, GlobalSettings.ReagAmount, 0xF8C, 0)); 
 
-                this.Add(new GenericBuyInfo(typeof(BreadLoaf), 7, 10, 0x103B, 0));
+               // this.Add(new GenericBuyInfo(typeof(BreadLoaf), 7, 10, 0x103B, 0));
                 this.Add(new GenericBuyInfo(typeof(Backpack), 15, 20, 0x9B2, 0));
 
                 Type[] types = Loot.RegularScrollTypes;

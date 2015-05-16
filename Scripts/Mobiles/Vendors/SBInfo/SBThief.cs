@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -36,10 +37,10 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Torch), 8, 20, 0xF6B, 0));
                 this.Add(new GenericBuyInfo(typeof(Lantern), 2, 20, 0xA25, 0));
                 //Add( new GenericBuyInfo( typeof( OilFlask ), 8, 20, 0x####, 0 ) );
-                this.Add(new GenericBuyInfo(typeof(Lockpick), 12, 20, 0x14FC, 0));
+                this.Add(new GenericBuyInfo(typeof(Lockpick), 12, GlobalSettings.LockPickAmount, 0x14FC, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBox), 14, 20, 0x9AA, 0));
                 this.Add(new GenericBuyInfo(typeof(Key), 2, 20, 0x100E, 0));
-                this.Add(new GenericBuyInfo(typeof(HairDye), 37, 20, 0xEFF, 0));
+              //  this.Add(new GenericBuyInfo(typeof(HairDye), 37, 20, 0xEFF, 0));
             }
         }
 

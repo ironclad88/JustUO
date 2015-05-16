@@ -1055,6 +1055,7 @@
     <Compile Include="Items\- Misc\WarningItem.cs" />
     <Compile Include="Items\- Misc\Waypoint.cs" />
     <Compile Include="Items\- Misc\WindChimes.cs" />
+    <Compile Include="Items\- Misc\Zuluitems\TrashcanofWonder.cs" />
     <Compile Include="Items\- Staff Items\GMEthereal.cs" />
     <Compile Include="Items\- Staff Items\GMHidingStone.cs" />
     <Compile Include="Items\- Staff Items\StaffOrb.cs" />

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -30,14 +31,14 @@ namespace Server.Mobiles
         public class InternalBuyInfo : List<GenericBuyInfo> 
         { 
             public InternalBuyInfo() 
-            { 
-                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, 20, 0xF85, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Garlic), 3, 20, 0xF84, 0)); 
-                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, 20, 0xF86, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, 20, 0xF88, 0)); 
-                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, 20, 0xF7B, 0)); 
+            {
+                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, GlobalSettings.ReagAmount, 0xF85, 0));
+                this.Add(new GenericBuyInfo(typeof(Garlic), 3, GlobalSettings.ReagAmount, 0xF84, 0));
+                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, GlobalSettings.ReagAmount, 0xF86, 0));
+                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, GlobalSettings.ReagAmount, 0xF88, 0));
+                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, GlobalSettings.ReagAmount, 0xF7B, 0)); 
                 this.Add(new GenericBuyInfo(typeof(MortarPestle), 8, 20, 0xE9B, 0));
-                this.Add(new GenericBuyInfo(typeof(Bottle), 5, 20, 0xF0E, 0)); 
+                this.Add(new GenericBuyInfo(typeof(Bottle), 5, GlobalSettings.BottleAmount, 0xF0E, 0)); 
             }
         }
 

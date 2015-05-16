@@ -31,7 +31,7 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(LeatherJingasa), 11, 20, 0x2776, 0));
+             /*   this.Add(new GenericBuyInfo(typeof(LeatherJingasa), 11, 20, 0x2776, 0));
                 this.Add(new GenericBuyInfo(typeof(LeatherDo), 87, 20, 0x277B, 0));
                 this.Add(new GenericBuyInfo(typeof(LeatherHiroSode), 49, 20, 0x277E, 0));
                 this.Add(new GenericBuyInfo(typeof(LeatherSuneate), 55, 20, 0x2786, 0));
@@ -43,7 +43,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(StuddedDo), 130, 20, 0x277C, 0));
                 this.Add(new GenericBuyInfo(typeof(StuddedHiroSode), 73, 20, 0x277F, 0));
                 this.Add(new GenericBuyInfo(typeof(StuddedSuneate), 78, 20, 0x2787, 0));
-                this.Add(new GenericBuyInfo(typeof(StuddedHaidate), 76, 20, 0x278B, 0));
+                this.Add(new GenericBuyInfo(typeof(StuddedHaidate), 76, 20, 0x278B, 0)); */
             }
         }
 

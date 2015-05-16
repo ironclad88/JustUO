@@ -31,7 +31,7 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(BookOfChivalry), 140, 20, 0x2252, 0));
+              //  this.Add(new GenericBuyInfo(typeof(BookOfChivalry), 140, 20, 0x2252, 0));
             }
         }
 

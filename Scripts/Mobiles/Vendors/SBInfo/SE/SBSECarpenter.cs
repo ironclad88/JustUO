@@ -31,11 +31,11 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(Bokuto), 21, 20, 0x27A8, 0));
+              /*  this.Add(new GenericBuyInfo(typeof(Bokuto), 21, 20, 0x27A8, 0));
                 this.Add(new GenericBuyInfo(typeof(Tetsubo), 43, 20, 0x27A6, 0));
                 this.Add(new GenericBuyInfo(typeof(Fukiya), 20, 20, 0x27AA, 0));
                 this.Add(new GenericBuyInfo(typeof(BambooFlute), 21, 20, 0x2805, 0));
-                this.Add(new GenericBuyInfo(typeof(BambooFlute), 21, 20, 0x2805, 0));
+                this.Add(new GenericBuyInfo(typeof(BambooFlute), 21, 20, 0x2805, 0)); */
             }
         }
 

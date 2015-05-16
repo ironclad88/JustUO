@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -32,11 +33,11 @@ namespace Server.Mobiles
             public InternalBuyInfo()
             {
                 this.Add(new GenericBuyInfo(typeof(ScribesPen), 8, 20, 0xFBF, 0));
-                this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, 999, 0x0E34, 0));
-                this.Add(new GenericBuyInfo(typeof(ScribesPen), 8, 20, 0xFC0, 0));
-                this.Add(new GenericBuyInfo(typeof(BrownBook), 15, 10, 0xFEF, 0));
-                this.Add(new GenericBuyInfo(typeof(TanBook), 15, 10, 0xFF0, 0));
-                this.Add(new GenericBuyInfo(typeof(BlueBook), 15, 10, 0xFF2, 0));
+                this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, GlobalSettings.BlankAmount, 0x0E34, 0));
+                //this.Add(new GenericBuyInfo(typeof(ScribesPen), 8, 20, 0xFC0, 0));
+                //this.Add(new GenericBuyInfo(typeof(BrownBook), 15, 10, 0xFEF, 0));
+                //this.Add(new GenericBuyInfo(typeof(TanBook), 15, 10, 0xFF0, 0));
+                //this.Add(new GenericBuyInfo(typeof(BlueBook), 15, 10, 0xFF2, 0));
                 //Add( new GenericBuyInfo( "1041267", typeof( Runebook ), 3500, 10, 0xEFA, 0x461 ) );
             }
         }
