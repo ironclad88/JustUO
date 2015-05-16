@@ -71,7 +71,7 @@ namespace Server.Misc
         {
             PotionKeg keg = new PotionKeg();
 
-            keg.Held = 100;
+            keg.Held = 500;
             keg.Type = type;
             keg.Hue = hue;
 
@@ -963,8 +963,8 @@ namespace Server.Misc
                     {
                         skills = new SkillNameValue[]
                         {
-                            new SkillNameValue(SkillName.EvalInt, 30),
-                            new SkillNameValue(SkillName.Wrestling, 30),
+                            new SkillNameValue(SkillName.SpiritSpeak, 30),
+                            new SkillNameValue(SkillName.Alchemy, 30),
                             new SkillNameValue(SkillName.Magery, 50),
                             new SkillNameValue(SkillName.Meditation, 50)
                         };
@@ -987,11 +987,10 @@ namespace Server.Misc
                     {
                         skills = new SkillNameValue[]
                         {
-                            new SkillNameValue(SkillName.Necromancy, 50),
-                            new SkillNameValue(SkillName.Focus, 30),
                             new SkillNameValue(SkillName.SpiritSpeak, 30),
-                            new SkillNameValue(SkillName.Swords, 30),
-                            new SkillNameValue(SkillName.Tactics, 20)
+                            new SkillNameValue(SkillName.Alchemy, 30),
+                            new SkillNameValue(SkillName.Magery, 50),
+                            new SkillNameValue(SkillName.Meditation, 50)
                         };
 
                         break;
@@ -1000,10 +999,10 @@ namespace Server.Misc
                     {
                         skills = new SkillNameValue[]
                         {
-                            new SkillNameValue(SkillName.Chivalry, 51),
-                            new SkillNameValue(SkillName.Swords, 49),
-                            new SkillNameValue(SkillName.Focus, 30),
-                            new SkillNameValue(SkillName.Tactics, 30)
+                            new SkillNameValue(SkillName.Anatomy, 30),
+                            new SkillNameValue(SkillName.Healing, 45),
+                            new SkillNameValue(SkillName.Swords, 35),
+                            new SkillNameValue(SkillName.Tactics, 50)
                         };
 
                         break;
@@ -1012,10 +1011,10 @@ namespace Server.Misc
                     {
                         skills = new SkillNameValue[]
                         {
-                            new SkillNameValue(SkillName.Bushido, 50),
-                            new SkillNameValue(SkillName.Swords, 50),
                             new SkillNameValue(SkillName.Anatomy, 30),
-                            new SkillNameValue(SkillName.Healing, 30)
+                            new SkillNameValue(SkillName.Healing, 45),
+                            new SkillNameValue(SkillName.Swords, 35),
+                            new SkillNameValue(SkillName.Tactics, 50)
                         };
                         break;
                     }
@@ -1023,10 +1022,10 @@ namespace Server.Misc
                     {
                         skills = new SkillNameValue[]
                         {
-                            new SkillNameValue(SkillName.Ninjitsu, 50),
-                            new SkillNameValue(SkillName.Hiding, 50),
-                            new SkillNameValue(SkillName.Fencing, 30),
-                            new SkillNameValue(SkillName.Stealth, 30)
+                            new SkillNameValue(SkillName.Anatomy, 30),
+                            new SkillNameValue(SkillName.Healing, 45),
+                            new SkillNameValue(SkillName.Swords, 35),
+                            new SkillNameValue(SkillName.Tactics, 50)
                         };
                         break;
                     }
@@ -1053,7 +1052,7 @@ namespace Server.Misc
                     }
                 case 4: // Necromancer
                     {
-                        Container regs = new BagOfNecroReagents(50);
+                        /*Container regs = new BagOfNecroReagents(50);
 
                         if (!Core.AOS)
                         {
@@ -1062,9 +1061,9 @@ namespace Server.Misc
                         }
 
                         PackItem(regs);
-
+                        
                         regs.LootType = LootType.Regular;
-
+                        */
                         if (elf || human)
                             //  EquipItem(new BoneHelm());
 
@@ -1081,14 +1080,14 @@ namespace Server.Misc
                             }
                             else if (human)
                             {
-                                  EquipItem(new BoneHarvester());
-                                  EquipItem(NecroHue(new LeatherChest()));
+                                  //EquipItem(new BoneHarvester());
+                                 /* EquipItem(NecroHue(new LeatherChest()));
                                   EquipItem(NecroHue(new LeatherArms()));
                                   EquipItem(NecroHue(new LeatherGloves()));
                                   EquipItem(NecroHue(new LeatherGorget()));
                                   EquipItem(NecroHue(new LeatherLegs()));
                                   EquipItem(NecroHue(new Skirt()));
-                                  EquipItem(new Sandals(0x8FD));
+                                  EquipItem(new Sandals(0x8FD)); */
                             }
                             else if (gargoyle)
                             {
@@ -1122,7 +1121,7 @@ namespace Server.Misc
                         }
                         else if (human)
                         {
-                               EquipItem(new Broadsword());
+                               /*EquipItem(new Broadsword());
                                EquipItem(new Helmet());
                                EquipItem(new PlateGorget());
                                EquipItem(new RingmailArms());
@@ -1130,7 +1129,7 @@ namespace Server.Misc
                                EquipItem(new RingmailLegs());
                                EquipItem(new ThighBoots(0x748));
                                EquipItem(new Cloak(0xCF));
-                               EquipItem(new BodySash(0xCF));
+                               EquipItem(new BodySash(0xCF)); */
                         }
                         else if (gargoyle)
                         {
@@ -1153,7 +1152,7 @@ namespace Server.Misc
                     {
                         if (elf || human)
                         {
-                              EquipItem(new HakamaShita(0x2C3));
+                              /*EquipItem(new HakamaShita(0x2C3));
                               EquipItem(new Hakama(0x2C3));
                               EquipItem(new SamuraiTabi(0x2C3));
                               EquipItem(new TattsukeHakama(0x22D));
@@ -1162,7 +1161,7 @@ namespace Server.Misc
                             //if (elf)
                             //  EquipItem(new RavenHelm());
                             // else
-                               EquipItem(new LeatherJingasa());
+                               EquipItem(new LeatherJingasa()); */
                         }
                         else if (gargoyle)
                         {
@@ -1189,7 +1188,7 @@ namespace Server.Misc
 
                         if (elf || human)
                         {
-                              EquipItem(new Kasa());
+                              /*EquipItem(new Kasa());
                               EquipItem(new TattsukeHakama(hues[Utility.Random(hues.Length)]));
                               EquipItem(new HakamaShita(0x2C3));
                               EquipItem(new NinjaTabi(0x2C3));
@@ -1197,7 +1196,7 @@ namespace Server.Misc
                              // if (elf)
                             //      EquipItem(new AssassinSpike());
                              // else
-                                  EquipItem(new Tekagi());
+                                  EquipItem(new Tekagi()); */
                         }
                         else if (gargoyle)
                         {
