@@ -2564,7 +2564,7 @@ namespace Server.Mobiles
             {
                 if (Core.ML && Race == Race.Human)
                 {
-                    return 20.0;
+                    //return 20.0;
                 }
 
                 return 0;

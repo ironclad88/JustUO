@@ -170,7 +170,7 @@ namespace Server.Mobiles
 			: base(AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2)
 		{
 			LoadSBInfo();
-
+            NameHue = 90; //make names appear as old-school blue
 			Title = title;
 
 			InitBody();

@@ -9,65 +9,72 @@ namespace Server
     class SpecLevels
     {
 
-        double total;
-        int level = 0;
-        string currentClass;
+        int[] SpecLevelSkills = { 600, 720, 840, 960, 1080, 1200 };
+        double[] SpecLevelPercent = { 60, 68, 76, 84, 92, 100 };
 
-        private void calculateLevel(Mobile player, double totalSkills)
+        public void GetLevel(Mobile player, out SpecClasse curr_classe, out int curr_level)
         {
-            //double percentage; // later, gotta use total of all skills
+            double s_warrior, s_bard, s_crafter, s_mage, s_ranger, s_thief;
+            double total = 0;
+            total += s_warrior = totalWarrior(player);
+            total += s_bard = totalBard(player);
+            total += s_crafter = totalCrafter(player);
+            total += s_mage = totalMage(player);
+            total += s_ranger = totalRanger(player);
+            total += s_thief = totalThief(player);
 
-            // if(percentage < blabla) then you cant have a class
-            // else you can have a class
-            double total = totalSkills;
+            //calculate which spec the player has most skill points in
+            double max = 0;
+            SpecClasse spec = SpecClasse.None;
+            int level = 0;
 
-            if (total >= 600 && total < 720) //spec 1
+            if (s_warrior > max)
             {
-                level = 1;
-                
+                max = s_warrior;
+                spec = SpecClasse.Warrior;
             }
-            else if (total >= 720 && total < 840) //spec 2
+            if (s_bard > max)
             {
-                level = 2;
+                max = s_bard;
+                spec = SpecClasse.Bard;
             }
-            else if (total >= 840 && total < 920) //spec 3
+            if (s_crafter > max)
             {
-                level = 3;
+                max = s_crafter;
+                spec = SpecClasse.Crafter;
             }
-            else if (total >= 920 && total < 1080) //spec 4
+            if (s_mage > max)
             {
-                level = 4;
+                max = s_mage;
+                spec = SpecClasse.Mage;
             }
-            else if (total >= 1080 && total < 1200) //spec 5
+            if (s_ranger > max)
             {
-                level = 5;
+                max = s_ranger;
+                spec = SpecClasse.Ranger;
             }
-            else if (total >= 1200) //spec 6
+            if (s_thief > max)
             {
-                level = 6;
+                max = s_thief;
+                spec = SpecClasse.Thief;
             }
-        }
 
-        private void calculateClass(Mobile player)
-        {
+            // spec == current classe, now calculate level
+            if(max < SpecLevelSkills[0])
+            {
+                spec = SpecClasse.None;
+            }
+            else
+            {
+                int i;
+                for (i = 0; i < SpecLevelSkills.Length && max >= SpecLevelSkills[i] && (100 * max / total) >= SpecLevelPercent[i]; i++)
+                {
+                    level++;
+                }
+            }
 
-        }
-
-        public string getClass(Mobile player)
-        {
-           // classes current = classes.Warrior;
-            return "warrior";
-        }
-
-        public int getLevel(Mobile player)
-        {
-            double[] arrSpecCalc = { totalWarrior(player), totalBard(player), totalCrafter(player), totalMage(player), totalRanger(player), totalTheif(player) };
-            
-
-
-            total = totalWarrior(player);
-
-            return level;
+            curr_level = level;
+            curr_classe = spec;
         }
 
         private double totalWarrior(Mobile player)
@@ -140,7 +147,7 @@ namespace Server
             return skillsTotal;
         }
 
-        private double totalTheif(Mobile player)
+        private double totalThief(Mobile player)
         {
             double skillsTotal = 0;
             skillsTotal += player.Skills.DetectHidden.Value;

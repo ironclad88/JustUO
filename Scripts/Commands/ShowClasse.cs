@@ -14,16 +14,16 @@ namespace Server.Commands
         [Description("Returns the players class level.")]
         private static void Classe_OnCommand(CommandEventArgs e)
         {
-            string retString;
             Mobile m = e.Mobile;
-            
-            var currentSpecLevel = m.getSpec();
-            if (Convert.ToInt32(currentSpecLevel) == 0) // remove this later
+            m.GetSpec();
+            if (m.SpecLevel == 0 || m.SpecClasse == SpecClasse.None)
             {
-                retString = "You aren´t in any class";
+                e.Mobile.SendMessage("You do not qualify for any classe.");
             }
-            retString = "You aren´t in any class";
-            e.Mobile.SendMessage(retString);
+            else
+            {
+                e.Mobile.SendMessage("You're qualified level {0} {1}.", m.SpecLevel, m.SpecClasse.ToString());
+            }
 
         }
     }

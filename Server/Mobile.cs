@@ -476,6 +476,17 @@ namespace Server
         HigherPoisonActive,
         Cured
     }
+
+    public enum SpecClasse
+    {
+        None,
+        Bard,
+        Crafter,
+        Mage,
+        Ranger,
+        Thief,
+        Warrior
+    }
     #endregion
 
     [Serializable]
@@ -707,6 +718,7 @@ namespace Server
         }
 
         #region Var declarations
+        private SpecClasse _SpecClasse = SpecClasse.None;
         private int _specLevel = 0;
         private bool _boostedStat = false;
         private int _boostedSkills = 0;
@@ -1627,29 +1639,17 @@ namespace Server
             set { _boostedSkills = value; }
         }
 
-        public virtual String getSpecLevel()
-        {
-            var warriorSkills = this.Skills.Anatomy.Value;
-            //  Console.WriteLine(warriorSkills);
-            if (warriorSkills >= 50)
-            {
-                return "Warrior1";
-            }
-            return "0";
-        }
-
-        public virtual String getSpec()
+        public virtual void GetSpec()
         {
             SpecLevels sl = new SpecLevels();
-            var t = sl.getLevel(this);
-            //string[] classArr = new string[2];
-            /*classArr[0] = sl.getClass(this);
-            classArr[1] = sl.getLevel(this).ToString();*/
-            return t.ToString();
+            sl.GetLevel(this, out _SpecClasse, out _specLevel);
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int Thirst { get { return _Thirst; } set { _Thirst = value; } }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public SpecClasse SpecClasse { get { return _SpecClasse; } set { _SpecClasse = value; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int SpecLevel { get { return _specLevel; } set { _specLevel = value; } }
@@ -5894,6 +5894,11 @@ namespace Server
 
             switch (version)
             {
+                case 36:
+                    {
+                        _SpecClasse = (SpecClasse)reader.ReadInt();
+                        goto case 35;
+                    }
                 case 35:
                     {
                         _boostedStat = reader.ReadBool();
@@ -6386,7 +6391,8 @@ namespace Server
 
         public virtual void Serialize(GenericWriter writer)
         {
-            writer.Write(35); // version
+            writer.Write(36); // version
+            writer.Write((int)_SpecClasse);
             writer.Write(_boostedStat);
             writer.Write(_specLevel);
             writer.Write(_SpecialSlayerMechanics);
