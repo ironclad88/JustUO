@@ -289,6 +289,27 @@ namespace Server.Items
                 return this.m_AosResistances.Energy;
             }
         }
+        public override int EarthResistance
+        {
+            get
+            {
+                return this.m_AosResistances.Earth;
+            }
+        }
+        public override int NecroResistance
+        {
+            get
+            {
+                return this.m_AosResistances.Necro;
+            }
+        }
+        public override int HolyResistance
+        {
+            get
+            {
+                return this.m_AosResistances.Holy;
+            }
+        }
         public virtual int BaseGemTypeNumber
         {
             get

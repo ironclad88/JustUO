@@ -185,7 +185,8 @@ typeof(GargishTalwar),  typeof(GargishDagger),
 #if(USE_GARGISH)
             typeof(GargishRing), typeof(GargishBracelet), typeof(GargishNecklace), typeof(GargishEarrings),
 #endif
-			typeof(GoldRing), typeof(GoldBracelet), typeof(SilverRing), typeof(SilverBracelet)
+			typeof(GoldRing), typeof(GoldBracelet), typeof(GoldNecklace), typeof(Necklace), typeof(GoldBeadNecklace), 
+            typeof(SilverRing), typeof(SilverBracelet), typeof(GoldEarrings)
 		};
 
         public static Type[] JewelryTypes { get { return m_JewelryTypes; } }

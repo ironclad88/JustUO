@@ -171,8 +171,8 @@ namespace Server
                         totalDamage += totalDamage * quiver.DamageIncrease / 100;
                 }
 
-                if (totalDamage < 1)
-                    totalDamage = 1;
+                //if (totalDamage < 1)
+                //    totalDamage = 1;
             }
             else if (Core.ML && m is PlayerMobile && from is PlayerMobile)
             {

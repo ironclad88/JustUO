@@ -935,7 +935,7 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             var v = (int)type;
@@ -994,8 +994,10 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
+
+            int[] MaxResBonus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
 
             for (int i = 0; i < _Resistances.Length; ++i)
             {
@@ -1031,6 +1033,19 @@ namespace Server
                     continue;
                 }
 
+                if (item.ItemData.Name.Equals("ring") || item.ItemData.Name.Equals("necklace") ||
+                    item.ItemData.Name.Equals("bracelet") || item.ItemData.Name.Equals("earrings"))
+                {
+                    MaxResBonus[0] = Math.Max(MaxResBonus[0], item.PhysicalResistance);
+                    MaxResBonus[1] = Math.Max(MaxResBonus[1], item.FireResistance);
+                    MaxResBonus[2] = Math.Max(MaxResBonus[2], item.ColdResistance);
+                    MaxResBonus[3] = Math.Max(MaxResBonus[3], item.PoisonResistance);
+                    MaxResBonus[4] = Math.Max(MaxResBonus[4], item.EnergyResistance);
+                    MaxResBonus[5] = Math.Max(MaxResBonus[5], item.EarthResistance);
+                    MaxResBonus[6] = Math.Max(MaxResBonus[6], item.NecroResistance);
+                    MaxResBonus[7] = Math.Max(MaxResBonus[7], item.HolyResistance);
+                }
+
                 _Resistances[0] += item.PhysicalResistance;
                 _Resistances[1] += item.FireResistance;
                 _Resistances[2] += item.ColdResistance;
@@ -1044,7 +1059,7 @@ namespace Server
             for (int i = 0; i < _Resistances.Length; ++i)
             {
                 int min = GetMinResistance((ResistanceType)i);
-                int max = GetMaxResistance((ResistanceType)i);
+                int max = GetMaxResistance((ResistanceType)i) + MaxResBonus[i];
 
                 if (max < min)
                 {
@@ -1593,7 +1608,7 @@ namespace Server
                 {
                     _Hunger = value;
 
-                   // EventSink.InvokeHungerChanged(new HungerChangedEventArgs(this, oldValue));
+                    // EventSink.InvokeHungerChanged(new HungerChangedEventArgs(this, oldValue));
                 }
             }
         }
@@ -5620,7 +5635,7 @@ namespace Server
                 return;
             }
 
-            if (amount > 0)
+            if (amount > /*0*/ int.MinValue)
             {
                 int oldHits = Hits;
                 int newHits = oldHits - amount;
@@ -5678,7 +5693,7 @@ namespace Server
                                 }
                             }
 
-                            if (amount > 0 && (ourState != null || theirState != null))
+                            if (amount > /*0*/ int.MaxValue && (ourState != null || theirState != null))
                             {
                                 Packet p = null; // = new DamagePacket( this, amount );
 
@@ -6740,7 +6755,8 @@ namespace Server
             OnItemAdded(item);
 
             if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
-                item.PoisonResistance != 0 || item.EnergyResistance != 0)
+                item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
+                item.NecroResistance != 0 || item.HolyResistance != 0)
             {
                 UpdateResistances();
             }
@@ -6778,7 +6794,8 @@ namespace Server
                 OnItemRemoved(item);
 
                 if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
-                    item.PoisonResistance != 0 || item.EnergyResistance != 0)
+                    item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
+                    item.NecroResistance != 0 || item.HolyResistance != 0)
                 {
                     UpdateResistances();
                 }

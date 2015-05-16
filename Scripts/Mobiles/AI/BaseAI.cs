@@ -978,7 +978,11 @@ namespace Server.Mobiles
 			{
 				if (!m_Mobile.CheckIdle())
 				{
-					WalkRandomInHome(2, 2, 1);
+                    //make npcs wander half as much
+                    if (Utility.Random(3) == 0)
+                    {
+                        WalkRandomInHome(2, 2, 1);
+                    }
 				}
 			}
 

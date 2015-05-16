@@ -71,6 +71,10 @@ namespace Server.Items
             }
             set
             {
+                if (this.m_UsesRemaining == value + 1)
+                {
+                    this.FindOwner().SendLocalizedMessage(1044118); // Your tool suffers some damage.
+                }
                 this.m_UsesRemaining = value;
                 this.InvalidateProperties();
             }

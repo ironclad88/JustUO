@@ -1313,10 +1313,10 @@ namespace Server.Items
                     bonus -= EssenceOfWindSpell.GetSSIMalus(m);
                 }
 
-                if (bonus > 60)
-                {
-                    bonus = 60;
-                }
+                //if (bonus > 60)
+                //{
+                //    bonus = 60;
+                //}
 
                 double ticks;
 
@@ -1339,10 +1339,10 @@ namespace Server.Items
                     ticks = Math.Floor((80000.0 / ((m.Stam + 100) * speed)) - 2);
                 }
 
-                // Swing speed currently capped at one swing every 1.25 seconds (5 ticks).
-                if (ticks < 5)
+                // Swing speed currently capped at one swing every 0.5 seconds (2 ticks).
+                if (ticks < 2)
                 {
-                    ticks = 5;
+                    ticks = 2;
                 }
 
                 delayInSeconds = ticks * 0.25;
@@ -2115,9 +2115,9 @@ namespace Server.Items
 
             AddBlood(attacker, defender, damage);
 
-            int phys, fire, cold, pois, nrgy, chaos, direct;
+            int phys, fire, cold, pois, nrgy, earth, necro, holy, chaos, direct;
 
-            GetDamageTypes(attacker, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
+            GetDamageTypes(attacker, out phys, out fire, out cold, out pois, out nrgy, out earth, out necro, out holy, out chaos, out direct);
 
             if (Core.ML && this is BaseRanged)
             {
@@ -2216,9 +2216,9 @@ namespace Server.Items
                 cold,
                 pois,
                 nrgy,
-                0,
-                0,
-                0,
+                earth,
+                necro,
+                holy,
                 chaos,
                 direct,
                 false,
@@ -2796,17 +2796,20 @@ namespace Server.Items
 
         public virtual void AddBlood(Mobile attacker, Mobile defender, int damage)
         {
-            if (damage >= 15)
+            if (damage >= 50)
             {
-                new Blood().MoveToWorld(defender.Location, defender.Map);
-
-                int extraBlood = (Core.SE ? Utility.RandomMinMax(0, 5) : Utility.RandomMinMax(0, 1));
-
-                for (int i = 3; i < extraBlood; i++)
+                if (Utility.RandomBool() == true)
                 {
-                    new Blood().MoveToWorld(
-                        new Point3D(defender.X + Utility.RandomMinMax(-1, 1), defender.Y + Utility.RandomMinMax(-1, 1), defender.Z),
-                        defender.Map);
+                    new Blood().MoveToWorld(defender.Location, defender.Map);
+
+                    int extraBlood = (Core.SE ? Utility.RandomMinMax(0, 5) : Utility.RandomMinMax(0, 1));
+
+                    for (int i = 3; i < extraBlood; i++)
+                    {
+                        new Blood().MoveToWorld(
+                            new Point3D(defender.X + Utility.RandomMinMax(-1, 1), defender.Y + Utility.RandomMinMax(-1, 1), defender.Z),
+                            defender.Map);
+                    }
                 }
             }
         }
@@ -3094,10 +3097,10 @@ namespace Server.Items
                 attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);
                 // Passively check Anatomy for gain
 
-                if (Type == WeaponType.Axe)
-                {
-                    attacker.CheckSkill(SkillName.Lumberjacking, 0.0, 100.0); // Passively check Lumberjacking for gain
-                }
+                //if (Type == WeaponType.Axe)
+                //{
+                //    attacker.CheckSkill(SkillName.Lumberjacking, 0.0, 100.0); // Passively check Lumberjacking for gain
+                //}
             }
 
             #region Physical bonuses
@@ -3108,12 +3111,12 @@ namespace Server.Items
             double strengthBonus = GetBonus(attacker.Str, 0.300, 100.0, 5.00);
             double anatomyBonus = GetBonus(attacker.Skills[SkillName.Anatomy].Value, 0.500, 100.0, 5.00);
             double tacticsBonus = GetBonus(attacker.Skills[SkillName.Tactics].Value, 0.625, 100.0, 6.25);
-            double lumberBonus = GetBonus(attacker.Skills[SkillName.Lumberjacking].Value, 0.200, 100.0, 10.00);
+            //double lumberBonus = GetBonus(attacker.Skills[SkillName.Lumberjacking].Value, 0.200, 100.0, 10.00);
 
-            if (Type != WeaponType.Axe)
-            {
-                lumberBonus = 0.0;
-            }
+            //if (Type != WeaponType.Axe)
+            //{
+            //    lumberBonus = 0.0;
+            //}
             #endregion
 
             #region Modifiers
@@ -3151,13 +3154,13 @@ namespace Server.Items
                 damageBonus -= discordanceEffect * 2;
             }
 
-            if (damageBonus > 100)
-            {
-                damageBonus = 100;
-            }
+            //if (damageBonus > 100)
+            //{
+            //    damageBonus = 100;
+            //}
             #endregion
 
-            double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + lumberBonus +
+            double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + //lumberBonus +
                                 ((GetDamageBonus() + damageBonus) / 100.0);
 
             return damage + (int)(damage * totalBonus);
@@ -4382,8 +4385,8 @@ namespace Server.Items
 
         public int GetElementalDamageHue()
         {
-            int phys, fire, cold, pois, nrgy, chaos, direct;
-            GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct);
+            int phys, fire, cold, pois, nrgy, earth, necro, holy, chaos, direct;
+            GetDamageTypes(null, out phys, out fire, out cold, out pois, out nrgy, out earth, out necro, out holy, out chaos, out direct);
             //Order is Cold, Energy, Fire, Poison, Physical left
 
             int currentMax = 1;
@@ -5083,17 +5086,17 @@ namespace Server.Items
 
                 if (earth != 0)
                 {
-                    list.Add(1060529, nrgy.ToString()); // earth damage ~1_val
+                    list.Add(1060529, earth.ToString()); // earth damage ~1_val
                 }
 
-                if (nrgy != 0)
+                if (necro != 0)
                 {
-                    list.Add(1060530, nrgy.ToString()); // necro damage ~1_val
+                    list.Add(1060530, necro.ToString()); // necro damage ~1_val
                 }
 
-                if (nrgy != 0)
+                if (holy != 0)
                 {
-                    list.Add(1060531, nrgy.ToString()); // holy damage ~1_val
+                    list.Add(1060531, holy.ToString()); // holy damage ~1_val
                 }
 
                 if (Core.ML && chaos != 0)

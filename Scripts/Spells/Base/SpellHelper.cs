@@ -1103,7 +1103,7 @@ namespace Server.Spells
 
                 int damageGiven = AOS.Damage(target, from, iDamage, phys, fire, cold, pois, nrgy, earth, necro, holy);
 
-                if (from != null) // sanity check
+                if (from != null && damage > 0) // sanity check
                 {
                     DoLeech(damageGiven, from, target);
                 }
@@ -1259,7 +1259,7 @@ namespace Server.Spells
 
                 int damageGiven = AOS.Damage(this.m_Target, this.m_From, this.m_Damage, this.m_Phys, this.m_Fire, this.m_Cold, this.m_Pois, this.m_Nrgy, this.m_Earth, this.m_Necro, this.m_Holy);
 
-                if (this.m_From != null) // sanity check
+                if (this.m_From != null && damageGiven > 0) // sanity check
                 {
                     DoLeech(damageGiven, this.m_From, this.m_Target);
                 }

@@ -15,7 +15,7 @@ namespace Server
 
         private void calculateLevel(Mobile player, double totalSkills)
         {
-            double percentage; // later, gotta use total of all skills
+            //double percentage; // later, gotta use total of all skills
 
             // if(percentage < blabla) then you cant have a class
             // else you can have a class

@@ -32,8 +32,9 @@ namespace Server.Gumps.Zulugumps
 
             PlayerMobile player = owner as PlayerMobile;
 
-            int armor = (int)player.ArmorRating;
+            int armor = (int)(player.ArmorRating + 0.5);
             int phys = owner.PhysicalResistance;
+            int pois = owner.PoisonResistance;
             int fire = owner.FireResistance;
             int water = owner.ColdResistance;
             int air = owner.EnergyResistance;
@@ -42,13 +43,14 @@ namespace Server.Gumps.Zulugumps
             int holy = owner.HolyResistance;
 
             AddPage(0);
-            AddBackground(90, 30, 400, 300, 9200);
+            AddBackground(90, 30, 400, 325, 9200);
             AddLabel(150, 50, 0, @"Protections & Mods");
             AddItem(100, 50, 7107);
             int startX = 100;
             int startY = 100;
             AddLabel(startX, startY, 0, @"Armor Rating");
             AddLabel(startX, startY += 25, 0, @"Physical Protection");
+            AddLabel(startX, startY += 25, 0, @"Poison Protection");
             AddLabel(startX, startY += 25, 0, @"Fire Protection");
             AddLabel(startX, startY += 25, 0, @"Water Protection");
             AddLabel(startX, startY += 25, 0, @"Air Protection");
@@ -60,6 +62,7 @@ namespace Server.Gumps.Zulugumps
             startY = 100;
             AddLabel(startX, startY, 0, armor.ToString());
             AddLabel(startX, startY += 25, 0, phys.ToString() + @"%");
+            AddLabel(startX, startY += 25, 0, pois.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, fire.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, water.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, air.ToString() + @"%");

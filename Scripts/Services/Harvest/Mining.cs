@@ -48,17 +48,17 @@ namespace Server.Engines.Harvest
             #region Mining for ore and stone
             HarvestDefinition oreAndStone = this.m_OreAndStone = new HarvestDefinition();
 
-            // Resource banks are every 8x8 tiles
-            oreAndStone.BankWidth = 8;
-            oreAndStone.BankHeight = 8;
+            // Resource banks are every 1x1 tiles
+            oreAndStone.BankWidth = 1;
+            oreAndStone.BankHeight = 1;
 
-            // Every bank holds from 10 to 34 ore
-            oreAndStone.MinTotal = 10;
-            oreAndStone.MaxTotal = 34;
+            // Every bank holds from 5 to 15 loops
+            oreAndStone.MinTotal = 2;
+            oreAndStone.MaxTotal = 7;
 
-            // A resource bank will respawn its content every 10 to 20 minutes
-            oreAndStone.MinRespawn = TimeSpan.FromMinutes(10.0);
-            oreAndStone.MaxRespawn = TimeSpan.FromMinutes(20.0);
+            // A resource bank will respawn its content every 10 to 15 minutes
+            oreAndStone.MinRespawn = TimeSpan.FromMinutes(3.0);
+            oreAndStone.MaxRespawn = TimeSpan.FromMinutes(5.0);
 
             // Skill checking is done on the Mining skill
             oreAndStone.Skill = SkillName.Mining;
@@ -71,13 +71,13 @@ namespace Server.Engines.Harvest
 
             // One ore per harvest action
             oreAndStone.ConsumedPerHarvest = 1;
-            oreAndStone.ConsumedPerFeluccaHarvest = 2;
+            oreAndStone.ConsumedPerFeluccaHarvest = 1;
 
             // The digging effect
             oreAndStone.EffectActions = new int[] { 11 };
             oreAndStone.EffectSounds = new int[] { 0x125, 0x126 };
-            oreAndStone.EffectCounts = new int[] { 1 };
-            oreAndStone.EffectDelay = TimeSpan.FromSeconds(1.6);
+            oreAndStone.EffectCounts = new int[] { 5 };
+            oreAndStone.EffectDelay = TimeSpan.FromSeconds(1.1);
             oreAndStone.EffectSoundDelay = TimeSpan.FromSeconds(0.9);
 
             oreAndStone.NoResourcesMessage = 503040; // There is no metal here to mine.
@@ -98,20 +98,22 @@ namespace Server.Engines.Harvest
                 new HarvestResource(85.0, 45.0, 125.0, 1007077, typeof(GoldOre), typeof(GoldGranite), typeof(GoldenElemental)),
                 new HarvestResource(90.0, 50.0, 130.0, 1007078, typeof(AgapiteOre), typeof(AgapiteGranite), typeof(AgapiteElemental)),
                 new HarvestResource(95.0, 55.0, 135.0, 1007079, typeof(VeriteOre), typeof(VeriteGranite), typeof(VeriteElemental)),
-                new HarvestResource(99.0, 59.0, 139.0, 1007080, typeof(ValoriteOre), typeof(ValoriteGranite), typeof(ValoriteElemental))
+                new HarvestResource(99.0, 59.0, 139.0, 1007080, typeof(ValoriteOre), typeof(ValoriteGranite), typeof(ValoriteElemental)),
+                new HarvestResource(99.0, 59.0, 139.0, 1007080, typeof(ZuluOre), typeof(ZuluGranite))
             };
 
             veins = new HarvestVein[]
             {
-                new HarvestVein(49.6, 0.0, res[0], null), // Iron
-                new HarvestVein(11.2, 0.5, res[1], res[0]), // Dull Copper
-                new HarvestVein(09.8, 0.5, res[2], res[0]), // Shadow Iron
-                new HarvestVein(08.4, 0.5, res[3], res[0]), // Copper
-                new HarvestVein(07.0, 0.5, res[4], res[0]), // Bronze
-                new HarvestVein(05.6, 0.5, res[5], res[0]), // Gold
-                new HarvestVein(04.2, 0.5, res[6], res[0]), // Agapite
-                new HarvestVein(02.8, 0.5, res[7], res[0]), // Verite
-                new HarvestVein(01.4, 0.5, res[8], res[0])// Valorite
+                new HarvestVein(10.0, 0.0, res[0], null), // Iron
+                new HarvestVein(10.0, 0.0, res[1], res[0]), // Dull Copper
+                new HarvestVein(10.0, 0.0, res[2], res[0]), // Shadow Iron
+                new HarvestVein(10.0, 0.0, res[3], res[0]), // Copper
+                new HarvestVein(10.0, 0.0, res[4], res[0]), // Bronze
+                new HarvestVein(10.0, 0.0, res[5], res[0]), // Gold
+                new HarvestVein(10.0, 0.0, res[6], res[0]), // Agapite
+                new HarvestVein(10.0, 0.0, res[7], res[0]), // Verite
+                new HarvestVein(10.0, 0.0, res[8], res[0]),// Valorite
+                new HarvestVein(10.0, 0.0, res[9], res[0])// Zulu
             };
 
             oreAndStone.Resources = res;
@@ -140,9 +142,9 @@ namespace Server.Engines.Harvest
             #region Mining for sand
             HarvestDefinition sand = this.m_Sand = new HarvestDefinition();
 
-            // Resource banks are every 8x8 tiles
-            sand.BankWidth = 8;
-            sand.BankHeight = 8;
+            // Resource banks are every 1x1 tile1
+            sand.BankWidth = 1;
+            sand.BankHeight = 1;
 
             // Every bank holds from 6 to 12 sand
             sand.MinTotal = 6;
@@ -163,13 +165,13 @@ namespace Server.Engines.Harvest
 
             // One sand per harvest action
             sand.ConsumedPerHarvest = 1;
-            sand.ConsumedPerFeluccaHarvest = 2;
+            sand.ConsumedPerFeluccaHarvest = 1;
 
             // The digging effect
             sand.EffectActions = new int[] { 11 };
             sand.EffectSounds = new int[] { 0x125, 0x126 };
-            sand.EffectCounts = new int[] { 6 };
-            sand.EffectDelay = TimeSpan.FromSeconds(1.6);
+            sand.EffectCounts = new int[] { 5 };
+            sand.EffectDelay = TimeSpan.FromSeconds(1.1);
             sand.EffectSoundDelay = TimeSpan.FromSeconds(0.9);
 
             sand.NoResourcesMessage = 1044629; // There is no sand here to mine.
@@ -220,16 +222,16 @@ namespace Server.Engines.Harvest
             if (!base.CheckHarvest(from, tool))
                 return false;
 
-            if (from.Mounted)
-            {
-                from.SendLocalizedMessage(501864); // You can't mine while riding.
-                return false;
-            }
-            else if (from.IsBodyMod && !from.Body.IsHuman)
-            {
-                from.SendLocalizedMessage(501865); // You can't mine while polymorphed.
-                return false;
-            }
+            //if (from.Mounted)
+            //{
+            //    from.SendLocalizedMessage(501864); // You can't mine while riding.
+            //    return false;
+            //}
+            //else if (from.IsBodyMod && !from.Body.IsHuman)
+            //{
+            //    from.SendLocalizedMessage(501865); // You can't mine while polymorphed.
+            //    return false;
+            //}
 
             return true;
         }
@@ -249,21 +251,21 @@ namespace Server.Engines.Harvest
             if (!base.CheckHarvest(from, tool, def, toHarvest))
                 return false;
 
-            if (def == this.m_Sand && !(from is PlayerMobile && from.Skills[SkillName.Mining].Base >= 100.0 && ((PlayerMobile)from).SandMining))
+            if (def == this.m_Sand && !(from is PlayerMobile && from.Skills[SkillName.Mining].Base >= 100.0 /*&& ((PlayerMobile)from).SandMining*/))
             {
                 this.OnBadHarvestTarget(from, tool, toHarvest);
                 return false;
             }
-            else if (from.Mounted)
-            {
-                from.SendLocalizedMessage(501864); // You can't mine while riding.
-                return false;
-            }
-            else if (from.IsBodyMod && !from.Body.IsHuman)
-            {
-                from.SendLocalizedMessage(501865); // You can't mine while polymorphed.
-                return false;
-            }
+            //else if (from.Mounted)
+            //{
+            //    from.SendLocalizedMessage(501864); // You can't mine while riding.
+            //    return false;
+            //}
+            //else if (from.IsBodyMod && !from.Body.IsHuman)
+            //{
+            //    from.SendLocalizedMessage(501865); // You can't mine while polymorphed.
+            //    return false;
+            //}
 
             return true;
         }

@@ -1320,7 +1320,11 @@ namespace Server.Engines.Craft
 					return;
 				}
 
-				tool.UsesRemaining--;
+                if (Utility.Random(10) == 0)
+                {
+                    //TODO: add crafter spec bonus
+                    tool.UsesRemaining--;
+                }
 
 				if (craftSystem is DefBlacksmithy)
 				{
@@ -1342,7 +1346,11 @@ namespace Server.Engines.Craft
 						}
 						else
 						{
-							hammer.UsesRemaining--;
+                            if (Utility.Random(10) == 0)
+                            {
+                                //TODO: add crafter spec bonus
+                                hammer.UsesRemaining--;
+                            }
 
 							if (hammer.UsesRemaining < 1)
 							{
@@ -1593,7 +1601,11 @@ namespace Server.Engines.Craft
 					return;
 				}
 
-				tool.UsesRemaining--;
+                if (Utility.Random(10) == 0)
+                {
+                    //TODO: add crafter spec bonus
+                    tool.UsesRemaining--;
+                }
 
 				if (tool.UsesRemaining < 1)
 				{

@@ -38,8 +38,11 @@ namespace Server.Mobiles
                 else
                 {
                     this.m_Mobile.Warmode = false;
-
-                    base.DoActionWander();
+                    //make vendors wander less
+                    if (Utility.Random(3) == 0)
+                    {
+                        base.DoActionWander();
+                    }
                 }
             }
 
@@ -115,14 +118,14 @@ namespace Server.Mobiles
  
             if (this.m_Mobile is BaseVendor && from.InRange(this.m_Mobile, Core.AOS ? 1 : 4) && !e.Handled)
             {
-                if (e.HasKeyword(0x14D)) // *vendor sell*
+                if (e.HasKeyword(0x177)) // *vendor sell*
                 {
                     e.Handled = true;
 
                     ((BaseVendor)this.m_Mobile).VendorSell(from);
                     this.m_Mobile.FocusMob = from;
                 }
-                else if (e.HasKeyword(0x3C)) // *vendor buy*
+                else if (e.HasKeyword(0x171)) // *vendor buy*
                 {
                     e.Handled = true;
 

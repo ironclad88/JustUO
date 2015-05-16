@@ -148,7 +148,7 @@ namespace Server.Engines.Harvest
 
             Type type = null;
 
-            if (skillBase >= resource.ReqSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
+            if (skillValue >= resource.ReqSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
             {
                 type = this.GetResourceType(from, tool, def, map, loc, resource);
 
@@ -168,26 +168,31 @@ namespace Server.Engines.Harvest
                         //The whole harvest system is kludgy and I'm sure this is just adding to it.
                         if (item.Stackable)
                         {
-                            int amount = def.ConsumedPerHarvest;
-                            int feluccaAmount = def.ConsumedPerFeluccaHarvest;
+                            int amount = Math.Min((1+((int)(skillValue - resource.ReqSkill)/5)), 4);
+                            if (item is IronOre)
+                            {
+                                amount += (amount/2);
+                            }
+                            item.Amount = amount;
+                            //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
 
-                            int racialAmount = (int)Math.Ceiling(amount * 1.1);
-                            int feluccaRacialAmount = (int)Math.Ceiling(feluccaAmount * 1.1);
+                            //int racialAmount = (int)Math.Ceiling(amount * 1.1);
+                            //int feluccaRacialAmount = (int)Math.Ceiling(feluccaAmount * 1.1);
 
-                            bool eligableForRacialBonus = (def.RaceBonus && from.Race == Race.Human);
-                            bool inFelucca = (map == Map.Felucca);
+                            //bool eligableForRacialBonus = (def.RaceBonus && from.Race == Race.Human);
+                            //bool inFelucca = (map == Map.Felucca);
 
-                            if (eligableForRacialBonus && inFelucca && bank.Current >= feluccaRacialAmount && 0.1 > Utility.RandomDouble())
-                                item.Amount = feluccaRacialAmount;
-                            else if (inFelucca && bank.Current >= feluccaAmount)
-                                item.Amount = feluccaAmount;
-                            else if (eligableForRacialBonus && bank.Current >= racialAmount && 0.1 > Utility.RandomDouble())
-                                item.Amount = racialAmount;
-                            else
-                                item.Amount = amount;
+                            //if (eligableForRacialBonus && inFelucca && bank.Current >= feluccaRacialAmount && 0.1 > Utility.RandomDouble())
+                            //    item.Amount = feluccaRacialAmount;
+                            //else if (inFelucca && bank.Current >= feluccaAmount)
+                            //    item.Amount = feluccaAmount;
+                            //else if (eligableForRacialBonus && bank.Current >= racialAmount && 0.1 > Utility.RandomDouble())
+                            //    item.Amount = racialAmount;
+                            //else
+                            //    item.Amount = amount;
                         }
 
-                        bank.Consume(item.Amount, from);
+                        bank.Consume(1, from);
 
                         if (this.Give(from, item, def.PlaceAtFeetIfFull))
                         {
@@ -221,7 +226,7 @@ namespace Server.Engines.Harvest
 
                             toolWithUses.ShowUsesRemaining = true;
 
-                            if (toolWithUses.UsesRemaining > 0)
+                            if (toolWithUses.UsesRemaining > 0 && Utility.Random(10) == 0) // TODO: Add crafter spec bonus
                                 --toolWithUses.UsesRemaining;
 
                             if (toolWithUses.UsesRemaining < 1)
@@ -393,6 +398,11 @@ namespace Server.Engines.Harvest
 
             if (!from.Mounted)
                 from.Animate(Utility.RandomList(def.EffectActions), 5, 1, true, false, 0);
+            else if (def.EffectActions[0] == 11 ) //mining effect
+            {
+              int[] effect = new int[] { 26 };
+              from.Animate(Utility.RandomList(effect), 5, 1, true, false, 0);
+            }
         }
 
         public virtual HarvestDefinition GetDefinition(int tileID)

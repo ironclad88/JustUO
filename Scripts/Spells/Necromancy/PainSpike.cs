@@ -97,7 +97,10 @@ namespace Server.Spells.Necromancy
 
                 Misc.WeightOverloading.DFA = Misc.DFAlgorithm.PainSpike;
                 m.Damage((int)damage, this.Caster);
-                SpellHelper.DoLeech((int)damage, this.Caster, m);
+                if (damage > 0)
+                {
+                    SpellHelper.DoLeech((int)damage, this.Caster, m);
+                }
                 Misc.WeightOverloading.DFA = Misc.DFAlgorithm.Standard;
 
                 //SpellHelper.Damage( this, m, damage, 100, 0, 0, 0, 0, Misc.DFAlgorithm.PainSpike );

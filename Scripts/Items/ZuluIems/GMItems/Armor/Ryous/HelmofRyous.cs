@@ -13,7 +13,15 @@ namespace Server.Items.ZuluIems.GMItems.Armor.Ryous
         {
             this.Name = "Plate Helm of Ryous";
             this.Weight = 10.0;
-            this.Hue = 1413;
+            this.IdHue = 1413;
+            this.PhysicalBonus = this.BasePhysicalResistance;
+            this.FireBonus = this.BaseFireResistance;
+            this.PoisonBonus = this.BasePoisonResistance;
+            this.ColdBonus = this.BaseColdResistance;
+            this.EnergyBonus = this.BaseEnergyResistance;
+            this.EarthBonus = this.BaseEarthResistance;
+            this.NecroBonus = this.BaseNecroResistance;
+            this.HolyBonus = this.BaseHolyResistance;
         }
 
         public HelmofRyous(Serial serial)

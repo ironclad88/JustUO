@@ -220,7 +220,14 @@ namespace Server.Items
 
                     if (Core.AOS)
                         //item = Loot.RandomArmorOrShieldOrWeaponOrJewelry();
-                        item = Loot.RandomWeapon();
+                        if (Utility.Random(4) == 1)
+                        {
+                            item = Loot.RandomRangedWeapon();
+                        }
+                        else
+                        {
+                            item = Loot.RandomWeapon();
+                        }
                     else
                         item = Loot.RandomArmorOrShieldOrWeapon();
 
