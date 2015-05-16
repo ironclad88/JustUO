@@ -64,5 +64,16 @@ namespace Server.Custom
             }
             return sum;
         }
+
+        public int D100Roll(int Rolls)
+        {
+            int sum = 0;
+            for (int i = 0; i < Rolls; i++)
+            {
+                var roll = r.Next(1, 101);
+                sum += roll;
+            }
+            return sum;
+        }
     }
 }

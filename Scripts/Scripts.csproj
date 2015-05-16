@@ -662,6 +662,7 @@
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Modules.cs" />
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Services.cs" />
     <Compile Include="Custom Systems\XMLConfiguration\XmlConfig.cs" />
+    <Compile Include="Custom\GlobalSettings.cs" />
     <Compile Include="Custom\RandomClass.cs" />
     <Compile Include="Gumps\AddDoorGump.cs" />
     <Compile Include="Gumps\AddGump.cs" />
@@ -2824,6 +2825,7 @@
     <Compile Include="Misc\BuffIcons.cs" />
     <Compile Include="Misc\CharacterCreation.cs" />
     <Compile Include="Mobiles\AI\TestNecroAI.cs" />
+    <Compile Include="Mobiles\Animals\Mounts\ZuluMounts\GhostLlama.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystFrenziedOstard.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystOstard.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\BloodOstard.cs" />
