@@ -67,9 +67,9 @@ namespace Server.Items
 
         public virtual void UpdateWeight()
         {
-            int held = Math.Max(0, Math.Min(this.m_Held, 100));
+            int held = Math.Max(0, Math.Min(this.m_Held, 500));
 
-            this.Weight = 20 + ((held * 80) / 100);
+            this.Weight = 20 + ((held * 80) / 500);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -112,25 +112,25 @@ namespace Server.Items
 
             if (this.m_Held <= 0)
                 number = 502246; // The keg is empty.
-            else if (this.m_Held < 5)
-                number = 502248; // The keg is nearly empty.
-            else if (this.m_Held < 20)
-                number = 502249; // The keg is not very full.
-            else if (this.m_Held < 30)
-                number = 502250; // The keg is about one quarter full.
             else if (this.m_Held < 40)
+                number = 502248; // The keg is nearly empty.
+            else if (this.m_Held < 85)
+                number = 502249; // The keg is not very full.
+            else if (this.m_Held < 120)
+                number = 502250; // The keg is about one quarter full.
+            else if (this.m_Held < 160)
                 number = 502251; // The keg is about one third full.
-            else if (this.m_Held < 47)
+            else if (this.m_Held < 240)
                 number = 502252; // The keg is almost half full.
-            else if (this.m_Held < 54)
+            else if (this.m_Held < 250)
                 number = 502254; // The keg is approximately half full.
-            else if (this.m_Held < 70)
+            else if (this.m_Held < 280)
                 number = 502253; // The keg is more than half full.
-            else if (this.m_Held < 80)
+            else if (this.m_Held < 330)
                 number = 502255; // The keg is about three quarters full.
-            else if (this.m_Held < 96)
+            else if (this.m_Held < 480)
                 number = 502256; // The keg is very full.
-            else if (this.m_Held < 100)
+            else if (this.m_Held < 500)
                 number = 502257; // The liquid is almost to the top of the keg.
             else
                 number = 502258; // The keg is completely full.
@@ -146,25 +146,25 @@ namespace Server.Items
 
             if (this.m_Held <= 0)
                 number = 502246; // The keg is empty.
-            else if (this.m_Held < 5)
-                number = 502248; // The keg is nearly empty.
-            else if (this.m_Held < 20)
-                number = 502249; // The keg is not very full.
-            else if (this.m_Held < 30)
-                number = 502250; // The keg is about one quarter full.
             else if (this.m_Held < 40)
+                number = 502248; // The keg is nearly empty.
+            else if (this.m_Held < 85)
+                number = 502249; // The keg is not very full.
+            else if (this.m_Held < 120)
+                number = 502250; // The keg is about one quarter full.
+            else if (this.m_Held < 160)
                 number = 502251; // The keg is about one third full.
-            else if (this.m_Held < 47)
+            else if (this.m_Held < 240)
                 number = 502252; // The keg is almost half full.
-            else if (this.m_Held < 54)
+            else if (this.m_Held < 250)
                 number = 502254; // The keg is approximately half full.
-            else if (this.m_Held < 70)
+            else if (this.m_Held < 280)
                 number = 502253; // The keg is more than half full.
-            else if (this.m_Held < 80)
+            else if (this.m_Held < 330)
                 number = 502255; // The keg is about three quarters full.
-            else if (this.m_Held < 96)
+            else if (this.m_Held < 480)
                 number = 502256; // The keg is very full.
-            else if (this.m_Held < 100)
+            else if (this.m_Held < 500)
                 number = 502257; // The liquid is almost to the top of the keg.
             else
                 number = 502258; // The keg is completely full.
@@ -221,7 +221,7 @@ namespace Server.Items
             if (item is BasePotion)
             {
                 BasePotion pot = (BasePotion)item;
-                int toHold = Math.Min(100 - this.m_Held, pot.Amount);
+                int toHold = Math.Min(500 - this.m_Held, pot.Amount);
 
                 if (pot.PotionEffect == PotionEffect.Darkglow || pot.PotionEffect == PotionEffect.Invisibility || pot.PotionEffect == PotionEffect.Parasitic)
                 {

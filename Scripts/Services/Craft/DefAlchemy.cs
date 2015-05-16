@@ -163,16 +163,16 @@ namespace Server.Engines.Craft
             index = this.AddCraft(typeof(GreaterExplosionPotion), 1044537, 1044557, 65.0, 115.0, typeof(SulfurousAsh), 1044359, 10, 1044367);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            if (Core.SE)
+            /*if (Core.SE)
             {
                 index = this.AddCraft(typeof(SmokeBomb), 1044537, 1030248, 90.0, 120.0, typeof(Eggs), 1044477, 1, 1044253);
                 this.AddRes(index, typeof(Ginseng), 1044356, 3, 1044364);
                 this.SetNeededExpansion(index, Expansion.SE);
-            }
+            }*/
 
             #region Mondain's Legacy
             // region Necromancy (Core.ML?)
-            index = this.AddCraft(typeof(ConflagrationPotion), 1044109, 1072096, 55.0, 105.0, typeof(Bottle), 1044529, 1, 500315);
+           /* index = this.AddCraft(typeof(ConflagrationPotion), 1044109, 1072096, 55.0, 105.0, typeof(Bottle), 1044529, 1, 500315);
             this.AddRes(index, typeof(GraveDust), 1023983, 5, 1044253);
 
             index = this.AddCraft(typeof(GreaterConflagrationPotion), 1044109, 1072099, 70.0, 120.0, typeof(Bottle), 1044529, 1, 500315);
@@ -206,13 +206,13 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(HoveringWisp), 1074832, 1072881, 65.0, 115.0, typeof(CapturedEssence), 1032686, 4, 1044253);
                 this.AddRecipe(index, (int)TinkerRecipes.HoveringWisp);
                 this.SetNeededExpansion(index, Expansion.ML);
-            }
+            }*/
             #endregion
 
             #region Stygian Abyss
             /* Plant Pigments/Natural Dyes*/
 
-            if (Core.SA)
+           /* if (Core.SA)
             {
                 index = this.AddCraft(typeof(PlantPigment), 1074832, 1112132, 33.0, 83.0, typeof(PlantClippings), 1112131, 1, 1044253);
                 this.AddRes(index, typeof(Bottle), 1023854, 1, 1044253);
@@ -228,7 +228,7 @@ namespace Server.Engines.Craft
 
                 index = this.AddCraft(typeof(SoftenedReeds), 1074832, 1112249, 75.0, 100.0, typeof(DryReeds), 1112248, 1, 1112250);
                 this.AddRes(index, typeof(ScouringToxin), 1112292, 2, 1112326);
-            }
+            }*/
             #endregion
         }
     }

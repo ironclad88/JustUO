@@ -141,8 +141,8 @@ namespace Server.Items
         }// runebook
 
         [Constructable]
-        public Runebook(int maxCharges)
-            : base(Core.AOS ? 0x22C5 : 0xEFA)
+        public Runebook(int maxCharges) // 0x22C5 == old graphic, 0xEFA == new graphic
+            : base(Core.AOS ? 0xEFA : 0xEFA)
         {
             this.Weight = (Core.SE ? 1.0 : 3.0);
             this.LootType = LootType.Blessed;
@@ -283,7 +283,7 @@ namespace Server.Items
                 this.m_DefaultIndex -= 1;
             else if (this.m_DefaultIndex == index)
                 this.m_DefaultIndex = -1;
-
+            
             this.m_Entries.RemoveAt(index);
 
             RecallRune rune = new RecallRune();

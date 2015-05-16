@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -39,21 +40,21 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(LesserPoisonPotion), 15, 10, 0xF0A, 0));
                 this.Add(new GenericBuyInfo(typeof(LesserCurePotion), 15, 10, 0xF07, 0));
                 this.Add(new GenericBuyInfo(typeof(LesserExplosionPotion), 21, 10, 0xF0D, 0));
-                this.Add(new GenericBuyInfo(typeof(MortarPestle), 8, 10, 0xE9B, 0));
+                this.Add(new GenericBuyInfo(typeof(MortarPestle), 8, 20, 0xE9B, 0));
 
-                this.Add(new GenericBuyInfo(typeof(BlackPearl), 5, 20, 0xF7A, 0));
-                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, 20, 0xF7B, 0));
-                this.Add(new GenericBuyInfo(typeof(Garlic), 3, 20, 0xF84, 0));
-                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, 20, 0xF85, 0));
-                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, 20, 0xF86, 0));
-                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, 20, 0xF88, 0));
-                this.Add(new GenericBuyInfo(typeof(SpidersSilk), 3, 20, 0xF8D, 0));
-                this.Add(new GenericBuyInfo(typeof(SulfurousAsh), 3, 20, 0xF8C, 0));
+                this.Add(new GenericBuyInfo(typeof(BlackPearl), 5, GlobalSettings.ReagAmount, 0xF7A, 0));
+                this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, GlobalSettings.ReagAmount, 0xF7B, 0));
+                this.Add(new GenericBuyInfo(typeof(Garlic), 3, GlobalSettings.ReagAmount, 0xF84, 0));
+                this.Add(new GenericBuyInfo(typeof(Ginseng), 3, GlobalSettings.ReagAmount, 0xF85, 0));
+                this.Add(new GenericBuyInfo(typeof(MandrakeRoot), 3, GlobalSettings.ReagAmount, 0xF86, 0));
+                this.Add(new GenericBuyInfo(typeof(Nightshade), 3, GlobalSettings.ReagAmount, 0xF88, 0));
+                this.Add(new GenericBuyInfo(typeof(SpidersSilk), 3, GlobalSettings.ReagAmount, 0xF8D, 0));
+                this.Add(new GenericBuyInfo(typeof(SulfurousAsh), 3, GlobalSettings.ReagAmount, 0xF8C, 0));
 
-                this.Add(new GenericBuyInfo(typeof(Bottle), 5, 100, 0xF0E, 0)); 
-                this.Add(new GenericBuyInfo(typeof(HeatingStand), 2, 100, 0x1849, 0)); 
+                this.Add(new GenericBuyInfo(typeof(Bottle), 5, GlobalSettings.BottleAmount, 0xF0E, 0)); 
+                this.Add(new GenericBuyInfo(typeof(HeatingStand), 2, 20, 0x1849, 0)); 
 
-                this.Add(new GenericBuyInfo("1041060", typeof(HairDye), 37, 10, 0xEFF, 0));
+                //this.Add(new GenericBuyInfo("1041060", typeof(HairDye), 37, 10, 0xEFF, 0));
             }
         }
 

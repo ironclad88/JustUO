@@ -266,7 +266,7 @@ namespace Server.Engines.Craft
 
             this.MarkOption = true;
             this.Repair = Core.AOS;
-			this.CanEnhance = Core.ML;
+			this.CanEnhance = false;
         }
     }
 }
