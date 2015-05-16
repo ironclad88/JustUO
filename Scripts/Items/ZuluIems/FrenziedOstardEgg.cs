@@ -2,6 +2,7 @@
 using Server.Mobiles;
 using Server.Spells;
 using Server.Custom;
+using Server.Mobiles.Animals.Mounts.ZuluOstards;
 
 namespace Server.Items
 {
@@ -25,9 +26,32 @@ namespace Server.Items
         private static readonly Type[] m_Types = new Type[]
         {
             typeof(NecroFrenziedOstard),
-            typeof(FrenziedOstard)
+            typeof(FrenziedOstard),
+            typeof(EarthFrenziedOstard),
+            typeof(EmeraldFrenziedOstard),
+            typeof(FireFrenziedOstard),
+            typeof(GoldenFrenziedOstard),
+            typeof(HeavenlyFrenziedOstard),
+            typeof(HighlandFrenziedOstard),
+            typeof(IceFrenziedOstard),
+            typeof(MistFrenziedOstard),
+            typeof(MountainFrenziedOstard),
+            typeof(PlainsFrenziedOstard),
+            typeof(RubyFrenziedOstard),
+            typeof(SapphireFrenziedOstard),
+            typeof(ShadowFrenziedOstard),
+            typeof(SnowFrenziedOstard),
+            typeof(StoneFrenziedOstard),
+            typeof(SwampFrenziedOstard),
+            typeof(TropicalFrenziedOstard),
+            typeof(ValleyFrenziedOstard)
         };
 
+        private static readonly Type[] ghostLlama = new Type[]
+        {
+            typeof(GhostLlama)
+
+        };
         public override string DefaultName
         {
             get
@@ -37,12 +61,29 @@ namespace Server.Items
         }
         public override void OnDoubleClick(Mobile from)
         {
-            BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
             TimeSpan duration;
-            duration = TimeSpan.FromDays(1);
+            duration = TimeSpan.FromDays(1000);
+            RandomClass rnd = new RandomClass();
+            var eastereggroll = rnd.D100Roll(1);
+            if (eastereggroll == 66)
+            {
+                var secondRoll = rnd.D20Roll(1);
+                if (secondRoll >= 10) {  // hard as crap to get
+                Console.WriteLine("GHOST LLAMA!");
+                BaseCreature creature2 = (BaseCreature)Activator.CreateInstance(typeof(GhostLlama));
+                SpellHelper.Summon(creature2, from, 0x215, duration, false, false);
+                creature2.Summoned = false;
+                creature2.Controlled = true;
+                from.SendMessage("What is the meaning of this?!");
+                this.Consume(1);
+                }
+            }
+            else { 
+            BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
+            
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
             creature.Summoned = false;
-            RandomClass rnd = new RandomClass();
+            
             var diceRoll = rnd.D20Roll(1);
             Console.WriteLine("D20 Dice roll: " + diceRoll);
             if (diceRoll <= 4)
@@ -61,6 +102,7 @@ namespace Server.Items
                 creature.Controlled = true;
             }
             this.Consume(1);
+            }
         }
 
         public override void Serialize(GenericWriter writer)

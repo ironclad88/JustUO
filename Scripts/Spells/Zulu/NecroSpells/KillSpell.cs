@@ -1,22 +1,32 @@
-﻿using Server.Spells.Necromancy;
+﻿using Server.Items;
+using Server.Mobiles;
+using Server.Spells.Necromancy;
 using Server.Targeting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Server.Spells.Zulu.NecroSpells
 {
-    public class WyvernStrikeSpell : NecromancerSpell
+    public class KillSpell : NecroSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "WyvernStrike", "Umbrae Tenebrae Venarent",
+            "Kill", "Ulties Manum Necarent",
             203,
             9051,
-            Reagent.Nightshade);
+            Reagent.DaemonBone,
+            Reagent.DragonBlood,
+            Reagent.ExecutionersCap,
+            Reagent.VialofBlood,
+            Reagent.VolcanicAsh,
+            Reagent.EyeofNewt,
+            Reagent.Wormsheart);
 
 
-        public WyvernStrikeSpell(Mobile caster, Item scroll)
+
+        public KillSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
@@ -37,14 +47,14 @@ namespace Server.Spells.Zulu.NecroSpells
         {
             get
             {
-                return 60.0;
+                return 130;
             }
         }
         public override int RequiredMana
         {
             get
             {
-                return 23;
+                return 50;
             }
         }
         public override bool DelayedDamage
@@ -65,34 +75,19 @@ namespace Server.Spells.Zulu.NecroSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                //  SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m); // had to remove this if inherit from NecromancerSpell
-
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();
 
                 m.Paralyzed = false;
 
-              //  if (this.CheckResisted(m))
-              //  {
-              //      m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-              //  }
-               // else
-              //  {
-                    double damage = Utility.Random(65, 80);
+                double damage = Utility.Random(70, 90); // balance this plix
 
-                    Console.WriteLine("Wyvern Strike DMG: " + damage);
-                    Console.WriteLine("Applying PSN: Lethal");
-                    m.ApplyPoison(this.Caster, Poison.GetPoison("Lethal"));
-                    /*if (this.CheckResisted(m)) // had to remove this if inherit from NecromancerSpell
-                    {
-                        damage *= 0.75;
+                double resistChance = GetResistSkill(m); // balance this plix
+                double finalDmg = damage - resistChance * 0.2; // balance this plix
+                Console.WriteLine("Kill spell DMG: " + finalDmg); // balance this plix
 
-                        m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                    }*/
-                    damage *= this.GetDamageScalar(m);
-                    SpellHelper.Damage(this, m, damage, 0, 20, 0, 0, 0, 0, 80, 0);
-                    
-             //   }
+                damage *= this.GetDamageScalar(m); // balance this plix
+                SpellHelper.Damage(this, m, finalDmg, 0, 0, 0, 0, 0, 0, 100, 0);
 
                 m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
                 m.PlaySound(0x205);
@@ -105,9 +100,9 @@ namespace Server.Spells.Zulu.NecroSpells
 
         private class InternalTarget : Target
         {
-            private readonly WyvernStrikeSpell m_Owner;
+            private readonly KillSpell m_Owner;
 
-            public InternalTarget(WyvernStrikeSpell owner)
+            public InternalTarget(KillSpell owner)
                 : base(Core.ML ? 10 : 12, false, TargetFlags.Harmful)
             {
                 this.m_Owner = owner;

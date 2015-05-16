@@ -1,23 +1,25 @@
-using System;
+﻿using System;
 
 namespace Server.Mobiles
 {
-    [CorpseName("a llama corpse")]
-    public class Llama : BaseMount
+    [CorpseName("a ghost llama corpse")]
+    public class GhostLlama : BaseMount
     {
 
         [Constructable]
-        public Llama()
-            : this("a llama")
+        public GhostLlama()
+            : this("a ghost Llama")
         {
         }
 
         [Constructable]
-        public Llama(string name)
+        public GhostLlama(string name)
             : base(name, 0xDC, 0x3EA6, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a llama";
+            this.Name = "a ghost llama";
             this.BaseSoundID = 0x3F3;
+
+            this.Hue = 16385;
 
             this.SetStr(21, 49);
             this.SetDex(36, 55);
@@ -46,7 +48,7 @@ namespace Server.Mobiles
             this.MinTameSkill = 50;
         }
 
-        public Llama(Serial serial)
+        public GhostLlama(Serial serial)
             : base(serial)
         {
         }

@@ -142,7 +142,7 @@ namespace Server.Commands
 
 	public static class CommandSystem
 	{
-		private static string m_Prefix = "[";
+		private static string m_Prefix = ".";
 
 		public static string Prefix { get { return m_Prefix; } set { m_Prefix = value; } }
 

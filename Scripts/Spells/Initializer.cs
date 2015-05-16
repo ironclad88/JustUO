@@ -87,6 +87,7 @@ namespace Server.Spells
             Register(63, typeof(Eighth.WaterElementalSpell));
 
             Register(70, typeof(Zulu.NecroSpells.WyvernStrikeSpell));
+            Register(71, typeof(Zulu.NecroSpells.KillSpell));
 
             if (Core.AOS)
             {
@@ -164,7 +165,7 @@ namespace Server.Spells
                     //Register( 615, typeof( Spellweaving.ArcaneEmpowermentSpell ) );
                 }
                 
-                //Register(700, typeof(Necromancy));
+               
                 #region Stygian Abyss
                 if (Core.SA)
                 {
