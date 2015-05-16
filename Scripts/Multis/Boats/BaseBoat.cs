@@ -22,12 +22,12 @@ namespace Server.Multis
         private static readonly List<BaseBoat> m_Instances = new List<BaseBoat>();
         private static readonly TimeSpan SlowInterval = TimeSpan.FromSeconds(0.75);
         private static readonly TimeSpan FastInterval = TimeSpan.FromSeconds(0.75);
-        private static readonly int SlowSpeed = 1;
-        private static readonly int FastSpeed = 3;
+        private static readonly int SlowSpeed = 4; // old: 1
+        private static readonly int FastSpeed = 4; // old: 3
         private static readonly TimeSpan SlowDriftInterval = TimeSpan.FromSeconds(1.50);
         private static readonly TimeSpan FastDriftInterval = TimeSpan.FromSeconds(0.75);
-        private static readonly int SlowDriftSpeed = 1;
-        private static readonly int FastDriftSpeed = 1;
+        private static readonly int SlowDriftSpeed = 3; // old: 1
+        private static readonly int FastDriftSpeed = 3; // old: 1
         private static readonly Direction Forward = Direction.North;
         private static readonly Direction ForwardLeft = Direction.Up;
         private static readonly Direction ForwardRight = Direction.Right;
@@ -209,11 +209,13 @@ namespace Server.Multis
         {
             get
             {
-                return this.m_Anchored;
+                //return this.m_Anchored;
+                return false;
             }
             set
             {
-                this.m_Anchored = value;
+                //this.m_Anchored = value;
+                this.m_Anchored = false;
             }
         }
         [CommandProperty(AccessLevel.GameMaster)]
@@ -300,7 +302,7 @@ namespace Server.Multis
 
                 if (DateTime.UtcNow - start < TimeSpan.FromDays(5.0))
                     return 1043014; // This structure is greatly worn.
-
+                
                 return 1043015; // This structure is in danger of collapsing.
             }
         }
@@ -683,7 +685,7 @@ namespace Server.Multis
         public bool CheckDecay()
         {
             if (this.m_Decaying)
-                return true;
+                return false;
 
             if (!this.IsMoving && DateTime.UtcNow >= this.m_DecayTime)
             {
@@ -691,7 +693,7 @@ namespace Server.Multis
 
                 this.m_Decaying = true;
 
-                return true;
+                return false;
             }
 
             return false;
@@ -712,7 +714,7 @@ namespace Server.Multis
 
             this.StopMove(false);
 
-            this.m_Anchored = true;
+            this.m_Anchored = false; // old: true
 
             if (message && this.m_TillerMan != null)
                 this.m_TillerMan.Say(501444); // Ar, anchor dropped sir.
@@ -840,9 +842,9 @@ namespace Server.Multis
             if ((this.m_SPlank == null || !Key.ContainsKey(pack, this.m_SPlank.KeyValue)) && (this.m_PPlank == null || !Key.ContainsKey(pack, this.m_PPlank.KeyValue)))
                 return DryDockResult.NoKey;
 
-            if (!this.m_Anchored)
+            /*if (!this.m_Anchored)
                 return DryDockResult.NotAnchored;
-
+            */
             if (this.m_Hold != null && this.m_Hold.Items.Count > 0)
                 return DryDockResult.Hold;
 
