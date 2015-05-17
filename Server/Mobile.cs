@@ -7977,6 +7977,18 @@ namespace Server
             return delta;
         }
 
+        public void DispelMagicMods()
+        {
+            for (int i = _StatMods.Count - 1; i > 0 && i < _StatMods.Count; --i)
+            {
+                var type = _StatMods[i].Type;
+                if (_StatMods[i].Name.StartsWith("[Magic]"))
+                {
+                    RemoveStatMod(_StatMods[i].Name);
+                }
+            }
+        }
+
         /// <summary>
         ///     Computes the total modified offset for the specified stat type. Expired <see cref="StatMod" /> instances are removed.
         /// </summary>

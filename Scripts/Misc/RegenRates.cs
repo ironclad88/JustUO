@@ -60,7 +60,7 @@ namespace Server.Misc
             n *= (1.0 - v);
             n += v;
 
-            m.CheckSkill(skill, n);
+            //m.CheckSkill(skill, n);
         }
 
         private static bool CheckTransform(Mobile m, Type type)

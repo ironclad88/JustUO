@@ -51,7 +51,11 @@ namespace Server.Spells.Sixth
                     {
                         from.SendLocalizedMessage(500237); // Target can not be seen.
                     }
-                    else if (bc == null || !bc.IsDispellable)
+                    else if (m is PlayerMobile || !bc.IsDispellable)
+                    {
+                        m.DispelMagicMods();
+                    }
+                    else if (bc == null )
                     {
                         from.SendLocalizedMessage(1005049); // That cannot be dispelled.
                     }
