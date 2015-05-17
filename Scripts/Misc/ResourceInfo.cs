@@ -79,6 +79,9 @@ namespace Server.Items
 
     public class CraftAttributeInfo
     {
+        private int m_CraftDifficulty;
+        private double m_Quality = 1.0;
+
         private int m_WeaponFireDamage;
         private int m_WeaponColdDamage;
         private int m_WeaponPoisonDamage;
@@ -107,6 +110,30 @@ namespace Server.Items
         private int m_RunicMaxAttributes;
         private int m_RunicMinIntensity;
         private int m_RunicMaxIntensity;
+
+        public int Difficulty
+        {
+            get
+            {
+                return this.m_CraftDifficulty;
+            }
+            set
+            {
+                this.m_CraftDifficulty = value;
+            }
+        }
+
+        public double Quality
+        {
+            get
+            {
+                return this.m_Quality;
+            }
+            set
+            {
+                this.m_Quality = value;
+            }
+        }
 
         public int WeaponFireDamage
         {
@@ -589,200 +616,190 @@ namespace Server.Items
 
             CraftAttributeInfo dullCopper = DullCopper = new CraftAttributeInfo();
 
-            dullCopper.ArmorPhysicalResist = 6;
-            dullCopper.ArmorDurability = 50;
-            dullCopper.ArmorLowerRequirements = 20;
-            dullCopper.WeaponDurability = 100;
-            dullCopper.WeaponLowerRequirements = 50;
-            dullCopper.RunicMinAttributes = 1;
-            dullCopper.RunicMaxAttributes = 2;
-            if (Core.ML)
-            {
-                dullCopper.RunicMinIntensity = 40;
-                dullCopper.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                dullCopper.RunicMinIntensity = 10;
-                dullCopper.RunicMaxIntensity = 35;
-            }
+            dullCopper.Difficulty = 30;
+            dullCopper.Quality = 1.15;
+            //dullCopper.ArmorPhysicalResist = 6;
+            //dullCopper.ArmorDurability = 50;
+            //dullCopper.ArmorLowerRequirements = 20;
+            //dullCopper.WeaponDurability = 100;
+            //dullCopper.WeaponLowerRequirements = 50;
+            //dullCopper.RunicMinAttributes = 1;
+            //dullCopper.RunicMaxAttributes = 2;
+            //if (Core.ML)
+            //{
+            //    dullCopper.RunicMinIntensity = 40;
+            //    dullCopper.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    dullCopper.RunicMinIntensity = 10;
+            //    dullCopper.RunicMaxIntensity = 35;
+            //}
 
             CraftAttributeInfo shadowIron = ShadowIron = new CraftAttributeInfo();
 
-            shadowIron.ArmorPhysicalResist = 2;
-            shadowIron.ArmorFireResist = 1;
-            shadowIron.ArmorEnergyResist = 5;
-            shadowIron.ArmorDurability = 100;
-            shadowIron.WeaponColdDamage = 20;
-            shadowIron.WeaponDurability = 50;
-            shadowIron.RunicMinAttributes = 2;
-            shadowIron.RunicMaxAttributes = 2;
-            if (Core.ML)
-            {
-                shadowIron.RunicMinIntensity = 45;
-                shadowIron.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                shadowIron.RunicMinIntensity = 20;
-                shadowIron.RunicMaxIntensity = 45;
-            }
+            //shadowIron.ArmorPhysicalResist = 2;
+            //shadowIron.ArmorFireResist = 1;
+            //shadowIron.ArmorEnergyResist = 5;
+            //shadowIron.ArmorDurability = 100;
+            //shadowIron.WeaponColdDamage = 20;
+            //shadowIron.WeaponDurability = 50;
+            //shadowIron.RunicMinAttributes = 2;
+            //shadowIron.RunicMaxAttributes = 2;
+            //if (Core.ML)
+            //{
+            //    shadowIron.RunicMinIntensity = 45;
+            //    shadowIron.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    shadowIron.RunicMinIntensity = 20;
+            //    shadowIron.RunicMaxIntensity = 45;
+            //}
 
             CraftAttributeInfo copper = Copper = new CraftAttributeInfo();
 
-            copper.ArmorPhysicalResist = 1;
-            copper.ArmorFireResist = 1;
-            copper.ArmorPoisonResist = 5;
-            copper.ArmorEnergyResist = 2;
-            copper.WeaponPoisonDamage = 10;
-            copper.WeaponEnergyDamage = 20;
-            copper.RunicMinAttributes = 2;
-            copper.RunicMaxAttributes = 3;
-            if (Core.ML)
-            {
-                copper.RunicMinIntensity = 50;
-                copper.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                copper.RunicMinIntensity = 25;
-                copper.RunicMaxIntensity = 50;
-            }
+            copper.Difficulty = 50;
+            copper.Quality = 1.2;
+            //copper.ArmorPhysicalResist = 1;
+            //copper.ArmorFireResist = 1;
+            //copper.ArmorPoisonResist = 5;
+            //copper.ArmorEnergyResist = 2;
+            //copper.WeaponPoisonDamage = 10;
+            //copper.WeaponEnergyDamage = 20;
+            //copper.RunicMinAttributes = 2;
+            //copper.RunicMaxAttributes = 3;
+            //if (Core.ML)
+            //{
+            //    copper.RunicMinIntensity = 50;
+            //    copper.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    copper.RunicMinIntensity = 25;
+            //    copper.RunicMaxIntensity = 50;
+            //}
 
             CraftAttributeInfo bronze = Bronze = new CraftAttributeInfo();
 
-            bronze.ArmorPhysicalResist = 3;
-            bronze.ArmorColdResist = 5;
-            bronze.ArmorPoisonResist = 1;
-            bronze.ArmorEnergyResist = 1;
-            bronze.WeaponFireDamage = 40;
-            bronze.RunicMinAttributes = 3;
-            bronze.RunicMaxAttributes = 3;
-            if (Core.ML)
-            {
-                bronze.RunicMinIntensity = 55;
-                bronze.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                bronze.RunicMinIntensity = 30;
-                bronze.RunicMaxIntensity = 65;
-            }
+            bronze.Difficulty = 15;
+            bronze.Quality = 1.1;
+            //bronze.ArmorPhysicalResist = 3;
+            //bronze.ArmorColdResist = 5;
+            //bronze.ArmorPoisonResist = 1;
+            //bronze.ArmorEnergyResist = 1;
+            //bronze.WeaponFireDamage = 40;
+            //bronze.RunicMinAttributes = 3;
+            //bronze.RunicMaxAttributes = 3;
+            //if (Core.ML)
+            //{
+            //    bronze.RunicMinIntensity = 55;
+            //    bronze.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    bronze.RunicMinIntensity = 30;
+            //    bronze.RunicMaxIntensity = 65;
+            //}
 
             CraftAttributeInfo golden = Golden = new CraftAttributeInfo();
 
-            golden.ArmorPhysicalResist = 1;
-            golden.ArmorFireResist = 1;
-            golden.ArmorColdResist = 2;
-            golden.ArmorEnergyResist = 2;
-            golden.ArmorLuck = 40;
-            golden.ArmorLowerRequirements = 30;
-            golden.WeaponLuck = 40;
-            golden.WeaponLowerRequirements = 50;
-            golden.RunicMinAttributes = 3;
-            golden.RunicMaxAttributes = 4;
-            if (Core.ML)
-            {
-                golden.RunicMinIntensity = 60;
-                golden.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                golden.RunicMinIntensity = 35;
-                golden.RunicMaxIntensity = 75;
-            }
+            golden.Difficulty = 1;
+            golden.Quality = 1.0;
+
+            //golden.ArmorPhysicalResist = 1;
+            //golden.ArmorFireResist = 1;
+            //golden.ArmorColdResist = 2;
+            //golden.ArmorEnergyResist = 2;
+            //golden.ArmorLuck = 40;
+            //golden.ArmorLowerRequirements = 30;
+            //golden.WeaponLuck = 40;
+            //golden.WeaponLowerRequirements = 50;
+            //golden.RunicMinAttributes = 3;
+            //golden.RunicMaxAttributes = 4;
+            //if (Core.ML)
+            //{
+            //    golden.RunicMinIntensity = 60;
+            //    golden.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    golden.RunicMinIntensity = 35;
+            //    golden.RunicMaxIntensity = 75;
+            //}
 
             CraftAttributeInfo agapite = Agapite = new CraftAttributeInfo();
 
-            agapite.ArmorPhysicalResist = 2;
-            agapite.ArmorFireResist = 3;
-            agapite.ArmorColdResist = 2;
-            agapite.ArmorPoisonResist = 2;
-            agapite.ArmorEnergyResist = 2;
-            agapite.WeaponColdDamage = 30;
-            agapite.WeaponEnergyDamage = 20;
-            agapite.RunicMinAttributes = 4;
-            agapite.RunicMaxAttributes = 4;
-            if (Core.ML)
-            {
-                agapite.RunicMinIntensity = 65;
-                agapite.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                agapite.RunicMinIntensity = 40;
-                agapite.RunicMaxIntensity = 80;
-            }
+            //agapite.ArmorPhysicalResist = 2;
+            //agapite.ArmorFireResist = 3;
+            //agapite.ArmorColdResist = 2;
+            //agapite.ArmorPoisonResist = 2;
+            //agapite.ArmorEnergyResist = 2;
+            //agapite.WeaponColdDamage = 30;
+            //agapite.WeaponEnergyDamage = 20;
+            //agapite.RunicMinAttributes = 4;
+            //agapite.RunicMaxAttributes = 4;
+            //if (Core.ML)
+            //{
+            //    agapite.RunicMinIntensity = 65;
+            //    agapite.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    agapite.RunicMinIntensity = 40;
+            //    agapite.RunicMaxIntensity = 80;
+            //}
 
             CraftAttributeInfo verite = Verite = new CraftAttributeInfo();
 
-            verite.ArmorPhysicalResist = 3;
-            verite.ArmorFireResist = 3;
-            verite.ArmorColdResist = 2;
-            verite.ArmorPoisonResist = 3;
-            verite.ArmorEnergyResist = 1;
-            verite.WeaponPoisonDamage = 40;
-            verite.WeaponEnergyDamage = 20;
-            verite.RunicMinAttributes = 4;
-            verite.RunicMaxAttributes = 5;
-            if (Core.ML)
-            {
-                verite.RunicMinIntensity = 70;
-                verite.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                verite.RunicMinIntensity = 45;
-                verite.RunicMaxIntensity = 90;
-            }
+            //verite.ArmorPhysicalResist = 3;
+            //verite.ArmorFireResist = 3;
+            //verite.ArmorColdResist = 2;
+            //verite.ArmorPoisonResist = 3;
+            //verite.ArmorEnergyResist = 1;
+            //verite.WeaponPoisonDamage = 40;
+            //verite.WeaponEnergyDamage = 20;
+            //verite.RunicMinAttributes = 4;
+            //verite.RunicMaxAttributes = 5;
+            //if (Core.ML)
+            //{
+            //    verite.RunicMinIntensity = 70;
+            //    verite.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    verite.RunicMinIntensity = 45;
+            //    verite.RunicMaxIntensity = 90;
+            //}
 
             CraftAttributeInfo valorite = Valorite = new CraftAttributeInfo();
 
-            valorite.ArmorPhysicalResist = 4;
-            valorite.ArmorColdResist = 3;
-            valorite.ArmorPoisonResist = 3;
-            valorite.ArmorEnergyResist = 3;
-            valorite.ArmorDurability = 50;
-            valorite.WeaponFireDamage = 10;
-            valorite.WeaponColdDamage = 20;
-            valorite.WeaponPoisonDamage = 10;
-            valorite.WeaponEnergyDamage = 20;
-            valorite.RunicMinAttributes = 5;
-            valorite.RunicMaxAttributes = 5;
-            if (Core.ML)
-            {
-                valorite.RunicMinIntensity = 85;
-                valorite.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                valorite.RunicMinIntensity = 50;
-                valorite.RunicMaxIntensity = 100;
-            }
+            //valorite.ArmorPhysicalResist = 4;
+            //valorite.ArmorColdResist = 3;
+            //valorite.ArmorPoisonResist = 3;
+            //valorite.ArmorEnergyResist = 3;
+            //valorite.ArmorDurability = 50;
+            //valorite.WeaponFireDamage = 10;
+            //valorite.WeaponColdDamage = 20;
+            //valorite.WeaponPoisonDamage = 10;
+            //valorite.WeaponEnergyDamage = 20;
+            //valorite.RunicMinAttributes = 5;
+            //valorite.RunicMaxAttributes = 5;
+            //if (Core.ML)
+            //{
+            //    valorite.RunicMinIntensity = 85;
+            //    valorite.RunicMaxIntensity = 100;
+            //}
+            //else
+            //{
+            //    valorite.RunicMinIntensity = 50;
+            //    valorite.RunicMaxIntensity = 100;
+            //}
 
             CraftAttributeInfo zulu = Zulu = new CraftAttributeInfo();
 
-            zulu.ArmorPhysicalResist = 4;
-            zulu.ArmorColdResist = 3;
-            zulu.ArmorPoisonResist = 3;
-            zulu.ArmorEnergyResist = 3;
-            zulu.ArmorDurability = 50;
-            zulu.WeaponFireDamage = 10;
-            zulu.WeaponColdDamage = 20;
-            zulu.WeaponPoisonDamage = 10;
-            zulu.WeaponEnergyDamage = 20;
-            zulu.RunicMinAttributes = 5;
-            zulu.RunicMaxAttributes = 5;
-            if (Core.ML)
-            {
-                zulu.RunicMinIntensity = 85;
-                zulu.RunicMaxIntensity = 100;
-            }
-            else
-            {
-                zulu.RunicMinIntensity = 50;
-                zulu.RunicMaxIntensity = 100;
-            }
+            zulu.Difficulty = 129;
+            zulu.Quality = 2.0;
 
             CraftAttributeInfo spined = Spined = new CraftAttributeInfo();
 

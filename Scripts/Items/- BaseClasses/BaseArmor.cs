@@ -51,9 +51,11 @@ namespace Server.Items
         */
 
         // Instance values. These values must are unique to each armor piece.
+        private double m_ExceQualityScalar;
         private int m_MaxHitPoints;
         private int m_HitPoints;
         private Mobile m_Crafter;
+        private int m_CrafterLevel;
         private ArmorQuality m_Quality;
         private ArmorDurabilityLevel m_Durability;
         private ArmorProtectionLevel m_Protection;
@@ -351,48 +353,51 @@ namespace Server.Items
             get
             {
                 int ar = this.BaseArmorRating;
+                ar = (int)(ar * this.QualityScalar);
 
                 if (this.m_Protection != ArmorProtectionLevel.Regular)
                     ar += 10 + (5 * (int)this.m_Protection);
 
-                switch (this.m_Resource)
-                {
-                    case CraftResource.DullCopper:
-                        ar += 2;
-                        break;
-                    case CraftResource.ShadowIron:
-                        ar += 4;
-                        break;
-                    case CraftResource.Copper:
-                        ar += 6;
-                        break;
-                    case CraftResource.Bronze:
-                        ar += 8;
-                        break;
-                    case CraftResource.Gold:
-                        ar += 10;
-                        break;
-                    case CraftResource.Agapite:
-                        ar += 12;
-                        break;
-                    case CraftResource.Verite:
-                        ar += 14;
-                        break;
-                    case CraftResource.Valorite:
-                        ar += 16;
-                        break;
-                    case CraftResource.SpinedLeather:
-                        ar += 10;
-                        break;
-                    case CraftResource.HornedLeather:
-                        ar += 13;
-                        break;
-                    case CraftResource.BarbedLeather:
-                        ar += 16;
-                        break;
-                }
+                //switch (this.m_Resource)
+                //{
+                //    case CraftResource.DullCopper:
+                //        ar += 2;
+                //        break;
+                //    case CraftResource.ShadowIron:
+                //        ar += 4;
+                //        break;
+                //    case CraftResource.Copper:
+                //        ar += 6;
+                //        break;
+                //    case CraftResource.Bronze:
+                //        ar += 8;
+                //        break;
+                //    case CraftResource.Gold:
+                //        ar += 10;
+                //        break;
+                //    case CraftResource.Agapite:
+                //        ar += 12;
+                //        break;
+                //    case CraftResource.Verite:
+                //        ar += 14;
+                //        break;
+                //    case CraftResource.Valorite:
+                //        ar += 16;
+                //        break;
+                //    case CraftResource.SpinedLeather:
+                //        ar += 10;
+                //        break;
+                //    case CraftResource.HornedLeather:
+                //        ar += 13;
+                //        break;
+                //    case CraftResource.BarbedLeather:
+                //        ar += 16;
+                //        break;
+                //}
 
-                ar += -8 + (8 * (int)this.m_Quality);
+                
+                //int bonus = (int)((-8 + (8 * (int)this.m_Quality)));
+                //ar += bonus;
                 return this.ScaleArmorByDurability(ar);
             }
         }
@@ -644,6 +649,20 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
+        public int CrafterLevel
+        {
+            get
+            {
+                return this.m_CrafterLevel;
+            }
+            set
+            {
+                this.m_CrafterLevel = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public ArmorQuality Quality
         {
             get
@@ -653,6 +672,18 @@ namespace Server.Items
             set
             {
                 this.UnscaleDurability();
+                if(value != ArmorQuality.Exceptional)
+                {
+                    if(this.m_Quality == ArmorQuality.Exceptional)
+                    {
+                        this.m_ExceQualityScalar = this.QualityScalar;
+                    }
+                    this.QualityScalar = this.GetResourceAttrs().Quality;
+                }
+                else
+                {
+                    this.QualityScalar = this.m_ExceQualityScalar;
+                }
                 this.m_Quality = value;
                 this.Invalidate();
                 this.InvalidateProperties();
@@ -1124,6 +1155,7 @@ namespace Server.Items
         public void UnscaleDurability()
         {
             int scale = 100 + this.GetDurabilityBonus();
+            scale = (int)(scale * QualityScalar);
 
             this.m_HitPoints = ((this.m_HitPoints * 100) + (scale - 1)) / scale;
             this.m_MaxHitPoints = ((this.m_MaxHitPoints * 100) + (scale - 1)) / scale;
@@ -1133,6 +1165,7 @@ namespace Server.Items
         public void ScaleDurability()
         {
             int scale = 100 + this.GetDurabilityBonus();
+            scale = (int)(scale * QualityScalar);
 
             this.m_HitPoints = ((this.m_HitPoints * scale) + 99) / 100;
             this.m_MaxHitPoints = ((this.m_MaxHitPoints * scale) + 99) / 100;
@@ -1438,8 +1471,15 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write((int)10); // version
+            writer.Write((int)12); // version
 
+            // Version 12
+            writer.Write(this.m_ExceQualityScalar);
+
+            // Version 11
+            writer.Write(this.m_CrafterLevel);
+
+            // Version 10
             writer.Write(this.m_SetEarthBonus);
             writer.Write(this.m_SetNecroBonus);
             writer.Write(this.m_SetHolyBonus);
@@ -1616,6 +1656,12 @@ namespace Server.Items
             int version = reader.ReadInt();
             switch (version)
             {
+                case 12:
+                    m_ExceQualityScalar = reader.ReadDouble();
+                    goto case 11;
+                case 11:
+                    m_CrafterLevel = reader.ReadInt();
+                    goto case 10;
                 case 10:
                     m_SetEarthBonus = reader.ReadInt();
                     m_SetNecroBonus = reader.ReadInt();
@@ -2701,7 +2747,7 @@ namespace Server.Items
             if (this.m_Quality == ArmorQuality.Exceptional)
                 attrs.Add(new EquipInfoAttribute(1018305 - (int)this.m_Quality));
 
-            if (base.Unidentified || from.AccessLevel >= AccessLevel.GameMaster)
+            if (!base.Unidentified || from.AccessLevel >= AccessLevel.GameMaster)
             {
                 if (this.m_Durability != ArmorDurabilityLevel.Regular)
                     attrs.Add(new EquipInfoAttribute(1038000 + (int)this.m_Durability));
@@ -2766,98 +2812,140 @@ namespace Server.Items
             if (context != null && context.DoNotColor)
                 this.Hue = 0;
 
+            if (from.SpecClasse == SpecClasse.Crafter)
+            {
+                //bonuses for spec crafter
+                this.CrafterLevel = from.SpecLevel;
+            }
+
+            //TODO: revamp... make resources have a "quality" attribute that is a scalar, apply it here.
+            // this is the zh pol script:
+            /*
+             * var armslore := GetAttribute( character , ATTRIBUTEID_ARMSLORE );
+                var multiplier := 5 + Cint( armslore / 10 );
+
+                if( GetObjProperty( character , CLASSEID_CRAFTER ) )
+                    multiplier := Cint( multiplier * (ClasseBonus( character , CLASSEID_CRAFTER )*2) );
+                endif
+
+                multiplier	:= 100 + multiplier;
+                var newquality := Cint(quality * multiplier);
+                                    Var BMEnabled := GetObjProperty( character, "BuilderMark" );
+                newquality := Cdbl(newquality);
+                newquality := newquality / 100;
+                theitem.quality := newquality;
+             * */
+
+            this.UnscaleDurability();
+            this.QualityScalar = this.GetResourceAttrs().Quality;
+
             if (this.Quality == ArmorQuality.Exceptional)
             {
-                if (!(Core.ML && this is BaseShield))		// Guessed Core.ML removed exceptional resist bonuses from crafted shields
-                    this.DistributeBonuses((tool is BaseRunicTool ? 6 : Core.SE ? 15 : 14)); // Not sure since when, but right now 15 points are added, not 14.
-
-                if (Core.ML && !(this is BaseShield))
+                int newquality;
+                int multiplier = (int)(5 + (from.Skills.ArmsLore.Value / 10));
+                if (from.SpecClasse == SpecClasse.Crafter)
                 {
-                    int bonus = (int)(from.Skills.ArmsLore.Value / 20);
-
-                    for (int i = 0; i < bonus; i++)
-                    {
-                        switch (Utility.Random(8))
-                        {
-                            case 0:
-                                this.m_PhysicalBonus++;
-                                break;
-                            case 1:
-                                this.m_FireBonus++;
-                                break;
-                            case 2:
-                                this.m_ColdBonus++;
-                                break;
-                            case 3:
-                                this.m_EnergyBonus++;
-                                break;
-                            case 4:
-                                this.m_PoisonBonus++;
-                                break;
-                            case 5:
-                                this.m_EarthBonus++;
-                                break;
-                            case 6:
-                                this.m_NecroBonus++;
-                                break;
-                            case 7:
-                                this.m_HolyBonus++;
-                                break;
-                        }
-                    }
-
-                    from.CheckSkill(SkillName.ArmsLore, 0, 100);
+                    multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter) * 2));
                 }
-
-                if (Core.SE && (this is HeavyPlateJingasa || this is LightPlateJingasa || this is PlateDo || this is PlateHaidate || this is PlateHiroSode || this is StuddedHiroSode || this is PlateMempo || this is PlateSuneate || this is StuddedSuneate || this is SmallPlateJingasa))
-                    this.m_AosArmorAttributes.MageArmor = 1;
+                multiplier += 100;
+                newquality = (int)(this.QualityScalar * multiplier);
+                newquality /= 100;
+                this.QualityScalar = newquality;
             }
+            this.ScaleDurability();
+
+            //if (this.Quality == ArmorQuality.Exceptional)
+            //{
+            //    if (!(Core.ML && this is BaseShield))		// Guessed Core.ML removed exceptional resist bonuses from crafted shields
+            //        this.DistributeBonuses((tool is BaseRunicTool ? 6 : Core.SE ? 15 : 14)); // Not sure since when, but right now 15 points are added, not 14.
+
+            //    if (Core.ML && !(this is BaseShield))
+            //    {
+            //        int bonus = (int)(from.Skills.ArmsLore.Value / 20);
+
+            //        for (int i = 0; i < bonus; i++)
+            //        {
+            //            switch (Utility.Random(8))
+            //            {
+            //                case 0:
+            //                    this.m_PhysicalBonus++;
+            //                    break;
+            //                case 1:
+            //                    this.m_FireBonus++;
+            //                    break;
+            //                case 2:
+            //                    this.m_ColdBonus++;
+            //                    break;
+            //                case 3:
+            //                    this.m_EnergyBonus++;
+            //                    break;
+            //                case 4:
+            //                    this.m_PoisonBonus++;
+            //                    break;
+            //                case 5:
+            //                    this.m_EarthBonus++;
+            //                    break;
+            //                case 6:
+            //                    this.m_NecroBonus++;
+            //                    break;
+            //                case 7:
+            //                    this.m_HolyBonus++;
+            //                    break;
+            //            }
+            //        }
+
+            //        from.CheckSkill(SkillName.ArmsLore, 0, 100);
+            //    }
+
+            //    if (Core.SE && (this is HeavyPlateJingasa || this is LightPlateJingasa || this is PlateDo || this is PlateHaidate || this is PlateHiroSode || this is StuddedHiroSode || this is PlateMempo || this is PlateSuneate || this is StuddedSuneate || this is SmallPlateJingasa))
+            //        this.m_AosArmorAttributes.MageArmor = 1;
+            //}
 
             #region Mondain's Legacy
-            if (craftItem != null && !craftItem.ForceNonExceptional)
-            {
-                if (Core.ML)
-                {
-                    CraftResourceInfo resInfo = CraftResources.GetInfo(this.m_Resource);
+            //if (craftItem != null && !craftItem.ForceNonExceptional)
+            //{
+            //    if (Core.ML)
+            //    {
+            //        CraftResourceInfo resInfo = CraftResources.GetInfo(this.m_Resource);
 
-                    if (resInfo == null)
-                        return quality;
+            //        if (resInfo == null)
+            //            return quality;
 
-                    CraftAttributeInfo attrInfo = resInfo.AttributeInfo;
+            //        CraftAttributeInfo attrInfo = resInfo.AttributeInfo;
 
-                    if (attrInfo == null)
-                        return quality;
+            //        if (attrInfo == null)
+            //            return quality;
 
-                    if (this.m_Resource != CraftResource.Heartwood)
-                    {
-                        this.m_AosAttributes.WeaponDamage += attrInfo.ArmorDamage;
-                        this.m_AosAttributes.AttackChance += attrInfo.ArmorHitChance;
-                        this.m_AosAttributes.RegenHits += attrInfo.ArmorRegenHits;
-                        this.m_AosArmorAttributes.MageArmor += attrInfo.ArmorMage;
-                    }
-                    else
-                    {
-                        switch (Utility.Random(5))
-                        {
-                            case 0:
-                                this.m_AosAttributes.WeaponDamage += attrInfo.ArmorDamage;
-                                break;
-                            case 1:
-                                this.m_AosAttributes.AttackChance += attrInfo.ArmorHitChance;
-                                break;
-                            case 2:
-                                this.m_AosArmorAttributes.MageArmor += attrInfo.ArmorMage;
-                                break;
-                            case 3:
-                                this.m_AosAttributes.Luck += attrInfo.ArmorLuck;
-                                break;
-                            case 4:
-                                this.m_AosArmorAttributes.LowerStatReq += attrInfo.ArmorLowerRequirements;
-                                break;
-                        }
-                    }
-                }
-            }
+            //        if (this.m_Resource != CraftResource.Heartwood)
+            //        {
+            //            this.m_AosAttributes.WeaponDamage += attrInfo.ArmorDamage;
+            //            this.m_AosAttributes.AttackChance += attrInfo.ArmorHitChance;
+            //            this.m_AosAttributes.RegenHits += attrInfo.ArmorRegenHits;
+            //            this.m_AosArmorAttributes.MageArmor += attrInfo.ArmorMage;
+            //        }
+            //        else
+            //        {
+            //            switch (Utility.Random(5))
+            //            {
+            //                case 0:
+            //                    this.m_AosAttributes.WeaponDamage += attrInfo.ArmorDamage;
+            //                    break;
+            //                case 1:
+            //                    this.m_AosAttributes.AttackChance += attrInfo.ArmorHitChance;
+            //                    break;
+            //                case 2:
+            //                    this.m_AosArmorAttributes.MageArmor += attrInfo.ArmorMage;
+            //                    break;
+            //                case 3:
+            //                    this.m_AosAttributes.Luck += attrInfo.ArmorLuck;
+            //                    break;
+            //                case 4:
+            //                    this.m_AosArmorAttributes.LowerStatReq += attrInfo.ArmorLowerRequirements;
+            //                    break;
+            //            }
+            //        }
+            //    }
+            //}
             #endregion
 
             if (Core.AOS && tool is BaseRunicTool)

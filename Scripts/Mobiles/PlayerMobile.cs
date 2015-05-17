@@ -927,6 +927,11 @@ namespace Server.Mobiles
             if (from is PlayerMobile)
             {
                 ((PlayerMobile)from).ClaimAutoStabledPets();
+                from.GetSpec();
+                if(from.SpecLevel > 0)
+                {
+                    from.SendMessage("You're qualified level {0} {1}.", from.SpecLevel, from.SpecClasse.ToString());
+                }
             }
         }
 

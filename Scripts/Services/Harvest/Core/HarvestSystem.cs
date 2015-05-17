@@ -169,9 +169,14 @@ namespace Server.Engines.Harvest
                         if (item.Stackable)
                         {
                             int amount = Math.Min((1+((int)(skillValue - resource.ReqSkill)/5)), 4);
-                            if (item is IronOre)
+                            if (item is IronOre || item is Log)
                             {
                                 amount += (amount/2);
+                            }
+                            if((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog ||item is BaseOre || item is Sand)) ||
+                                (from.SpecClasse == SpecClasse.Ranger && item is Fish))
+                            {
+                                amount += amount * from.SpecLevel;
                             }
                             item.Amount = amount;
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
@@ -225,8 +230,8 @@ namespace Server.Engines.Harvest
                             IUsesRemaining toolWithUses = (IUsesRemaining)tool;
 
                             toolWithUses.ShowUsesRemaining = true;
-
-                            if (toolWithUses.UsesRemaining > 0 && Utility.Random(10) == 0) // TODO: Add crafter spec bonus
+                            int rand = (int)(10 * from.SpecBonus(SpecClasse.Crafter));
+                            if (toolWithUses.UsesRemaining > 0 && Utility.Random(rand) == 0)
                                 --toolWithUses.UsesRemaining;
 
                             if (toolWithUses.UsesRemaining < 1)

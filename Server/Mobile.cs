@@ -1605,6 +1605,16 @@ namespace Server
             }
         }
 
+        public double SpecBonus(SpecClasse classe)
+        {
+            double ret = 1.0;
+            if (SpecClasse == classe)
+            {
+                ret += (0.25 * SpecLevel);
+            }
+            return ret;
+        }
+
         [CommandProperty(AccessLevel.Decorator)]
         public int NameHue { get { return _NameHue; } set { _NameHue = value; } }
 

@@ -204,11 +204,11 @@ namespace Server.Engines.Harvest
             if (def == this.m_OreAndStone)
             {
                 PlayerMobile pm = from as PlayerMobile;
-
-                if (pm != null && pm.GemMining && pm.ToggleMiningGem && from.Skills[SkillName.Mining].Base >= 100.0 && 0.1 > Utility.RandomDouble())
+                double scale = from.SpecBonus(SpecClasse.Crafter); 
+                if (pm != null && pm.GemMining && pm.ToggleMiningGem && from.Skills[SkillName.Mining].Base >= 100.0 && (0.1*scale) > Utility.RandomDouble())
                     return Loot.RandomGem().GetType();
 
-                if (pm != null && pm.StoneMining && pm.ToggleMiningStone && from.Skills[SkillName.Mining].Base >= 100.0 && 0.15 > Utility.RandomDouble())
+                if (pm != null && pm.StoneMining && pm.ToggleMiningStone && from.Skills[SkillName.Mining].Base >= 100.0 && (0.15*scale) > Utility.RandomDouble())
                     return resource.Types[1];
 
                 return resource.Types[0];

@@ -973,6 +973,16 @@ namespace Server.Engines.Craft
 				return 0.0;
 			}
 
+            //negate the bonus to success chance given by spec levels
+            if (system is DefBlacksmithy || system is DefBowFletching || system is DefTailoring || system is DefCarpentry || system is DefTinkering)
+            {
+                chance /= from.SpecBonus(SpecClasse.Crafter);
+            }
+            else if (system is DefAlchemy || system is DefInscription)
+            {
+                chance /= from.SpecBonus(SpecClasse.Mage);
+            }
+
 			double bonus = 0.0;
 
 			if (from.Talisman is BaseTalisman)
@@ -1013,10 +1023,19 @@ namespace Server.Engines.Craft
 					}
 			}
 
-			if (chance > 0)
-			{
-				return chance + bonus;
-			}
+			
+            if (system is DefBlacksmithy || system is DefBowFletching || system is DefTailoring || system is DefCarpentry || system is DefTinkering)
+            {
+                chance *= from.SpecBonus(SpecClasse.Crafter);
+            }
+            else if(system is DefAlchemy || system is DefInscription)
+            {
+                chance *= from.SpecBonus(SpecClasse.Mage);
+            }
+            if (chance > 0)
+            {
+                return chance + bonus;
+            }
 
 			return chance;
 		}
@@ -1101,6 +1120,15 @@ namespace Server.Engines.Craft
 			{
 				chance = 1.0;
 			}
+
+            if (craftSystem is DefBlacksmithy || craftSystem is DefBowFletching || craftSystem is DefTailoring || craftSystem is DefCarpentry || craftSystem is DefTinkering)
+            {
+                chance *= from.SpecBonus(SpecClasse.Crafter);
+            }
+            else if (craftSystem is DefAlchemy || craftSystem is DefInscription)
+            {
+                chance *= from.SpecBonus(SpecClasse.Mage);
+            }
 
 			return chance;
 		}
@@ -1275,7 +1303,7 @@ namespace Server.Engines.Craft
 			int endquality = 1;
 
 			bool allRequiredSkills = true;
-
+            int rand = (int)(10 * from.SpecBonus(SpecClasse.Crafter));
 			if (CheckSkills(from, typeRes, craftSystem, ref ignored, ref allRequiredSkills))
 			{
 				// Resource
@@ -1320,9 +1348,8 @@ namespace Server.Engines.Craft
 					return;
 				}
 
-                if (Utility.Random(10) == 0)
+                if (Utility.Random(rand) == 0)
                 {
-                    //TODO: add crafter spec bonus
                     tool.UsesRemaining--;
                 }
 
@@ -1346,9 +1373,8 @@ namespace Server.Engines.Craft
 						}
 						else
 						{
-                            if (Utility.Random(10) == 0)
+                            if (Utility.Random(rand) == 0)
                             {
-                                //TODO: add crafter spec bonus
                                 hammer.UsesRemaining--;
                             }
 
@@ -1600,10 +1626,10 @@ namespace Server.Engines.Craft
 
 					return;
 				}
+                //TODO: add crafter spec bonus
 
-                if (Utility.Random(10) == 0)
+                if (Utility.Random(rand) == 0)
                 {
-                    //TODO: add crafter spec bonus
                     tool.UsesRemaining--;
                 }
 

@@ -748,6 +748,7 @@ namespace Server
         #region Standard fields
         private Serial m_Serial;
         private Point3D m_Location;
+        private double m_QualityScalar = 1.0;
         private int m_ItemID;
         private int m_Hue;
         private int m_Amount;
@@ -2539,7 +2540,9 @@ namespace Server
 
         public virtual void Serialize(GenericWriter writer)
         {
-            writer.Write(9); // version
+            writer.Write(10); // version
+
+            writer.Write(m_QualityScalar);
 
             var flags = SaveFlag.None;
 
@@ -3017,6 +3020,9 @@ namespace Server
 
             switch (version)
             {
+                case 10:
+                    m_QualityScalar = reader.ReadDouble();
+                    goto case 9;
                 case 9:
                 case 8:
                 case 7:
@@ -3719,6 +3725,20 @@ namespace Server
 
         [CommandProperty(AccessLevel.Counselor, AccessLevel.GameMaster)]
         public int PileWeight { get { return (int)Math.Ceiling(Weight * Amount); } }
+
+        [Hue, CommandProperty(AccessLevel.GameMaster)]
+        public virtual double QualityScalar
+        {
+            get { return m_QualityScalar; }
+            set
+            {
+                if (m_QualityScalar != value)
+                {
+                    m_QualityScalar = value;
+                    InvalidateProperties();
+                }
+            }
+        }
 
         public virtual int HuedItemID { get { return m_ItemID; } }
 
