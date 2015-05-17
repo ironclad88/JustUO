@@ -116,7 +116,7 @@ namespace Server.Mobiles
 
         public override void OnSpeech(SpeechEventArgs e)
         {
-            Mobile from = e.Mobile;
+           /* Mobile from = e.Mobile;
 
             if (!e.Handled && from is PlayerMobile && from.InRange(this.Location, 2) && this.WasNamed(e.Speech))
             {
@@ -155,12 +155,12 @@ namespace Server.Mobiles
                 }
             }
 
-            base.OnSpeech(e);
+            base.OnSpeech(e);*/
         }
 
         public override bool OnGoldGiven(Mobile from, Gold dropped)
         {
-            if (from is PlayerMobile && dropped.Amount == this.JoinCost)
+           /* if (from is PlayerMobile && dropped.Amount == this.JoinCost)
             {
                 PlayerMobile pm = (PlayerMobile)from;
 
@@ -191,7 +191,8 @@ namespace Server.Mobiles
                 return false;
             }
 
-            return base.OnGoldGiven(from, dropped);
+            return base.OnGoldGiven(from, dropped);*/
+            return false;
         }
 
         public override void Serialize(GenericWriter writer)

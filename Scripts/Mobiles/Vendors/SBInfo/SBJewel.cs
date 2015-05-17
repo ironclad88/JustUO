@@ -39,11 +39,11 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(GoldBracelet), 27, 20, 0x1086, 0));
                 this.Add(new GenericBuyInfo(typeof(GoldEarrings), 27, 20, 0x1087, 0));
 
-                this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 68, 20, 0x1ED0, 0, new object[] { 500 })); // 500 charges
-                this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 131, 20, 0x1ED0, 0, new object[] { 1000 })); // 1000 charges
-                this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 256, 20, 0x1ED0, 0, new object[] { 2000 })); // 2000 charges
+            //    this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 68, 20, 0x1ED0, 0, new object[] { 500 })); // 500 charges
+            //    this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 131, 20, 0x1ED0, 0, new object[] { 1000 })); // 1000 charges
+            //    this.Add(new GenericBuyInfo("1060740", typeof(BroadcastCrystal), 256, 20, 0x1ED0, 0, new object[] { 2000 })); // 2000 charges
 
-                this.Add(new GenericBuyInfo("1060740", typeof(ReceiverCrystal), 6, 20, 0x1ED0, 0));
+            //    this.Add(new GenericBuyInfo("1060740", typeof(ReceiverCrystal), 6, 20, 0x1ED0, 0));
 
                 this.Add(new GenericBuyInfo(typeof(StarSapphire), 125, 20, 0xF21, 0));
                 this.Add(new GenericBuyInfo(typeof(Emerald), 100, 20, 0xF10, 0));

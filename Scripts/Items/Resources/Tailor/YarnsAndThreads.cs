@@ -85,6 +85,51 @@ namespace Server.Items
                     {
                         from.SendLocalizedMessage(1042001); // That must be in your pack for you to use it.
                     }
+
+                    if (this.m_Material.Amount >= 5)
+                    {
+                        from.SendMessage("You don´t have enough Spools");
+                    }
+                    else
+                    {
+                        from.SendLocalizedMessage(500368); // You create some cloth and put it in your backpack.
+                        while (this.m_Material.Amount >= 5) { 
+                        Item create = new BoltOfCloth();
+                        create.Hue = this.m_Material.Hue;
+
+                        this.m_Material.Consume(5);
+                        //loom.Phase = 0;
+                        
+                        from.AddToBackpack(create);
+                        if (this.m_Material.Amount <= 5)
+                        {
+                            break;
+                        }
+                        }
+                    }
+                }
+                else
+                {
+                    from.SendLocalizedMessage(500367); // Try using that on a loom.
+                }
+            }
+
+            /*            protected override void OnTarget(Mobile from, object targeted)        // old function
+            {
+                if (this.m_Material.Deleted)
+                    return;
+
+                ILoom loom = targeted as ILoom;
+
+                if (loom == null && targeted is AddonComponent)
+                    loom = ((AddonComponent)targeted).Addon as ILoom;
+
+                if (loom != null)
+                {
+                    if (!this.m_Material.IsChildOf(from.Backpack))
+                    {
+                        from.SendLocalizedMessage(1042001); // That must be in your pack for you to use it.
+                    }
                     else if (loom.Phase < 4)
                     {
                         this.m_Material.Consume();
@@ -107,7 +152,7 @@ namespace Server.Items
                 {
                     from.SendLocalizedMessage(500367); // Try using that on a loom.
                 }
-            }
+            }*/
         }
     }
 

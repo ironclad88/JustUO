@@ -31,14 +31,14 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(PlateHatsuburi), 76, 20, 0x2775, 0));
+               /* this.Add(new GenericBuyInfo(typeof(PlateHatsuburi), 76, 20, 0x2775, 0));
                 this.Add(new GenericBuyInfo(typeof(HeavyPlateJingasa), 76, 20, 0x2777, 0));
                 this.Add(new GenericBuyInfo(typeof(DecorativePlateKabuto), 95, 20, 0x2778, 0));
                 this.Add(new GenericBuyInfo(typeof(PlateDo), 310, 20, 0x277D, 0));
                 this.Add(new GenericBuyInfo(typeof(PlateHiroSode), 222, 20, 0x2780, 0));
                 this.Add(new GenericBuyInfo(typeof(PlateSuneate), 224, 20, 0x2788, 0));
                 this.Add(new GenericBuyInfo(typeof(PlateHaidate), 235, 20, 0x278D, 0));
-                this.Add(new GenericBuyInfo(typeof(ChainHatsuburi), 76, 20, 0x2774, 0));
+                this.Add(new GenericBuyInfo(typeof(ChainHatsuburi), 76, 20, 0x2774, 0)); */
             }
         }
 

@@ -31,8 +31,8 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, 20, 0x0E34, 0));
-                this.Add(new GenericBuyInfo(typeof(ScribesPen), 8, 20, 0xFBF, 0));
+              //  this.Add(new GenericBuyInfo(typeof(BlankScroll), 5, 20, 0x0E34, 0));
+              //  this.Add(new GenericBuyInfo(typeof(ScribesPen), 8, 20, 0xFBF, 0));
             }
         }
 

@@ -31,9 +31,9 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(Kasa), 31, 20, 0x2798, 0));
+               /* this.Add(new GenericBuyInfo(typeof(Kasa), 31, 20, 0x2798, 0));
                 this.Add(new GenericBuyInfo(typeof(LeatherJingasa), 11, 20, 0x2776, 0));
-                this.Add(new GenericBuyInfo(typeof(ClothNinjaHood), 33, 20, 0x278F, 0));
+                this.Add(new GenericBuyInfo(typeof(ClothNinjaHood), 33, 20, 0x278F, 0));*/
             }
         }
 

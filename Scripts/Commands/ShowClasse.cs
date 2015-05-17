@@ -8,6 +8,7 @@ namespace Server.Commands
         public static void Initialize()
         {
             CommandSystem.Register("Showclasse", AccessLevel.Player, new CommandEventHandler(Classe_OnCommand));
+            CommandSystem.Register("Showclass", AccessLevel.Player, new CommandEventHandler(Classe_OnCommand));
         }
 
         [Usage("Showclasse")]

@@ -31,11 +31,13 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(Bandage), 6, 20, 0xE21, 0));
-                this.Add(new AnimalBuyInfo(1, typeof(PackHorse), 616, 10, 291, 0));
-                this.Add(new AnimalBuyInfo(1, typeof(PackLlama), 523, 10, 292, 0));
-                this.Add(new AnimalBuyInfo(1, typeof(Dog), 158, 10, 217, 0));
-                this.Add(new AnimalBuyInfo(1, typeof(Cat), 131, 10, 201, 0));
+               // this.Add(new GenericBuyInfo(typeof(Bandage), 6, 20, 0xE21, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(Cat), 130, 10, 201, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(Dog), 170, 10, 217, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(Horse), 550, 10, 204, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(PackHorse), 630, 10, 291, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(PackLlama), 550, 10, 292, 0));
+                this.Add(new AnimalBuyInfo(1, typeof(Rabbit), 100, 10, 205, 0));
             }
         }
 

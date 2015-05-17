@@ -40,7 +40,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(VikingSword), 55, 20, 0x13B9, 0));
                 this.Add(new GenericBuyInfo(typeof(Scimitar), 36, 20, 0x13B6, 0));
 
-                if (Core.AOS)
+                /*if (Core.AOS)
                 {
                     this.Add(new GenericBuyInfo(typeof(BoneHarvester), 35, 20, 0x26BB, 0));
                     this.Add(new GenericBuyInfo(typeof(CrescentBlade), 37, 20, 0x26C1, 0));
@@ -48,7 +48,7 @@ namespace Server.Mobiles
                     this.Add(new GenericBuyInfo(typeof(Lance), 34, 20, 0x26C0, 0));
                     this.Add(new GenericBuyInfo(typeof(Pike), 39, 20, 0x26BE, 0));
                     this.Add(new GenericBuyInfo(typeof(Scythe), 39, 20, 0x26BA, 0));
-                }
+                }*/
             }
         }
 

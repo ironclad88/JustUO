@@ -49,7 +49,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(ChickenLeg), 5, 20, 0x1608, 0));
                 this.Add(new GenericBuyInfo(typeof(Ribs), 7, 20, 0x9F2, 0));
 
-                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCarrots), 3, 20, 0x15F9, 0));
+               /* this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCarrots), 3, 20, 0x15F9, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfCorn), 3, 20, 0x15FA, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfLettuce), 3, 20, 0x15FB, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfPeas), 3, 20, 0x15FC, 0));
@@ -59,7 +59,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(PewterBowlOfPeas), 3, 20, 0x1600, 0));
                 this.Add(new GenericBuyInfo(typeof(PewterBowlOfPotatos), 3, 20, 0x1601, 0));
                 this.Add(new GenericBuyInfo(typeof(WoodenBowlOfStew), 3, 20, 0x1604, 0));
-                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfTomatoSoup), 3, 20, 0x1606, 0));
+                this.Add(new GenericBuyInfo(typeof(WoodenBowlOfTomatoSoup), 3, 20, 0x1606, 0));*/
 
                 this.Add(new GenericBuyInfo(typeof(ApplePie), 7, 20, 0x1041, 0)); //OSI just has Pie, not Apple/Fruit/Meat
 
@@ -77,11 +77,11 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo("1016449", typeof(CheckerBoard), 2, 20, 0xFA6, 0));
                 this.Add(new GenericBuyInfo(typeof(Backgammon), 2, 20, 0xE1C, 0));
                 this.Add(new GenericBuyInfo(typeof(Dices), 2, 20, 0xFA7, 0));
-                this.Add(new GenericBuyInfo("1041243", typeof(ContractOfEmployment), 1252, 20, 0x14F0, 0));
-                this.Add(new GenericBuyInfo("a barkeep contract", typeof(BarkeepContract), 1252, 20, 0x14F0, 0));
+               // this.Add(new GenericBuyInfo("1041243", typeof(ContractOfEmployment), 1252, 20, 0x14F0, 0));
+              //  this.Add(new GenericBuyInfo("a barkeep contract", typeof(BarkeepContract), 1252, 20, 0x14F0, 0));
 
-                if (Multis.BaseHouse.NewVendorSystem)
-                    this.Add(new GenericBuyInfo("1062332", typeof(VendorRentalContract), 1252, 20, 0x14F0, 0x672));
+               // if (Multis.BaseHouse.NewVendorSystem)
+                  //  this.Add(new GenericBuyInfo("1062332", typeof(VendorRentalContract), 1252, 20, 0x14F0, 0x672));
             }
         }
 

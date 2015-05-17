@@ -30,6 +30,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Cold, 20, 30);
             this.SetResistance(ResistanceType.Poison, 90, 100);
             this.SetResistance(ResistanceType.Energy, 20, 30);
+            // this.SetResistance(ResistanceType.Necro, 20, 30);
 
             this.SetSkill(SkillName.EvalInt, 65.1, 80.0);
             this.SetSkill(SkillName.Magery, 65.1, 80.0);

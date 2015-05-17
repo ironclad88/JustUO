@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -65,15 +66,15 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Bandana), 6, 20, 0x1540, Utility.RandomDyedHue()));
                 this.Add(new GenericBuyInfo(typeof(SkullCap), 7, 20, 0x1544, Utility.RandomDyedHue()));
 
-                this.Add(new GenericBuyInfo(typeof(BoltOfCloth), 100, 20, 0xf95, Utility.RandomDyedHue())); 
+                //this.Add(new GenericBuyInfo(typeof(BoltOfCloth), 100, 20, 0xf95, Utility.RandomDyedHue())); 
 
-                this.Add(new GenericBuyInfo(typeof(Cloth), 2, 20, 0x1766, Utility.RandomDyedHue())); 
-                this.Add(new GenericBuyInfo(typeof(UncutCloth), 2, 20, 0x1767, Utility.RandomDyedHue())); 
+                //this.Add(new GenericBuyInfo(typeof(Cloth), 2, 20, 0x1766, Utility.RandomDyedHue())); 
+                //this.Add(new GenericBuyInfo(typeof(UncutCloth), 2, 20, 0x1767, Utility.RandomDyedHue())); 
 
-                this.Add(new GenericBuyInfo(typeof(Cotton), 102, 20, 0xDF9, 0));
-                this.Add(new GenericBuyInfo(typeof(Wool), 62, 20, 0xDF8, 0));
-                this.Add(new GenericBuyInfo(typeof(Flax), 102, 20, 0x1A9C, 0));
-                this.Add(new GenericBuyInfo(typeof(SpoolOfThread), 18, 20, 0xFA0, 0));
+                //this.Add(new GenericBuyInfo(typeof(Cotton), 102, 20, 0xDF9, 0));
+                //this.Add(new GenericBuyInfo(typeof(Wool), 62, 20, 0xDF8, 0));
+               // this.Add(new GenericBuyInfo(typeof(Flax), 102, 20, 0x1A9C, 0));
+                this.Add(new GenericBuyInfo(typeof(SpoolOfThread), 18, GlobalSettings.SpoolOfThreadAmount, 0xFA0, 0));
             }
         }
 
