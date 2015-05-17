@@ -71,7 +71,7 @@ namespace Server.Misc
 
 			static Settings()
 			{
-				Enabled = false;
+				Enabled = true;
 				KickOnFailure = true;
 
 				DisallowedFeatures = Features.None;

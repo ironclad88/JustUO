@@ -275,7 +275,7 @@ namespace Server.Gumps
                             int buttonID1, buttonID2;
                             int xOffset, yOffset;
 
-                            switch ( sk.Lock )
+                            switch (sk.Lock)
                             {
                                 default:
                                 case SkillLock.Up:
@@ -330,7 +330,7 @@ namespace Server.Gumps
             int index = buttonID / 3;
             int type = buttonID % 3;
 
-            switch ( type )
+            switch (type)
             {
                 case 0:
                     {
@@ -382,7 +382,7 @@ namespace Server.Gumps
                             {
                                 if (this.m_From.AccessLevel >= AccessLevel.GameMaster)
                                 {
-                                    switch ( sk.Lock )
+                                    switch (sk.Lock)
                                     {
                                         case SkillLock.Up:
                                             sk.SetLockNoRelay(SkillLock.Down);
@@ -422,84 +422,84 @@ namespace Server.Gumps
     {
         private static readonly SkillsGumpGroup[] m_Groups = new SkillsGumpGroup[]
         {
-            new SkillsGumpGroup("Crafting", new SkillName[]
+            new SkillsGumpGroup("Crafter", new SkillName[]
             {
-                SkillName.Alchemy,
+                SkillName.ArmsLore,
+                SkillName.Lumberjacking,
+                SkillName.Mining,
                 SkillName.Blacksmith,
-                SkillName.Cartography,
                 SkillName.Carpentry,
-                SkillName.Cooking,
                 SkillName.Fletching,
-                SkillName.Inscribe,
                 SkillName.Tailoring,
-                SkillName.Tinkering,
-                SkillName.Imbuing
+                SkillName.Tinkering
             }),
-            new SkillsGumpGroup("Bardic", new SkillName[]
+            new SkillsGumpGroup("Bard", new SkillName[]
             {
+                SkillName.Begging,
+                SkillName.Herding,
+                SkillName.Cartography,
                 SkillName.Discordance,
                 SkillName.Musicianship,
                 SkillName.Peacemaking,
                 SkillName.Provocation
             }),
-            new SkillsGumpGroup("Magical", new SkillName[]
+            new SkillsGumpGroup("Mage", new SkillName[]
             {
-                SkillName.Chivalry,
+                SkillName.ItemID,
+                SkillName.Inscribe,
+                SkillName.Alchemy,
                 SkillName.EvalInt,
                 SkillName.Magery,
                 SkillName.MagicResist,
                 SkillName.Meditation,
-                SkillName.Necromancy,
-                SkillName.SpiritSpeak,
-                SkillName.Ninjitsu,
-                SkillName.Bushido,
-                SkillName.Spellweaving,
-                SkillName.Mysticism
+                SkillName.SpiritSpeak
             }),
             new SkillsGumpGroup("Miscellaneous", new SkillName[]
             {
-                SkillName.Camping,
-                SkillName.Fishing,
+                SkillName.TasteID,
                 SkillName.Focus,
-                SkillName.Healing,
-                SkillName.Herding,
-                SkillName.Lockpicking,
-                SkillName.Lumberjacking,
-                SkillName.Mining,
-                SkillName.Snooping,
-                SkillName.Veterinary
+                SkillName.Throwing,
+                SkillName.Chivalry,
+                SkillName.Necromancy,
+                SkillName.Forensics,
+                SkillName.Ninjitsu,
+                SkillName.Bushido,
+                SkillName.Spellweaving,
+                SkillName.Mysticism,
+                SkillName.Imbuing
             }),
-            new SkillsGumpGroup("Combat Ratings", new SkillName[]
+            new SkillsGumpGroup("Warrior", new SkillName[]
             {
-                SkillName.Archery,
+                SkillName.Anatomy,
+                SkillName.Healing,
                 SkillName.Fencing,
                 SkillName.Macing,
                 SkillName.Parry,
                 SkillName.Swords,
                 SkillName.Tactics,
-                SkillName.Wrestling,
-                SkillName.Throwing
+                SkillName.Wrestling
             }),
-            new SkillsGumpGroup("Actions", new SkillName[]
+            new SkillsGumpGroup("Theif", new SkillName[]
             {
-                SkillName.AnimalTaming,
-                SkillName.Begging,
+                SkillName.Snooping,
+                SkillName.Lockpicking,
                 SkillName.DetectHidden,
                 SkillName.Hiding,
                 SkillName.RemoveTrap,
                 SkillName.Poisoning,
                 SkillName.Stealing,
-                SkillName.Stealth,
-                SkillName.Tracking
+                SkillName.Stealth
             }),
-            new SkillsGumpGroup("Lore & Knowledge", new SkillName[]
+            new SkillsGumpGroup("Ranger", new SkillName[]
             {
-                SkillName.Anatomy,
+                SkillName.Cooking,
+                SkillName.Camping,
+                SkillName.Fishing,
+                SkillName.Archery,
+                SkillName.AnimalTaming,
                 SkillName.AnimalLore,
-                SkillName.ArmsLore,
-                SkillName.Forensics,
-                SkillName.ItemID,
-                SkillName.TasteID
+                SkillName.Veterinary,
+                SkillName.Tracking
             })
         };
         private readonly string m_Name;

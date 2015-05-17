@@ -1,5 +1,6 @@
 using System;
 using Server.Spells;
+using Server.Network;
 
 namespace Server.Items
 {
@@ -7,6 +8,8 @@ namespace Server.Items
     {
         private readonly Poison m_Poison;
         private readonly double m_Chance;
+        
+
         public CureLevelInfo(Poison poison, double chance)
         {
             this.m_Poison = poison;
@@ -31,6 +34,8 @@ namespace Server.Items
 
     public abstract class BaseCurePotion : BasePotion
     {
+        public abstract double Delay { get; }
+
         public BaseCurePotion(PotionEffect effect)
             : base(0xF07, effect)
         {
@@ -94,20 +99,36 @@ namespace Server.Items
             }
             else if (from.Poisoned)
             {
-                this.DoCure(from);
+                if (from.BeginAction(typeof(BaseCurePotion)))
+                {
+                    this.DoCure(from);
 
-                BasePotion.PlayDrinkEffect(from);
+                    BasePotion.PlayDrinkEffect(from);
 
-                from.FixedParticles(0x373A, 10, 15, 5012, EffectLayer.Waist);
-                from.PlaySound(0x1E0);
+                    from.FixedParticles(0x373A, 10, 15, 5012, EffectLayer.Waist);
+                    from.PlaySound(0x1E0);
 
-                if (!Engines.ConPVP.DuelContext.IsFreeConsume(from))
-                    this.Consume();
+                    if (!Engines.ConPVP.DuelContext.IsFreeConsume(from))
+                        this.Consume();
+
+                    Timer.DelayCall(TimeSpan.FromSeconds(10), new TimerStateCallback(ReleaseHealLock), from);
+                }
+                else
+                {
+                    from.SendMessage("You must wait 10 seconds before using another healing potion.");
+                   // from.LocalOverheadMessage(MessageType.Regular, 0x22, 500235); // You must wait 10 seconds before using another healing potion.
+                }
+                
             }
             else
             {
                 from.SendLocalizedMessage(1042000); // You are not poisoned.
             }
+        }
+
+        private static void ReleaseHealLock(object state)
+        {
+            ((Mobile)state).EndAction(typeof(BaseCurePotion));
         }
     }
 }

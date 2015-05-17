@@ -42,16 +42,16 @@ namespace Server.Engines.Harvest
             HarvestDefinition fish = new HarvestDefinition();
 
             // Resource banks are every 8x8 tiles
-            fish.BankWidth = 8;
-            fish.BankHeight = 8;
+            fish.BankWidth = 1;
+            fish.BankHeight = 1;
 
             // Every bank holds from 5 to 15 fish
-            fish.MinTotal = 5;
-            fish.MaxTotal = 15;
+            fish.MinTotal = 10;
+            fish.MaxTotal = 25;
 
             // A resource bank will respawn its content every 10 to 20 minutes
-            fish.MinRespawn = TimeSpan.FromMinutes(10.0);
-            fish.MaxRespawn = TimeSpan.FromMinutes(20.0);
+            fish.MinRespawn = TimeSpan.FromMinutes(3.0);
+            fish.MaxRespawn = TimeSpan.FromMinutes(5.0);
 
             // Skill checking is done on the Fishing skill
             fish.Skill = SkillName.Fishing;
@@ -61,7 +61,7 @@ namespace Server.Engines.Harvest
             fish.RangedTiles = true;
 
             // Players must be within 4 tiles to harvest
-            fish.MaxRange = 4;
+            fish.MaxRange = 8;
 
             // One fish per harvest action
             fish.ConsumedPerHarvest = 1;
@@ -83,7 +83,7 @@ namespace Server.Engines.Harvest
 
             res = new HarvestResource[]
             {
-                new HarvestResource(00.0, 00.0, 100.0, 1043297, typeof(Fish))
+                new HarvestResource(00.0, 00.0, 150.0, 1043297, typeof(Fish))
             };
 
             veins = new HarvestVein[]
@@ -94,14 +94,14 @@ namespace Server.Engines.Harvest
             fish.Resources = res;
             fish.Veins = veins;
 
-            if (Core.ML)
+            /*if (Core.ML)
             {
                 fish.BonusResources = new BonusHarvestResource[]
                 {
                     new BonusHarvestResource(0, 99.4, null, null), //set to same chance as mining ml gems
                     new BonusHarvestResource(80.0, .6, 1072597, typeof(WhitePearl))
                 };
-            }
+            }*/
 
             this.m_Definition = fish;
             this.Definitions.Add(fish);
@@ -136,12 +136,12 @@ namespace Server.Engines.Harvest
 
         private static readonly MutateEntry[] m_MutateTable = new MutateEntry[]
         {
-            new MutateEntry(80.0, 80.0, 4080.0, true, typeof(SpecialFishingNet)),
-            new MutateEntry(80.0, 80.0, 4080.0, true, typeof(BigFish)),
-            new MutateEntry(90.0, 80.0, 4080.0, true, typeof(TreasureMap)),
-            new MutateEntry(100.0, 80.0, 4080.0, true, typeof(MessageInABottle)),
-            new MutateEntry(0.0, 125.0, -2375.0, false, typeof(PrizedFish), typeof(WondrousFish), typeof(TrulyRareFish), typeof(PeculiarFish)),
-            new MutateEntry(0.0, 105.0, -420.0, false, typeof(Boots), typeof(Shoes), typeof(Sandals), typeof(ThighBoots)),
+            new MutateEntry(80.0, 80.0, 4080.0, false, typeof(SpecialFishingNet)),
+            new MutateEntry(80.0, 80.0, 4080.0, false, typeof(BigFish)),
+            new MutateEntry(90.0, 80.0, 4080.0, false, typeof(TreasureMap)),
+            new MutateEntry(100.0, 80.0, 4080.0, false, typeof(MessageInABottle)),
+            new MutateEntry(0.0, 125.0, 4080.0, false, typeof(PrizedFish), typeof(WondrousFish), typeof(TrulyRareFish), typeof(PeculiarFish)),
+            //new MutateEntry(0.0, 105.0, -420.0, false, typeof(Boots), typeof(Shoes), typeof(Sandals), typeof(ThighBoots)),
             new MutateEntry(0.0, 200.0, -200.0, false, new Type[1] { null })
         };
 
@@ -415,11 +415,11 @@ namespace Server.Engines.Harvest
             return base.Construct(type, from);
         }
 
-        public override bool Give(Mobile m, Item item, bool placeAtFeet)
+        public override bool Give(Mobile m, Item item, bool placeAtFeet)        // removed serpent, instead of adding item to the serpent, it adds the item to the player´s backpack
         {
             if (item is TreasureMap || item is MessageInABottle || item is SpecialFishingNet)
             {
-                BaseCreature serp;
+                /*BaseCreature serp;
 
                 if (0.25 > Utility.RandomDouble())
                     serp = new DeepSeaSerpent();
@@ -451,16 +451,19 @@ namespace Server.Engines.Harvest
                 serp.RangeHome = 10;
 
                 serp.PackItem(item);
-
-                m.SendLocalizedMessage(503170); // Uh oh! That doesn't look like a fish!
-
-                return true; // we don't want to give the item to the player, it's on the serpent
+                
+                m.SendLocalizedMessage(503170); // Uh oh! That doesn't look like a fish! */
+                m.AddToBackpack(item);
+                return true; // give it to the player
             }
 
-            if (item is BigFish || item is WoodenChest || item is MetalGoldenChest)
-                placeAtFeet = true;
+            if (item is BigFish || item is WoodenChest || item is MetalGoldenChest) { 
+                //placeAtFeet = true;
+                m.AddToBackpack(item);
+            }
 
-            return base.Give(m, item, placeAtFeet);
+           // return base.Give(m, item, placeAtFeet);
+            return base.Give(m, item, true);
         }
 
         public override void SendSuccessTo(Mobile from, Item item, HarvestResource resource)
@@ -581,11 +584,11 @@ namespace Server.Engines.Harvest
             if (!base.CheckHarvest(from, tool))
                 return false;
 
-            if (from.Mounted)
+            /*if (from.Mounted)
             {
                 from.SendLocalizedMessage(500971); // You can't fish while riding!
                 return false;
-            }
+            }*/
 
             return true;
         }
@@ -595,11 +598,11 @@ namespace Server.Engines.Harvest
             if (!base.CheckHarvest(from, tool, def, toHarvest))
                 return false;
 
-            if (from.Mounted)
+            /*if (from.Mounted)
             {
                 from.SendLocalizedMessage(500971); // You can't fish while riding!
                 return false;
-            }
+            }*/
 
             return true;
         }

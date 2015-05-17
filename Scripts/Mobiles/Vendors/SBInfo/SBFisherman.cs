@@ -41,7 +41,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Fish), 6, 80, 0x9CF, 0));
                 this.Add(new GenericBuyInfo(typeof(FishingPole), 15, 20, 0xDC0, 0));
 
-                #region Mondain's Legacy
+               /* #region Mondain's Legacy
                 this.Add(new GenericBuyInfo(typeof(AquariumFishNet), 250, 20, 0xDC8, 0x240));
                 this.Add(new GenericBuyInfo(typeof(AquariumFood), 62, 20, 0xEFC, 0));
                 this.Add(new GenericBuyInfo(typeof(FishBowl), 6312, 20, 0x241C, 0x482));
@@ -50,6 +50,7 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(AquariumEastDeed), 250002, 20, 0x14F0, 0));
                 this.Add(new GenericBuyInfo(typeof(NewAquariumBook), 15, 20, 0xFF2, 0));
                 #endregion
+                */
             }
         }
 

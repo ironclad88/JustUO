@@ -39,7 +39,7 @@ namespace Server.Items
         }
         public virtual bool Apply(Mobile from)
         {
-            bool applied = Spells.SpellHelper.AddStatOffset(from, this.Type, this.Bonus, TimeSpan.FromMinutes(1.0));
+            bool applied = Spells.SpellHelper.AddStatOffset(from, this.Type, this.Bonus, TimeSpan.FromMinutes(20.0));
 
             if (!applied)
                 from.SendLocalizedMessage(502173); // You are already under a similar effect.
@@ -58,7 +58,7 @@ namespace Server.Items
                 from.FixedEffect(0x375A, 10, 15);
                 from.PlaySound(0x1E7);
                 from.LocalOverheadMessage(MessageType.Regular, 0x3B2, 501774); // You swallow the fish whole!
-                this.Delete();
+                this.Consume();
             }
         }
 

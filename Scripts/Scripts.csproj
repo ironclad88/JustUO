@@ -2816,6 +2816,11 @@
     <Compile Include="Items\ZuluIems\GMItems\Weapons\LanceofLothian.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Weapons\RavensRazor.cs" />
     <Compile Include="Items\ZuluIems\HolyBook.cs" />
+    <Compile Include="Items\ZuluIems\MagicFish\BlessFish.cs" />
+    <Compile Include="Items\ZuluIems\MagicFish\DexFish.cs" />
+    <Compile Include="Items\ZuluIems\MagicFish\DispelFish.cs" />
+    <Compile Include="Items\ZuluIems\MagicFish\IntFish.cs" />
+    <Compile Include="Items\ZuluIems\MagicFish\StrFish.cs" />
     <Compile Include="Items\ZuluIems\NecroBook.cs" />
     <Compile Include="Items\ZuluIems\OstardEgg.cs" />
     <Compile Include="Items\ZuluIems\songBook.cs" />
@@ -5367,6 +5372,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Items\Clothing\ZuluClothing\" />
     <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\" />
     <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\" />
     <Folder Include="Spells\Zulu\EarthSpells\" />

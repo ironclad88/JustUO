@@ -4,6 +4,7 @@ namespace Server.Items
 {
     public class CurePotion : BaseCurePotion
     {
+       
         private static readonly CureLevelInfo[] m_OldLevelInfo = new CureLevelInfo[]
         {
             new CureLevelInfo(Poison.Lesser, 1.00), // 100% chance to cure lesser poison
@@ -28,6 +29,13 @@ namespace Server.Items
         public CurePotion(Serial serial)
             : base(serial)
         {
+        }
+
+        double _Delay = 10;
+
+        public override double Delay
+        {
+            get { return _Delay; }
         }
 
         public override CureLevelInfo[] LevelInfo

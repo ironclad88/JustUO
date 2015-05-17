@@ -58,29 +58,30 @@ namespace Server.Items.__Misc.Zuluitems
 
             RandomClass rnd = new RandomClass();
             var eastereggroll = rnd.D100Roll(1);
-            if (eastereggroll >= 5)
+            // Console.WriteLine(eastereggroll + "\n");
+            if (eastereggroll <= 7)
             {
                 from.SendMessage("I found something!");
                 var D6Roll = rnd.D6Roll(1);
                 switch (D6Roll)
                 {
                     case 1:
-                        from.AddItem(new FrenziedOstardEgg());
+                        from.AddToBackpack(new FrenziedOstardEgg());
                         break;
                     case 2:
-                        from.AddItem(new BigFish());
+                        from.AddToBackpack(new SpecialHairDye());
                         break;
                     case 3:
-                        from.AddItem(new OstardEgg());
+                        from.AddToBackpack(new OstardEgg());
                         break;
                     case 4:
-                        from.AddItem(new Gold(Utility.RandomMinMax(300, 2000)));
+                        from.AddToBackpack(new Gold(Utility.RandomMinMax(300, 2000)));
                         break;
                     case 5:
-                        from.AddItem(new Gold(Utility.RandomMinMax(900, 4000)));
+                        from.AddToBackpack(new Gold(Utility.RandomMinMax(900, 4000)));
                         break;
                     case 6:
-                        from.AddItem(new Bottle());
+                        from.AddToBackpack(new Bottle());
                         break;
                     default:
                         break;
