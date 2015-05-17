@@ -17,7 +17,14 @@ namespace Server.Commands
         private static void dropSkill_OnCommand(CommandEventArgs e)
         {
             Mobile m = e.Mobile;
+            //Console.WriteLine(m.GetEquipment());
+            if (m.GetEquipment().Length <= 0) { 
             m.SendGump(new DropskillGump(m));
+            }
+            else
+            {
+                m.SendMessage("You can´t have any items equipped to use this command.");
+            }
         }
     }
 }

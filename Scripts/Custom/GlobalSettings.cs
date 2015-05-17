@@ -11,7 +11,7 @@ namespace Server.Custom
         public const int BottleAmount = 200;
         public const int ArrowAmount = 200;
         public const int BlankAmount = 200;
-        public const int SpoolOfThreadAmount = 500;
+        public const int SpoolOfThreadAmount = 200;
         public const int LockPickAmount = 500;
     }
 }

@@ -52,17 +52,22 @@ namespace Server.Gumps.Zulugumps
         public override void OnResponse(NetState state, RelayInfo info)
         {
             Mobile from = state.Mobile;
-            // button.ID            switch (info.ButtonID)
-
-            switch (info.ButtonID)
+            if (from.GetEquipment().Length <= 0)
             {
-                case 1:
-                    _skill.Base = 0;
-                    from.CloseGump(typeof(SureCheckGump));
-                    break;
-                case 2:
-                    from.CloseGump(typeof(SureCheckGump));
-                    break;
+                switch (info.ButtonID)
+                {
+                    case 1:
+                        _skill.Base = 0;
+                        from.CloseGump(typeof(SureCheckGump));
+                        break;
+                    case 2:
+                        from.CloseGump(typeof(SureCheckGump));
+                        break;
+                }
+            }
+            else
+            {
+                from.SendMessage("You can`t have any items equipped to use this command.");
             }
 
         }

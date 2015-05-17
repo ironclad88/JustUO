@@ -143,7 +143,6 @@ namespace Server.Gumps.Zulugumps
         public override void OnResponse(NetState state, RelayInfo info)
         {
             Mobile from = state.Mobile;
-
             switch (info.ButtonID)
             {
                 case 1:
@@ -319,6 +318,9 @@ namespace Server.Gumps.Zulugumps
                     from.SendGump(new SureCheckGump(from, from.Skills.Lumberjacking, from.Skills.Lumberjacking.Name));
                     break;
             }
+
+            
+            
 
 
         }
