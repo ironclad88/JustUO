@@ -575,10 +575,11 @@ namespace Server.Gumps.Zulugumps
                     }
                     break;
             }
-            
 
+            if (from.skillBoost >= 3)
+            { 
             from.SendMessage("Can´t boost more skills");
-            
+            }
 
             from.Frozen = false;
 

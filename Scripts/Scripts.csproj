@@ -110,6 +110,7 @@
     <Compile Include="Commands\DecorateSA.cs" />
     <Compile Include="Commands\Docs.cs" />
     <Compile Include="Commands\DoorGenDelete.cs" />
+    <Compile Include="Commands\Dropskill.cs" />
     <Compile Include="Commands\Dupe.cs" />
     <Compile Include="Commands\ExportWSC.cs" />
     <Compile Include="Commands\GenCategorization.cs" />
@@ -772,10 +773,12 @@
     <Compile Include="Gumps\WarningGump.cs" />
     <Compile Include="Gumps\WhoGump.cs" />
     <Compile Include="Gumps\YoungGumps.cs" />
+    <Compile Include="Gumps\Zulugumps\DropskillGump.cs" />
     <Compile Include="Gumps\Zulugumps\ebookgump.cs" />
     <Compile Include="Gumps\Zulugumps\ProtsGump.cs" />
     <Compile Include="Gumps\Zulugumps\skillBoostGump.cs" />
     <Compile Include="Gumps\Zulugumps\statBoostGump.cs" />
+    <Compile Include="Gumps\Zulugumps\SureCheckGump.cs" />
     <Compile Include="Holiday Stuff\Halloween\2006\Engines\TrickOrTreat.cs" />
     <Compile Include="Holiday Stuff\Halloween\2006\Items\HalloweenPumpkin.cs" />
     <Compile Include="Holiday Stuff\Halloween\2006\Items\PumpkinScarecrow.cs" />
