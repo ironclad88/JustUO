@@ -19,7 +19,7 @@ namespace Server.SkillHandlers
 
             m.SendLocalizedMessage(500349); // What item do you wish to get information about?
 
-            return TimeSpan.FromSeconds(1.0);
+            return TimeSpan.FromSeconds(4.0);
         }
 
         [PlayerVendorTarget]

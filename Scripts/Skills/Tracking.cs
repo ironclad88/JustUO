@@ -25,7 +25,7 @@ namespace Server.SkillHandlers
             m.CloseGump(typeof(TrackWhoGump));
             m.SendGump(new TrackWhatGump(m));
 
-            return TimeSpan.FromSeconds(10.0); // 10 second delay before beign able to re-use a skill
+            return TimeSpan.FromSeconds(7.0); // 7 second delay before beign able to re-use a skill
         }
 
         public static void AddInfo(Mobile tracker, Mobile target)

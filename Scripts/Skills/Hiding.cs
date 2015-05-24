@@ -28,7 +28,7 @@ namespace Server.SkillHandlers
             if (m.Spell != null)
             {
                 m.SendLocalizedMessage(501238); // You are busy doing something else and cannot hide.
-                return TimeSpan.FromSeconds(1.0);
+                return TimeSpan.FromSeconds(4.0);
             }
 
             if (Core.ML && m.Target != null)

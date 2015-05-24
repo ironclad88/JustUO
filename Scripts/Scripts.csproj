@@ -2833,6 +2833,7 @@
     <Compile Include="Misc\Broadcasts.cs" />
     <Compile Include="Misc\BuffIcons.cs" />
     <Compile Include="Misc\CharacterCreation.cs" />
+    <Compile Include="Mobiles\AI\HermitAI.cs" />
     <Compile Include="Mobiles\AI\TestNecroAI.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluMounts\GhostLlama.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystFrenziedOstard.cs" />
@@ -2881,6 +2882,7 @@
     <Compile Include="Mobiles\Monsters\ZuluMobs\Behemoth.cs" />
     <Compile Include="Mobiles\Monsters\ZuluMobs\BlackWisp.cs" />
     <Compile Include="Mobiles\Monsters\ZuluMobs\NecroTestMob.cs" />
+    <Compile Include="Mobiles\ZuluSpecial\CrazyHermit.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRatingGump.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRating.cs" />
     <Compile Include="Misc\Cleanup.cs" />

@@ -20,7 +20,7 @@ namespace Server.SkillHandlers
             m.SendLocalizedMessage(1046295); // Target the book you wish to copy.
             target.BeginTimeout(m, TimeSpan.FromMinutes(1.0));
 
-            return TimeSpan.FromSeconds(1.0);
+            return TimeSpan.FromSeconds(3.0);
         }
 
         public static Mobile GetUser(BaseBook book)

@@ -5,6 +5,7 @@ using Server.Engines.Quests.Collector;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
+using Server.Items.ZuluIems.MagicFish;
 
 namespace Server.Engines.Harvest
 {
@@ -138,9 +139,9 @@ namespace Server.Engines.Harvest
         {
             new MutateEntry(80.0, 80.0, 4080.0, false, typeof(SpecialFishingNet)),
             new MutateEntry(80.0, 80.0, 4080.0, false, typeof(BigFish)),
-            new MutateEntry(90.0, 80.0, 4080.0, false, typeof(TreasureMap)),
+           // new MutateEntry(90.0, 80.0, 4080.0, false, typeof(TreasureMap)),
             new MutateEntry(100.0, 80.0, 4080.0, false, typeof(MessageInABottle)),
-            new MutateEntry(0.0, 125.0, 4080.0, false, typeof(PrizedFish), typeof(WondrousFish), typeof(TrulyRareFish), typeof(PeculiarFish)),
+            new MutateEntry(0.0, 125.0, 4080.0, false, typeof(BlessFish), typeof(DexFish), typeof(DispelFish), typeof(StrFish), typeof(IntFish)),
             //new MutateEntry(0.0, 105.0, -420.0, false, typeof(Boots), typeof(Shoes), typeof(Sandals), typeof(ThighBoots)),
             new MutateEntry(0.0, 200.0, -200.0, false, new Type[1] { null })
         };
