@@ -42,7 +42,7 @@ namespace Server.SkillHandlers
                 {
                     ((BaseVendor)targeted).PrivateOverheadMessage(MessageType.Regular, 0x3B2, 500326, from.NetState); // That can not be inspected.
                 }
-                else if (targeted is Mobile)
+                else if (targeted is Mobile || from == targeted) // dont think this makes any difference, might as well have it here
                 {
                     Mobile targ = (Mobile)targeted;
 

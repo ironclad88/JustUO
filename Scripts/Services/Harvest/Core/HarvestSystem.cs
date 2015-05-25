@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Targeting;
+using Server.Items.ZuluIems;
 
 namespace Server.Engines.Harvest
 {
@@ -436,8 +437,8 @@ namespace Server.Engines.Harvest
 
             if (!this.GetHarvestDetails(from, tool, toHarvest, out tileID, out map, out loc))
             {
-                this.OnBadHarvestTarget(from, tool, toHarvest);
-                return;
+                    this.OnBadHarvestTarget(from, tool, toHarvest);
+                    return;
             }
 
             HarvestDefinition def = this.GetDefinition(tileID);
@@ -492,6 +493,13 @@ namespace Server.Engines.Harvest
                 tileID = obj.TileID;
                 map = from.Map;
                 loc = obj.Location;
+            }
+            else if (toHarvest is YuccaTree)
+            {
+                YuccaTree test = (YuccaTree)toHarvest; // höhö
+                tileID = 0xd38;
+                map = from.Map;
+                loc = test.Location;
             }
             else
             {

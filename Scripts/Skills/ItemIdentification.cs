@@ -32,7 +32,7 @@ namespace Server.Items
             {
                 if (o is Item)
                 {
-                    if (from.CheckTargetSkill(SkillName.ItemID, o, 0, 100))
+                    if (from.CheckTargetSkill(SkillName.ItemID, o, 0, 130)) // changed to 130 from 100, makes more sense in my mind
                     {
                         if (o is Item)
                             ((Item)o).Unidentified = false;

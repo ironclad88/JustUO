@@ -42,7 +42,7 @@ namespace Server.SkillHandlers
                 {
                     ((BaseVendor)targeted).PrivateOverheadMessage(MessageType.Regular, 0x3B2, 500909, from.NetState); // That person could probably calculate the cost of what you buy from them.
                 }
-                else if (targeted is Mobile)
+                else if (targeted is Mobile || from == targeted) // dont think this makes any difference, might as well have it here
                 {
                     Mobile targ = (Mobile)targeted;
 

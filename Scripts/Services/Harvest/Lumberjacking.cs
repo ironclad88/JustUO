@@ -38,16 +38,16 @@ namespace Server.Engines.Harvest
             HarvestDefinition lumber = new HarvestDefinition();
 
             // Resource banks are every 4x3 tiles
-            lumber.BankWidth = 4;
+            lumber.BankWidth = 4;   // not sure about this ones yet
             lumber.BankHeight = 3;
 
-            // Every bank holds from 20 to 45 logs
+            // Every bank holds from 20 to 35 logs
             lumber.MinTotal = 20;
-            lumber.MaxTotal = 45;
+            lumber.MaxTotal = 35; // from 45
 
-            // A resource bank will respawn its content every 20 to 30 minutes
-            lumber.MinRespawn = TimeSpan.FromMinutes(20.0);
-            lumber.MaxRespawn = TimeSpan.FromMinutes(30.0);
+            // A resource bank will respawn its content every 3 to 5 minutes
+            lumber.MinRespawn = TimeSpan.FromMinutes(3.0);
+            lumber.MaxRespawn = TimeSpan.FromMinutes(5.0); 
 
             // Skill checking is done on the Lumberjacking skill
             lumber.Skill = SkillName.Lumberjacking;
@@ -58,9 +58,9 @@ namespace Server.Engines.Harvest
             // Players must be within 2 tiles to harvest
             lumber.MaxRange = 2;
 
-            // Ten logs per harvest action
-            lumber.ConsumedPerHarvest = 10;
-            lumber.ConsumedPerFeluccaHarvest = 20;
+            // Two logs per harvest action
+            lumber.ConsumedPerHarvest = 2;
+            lumber.ConsumedPerFeluccaHarvest = 2;
 
             // The chopping effect
             lumber.EffectActions = new int[] { 13 };
@@ -102,11 +102,8 @@ namespace Server.Engines.Harvest
                 lumber.BonusResources = new BonusHarvestResource[]
                 {
                     new BonusHarvestResource(0, 83.9, null, null), //Nothing
-                    new BonusHarvestResource(100, 10.0, 1072548, typeof(BarkFragment)),
-                    new BonusHarvestResource(100, 03.0, 1072550, typeof(LuminescentFungi)),
-                    new BonusHarvestResource(100, 02.0, 1072547, typeof(SwitchItem)),
-                    new BonusHarvestResource(100, 01.0, 1072549, typeof(ParasiticPlant)),
-                    new BonusHarvestResource(100, 00.1, 1072551, typeof(BrilliantAmber))
+                    new BonusHarvestResource(40, 10.0, 1072548, typeof(DeadWood)),
+
                 };
             }
             else
@@ -163,6 +160,8 @@ namespace Server.Engines.Harvest
 
         public override void OnBadHarvestTarget(Mobile from, Item tool, object toHarvest)
         {
+            Console.WriteLine(tool);
+            Console.WriteLine(toHarvest);
             if (toHarvest is Mobile)
                 ((Mobile)toHarvest).PrivateOverheadMessage(MessageType.Regular, 0x3B2, 500450, from.NetState); // You can only skin dead creatures.
             else if (toHarvest is Item)
@@ -194,7 +193,7 @@ namespace Server.Engines.Harvest
             0x4D01, 0x4D41, 0x4D42, 0x4D43, 0x4D44, 0x4D57, 0x4D58, 0x4D59,
             0x4D5A, 0x4D5B, 0x4D6E, 0x4D6F, 0x4D70, 0x4D71, 0x4D72, 0x4D84,
             0x4D85, 0x4D86, 0x52B5, 0x52B6, 0x52B7, 0x52B8, 0x52B9, 0x52BA,
-            0x52BB, 0x52BC, 0x52BD,
+            0x52BB, 0x52BC, 0x52BD, 0xd38, // not sure about 0xd38
             0x4CCE, 0x4CCF, 0x4CD1, 0x4CD2, 0x4CD4, 0x4CD5, 0x4CD7, 0x4CD9,
             0x4CDB, 0x4CDC, 0x4CDE, 0x4CDF, 0x4CE1, 0x4CE2, 0x4CE4, 0x4CE5,
             0x4CE7, 0x4CE8, 0x4CF9, 0x4CFA, 0x4CFC, 0x4CFD, 0x4CFF, 0x4D00,

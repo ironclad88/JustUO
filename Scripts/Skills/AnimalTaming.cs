@@ -161,17 +161,17 @@ namespace Server.SkillHandlers
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502804, from.NetState);
 								// That animal looks tame already.
 						}
-						else if (from.Female && !creature.AllowFemaleTamer)
-						{
-							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049653, from.NetState);
-								// That creature can only be tamed by males.
-						}
-						else if (!from.Female && !creature.AllowMaleTamer)
-						{
-							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049652, from.NetState);
-								// That creature can only be tamed by females.
-						}
-						else if (creature is CuSidhe && from.Race != Race.Elf)
+                        /*else if (from.Female && !creature.AllowFemaleTamer)       // Makes no sense
+                        {
+                            creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049653, from.NetState);
+                                // That creature can only be tamed by males.
+                        }
+                        else if (!from.Female && !creature.AllowMaleTamer)           // Makes no sense
+                        {
+                            creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049652, from.NetState);
+                                // That creature can only be tamed by females.
+                        }*/
+                        else if (creature is CuSidhe && from.Race != Race.Elf)
 						{
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502801, from.NetState); // You can't tame that!
 						}
@@ -337,22 +337,22 @@ namespace Server.SkillHandlers
 							// That animal looks tame already.
 						Stop();
 					}
-					else if (m_Creature.Owners.Count >= BaseCreature.MaxOwners && !m_Creature.Owners.Contains(m_Tamer))
-					{
-						m_BeingTamed.Remove(m_Creature);
-						m_Tamer.NextSkillTime = Core.TickCount;
-						m_Creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1005615, m_Tamer.NetState);
-							// This animal has had too many owners and is too upset for you to tame.
-						Stop();
-					}
-					else if (MustBeSubdued(m_Creature))
-					{
-						m_BeingTamed.Remove(m_Creature);
-						m_Tamer.NextSkillTime = Core.TickCount;
-						m_Creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1054025, m_Tamer.NetState);
-							// You must subdue this creature before you can tame it!
-						Stop();
-					}
+                    /*else if (m_Creature.Owners.Count >= BaseCreature.MaxOwners && !m_Creature.Owners.Contains(m_Tamer))  // Makes no sense
+                    {
+                        m_BeingTamed.Remove(m_Creature);
+                        m_Tamer.NextSkillTime = Core.TickCount;
+                        m_Creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1005615, m_Tamer.NetState);
+                            // This animal has had too many owners and is too upset for you to tame.
+                        Stop();
+                    }*/
+                    /*else if (MustBeSubdued(m_Creature)) // Makes no sense
+                    {
+                        m_BeingTamed.Remove(m_Creature);
+                        m_Tamer.NextSkillTime = Core.TickCount;
+                        m_Creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1054025, m_Tamer.NetState);
+                            // You must subdue this creature before you can tame it!
+                        Stop();
+                    }*/
 					else if (de != null && de.LastDamage > m_StartTime)
 					{
 						m_BeingTamed.Remove(m_Creature);
@@ -380,7 +380,7 @@ namespace Server.SkillHandlers
 
 						if (!alreadyOwned) // Passively check animal lore for gain
 						{
-							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 120.0);
+							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 130.0);
 						}
 
 						if (m_Creature.Paralyzed)
@@ -401,7 +401,7 @@ namespace Server.SkillHandlers
 
 						if (!alreadyOwned) // Passively check animal lore for gain
 						{
-							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 120.0);
+							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 130.0);
 						}
 
 						double minSkill = m_Creature.MinTameSkill + (m_Creature.Owners.Count * 6.0);
