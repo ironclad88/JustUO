@@ -45,8 +45,6 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(LesserPoisonPotion), 15, 10, 0xF0A, 0));
                 this.Add(new GenericBuyInfo(typeof(LesserExplosionPotion), 21, 10, 0xF0D, 0));
 
-                this.Add(new GenericBuyInfo(typeof(Bolt), 6, Utility.Random(30, 60), 0x1BFB, 0));
-                this.Add(new GenericBuyInfo(typeof(Arrow), 3, Utility.Random(30, 60), 0xF3F, 0));
 
                 this.Add(new GenericBuyInfo(typeof(BlackPearl), 5, GlobalSettings.ReagAmount, 0xF7A, 0));
                 this.Add(new GenericBuyInfo(typeof(Bloodmoss), 5, GlobalSettings.ReagAmount, 0xF7B, 0));
@@ -60,37 +58,11 @@ namespace Server.Mobiles
                // this.Add(new GenericBuyInfo(typeof(BreadLoaf), 7, 10, 0x103B, 0));
                 this.Add(new GenericBuyInfo(typeof(Backpack), 15, 20, 0x9B2, 0));
 
-                Type[] types = Loot.RegularScrollTypes;
 
-                int circles = 3;
-
-                for (int i = 0; i < circles * 8 && i < types.Length; ++i)
-                {
-                    int itemID = 0x1F2E + i;
-
-                    if (i == 6)
-                        itemID = 0x1F2D;
-                    else if (i > 6)
-                        --itemID;
-
-                    this.Add(new GenericBuyInfo(types[i], 12 + ((i / 8) * 10), 20, itemID, 0));
-                }
-
-                if (Core.AOS)
-                {
-                    this.Add(new GenericBuyInfo(typeof(BatWing), 3, 999, 0xF78, 0));
-                    this.Add(new GenericBuyInfo(typeof(GraveDust), 3, 999, 0xF8F, 0));
-                    this.Add(new GenericBuyInfo(typeof(DaemonBlood), 6, 999, 0xF7D, 0));
-                    this.Add(new GenericBuyInfo(typeof(NoxCrystal), 6, 999, 0xF8E, 0));
-                    this.Add(new GenericBuyInfo(typeof(PigIron), 5, 999, 0xF8A, 0));
-
-                    this.Add(new GenericBuyInfo(typeof(NecromancerSpellbook), 115, 10, 0x2253, 0));
-                }
 
                 this.Add(new GenericBuyInfo(typeof(RecallRune), 15, 10, 0x1f14, 0));
                 this.Add(new GenericBuyInfo(typeof(Spellbook), 18, 10, 0xEFA, 0));
 
-                this.Add(new GenericBuyInfo("1041072", typeof(MagicWizardsHat), 11, 10, 0x1718, 0));
             }
         }
 

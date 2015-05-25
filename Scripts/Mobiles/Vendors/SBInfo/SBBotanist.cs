@@ -32,7 +32,16 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(YuccaTree), 10000, 10, 0xd38, 0));
+                this.Add(new GenericBuyInfo(typeof(YuccaTree), 10000, 20, 0xd38, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedCactus), 100, 10, 0x1E0F, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedCactus1), 200, 10, 0x1E10, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedCactus2), 250, 10, 0x1E11, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedCactus3), 300, 10, 0x1E12, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedCactus4), 350, 10, 0x1E13, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedPlant), 100, 10, 0x11CA, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedPlant1), 120, 10, 0x11CB, 0));
+                this.Add(new GenericBuyInfo(typeof(PottedTree), 400, 10, 0x11C8, 0));
+
             }
         }
 
