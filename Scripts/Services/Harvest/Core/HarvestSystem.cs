@@ -169,19 +169,20 @@ namespace Server.Engines.Harvest
                         if (item.Stackable)
                         {
                             int amount = Math.Min((1+((int)(skillValue - resource.ReqSkill)/5)), 4);
-                            if (item is BaseLog || item is BaseOre || item is Sand || item is Fish)
+                            if ((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog || item is BaseOre || item is Sand)) ||
+                                (from.SpecClasse == SpecClasse.Ranger && item is Fish))
+                            {
+                                amount += amount * from.SpecLevel;
+                                amount = GMToolChecker(amount, from);
+                                // Console.WriteLine("Spec");
+                            }
+                            else if (item is BaseLog || item is IronOre || item is Log || item is BaseOre || item is Sand || item is Fish)
                             {
                                 amount += (amount/2);
                                // Console.WriteLine("Non-Spec");
                                 amount = GMToolChecker(amount, from);
                             }
-                            if((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog ||item is BaseOre || item is Sand)) ||
-                                (from.SpecClasse == SpecClasse.Ranger && item is Fish))
-                            {
-                                amount += amount * from.SpecLevel;
-                                amount = GMToolChecker(amount, from);
-                               // Console.WriteLine("Spec");
-                            }
+                            
                             item.Amount = amount;
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
 
