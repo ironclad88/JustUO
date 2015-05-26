@@ -172,7 +172,7 @@ namespace Server.Engines.Harvest
                             if (item is BaseLog || item is BaseOre || item is Sand || item is Fish)
                             {
                                 amount += (amount/2);
-                                Console.WriteLine("Non-Spec");
+                               // Console.WriteLine("Non-Spec");
                                 amount = GMToolChecker(amount, from);
                             }
                             if((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog ||item is BaseOre || item is Sand)) ||
@@ -180,7 +180,7 @@ namespace Server.Engines.Harvest
                             {
                                 amount += amount * from.SpecLevel;
                                 amount = GMToolChecker(amount, from);
-                                Console.WriteLine("Spec");
+                               // Console.WriteLine("Spec");
                             }
                             item.Amount = amount;
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
@@ -259,17 +259,17 @@ namespace Server.Engines.Harvest
             if (from.FindItemOnLayer(Layer.OneHanded) is OmerosPickAxe)
             {
                 amount = amount * 2;
-                Console.WriteLine("Omeros");
+               // Console.WriteLine("Omeros");
             }
             if (from.FindItemOnLayer(Layer.OneHanded) is XarafaxAxe)
             {
                 amount = amount * 2;
-                Console.WriteLine("XarafaxAxe");
+               // Console.WriteLine("XarafaxAxe");
             }
             if (from.FindItemOnLayer(Layer.OneHanded) is PoseidonFishingpole)
             {
                 amount = amount * 2;
-                Console.WriteLine("PoseidonFishingpole");
+               // Console.WriteLine("PoseidonFishingpole");
             }
             return amount;
         }
