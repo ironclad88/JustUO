@@ -168,22 +168,19 @@ namespace Server.Engines.Harvest
                         //The whole harvest system is kludgy and I'm sure this is just adding to it.
                         if (item.Stackable)
                         {
-                            int amount = Math.Min((1+((int)(skillValue - resource.ReqSkill)/5)), 4);
+                            int amount = Math.Min((1 + ((int)(skillValue - resource.ReqSkill) / 5)), 4);
+                            if (item is IronOre || item is Log)
+                            {
+                                // Increase amount by 50% for regular logs or iron ore.
+                                amount += (amount / 2);
+                            }
                             if ((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog || item is BaseOre || item is Sand)) ||
                                 (from.SpecClasse == SpecClasse.Ranger && item is Fish))
                             {
+                                // Increase the amount of resources for appropriate spec.
                                 amount += amount * from.SpecLevel;
-                                amount = GMToolChecker(amount, from);
-                                // Console.WriteLine("Spec");
                             }
-                            else if (item is BaseLog || item is IronOre || item is Log || item is BaseOre || item is Sand || item is Fish)
-                            {
-                                amount += (amount/2);
-                               // Console.WriteLine("Non-Spec");
-                                amount = GMToolChecker(amount, from);
-                            }
-                            
-                            item.Amount = amount;
+                            item.Amount = GMToolChecker(amount, tool);
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
 
                             //int racialAmount = (int)Math.Ceiling(amount * 1.1);
@@ -255,19 +252,19 @@ namespace Server.Engines.Harvest
             this.OnHarvestFinished(from, tool, def, vein, bank, resource, toHarvest);
         }
 
-        public virtual int GMToolChecker(int amount, Mobile from)
+        public virtual int GMToolChecker(int amount, Item tool)
         {
-            if (from.FindItemOnLayer(Layer.OneHanded) is OmerosPickAxe)
+            if (tool is OmerosPickAxe)
             {
                 amount = amount * 2;
                // Console.WriteLine("Omeros");
             }
-            if (from.FindItemOnLayer(Layer.OneHanded) is XarafaxAxe)
+            if (tool is XarafaxAxe)
             {
                 amount = amount * 2;
                // Console.WriteLine("XarafaxAxe");
             }
-            if (from.FindItemOnLayer(Layer.OneHanded) is PoseidonFishingpole)
+            if (tool is PoseidonFishingpole)
             {
                 amount = amount * 2;
                // Console.WriteLine("PoseidonFishingpole");
