@@ -2812,6 +2812,9 @@
     <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\GorgetofRyous.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\HelmofRyous.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\LegsofRyous.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Tools\OmerosPickAxe.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Tools\PoseidonFishingpole.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Tools\XarafaxAxe.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Weapons\BaldersDead.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Weapons\LanceofLothian.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Weapons\RavensRazor.cs" />

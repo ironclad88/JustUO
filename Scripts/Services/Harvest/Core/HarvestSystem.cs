@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Targeting;
 using Server.Items.ZuluIems;
+using Server.Items.ZuluIems.GMItems.Tools;
 
 namespace Server.Engines.Harvest
 {
@@ -152,14 +153,12 @@ namespace Server.Engines.Harvest
             if (skillValue >= resource.ReqSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
             {
                 type = this.GetResourceType(from, tool, def, map, loc, resource);
-
                 if (type != null)
                     type = this.MutateType(type, from, tool, def, map, loc, resource);
 
                 if (type != null)
                 {
                     Item item = this.Construct(type, from);
-
                     if (item == null)
                     {
                         type = null;
@@ -170,14 +169,18 @@ namespace Server.Engines.Harvest
                         if (item.Stackable)
                         {
                             int amount = Math.Min((1+((int)(skillValue - resource.ReqSkill)/5)), 4);
-                            if (item is IronOre || item is Log)
+                            if (item is BaseLog || item is BaseOre || item is Sand || item is Fish)
                             {
                                 amount += (amount/2);
+                                Console.WriteLine("Non-Spec");
+                                amount = GMToolChecker(amount, from);
                             }
                             if((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog ||item is BaseOre || item is Sand)) ||
                                 (from.SpecClasse == SpecClasse.Ranger && item is Fish))
                             {
                                 amount += amount * from.SpecLevel;
+                                amount = GMToolChecker(amount, from);
+                                Console.WriteLine("Spec");
                             }
                             item.Amount = amount;
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
@@ -249,6 +252,26 @@ namespace Server.Engines.Harvest
                 def.SendMessageTo(from, def.FailMessage);
 
             this.OnHarvestFinished(from, tool, def, vein, bank, resource, toHarvest);
+        }
+
+        public virtual int GMToolChecker(int amount, Mobile from)
+        {
+            if (from.FindItemOnLayer(Layer.OneHanded) is OmerosPickAxe)
+            {
+                amount = amount * 2;
+                Console.WriteLine("Omeros");
+            }
+            if (from.FindItemOnLayer(Layer.OneHanded) is XarafaxAxe)
+            {
+                amount = amount * 2;
+                Console.WriteLine("XarafaxAxe");
+            }
+            if (from.FindItemOnLayer(Layer.OneHanded) is PoseidonFishingpole)
+            {
+                amount = amount * 2;
+                Console.WriteLine("PoseidonFishingpole");
+            }
+            return amount;
         }
 
         public virtual void OnHarvestFinished(Mobile from, Item tool, HarvestDefinition def, HarvestVein vein, HarvestBank bank, HarvestResource resource, object harvested)
