@@ -1554,7 +1554,7 @@ namespace Server.Items
                 }
 
                 // Parry/Bushido over 100 grants a 5% bonus.
-                if (parry >= 100.0 || bushido >= 100.0)
+               /* if (parry >= 100.0 || bushido >= 100.0)
                 {
                     chance += 0.05;
                 }
@@ -1564,7 +1564,7 @@ namespace Server.Items
                 {
                     chance *= Evasion.GetParryScalar(defender);
                 }
-
+                */
                 // Low dexterity lowers the chance.
                 if (defender.Dex < 80)
                 {
@@ -1589,7 +1589,7 @@ namespace Server.Items
                     chance += 0.05;
                     aosChance += 0.05;
                 }
-                else if (bushido >= 100.0)
+                /*else if (bushido >= 100.0)
                 {
                     chance += 0.05;
                 }
@@ -1599,7 +1599,7 @@ namespace Server.Items
                 {
                     chance *= Evasion.GetParryScalar(defender);
                 }
-
+                */
                 // Low dexterity lowers the chance.
                 if (defender.Dex < 80)
                 {
@@ -1651,7 +1651,7 @@ namespace Server.Items
                         CounterAttack.StopCountering(defender);
                     }
 
-                    if (Confidence.IsConfident(defender))
+                   /* if (Confidence.IsConfident(defender))
                     {
                         defender.SendLocalizedMessage(1063117);
                         // Your confidence reassures you as you successfully block your opponent's blow.
@@ -1661,7 +1661,7 @@ namespace Server.Items
                         defender.Hits += Utility.RandomMinMax(1, (int)(bushido / 12));
                         defender.Stam += Utility.RandomMinMax(1, (int)(bushido / 5));
                     }
-
+                    */
                     BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
 
                     if (shield != null)
@@ -2501,7 +2501,7 @@ namespace Server.Items
             int damageBonus = 0;
 
             // Inscription bonus
-            int inscribeSkill = attacker.Skills[SkillName.Inscribe].Fixed;
+            /*int inscribeSkill = attacker.Skills[SkillName.Inscribe].Fixed;
 
             damageBonus += inscribeSkill / 200;
 
@@ -2509,7 +2509,7 @@ namespace Server.Items
             {
                 damageBonus += 5;
             }
-
+            */
             if (attacker.Player)
             {
                 // Int bonus
@@ -2653,16 +2653,16 @@ namespace Server.Items
             defender.FixedParticles(0x374A, 10, 15, 5028, EffectLayer.Waist);
             defender.PlaySound(0x1EA);
             defender.AddStatMod(
-                new StatMod(StatType.Str, String.Format("[Magic] {0} Offset", StatType.Str), -10, TimeSpan.FromSeconds(30)));
+                new StatMod(StatType.Str, String.Format("[Magic] {0} Offset", StatType.Str), -10, TimeSpan.FromSeconds(360)));
             defender.AddStatMod(
-                new StatMod(StatType.Dex, String.Format("[Magic] {0} Offset", StatType.Dex), -10, TimeSpan.FromSeconds(30)));
+                new StatMod(StatType.Dex, String.Format("[Magic] {0} Offset", StatType.Dex), -10, TimeSpan.FromSeconds(360)));
             defender.AddStatMod(
-                new StatMod(StatType.Int, String.Format("[Magic] {0} Offset", StatType.Int), -10, TimeSpan.FromSeconds(30)));
+                new StatMod(StatType.Int, String.Format("[Magic] {0} Offset", StatType.Int), -10, TimeSpan.FromSeconds(360)));
 
             int percentage = -10; //(int)(SpellHelper.GetOffsetScalar(Caster, m, true) * 100);
             string args = String.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}", percentage, percentage, percentage, 10, 10, 10, 10);
 
-            BuffInfo.AddBuff(defender, new BuffInfo(BuffIcon.Curse, 1075835, 1075836, TimeSpan.FromSeconds(30), defender, args));
+            BuffInfo.AddBuff(defender, new BuffInfo(BuffIcon.Curse, 1075835, 1075836, TimeSpan.FromSeconds(360), defender, args));
         }
 
         public virtual void DoFatigue(Mobile attacker, Mobile defender, int damagegiven)
@@ -3182,10 +3182,10 @@ namespace Server.Items
                 attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);
                 // Passively check Anatomy for gain
 
-                if (Type == WeaponType.Axe)
+                /*if (Type == WeaponType.Axe)
                 {
                     attacker.CheckSkill(SkillName.Lumberjacking, 0.0, 100.0); // Passively check Lumberjacking for gain
-                }
+                }*/
             }
 
             /* Compute tactics modifier
@@ -3217,7 +3217,7 @@ namespace Server.Items
             * : +10% bonus at Grandmaster or higher
             */
 
-            if (Type == WeaponType.Axe)
+            /*if (Type == WeaponType.Axe)
             {
                 double lumberValue = attacker.Skills[SkillName.Lumberjacking].Value;
 
@@ -3227,7 +3227,7 @@ namespace Server.Items
                 {
                     modifiers += 0.1;
                 }
-            }
+            }*/
 
             // New quality bonus:
             if (m_Quality != WeaponQuality.Regular)
@@ -3269,10 +3269,10 @@ namespace Server.Items
             int damage = (int)ScaleDamageOld(attacker, GetBaseDamage(attacker), true);
 
             // pre-AOS, halve damage if the defender is a player or the attacker is not a player
-            if (defender is PlayerMobile || !(attacker is PlayerMobile))
+            /*if (defender is PlayerMobile || !(attacker is PlayerMobile))
             {
                 damage = (int)(damage / 2.0);
-            }
+            }*/
 
             return damage;
         }
@@ -4522,6 +4522,7 @@ namespace Server.Items
             if (oreType != 0)
             {
                 list.Add(1053099, "#{0}\t{1}", oreType, GetNameString()); // ~1_oretype~ ~2_armortype~
+
             }
             else if (Name == null)
             {
@@ -4746,6 +4747,8 @@ namespace Server.Items
 
                 if ((prop = (GetDamageBonus() + m_AosAttributes.WeaponDamage)) != 0)
                 {
+                   /* BaseWeapon wea = this as BaseWeapon;
+                    wea.Name = "test"; */
                     list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
                 }
 
@@ -5185,6 +5188,7 @@ namespace Server.Items
         public override void OnSingleClick(Mobile from)
         {
             var attrs = new List<EquipInfoAttribute>();
+           // WeaponAttributeInfo test = new Weapon
 
             if (DisplayLootType)
             {

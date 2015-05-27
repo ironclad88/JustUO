@@ -33,7 +33,7 @@ namespace Server.SkillHandlers
 
 			m.RevealingAction();
 
-			if (m.CheckSkill(SkillName.SpiritSpeak, 0, 100))
+			if (m.CheckSkill(SkillName.SpiritSpeak, 0, 130))
 			{
 				if (!m.CanHearGhosts)
 				{
@@ -59,7 +59,7 @@ namespace Server.SkillHandlers
 				m.CanHearGhosts = false;
 			}
 
-			return TimeSpan.FromSeconds(1.0);
+			return TimeSpan.FromSeconds(6.0);
 		}
 
 		private class SpiritSpeakTimer : Timer
@@ -177,7 +177,7 @@ namespace Server.SkillHandlers
 				}
 				else
 				{
-					Caster.CheckSkill(SkillName.SpiritSpeak, 0.0, 120.0);
+					Caster.CheckSkill(SkillName.SpiritSpeak, 0.0, 130.0);
 
 					if (Utility.RandomDouble() > (Caster.Skills[SkillName.SpiritSpeak].Value / 100.0))
 					{

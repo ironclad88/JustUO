@@ -13,7 +13,7 @@ namespace Server.Commands
         
 
         [Usage("hungry")]
-        [Description("Returns the players hunger level.")]
+        [Description("Returns the players hunger level.")] // players should never get hungry
         private static void Classe_OnCommand(CommandEventArgs e)
         {
             bool debug = true;
