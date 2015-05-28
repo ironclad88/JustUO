@@ -26,14 +26,14 @@ namespace Server.Items
             SkillName.Provocation,
             SkillName.Discordance,
             SkillName.Peacemaking,
-            SkillName.Chivalry,
-            SkillName.Focus,
-            SkillName.Necromancy,
+          //  SkillName.Chivalry,
+          //  SkillName.Focus,
+          //  SkillName.Necromancy,
             SkillName.Stealing,
             SkillName.Stealth,
             SkillName.SpiritSpeak,
-            SkillName.Bushido,
-            SkillName.Ninjitsu
+           // SkillName.Bushido,
+           // SkillName.Ninjitsu
         };
         private static readonly SkillName[] m_PossibleSpellbookSkills = new SkillName[]
         {
@@ -980,6 +980,9 @@ namespace Server.Items
                 jewelry.Unidentified = true;
             }
 
+
+            Console.WriteLine(jewelry.ItemData.Name);
+
             AosAttributes primary = jewelry.Attributes;
             AosElementAttributes resists = jewelry.Resistances;
             AosSkillBonuses skills = jewelry.SkillBonuses;
@@ -1018,6 +1021,7 @@ namespace Server.Items
                         {
                             case 0:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Physical, 1, 100);
+
                                 break;
                             case 1:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 100);

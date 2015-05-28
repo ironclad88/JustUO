@@ -1329,8 +1329,11 @@ namespace Server.Mobiles
             return (p != null && p.RealLevel >= poison.RealLevel);
         }
 
-        [CommandProperty(AccessLevel.GameMaster)]
+       /* [CommandProperty(AccessLevel.GameMaster)]
         public int Loyalty { get { return m_Loyalty; } set { m_Loyalty = Math.Min(Math.Max(value, 0), MaxLoyalty); } }
+        */
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Loyalty { get { return m_Loyalty; } set { m_Loyalty = MaxLoyalty; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public WayPoint CurrentWayPoint { get { return m_CurrentWayPoint; } set { m_CurrentWayPoint = value; } }
@@ -1661,10 +1664,10 @@ namespace Server.Mobiles
             }
             else
             {
-                if (Core.ML && from.Race == Race.Human)
+                /*if (Core.ML && from.Race == Race.Human)
                 {
                     hides = (int)Math.Ceiling(hides * 1.1); // 10% bonus only applies to hides, ore & logs
-                }
+                }*/
 
                 if (corpse.Map == Map.Felucca)
                 {
@@ -1683,13 +1686,16 @@ namespace Server.Mobiles
 
                 if (feathers != 0)
                 {
-                    corpse.AddCarvedItem(new Feather(feathers), from);
+                    //corpse.AddCarvedItem(new Feather(feathers), from);
+                    from.AddToBackpack(new Feather(feathers));
                     from.SendLocalizedMessage(500479); // You pluck the bird. The feathers are now on the corpse.
                 }
 
                 if (wool != 0)
                 {
-                    corpse.AddCarvedItem(new TaintedWool(wool), from);
+                    //corpse.AddCarvedItem(new TaintedWool(wool), from);
+                    //from.AddToBackpack(new Wool(wool));
+                    from.AddToBackpack(new TaintedWool(wool));
                     from.SendLocalizedMessage(500483); // You shear it, and the wool is now on the corpse.
                 }
 
@@ -1697,16 +1703,19 @@ namespace Server.Mobiles
                 {
                     if (MeatType == MeatType.Ribs)
                     {
-                        corpse.AddCarvedItem(new RawRibs(meat), from);
+                        from.AddToBackpack(new RawRibs(meat));
+                        //corpse.AddCarvedItem(new RawRibs(meat), from);
                     }
                     else if (MeatType == MeatType.Bird)
                     {
-                        corpse.AddCarvedItem(new RawBird(meat), from);
+                        from.AddToBackpack(new RawBird(meat));
+                        //corpse.AddCarvedItem(new RawBird(meat), from);
 
                     }
                     else if (MeatType == MeatType.LambLeg)
                     {
-                        corpse.AddCarvedItem(new RawLambLeg(meat), from);
+                        from.AddToBackpack(new RawLambLeg(meat));
+                        //corpse.AddCarvedItem(new RawLambLeg(meat), from);
                     }
 
                     from.SendLocalizedMessage(500467); // You carve some meat, which remains on the corpse.
@@ -1742,7 +1751,8 @@ namespace Server.Mobiles
                             {
                                 //corpse.DropItem(leather);
                                 // 
-                                AddItem(leather);
+                                //AddItem(leather);
+                                from.AddToBackpack(leather);
                                 //PackItem(leather);
                                 from.SendLocalizedMessage(500471); // You skin it, and the hides are now in the corpse.
                             }
@@ -1775,7 +1785,8 @@ namespace Server.Mobiles
                         else if (HideType == HideType.Barbed)
                         {
 
-                            AddItem(new BarbedHides(hides));
+                            //AddItem(new BarbedHides(hides));
+                            from.AddToBackpack(new BarbedHides(hides));
                             //PackItem(new BarbedHides(hides));
                             //corpse.DropItem(new BarbedHides(hides));
                         }
@@ -1784,7 +1795,7 @@ namespace Server.Mobiles
                     }
                 }
 
-                if (scales != 0)
+                /*if (scales != 0)
                 {
                     ScaleType sc = ScaleType;
 
@@ -1821,7 +1832,7 @@ namespace Server.Mobiles
                     }
 
                     from.SendMessage("You cut away some scales, but they remain on the corpse.");
-                }
+                }*/
 
                 if (dragonblood != 0)
                 {
