@@ -1006,7 +1006,7 @@ namespace Server.Items
             m_Props.Set(16, true); //luck
             m_Props.Set(14, true); //lower mana
             m_Props.Set(15, true); //lower regs
-
+            Console.WriteLine("Rolling Jewlery BEGIN");
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(19);
@@ -1016,12 +1016,12 @@ namespace Server.Items
 
                 switch (random)
                 {
+                        
                     case 0:
                         switch (Utility.Random(8))
                         {
                             case 0:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Physical, 1, 100);
-
                                 break;
                             case 1:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 100);
@@ -1071,13 +1071,72 @@ namespace Server.Items
                         switch (Utility.Random(3))
                         {
                             case 0:
-                                ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 1, 20);
+                                switch(Utility.Random(5)){
+                                    case 0:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 5, 5);
+                                        break;
+                                    case 1:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 10, 10);
+                                        break;
+                                    case 2:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 15, 15);
+                                        break;
+                                    case 3:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 20, 20);
+                                        break;
+                                    case 4:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 25, 25);
+                                        break;
+                                    case 5:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 30, 30);
+                                        break;
+                                }
                                 break;
                             case 1:
-                                ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 1, 20);
+                                switch (Utility.Random(5))
+                                {
+                                    case 0:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 5, 5);
+                                        break;
+                                    case 1:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 10, 10);
+                                        break;
+                                    case 2:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 15, 15);
+                                        break;
+                                    case 3:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 20, 20);
+                                        break;
+                                    case 4:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 25, 25);
+                                        break;
+                                    case 5:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 30, 30);
+                                        break;
+                                }
                                 break;
                             case 2:
-                                ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 1, 20);
+                                switch (Utility.Random(5))
+                                {
+                                    case 0:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 5, 5);
+                                        break;
+                                    case 1:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 10, 10);
+                                        break;
+                                    case 2:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 15, 15);
+                                        break;
+                                    case 3:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 20, 20);
+                                        break;
+                                    case 4:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 25, 25);
+                                        break;
+                                    case 5:
+                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 30, 30);
+                                        break;
+                                }
                                 break;
                         } break;
                     case 9:
@@ -1127,6 +1186,16 @@ namespace Server.Items
                     //    break;
                 }
             }
+           /*Console.WriteLine(jewelry.Resistances.Chaos);
+            Console.WriteLine(jewelry.SkillBonuses.Skill_1_Name);
+            Console.WriteLine(jewelry.Attributes.CastSpeed);
+            Console.WriteLine(jewelry.Attributes.CastRecovery);
+            Console.WriteLine(jewelry.Attributes.BonusMana);
+            Console.WriteLine(jewelry.Attributes.SpellDamage);
+            */
+            //Console.WriteLine(jewelry.GetProperties(this));
+            Console.WriteLine("Rolling Jewlery DONE");
+            RenameItemToZuluStandard(jewelry);
         }
 
         public static void ApplyAttributesTo(Spellbook spellbook, int attributeCount, int min, int max)
@@ -1446,6 +1515,403 @@ namespace Server.Items
             weapon.AosElementDamages[attr] = random;
             weapon.IdHue = weapon.GetElementalDamageHue();
             return (totalDamage - random);
+        }
+
+        private static void RenameItemToZuluStandard(BaseJewel jewel) // maybe change name to RenameJewelToZuluStandard (do this for every itemtype)
+        {
+            Console.WriteLine("Starting to rename item! Item: " + jewel.ItemData.Name);
+            Console.WriteLine("Adding Prefix!");
+
+            string prefixStat = GetStatPrefix(jewel.Attributes);
+            string prefixSkill = "";
+            string suffixProt = GetProtectionSuffix(jewel);
+
+            if (prefixStat != "")
+            {
+                jewel.Name = prefixStat + jewel.ItemData.Name + suffixProt;
+            }
+            else
+            {
+                prefixSkill = GetSkillPrefix(jewel.SkillBonuses);
+                jewel.Name = prefixSkill + jewel.ItemData.Name + suffixProt;
+            }
+            Console.WriteLine("Renaming DONE Item: " + jewel.Name);
+        }
+
+        private static string GetSkillPrefix(AosSkillBonuses AosS){
+            if (AosS.Skill_1_Value != 0)
+            {
+                return GetSkillNameSuffix(AosS.Skill_1_Name, AosS.Skill_1_Value);
+            }
+            if (AosS.Skill_2_Value != 0)
+            {
+                return GetSkillNameSuffix(AosS.Skill_2_Name, AosS.Skill_2_Value);
+            }
+            if (AosS.Skill_3_Value != 0)
+            {
+                return GetSkillNameSuffix(AosS.Skill_3_Name, AosS.Skill_3_Value);
+            }
+            if (AosS.Skill_4_Value != 0)
+            {
+                return GetSkillNameSuffix(AosS.Skill_4_Name, AosS.Skill_4_Value);
+            }
+            if (AosS.Skill_5_Value != 0)
+            {
+                return GetSkillNameSuffix(AosS.Skill_5_Name, AosS.Skill_5_Value);
+            }
+            return "";
+        }
+
+        private static string GetProtectionSuffix(Item aosE)
+        {
+            if (aosE.FireResistance > 0) // not done yet.
+            {
+                return " of Fire Protection";
+            }
+
+            if (aosE.PhysicalResistance > 0) // not done yet.
+            {
+                return " of Physical Protection";
+            }
+
+            if (aosE.NecroResistance > 0) // not done yet.
+            {
+                return " of Necro Protection";
+            }
+
+            if (aosE.HolyResistance > 0) // not done yet.
+            {
+                return " of Holy Protection";
+            }
+
+            if (aosE.ColdResistance > 0) // not done yet.
+            {
+                return " of Water Protection";
+            }
+
+            if (aosE.EarthResistance > 0) // not done yet.
+            {
+                return " of Earth Protection";
+            }
+
+            if (aosE.PoisonResistance > 0) // not done yet.
+            {
+                return " of Poison Protection";
+            }
+
+            if (aosE.EnergyResistance > 0) // not done yet.
+            {
+                return " of Air Protection";
+            }
+            return "";
+        }
+
+        private static string GetStatPrefix(AosAttributes aosA)
+        {
+
+            if (aosA.BonusDex > 0)
+            {
+                switch (aosA.BonusDex)
+                {
+                    case 5:
+                        return "Cutpuse큦 ";
+                    case 10:
+                        return "Thief큦 ";
+                    case 15:
+                        return "Catburgler큦 ";
+                    case 20:
+                        return "Tumbler큦 ";
+                    case 25:
+                        return "Acrobat큦 ";
+                    case 30:
+                        return "Escape큦 ";
+                    default:
+                        return " This isnt supposed to happen? the fukk (dex bonus) ";
+                }
+            }
+                
+
+            else if (aosA.BonusInt > 0)
+            {
+                switch (aosA.BonusInt)
+                {
+                    case 5:
+                        return  "Apprentice큦 ";
+                    case 10:
+                        return "Adept큦 ";
+                    case 15:
+                        return "Wizard큦 ";
+                    case 20:
+                        return "Archmage큦 ";
+                    case 25:
+                        return "Magister큦 ";
+                    case 30:
+                        return "Oracle큦 ";
+                    default:
+                        return " This isnt supposed to happen? the fukk (int bonus) ";
+                }
+            }
+
+            else if (aosA.BonusStr > 0)
+            {
+                switch (aosA.BonusStr)
+                {
+                    case 5:
+                        return "Warrior큦 ";
+                    case 10:
+                        return "Veteran큦 ";
+                    case 15:
+                        return "Champion큦 ";
+                    case 20:
+                        return "Hero큦 ";
+                    case 25:
+                        return "Warlord큦 ";
+                    case 30:
+                        return "King큦 ";
+                    default:
+                        return " This isnt supposed to happen? the fukk (str bonus) ";
+                }
+            }
+            return "";
+        }
+
+        private static string GetSkillNameSuffix(SkillName skillName, double skillVal)
+        {
+
+            switch (skillName)
+            {
+                case SkillName.Alchemy:
+                    return GetSkillValueSuffix(skillVal) + "Alchemist's ";
+                case SkillName.Anatomy:
+                    return GetSkillValueSuffix(skillVal) + "Physician's ";
+                case SkillName.AnimalLore:
+                    return GetSkillValueSuffix(skillVal) + "Naturalist's ";
+                case SkillName.AnimalTaming:
+                    return GetSkillValueSuffix(skillVal) + "Druid's ";
+                case SkillName.Archery: // unsure about this one  // custom
+                    return GetArcherySkillValue(skillVal);
+                case SkillName.ArmsLore: 
+                    return GetSkillValueSuffix(skillVal) + "Arms Dealer's ";
+                case SkillName.Begging: 
+                    return GetSkillValueSuffix(skillVal) + "Beggar's ";
+                case SkillName.Blacksmith:
+                    return GetSkillValueSuffix(skillVal) + "Blacksmith's ";
+                case SkillName.Camping:
+                    return GetSkillValueSuffix(skillVal) + "Camper's ";
+                case SkillName.Carpentry:
+                    return GetSkillValueSuffix(skillVal) + "Carpenter's ";
+                case SkillName.Cartography:
+                    return GetSkillValueSuffix(skillVal) + "Cartographer's ";
+                case SkillName.Cooking:
+                    return GetSkillValueSuffix(skillVal) + "Chef's ";
+                case SkillName.DetectHidden:
+                    return GetSkillValueSuffix(skillVal) + "Scout's ";
+                case SkillName.Discordance: // wonder if we can change this skillname to the old "Enticement" instead...
+                    return GetSkillValueSuffix(skillVal) + "Commander's" ;
+                case SkillName.EvalInt: 
+                    return GetSkillValueSuffix(skillVal) + "Scholar's ";
+                case SkillName.Fencing: // custom
+                    return GetWeaponSkillValue(skillVal);
+                case SkillName.Fishing:
+                    return GetSkillValueSuffix(skillVal) + "Fisherman's ";
+                case SkillName.Fletching:
+                    return GetSkillValueSuffix(skillVal) + "Fletcher's ";
+                case SkillName.Forensics:
+                    return GetSkillValueSuffix(skillVal) + "Coroner's ";
+                case SkillName.Healing:
+                    return GetSkillValueSuffix(skillVal) + "Healer's ";
+                case SkillName.Herding:
+                    return GetSkillValueSuffix(skillVal) + "Shepherd's ";
+                case SkillName.Hiding:  // custom
+                    return GetHidingSkillValue(skillVal);
+                case SkillName.Inscribe:
+                    return GetSkillValueSuffix(skillVal) + "Scribe's ";
+                case SkillName.ItemID:
+                    return GetSkillValueSuffix(skillVal) + "Merchant's ";
+                case SkillName.Lockpicking:
+                    return GetSkillValueSuffix(skillVal) + "Locksmith's ";
+                case SkillName.Lumberjacking:
+                    return GetSkillValueSuffix(skillVal) + "Lumberjack's ";
+                case SkillName.Macing: // custom
+                    return GetWeaponSkillValue(skillVal); // is also used for fencing
+                case SkillName.Magery:
+                    return GetSkillValueSuffix(skillVal) + "Mage's ";
+                case SkillName.MagicResist: // custom
+                    return GetMagicResistSkillValue(skillVal);
+                case SkillName.Meditation:
+                    return GetSkillValueSuffix(skillVal) + "Stoic's ";
+                case SkillName.Mining:
+                    return GetSkillValueSuffix(skillVal) + "Miner's ";
+                case SkillName.Musicianship:
+                    return GetSkillValueSuffix(skillVal) + "Bard's ";
+                case SkillName.Parry:
+                    return GetSkillValueSuffix(skillVal) + "Shield Fighter's ";
+                case SkillName.Peacemaking:
+                    return GetSkillValueSuffix(skillVal) + "Peacemaker's ";
+                case SkillName.Poisoning:
+                    return GetSkillValueSuffix(skillVal) + "Assassin's ";
+                case SkillName.Provocation:
+                    return GetSkillValueSuffix(skillVal) + "Provoker's ";
+                case SkillName.RemoveTrap:
+                    return GetSkillValueSuffix(skillVal) + "Trap Remover's ";
+                case SkillName.Snooping:
+                    return GetSkillValueSuffix(skillVal) + "Pickpocket's ";
+                case SkillName.SpiritSpeak:
+                    return GetSkillValueSuffix(skillVal) + "Channeler's ";
+                case SkillName.Stealing:
+                    return GetSkillValueSuffix(skillVal) + "Thief's ";
+                case SkillName.Stealth:
+                    return GetSkillValueSuffix(skillVal) + "Spy's ";
+                case SkillName.Swords: // custom
+                    return GetWeaponSkillValue(skillVal);
+                case SkillName.Tactics: // custom
+                    return GetTacticsSkillValue(skillVal);
+                case SkillName.Tailoring:
+                    return GetSkillValueSuffix(skillVal) + "Tailor's ";
+                case SkillName.TasteID:
+                    return GetSkillValueSuffix(skillVal) + "Taste Tester's ";
+                case SkillName.Tinkering:
+                    return GetSkillValueSuffix(skillVal) + "Tinker's ";
+                case SkillName.Tracking:
+                    return GetSkillValueSuffix(skillVal) + "Ranger's ";
+                case SkillName.Veterinary:
+                    return GetSkillValueSuffix(skillVal) + "Veterinarian's ";
+                case SkillName.Wrestling: // custom
+                    return GetWeaponSkillValue(skillVal);
+
+
+            }
+
+            return "";
+        }
+
+        private static string GetSkillValueSuffix(double skillVal) // havent added any curse skills (example: -1 anatomy = Novice Alchemist's)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Apprentice ";
+                case 2:
+                    return "Journeyman ";
+                case 3:
+                    return "Expert ";
+                case 4:
+                    return "Adept ";
+                case 5:
+                    return "Master ";
+                case 6:
+                    return "Grandmaster ";
+                case 7: // not used 
+                    return "Legendary ";
+                default:
+                    return "Grandmaster";
+            }
+        }
+
+        private static string GetArcherySkillValue(double skillVal)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Large ";
+                case 2:
+                    return "Great ";
+                case 3:
+                    return "Composite ";
+                case 4:
+                    return "Archer's ";
+                case 5:
+                    return "Ranger's ";
+                case 6:
+                    return "Marksman's ";
+            }
+            return " GetArcherySkillValue() ERROR ";
+        }
+
+        private static string GetTacticsSkillValue(double skillVal)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Fine ";
+                case 2:
+                    return "Superior ";
+                case 3:
+                    return "Superb ";
+                case 4:
+                    return "Magnificent ";
+                case 5:
+                    return "Elegant ";
+                case 6:
+                    return "Peerless ";
+            }
+            return " GetTacticsSkillValue() ERROR ";
+        }
+
+        private static string GetMagicResistSkillValue(double skillVal)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Shielded ";
+                case 2:
+                    return "Warded ";
+                case 3:
+                    return "Sanctified ";
+                case 4:
+                    return "Defiant ";
+                case 5:
+                    return "Guardian's ";
+                case 6:
+                    return "Deflecting ";
+            }
+            return " GetMagicResistSkillValue() ERROR ";
+        }
+
+        private static string GetHidingSkillValue(double skillVal)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Concealing ";
+                case 2:
+                    return "Camouflaged ";
+                case 3:
+                    return "Shadowed's ";
+                case 4:
+                    return "Undetectable ";
+                case 5:
+                    return "Obscuring ";
+                case 6:
+                    return "Obfuscating ";
+            }
+            return " GetHidingSkillValue() ERROR ";
+        }
+
+        private static string GetWeaponSkillValue(double skillVal)
+        {
+            int skillValInt = (int)skillVal;
+            switch (skillValInt)
+            {
+                case 1:
+                    return "Competitor's ";
+                case 2:
+                    return "Duelist's ";
+                case 3:
+                    return "Gladiator's ";
+                case 4:
+                    return "Knight's ";
+                case 5:
+                    return "Noble's ";
+                case 6:
+                    return "Arms Master's ";
+            }
+            return " GetWeaponSkillValue() ERROR ";
         }
     }
 }

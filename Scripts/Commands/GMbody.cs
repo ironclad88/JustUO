@@ -98,16 +98,16 @@ namespace Server.Commands
                             PackItem(new BookOfBushido());
                             PackItem(new SpellweavingBook((ulong)0xffff));
 
-                            from.RawStr = 100;
-                            from.RawDex = 100;
-                            from.RawInt = 100;
+                            from.RawStr = 130;
+                            from.RawDex = 130;
+                            from.RawInt = 130;
 
                             from.Hits = from.HitsMax;
                             from.Mana = from.ManaMax;
                             from.Stam = from.StamMax;
 
                             for (int i = 0; i < targ.Skills.Length; ++i)
-                                targ.Skills[i].Base = 120;
+                                targ.Skills[i].Base = 130;
                         }
 
                         if (from.IsStaff() && from.AccessLevel <= AccessLevel.Spawner)

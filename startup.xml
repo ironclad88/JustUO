@@ -6,6 +6,6 @@
   <rewards>30</rewards>
   <skillcap>99999</skillcap>
   <statcap>390</statcap>
-  <housedecay>5</housedecay>
+  <housedecay>50</housedecay>
   <bonding>7</bonding>
 </startupinfo>
