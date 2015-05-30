@@ -754,7 +754,15 @@ namespace Server.Items
             AosAttributes primary = hat.Attributes;
             AosArmorAttributes secondary = hat.ClothingAttributes;
             AosElementAttributes resists = hat.Resistances;
+            AosSkillBonuses skills = hat.SkillBonuses; // added possible skill bonus on hats
+
+            if (Utility.Random(3) == 1)
+            {
+                ApplySkillBonus(skills, min, max, 0, 1, 6);
+            }
+
             m_Props.SetAll(false);
+
 
             //remove attributes we dont want here
             m_Props.Set(11, true); //lower stat req
@@ -767,7 +775,7 @@ namespace Server.Items
             m_Props.Set(9, true); //lower regs
             m_Props.Set(12, true); //SelfRepair
             m_Props.Set(13, true); // DurabilityBonus
-            //m_Props.Set(14, true); //resist
+            m_Props.Set(14, true); //resist, disable resist on head gear
             
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -991,74 +999,16 @@ namespace Server.Items
                         switch (Utility.Random(3))
                         {
                             case 0:
-                                switch(Utility.Random(6)){
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 1, 20);
                                 break;
                             case 1:
-                                switch (Utility.Random(6))
-                                {
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 1, 20);
                                 break;
                             case 2:
-                                switch (Utility.Random(6))
-                                {
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 1, 20);
                                 break;
-                        } break;
+                        }
+                        break;
                 }
             }
             RenameItemToZuluStandard(clothing);
@@ -1113,7 +1063,7 @@ namespace Server.Items
             Console.WriteLine("Rolling Jewlery BEGIN");
             for (int i = 0; i < attributeCount; ++i)
             {
-                int random = GetUniqueRandom(6);
+                int random = GetUniqueRandom(19);
 
                 if (random == -1)
                     break;
@@ -1175,74 +1125,16 @@ namespace Server.Items
                         switch (Utility.Random(3))
                         {
                             case 0:
-                                switch(Utility.Random(6)){
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusStr, 1, 20);
                                 break;
                             case 1:
-                                switch (Utility.Random(6))
-                                {
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 1, 20);
                                 break;
                             case 2:
-                                switch (Utility.Random(6))
-                                {
-                                    case 0:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 5, 5);
-                                        break;
-                                    case 1:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 10, 10);
-                                        break;
-                                    case 2:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 15, 15);
-                                        break;
-                                    case 3:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 20, 20);
-                                        break;
-                                    case 4:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 25, 25);
-                                        break;
-                                    case 5:
-                                        ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 30, 30);
-                                        break;
-                                }
+                                ApplyAttribute(primary, min, max, AosAttribute.BonusInt, 1, 20);
                                 break;
-                        } break;
+                        }
+                        break;
                     /*case 5:
                         ApplyAttribute(primary, min, max, AosAttribute.BonusDex, 1, 8);
                         break;
@@ -1796,8 +1688,13 @@ namespace Server.Items
 
         private static string GetStatPrefix(AosAttributes aosA)
         {
-
-            if (aosA.BonusDex > 0)
+            if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Cutpuse큦 ";
+            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Thief큦 ";
+            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Catburgler큦 ";
+            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Tumbler큦 ";
+            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Acrobat큦 ";
+            else if (aosA.BonusDex > 15) return "Escape Artist큦 ";
+            /*if (aosA.BonusDex > 0)
             {
                 switch (aosA.BonusDex)
                 {
@@ -1815,13 +1712,19 @@ namespace Server.Items
                         return "Escape Artist큦 ";
                     default:
                         return " This isnt supposed to happen? the fukk (dex bonus) ";
-                }
-            }
+                }*/
+           // }
                 
 
             else if (aosA.BonusInt > 0)
             {
-                switch (aosA.BonusInt)
+                if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Apprentice큦 ";
+                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Adept큦 ";
+                else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Wizard큦 ";
+                else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Archmage큦 ";
+                else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Magister큦 ";
+                else if (aosA.BonusInt > 15) return "Oracle큦 ";
+                /*switch (aosA.BonusInt)
                 {
                     case 5:
                         return  "Apprentice큦 ";
@@ -1837,12 +1740,18 @@ namespace Server.Items
                         return "Oracle큦 ";
                     default:
                         return " This isnt supposed to happen? the fukk (int bonus) ";
-                }
+                }*/
             }
 
             else if (aosA.BonusStr > 0)
             {
-                switch (aosA.BonusStr)
+                if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Warrior큦 ";
+                else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Veteran큦 ";
+                else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Champion큦 ";
+                else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Hero큦 ";
+                else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Warlord큦 ";
+                else if (aosA.BonusStr > 15) return "King큦 ";
+                /*switch (aosA.BonusStr)
                 {
                     case 5:
                         return "Warrior큦 ";
@@ -1858,7 +1767,7 @@ namespace Server.Items
                         return "King큦 ";
                     default:
                         return " This isnt supposed to happen? the fukk (str bonus) ";
-                }
+                }*/
             }
             return "";
         }
