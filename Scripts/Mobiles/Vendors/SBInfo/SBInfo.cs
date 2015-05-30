@@ -6,17 +6,23 @@ namespace Server.Mobiles
 {
     public abstract class SBInfo
     {
-        protected readonly IShopSellInfo m_SellInfo = new InternalSellInfo();
+        protected readonly IShopSellInfo m_BaseSellInfo = new InternalBaseSellInfo();
         public SBInfo()
         {
         }
 
-        public abstract IShopSellInfo SellInfo { get; }
+        public virtual IShopSellInfo SellInfo
+        {
+            get
+            {
+                return m_BaseSellInfo;
+            }
+        }
         public abstract List<GenericBuyInfo> BuyInfo { get; }
 
-        public class InternalSellInfo : GenericSellInfo
+        public class InternalBaseSellInfo : GenericSellInfo
         {
-            public InternalSellInfo()
+            public InternalBaseSellInfo()
             {
                 this.Add(typeof(BlackPearl), 3);
                 this.Add(typeof(Bloodmoss), 3);

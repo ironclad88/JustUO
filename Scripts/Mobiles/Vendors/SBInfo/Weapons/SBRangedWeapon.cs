@@ -17,7 +17,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return this.m_SellInfo;
+                return base.SellInfo;
             }
         }
         public override List<GenericBuyInfo> BuyInfo

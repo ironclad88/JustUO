@@ -760,24 +760,25 @@ namespace Server.Mobiles
 
         public override int GetMaxResistance(ResistanceType type)
         {
-            if (IsStaff())
-            {
-                return int.MaxValue;
-            }
+            return base.GetMaxResistance(type);
+            //if (IsStaff())
+            //{
+            //    return int.MaxValue;
+            //}
 
-            int max = base.GetMaxResistance(type);
+            //int max = base.GetMaxResistance(type);
 
-            if (type != ResistanceType.Physical && 60 < max && CurseSpell.UnderEffect(this))
-            {
-                max = 60;
-            }
+            //if (type != ResistanceType.Physical && 60 < max && CurseSpell.UnderEffect(this))
+            //{
+            //    max = 60;
+            //}
 
-            if (Core.ML && Race == Race.Elf && type == ResistanceType.Energy)
-            {
-                max += 5; //Intended to go after the 60 max from curse
-            }
+            //if (Core.ML && Race == Race.Elf && type == ResistanceType.Energy)
+            //{
+            //    max += 5; //Intended to go after the 60 max from curse
+            //}
 
-            return max;
+            //return max;
         }
 
         protected override void OnRaceChange(Race oldRace)
