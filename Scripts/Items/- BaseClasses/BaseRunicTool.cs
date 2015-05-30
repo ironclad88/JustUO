@@ -772,7 +772,6 @@ namespace Server.Items
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(15);
-                Console.WriteLine("RANDOM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + random);
                 if (random == -1)
                     break;
 
@@ -821,7 +820,6 @@ namespace Server.Items
                         ApplyAttribute(secondary, min, max, AosArmorAttribute.DurabilityBonus, 10, 100, 10);
                         break;
                     case 14:
-                        Console.WriteLine("hello?");
                         switch (Utility.Random(8)) // hats now only gives one large resist type
                         {
                             case 0:
@@ -891,8 +889,8 @@ namespace Server.Items
             m_Props.Set(10, true); //luck
             m_Props.Set(8, true); //lower mana
             m_Props.Set(9, true); //lower regs
-            m_Props.Set(14, true); //resist
-            m_Props.Set(15, true); //resist
+            //m_Props.Set(14, true); //resist
+           // m_Props.Set(15, true); //stat
             m_Props.Set(16, true); //resist
             m_Props.Set(17, true); //resist
             m_Props.Set(18, true); //resist
@@ -1099,14 +1097,19 @@ namespace Server.Items
             m_Props.Set(1, true); //resist
             m_Props.Set(2, true); //resist
             m_Props.Set(3, true); //resist
-            m_Props.Set(4, true); //resist
+           // m_Props.Set(4, true); //stat
             m_Props.Set(11, true); //enhance pots
             m_Props.Set(8, true); //night sight
             m_Props.Set(9, true); //old dex
             m_Props.Set(10, true); //old int
+            m_Props.Set(12, true); //cast speed
+            m_Props.Set(13, true); //old int
             m_Props.Set(16, true); //luck
             m_Props.Set(14, true); //lower mana
             m_Props.Set(15, true); //lower regs
+            m_Props.Set(17, true); //SpellDamage
+            m_Props.Set(18, true); //night sight
+
             Console.WriteLine("Rolling Jewlery BEGIN");
             for (int i = 0; i < attributeCount; ++i)
             {
@@ -1809,7 +1812,7 @@ namespace Server.Items
                     case 25:
                         return "Acrobat´s ";
                     case 30:
-                        return "Escape´s ";
+                        return "Escape Artist´s ";
                     default:
                         return " This isnt supposed to happen? the fukk (dex bonus) ";
                 }
