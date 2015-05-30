@@ -222,7 +222,7 @@ namespace Server
 		{
 			new LootPackItem(typeof(BaseWeapon), 276), new LootPackItem(typeof(BaseRanged), 69),
 			new LootPackItem(typeof(BaseArmor), 397), new LootPackItem(typeof(BaseShield), 52),
-			new LootPackItem(typeof(BaseJewel), 207)
+			new LootPackItem(typeof(BaseJewel), 207), new LootPackItem(typeof(BaseClothing), 305)
 		};
 		#endregion
 

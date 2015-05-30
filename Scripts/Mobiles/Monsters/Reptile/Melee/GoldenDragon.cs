@@ -136,7 +136,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 6);
+            this.AddLoot(LootPack.UltraRich, 6);
         }
 
         public override int GetAttackSound()

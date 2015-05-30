@@ -258,28 +258,28 @@ namespace Server.Items
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
@@ -530,28 +530,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -610,35 +610,35 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
 
@@ -646,7 +646,7 @@ namespace Server.Items
         {
             get
             {
-                return 20;
+                return 0;
             }
         }
         public override int InitMaxHits
@@ -697,35 +697,35 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
 
@@ -790,28 +790,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -876,28 +876,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -962,28 +962,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1048,28 +1048,28 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
 
@@ -1134,28 +1134,28 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
 
@@ -1213,35 +1213,35 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 4;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 4;
+                return 0;
             }
         }
 
@@ -1305,35 +1305,35 @@ namespace Server.Items
         {
             get
             {
-                return 2;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 1;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 7;
+                return 0;
             }
         }
 
@@ -1397,14 +1397,14 @@ namespace Server.Items
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BaseColdResistance
@@ -1418,14 +1418,14 @@ namespace Server.Items
         {
             get
             {
-                return 4;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1489,7 +1489,7 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseFireResistance
@@ -1503,21 +1503,21 @@ namespace Server.Items
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1588,28 +1588,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1674,28 +1674,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1753,35 +1753,35 @@ namespace Server.Items
         {
             get
             {
-                return 1;
+                return 0;
             }
         }
         public override int BaseFireResistance
         {
             get
             {
-                return 1;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 7;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 7;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 8;
+                return 0;
             }
         }
 
@@ -1878,7 +1878,7 @@ namespace Server.Items
         {
             get
             {
-                return 3;
+                return 0;
             }
         }
         public override int BaseFireResistance
@@ -1892,21 +1892,21 @@ namespace Server.Items
         {
             get
             {
-                return 6;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 10;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -1990,28 +1990,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -2076,28 +2076,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -2192,28 +2192,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -2278,28 +2278,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -2364,28 +2364,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
@@ -2450,28 +2450,28 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseColdResistance
         {
             get
             {
-                return 9;
+                return 0;
             }
         }
         public override int BasePoisonResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
         public override int BaseEnergyResistance
         {
             get
             {
-                return 5;
+                return 0;
             }
         }
 
