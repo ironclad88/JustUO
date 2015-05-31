@@ -144,6 +144,7 @@
     <Compile Include="Commands\Generic\Implementors\SingleCommandImplementor.cs" />
     <Compile Include="Commands\GenTeleporter.cs" />
     <Compile Include="Commands\GMbody.cs" />
+    <Compile Include="Commands\guards.cs" />
     <Compile Include="Commands\Handlers.cs" />
     <Compile Include="Commands\HelpInfo.cs" />
     <Compile Include="Commands\Hungry.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Commands\Profiling.cs" />
     <Compile Include="Commands\Properties.cs" />
     <Compile Include="Commands\RunUOSpawnerExporter.cs" />
+    <Compile Include="Commands\SetSpec.cs" />
     <Compile Include="Commands\ShardTime.cs" />
     <Compile Include="Commands\Prots.cs" />
     <Compile Include="Commands\ShowClasse.cs" />

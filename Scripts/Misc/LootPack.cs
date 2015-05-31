@@ -208,14 +208,15 @@ namespace Server
 		{
 			new LootPackItem(typeof(BaseWeapon), 219), new LootPackItem(typeof(BaseRanged), 55),
 			new LootPackItem(typeof(BaseArmor), 315), new LootPackItem(typeof(BaseShield), 41),
-			new LootPackItem(typeof(BaseJewel), 164)
+			new LootPackItem(typeof(BaseJewel), 164), new LootPackItem(typeof(BaseHat), 120),
+            new LootPackItem(typeof(BaseClothing), 120)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsFilthyRichType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 239), new LootPackItem(typeof(BaseRanged), 60),
 			new LootPackItem(typeof(BaseArmor), 343), new LootPackItem(typeof(BaseShield), 90),
-			new LootPackItem(typeof(BaseJewel), 45)
+			new LootPackItem(typeof(BaseJewel), 45), new LootPackItem(typeof(BaseClothing), 90)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsUltraRich = new[]

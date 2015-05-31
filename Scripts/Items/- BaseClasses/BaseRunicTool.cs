@@ -876,7 +876,9 @@ namespace Server.Items
                 clothing.Unidentified = true;
                 clothing.IdHue = Utility.Random(3000) + 1; //any hue id, for now
             }
-
+            Console.WriteLine("ItemName: " + clothing.ItemData.Name);
+            Console.WriteLine("MIN: " + min);
+            Console.WriteLine("MAX: " + max);
             AosAttributes primary = clothing.Attributes;
             AosArmorAttributes secondary = clothing.ClothingAttributes;
             AosElementAttributes resists = clothing.Resistances;
@@ -1012,6 +1014,8 @@ namespace Server.Items
                 }
             }
             RenameItemToZuluStandard(clothing);
+            Console.WriteLine("ItemName RENAMED: " + clothing.Name);
+
         }
 
         public static void ApplyAttributesTo(BaseJewel jewelry, int attributeCount, int min, int max)
@@ -1035,7 +1039,9 @@ namespace Server.Items
             AosAttributes primary = jewelry.Attributes;
             AosElementAttributes resists = jewelry.Resistances;
             AosSkillBonuses skills = jewelry.SkillBonuses;
-
+            Console.WriteLine("ItemName: " + jewelry.ItemData.Name);
+            Console.WriteLine("MIN: " + min);
+            Console.WriteLine("MAX: " + max);
             if (Utility.Random(2) == 1)
             {
                 ApplySkillBonus(skills, min, max, 0, 1, 6);
@@ -1551,7 +1557,7 @@ namespace Server.Items
                 prefixSkill = GetSkillPrefix(hat.SkillBonuses);
                 hat.Name = prefixSkill + hat.ItemData.Name + suffixProt;
             }
-            Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!! Renaming DONE Item: " + hat.Name);
+            if(debug)Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!! Renaming DONE Item: " + hat.Name);
         }
 
         private static void RenameItemToZuluStandard(BaseJewel jewel) // maybe change name to RenameJewelToZuluStandard (do this for every itemtype)
@@ -1785,8 +1791,6 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Naturalist's ";
                 case SkillName.AnimalTaming:
                     return GetSkillValueSuffix(skillVal) + "Druid's ";
-                case SkillName.Archery: // unsure about this one  // custom
-                    return GetArcherySkillValue(skillVal);
                 case SkillName.ArmsLore: 
                     return GetSkillValueSuffix(skillVal) + "Arms Dealer's ";
                 case SkillName.Begging: 
@@ -1807,8 +1811,6 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Commander's ";
                 case SkillName.EvalInt: 
                     return GetSkillValueSuffix(skillVal) + "Scholar's ";
-                case SkillName.Fencing: // custom
-                    return GetWeaponSkillValue(skillVal);
                 case SkillName.Fishing:
                     return GetSkillValueSuffix(skillVal) + "Fisherman's ";
                 case SkillName.Fletching:
@@ -1819,8 +1821,6 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Healer's ";
                 case SkillName.Herding:
                     return GetSkillValueSuffix(skillVal) + "Shepherd's ";
-                case SkillName.Hiding:  // custom
-                    return GetHidingSkillValue(skillVal);
                 case SkillName.Inscribe:
                     return GetSkillValueSuffix(skillVal) + "Scribe's ";
                 case SkillName.ItemID:
@@ -1829,12 +1829,6 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Locksmith's ";
                 case SkillName.Lumberjacking:
                     return GetSkillValueSuffix(skillVal) + "Lumberjack's ";
-                case SkillName.Macing: // custom
-                    return GetWeaponSkillValue(skillVal); // is also used for fencing
-                case SkillName.Magery:
-                    return GetSkillValueSuffix(skillVal) + "Mage's ";
-                case SkillName.MagicResist: // custom
-                    return GetMagicResistSkillValue(skillVal);
                 case SkillName.Meditation:
                     return GetSkillValueSuffix(skillVal) + "Stoic's ";
                 case SkillName.Mining:
@@ -1859,10 +1853,6 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Thief's ";
                 case SkillName.Stealth:
                     return GetSkillValueSuffix(skillVal) + "Spy's ";
-                case SkillName.Swords: // custom
-                    return GetWeaponSkillValue(skillVal);
-                case SkillName.Tactics: // custom
-                    return GetTacticsSkillValue(skillVal);
                 case SkillName.Tailoring:
                     return GetSkillValueSuffix(skillVal) + "Tailor's ";
                 case SkillName.TasteID:
@@ -1873,10 +1863,26 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Ranger's ";
                 case SkillName.Veterinary:
                     return GetSkillValueSuffix(skillVal) + "Veterinarian's ";
-                case SkillName.Wrestling: // custom
+                case SkillName.Magery:
+                    return GetSkillValueSuffix(skillVal) + "Mage's ";
+                    /* Skills that require function to rename */
+                case SkillName.Wrestling: 
                     return GetWeaponSkillValue(skillVal);
-
-
+                case SkillName.Archery:
+                    return GetArcherySkillValue(skillVal);
+                case SkillName.Swords: 
+                    return GetWeaponSkillValue(skillVal);
+                case SkillName.Tactics:
+                    return GetTacticsSkillValue(skillVal);
+                case SkillName.Macing:
+                    return GetWeaponSkillValue(skillVal); 
+                case SkillName.MagicResist: 
+                    return GetMagicResistSkillValue(skillVal);
+                case SkillName.Fencing: 
+                    return GetWeaponSkillValue(skillVal);
+                case SkillName.Hiding:  
+                    return GetHidingSkillValue(skillVal);
+                    /* End of custom naming skills */
             }
 
             return "";
@@ -1903,8 +1909,8 @@ namespace Server.Items
                     return "Master ";
                 case 6:
                     return "Grandmaster ";
-                case 7: // not used 
-                    return "Legendary ";
+                case 7:
+                    return "Legendary "; // not used 
                 default:
                     return "Grandmaster";
             }
