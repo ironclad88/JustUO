@@ -758,6 +758,9 @@ namespace Server
         private LootType m_LootType;
         private DateTime m_LastMovedTime;
         private bool m_Unidentified;
+        private string m_IdPrefix = "";
+        private string m_IdSuffix = "";
+        private int m_IdHue;
         private Direction m_Direction;
         #endregion
 
@@ -2540,7 +2543,12 @@ namespace Server
 
         public virtual void Serialize(GenericWriter writer)
         {
-            writer.Write(10); // version
+            writer.Write(12); // version
+
+            writer.Write(m_IdHue);
+
+            writer.Write(m_IdPrefix);
+            writer.Write(m_IdSuffix);
 
             writer.Write(m_QualityScalar);
 
@@ -3020,6 +3028,13 @@ namespace Server
 
             switch (version)
             {
+                case 12:
+                    m_IdHue = reader.ReadInt();
+                    goto case 11;
+                case 11:
+                    m_IdPrefix = reader.ReadString();
+                    m_IdSuffix = reader.ReadString();
+                    goto case 10;
                 case 10:
                     m_QualityScalar = reader.ReadDouble();
                     goto case 9;
@@ -4721,6 +4736,71 @@ namespace Server
                     return;
                 }
                 m_Unidentified = value;
+                if (value == false)
+                {
+                    if (m_Hue == 0) Hue = m_IdHue; // only color uncolored items
+                    Name = m_IdPrefix + ItemData.Name + m_IdSuffix;
+                }
+                else
+                {
+                    //this item has just explicitly been set to Unidentified, add magic prefix
+                    if (m_Hue == m_IdHue) m_Hue = 0; // only uncolor items that have a magic color
+                    Name = "magic " + ItemData.Name;
+                }
+
+                InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public virtual string IdPrefix
+        {
+            get { return m_IdPrefix; }
+            set
+            {
+                if (m_IdPrefix == value)
+                {
+                    return;
+                }
+                if (value != null)
+                {
+                    m_IdPrefix = value;
+                    InvalidateProperties();
+                }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public virtual string IdSuffix
+        {
+            get { return m_IdSuffix; }
+            set
+            {
+                if (m_IdSuffix == value)
+                {
+                    return;
+                }
+                if (value != null)
+                {
+                    m_IdSuffix = value;
+                    InvalidateProperties();
+                }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int IdHue
+        {
+            get { return m_IdHue; }
+            set
+            {
+                if (m_IdHue == value)
+                {
+                    return;
+                }
+
+                m_IdHue = value;
+                Unidentified = true;
                 InvalidateProperties();
             }
         }

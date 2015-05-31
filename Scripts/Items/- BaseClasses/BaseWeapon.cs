@@ -89,7 +89,7 @@ namespace Server.Items
         private Poison m_Poison;
         private int m_PoisonCharges;
         //private bool m_Identified;
-        private int m_IdHue;
+        //private int m_IdHue;
         private int m_Hits;
         private int m_MaxHits;
         private SlayerName m_Slayer;
@@ -282,22 +282,22 @@ namespace Server.Items
         //    }
         //}
 
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int IdHue
-        {
-            get { return m_IdHue; }
-            set
-            {
-                if (m_IdHue == value)
-                {
-                    return;
-                }
+        //[CommandProperty(AccessLevel.GameMaster)]
+        //public int IdHue
+        //{
+        //    get { return m_IdHue; }
+        //    set
+        //    {
+        //        if (m_IdHue == value)
+        //        {
+        //            return;
+        //        }
 
-                m_IdHue = value;
-                Unidentified = true;
-                InvalidateProperties();
-            }
-        }
+        //        m_IdHue = value;
+        //        Unidentified = true;
+        //        InvalidateProperties();
+        //    }
+        //}
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int HitPoints
@@ -3407,10 +3407,10 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(12); // version
+            writer.Write(13); // version
 
             // Version 12
-            writer.Write(m_IdHue);
+            // writer.Write(m_IdHue); // Removed in version 13!
 
             // Version 11
             writer.Write(m_TimesImbued);
@@ -3734,9 +3734,11 @@ namespace Server.Items
 
             switch (version)
             {
+                case 13:
+                    goto case 11; // skip 12 here because idHue has been moved to Item.cs
                 case 12:
                     {
-                        m_IdHue = reader.ReadInt();
+                        reader.ReadInt(); // Don't assign, just read
                         goto case 11;
                     }
                 case 11:
@@ -4357,28 +4359,6 @@ namespace Server.Items
             set
             {
                 base.Hue = value;
-                InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public override bool Unidentified
-        {
-            get { return base.Unidentified; }
-            set
-            {
-                if(value == base.Unidentified)
-                {
-                    return;
-                }
-                if(value == true)
-                {
-                    Hue = 0;
-                }
-                else{
-                    Hue = IdHue;
-                }
-                base.Unidentified = value;
                 InvalidateProperties();
             }
         }

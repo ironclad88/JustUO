@@ -159,63 +159,63 @@ namespace Server
 		{
 			new LootPackItem(typeof(BaseWeapon), 3), new LootPackItem(typeof(BaseRanged), 1),
 			new LootPackItem(typeof(BaseArmor), 4), new LootPackItem(typeof(BaseShield), 1),
-			new LootPackItem(typeof(BaseJewel), 2)
+			new LootPackItem(typeof(BaseJewel), 2), new LootPackItem(typeof(BaseClothing), 2)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsMeagerType1 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 56), new LootPackItem(typeof(BaseRanged), 14),
 			new LootPackItem(typeof(BaseArmor), 81), new LootPackItem(typeof(BaseShield), 11),
-			new LootPackItem(typeof(BaseJewel), 42)
+			new LootPackItem(typeof(BaseJewel), 42), new LootPackItem(typeof(BaseClothing), 50)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsMeagerType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 28), new LootPackItem(typeof(BaseRanged), 7),
 			new LootPackItem(typeof(BaseArmor), 40), new LootPackItem(typeof(BaseShield), 5),
-			new LootPackItem(typeof(BaseJewel), 21)
+			new LootPackItem(typeof(BaseJewel), 21), new LootPackItem(typeof(BaseClothing), 30)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsAverageType1 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 90), new LootPackItem(typeof(BaseRanged), 23),
 			new LootPackItem(typeof(BaseArmor), 130), new LootPackItem(typeof(BaseShield), 17),
-			new LootPackItem(typeof(BaseJewel), 68)
+			new LootPackItem(typeof(BaseJewel), 68), new LootPackItem(typeof(BaseClothing), 80)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsAverageType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 54), new LootPackItem(typeof(BaseRanged), 13),
 			new LootPackItem(typeof(BaseArmor), 77), new LootPackItem(typeof(BaseShield), 10),
-			new LootPackItem(typeof(BaseJewel), 40)
+			new LootPackItem(typeof(BaseJewel), 40), new LootPackItem(typeof(BaseClothing), 50)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsRichType1 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 211), new LootPackItem(typeof(BaseRanged), 53),
 			new LootPackItem(typeof(BaseArmor), 303), new LootPackItem(typeof(BaseShield), 39),
-			new LootPackItem(typeof(BaseJewel), 158)
+			new LootPackItem(typeof(BaseJewel), 158), new LootPackItem(typeof(BaseClothing), 170)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsRichType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 170), new LootPackItem(typeof(BaseRanged), 43),
 			new LootPackItem(typeof(BaseArmor), 245), new LootPackItem(typeof(BaseShield), 32),
-			new LootPackItem(typeof(BaseJewel), 128)
+			new LootPackItem(typeof(BaseJewel), 128), new LootPackItem(typeof(BaseClothing), 150)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsFilthyRichType1 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 219), new LootPackItem(typeof(BaseRanged), 55),
 			new LootPackItem(typeof(BaseArmor), 315), new LootPackItem(typeof(BaseShield), 41),
-			new LootPackItem(typeof(BaseJewel), 164)
+			new LootPackItem(typeof(BaseJewel), 164), new LootPackItem(typeof(BaseClothing), 180)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsFilthyRichType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 239), new LootPackItem(typeof(BaseRanged), 60),
 			new LootPackItem(typeof(BaseArmor), 343), new LootPackItem(typeof(BaseShield), 90),
-			new LootPackItem(typeof(BaseJewel), 45)
+			new LootPackItem(typeof(BaseJewel), 45), new LootPackItem(typeof(BaseClothing), 100)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsUltraRich = new[]
@@ -677,27 +677,27 @@ namespace Server
 		{
 			if (item != null)
 			{
-				if (item is BaseWeapon && 1 > Utility.Random(100))
-				{
-					item.Delete();
-					item = new FireHorn();
-					return item;
-				}
+                //if (item is BaseWeapon && 1 > Utility.Random(100))
+                //{
+                //    item.Delete();
+                //    item = new FireHorn();
+                //    return item;
+                //}
 
-				if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseHat)
+				if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseClothing)
 				{
 					if (Core.AOS)
 					{
-						int bonusProps = GetBonusProperties();
+                        int bonusProps = GetBonusProperties();
 						int min = m_MinIntensity;
 						int max = m_MaxIntensity;
 
-						if (bonusProps < m_MaxProps && LootPack.CheckLuck(luckChance))
-						{
-							++bonusProps;
-						}
+                        //if (bonusProps < m_MaxProps && LootPack.CheckLuck(luckChance))
+                        //{
+                        //    ++bonusProps;
+                        //}
 
-						int props = 1 + bonusProps;
+                        int props = 1 + bonusProps;
 
 						// Make sure we're not spawning items with 6 properties.
 						if (props > m_MaxProps)
@@ -717,9 +717,9 @@ namespace Server
 						{
 							BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
-						else if (item is BaseHat)
+						else if (item is BaseClothing)
 						{
-							BaseRunicTool.ApplyAttributesTo((BaseHat)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                            BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 					}
 					else // not aos

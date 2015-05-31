@@ -425,7 +425,7 @@ namespace Server.Engines.Harvest
 
             if (!from.Mounted)
                 from.Animate(Utility.RandomList(def.EffectActions), 5, 1, true, false, 0);
-            else if (def.EffectActions[0] == 11 ) //mining effect
+            else if (def.EffectActions[0] == 11 || def.EffectActions[0] == 13) //mining or lumberjacking effect
             {
               int[] effect = new int[] { 26 };
               from.Animate(Utility.RandomList(effect), 5, 1, true, false, 0);

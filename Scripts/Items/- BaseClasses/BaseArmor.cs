@@ -62,7 +62,7 @@ namespace Server.Items
         private CraftResource m_Resource;
         private bool m_PlayerConstructed;
         //private bool m_Identified;
-        private int m_IdHue;
+        //private int m_IdHue;
         private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus;
         private int m_TimesImbued;
 
@@ -522,23 +522,6 @@ namespace Server.Items
         //    }
         //}
 
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int IdHue
-        {
-            get { return m_IdHue; }
-            set
-            {
-                if (m_IdHue == value)
-                {
-                    return;
-                }
-
-                m_IdHue = value;
-                Unidentified = true;
-
-                InvalidateProperties();
-            }
-        }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public bool PlayerConstructed
@@ -1471,7 +1454,7 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write((int)12); // version
+            writer.Write((int)13); // version
 
             // Version 12
             writer.Write(this.m_ExceQualityScalar);
@@ -1488,7 +1471,7 @@ namespace Server.Items
             writer.Write(this.m_HolyBonus);
 
             // Version 9
-            writer.Write(m_IdHue);
+            //writer.Write(m_IdHue); // Removed in version 13!
 
             // Version 8
             writer.Write((int)this.m_TimesImbued);
@@ -1656,6 +1639,9 @@ namespace Server.Items
             int version = reader.ReadInt();
             switch (version)
             {
+                case 13:
+                    // m_IdHue was removed in this version
+                    goto case 12;
                 case 12:
                     m_ExceQualityScalar = reader.ReadDouble();
                     goto case 11;
@@ -1672,7 +1658,7 @@ namespace Server.Items
                     goto case 9;
                 case 9:
                     {
-                        m_IdHue = reader.ReadInt();
+                        if(version < 13) reader.ReadInt(); // only read (m_IdHue), don't assign..
                         goto case 8;
                     }
                 case 8:
@@ -2337,29 +2323,6 @@ namespace Server.Items
             {
                 base.Hue = value;
                 this.InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public override bool Unidentified
-        {
-            get { return base.Unidentified; }
-            set
-            {
-                if (value == base.Unidentified)
-                {
-                    return;
-                }
-                if (value == true)
-                {
-                    Hue = 0;
-                }
-                else
-                {
-                    Hue = IdHue;
-                }
-                base.Unidentified = value;
-                InvalidateProperties();
             }
         }
 

@@ -897,7 +897,7 @@ namespace Server.Items
             m_Props.Set(10, true); //luck
             m_Props.Set(8, true); //lower mana
             m_Props.Set(9, true); //lower regs
-            //m_Props.Set(14, true); //resist
+            m_Props.Set(14, true); //resist
            // m_Props.Set(15, true); //stat
             m_Props.Set(16, true); //resist
             m_Props.Set(17, true); //resist
@@ -1047,7 +1047,7 @@ namespace Server.Items
             m_Props.Set(1, true); //resist
             m_Props.Set(2, true); //resist
             m_Props.Set(3, true); //resist
-           // m_Props.Set(4, true); //stat
+            m_Props.Set(4, true); //stat
             m_Props.Set(11, true); //enhance pots
             m_Props.Set(8, true); //night sight
             m_Props.Set(9, true); //old dex
@@ -1513,66 +1513,33 @@ namespace Server.Items
             return (totalDamage - random);
         }
 
-        private static void RenameItemToZuluStandard(BaseClothing clothing) // maybe change name to RenameJewelToZuluStandard (do this for every itemtype)
+        private static void RenameItemToZuluStandard(Item item)
         {
-            if(debug)Console.WriteLine("Starting to rename item! Item: " + clothing.ItemData.Name);
+            if (debug) Console.WriteLine("Starting to rename item! Item: " + item.ItemData.Name);
 
-            string prefixStat = GetStatPrefix(clothing.Attributes);
-            string prefixSkill = "";
-            string suffixProt = GetProtectionSuffix(clothing);
+            string newPrefix = "";
+            string newSuffix = "";
 
-            if (prefixStat != "")
+            if (item is BaseJewel)
             {
-                clothing.Name = prefixStat + clothing.ItemData.Name + suffixProt;
+                newPrefix += GetStatPrefix((item as BaseJewel).Attributes);
+                newPrefix += GetSkillPrefix((item as BaseJewel).SkillBonuses);
             }
-            else
+            else if(item is BaseClothing)
             {
-                prefixSkill = GetSkillPrefix(clothing.SkillBonuses);
-                clothing.Name = prefixSkill + clothing.ItemData.Name + suffixProt;
+                newPrefix += GetStatPrefix((item as BaseClothing).Attributes);
+                newPrefix += GetSkillPrefix((item as BaseClothing).SkillBonuses);
             }
-            if (debug) Console.WriteLine("Renaming DONE Item: " + clothing.Name);
+            
+            // Since 
+            newSuffix += GetProtectionSuffix(item);
+
+
+            item.IdPrefix = newPrefix;
+            item.IdSuffix = newSuffix;
+            if (debug) Console.WriteLine("Renaming DONE Item: " + item.Name);
         }
-
         
-        private static void RenameItemToZuluStandard(BaseHat hat) // maybe change name to RenameJewelToZuluStandard (do this for every itemtype)
-        {
-            if (debug) Console.WriteLine("Starting to rename item! Item: " + hat.ItemData.Name);
-
-            string prefixStat = GetStatPrefix(hat.Attributes);
-            string prefixSkill = "";
-            string suffixProt = GetProtectionSuffix(hat);
-
-            if (prefixStat != "")
-            {
-                hat.Name = prefixStat + hat.ItemData.Name + suffixProt;
-            }
-            else
-            {
-                prefixSkill = GetSkillPrefix(hat.SkillBonuses);
-                hat.Name = prefixSkill + hat.ItemData.Name + suffixProt;
-            }
-            Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!! Renaming DONE Item: " + hat.Name);
-        }
-
-        private static void RenameItemToZuluStandard(BaseJewel jewel) // maybe change name to RenameJewelToZuluStandard (do this for every itemtype)
-        {
-            if (debug) Console.WriteLine("Starting to rename item! Item: " + jewel.ItemData.Name);
-
-            string prefixStat = GetStatPrefix(jewel.Attributes);
-            string prefixSkill = "";
-            string suffixProt = GetProtectionSuffix(jewel);
-
-            if (prefixStat != "")
-            {
-                jewel.Name = prefixStat + jewel.ItemData.Name + suffixProt;
-            }
-            else
-            {
-                prefixSkill = GetSkillPrefix(jewel.SkillBonuses);
-                jewel.Name = prefixSkill + jewel.ItemData.Name + suffixProt;
-            }
-            if (debug) Console.WriteLine("Renaming DONE Item: " + jewel.Name);
-        }
 
         private static string GetSkillPrefix(AosSkillBonuses AosS){
             if (AosS.Skill_1_Value != 0)
@@ -1600,89 +1567,104 @@ namespace Server.Items
 
         private static string GetProtectionSuffix(Item aosE)
         {
-            if (aosE.FireResistance > 0) // not done yet.
+            const int lv2_limit = 17;
+            const int lv3_limit = 33;
+            const int lv4_limit = 50;
+            const int lv5_limit = 65;
+            const int lv6_limit = 85;
+
+            int curr_resist = aosE.FireResistance;
+            if (curr_resist > 0) 
             {
-                if (aosE.FireResistance > 0 && aosE.FireResistance <= 17) return " of Elemental Fire Bane";
-                else if (aosE.FireResistance >= 17 && aosE.FireResistance <= 33) return " of Elemental Fire Warding";
-                else if (aosE.FireResistance >= 33 && aosE.FireResistance <= 49) return " of Elemental Fire Protection";
-                else if (aosE.FireResistance >= 49 && aosE.FireResistance <= 65) return " of Elemental Fire Immunity";
-                else if (aosE.FireResistance >= 65 && aosE.FireResistance <= 81) return " of Elemental Fire Attunement";
-                else if (aosE.FireResistance >= 81) return " of Elemental Fire Absorbsion";
+                if ( curr_resist <= lv2_limit) return " of Elemental Fire Bane";
+                else if (curr_resist < lv3_limit) return " of Elemental Fire Warding";
+                else if (curr_resist < lv4_limit) return " of Elemental Fire Protection";
+                else if (curr_resist < lv5_limit) return " of Elemental Fire Immunity";
+                else if (curr_resist < lv6_limit) return " of Elemental Fire Attunement";
+                else return " of Elemental Fire Absorbsion";
             }
 
-            if (aosE.PhysicalResistance > 0) // not done yet.
+            curr_resist = aosE.EarthResistance;
+            if (curr_resist > 0) 
             {
-                if (aosE.PhysicalResistance > 0 && aosE.PhysicalResistance <= 17) return " of Protection";
-                else  if (aosE.PhysicalResistance >= 17 && aosE.PhysicalResistance <= 33) return " of Stoneskin";
-                else  if (aosE.PhysicalResistance >= 33 && aosE.PhysicalResistance <= 49) return " of Unmovable Stone";
-                else if (aosE.PhysicalResistance >= 49 && aosE.PhysicalResistance <= 65) return " of Adamantine Shielding";
-                else if (aosE.PhysicalResistance >= 65 && aosE.PhysicalResistance <= 81) return " of Mystical Cloaks";
-                else if (aosE.PhysicalResistance >= 81) return " of Holy Auras";
-                aosE.Hue = 1160; // dont work, probably have something to do with item id (unidentified item)
+                if ( curr_resist <= lv2_limit) return " of Elemental Earth Bane";
+                else if (curr_resist < lv3_limit) return " of Elemental Earth Warding";
+                else if (curr_resist < lv4_limit) return " of Elemental Earth Protection";
+                else if (curr_resist < lv5_limit) return " of Elemental Earth Immunity";
+                else if (curr_resist < lv6_limit) return " of Elemental Earth Attunement";
+                else return " of Elemental Earth Absorbsion";
             }
 
-            if (aosE.NecroResistance > 0) // not done yet.
+            curr_resist = aosE.ColdResistance;
+            if (curr_resist > 0) 
             {
-                if (aosE.NecroResistance > 0 && aosE.NecroResistance <= 17) return " of Mystic Barrier";
-                else if (aosE.NecroResistance >= 17 && aosE.NecroResistance <= 33) return " of Divine Shielding";
-                else if (aosE.NecroResistance >= 33 && aosE.NecroResistance <= 49) return " of Heavenly Sanctuary";
-                else if (aosE.NecroResistance >= 49 && aosE.NecroResistance <= 65) return " of Angelic Protection";
-                else if (aosE.NecroResistance >= 65 && aosE.NecroResistance <= 81) return " of Arch-Angel's Guidance";
-                else if (aosE.NecroResistance >= 81) return " of Seraphim's Warding";
-                aosE.Hue = 1170; // dont work, probably have something to do with item id (unidentified item)
+                if ( curr_resist <= lv2_limit) return " of Elemental Water Bane";
+                else if (curr_resist < lv3_limit) return " of Elemental Water Warding";
+                else if (curr_resist < lv4_limit) return " of Elemental Water Protection";
+                else if (curr_resist < lv5_limit) return " of Elemental Water Immunity";
+                else if (curr_resist < lv6_limit) return " of Elemental Water Attunement";
+                else return " of Elemental Water Absorbsion";
             }
 
-            if (aosE.HolyResistance > 0) // not done yet.
+            curr_resist = aosE.EnergyResistance;
+            if (curr_resist > 0) 
             {
-                if (aosE.HolyResistance > 0 && aosE.HolyResistance <= 17) return " of Dark Barriers";
-                else if (aosE.HolyResistance >= 17 && aosE.HolyResistance <= 33) return " of Infernal Shielding";
-                else if (aosE.HolyResistance >= 33 && aosE.HolyResistance <= 49) return " of Hellish Sanctuary";
-                else if (aosE.HolyResistance >= 49 && aosE.HolyResistance <= 65) return " of Daemonic Protection";
-                else if (aosE.HolyResistance >= 65 && aosE.HolyResistance <= 81) return " of Arch-Fiend's Guidance";
-                else if (aosE.HolyResistance >= 81) return " of Seraphim's Warding";
-                aosE.Hue = 1172; // dont work, probably have something to do with item id (unidentified item)
+                if ( curr_resist <= lv2_limit) return " of Elemental Air Bane";
+                else if (curr_resist < lv3_limit) return " of Elemental Air Warding";
+                else if (curr_resist < lv4_limit) return " of Elemental Air Protection";
+                else if (curr_resist < lv5_limit) return " of Elemental Air Immunity";
+                else if (curr_resist < lv6_limit) return " of Elemental Air Attunement";
+                else return " of Elemental Air Absorbsion";
             }
 
-            if (aosE.ColdResistance > 0) // not done yet.
+            curr_resist = aosE.PhysicalResistance;
+            if (curr_resist > 0)
             {
-                if (aosE.ColdResistance > 0 && aosE.ColdResistance <= 17) return " of Elemental Water Bane";
-                else if (aosE.ColdResistance >= 17 && aosE.ColdResistance <= 33) return " of Elemental Water Warding";
-                else if (aosE.ColdResistance >= 33 && aosE.ColdResistance <= 49) return " of Elemental Water Protection";
-                else if (aosE.ColdResistance >= 49 && aosE.ColdResistance <= 65) return " of Elemental Water Immunity";
-                else if (aosE.ColdResistance >= 65 && aosE.ColdResistance <= 81) return " of Elemental Water Attunement";
-                else if (aosE.ColdResistance >= 81) return " of Elemental Water Absorbsion";
+                aosE.IdHue = 1160;
+                if (curr_resist <= lv2_limit) return " of Protection";
+                else if (curr_resist < lv3_limit) return " of Stoneskin";
+                else if (curr_resist < lv4_limit) return " of Unmovable Stone";
+                else if (curr_resist < lv5_limit) return " of Adamantine Shielding";
+                else if (curr_resist < lv6_limit) return " of Mystical Cloaks";
+                else return " of Holy Auras";
             }
 
-            if (aosE.EarthResistance > 0) // not done yet.
+            curr_resist = aosE.NecroResistance;
+            if (curr_resist > 0)
             {
-                if (aosE.EarthResistance > 0 && aosE.EarthResistance <= 17) return " of Elemental Earth Bane";
-                else if (aosE.EarthResistance >= 17 && aosE.EarthResistance <= 33) return " of Elemental Earth Warding";
-                else if (aosE.EarthResistance >= 33 && aosE.EarthResistance <= 49) return " of Elemental Earth Protection";
-                else if (aosE.EarthResistance >= 49 && aosE.EarthResistance <= 65) return " of Elemental Earth Immunity";
-                else if (aosE.EarthResistance >= 65 && aosE.EarthResistance <= 81) return " of Elemental Earth Attunement";
-                else if (aosE.EarthResistance >= 81) return " of Elemental Earth Absorbsion";
+                aosE.IdHue = 1170;
+                if ( curr_resist <= lv2_limit) return " of Mystic Barrier";
+                else if (curr_resist < lv3_limit) return " of Divine Shielding";
+                else if (curr_resist < lv4_limit) return " of Heavenly Sanctuary";
+                else if (curr_resist < lv5_limit) return " of Angelic Protection";
+                else if (curr_resist < lv6_limit) return " of Arch-Angel's Guidance";
+                else return " of Seraphim's Warding";
             }
 
-            if (aosE.PoisonResistance > 0) // not done yet.
+            curr_resist = aosE.HolyResistance;
+            if (curr_resist > 0) // not done yet.
             {
-                if (aosE.PoisonResistance > 0 && aosE.PoisonResistance <= 17) return " of Lesser Poison Protection";
-                else if (aosE.PoisonResistance >= 17 && aosE.PoisonResistance <= 33) return " of Medium Poison Protection";
-                else if (aosE.PoisonResistance >= 33 && aosE.PoisonResistance <= 49) return " of Greater Poison Protection";
-                else if (aosE.PoisonResistance >= 49 && aosE.PoisonResistance <= 65) return " of Deadly Poison Protection";
-                else if (aosE.PoisonResistance >= 65 && aosE.PoisonResistance <= 81) return " of the Snake Handler";
-                else if (aosE.PoisonResistance >= 81) return " of Poison Absorbsion";
-                aosE.Hue = 783; // dont work, probably have something to do with item id (unidentified item)
+                aosE.IdHue = 1172;
+                if (curr_resist <= lv2_limit) return " of Dark Barriers";
+                else if (curr_resist < lv3_limit)  return " of Infernal Shielding";
+                else if (curr_resist < lv4_limit) return " of Hellish Sanctuary";
+                else if (curr_resist < lv5_limit) return " of Daemonic Protection";
+                else if (curr_resist < lv6_limit) return " of Arch-Fiend's Guidance";
+                else return " of Seraphim's Warding";
             }
 
-            if (aosE.EnergyResistance > 0) // not done yet.
+            curr_resist = aosE.PoisonResistance;
+            if (curr_resist > 0) // not done yet.
             {
-                if (aosE.EnergyResistance > 0 && aosE.EnergyResistance <= 17) return " of Elemental Air Bane";
-                else if (aosE.EnergyResistance >= 17 && aosE.EnergyResistance <= 33) return " of Elemental Air Warding";
-                else if (aosE.EnergyResistance >= 33 && aosE.EnergyResistance <= 49) return " of Elemental Air Protection";
-                else if (aosE.EnergyResistance >= 49 && aosE.EnergyResistance <= 65) return " of Elemental Air Immunity";
-                else if (aosE.EnergyResistance >= 65 && aosE.EnergyResistance <= 81) return " of Elemental Air Attunement";
-                else if (aosE.EnergyResistance >= 81) return " of Elemental Air Absorbsion";
+                aosE.IdHue = 783;
+                if (curr_resist <= lv2_limit) return " of Lesser Poison Protection";
+                else if (curr_resist < lv3_limit) return " of Medium Poison Protection";
+                else if (curr_resist < lv4_limit) return " of Greater Poison Protection";
+                else if (curr_resist < lv5_limit) return " of Deadly Poison Protection";
+                else if (curr_resist < lv6_limit) return " of the Snake Handler";
+                else return " of Poison Absorbsion";
             }
+
             return "";
         }
 

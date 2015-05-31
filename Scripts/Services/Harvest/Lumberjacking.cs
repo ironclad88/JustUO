@@ -65,8 +65,9 @@ namespace Server.Engines.Harvest
             // The chopping effect
             lumber.EffectActions = new int[] { 13 };
             lumber.EffectSounds = new int[] { 0x13E };
-            lumber.EffectCounts = (Core.AOS ? new int[] { 1 } : new int[] { 1, 2, 2, 2, 3 });
-            lumber.EffectDelay = TimeSpan.FromSeconds(1.6);
+            //lumber.EffectCounts = (Core.AOS ? new int[] { 1 } : new int[] { 1, 2, 2, 2, 3 });
+            lumber.EffectCounts = new int[] { 5 }; // same as mining
+            lumber.EffectDelay = TimeSpan.FromSeconds(1.1);
             lumber.EffectSoundDelay = TimeSpan.FromSeconds(0.9);
 
             lumber.NoResourcesMessage = 500493; // There's not enough wood here to harvest.

@@ -59,7 +59,7 @@ namespace Server.Items
         private bool m_PlayerConstructed;
         protected CraftResource m_Resource;
         private int m_StrReq = -1;
-        private int m_IdHue;
+        //private int m_IdHue;
 
         private AosAttributes m_AosAttributes;
         private AosArmorAttributes m_AosClothingAttributes;
@@ -132,47 +132,6 @@ namespace Server.Items
             {
                 this.m_StrReq = value;
                 this.InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int IdHue
-        {
-            get { return m_IdHue; }
-            set
-            {
-                if (m_IdHue == value)
-                {
-                    return;
-                }
-
-                m_IdHue = value;
-                Unidentified = true;
-
-                InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public override bool Unidentified
-        {
-            get { return base.Unidentified; }
-            set
-            {
-                if(value == base.Unidentified)
-                {
-                    return;
-                }
-                if (value == true)
-                {
-                    Hue = 0;
-                }
-                else
-                {
-                    Hue = IdHue;
-                }
-                base.Unidentified = value;
-                InvalidateProperties();
             }
         }
 
@@ -1259,10 +1218,10 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(7); // version
+            writer.Write(8); // version
 
             // Version 7
-            writer.Write(m_IdHue);
+            //writer.Write(m_IdHue); //removed in Version 8!
 
             // Version 6
             writer.Write((int)this.m_TimesImbued); // Imbuing
@@ -1378,9 +1337,11 @@ namespace Server.Items
 
             switch (version)
             {
+                case 8:
+                    goto case 6; // Skip 7 because m_IdHue has been moved to Item.cs
                 case 7:
                     {
-                        m_IdHue = reader.ReadInt();
+                        reader.ReadInt(); // Don't assign, just read
                         goto case 6;
                     }
                 case 6:
