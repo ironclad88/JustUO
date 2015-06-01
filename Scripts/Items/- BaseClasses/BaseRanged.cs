@@ -133,6 +133,10 @@ namespace Server.Items
 
 				if (bonus > 0 && m_Velocity > Utility.Random(100))
 				{
+                    if (attacker.SpecClasse == SpecClasse.Ranger)
+                    {
+                        damageBonus += attacker.SpecBonus(SpecClasse.Ranger); // not tested yet Date: 1/6-15
+                    }
 					AOS.Damage(defender, attacker, bonus * 3, 100, 0, 0, 0, 0);
 
 					if (attacker.Player)

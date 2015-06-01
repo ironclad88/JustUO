@@ -49,6 +49,7 @@ namespace Server.SkillHandlers
 
             m_Table.Remove(tracker);	//Reset as of Pub 40, counting it as bug for Core.SE.
 
+
             if (Core.ML)
                 return Math.Min(bonus, 10 + tracker.Skills.Tracking.Value / 10);
 
@@ -186,9 +187,13 @@ namespace Server.SkillHandlers
 
             TrackTypeDelegate check = m_Delegates[type];
 
-            from.CheckSkill(SkillName.Tracking, 21.1, 100.0); // Passive gain
+            from.CheckSkill(SkillName.Tracking, 21.1, 100.0); // Passive gain           // hmmmm?
 
             int range = 10 + (int)(from.Skills[SkillName.Tracking].Value / 10);
+
+
+            if (from.SpecClasse == SpecClasse.Ranger) // spec rangers is tracking larger area
+                range = 15 + (int)(from.Skills[SkillName.Tracking].Value / 5);
 
             List<Mobile> list = new List<Mobile>();
 

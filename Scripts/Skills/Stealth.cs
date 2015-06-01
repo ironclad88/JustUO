@@ -99,6 +99,11 @@ namespace Server.SkillHandlers
                     if (steps < 1)
                         steps = 1;
 
+                    if (m.SpecClasse == SpecClasse.Thief)
+                    {
+                        steps *= (int)m.SpecBonus(SpecClasse.Thief);
+                    }
+
                     m.AllowedStealthSteps = steps;
 
                     PlayerMobile pm = m as PlayerMobile; // IsStealthing should be moved to Server.Mobiles

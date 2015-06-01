@@ -43,6 +43,8 @@ namespace Server.Items
             }
         }
 
+        bool debug = true;
+
         #region Factions
         private FactionItem m_FactionState;
 
@@ -1920,7 +1922,7 @@ namespace Server.Items
             defender.PlaySound(GetHitDefendSound(attacker, defender));
 
             int damage = ComputeDamage(attacker, defender);
-
+            if(debug)Console.WriteLine("AFTER SPEC Damage: " + damage);
             #region Damage Multipliers
             /*
             * The following damage bonuses multiply damage by a factor.
@@ -1955,7 +1957,7 @@ namespace Server.Items
                 percentageBonus += 100;
             }
 
-            if (!attacker.Player)
+           /* if (!attacker.Player)           // not sure about this one
             {
                 if (defender is PlayerMobile)
                 {
@@ -1967,7 +1969,7 @@ namespace Server.Items
                     }
                 }
             }
-            else if (!defender.Player)
+            else if (!defender.Player)      // not sure about this one
             {
                 if (attacker is PlayerMobile)
                 {
@@ -1986,9 +1988,9 @@ namespace Server.Items
                         percentageBonus += 50;
                     }
                 }
-            }
+            }*/
 
-            int packInstinctBonus = GetPackInstinctBonus(attacker, defender);
+           /* int packInstinctBonus = GetPackInstinctBonus(attacker, defender);     // dunno what this is, that means i dont want it! ^^
 
             if (packInstinctBonus != 0)
             {
@@ -1999,7 +2001,7 @@ namespace Server.Items
             {
                 percentageBonus -= 10;
             }
-
+            */
             TransformContext context = TransformationSpellHelper.GetContext(defender);
 
             if ((m_Slayer == SlayerName.Silver || m_Slayer2 == SlayerName.Silver) && context != null &&
@@ -2353,6 +2355,8 @@ namespace Server.Items
                 }
             }
 
+
+
             if (Core.AOS)
             {
                 int physChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitPhysicalArea) * propertyBonus);
@@ -2492,6 +2496,8 @@ namespace Server.Items
                 }
             }
 
+           
+           
             XmlAttach.OnWeaponHit(this, attacker, defender, damageGiven);
         }
 
@@ -3094,7 +3100,7 @@ namespace Server.Items
             {
                 attacker.CheckSkill(SkillName.Tactics, 0.0, attacker.Skills[SkillName.Tactics].Cap);
                 // Passively check tactics for gain
-                attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);
+                //attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);        // remove this for passive anatomy gain?
                 // Passively check Anatomy for gain
 
                 //if (Type == WeaponType.Axe)
@@ -3162,6 +3168,14 @@ namespace Server.Items
 
             double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + //lumberBonus +
                                 ((GetDamageBonus() + damageBonus) / 100.0);
+
+            if (debug) Console.WriteLine("BEFORE SPEC Damage: " + damage);
+            if (debug) Console.WriteLine("BEFORE SPEC Damage bonus: " + totalBonus);
+            if (attacker.SpecClasse == SpecClasse.Warrior)
+            {
+               // totalBonus += attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
+            }
+            
 
             return damage + (int)(damage * totalBonus);
         }

@@ -457,6 +457,16 @@ namespace Server.Items
 
 					double toHeal = min + (Utility.RandomDouble() * (max - min));
 
+                    if (Healer.SpecClasse == SpecClasse.Ranger)
+                    {
+                        toHeal += toHeal * Healer.SpecBonus(SpecClasse.Ranger);
+                    }
+
+                    if (Healer.SpecClasse == SpecClasse.Warrior)
+                    {
+                        toHeal += toHeal * Healer.SpecBonus(SpecClasse.Warrior);
+                    }
+
 					if (m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal)
 					{
 						toHeal += m_Patient.HitsMax / 100;

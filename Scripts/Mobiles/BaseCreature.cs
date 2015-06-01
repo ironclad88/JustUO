@@ -3059,7 +3059,7 @@ namespace Server.Mobiles
             if (AutoDispel && attacker is BaseCreature && ((BaseCreature)attacker).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-                Dispel(attacker);
+                Dispel(attacker); // why dispell?
             }
         }
 
@@ -3102,7 +3102,7 @@ namespace Server.Mobiles
             if (AutoDispel && defender is BaseCreature && ((BaseCreature)defender).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-                Dispel(defender);
+                Dispel(defender); // why dispel?
             }
         }
 

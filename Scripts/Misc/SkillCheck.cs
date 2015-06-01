@@ -6,7 +6,7 @@ namespace Server.Misc
 {
     public class SkillCheck
     {
-        private static readonly bool AntiMacroCode = !Core.ML;		//Change this to false to disable anti-macro code
+        private static readonly bool AntiMacroCode = false;		//Change this to false to disable anti-macro code
 
         public static TimeSpan AntiMacroExpire = TimeSpan.FromMinutes(5.0); //How long do we remember targets/locations?
         public const int Allowance = 3;	//How many times may we use the same location/target for gain
@@ -129,10 +129,10 @@ namespace Server.Misc
             bool success = (chance >= Utility.RandomDouble());
             double gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
             gc += (skill.Cap - skill.Base) / skill.Cap;
-            gc /= 2;
+            gc /= 4; // was 2
 
             gc += (1.0 - chance) * (success ? 0.5 : (Core.AOS ? 0.0 : 0.2));
-            gc /= 2;
+            gc /= 4; // was 2
 
             gc *= skill.Info.GainFactor;
 
@@ -274,13 +274,34 @@ namespace Server.Misc
             if (skill.Lock == SkillLock.Up)
             {
                 SkillInfo info = skill.Info;
-
-                if (from.StrLock == StatLockType.Up && (info.StrGain / 33.3) > Utility.RandomDouble())
-                    GainStat(from, Stat.Str);
-                else if (from.DexLock == StatLockType.Up && (info.DexGain / 33.3) > Utility.RandomDouble())
+                /*   Some classes gain faster/slower   */
+                if ((from.SpecClasse == SpecClasse.Ranger || from.SpecClasse == SpecClasse.Bard) && from.DexLock == StatLockType.Up && (info.DexGain / 30.0) > Utility.RandomDouble()) // rangers and bard have it easier to gain dex
+                {
                     GainStat(from, Stat.Dex);
-                else if (from.IntLock == StatLockType.Up && (info.IntGain / 33.3) > Utility.RandomDouble())
+                }
+                if ((from.SpecClasse == SpecClasse.Bard) && from.IntLock == StatLockType.Up && (info.IntGain / 30.0) > Utility.RandomDouble()) // bards have it easier to gain int
+                {
                     GainStat(from, Stat.Int);
+                }
+                if ((from.SpecClasse == SpecClasse.Warrior) && from.IntLock == StatLockType.Up && (info.IntGain / 36.6) > Utility.RandomDouble()) // bards have it easier to gain int
+                {
+                    GainStat(from, Stat.Int);
+                }
+                if ((from.SpecClasse == SpecClasse.Mage) && from.StrLock == StatLockType.Up && (info.StrGain / 36.6) > Utility.RandomDouble()) // mages have harder to gain str
+                {
+                    GainStat(from, Stat.Str);
+                }
+                /*   End of class gain   */
+
+                if (from.StrLock == StatLockType.Up && (info.StrGain / 33.3) > Utility.RandomDouble()){
+                    GainStat(from, Stat.Str);
+                }
+                else if (from.DexLock == StatLockType.Up && (info.DexGain / 33.3) > Utility.RandomDouble()){
+                    GainStat(from, Stat.Dex);
+                }
+                else if (from.IntLock == StatLockType.Up && (info.IntGain / 33.3) > Utility.RandomDouble()) { 
+                    GainStat(from, Stat.Int);
+                }
             }
         }
 
@@ -374,8 +395,8 @@ namespace Server.Misc
             }
         }
 
-        private static readonly TimeSpan m_StatGainDelay = TimeSpan.FromMinutes(15.0);
-        private static readonly TimeSpan m_PetStatGainDelay = TimeSpan.FromMinutes(5.0);
+        private static readonly TimeSpan m_StatGainDelay = TimeSpan.FromMinutes(20.0); // changed from 15
+        private static readonly TimeSpan m_PetStatGainDelay = TimeSpan.FromMinutes(10.0); // changed from ...... something, i think 5
 
         public static void GainStat(Mobile from, Stat stat)
         {

@@ -29,6 +29,7 @@ namespace Server.Commands
             }
             //Console.WriteLine(argsSplitted[0], argsSplitted[1]);
             getClass(argsSplitted[0], Convert.ToInt32(argsSplitted[1]), m);
+            m.GetSpec();
         }
 
         private static string getClass(string className, int level, Mobile player){

@@ -5,6 +5,7 @@ using Server.Items;
 using Server.Misc;
 using Server.Network;
 using Server.Targeting;
+using Server.Custom;
 #endregion
 
 namespace Server.SkillHandlers
@@ -117,6 +118,7 @@ namespace Server.SkillHandlers
 
 				protected override void OnTick()
 				{
+                    
 					Container theirPack = m_Target.Backpack;
 
 					double badKarmaChance = 0.5 - ((double)m_From.Karma / 8570);
@@ -132,7 +134,8 @@ namespace Server.SkillHandlers
 					}
 					else if (m_From.CheckTargetSkill(SkillName.Begging, m_Target, 0.0, 100.0))
 					{
-						int toConsume = theirPack.GetAmount(typeof(Gold)) / 10;
+						//int toConsume = theirPack.GetAmount(typeof(Gold)) / 10;
+                        int toConsume = 0;
 						int max = 10 + (m_From.Fame / 2500);
 
 						if (max > 14)
@@ -153,12 +156,18 @@ namespace Server.SkillHandlers
 						{
 							int consumed = theirPack.ConsumeUpTo(typeof(Gold), toConsume);
 
+                            RandomClass rndGold = new RandomClass(); // new
+                            int rnd = rndGold.D100Roll(2);
+
 							if (consumed > 0)
 							{
 								m_Target.PublicOverheadMessage(MessageType.Regular, m_Target.SpeechHue, 500405); // I feel sorry for thee...
 
-								Gold gold = new Gold(consumed);
-
+                                Gold gold = new Gold(rnd);
+                                if (m_From.SpecClasse == SpecClasse.Bard)
+                                {
+                                    gold.Amount += 2 * (int)m_From.SpecBonus(SpecClasse.Bard);
+                                }
 								m_From.AddToBackpack(gold);
 								m_From.PlaySound(gold.GetDropSound());
 
@@ -171,7 +180,7 @@ namespace Server.SkillHandlers
 										toLose = 40;
 									}
 
-									Titles.AwardKarma(m_From, -toLose, true);
+									//Titles.AwardKarma(m_From, -toLose, true);
 								}
 							}
 							else

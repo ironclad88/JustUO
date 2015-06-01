@@ -150,7 +150,10 @@ namespace Server.SkillHandlers
 					if (targeted is BaseCreature)
 					{
 						BaseCreature creature = (BaseCreature)targeted;
-
+                        if (from.SpecClasse == SpecClasse.Ranger)
+                        {
+                            creature.MinTameSkill -= from.SpecBonus(SpecClasse.Ranger) + 5;
+                        }
 						if (!creature.Tamable)
 						{
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049655, from.NetState);
@@ -212,33 +215,73 @@ namespace Server.SkillHandlers
 							}
 							else if (creature.CanAngerOnTame && 0.95 >= Utility.RandomDouble())
 							{
-								creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
-									// You seem to anger the beast!
-								creature.PlaySound(creature.GetAngerSound());
-								creature.Direction = creature.GetDirectionTo(from);
+                                if (from.SpecClasse == SpecClasse.Ranger)
+                                {
+                                    double RangerBonus = from.SpecBonus(SpecClasse.Ranger);
+                                    if (creature.CanAngerOnTame && 0.95 - RangerBonus >= Utility.RandomDouble())
+                                    {
+                                        creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
+                                        // You seem to anger the beast!
+                                        creature.PlaySound(creature.GetAngerSound());
+                                        creature.Direction = creature.GetDirectionTo(from);
 
-								if (creature.BardPacified && Utility.RandomDouble() > .24)
-								{
-									Timer.DelayCall(TimeSpan.FromSeconds(2.0), new TimerStateCallback(ResetPacify), creature);
-								}
-								else
-								{
-									creature.BardEndTime = DateTime.UtcNow;
-								}
+                                        if (creature.BardPacified && Utility.RandomDouble() > .24)
+                                        {
+                                            Timer.DelayCall(TimeSpan.FromSeconds(2.0), new TimerStateCallback(ResetPacify), creature);
+                                        }
+                                        else
+                                        {
+                                            creature.BardEndTime = DateTime.UtcNow;
+                                        }
 
-								creature.BardPacified = false;
+                                        creature.BardPacified = false;
 
-								if (creature.AIObject != null)
-								{
-									creature.AIObject.DoMove(creature.Direction);
-								}
+                                        if (creature.AIObject != null)
+                                        {
+                                            creature.AIObject.DoMove(creature.Direction);
+                                        }
 
-								if (from is PlayerMobile &&
-									!(((PlayerMobile)from).HonorActive ||
-									  TransformationSpellHelper.UnderTransformation(from, typeof(EtherealVoyageSpell))))
-								{
-									creature.Combatant = from;
-								}
+                                        if (from is PlayerMobile &&
+                                            !(((PlayerMobile)from).HonorActive ||
+                                              TransformationSpellHelper.UnderTransformation(from, typeof(EtherealVoyageSpell))))
+                                        {
+                                            creature.Combatant = from;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
+                                    // You seem to anger the beast!
+                                    creature.PlaySound(creature.GetAngerSound());
+                                    creature.Direction = creature.GetDirectionTo(from);
+
+                                    if (creature.BardPacified && Utility.RandomDouble() > .24)
+                                    {
+                                        Timer.DelayCall(TimeSpan.FromSeconds(2.0), new TimerStateCallback(ResetPacify), creature);
+                                    }
+                                    else
+                                    {
+                                        creature.BardEndTime = DateTime.UtcNow;
+                                    }
+
+                                    creature.BardPacified = false;
+
+                                    if (creature.AIObject != null)
+                                    {
+                                        creature.AIObject.DoMove(creature.Direction);
+                                    }
+
+                                    if (from is PlayerMobile &&
+                                        !(((PlayerMobile)from).HonorActive ||
+                                          TransformationSpellHelper.UnderTransformation(from, typeof(EtherealVoyageSpell))))
+                                    {
+                                        creature.Combatant = from;
+                                    }
+                                }
+                                
+                               
+								
 							}
 							else
 							{

@@ -2098,6 +2098,17 @@ namespace Server.Items
             if (!Ethics.Ethic.CheckEquip(from, this))
                 return false;
 
+            if (from.SpecClasse == SpecClasse.Mage)
+            {
+                Console.WriteLine("in specclasse armor");
+                if (this.MaterialType == AMT.Chainmail || this.MaterialType == AMT.Plate || this.MaterialType == AMT.Ringmail || this.GetType() == typeof(BaseShield) || this.MaterialType == AMT.Studded)
+                {
+                    Console.WriteLine("whajj");
+                    from.SendMessage("You can´t wear this as a mage"); // dunno what this one should say
+                    return false;
+                }
+            }
+
             if (from.IsPlayer())
             {
                 if (from.Race == Race.Gargoyle && !this.CanBeWornByGargoyles)
