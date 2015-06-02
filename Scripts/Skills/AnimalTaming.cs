@@ -141,6 +141,8 @@ namespace Server.SkillHandlers
 				}
 			}
 
+            
+
 			protected override void OnTarget(Mobile from, object targeted)
 			{
 				from.RevealingAction();
@@ -152,7 +154,7 @@ namespace Server.SkillHandlers
 						BaseCreature creature = (BaseCreature)targeted;
                         if (from.SpecClasse == SpecClasse.Ranger)
                         {
-                            creature.MinTameSkill -= from.SpecBonus(SpecClasse.Ranger) + 5;
+                            creature.MinTameSkill -= from.SpecBonus(SpecClasse.Ranger) * creature.MinTameSkill; // this needs balancing.
                         }
 						if (!creature.Tamable)
 						{
@@ -217,8 +219,7 @@ namespace Server.SkillHandlers
 							{
                                 if (from.SpecClasse == SpecClasse.Ranger)
                                 {
-                                    double RangerBonus = from.SpecBonus(SpecClasse.Ranger);
-                                    if (creature.CanAngerOnTame && 0.95 - RangerBonus >= Utility.RandomDouble())
+                                    if (creature.CanAngerOnTame && 0.95 + from.SpecBonus(SpecClasse.Ranger) >= Utility.RandomDouble()) // needs checkup
                                     {
                                         creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
                                         // You seem to anger the beast!

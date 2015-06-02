@@ -127,12 +127,12 @@ namespace Server.SkillHandlers
 					{
 						m_From.SendLocalizedMessage(500404); // They seem unwilling to give you any money.
 					}
-					else if (m_From.Karma < 0 && badKarmaChance > Utility.RandomDouble())
+					/*else if (m_From.Karma < 0 && badKarmaChance > Utility.RandomDouble()) // removed bad karma chance to fail begging
 					{
 						m_Target.PublicOverheadMessage(MessageType.Regular, m_Target.SpeechHue, 500406);
 							// Thou dost not look trustworthy... no gold for thee today!
-					}
-					else if (m_From.CheckTargetSkill(SkillName.Begging, m_Target, 0.0, 100.0))
+					}*/
+					else if (m_From.CheckTargetSkill(SkillName.Begging, m_Target, 0.0, 130.0))
 					{
 						//int toConsume = theirPack.GetAmount(typeof(Gold)) / 10;
                         int toConsume = 0;
@@ -157,8 +157,8 @@ namespace Server.SkillHandlers
 							int consumed = theirPack.ConsumeUpTo(typeof(Gold), toConsume);
 
                             RandomClass rndGold = new RandomClass(); // new
-                            int rnd = rndGold.D100Roll(2);
-
+                            int rnd = rndGold.D100Roll(2); // needs balancing
+                           
 							if (consumed > 0)
 							{
 								m_Target.PublicOverheadMessage(MessageType.Regular, m_Target.SpeechHue, 500405); // I feel sorry for thee...

@@ -144,13 +144,13 @@ namespace Server.Spells
 			int damage = Utility.Dice(dice, sides, bonus) * 100;
 			int damageBonus = 0;
 
-			int inscribeSkill = GetInscribeFixed(m_Caster);
+			/*int inscribeSkill = GetInscribeFixed(m_Caster);
 			int inscribeBonus = (inscribeSkill + (1000 * (inscribeSkill / 1000))) / 200;
 			damageBonus += inscribeBonus;
 
 			int intBonus = Caster.Int / 10;
 			damageBonus += intBonus;
-
+            */
 			int sdiBonus = AosAttributes.GetValue(m_Caster, AosAttribute.SpellDamage);
 
 			#region Mondain's Legacy
@@ -158,7 +158,7 @@ namespace Server.Spells
 			#endregion
 
 			// PvP spell damage increase cap of 15% from an item’s magic property, 30% if spell school focused.
-			if (playerVsPlayer)
+			/*if (playerVsPlayer)
 			{
 			    if (SpellHelper.HasSpellMastery(m_Caster) && sdiBonus > 30)
                 {
@@ -169,7 +169,7 @@ namespace Server.Spells
                 {
                     sdiBonus = 15;
                 }
-			}
+			}*/
 
 			damageBonus += sdiBonus;
 
@@ -188,6 +188,12 @@ namespace Server.Spells
 			damage = AOS.Scale(damage, evalScale);
 
 			damage = AOS.Scale(damage, (int)(scalar * 100));
+
+            if (m_Caster.SpecClasse == SpecClasse.Warrior)     // warriors do less spell dmg. NOT TESTED
+                damage -= damage * (int)m_Caster.SpecBonus(SpecClasse.Warrior);
+
+            if (m_Caster.SpecClasse == SpecClasse.Mage)     // mages do more spell dmg. NOT TESTED
+                damage *= (int)m_Caster.SpecBonus(SpecClasse.Mage);
 
 			return damage / 100;
 		}
@@ -379,6 +385,9 @@ namespace Server.Spells
 
 				// magery damage bonus, -25% at 0 skill, +0% at 100 skill, +5% at 120 skill
 				scalar += (m_Caster.Skills[CastSkill].Value - 100.0) / 400.0;
+
+
+
 
 				if (!target.Player && !target.Body.IsHuman /*&& !Core.AOS*/)
 				{

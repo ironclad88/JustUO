@@ -82,8 +82,10 @@ namespace Server.SkillHandlers
                         }
                     }
                 }
+                if(m.SpecClasse == SpecClasse.Thief)
+                    bonus *= m.SpecBonus(SpecClasse.Thief); // made hiding easier for spec theifs
 
-                ok = (!badCombat && m.CheckSkill(SkillName.Hiding, 0.0 - bonus, 100.0 - bonus));
+                ok = (!badCombat && m.CheckSkill(SkillName.Hiding, 0.0 - bonus, 130.0 - bonus)); // 100 to 130
             }
 
             if (badCombat)

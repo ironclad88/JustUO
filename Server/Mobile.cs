@@ -7981,6 +7981,7 @@ namespace Server
         {
             for (int i = _StatMods.Count - 1; i > 0 && i < _StatMods.Count; --i)
             {
+                Console.WriteLine(_StatMods[i].Name);
                 var type = _StatMods[i].Type;
                 if (_StatMods[i].Name.StartsWith("[Magic]"))
                 {

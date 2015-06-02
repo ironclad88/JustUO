@@ -459,12 +459,12 @@ namespace Server.Items
 
                     if (Healer.SpecClasse == SpecClasse.Ranger)
                     {
-                        toHeal += toHeal * Healer.SpecBonus(SpecClasse.Ranger);
+                        toHeal *= Healer.SpecBonus(SpecClasse.Ranger);
                     }
 
                     if (Healer.SpecClasse == SpecClasse.Warrior)
                     {
-                        toHeal += toHeal * Healer.SpecBonus(SpecClasse.Warrior);
+                        toHeal *= Healer.SpecBonus(SpecClasse.Warrior);
                     }
 
 					if (m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal)

@@ -14,7 +14,7 @@ namespace Server.SkillHandlers
             Container.SnoopHandler = new ContainerSnoopHandler(Container_Snoop);
         }
 
-        public static bool CheckSnoopAllowed(Mobile from, Mobile to)
+        public static bool CheckSnoopAllowed(Mobile from, Mobile to) // needs to be checked
         {
             Map map = from.Map;
 

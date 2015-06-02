@@ -325,16 +325,25 @@ namespace Server.Spells
         {
             double percent;
 
-            /*if (curse)
-                percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // dunno what this does, so i removed it ^^
-            else*/
-                percent = 1 + (caster.Skills.Magery.Fixed / 130);
+            if (curse)
+                percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // this is used for curses
+            else
+                percent = 5 + (caster.Skills.Magery.Fixed / 50); // boosted ALOT, still needs to be tested against POL zulu
              
-            percent *= 0.01;
+            
 
             if (percent < 0)
                 percent = 0;
 
+            if (caster.SpecClasse == SpecClasse.Mage) // better buffs made by mages
+                percent *= caster.SpecBonus(SpecClasse.Mage);
+
+            if (caster.SpecClasse == SpecClasse.Warrior) // worse buffs made by warriors // just tested, lol, it got -9 from cunning spell :D
+                percent = (caster.Skills.Magery.Fixed / 130);
+
+            percent *= 0.01;
+
+            Console.WriteLine("PERCENT: " + percent);
             return percent;
         }
 
@@ -1089,8 +1098,10 @@ namespace Server.Spells
 
         public static void Damage(Spell spell, TimeSpan delay, Mobile target, Mobile from, double damage, int phys, int fire, int cold, int pois, int nrgy, int earth, int necro, int holy, DFAlgorithm dfa)
         {
-            int iDamage = (int)damage;
+            if (target.SpecClasse == SpecClasse.Warrior)
+                damage *= (int)target.SpecBonus(SpecClasse.Warrior);
 
+            int iDamage = (int)damage;
             if (delay == TimeSpan.Zero)
             {
                 if (from is BaseCreature)

@@ -187,14 +187,15 @@ namespace Server.SkillHandlers
 
             TrackTypeDelegate check = m_Delegates[type];
 
-            from.CheckSkill(SkillName.Tracking, 21.1, 100.0); // Passive gain           // hmmmm?
+            // from.CheckSkill(SkillName.Tracking, 21.1, 100.0); // Passive gain           // hmmmm?
 
             int range = 10 + (int)(from.Skills[SkillName.Tracking].Value / 10);
 
 
             if (from.SpecClasse == SpecClasse.Ranger) // spec rangers is tracking larger area
-                range = 15 + (int)(from.Skills[SkillName.Tracking].Value / 5);
+                range *= ((int)from.SpecBonus(SpecClasse.Ranger) + 10 / 10);
 
+            Console.WriteLine(range);
             List<Mobile> list = new List<Mobile>();
 
             foreach (Mobile m in from.GetMobilesInRange(range))
