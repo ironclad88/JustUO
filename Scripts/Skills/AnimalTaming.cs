@@ -152,6 +152,7 @@ namespace Server.SkillHandlers
 					if (targeted is BaseCreature)
 					{
 						BaseCreature creature = (BaseCreature)targeted;
+                        // JustZH Taming bonus from specced ranger (NOT DONE)
                         if (from.SpecClasse == SpecClasse.Ranger)
                         {
                             creature.MinTameSkill -= from.SpecBonus(SpecClasse.Ranger) * creature.MinTameSkill; // this needs balancing.
@@ -217,6 +218,7 @@ namespace Server.SkillHandlers
 							}
 							else if (creature.CanAngerOnTame && 0.95 >= Utility.RandomDouble())
 							{
+                                // JustZH Anger chanse decrease with specced Ranger
                                 if (from.SpecClasse == SpecClasse.Ranger)
                                 {
                                     if (creature.CanAngerOnTame && 0.95 + from.SpecBonus(SpecClasse.Ranger) >= Utility.RandomDouble()) // needs checkup

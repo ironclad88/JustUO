@@ -191,7 +191,7 @@ namespace Server.SkillHandlers
 
             int range = 10 + (int)(from.Skills[SkillName.Tracking].Value / 10);
 
-
+            // JustZH Tracking bonus for Rangers using Tracking
             if (from.SpecClasse == SpecClasse.Ranger) // spec rangers is tracking larger area
                 range *= ((int)from.SpecBonus(SpecClasse.Ranger) + 10 / 10);
 

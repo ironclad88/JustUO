@@ -174,6 +174,7 @@ namespace Server.Engines.Harvest
                                 // Increase amount by 50% for regular logs or iron ore.
                                 amount += (amount / 2);
                             }
+                            // JustZH Gain more resources if specced
                             if ((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog || item is BaseOre || item is Sand)) ||
                                 (from.SpecClasse == SpecClasse.Ranger && item is Fish))
                             {
@@ -232,6 +233,7 @@ namespace Server.Engines.Harvest
                             IUsesRemaining toolWithUses = (IUsesRemaining)tool;
 
                             toolWithUses.ShowUsesRemaining = true;
+                            // JustZH Better tool decay with specced crafter
                             int rand = (int)(10 * from.SpecBonus(SpecClasse.Crafter));
                             if (toolWithUses.UsesRemaining > 0 && Utility.Random(rand) == 0)
                                 --toolWithUses.UsesRemaining;

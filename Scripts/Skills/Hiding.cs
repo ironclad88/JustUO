@@ -82,6 +82,7 @@ namespace Server.SkillHandlers
                         }
                     }
                 }
+                // JustZH Easier hiding from specced Theif
                 if(m.SpecClasse == SpecClasse.Thief)
                     bonus *= m.SpecBonus(SpecClasse.Thief); // made hiding easier for spec theifs
 

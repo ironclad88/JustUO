@@ -457,11 +457,13 @@ namespace Server.Items
 
 					double toHeal = min + (Utility.RandomDouble() * (max - min));
 
+                    // JustZH Healing bonus for Rangers using VET
                     if (Healer.SpecClasse == SpecClasse.Ranger)
                     {
                         toHeal *= Healer.SpecBonus(SpecClasse.Ranger);
                     }
 
+                    // JustZH Healing bonus for Warriors using Healing
                     if (Healer.SpecClasse == SpecClasse.Warrior)
                     {
                         toHeal *= Healer.SpecBonus(SpecClasse.Warrior);

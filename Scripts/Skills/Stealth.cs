@@ -98,7 +98,7 @@ namespace Server.SkillHandlers
 
                     if (steps < 1)
                         steps = 1;
-
+                    // JustZH More stealth "steps" with specced Theif
                     if (m.SpecClasse == SpecClasse.Thief)
                     {
                         steps *= (int)m.SpecBonus(SpecClasse.Thief);

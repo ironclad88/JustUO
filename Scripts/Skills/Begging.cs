@@ -162,7 +162,7 @@ namespace Server.SkillHandlers
 							if (consumed > 0)
 							{
 								m_Target.PublicOverheadMessage(MessageType.Regular, m_Target.SpeechHue, 500405); // I feel sorry for thee...
-
+                                // JustZH Begging bonus from specced Bard
                                 Gold gold = new Gold(rnd);
                                 if (m_From.SpecClasse == SpecClasse.Bard)
                                 {

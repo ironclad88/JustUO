@@ -204,6 +204,7 @@ namespace Server.Engines.Harvest
             if (def == this.m_OreAndStone)
             {
                 PlayerMobile pm = from as PlayerMobile;
+                // JustZH Mining bonus from specced crafter
                 double scale = from.SpecBonus(SpecClasse.Crafter); 
                 if (pm != null && pm.GemMining && pm.ToggleMiningGem && from.Skills[SkillName.Mining].Base >= 100.0 && (0.1*scale) > Utility.RandomDouble())
                     return Loot.RandomGem().GetType();

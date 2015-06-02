@@ -189,11 +189,14 @@ namespace Server.Spells
 
 			damage = AOS.Scale(damage, (int)(scalar * 100));
 
-            if (m_Caster.SpecClasse == SpecClasse.Warrior)     // warriors do less spell dmg. NOT TESTED
-                damage -= damage * (int)m_Caster.SpecBonus(SpecClasse.Warrior);
+            // JustZH Warriors do less spell dmg
 
-            if (m_Caster.SpecClasse == SpecClasse.Mage)     // mages do more spell dmg. NOT TESTED
-                damage *= (int)m_Caster.SpecBonus(SpecClasse.Mage);
+          //  if (m_Caster.SpecClasse == SpecClasse.Warrior)     // warriors do less spell dmg. NOT TESTED
+               // damage -= damage * (int)m_Caster.SpecBonus(SpecClasse.Warrior);
+                // JustZH Mages do more spell dmg
+
+           // if (m_Caster.SpecClasse == SpecClasse.Mage)     // mages do more spell dmg. NOT TESTED
+                //damage *= (int)m_Caster.SpecBonus(SpecClasse.Mage);
 
 			return damage / 100;
 		}

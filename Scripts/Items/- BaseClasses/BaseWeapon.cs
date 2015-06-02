@@ -3171,6 +3171,7 @@ namespace Server.Items
 
             if (debug) Console.WriteLine("BEFORE SPEC Damage: " + damage);
             if (debug) Console.WriteLine("BEFORE SPEC Damage bonus: " + totalBonus);
+            // JustZH DMG bonus for Warriors using Weapons
             if (attacker.SpecClasse == SpecClasse.Warrior)
             {
                // totalBonus += attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now

@@ -133,6 +133,7 @@ namespace Server.Items
 
 				if (bonus > 0 && m_Velocity > Utility.Random(100))
 				{
+                    // JustZH DMG bonus for Rangers using Archery
                     if (attacker.SpecClasse == SpecClasse.Ranger)
                     {
                         damageBonus += attacker.SpecBonus(SpecClasse.Ranger); // not tested yet Date: 1/6-15

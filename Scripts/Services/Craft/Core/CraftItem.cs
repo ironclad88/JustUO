@@ -973,6 +973,7 @@ namespace Server.Engines.Craft
 				return 0.0;
 			}
 
+            // JustZH Crafting stuffz
             //negate the bonus to success chance given by spec levels
             if (system is DefBlacksmithy || system is DefBowFletching || system is DefTailoring || system is DefCarpentry || system is DefTinkering)
             {
@@ -1023,7 +1024,7 @@ namespace Server.Engines.Craft
 					}
 			}
 
-			
+            // JustZH Moar crafting stuffz
             if (system is DefBlacksmithy || system is DefBowFletching || system is DefTailoring || system is DefCarpentry || system is DefTinkering)
             {
                 chance *= from.SpecBonus(SpecClasse.Crafter);
@@ -1121,6 +1122,7 @@ namespace Server.Engines.Craft
 				chance = 1.0;
 			}
 
+            // JustZH Even moar crafting stuffz
             if (craftSystem is DefBlacksmithy || craftSystem is DefBowFletching || craftSystem is DefTailoring || craftSystem is DefCarpentry || craftSystem is DefTinkering)
             {
                 chance *= from.SpecBonus(SpecClasse.Crafter);
@@ -1303,6 +1305,7 @@ namespace Server.Engines.Craft
 			int endquality = 1;
 
 			bool allRequiredSkills = true;
+            // JustZH MOAR crafter bonus
             int rand = (int)(10 * from.SpecBonus(SpecClasse.Crafter));
 			if (CheckSkills(from, typeRes, craftSystem, ref ignored, ref allRequiredSkills))
 			{

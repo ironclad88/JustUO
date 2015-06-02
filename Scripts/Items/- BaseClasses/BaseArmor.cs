@@ -2098,6 +2098,7 @@ namespace Server.Items
             if (!Ethics.Ethic.CheckEquip(from, this))
                 return false;
 
+            // JustZH Mages can´t equip certain types of armor
             if (from.SpecClasse == SpecClasse.Mage)
             {
                 Console.WriteLine("in specclasse armor");
@@ -2786,6 +2787,7 @@ namespace Server.Items
             if (context != null && context.DoNotColor)
                 this.Hue = 0;
 
+            // JustZH Crafting bonus for Crafters
             if (from.SpecClasse == SpecClasse.Crafter)
             {
                 //bonuses for spec crafter
@@ -2817,6 +2819,7 @@ namespace Server.Items
             {
                 int newquality;
                 int multiplier = (int)(5 + (from.Skills.ArmsLore.Value / 10));
+                // JustZH Crafting bonus
                 if (from.SpecClasse == SpecClasse.Crafter)
                 {
                     multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter) * 2));

@@ -275,6 +275,7 @@ namespace Server.Misc
             {
                 SkillInfo info = skill.Info;
                 /*   Some classes gain faster/slower   */
+                // JustZH Stat gain for Classes
                 if ((from.SpecClasse == SpecClasse.Ranger || from.SpecClasse == SpecClasse.Bard) && from.DexLock == StatLockType.Up && (info.DexGain / 30.0) > Utility.RandomDouble()) // rangers and bard have it easier to gain dex
                 {
                     GainStat(from, Stat.Dex);
@@ -283,7 +284,7 @@ namespace Server.Misc
                 {
                     GainStat(from, Stat.Int);
                 }
-                if ((from.SpecClasse == SpecClasse.Warrior) && from.IntLock == StatLockType.Up && (info.IntGain / 36.6) > Utility.RandomDouble()) // bards have it easier to gain int
+                if ((from.SpecClasse == SpecClasse.Warrior) && from.IntLock == StatLockType.Up && (info.IntGain / 36.6) > Utility.RandomDouble()) // Warriors gain int slower
                 {
                     GainStat(from, Stat.Int);
                 }
