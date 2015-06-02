@@ -4,6 +4,7 @@ using Server.ContextMenus;
 using Server.Engines.PartySystem;
 using Server.Gumps;
 using Server.Network;
+using Server.Items.ZuluIems.GMItems.Tools;
 
 namespace Server.Items
 {
@@ -11,15 +12,15 @@ namespace Server.Items
     {
         private static readonly Type[] m_Artifacts = new Type[]
         {
-            typeof(CandelabraOfSouls), typeof(GoldBricks), typeof(PhillipsWoodenSteed),
+            /*typeof(CandelabraOfSouls), typeof(GoldBricks), typeof(PhillipsWoodenSteed),
             typeof(ArcticDeathDealer), typeof(BlazeOfDeath), typeof(BurglarsBandana),
             typeof(CavortingClub), typeof(DreadPirateHat),
             typeof(EnchantedTitanLegBone), typeof(GwennosHarp), typeof(IolosLute),
             typeof(LunaLance), typeof(NightsKiss), typeof(NoxRangersHeavyCrossbow),
             typeof(PolarBearMask), typeof(VioletCourage), typeof(HeartOfTheLion),
             typeof(ColdBlood), typeof(AlchemistsBauble), typeof(CaptainQuacklebushsCutlass),
-			typeof(ForgedPardon), typeof(ShieldOfInvulnerability), typeof(AncientShipModelOfTheHMSCape),
-			typeof(AdmiralHeartyRum)
+			typeof(ForgedPardon), typeof(ShieldOfInvulnerability), typeof(AncientShipModelOfTheHMSCape),*/
+			typeof(OmerosPickAxe), typeof(XarafaxAxe), typeof(PoseidonFishingpole)
         };
         private int m_Level;
         private DateTime m_DeleteTime;
@@ -139,12 +140,13 @@ namespace Server.Items
 
                 cont.DropItem(new Gold(Utility.RandomMinMax(50, 100)));
 
-                if (Utility.RandomDouble() < 0.75)
+                /*if (Utility.RandomDouble() < 0.75)
                     cont.DropItem(new TreasureMap(0, Map.Trammel));
+                 */
             }
             else
             {
-                cont.TrapType = TrapType.ExplosionTrap;
+                cont.TrapType = TrapType.ExplosionTrap;     // not sure about this, not really used in zulu
                 cont.TrapPower = level * 25;
                 cont.TrapLevel = level;
 
@@ -319,7 +321,7 @@ namespace Server.Items
                 cont.DropItem(item);
             }
 
-            if (level == 6 && Core.AOS)
+            if (level == 6 && Core.AOS) // needs to be changed, level6 maps now drops random artifact everytime
                 cont.DropItem((Item)Activator.CreateInstance(m_Artifacts[Utility.Random(m_Artifacts.Length)]));
         }
 

@@ -1,3 +1,4 @@
+using Server.Items.ZuluIems.SOS;
 using System;
 
 namespace Server.Items
@@ -21,6 +22,7 @@ namespace Server.Items
         public MessageInABottle(Map map, int level)
             : base(0x099F)
         {
+            this.Stackable = true;
             this.Weight = 1.0;
             this.m_TargetMap = map;
             this.m_Level = level;
@@ -110,16 +112,43 @@ namespace Server.Items
             if (version < 2)
                 this.m_Level = GetRandomLevel();
 
-            if (version < 3 && this.m_TargetMap == Map.Tokuno)
-                this.m_TargetMap = Map.Trammel;
+            /*if (version < 3 && this.m_TargetMap == Map.Tokuno)
+                this.m_TargetMap = Map.Trammel;*/
         }
 
         public override void OnDoubleClick(Mobile from)
         {
             if (this.IsChildOf(from.Backpack))
             {
-                this.ReplaceWith(new SOS(this.m_TargetMap, this.m_Level));
-                from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                int rnd = Utility.Random(6);
+                switch (rnd)
+                {
+                    case 1:
+                        this.ReplaceWithAndConsume(new SOS1(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                    case 2:
+                        this.ReplaceWithAndConsume(new SOS2(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                    case 3:
+                        this.ReplaceWithAndConsume(new SOS3(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                    case 4:
+                        this.ReplaceWithAndConsume(new SOS4(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                    case 5:
+                        this.ReplaceWithAndConsume(new SOS5(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                    case 6:
+                        this.ReplaceWithAndConsume(new SOS6(this.m_TargetMap, this.m_Level));
+                        from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 501891); // You extract the message from the bottle.
+                        break;
+                }
+                
             }
             else
             {

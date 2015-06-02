@@ -2829,6 +2829,12 @@
     <Compile Include="Items\ZuluIems\NecroBook.cs" />
     <Compile Include="Items\ZuluIems\OstardEgg.cs" />
     <Compile Include="Items\ZuluIems\songBook.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS1.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS2.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS3.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS4.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS5.cs" />
+    <Compile Include="Items\ZuluIems\SOS\SOS6.cs" />
     <Compile Include="Items\ZuluIems\YuccaTree.cs" />
     <Compile Include="Misc\AccountPrompt.cs" />
     <Compile Include="Misc\Animations.cs" />

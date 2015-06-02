@@ -5830,6 +5830,21 @@ namespace Server
             Delete();
         }
 
+        public virtual void ReplaceWithAndConsume(Item newItem)
+        {
+            if (m_Parent is Container)
+            {
+                ((Container)m_Parent).AddItem(newItem);
+                newItem.Location = m_Location;
+            }
+            else
+            {
+                newItem.MoveToWorld(GetWorldLocation(), m_Map);
+            }
+
+            Consume();
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public bool QuestItem
         {
