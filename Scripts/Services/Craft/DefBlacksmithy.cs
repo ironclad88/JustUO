@@ -956,16 +956,52 @@ namespace Server.Engines.Craft
 
             // Add every material you want the player to be able to choose from
             // This will override the overridable material
-            AddSubRes(typeof(IronIngot), 1044022, 00.0, 1044036, 1044267);
-            AddSubRes(typeof(DullCopperIngot), 1044023, 65.0, 1044036, 1044268);
-            AddSubRes(typeof(ShadowIronIngot), 1044024, 70.0, 1044036, 1044268);
-            AddSubRes(typeof(CopperIngot), 1044025, 75.0, 1044036, 1044268);
-            AddSubRes(typeof(BronzeIngot), 1044026, 80.0, 1044036, 1044268);
-            AddSubRes(typeof(GoldIngot), 1044027, 85.0, 1044036, 1044268);
-            AddSubRes(typeof(AgapiteIngot), 1044028, 90.0, 1044036, 1044268);
-            AddSubRes(typeof(VeriteIngot), 1044029, 95.0, 1044036, 1044268);
-            AddSubRes(typeof(ValoriteIngot), 1044030, 99.0, 1044036, 1044268);
-            AddSubRes(typeof(ZuluIngot), 1044119, 129.0 , 1044036, 1044268);
+            int zulu_names = 1044119;
+            AddSubRes(typeof(IronIngot), 1044022, CraftResources.GetInfo(CraftResource.Iron).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(GoldIngot), 1044027, CraftResources.GetInfo(CraftResource.Gold).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(SpikeIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Spike).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(FruityIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Fruity).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(BronzeIngot), 1044026, CraftResources.GetInfo(CraftResource.Bronze).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(IceRockIngot), zulu_names++, CraftResources.GetInfo(CraftResource.IceRock).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(BlackDwarfIngot), zulu_names++, CraftResources.GetInfo(CraftResource.BlackDwarf).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DullCopperIngot), 1044023, CraftResources.GetInfo(CraftResource.DullCopper).AttributeInfo.Difficulty , 1044036, 1044268);
+            AddSubRes(typeof(PlatinumIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Platinum).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(SilverRockIngot), zulu_names++, CraftResources.GetInfo(CraftResource.SilverRock).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DarkPaganIngot), zulu_names++, CraftResources.GetInfo(CraftResource.DarkPagan).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(CopperIngot), 1044025, CraftResources.GetInfo(CraftResource.Copper).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(MysticIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Mystic).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(SpectralIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Spectral).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(OldBritainIngot), zulu_names++, CraftResources.GetInfo(CraftResource.OldBritain).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(OnyxIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Onyx).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(RedElvenIngot), zulu_names++, CraftResources.GetInfo(CraftResource.RedElven).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(UndeadIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Undead).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(PyriteIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Pyrite).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(VirginityIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Virginity).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(MalachiteIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Malachite).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(LavarockIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Lavarock).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(AzuriteIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Azurite).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DripstoneIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Dripstone).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(ExecutorIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Executor).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(PeachblueIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DestructionIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(AnraIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(CrystalIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Crystal).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DoomIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Doom).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(GoddessIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Goddess).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(ZuluIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Zulu).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(ETSIngot), zulu_names++, CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DSRIngot), zulu_names++, CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(RNDIngot), zulu_names++, CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty, 1044036, 1044268);
+
+            //AddSubRes(typeof(AgapiteIngot), 1044028, 90.0, 1044036, 1044268);
+            //AddSubRes(typeof(VeriteIngot), 1044029, 95.0, 1044036, 1044268);
+            //AddSubRes(typeof(ValoriteIngot), 1044030, 99.0, 1044036, 1044268);
+            //AddSubRes(typeof(ShadowIronIngot), 1044024, 70.0, 1044036, 1044268);
+            //AddSubRes(typeof(CopperIngot), 1044025, 75.0, 1044036, 1044268);
+            //AddSubRes(typeof(DullCopperIngot), 1044023, 65.0, 1044036, 1044268);
+            //AddSubRes(typeof(BronzeIngot), 1044026, 80.0, 1044036, 1044268);
+            //AddSubRes(typeof(GoldIngot), 1044027, 85.0, 1044036, 1044268);
+            //AddSubRes(typeof(IronIngot), 1044022, 00.0, 1044036, 1044267);
 
             /*SetSubRes2(typeof(RedScales), 1060875);
 

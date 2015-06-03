@@ -34,7 +34,7 @@ namespace Server.Items
         Virginity,
         BlackDwarf,
         RedElven,
-        DripStone,
+        Dripstone,
         Executor,
         Peachblue,
         Destruction,
@@ -612,6 +612,9 @@ namespace Server.Items
 
         static CraftAttributeInfo()
         {
+            const int level1_prot = 15; //25% on pol zh
+            const int level2_prot = 30; //50% on pol zh
+            const int level3_prot = 45; //75% on pol zh
             Blank = new CraftAttributeInfo();
 
             CraftAttributeInfo dullCopper = DullCopper = new CraftAttributeInfo();
@@ -798,8 +801,195 @@ namespace Server.Items
 
             CraftAttributeInfo zulu = Zulu = new CraftAttributeInfo();
 
+            //JustZH : dex penalty -2
+            //JustZH : reduce spell effectiveness on wearer
             zulu.Difficulty = 129;
             zulu.Quality = 2.0;
+
+            CraftAttributeInfo onyx = Onyx = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            onyx.Difficulty = 70;
+            onyx.Quality = 1.25;
+            
+            CraftAttributeInfo pyrite = Pyrite = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            pyrite.Difficulty = 85;
+            pyrite.Quality = 1.3;
+            
+            CraftAttributeInfo malachite = Malachite = new CraftAttributeInfo();
+
+            malachite.Difficulty = 95;
+            malachite.Quality = 1.5;
+
+            CraftAttributeInfo azurite = Azurite = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            azurite.ArmorEnergyResist = level2_prot;
+            azurite.Difficulty = 98;
+            azurite.Quality = 1.5;
+
+            CraftAttributeInfo platinum = Platinum = new CraftAttributeInfo();
+
+            //JustZH : reduce magic damage on wearer
+            platinum.Difficulty = 35;
+            platinum.Quality = 1.15;
+
+            CraftAttributeInfo lavarock = Lavarock = new CraftAttributeInfo();
+
+            lavarock.ArmorFireResist = level2_prot;
+            lavarock.Difficulty = 97;
+            lavarock.Quality = 1.35;
+
+            CraftAttributeInfo mystic = Mystic = new CraftAttributeInfo();
+
+            //JustZH : reduce magic damage on wearer
+            mystic.Difficulty = 55;
+            mystic.Quality = 1.05;
+
+            CraftAttributeInfo spike = Spike = new CraftAttributeInfo();
+
+            spike.Difficulty = 5;
+            spike.Quality = 1.05;
+
+            CraftAttributeInfo fruity = Fruity = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            fruity.Difficulty = 10;
+            fruity.Quality = 1.05;
+
+            CraftAttributeInfo icerock = IceRock = new CraftAttributeInfo();
+
+            icerock.ArmorColdResist = level1_prot;
+            icerock.Difficulty = 20;
+            icerock.Quality = 1.05;
+            
+            CraftAttributeInfo silverrock = SilverRock = new CraftAttributeInfo();
+
+            silverrock.ArmorNecroResist = level1_prot;
+            silverrock.Difficulty = 40;
+            silverrock.Quality = 1.1;
+            
+            CraftAttributeInfo spectral = Spectral = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -3
+            spectral.Difficulty = 60;
+            spectral.Quality = 1.1;
+            
+            CraftAttributeInfo undead = Undead = new CraftAttributeInfo();
+
+            undead.ArmorNecroResist = level2_prot;
+            undead.Difficulty = 80;
+            undead.Quality = 1.2;
+            
+            CraftAttributeInfo darkpagan = DarkPagan = new CraftAttributeInfo();
+
+            darkpagan.Difficulty = 45;
+            darkpagan.Quality = 1.15;
+            
+            CraftAttributeInfo oldbritain = OldBritain = new CraftAttributeInfo();
+
+            oldbritain.Difficulty = 65;
+            oldbritain.Quality = 1.25;
+            
+            CraftAttributeInfo virginity = Virginity = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            virginity.ArmorNecroResist = level2_prot;
+            virginity.Difficulty = 90;
+            virginity.Quality = 1.25;
+            
+            CraftAttributeInfo blackdwarf = BlackDwarf = new CraftAttributeInfo();
+
+            blackdwarf.Difficulty = 25;
+            blackdwarf.Quality = 1.1;
+            
+            CraftAttributeInfo redelven = RedElven = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -2
+            //JustZH : reduce spell damage to wearer
+            redelven.Difficulty = 75;
+            redelven.Quality = 1.15;
+
+            CraftAttributeInfo dripstone = DripStone = new CraftAttributeInfo();
+
+            //JustZH : reduce spell damage to wearer
+            dripstone.ArmorColdResist = level1_prot;
+            dripstone.Difficulty = 100;
+            dripstone.Quality = 1.6;
+
+            CraftAttributeInfo executor = Executor = new CraftAttributeInfo();
+
+            //JustZH : reduce spell damage to wearer
+            executor.Difficulty = 104;
+            executor.Quality = 1.6;
+            
+            CraftAttributeInfo peachblue = Peachblue = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -2
+            peachblue.Difficulty = 108;
+            peachblue.Quality = 1.7;
+            
+            CraftAttributeInfo destruction = Destruction = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -1
+            destruction.ArmorEarthResist = level1_prot;
+            destruction.Difficulty = 112;
+            destruction.Quality = 1.7;
+
+            CraftAttributeInfo anra = Anra = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -2
+            anra.Difficulty = 116;
+            anra.Quality = 1.8;
+
+            CraftAttributeInfo goddess = Goddess = new CraftAttributeInfo();
+
+            //JustZH : reduce spell damage to wearer
+            goddess.ArmorEnergyResist = level1_prot;
+            goddess.Difficulty = 125;
+            goddess.Quality = 1.9;
+
+            CraftAttributeInfo crystal = Crystal = new CraftAttributeInfo();
+
+            //JustZH : reduce spell damage to wearer
+            crystal.ArmorEarthResist = level1_prot;
+            crystal.Difficulty = 119;
+            crystal.Quality = 1.8;
+
+            CraftAttributeInfo doom = Doom = new CraftAttributeInfo();
+
+            doom.Difficulty = 122;
+            doom.Quality = 1.9;
+
+            CraftAttributeInfo ets = ETS = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -3
+            //JustZH : reduce spell damage to wearer
+            //JustZH : blackrock to circle 2
+            ets.ArmorColdResist = level3_prot;
+            ets.Difficulty = 130;
+            ets.Quality = 2.2;
+
+            CraftAttributeInfo dsr = DSR = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -3
+            //JustZH : reduce damage to wearer
+            //JustZH : blackrock to circle 2
+            dsr.ArmorFireResist = level3_prot;
+            dsr.Difficulty = 130;
+            dsr.Quality = 2.2;
+
+            CraftAttributeInfo rnd = RND = new CraftAttributeInfo();
+
+            //JustZH : dex penalty -3
+            //JustZH : blackrock to circle 4
+            rnd.ArmorEnergyResist = level3_prot;
+            rnd.ArmorEarthResist = level3_prot;
+            rnd.ArmorNecroResist = level3_prot;
+            rnd.Difficulty = 140;
+            rnd.Quality = 2.25;
 
             CraftAttributeInfo spined = Spined = new CraftAttributeInfo();
 
@@ -1084,7 +1274,7 @@ namespace Server.Items
             new CraftResourceInfo(383, 1098662, "Mystic", CraftAttributeInfo.Mystic,	CraftResource.Mystic, typeof(MysticIngot),	typeof(MysticOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1223, 1098663, "Spike", CraftAttributeInfo.Spike,	CraftResource.Spike, typeof(SpikeIngot),	typeof(SpikeOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1134, 1098664, "Fruity", CraftAttributeInfo.Fruity,	CraftResource.Fruity, typeof(FruityIngot),	typeof(FruityOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1152, 1098665, "Icerock", CraftAttributeInfo.IceRock,	CraftResource.IceRock, typeof(IcerockIngot),	typeof(IceRockOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1152, 1098665, "Icerock", CraftAttributeInfo.IceRock,	CraftResource.IceRock, typeof(IceRockIngot),	typeof(IceRockOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1001, 1098666, "Silverrock", CraftAttributeInfo.SilverRock,	CraftResource.SilverRock, typeof(SilverRockIngot),	typeof(SilverRockOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1155, 1098667, "Spectral", CraftAttributeInfo.Spectral,	CraftResource.Spectral, typeof(SpectralIngot),	typeof(SpectralOre), typeof(ZuluGranite)),
             new CraftResourceInfo(633, 1098668, "Undead", CraftAttributeInfo.Undead,	CraftResource.Undead, typeof(UndeadIngot),	typeof(UndeadOre), typeof(ZuluGranite)),
@@ -1093,7 +1283,7 @@ namespace Server.Items
             new CraftResourceInfo(1154, 1098671, "Virginity", CraftAttributeInfo.Virginity,	CraftResource.Virginity, typeof(VirginityIngot),	typeof(VirginityOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1105, 1098672, "BlackDwarf", CraftAttributeInfo.BlackDwarf,	CraftResource.BlackDwarf, typeof(BlackDwarfIngot),	typeof(BlackDwarfOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1209, 1098673, "RedElven", CraftAttributeInfo.RedElven,	CraftResource.RedElven, typeof(RedElvenIngot),	typeof(RedElvenOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049e, 1098674, "DripStone", CraftAttributeInfo.DripStone,	CraftResource.DripStone, typeof(DripStoneIngot),	typeof(DripStoneOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049e, 1098674, "DripStone", CraftAttributeInfo.DripStone,	CraftResource.Dripstone, typeof(DripstoneIngot),	typeof(DripstoneOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0499, 1098675, "Executor", CraftAttributeInfo.Executor,	CraftResource.Executor, typeof(ExecutorIngot),	typeof(ExecutorOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x049c, 1098676, "Peachblue", CraftAttributeInfo.Peachblue,	CraftResource.Peachblue, typeof(PeachblueIngot),	typeof(PeachblueOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0500, 1098677, "Destruction", CraftAttributeInfo.Destruction,	CraftResource.Destruction, typeof(DestructionIngot),	typeof(DestructionOre), typeof(ZuluGranite)),
@@ -1373,7 +1563,7 @@ namespace Server.Items
             else if (info.Level == 27)
                 return CraftResource.RedElven;
             else if (info.Level == 28)
-                return CraftResource.DripStone;
+                return CraftResource.Dripstone;
             else if (info.Level == 29)
                 return CraftResource.Executor;
             else if (info.Level == 30)
@@ -1386,13 +1576,13 @@ namespace Server.Items
                 return CraftResource.Goddess;
             else if (info.Level == 34)
                 return CraftResource.Crystal;
-            else if (info.Level == 34)
+            else if (info.Level == 35)
                 return CraftResource.Doom;
-            else if (info.Level == 34)
+            else if (info.Level == 36)
                 return CraftResource.ETS;
-            else if (info.Level == 34)
+            else if (info.Level == 37)
                 return CraftResource.DSR;
-            else if (info.Level == 34)
+            else if (info.Level == 38)
                 return CraftResource.RND;
 
 

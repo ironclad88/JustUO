@@ -51,7 +51,7 @@ namespace Server.Items
         */
 
         // Instance values. These values must are unique to each armor piece.
-        private double m_ExceQualityScalar;
+        private double m_ExceQualityScalar = 1.0;
         private int m_MaxHitPoints;
         private int m_HitPoints;
         private Mobile m_Crafter;
@@ -657,15 +657,20 @@ namespace Server.Items
                 this.UnscaleDurability();
                 if(value != ArmorQuality.Exceptional)
                 {
+                    //we are setting quality to non-exceptional
                     if(this.m_Quality == ArmorQuality.Exceptional)
                     {
+                        //item was previously exceptional, store quality scalar
                         this.m_ExceQualityScalar = this.QualityScalar;
                     }
+                    //set qualityscalar to regular resource quality
                     this.QualityScalar = this.GetResourceAttrs().Quality;
                 }
                 else
                 {
-                    this.QualityScalar = this.m_ExceQualityScalar;
+                    //we are setting the item to exceptional
+                    //restore the item to its exceptional quality if it is higher than current
+                    this.QualityScalar = Math.Max(this.m_ExceQualityScalar, this.QualityScalar);
                 }
                 this.m_Quality = value;
                 this.Invalidate();
@@ -2817,7 +2822,7 @@ namespace Server.Items
 
             if (this.Quality == ArmorQuality.Exceptional)
             {
-                int newquality;
+                double newquality;
                 int multiplier = (int)(5 + (from.Skills.ArmsLore.Value / 10));
                 // JustZH Crafting bonus
                 if (from.SpecClasse == SpecClasse.Crafter)
@@ -2825,7 +2830,7 @@ namespace Server.Items
                     multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter) * 2));
                 }
                 multiplier += 100;
-                newquality = (int)(this.QualityScalar * multiplier);
+                newquality = (this.QualityScalar * multiplier);
                 newquality /= 100;
                 this.QualityScalar = newquality;
             }

@@ -73,7 +73,7 @@ namespace Server.Items
                     if (this.m_Resource == CraftResource.Virginity) { return 1063491; };
                     if (this.m_Resource == CraftResource.BlackDwarf) { return 1063492; };
                     if (this.m_Resource == CraftResource.RedElven) { return 1063493; };
-                    if (this.m_Resource == CraftResource.DripStone) { return 1063494; };
+                    if (this.m_Resource == CraftResource.Dripstone) { return 1063494; };
                     if (this.m_Resource == CraftResource.Executor) { return 1063495; };
                     if (this.m_Resource == CraftResource.Peachblue) { return 1063496; };
                     if (this.m_Resource == CraftResource.Destruction) { return 1063497; };
@@ -1025,23 +1025,23 @@ namespace Server.Items
     }
 
     [FlipableAttribute(0x1BF2, 0x1BEF)]
-    public class IcerockIngot : BaseIngot
+    public class IceRockIngot : BaseIngot
     {
         protected override CraftResource DefaultResource { get { return CraftResource.IceRock; } }
 
         [Constructable]
-        public IcerockIngot()
+        public IceRockIngot()
             : this(1)
         {
         }
 
         [Constructable]
-        public IcerockIngot(int amount)
+        public IceRockIngot(int amount)
             : base(CraftResource.IceRock, amount)
         {
         }
 
-        public IcerockIngot(Serial serial)
+        public IceRockIngot(Serial serial)
             : base(serial)
         {
         }
@@ -1321,23 +1321,23 @@ namespace Server.Items
     }
 
     [FlipableAttribute(0x1BF2, 0x1BEF)]
-    public class DripStoneIngot : BaseIngot
+    public class DripstoneIngot : BaseIngot
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.DripStone; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.Dripstone; } }
 
         [Constructable]
-        public DripStoneIngot()
+        public DripstoneIngot()
             : this(1)
         {
         }
 
         [Constructable]
-        public DripStoneIngot(int amount)
-            : base(CraftResource.DripStone, amount)
+        public DripstoneIngot(int amount)
+            : base(CraftResource.Dripstone, amount)
         {
         }
 
-        public DripStoneIngot(Serial serial)
+        public DripstoneIngot(Serial serial)
             : base(serial)
         {
         }
