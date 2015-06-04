@@ -348,6 +348,7 @@ namespace Server.Items
             }
         }
 
+        [CommandProperty(AccessLevel.GameMaster)]
         public virtual double ArmorRating
         {
             get
@@ -2392,97 +2393,24 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
-            int oreType;
-
-            switch (this.m_Resource)
-            {
-                case CraftResource.DullCopper:
-                    oreType = 1053108;
-                    break; // dull copper
-                case CraftResource.ShadowIron:
-                    oreType = 1053107;
-                    break; // shadow iron
-                case CraftResource.Copper:
-                    oreType = 1053106;
-                    break; // copper
-                case CraftResource.Bronze:
-                    oreType = 1053105;
-                    break; // bronze
-                case CraftResource.Gold:
-                    oreType = 1053104;
-                    break; // golden
-                case CraftResource.Agapite:
-                    oreType = 1053103;
-                    break; // agapite
-                case CraftResource.Verite:
-                    oreType = 1053102;
-                    break; // verite
-                case CraftResource.Valorite:
-                    oreType = 1053101;
-                    break; // valorite
-                case CraftResource.SpinedLeather:
-                    oreType = 1061118;
-                    break; // spined
-                case CraftResource.HornedLeather:
-                    oreType = 1061117;
-                    break; // horned
-                case CraftResource.BarbedLeather:
-                    oreType = 1061116;
-                    break; // barbed
-                case CraftResource.RedScales:
-                    oreType = 1060814;
-                    break; // red
-                case CraftResource.YellowScales:
-                    oreType = 1060818;
-                    break; // yellow
-                case CraftResource.BlackScales:
-                    oreType = 1060820;
-                    break; // black
-                case CraftResource.GreenScales:
-                    oreType = 1060819;
-                    break; // green
-                case CraftResource.WhiteScales:
-                    oreType = 1060821;
-                    break; // white
-                case CraftResource.BlueScales:
-                    oreType = 1060815;
-                    break; // blue
-                case CraftResource.OakWood:
-                    oreType = 1072533;
-                    break; // oak
-                case CraftResource.AshWood:
-                    oreType = 1072534;
-                    break; // ash
-                case CraftResource.YewWood:
-                    oreType = 1072535;
-                    break; // yew
-                case CraftResource.Heartwood:
-                    oreType = 1072536;
-                    break; // heartwood
-                case CraftResource.Bloodwood:
-                    oreType = 1072538;
-                    break; // bloodwood
-                case CraftResource.Frostwood:
-                    oreType = 1072539;
-                    break; // frostwood
-                default:
-                    oreType = 0;
-                    break;
-            }
-
+            string name = this.Name;
+            if (name == null)
+                name = ItemData.Name;
             if (this.m_Quality == ArmorQuality.Exceptional)
             {
-                if (oreType != 0)
-                    list.Add(1053100, "#{0}\t{1}", oreType, this.GetNameString()); // exceptional ~1_oretype~ ~2_armortype~
+                if (this.Resource != CraftResource.Iron)
+                    list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + " " + name); 
+                    //list.Add(1053100, "#{0}\t{1}", oreType, name); // exceptional ~1_oretype~ ~2_armortype~
                     //JustZH : this should be something like this, but this doesn't work for some reason:
-                //list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + this.GetNameString()); // exceptional ~1_oretype~ ~2_armortype~
+                //list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + name); // exceptional ~1_oretype~ ~2_armortype~
                 else
-                    list.Add(1050040, this.GetNameString()); // exceptional ~1_ITEMNAME~
+                    list.Add(1050040, name); // exceptional ~1_ITEMNAME~
             }
             else
             {
-                if (oreType != 0)
-                    list.Add(1053099, "#{0}\t{1}", oreType, this.GetNameString()); // ~1_oretype~ ~2_armortype~
+                if (this.Resource != CraftResource.Iron)
+                    list.Add(CraftResources.GetInfo(this.Resource).Name + " " + name); 
+                    //list.Add(1053099, "#{0}\t{1}", oreType, name); // ~1_oretype~ ~2_armortype~
                 else if (this.Name == null)
                     list.Add(this.LabelNumber);
                 else
@@ -2567,7 +2495,9 @@ namespace Server.Items
                     list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
 
                 if ((prop = (int)this.ArmorRating) != 0 && this.m_AosArmorAttributes.MageArmor == 0)
+                {
                     list.Add("Armor Rating " + prop.ToString());
+                }
                 
 
                 if ((prop = this.m_AosAttributes.WeaponDamage) != 0)

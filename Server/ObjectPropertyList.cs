@@ -145,10 +145,13 @@ namespace Server
 		}
 
 		// Each of these are localized to "~1_NOTHING~" which allows the string argument to be used
-		private static readonly int[] m_StringNumbers = new[] {1042971, 1070722};
+        private static readonly int[] m_StringNumbers = new[] { 1042971, 1070722, 1045025, 1045026, 1045027, 1045028,
+        1045029, 1045030, 1045031, 1045032, 1045033, 1045034};
 
 		private int GetStringNumber()
 		{
+            if (m_Strings >= m_StringNumbers.Length)
+                Console.WriteLine("Tried to add too many arbitrary strings to property list, this property will not be visible!");
 			return m_StringNumbers[m_Strings++ % m_StringNumbers.Length];
 		}
 
