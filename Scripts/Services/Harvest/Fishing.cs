@@ -276,7 +276,8 @@ namespace Server.Engines.Harvest
             }
             else if (type == typeof(MessageInABottle))
             {
-                return new MessageInABottle(from.Map == Map.Felucca ? Map.Felucca : Map.Trammel);
+                // JustZH message in a bottle only works in Felucca
+                return new MessageInABottle(Map.Felucca);
             }
 
             Container pack = from.Backpack;

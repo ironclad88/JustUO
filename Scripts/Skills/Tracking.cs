@@ -187,6 +187,7 @@ namespace Server.SkillHandlers
 
             TrackTypeDelegate check = m_Delegates[type];
 
+            // JustZH i think this is a passive gain while tracking, should not be used (not used like this in zulu)
             // from.CheckSkill(SkillName.Tracking, 21.1, 100.0); // Passive gain           // hmmmm?
 
             int range = 10 + (int)(from.Skills[SkillName.Tracking].Value / 10);
