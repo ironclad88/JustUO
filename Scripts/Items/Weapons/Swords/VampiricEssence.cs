@@ -14,7 +14,7 @@ namespace Server.Items
             this.WeaponAttributes.HitHarm = 50;
             this.Attributes.WeaponSpeed = 20;
             this.Attributes.WeaponDamage = 50;
-            this.AosElementDamages.Cold = 100;
+            this.AosElementDamages.Water = 100;
             this.WeaponAttributes.BloodDrinker = 1;
         }
 

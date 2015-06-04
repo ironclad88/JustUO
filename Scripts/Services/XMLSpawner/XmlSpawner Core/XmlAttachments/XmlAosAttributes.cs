@@ -835,11 +835,11 @@ namespace Server.Engines.XmlSpawner2
         {
             get
             {
-                return this[AosElementAttribute.Cold];
+                return this[AosElementAttribute.Water];
             }
             set
             {
-                this[AosElementAttribute.Cold] = value;
+                this[AosElementAttribute.Water] = value;
             }
         }
         [CommandProperty(AccessLevel.GameMaster)]
@@ -859,11 +859,11 @@ namespace Server.Engines.XmlSpawner2
         {
             get
             {
-                return this[AosElementAttribute.Energy];
+                return this[AosElementAttribute.Air];
             }
             set
             {
-                this[AosElementAttribute.Energy] = value;
+                this[AosElementAttribute.Air] = value;
             }
         }
         public int this[AosElementAttribute attribute]

@@ -18,9 +18,9 @@ namespace Server.Items
             this.Attributes.SpellDamage = 8;
             this.Resistances.Physical = 4;
             this.Resistances.Fire = 10;
-            this.Resistances.Cold = 10;
+            this.Resistances.Water = 10;
             this.Resistances.Poison = 3;
-            this.Resistances.Energy = 13;
+            this.Resistances.Air = 13;
             //AbsorptionAttribute.CastingFocus = 4; TODO: how this shit works?
         }
 

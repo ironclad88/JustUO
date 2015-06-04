@@ -71,7 +71,7 @@ namespace Server.Items
 
             if (version < 3)
             {
-                this.Resistances.Cold = 0;
+                this.Resistances.Water = 0;
                 this.Resistances.Poison = 0;
             }
 

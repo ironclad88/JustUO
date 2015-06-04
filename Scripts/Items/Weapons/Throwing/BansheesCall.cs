@@ -17,7 +17,7 @@ namespace Server.Items
             this.Attributes.WeaponSpeed = 30;
             this.Attributes.WeaponDamage = 50;
             this.Velocity = 35;		
-            this.AosElementDamages.Cold = 100;
+            this.AosElementDamages.Water = 100;
         }
 
         public BansheesCall(Serial serial)

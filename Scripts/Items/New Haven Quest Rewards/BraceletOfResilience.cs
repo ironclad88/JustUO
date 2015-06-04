@@ -11,9 +11,9 @@ namespace Server.Items
 
             this.Attributes.DefendChance = 5;
             this.Resistances.Fire = 5;
-            this.Resistances.Cold = 5;
+            this.Resistances.Water = 5;
             this.Resistances.Poison = 5;
-            this.Resistances.Energy = 5;
+            this.Resistances.Air = 5;
         }
 
         public BraceletOfResilience(Serial serial)

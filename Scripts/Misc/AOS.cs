@@ -2259,9 +2259,9 @@ namespace Server
     {
         Physical = 0x00000001,
         Fire = 0x00000002,
-        Cold = 0x00000004,
+        Water = 0x00000004,
         Poison = 0x00000008,
-        Energy = 0x00000010,
+        Air = 0x00000010,
         Chaos = 0x00000020,
         Direct = 0x00000040,
         Earth = 0x00000080,
@@ -2344,15 +2344,15 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int Cold
+        public int Water
         {
             get
             {
-                return this[AosElementAttribute.Cold];
+                return this[AosElementAttribute.Water];
             }
             set
             {
-                this[AosElementAttribute.Cold] = value;
+                this[AosElementAttribute.Water] = value;
             }
         }
 
@@ -2370,15 +2370,15 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int Energy
+        public int Air
         {
             get
             {
-                return this[AosElementAttribute.Energy];
+                return this[AosElementAttribute.Air];
             }
             set
             {
-                this[AosElementAttribute.Energy] = value;
+                this[AosElementAttribute.Air] = value;
             }
         }
 

@@ -12,7 +12,7 @@ namespace Server.Items
             this.Attributes.CastSpeed = 2;
             this.Attributes.LowerManaCost = 10;
             this.Attributes.LowerRegCost = 20;
-            this.Resistances.Energy = 15;
+            this.Resistances.Air = 15;
         }
 
         public OrnamentOfTheMagician(Serial serial)

@@ -1287,56 +1287,64 @@ namespace Server
 
             if (v != 0)
             {
-                list.Add(1060448, v.ToString()); // physical resist ~1_val~%
+                //list.Add(1060448, v.ToString()); // physical resist ~1_val~%
+                list.Add("Physical Resistance " + v.ToString() + "%");
             }
 
             v = FireResistance;
 
             if (v != 0)
             {
-                list.Add(1060447, v.ToString()); // fire resist ~1_val~%
+                //list.Add(1060447, v.ToString()); // fire resist ~1_val~%
+                list.Add("Fire Resistance " + v.ToString() + "%");
             }
 
             v = ColdResistance;
 
             if (v != 0)
             {
-                list.Add(1060445, v.ToString()); // water resist ~1_val~%
+                //list.Add(1060445, v.ToString()); // water resist ~1_val~%
+                list.Add("Water Resistance " + v.ToString() + "%");
             }
 
             v = PoisonResistance;
 
             if (v != 0)
             {
-                list.Add(1060449, v.ToString()); // poison resist ~1_val~%
+                //list.Add(1060449, v.ToString()); // poison resist ~1_val~%
+                list.Add("Poison Resistance " + v.ToString() + "%");
             }
 
             v = EnergyResistance;
 
             if (v != 0)
             {
-                list.Add(1060446, v.ToString()); // air resist ~1_val~%
+                //list.Add(1060446, v.ToString()); // air resist ~1_val~%
+                list.Add("Air Resistance " + v.ToString() + "%");
             }
 
             v = EarthResistance;
 
             if (v != 0)
             {
-                list.Add(1060526, v.ToString()); // earth resist ~1_val~%
+                //list.Add(1060526, v.ToString()); // earth resist ~1_val~%
+                list.Add("Earth Resistance " + v.ToString() + "%");
             }
 
             v = NecroResistance;
 
             if (v != 0)
             {
-                list.Add(1060527, v.ToString()); // necro resist ~1_val~%
+                //list.Add(1060527, v.ToString()); // necro resist ~1_val~%
+                list.Add("Necro Resistance " + v.ToString() + "%");
             }
 
             v = HolyResistance;
 
             if (v != 0)
             {
-                list.Add(1060528, v.ToString()); // holy resist ~1_val~%
+                //list.Add(1060528, v.ToString()); // holy resist ~1_val~%
+                list.Add("Holy Resistance " + v.ToString() + "%");
             }
         }
 

@@ -16,7 +16,7 @@ namespace Server.Items
             this.WeaponAttributes.HitLowerDefend = 50;
             this.WeaponAttributes.HitLowerAttack = 50;
             this.WeaponAttributes.HitCurse = 10;		
-            this.AosElementDamages.Cold = 75;
+            this.AosElementDamages.Water = 75;
             this.AosElementDamages.Poison = 25;			
         }
 

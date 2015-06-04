@@ -17,7 +17,7 @@ namespace Server.Items
             this.Attributes.CastRecovery = 1;		
             this.Attributes.SpellChanneling = 1;	
             this.WeaponAttributes.HitLowerAttack = 60;
-            this.AosElementDamages.Energy = 100;		
+            this.AosElementDamages.Air = 100;		
         }
 
         public ChannelersDefender(Serial serial)

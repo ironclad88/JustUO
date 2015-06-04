@@ -94,9 +94,9 @@ namespace Server.Items
             {
                 this.Resistances.Physical = 0;
                 this.Resistances.Fire = 0;
-                this.Resistances.Cold = 0;
+                this.Resistances.Water = 0;
                 this.Resistances.Poison = 0;
-                this.Resistances.Energy = 0;
+                this.Resistances.Air = 0;
             }
         }
     }

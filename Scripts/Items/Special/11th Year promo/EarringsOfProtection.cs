@@ -10,9 +10,9 @@ namespace Server.Items
         {
             this.DropItem(new EarringsOfProtection(AosElementAttribute.Physical));
             this.DropItem(new EarringsOfProtection(AosElementAttribute.Fire));
-            this.DropItem(new EarringsOfProtection(AosElementAttribute.Cold));
+            this.DropItem(new EarringsOfProtection(AosElementAttribute.Water));
             this.DropItem(new EarringsOfProtection(AosElementAttribute.Poison));
-            this.DropItem(new EarringsOfProtection(AosElementAttribute.Energy));
+            this.DropItem(new EarringsOfProtection(AosElementAttribute.Air));
         }
 
         public EarringBoxSet(Serial serial)
@@ -95,11 +95,11 @@ namespace Server.Items
                 case 1:
                     return AosElementAttribute.Fire;
                 case 2:
-                    return AosElementAttribute.Cold;
+                    return AosElementAttribute.Water;
                 case 3:
                     return AosElementAttribute.Poison;
                 default:
-                    return AosElementAttribute.Energy;
+                    return AosElementAttribute.Air;
             }
         }
 
@@ -111,11 +111,11 @@ namespace Server.Items
                     return (label) ? 1071091 : 0;         // Earring of Protection (Physical)  1071091
                 case AosElementAttribute.Fire:
                     return (label) ? 1071092 : 0x4ec;     // Earring of Protection (Fire)      1071092
-                case AosElementAttribute.Cold:
+                case AosElementAttribute.Water:
                     return (label) ? 1071093 : 0x4f2;     // Earring of Protection (Cold)      1071093
                 case AosElementAttribute.Poison:
                     return (label) ? 1071094 : 0x4f8;     // Earring of Protection (Poison)    1071094
-                case AosElementAttribute.Energy:
+                case AosElementAttribute.Air:
                     return (label) ? 1071095 : 0x4fe;     // Earring of Protection (Energy)    1071095
 
                 default:

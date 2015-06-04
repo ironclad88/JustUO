@@ -276,7 +276,7 @@ namespace Server.Engines.Craft
             Coming soon....
             */
 
-            int index;
+            //int index;
 
             #region Ringmail
             AddCraft(typeof(RingmailGloves), 1011076, 1025099, 12.0, 62.0, typeof(IronIngot), 1044036, 10, 1044037);

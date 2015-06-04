@@ -31,7 +31,6 @@ namespace Server.Items
         private CraftResource m_Resource;
         private GemType m_GemType;
         private int m_TimesImbued;
-        private int m_IdHue;
 
         private Mobile m_BlessedBy;
 
@@ -213,23 +212,6 @@ namespace Server.Items
             }
         }
 
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int IdHue
-        {
-            get { return m_IdHue; }
-            set
-            {
-                if (m_IdHue == value)
-                {
-                    return;
-                }
-
-                m_IdHue = value;
-                Unidentified = true;
-
-                InvalidateProperties();
-            }
-        }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public override bool Unidentified
@@ -272,7 +254,7 @@ namespace Server.Items
         {
             get
             {
-                return this.m_AosResistances.Cold;
+                return this.m_AosResistances.Water;
             }
         }
         public override int PoisonResistance
@@ -286,7 +268,7 @@ namespace Server.Items
         {
             get
             {
-                return this.m_AosResistances.Energy;
+                return this.m_AosResistances.Air;
             }
         }
         public override int EarthResistance
@@ -728,10 +710,10 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(5); // version
+            writer.Write(6); // version
 
             // Version 5
-            writer.Write(m_IdHue);
+            //writer.Write(m_IdHue); // Removed in version 6
 
             // Version 4
             writer.WriteEncodedInt((int)this.m_TimesImbued);
@@ -767,9 +749,11 @@ namespace Server.Items
 
             switch (version)
             {
+                case 6:
+                    goto case 4; //skipping 5 because idhue was removed in this version
                 case 5:
                     {
-                        m_IdHue = reader.ReadInt();
+                        reader.ReadInt(); //just read and discard
                         goto case 4;
                     }
                 case 4:

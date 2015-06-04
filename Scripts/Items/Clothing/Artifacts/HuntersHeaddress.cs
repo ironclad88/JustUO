@@ -72,7 +72,7 @@ namespace Server.Items
             {
                 case 0:
                     {
-                        this.Resistances.Cold = 0;
+                        this.Resistances.Water = 0;
                         break;
                     }
             }

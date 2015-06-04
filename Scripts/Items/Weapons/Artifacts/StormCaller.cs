@@ -20,9 +20,9 @@ namespace Server.Items
             this.Attributes.WeaponDamage = 40;
             this.AosElementDamages.Physical = 20;
             this.AosElementDamages.Fire = 20;
-            this.AosElementDamages.Cold = 20;
+            this.AosElementDamages.Water = 20;
             this.AosElementDamages.Poison = 20;
-            this.AosElementDamages.Energy = 20;
+            this.AosElementDamages.Air = 20;
         }
 
         public StormCaller(Serial serial)

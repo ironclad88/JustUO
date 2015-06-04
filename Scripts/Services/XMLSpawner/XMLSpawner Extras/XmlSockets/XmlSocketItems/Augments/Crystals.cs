@@ -1255,7 +1255,7 @@ namespace Server.Items
             } else
             if(target is BaseJewel)
             {
-                ((BaseJewel)target).Resistances.Cold += 10;
+                ((BaseJewel)target).Resistances.Water += 10;
             } else
 			{
                 return false;
@@ -1287,7 +1287,7 @@ namespace Server.Items
             } else
             if(target is BaseJewel)
             {
-                ((BaseJewel)target).Resistances.Cold -= 10;
+                ((BaseJewel)target).Resistances.Water -= 10;
             } else
 			{
                 return false;
@@ -1476,7 +1476,7 @@ namespace Server.Items
             } else
             if(target is BaseJewel)
             {
-                ((BaseJewel)target).Resistances.Energy += 10;
+                ((BaseJewel)target).Resistances.Air += 10;
             } else
 			{
                 return false;
@@ -1508,7 +1508,7 @@ namespace Server.Items
             } else
             if(target is BaseJewel)
             {
-                ((BaseJewel)target).Resistances.Energy -= 10;
+                ((BaseJewel)target).Resistances.Air -= 10;
             } else
 			{
                 return false;

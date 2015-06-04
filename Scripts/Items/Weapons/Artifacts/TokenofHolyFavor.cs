@@ -16,7 +16,7 @@ namespace Server.Items
             this.Attributes.DefendChance = 10;
             this.Attributes.AttackChance = 10;
             this.Attributes.SpellDamage = 4;
-            this.Resistances.Cold = 5;
+            this.Resistances.Water = 5;
             this.Resistances.Poison = 5;
         }
 

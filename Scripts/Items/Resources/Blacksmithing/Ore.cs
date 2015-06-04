@@ -189,7 +189,7 @@ namespace Server.Items
 
         private static int RandomSize()
         {
-           // double rand = Utility.RandomDouble();
+            // double rand = Utility.RandomDouble();
 
             /*if (rand < 0.12)
                 return 0x19B7;
@@ -223,10 +223,11 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
+            string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(1050039, "{0}\t#{1}", this.Amount, 1026583); // ~1_NUMBER~ ~2_ITEMNAME~
+                list.Add(this.Amount + " " + name + " Ore");
             else
-                list.Add(1026583); 
+                list.Add(name + " Ore");
         }
 
         public override void GetProperties(ObjectPropertyList list)
@@ -591,14 +592,6 @@ namespace Server.Items
 
             writer.Write((int)0); // version
         }
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Iron Ore");
-            else
-                list.Add("Iron Ore"); 
-        }
-
     }
 
     public class DullCopperOre : BaseOre
@@ -639,14 +632,6 @@ namespace Server.Items
         public override BaseIngot GetIngot()
         {
             return new DullCopperIngot();
-        }
-
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Dull Copper Ore");
-            else
-                list.Add("Dull Copper Ore"); 
         }
 
     }
@@ -732,14 +717,6 @@ namespace Server.Items
             return new CopperIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Copper Ore"); 
-            else
-                list.Add("Copper Ore"); 
-        }
-
     }
 
     public class BronzeOre : BaseOre
@@ -780,14 +757,6 @@ namespace Server.Items
         public override BaseIngot GetIngot()
         {
             return new BronzeIngot();
-        }
-
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Bronze Ore");
-            else
-                list.Add("Bronze Ore"); 
         }
 
     }
@@ -996,13 +965,6 @@ namespace Server.Items
             return new ZuluIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " New Zulu Ore");
-            else
-                list.Add("New Zulu Ore"); 
-        }
 
     }
 
@@ -1046,13 +1008,6 @@ namespace Server.Items
             return new OnyxIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Onyx Ore");
-            else
-                list.Add("Onyx Ore"); 
-        }
 
     }
 
@@ -1095,14 +1050,7 @@ namespace Server.Items
         {
             return new PyriteIngot();
         }
-        
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Pyrite Ore");
-            else
-                list.Add("Pyrite Ore");
-        }
+
     }
 
     public class MalachiteOre : BaseOre
@@ -1145,13 +1093,6 @@ namespace Server.Items
             return new MalachiteIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Malachite Ore");
-            else
-                list.Add("Malachite Ore");
-        }
     }
 
     public class AzuriteOre : BaseOre
@@ -1194,13 +1135,6 @@ namespace Server.Items
             return new AzuriteIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Azurite Ore");
-            else
-                list.Add("Azurite Ore");
-        }
     }
 
     public class PlatinumOre : BaseOre
@@ -1243,13 +1177,6 @@ namespace Server.Items
             return new PlatinumIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Platinum Ore");
-            else
-                list.Add("Platinum Ore");
-        }
     }
 
     public class LavarockOre : BaseOre
@@ -1292,13 +1219,6 @@ namespace Server.Items
             return new LavarockIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Lavarock Ore");
-            else
-                list.Add("Lavarock Ore");
-        }
     }
 
     public class MysticOre : BaseOre
@@ -1341,13 +1261,6 @@ namespace Server.Items
             return new MysticIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Mystic Ore");
-            else
-                list.Add("Mystic Ore");
-        }
     }
 
     public class SpikeOre : BaseOre
@@ -1390,13 +1303,6 @@ namespace Server.Items
             return new SpikeIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Spike Ore");
-            else
-                list.Add("Spike Ore");
-        }
     }
 
     public class FruityOre : BaseOre
@@ -1439,13 +1345,6 @@ namespace Server.Items
             return new FruityIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Fruity Ore");
-            else
-                list.Add("Fruity Ore");
-        }
     }
 
     public class IceRockOre : BaseOre
@@ -1488,13 +1387,6 @@ namespace Server.Items
             return new IceRockIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Ice Rock Ore");
-            else
-                list.Add("Ice Rock Ore");
-        }
     }
 
     public class SilverRockOre : BaseOre
@@ -1537,13 +1429,6 @@ namespace Server.Items
             return new SilverRockIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Silver Rick Ore");
-            else
-                list.Add("Silver Rock Ore");
-        }
     }
 
     public class SpectralOre : BaseOre
@@ -1585,14 +1470,7 @@ namespace Server.Items
         {
             return new SpectralIngot();
         }
-        
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Spectral Ore");
-            else
-                list.Add("Spectral Ore");
-        }
+
     }
 
     public class UndeadOre : BaseOre
@@ -1635,13 +1513,6 @@ namespace Server.Items
             return new UndeadIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Undead Ore");
-            else
-                list.Add("Undead Ore");
-        }
     }
 
     public class DarkPaganOre : BaseOre
@@ -1684,13 +1555,6 @@ namespace Server.Items
             return new DarkPaganIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Dark Pagan Ore");
-            else
-                list.Add("Dark Pagan Ore");
-        }
     }
 
     public class OldBritainOre : BaseOre
@@ -1733,13 +1597,6 @@ namespace Server.Items
             return new OldBritainIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Old Britain Ore");
-            else
-                list.Add("Old Britain Ore");
-        }
     }
 
     public class VirginityOre : BaseOre
@@ -1782,13 +1639,6 @@ namespace Server.Items
             return new VirginityIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Virginity Ore");
-            else
-                list.Add("Virginity Ore");
-        }
     }
 
     public class BlackDwarfOre : BaseOre
@@ -1831,13 +1681,6 @@ namespace Server.Items
             return new BlackDwarfIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Black Dwarf Ore");
-            else
-                list.Add("Black Dwarf Ore");
-        }
     }
 
     public class RedElvenOre : BaseOre
@@ -1880,13 +1723,6 @@ namespace Server.Items
             return new RedElvenIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Red Elven Ore");
-            else
-                list.Add("Red Elven Ore");
-        }
     }
 
     public class DripstoneOre : BaseOre
@@ -1929,13 +1765,6 @@ namespace Server.Items
             return new DripstoneIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Dripstone Ore");
-            else
-                list.Add("Dripstone Ore");
-        }
     }
 
     public class ExecutorOre : BaseOre
@@ -1978,13 +1807,6 @@ namespace Server.Items
             return new ExecutorIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Executioner Ore");
-            else
-                list.Add("Executioner Ore");
-        }
     }
 
     public class PeachblueOre : BaseOre
@@ -2027,13 +1849,6 @@ namespace Server.Items
             return new PeachblueIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Peachblue Ore");
-            else
-                list.Add("Peachblue Ore");
-        }
     }
 
     public class DestructionOre : BaseOre
@@ -2076,13 +1891,6 @@ namespace Server.Items
             return new DestructionIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Destruction Ore");
-            else
-                list.Add("Destruction Ore");
-        }
     }
 
     public class AnraOre : BaseOre
@@ -2125,13 +1933,6 @@ namespace Server.Items
             return new AnraIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Anra Ore");
-            else
-                list.Add("Anra Ore");
-        }
     }
 
     public class GoddessOre : BaseOre
@@ -2174,13 +1975,6 @@ namespace Server.Items
             return new GoddessIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Goddess Ore");
-            else
-                list.Add("Goddess Ore");
-        }
     }
 
     public class CrystalOre : BaseOre
@@ -2223,13 +2017,6 @@ namespace Server.Items
             return new CrystalIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Crystal Ore");
-            else
-                list.Add("Crystal Ore");
-        }
     }
 
     public class DoomOre : BaseOre
@@ -2272,13 +2059,6 @@ namespace Server.Items
             return new DoomIngot();
         }
 
-        public override void AddNameProperty(ObjectPropertyList list)
-        {
-            if (this.Amount > 1)
-                list.Add(this.Amount + " Doom Ore");
-            else
-                list.Add("Doom Ore");
-        }
     }
 
     public class ETSOre : BaseOre
@@ -2324,10 +2104,11 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
+            string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(this.Amount + " Ebon Twilight Saphire");
+                list.Add(this.Amount + " " + name);
             else
-                list.Add("Ebon Twilight Saphire"); 
+                list.Add(name);
         }
     }
 
@@ -2374,10 +2155,11 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
+            string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(this.Amount + " Dark Sable Ruby");
+                list.Add(this.Amount + " " + name);
             else
-                list.Add("Dark Sable Ruby");
+                list.Add(name);
         }
     }
 
@@ -2424,13 +2206,12 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
+            string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(this.Amount + " Radiant Nimbus Diamond");
+                list.Add(this.Amount + " " + name);
             else
-                list.Add("Radiant Nimbus Diamond");
+                list.Add(name);
         }
     }
-
-
 
 }

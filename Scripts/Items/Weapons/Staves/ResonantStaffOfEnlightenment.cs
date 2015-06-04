@@ -19,7 +19,7 @@ namespace Server.Items
             this.Attributes.WeaponDamage = -40;
             this.Attributes.LowerManaCost = 5;			
             this.AbsorptionAttributes.ResonanceCold = 20;	
-            this.AosElementDamages.Cold = 100;		
+            this.AosElementDamages.Water = 100;		
 			this.Attributes.BonusInt = 5;
 				
         }

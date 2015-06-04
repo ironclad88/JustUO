@@ -12,7 +12,7 @@ namespace Server.Items
             this.Attributes.RegenStam = 2;
             this.Attributes.RegenMana = 1;
             this.Resistances.Fire = 5;
-            this.Resistances.Cold = 5;
+            this.Resistances.Water = 5;
         }
 
         public ClaspOfConcentration(Serial serial)

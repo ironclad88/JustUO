@@ -359,7 +359,7 @@ namespace Server.Items
         {
             get
             {
-                return this.BaseColdResistance + this.m_AosResistances.Cold + (this.m_SetEquipped ? this.m_SetColdBonus : 0);
+                return this.BaseColdResistance + this.m_AosResistances.Water + (this.m_SetEquipped ? this.m_SetColdBonus : 0);
             }
         }
         public override int PoisonResistance
@@ -373,7 +373,7 @@ namespace Server.Items
         {
             get
             {
-                return this.BaseEnergyResistance + this.m_AosResistances.Energy + (this.m_SetEquipped ? this.m_SetEnergyBonus : 0);
+                return this.BaseEnergyResistance + this.m_AosResistances.Air + (this.m_SetEquipped ? this.m_SetEnergyBonus : 0);
             }
         }
         #endregion
@@ -1595,13 +1595,13 @@ namespace Server.Items
                         ++this.m_AosResistances.Fire;
                         break;
                     case 2:
-                        ++this.m_AosResistances.Cold;
+                        ++this.m_AosResistances.Water;
                         break;
                     case 3:
                         ++this.m_AosResistances.Poison;
                         break;
                     case 4:
-                        ++this.m_AosResistances.Energy;
+                        ++this.m_AosResistances.Air;
                         break;
                 }
             }

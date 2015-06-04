@@ -2848,9 +2848,9 @@ namespace Server.Items
             else
             {
                 fire = m_AosElementDamages.Fire;
-                cold = m_AosElementDamages.Cold;
+                cold = m_AosElementDamages.Water;
                 pois = m_AosElementDamages.Poison;
-                nrgy = m_AosElementDamages.Energy;
+                nrgy = m_AosElementDamages.Air;
                 earth = m_AosElementDamages.Earth;
                 necro = m_AosElementDamages.Necro;
                 holy = m_AosElementDamages.Holy;
@@ -5064,47 +5064,56 @@ namespace Server.Items
 
                 if (fire != 0)
                 {
-                    list.Add(1060405, fire.ToString()); // fire damage ~1_val~%
+                    //list.Add(1060405, fire.ToString()); // fire damage ~1_val~%
+                    list.Add(AosElementAttribute.Fire + " Damage " + fire.ToString() + "%");
                 }
 
                 if (cold != 0)
                 {
-                    list.Add(1060404, cold.ToString()); // water damage ~1_val~%
+                    //list.Add(1060404, cold.ToString()); // water damage ~1_val~%
+                    list.Add(AosElementAttribute.Water + " Damage " + cold.ToString() + "%");
                 }
 
                 if (pois != 0)
                 {
-                    list.Add(1060406, pois.ToString()); // poison damage ~1_val~%
+                    //list.Add(1060406, pois.ToString()); // poison damage ~1_val~%
+                    list.Add(AosElementAttribute.Poison + " Damage " + pois.ToString() + "%");
                 }
 
                 if (nrgy != 0)
                 {
-                    list.Add(1060407, nrgy.ToString()); // air damage ~1_val
+                    //list.Add(1060407, nrgy.ToString()); // air damage ~1_val
+                    list.Add(AosElementAttribute.Air + " Damage " + nrgy.ToString() + "%");
                 }
 
                 if (earth != 0)
                 {
-                    list.Add(1060529, earth.ToString()); // earth damage ~1_val
+                    //list.Add(1060529, earth.ToString()); // earth damage ~1_val
+                    list.Add(AosElementAttribute.Earth + " Damage " + earth.ToString() + "%");
                 }
 
                 if (necro != 0)
                 {
-                    list.Add(1060530, necro.ToString()); // necro damage ~1_val
+                    //list.Add(1060530, necro.ToString()); // necro damage ~1_val
+                    list.Add(AosElementAttribute.Necro + " Damage " + necro.ToString() + "%");
                 }
 
                 if (holy != 0)
                 {
-                    list.Add(1060531, holy.ToString()); // holy damage ~1_val
+                    //list.Add(1060531, holy.ToString()); // holy damage ~1_val
+                    list.Add(AosElementAttribute.Holy + " Damage " + holy.ToString() + "%");
                 }
 
                 if (Core.ML && chaos != 0)
                 {
-                    list.Add(1072846, chaos.ToString()); // chaos damage ~1_val~%
+                    //list.Add(1072846, chaos.ToString()); // chaos damage ~1_val~%
+                    list.Add(AosElementAttribute.Chaos + " Damage " + chaos.ToString() + "%");
                 }
 
                 if (Core.ML && direct != 0)
                 {
-                    list.Add(1079978, direct.ToString()); // Direct Damage: ~1_PERCENT~%
+                    //list.Add(1079978, direct.ToString()); // Direct Damage: ~1_PERCENT~%
+                    list.Add(AosElementAttribute.Direct + " Damage " + direct.ToString() + "%");
                 }
 
                 list.Add(1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString()); // weapon damage ~1_val~ - ~2_val~

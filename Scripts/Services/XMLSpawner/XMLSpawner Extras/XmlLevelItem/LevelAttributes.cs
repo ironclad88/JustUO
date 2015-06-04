@@ -99,9 +99,9 @@ namespace Server.Items
 		{
             new ElementAttributeInfo( AosElementAttribute.Physical, "Physical Resistance", AttributeCategory.Resists, 2, 20 ),
             new ElementAttributeInfo( AosElementAttribute.Fire, "Fire Resistance", AttributeCategory.Resists, 2, 20 ),
-            new ElementAttributeInfo( AosElementAttribute.Cold, "Cold Resistance", AttributeCategory.Resists, 2, 20 ),
+            new ElementAttributeInfo( AosElementAttribute.Water, "Cold Resistance", AttributeCategory.Resists, 2, 20 ),
             new ElementAttributeInfo( AosElementAttribute.Poison, "Poison Resistance", AttributeCategory.Resists, 2, 20 ),
-            new ElementAttributeInfo( AosElementAttribute.Energy, "Energy Resistance", AttributeCategory.Resists, 2, 20 )
+            new ElementAttributeInfo( AosElementAttribute.Air, "Energy Resistance", AttributeCategory.Resists, 2, 20 )
         };
 	}
 

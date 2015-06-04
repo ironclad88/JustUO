@@ -79,7 +79,7 @@ namespace Server.Items
                 case 0:
                     {
                         this.Resistances.Poison = 0;
-                        this.Resistances.Energy = 0;
+                        this.Resistances.Air = 0;
                         break;
                     }
             }

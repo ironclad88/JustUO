@@ -32,7 +32,7 @@ namespace Server.Items.ZuluIems.MagicFish
             }
         }// prized fish
 
-        public void OnDoubleClick(Mobile m)
+        public override void OnDoubleClick(Mobile m)
         {
             if (!this.IsChildOf(m.Backpack))
             {

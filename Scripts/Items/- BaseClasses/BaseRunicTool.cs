@@ -302,13 +302,13 @@ namespace Server.Items
                                 GetElementalDamages(weapon, AosElementAttribute.Fire);
                                 break;
                             case 2:
-                                GetElementalDamages(weapon, AosElementAttribute.Cold);
+                                GetElementalDamages(weapon, AosElementAttribute.Water);
                                 break;
                             case 3:
                                 GetElementalDamages(weapon, AosElementAttribute.Poison);
                                 break;
                             case 4:
-                                GetElementalDamages(weapon, AosElementAttribute.Energy);
+                                GetElementalDamages(weapon, AosElementAttribute.Air);
                                 break;
                             case 5:
                                 GetElementalDamages(weapon, AosElementAttribute.Earth);
@@ -331,7 +331,7 @@ namespace Server.Items
                         break;
                     case 19:
                         //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistColdBonus, 1, 15);
-                        GetElementalDamages(weapon, AosElementAttribute.Cold);
+                        GetElementalDamages(weapon, AosElementAttribute.Water);
                         break;
                     case 20:
                         //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistPoisonBonus, 1, 15);
@@ -339,7 +339,7 @@ namespace Server.Items
                         break;
                     case 21:
                         //ApplyAttribute(secondary, min, max, AosWeaponAttribute.ResistEnergyBonus, 1, 15);
-                        GetElementalDamages(weapon, AosElementAttribute.Energy);
+                        GetElementalDamages(weapon, AosElementAttribute.Air);
                         break;
                     case 22:
                         ApplyAttribute(secondary, min, max, AosWeaponAttribute.DurabilityBonus, 10, 100, 10);
@@ -386,8 +386,8 @@ namespace Server.Items
 
             AosElementAttribute[] attrs = new AosElementAttribute[]
             {
-                AosElementAttribute.Cold,
-                AosElementAttribute.Energy,
+                AosElementAttribute.Water,
+                AosElementAttribute.Air,
                 AosElementAttribute.Fire,
                 AosElementAttribute.Poison,
                 AosElementAttribute.Earth,
@@ -837,13 +837,13 @@ namespace Server.Items
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 100);
                                 break;
                             case 2:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Water, 1, 100);
                                 break;
                             case 3:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 100);
                                 break;
                             case 4:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Air, 1, 100);
                                 break;
                             case 5:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Earth, 1, 100);
@@ -966,13 +966,13 @@ namespace Server.Items
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 100);
                                 break;
                             case 2:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Water, 1, 100);
                                 break;
                             case 3:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 100);
                                 break;
                             case 4:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Air, 1, 100);
                                 break;
                             case 5:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Earth, 1, 100);
@@ -1087,13 +1087,13 @@ namespace Server.Items
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 100);
                                 break;
                             case 2:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Water, 1, 100);
                                 break;
                             case 3:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 100);
                                 break;
                             case 4:
-                                ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 100);
+                                ApplyAttribute(resists, min, max, AosElementAttribute.Air, 1, 100);
                                 break;
                             case 5:
                                 ApplyAttribute(resists, min, max, AosElementAttribute.Earth, 1, 100);

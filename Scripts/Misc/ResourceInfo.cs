@@ -892,7 +892,7 @@ namespace Server.Items
 
             oldbritain.Difficulty = 65;
             oldbritain.Quality = 1.25;
-            
+
             CraftAttributeInfo virginity = Virginity = new CraftAttributeInfo();
 
             //JustZH : dex penalty -1
@@ -1264,7 +1264,7 @@ namespace Server.Items
             new CraftResourceInfo(0x979, 1053103, "Agapite", CraftAttributeInfo.Agapite, CraftResource.Agapite, typeof(AgapiteIngot), typeof(AgapiteOre), typeof(AgapiteGranite)),  // remove later
             new CraftResourceInfo(0x89F, 1053102, "Verite", CraftAttributeInfo.Verite, CraftResource.Verite, typeof(VeriteIngot), typeof(VeriteOre), typeof(VeriteGranite)),  // remove later
             new CraftResourceInfo(0x8AB, 1053101, "Valorite", CraftAttributeInfo.Valorite,	CraftResource.Valorite, typeof(ValoriteIngot),	typeof(ValoriteOre), typeof(ValoriteGranite)), // remove later
-            new CraftResourceInfo(1160, 1063269, "Zulu", CraftAttributeInfo.Zulu,	CraftResource.Zulu, typeof(ZuluIngot),	typeof(ZuluOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1160, 1063269, "New Zulu", CraftAttributeInfo.Zulu,	CraftResource.Zulu, typeof(ZuluIngot),	typeof(ZuluOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x455, 1098656, "Onyx", CraftAttributeInfo.Onyx,	CraftResource.Onyx, typeof(OnyxIngot),	typeof(OnyxOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x6b8, 1098657, "Pyrite", CraftAttributeInfo.Pyrite,	CraftResource.Pyrite, typeof(PyriteIngot),	typeof(PyriteOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1159, 1098658, "Malachite", CraftAttributeInfo.Malachite,	CraftResource.Malachite, typeof(MalachiteIngot),	typeof(MalachiteOre), typeof(ZuluGranite)),
@@ -1275,15 +1275,15 @@ namespace Server.Items
             new CraftResourceInfo(1223, 1098663, "Spike", CraftAttributeInfo.Spike,	CraftResource.Spike, typeof(SpikeIngot),	typeof(SpikeOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1134, 1098664, "Fruity", CraftAttributeInfo.Fruity,	CraftResource.Fruity, typeof(FruityIngot),	typeof(FruityOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1152, 1098665, "Icerock", CraftAttributeInfo.IceRock,	CraftResource.IceRock, typeof(IceRockIngot),	typeof(IceRockOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1001, 1098666, "Silverrock", CraftAttributeInfo.SilverRock,	CraftResource.SilverRock, typeof(SilverRockIngot),	typeof(SilverRockOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1001, 1098666, "Silver Rock", CraftAttributeInfo.SilverRock,	CraftResource.SilverRock, typeof(SilverRockIngot),	typeof(SilverRockOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1155, 1098667, "Spectral", CraftAttributeInfo.Spectral,	CraftResource.Spectral, typeof(SpectralIngot),	typeof(SpectralOre), typeof(ZuluGranite)),
             new CraftResourceInfo(633, 1098668, "Undead", CraftAttributeInfo.Undead,	CraftResource.Undead, typeof(UndeadIngot),	typeof(UndeadOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1131, 1098669, "DarkPagan", CraftAttributeInfo.DarkPagan,	CraftResource.DarkPagan, typeof(DarkPaganIngot),	typeof(DarkPaganOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x852, 1098670, "OldBritain", CraftAttributeInfo.OldBritain,	CraftResource.OldBritain, typeof(OldBritainIngot),	typeof(OldBritainOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1131, 1098669, "Dark Pagan", CraftAttributeInfo.DarkPagan,	CraftResource.DarkPagan, typeof(DarkPaganIngot),	typeof(DarkPaganOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x852, 1098670, "Old Britain", CraftAttributeInfo.OldBritain,	CraftResource.OldBritain, typeof(OldBritainIngot),	typeof(OldBritainOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1154, 1098671, "Virginity", CraftAttributeInfo.Virginity,	CraftResource.Virginity, typeof(VirginityIngot),	typeof(VirginityOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1105, 1098672, "BlackDwarf", CraftAttributeInfo.BlackDwarf,	CraftResource.BlackDwarf, typeof(BlackDwarfIngot),	typeof(BlackDwarfOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1209, 1098673, "RedElven", CraftAttributeInfo.RedElven,	CraftResource.RedElven, typeof(RedElvenIngot),	typeof(RedElvenOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049e, 1098674, "DripStone", CraftAttributeInfo.DripStone,	CraftResource.Dripstone, typeof(DripstoneIngot),	typeof(DripstoneOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1105, 1098672, "Black Dwarf", CraftAttributeInfo.BlackDwarf,	CraftResource.BlackDwarf, typeof(BlackDwarfIngot),	typeof(BlackDwarfOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1209, 1098673, "Red Elven", CraftAttributeInfo.RedElven,	CraftResource.RedElven, typeof(RedElvenIngot),	typeof(RedElvenOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049e, 1098674, "Dripstone", CraftAttributeInfo.DripStone,	CraftResource.Dripstone, typeof(DripstoneIngot),	typeof(DripstoneOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0499, 1098675, "Executor", CraftAttributeInfo.Executor,	CraftResource.Executor, typeof(ExecutorIngot),	typeof(ExecutorOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x049c, 1098676, "Peachblue", CraftAttributeInfo.Peachblue,	CraftResource.Peachblue, typeof(PeachblueIngot),	typeof(PeachblueOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0500, 1098677, "Destruction", CraftAttributeInfo.Destruction,	CraftResource.Destruction, typeof(DestructionIngot),	typeof(DestructionOre), typeof(ZuluGranite)),
@@ -1291,9 +1291,9 @@ namespace Server.Items
             new CraftResourceInfo(0x0501, 1098679, "Goddess", CraftAttributeInfo.Goddess,	CraftResource.Goddess, typeof(GoddessIngot),	typeof(GoddessOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0492, 1098680, "Crystal", CraftAttributeInfo.Crystal,	CraftResource.Crystal, typeof(CrystalIngot),	typeof(CrystalOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x049f, 1063281, "Doom", CraftAttributeInfo.Doom,	CraftResource.Doom, typeof(DoomIngot),	typeof(DoomOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1171, 1063285, "ETS", CraftAttributeInfo.ETS,	CraftResource.ETS, typeof(ETSIngot),	typeof(ETSOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1172, 1063283, "DSR", CraftAttributeInfo.DSR,	CraftResource.DSR, typeof(DSRIngot),	typeof(DSROre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1176, 1063284, "RND", CraftAttributeInfo.RND,	CraftResource.RND, typeof(RNDIngot),	typeof(RNDOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1171, 1063285, "Ebon Twilight Saphire", CraftAttributeInfo.ETS,	CraftResource.ETS, typeof(ETSIngot),	typeof(ETSOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1172, 1063283, "Dark Sable Ruby", CraftAttributeInfo.DSR,	CraftResource.DSR, typeof(DSRIngot),	typeof(DSROre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1176, 1063284, "Radiant Nimbus Diamond", CraftAttributeInfo.RND,	CraftResource.RND, typeof(RNDIngot),	typeof(RNDOre), typeof(ZuluGranite)),
         };
 
         private static readonly CraftResourceInfo[] m_ScaleInfo = new CraftResourceInfo[]
@@ -1641,24 +1641,24 @@ namespace Server.Items
         public static readonly OreInfo Fruity = new OreInfo(18, 1134, "Fruity");
         public static readonly OreInfo IceRock = new OreInfo(19, 1152, "IceRock");
         public static readonly OreInfo SilverRock = new OreInfo(20, 1001, "SilverRock");
-        public static readonly OreInfo Spectral = new OreInfo(20, 1155, "Spectral");
-        public static readonly OreInfo Undead = new OreInfo(21, 633, "Undead");
-        public static readonly OreInfo DarkPagan = new OreInfo(22, 1131, "DarkPagan");
-        public static readonly OreInfo OldBritain = new OreInfo(23, 0x852, "OldBritain");
-        public static readonly OreInfo Virginity = new OreInfo(24, 1154, "Virginity");
-        public static readonly OreInfo BlackDwarf = new OreInfo(25, 1105, "BlackDwarf");
-        public static readonly OreInfo RedElven = new OreInfo(26, 1209, "RedElven");
-        public static readonly OreInfo Dripstone = new OreInfo(27, 0x049e, "Dripstone");
-        public static readonly OreInfo Executor = new OreInfo(28, 0x0499, "Executor");
-        public static readonly OreInfo Peachblue = new OreInfo(29, 0x049c, "Peachblue");
-        public static readonly OreInfo Destruction = new OreInfo(30, 0x0500, "Destruction");
-        public static readonly OreInfo Anra = new OreInfo(30, 0x048b, "Anra");
-        public static readonly OreInfo Goddess = new OreInfo(31, 0x0501, "Goddess");
-        public static readonly OreInfo Crystal = new OreInfo(32, 0x0492, "Crystal");
-        public static readonly OreInfo Doom = new OreInfo(33, 0x049f, "Doom");
-        public static readonly OreInfo ETS = new OreInfo(34, 1171, "Ebon Twilight Sapphire");
-        public static readonly OreInfo DSR = new OreInfo(35, 1172, "Dark Sable Ruby");
-        public static readonly OreInfo RND = new OreInfo(36, 1176, "Radiant Nimbus Diamond");
+        public static readonly OreInfo Spectral = new OreInfo(21, 1155, "Spectral");
+        public static readonly OreInfo Undead = new OreInfo(22, 633, "Undead");
+        public static readonly OreInfo DarkPagan = new OreInfo(23, 1131, "DarkPagan");
+        public static readonly OreInfo OldBritain = new OreInfo(24, 0x852, "OldBritain");
+        public static readonly OreInfo Virginity = new OreInfo(25, 1154, "Virginity");
+        public static readonly OreInfo BlackDwarf = new OreInfo(26, 1105, "BlackDwarf");
+        public static readonly OreInfo RedElven = new OreInfo(27, 1209, "RedElven");
+        public static readonly OreInfo Dripstone = new OreInfo(28, 0x049e, "Dripstone");
+        public static readonly OreInfo Executor = new OreInfo(29, 0x0499, "Executor");
+        public static readonly OreInfo Peachblue = new OreInfo(30, 0x049c, "Peachblue");
+        public static readonly OreInfo Destruction = new OreInfo(31, 0x0500, "Destruction");
+        public static readonly OreInfo Anra = new OreInfo(32, 0x048b, "Anra");
+        public static readonly OreInfo Goddess = new OreInfo(33, 0x0501, "Goddess");
+        public static readonly OreInfo Crystal = new OreInfo(34, 0x0492, "Crystal");
+        public static readonly OreInfo Doom = new OreInfo(35, 0x049f, "Doom");
+        public static readonly OreInfo ETS = new OreInfo(36, 1171, "Ebon Twilight Sapphire");
+        public static readonly OreInfo DSR = new OreInfo(37, 1172, "Dark Sable Ruby");
+        public static readonly OreInfo RND = new OreInfo(38, 1176, "Radiant Nimbus Diamond");
 
         private readonly int m_Level;
         private readonly int m_Hue;

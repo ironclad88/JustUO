@@ -10,9 +10,9 @@ namespace Server.Items
             this.Hue = 0x4E9;
             this.Attributes.Luck = 100;
             this.Resistances.Fire = 16;
-            this.Resistances.Cold = 16;
+            this.Resistances.Water = 16;
             this.Resistances.Poison = 16;
-            this.Resistances.Energy = 16;
+            this.Resistances.Air = 16;
         }
 
         public RingOfTheElements(Serial serial)

@@ -20,9 +20,9 @@ namespace Server.Items
             this.Attributes.LowerManaCost = 5;
             this.Resistances.Physical = 9;
             this.Resistances.Fire = 16;
-            this.Resistances.Cold = 5;
+            this.Resistances.Water = 5;
             this.Resistances.Poison = 13;
-            this.Resistances.Energy = 3;
+            this.Resistances.Air = 3;
             //AbsorptionAttribute.EaterFire = 10;
         }
 

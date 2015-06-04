@@ -172,8 +172,8 @@ namespace Server
 			{
 				{AosElementAttribute.Direct, new AttributeFactors()},
 				{AosElementAttribute.Chaos, new AttributeFactors()},
-				{AosElementAttribute.Cold, new AttributeFactors(1.0, 0, 15, 3)},
-				{AosElementAttribute.Energy, new AttributeFactors(1.0, 0, 15, 3)},
+				{AosElementAttribute.Water, new AttributeFactors(1.0, 0, 15, 3)},
+				{AosElementAttribute.Air, new AttributeFactors(1.0, 0, 15, 3)},
 				{AosElementAttribute.Fire, new AttributeFactors(1.0, 0, 15, 3)},
 				{AosElementAttribute.Physical, new AttributeFactors(1.0, 0, 15, 3)},
 				{AosElementAttribute.Poison, new AttributeFactors(1.0, 0, 15, 3)}

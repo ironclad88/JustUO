@@ -11,7 +11,7 @@ namespace Server.Items
             this.WeaponAttributes.HitHarm = 5 * Utility.RandomMinMax(1, 5);
             this.WeaponAttributes.MageWeapon = Utility.RandomMinMax(5, 10);
 
-            this.AosElementDamages[AosElementAttribute.Cold] = 20 + (5 * Utility.RandomMinMax(0, 6));
+            this.AosElementDamages[AosElementAttribute.Water] = 20 + (5 * Utility.RandomMinMax(0, 6));
         }
 
         public GlacialStaff(Serial serial)

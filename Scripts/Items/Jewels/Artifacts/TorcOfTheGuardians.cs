@@ -19,9 +19,9 @@ namespace Server.Items
             this.Attributes.LowerManaCost = 5;
             this.Resistances.Physical = 5;
             this.Resistances.Fire = 5;
-            this.Resistances.Cold = 5;
+            this.Resistances.Water = 5;
             this.Resistances.Poison = 5;
-            this.Resistances.Energy = 5;
+            this.Resistances.Air = 5;
         }
 
         public TorcOfTheGuardians(Serial serial)

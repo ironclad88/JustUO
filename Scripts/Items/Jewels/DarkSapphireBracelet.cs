@@ -15,7 +15,7 @@ namespace Server.Items
             if (Utility.Random(100) < 10)
                 this.Attributes.RegenMana += 2;
             else
-                this.Resistances.Cold += 10;		
+                this.Resistances.Water += 10;		
         }
 
         public DarkSapphireBracelet(Serial serial)

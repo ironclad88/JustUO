@@ -1164,8 +1164,8 @@ namespace Server.Items
         {
             int bonus = 0;
 
-            if (this.m_Quality == ArmorQuality.Exceptional)
-                bonus += 20;
+            //if (this.m_Quality == ArmorQuality.Exceptional)
+            //    bonus += 20;
 
             switch (this.m_Durability)
             {
@@ -2474,6 +2474,8 @@ namespace Server.Items
             {
                 if (oreType != 0)
                     list.Add(1053100, "#{0}\t{1}", oreType, this.GetNameString()); // exceptional ~1_oretype~ ~2_armortype~
+                    //JustZH : this should be something like this, but this doesn't work for some reason:
+                //list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + this.GetNameString()); // exceptional ~1_oretype~ ~2_armortype~
                 else
                     list.Add(1050040, this.GetNameString()); // exceptional ~1_ITEMNAME~
             }
@@ -2565,7 +2567,8 @@ namespace Server.Items
                     list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
 
                 if ((prop = (int)this.ArmorRating) != 0 && this.m_AosArmorAttributes.MageArmor == 0)
-                    list.Add(1061182, prop.ToString()); // armor rating ~1_val~
+                    list.Add("Armor Rating " + prop.ToString());
+                
 
                 if ((prop = this.m_AosAttributes.WeaponDamage) != 0)
                     list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
@@ -2683,8 +2686,8 @@ namespace Server.Items
 
                 base.AddResistanceProperties(list);
 
-                if ((prop = this.GetDurabilityBonus()) > 0)
-                    list.Add(1060410, prop.ToString()); // durability ~1_val~%
+                //if ((prop = this.GetDurabilityBonus()) > 0)
+                //    list.Add(1060410, prop.ToString()); // durability ~1_val~%
 
                 //if ((prop = this.ComputeStatReq(StatType.Str)) > 0)
                 //    list.Add(1061170, prop.ToString()); // strength requirement ~1_val~
