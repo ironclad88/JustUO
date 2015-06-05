@@ -1929,7 +1929,7 @@
     <Compile Include="Items\Resources\Reagents\ZuluReags\SerpentsScales.cs" />
     <Compile Include="Items\Resources\Reagents\ZuluReags\VialofBlood.cs" />
     <Compile Include="Items\Resources\Reagents\ZuluReags\VolcanicAsh.cs" />
-    <Compile Include="Items\Resources\Reagents\ZuluReags\Wormsheart.cs" />
+    <Compile Include="Items\Resources\Reagents\ZuluReags\WyrmsHeart.cs" />
     <Compile Include="Items\Resources\Tailor\BoltOfCloth.cs" />
     <Compile Include="Items\Resources\Tailor\Bone.cs" />
     <Compile Include="Items\Resources\Tailor\Cloth.cs" />
@@ -2021,6 +2021,7 @@
     <Compile Include="Items\Skill Items\Magical\Potions\Heal Potions\GreaterHealPotion.cs" />
     <Compile Include="Items\Skill Items\Magical\Potions\Heal Potions\HealPotion.cs" />
     <Compile Include="Items\Skill Items\Magical\Potions\Heal Potions\LesserHealPotion.cs" />
+    <Compile Include="Items\Skill Items\Magical\Potions\Heal Potions\TamlaPotion.cs" />
     <Compile Include="Items\Skill Items\Magical\Potions\InvisibilityPotion.cs" />
     <Compile Include="Items\Skill Items\Magical\Potions\NightSight.cs" />
     <Compile Include="Items\Skill Items\Magical\Potions\ParasiticPotion.cs" />

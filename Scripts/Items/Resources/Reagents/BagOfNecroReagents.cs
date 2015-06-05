@@ -30,7 +30,7 @@ namespace Server.Items
             this.DropItem(new SerpentsScales(amount));
             this.DropItem(new VialofBlood(amount));
             this.DropItem(new VolcanicAsh(amount));
-            this.DropItem(new Wormsheart(amount));
+            this.DropItem(new WyrmsHeart(amount));
             this.DropItem(new BloodSpawn(amount));
         }
 

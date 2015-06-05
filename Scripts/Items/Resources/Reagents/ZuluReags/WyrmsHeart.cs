@@ -5,21 +5,21 @@ using System.Text;
 
 namespace Server.Items.Resources.Reagents.ZuluReags
 {
-    public class Wormsheart : BaseReagent, ICommodity
+    public class WyrmsHeart : BaseReagent, ICommodity
     {
         [Constructable]
-        public Wormsheart()
+        public WyrmsHeart()
             : this(1)
         {
         }
 
         [Constructable]
-        public Wormsheart(int amount)
-            : base(0xf91, amount)
+        public WyrmsHeart(int amount)
+            : base(0x0F91, amount)
         {
         }
 
-        public Wormsheart(Serial serial)
+        public WyrmsHeart(Serial serial)
             : base(serial)
         {
         }

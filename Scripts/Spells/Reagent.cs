@@ -32,7 +32,7 @@ namespace Server.Spells
             typeof(ExecutionersCap),
             typeof(VolcanicAsh),
             typeof(BrimStone),
-            typeof(Wormsheart),
+            typeof(WyrmsHeart),
             typeof(VialofBlood),
             typeof(SerpentsScales),
             typeof(Obsidian),
@@ -273,7 +273,7 @@ namespace Server.Spells
                 m_Types[20] = value;
             }
         }
-        public static Type Wormsheart
+        public static Type WyrmsHeart
         {
             get
             {

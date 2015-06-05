@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Items.Resources.Reagents.ZuluReags;
 
 namespace Server.Engines.Craft
 {
@@ -108,60 +109,68 @@ namespace Server.Engines.Craft
             // Refresh Potion
             index = this.AddCraft(typeof(RefreshPotion), 1044530, 1044538, -25, 25.0, typeof(BlackPearl), 1044353, 1, 1044361);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(TotalRefreshPotion), 1044530, 1044539, 25.0, 75.0, typeof(BlackPearl), 1044353, 5, 1044361);
+            index = this.AddCraft(typeof(TotalRefreshPotion), 1044530, 1044539, 50.0, 75.0, typeof(BlackPearl), 1044353, 9, 1044361);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Agility Potion
-            index = this.AddCraft(typeof(AgilityPotion), 1044531, 1044540, 15.0, 65.0, typeof(Bloodmoss), 1044354, 1, 1044362);
+            index = this.AddCraft(typeof(AgilityPotion), 1044531, 1044540, 30.0, 65.0, typeof(Bloodmoss), 1044354, 3, 1044362);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterAgilityPotion), 1044531, 1044541, 35.0, 85.0, typeof(Bloodmoss), 1044354, 3, 1044362);
+            index = this.AddCraft(typeof(GreaterAgilityPotion), 1044531, 1044541, 70.0, 85.0, typeof(Bloodmoss), 1044354, 9, 1044362);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Nightsight Potion
-            index = this.AddCraft(typeof(NightSightPotion), 1044532, 1044542, -25.0, 25.0, typeof(SpidersSilk), 1044360, 1, 1044368);
+            index = this.AddCraft(typeof(NightSightPotion), 1044532, 1044542, -25.0, 25.0, typeof(SpidersSilk), 1044360, 3, 1044368);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Heal Potion
-            index = this.AddCraft(typeof(LesserHealPotion), 1044533, 1044543, -25.0, 25.0, typeof(Ginseng), 1044356, 1, 1044364);
+            index = this.AddCraft(typeof(LesserHealPotion), 1044533, 1044543, 14.0, 25.0, typeof(Ginseng), 1044356, 1, 1044364);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(HealPotion), 1044533, 1044544, 15.0, 65.0, typeof(Ginseng), 1044356, 3, 1044364);
+            index = this.AddCraft(typeof(HealPotion), 1044533, 1044544, 60.0, 75.0, typeof(Ginseng), 1044356, 4, 1044364);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterHealPotion), 1044533, 1044545, 55.0, 105.0, typeof(Ginseng), 1044356, 7, 1044364);
+            index = this.AddCraft(typeof(GreaterHealPotion), 1044533, 1044545, 85.0, 105.0, typeof(Ginseng), 1044356, 9, 1044364);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Strength Potion
-            index = this.AddCraft(typeof(StrengthPotion), 1044534, 1044546, 25.0, 75.0, typeof(MandrakeRoot), 1044357, 2, 1044365);
+            index = this.AddCraft(typeof(StrengthPotion), 1044534, 1044546, 30.0, 65.0, typeof(MandrakeRoot), 1044357, 3, 1044365);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterStrengthPotion), 1044534, 1044547, 45.0, 95.0, typeof(MandrakeRoot), 1044357, 5, 1044365);
+            index = this.AddCraft(typeof(GreaterStrengthPotion), 1044534, 1044547, 70.0, 95.0, typeof(MandrakeRoot), 1044357, 7, 1044365);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Poison Potion
-            index = this.AddCraft(typeof(LesserPoisonPotion), 1044535, 1044548, -5.0, 45.0, typeof(Nightshade), 1044358, 1, 1044366);
+            index = this.AddCraft(typeof(LesserPoisonPotion), 1044535, 1044548, 15.0, 45.0, typeof(Nightshade), 1044358, 1, 1044366);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(PoisonPotion), 1044535, 1044549, 15.0, 65.0, typeof(Nightshade), 1044358, 2, 1044366);
+            index = this.AddCraft(typeof(PoisonPotion), 1044535, 1044549, 50.0, 65.0, typeof(Nightshade), 1044358, 4, 1044366);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterPoisonPotion), 1044535, 1044550, 55.0, 105.0, typeof(Nightshade), 1044358, 4, 1044366);
+            index = this.AddCraft(typeof(GreaterPoisonPotion), 1044535, 1044550, 90.0, 105.0, typeof(Nightshade), 1044358, 12, 1044366);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(DeadlyPoisonPotion), 1044535, 1044551, 90.0, 140.0, typeof(Nightshade), 1044358, 8, 1044366);
+            index = this.AddCraft(typeof(DeadlyPoisonPotion), 1044535, 1044551, 100.0, 125.0, typeof(Nightshade), 1044358, 15, 1044366);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(ScouringToxin), 1044535, 1112292, 75.0, 100.0, typeof(ToxicVenomSac), 1112291, 1, 1044366);
-            this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
+            //index = this.AddCraft(typeof(ScouringToxin), 1044535, 1112292, 75.0, 100.0, typeof(ToxicVenomSac), 1112291, 1, 1044366);
+            //this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Cure Potion
             index = this.AddCraft(typeof(LesserCurePotion), 1044536, 1044552, -10.0, 40.0, typeof(Garlic), 1044355, 1, 1044363);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(CurePotion), 1044536, 1044553, 25.0, 75.0, typeof(Garlic), 1044355, 3, 1044363);
+            index = this.AddCraft(typeof(CurePotion), 1044536, 1044553, 50.0, 75.0, typeof(Garlic), 1044355, 4, 1044363);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterCurePotion), 1044536, 1044554, 65.0, 115.0, typeof(Garlic), 1044355, 6, 1044363);
+            index = this.AddCraft(typeof(GreaterCurePotion), 1044536, 1044554, 90.0, 115.0, typeof(Garlic), 1044355, 9, 1044363);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             // Explosion Potion
-            index = this.AddCraft(typeof(LesserExplosionPotion), 1044537, 1044555, 5.0, 55.0, typeof(SulfurousAsh), 1044359, 3, 1044367);
+            index = this.AddCraft(typeof(LesserExplosionPotion), 1044537, 1044555, 5.0, 35.0, typeof(SulfurousAsh), 1044359, 3, 1044367);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(ExplosionPotion), 1044537, 1044556, 35.0, 85.0, typeof(SulfurousAsh), 1044359, 5, 1044367);
+            index = this.AddCraft(typeof(ExplosionPotion), 1044537, 1044556, 70.0, 95.0, typeof(SulfurousAsh), 1044359, 6, 1044367);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
-            index = this.AddCraft(typeof(GreaterExplosionPotion), 1044537, 1044557, 65.0, 115.0, typeof(SulfurousAsh), 1044359, 10, 1044367);
+            index = this.AddCraft(typeof(GreaterExplosionPotion), 1044537, 1044557, 90.0, 120.0, typeof(SulfurousAsh), 1044359, 20, 1044367);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
+
+            // Zulu Potions
+
+            // JustZH need to add TamlaPot here. and stuff needs to get fixed
+
+            // It will look like this (kind of) when added.
+            //index = this.AddCraft(typeof(TamlaPotion), 1044533, 1095261, 115.0, 130.0, typeof(GreaterHealPotion), 1073467, 1, 1095550, typeof(WyrmsHeart), "Wyrm´s Heart", 3, 1095550), typeof(DragonBlood), "Dragon´s Blood", 2, 1095550, typeof(StarSapphire), "Star Sapphire", 3, 1095550); // 1095550 = "You don´t have enough resources for that."
+            //this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             /*if (Core.SE)
             {

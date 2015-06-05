@@ -36,6 +36,7 @@ namespace Server.Items
         Parasitic,
         Darkglow,
 		ExplodingTarPotion,
+        Tamla,
     }
 
     public abstract class BasePotion : Item, ICraftable, ICommodity
@@ -99,7 +100,7 @@ namespace Server.Items
                 return true;
             }
         }
-
+        
         public static bool HasFreeHand(Mobile m)
         {
             Item handOne = m.FindItemOnLayer(Layer.OneHanded);
@@ -125,8 +126,8 @@ namespace Server.Items
 
             if (from.InRange(this.GetWorldLocation(), 1))
             {
-                if (!this.RequireFreeHand || HasFreeHand(from))
-                {
+                //if (HasFreeHand(from)) // JustZH can a player use a potion with a weapon equipped? I think so, removing
+                //{
                     if (this is BaseExplosionPotion && this.Amount > 1)
                     {
                         BasePotion pot = (BasePotion)Activator.CreateInstance(this.GetType());
@@ -150,11 +151,11 @@ namespace Server.Items
                     {
                         this.Drink(from);
                     }
-                }
-                else
-                {
-                    from.SendLocalizedMessage(502172); // You must have a free hand to drink a potion.
-                }
+                //}
+                //else
+                //{
+                //    from.SendLocalizedMessage(502172); // You must have a free hand to drink a potion.
+                //}
             }
             else
             {
@@ -208,7 +209,7 @@ namespace Server.Items
                 m.Animate(34, 5, 1, true, false, 0);
         }
 
-        public static int EnhancePotions(Mobile m)
+        public static int EnhancePotions(Mobile m) // JustZH Remove later?
         {
             int EP = AosAttributes.GetValue(m, AosAttribute.EnhancePotions);
             int skillBonus = m.Skills.Alchemy.Fixed / 330 * 10;

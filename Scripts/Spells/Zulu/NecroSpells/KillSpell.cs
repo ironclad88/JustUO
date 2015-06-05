@@ -22,7 +22,7 @@ namespace Server.Spells.Zulu.NecroSpells
             Reagent.VialofBlood,
             Reagent.VolcanicAsh,
             Reagent.EyeofNewt,
-            Reagent.Wormsheart);
+            Reagent.WyrmsHeart);
 
 
 
