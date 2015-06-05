@@ -1573,6 +1573,12 @@ namespace Server.Items
 
         private static string GetProtectionSuffix(Item aosE)
         {
+            const int Curse_lv2_limit = -17;
+            const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it큦 a good gold sink
+            const int Curse_lv4_limit = -50;
+            const int Curse_lv5_limit = -65;
+            const int Curse_lv6_limit = -85;
+
             const int lv2_limit = 17;
             const int lv3_limit = 33;
             const int lv4_limit = 50;
@@ -1676,86 +1682,56 @@ namespace Server.Items
 
         private static string GetStatPrefix(AosAttributes aosA)
         {
+            // Havent fixed much, need to change the > < = ^^
+            /*if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Heavy큦 ";
+            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Leaden큦 ";
+            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Encumbering큦 ";
+            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Binding큦 ";
+            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Fumbling큦 ";
+            else if (aosA.BonusDex > 15) return "Blundering큦 ";*/
+
             if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Cutpuse큦 ";
             else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Thief큦 ";
             else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Catburgler큦 ";
             else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Tumbler큦 ";
             else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Acrobat큦 ";
             else if (aosA.BonusDex > 15) return "Escape Artist큦 ";
-            /*if (aosA.BonusDex > 0)
-            {
-                switch (aosA.BonusDex)
-                {
-                    case 5:
-                        return "Cutpuse큦 ";
-                    case 10:
-                        return "Thief큦 ";
-                    case 15:
-                        return "Catburgler큦 ";
-                    case 20:
-                        return "Tumbler큦 ";
-                    case 25:
-                        return "Acrobat큦 ";
-                    case 30:
-                        return "Escape Artist큦 ";
-                    default:
-                        return " This isnt supposed to happen? the fukk (dex bonus) ";
-                }*/
-           // }
-                
 
             else if (aosA.BonusInt > 0)
             {
+                // Havent fixed much, need to change the > < = ^^
+                /*if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Fool큦 ";
+                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Simpletons큦 ";
+                else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Infantile ";
+                else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Senile ";
+                else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Demented ";
+                else if (aosA.BonusInt > 15) return "Madman큦 ";*/
+
                 if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Apprentice큦 ";
                 else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Adept큦 ";
                 else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Wizard큦 ";
                 else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Archmage큦 ";
                 else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Magister큦 ";
                 else if (aosA.BonusInt > 15) return "Oracle큦 ";
-                /*switch (aosA.BonusInt)
-                {
-                    case 5:
-                        return  "Apprentice큦 ";
-                    case 10:
-                        return "Adept큦 ";
-                    case 15:
-                        return "Wizard큦 ";
-                    case 20:
-                        return "Archmage큦 ";
-                    case 25:
-                        return "Magister큦 ";
-                    case 30:
-                        return "Oracle큦 ";
-                    default:
-                        return " This isnt supposed to happen? the fukk (int bonus) ";
-                }*/
+
             }
 
             else if (aosA.BonusStr > 0)
             {
+                // Havent fixed much, need to change the > < = ^^
+                /*if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Weakling큦 ";
+                else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Enfeebling ";
+                else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Powerless ";
+                else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Frail ";
+                else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Diseased ";
+                else if (aosA.BonusStr > 15) return "Leper큦 ";*/
+
                 if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Warrior큦 ";
                 else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Veteran큦 ";
                 else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Champion큦 ";
                 else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Hero큦 ";
                 else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Warlord큦 ";
                 else if (aosA.BonusStr > 15) return "King큦 ";
-                /*switch (aosA.BonusStr)
-                {
-                    case 5:
-                        return "Warrior큦 ";
-                    case 10:
-                        return "Veteran큦 ";
-                    case 15:
-                        return "Champion큦 ";
-                    case 20:
-                        return "Hero큦 ";
-                    case 25:
-                        return "Warlord큦 ";
-                    case 30:
-                        return "King큦 ";
-                    default:
-                        return " This isnt supposed to happen? the fukk (str bonus) ";
-                }*/
             }
             return "";
         }
@@ -1870,7 +1846,42 @@ namespace Server.Items
             return "";
         }
 
-        private static string GetSkillValueSuffix(double skillVal) // havent added any curse skills (example: -1 anatomy = Novice Alchemist's)
+        // JustZH just added a base frame for +ar/-ar gear on cloth/jewlery
+        private static string GetArmorPrefix(int arValue)
+        {
+
+            switch (arValue)
+            {
+                /*case -5:
+                    return "Glass ";
+                case -10:
+                    return "Rusty ";
+                case -15:
+                    return "Aluminium ";
+                case -20:
+                    return "Pitted ";
+                case -25:
+                    return "Dirty ";
+                case -30:
+                    return "Tarnised ";*/
+                case 5:
+                    return "Iron ";
+                case 10:
+                    return "Steel ";
+                case 15:
+                    return "Meteoric Steel ";
+                case 20:
+                    return "Obsidian ";
+                case 25:
+                    return "Onyx ";
+                case 30:
+                    return "Adamantium ";
+                default:
+                    return "";
+            }
+        }
+
+        private static string GetSkillValueSuffix(double skillVal) // added - stats, not really used yet, dunno if ever going to be used
         {
             int skillValInt = (int)skillVal;
             if (skillVal >= 7) // fix for pickaxe and smithys hammer
@@ -1879,6 +1890,18 @@ namespace Server.Items
             }
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Novice ";
+                case -2:
+                    return "Neophyte ";
+                case -3:
+                    return "Inept ";
+                case -4:
+                    return "Incompetent ";
+                case -5:
+                    return "Failed ";
+                case -6:
+                    return "Blundering ";*/
                 case 1:
                     return "Apprentice ";
                 case 2:
@@ -1903,6 +1926,18 @@ namespace Server.Items
             int skillValInt = (int)skillVal;
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Water damaged ";
+                case -2:
+                    return "Crooked ";
+                case -3:
+                    return "Frayed ";
+                case -4:
+                    return "Warped ";
+                case -5:
+                    return "Decaying ";
+                case -6:
+                    return "Unstrung ";*/
                 case 1:
                     return "Large ";
                 case 2:
@@ -1924,6 +1959,18 @@ namespace Server.Items
             int skillValInt = (int)skillVal;
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Poor ";
+                case -2:
+                    return "Dull ";
+                case -3:
+                    return "Inferior ";
+                case -4:
+                    return "Tainted ";
+                case -5:
+                    return "Pitifull ";
+                case -6:
+                    return "Worthless ";*/
                 case 1:
                     return "Fine ";
                 case 2:
@@ -1945,6 +1992,18 @@ namespace Server.Items
             int skillValInt = (int)skillVal;
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Conducting ";
+                case -2:
+                    return "Sensitive ";
+                case -3:
+                    return "Focusing ";
+                case -4:
+                    return "Warped ";
+                case -5:
+                    return "Translucent ";
+                case -6:
+                    return "Amplifying ";*/
                 case 1:
                     return "Shielded ";
                 case 2:
@@ -1966,6 +2025,18 @@ namespace Server.Items
             int skillValInt = (int)skillVal;
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Shiny ";
+                case -2:
+                    return "Gleaming ";
+                case -3:
+                    return "Sparkling ";
+                case -4:
+                    return "Brilliant ";
+                case -5:
+                    return "Illuminating ";
+                case -6:
+                    return "Dazzeling ";*/
                 case 1:
                     return "Concealing ";
                 case 2:
@@ -1987,6 +2058,18 @@ namespace Server.Items
             int skillValInt = (int)skillVal;
             switch (skillValInt)
             {
+                /*case -1:
+                    return "Unbalanced ";
+                case -2:
+                    return "Fragile ";
+                case -3:
+                    return "Rusted ";
+                case -4:
+                    return "Cracked ";
+                case -5:
+                    return "Decaying ";
+                case -6:
+                    return "Misshappen ";*/
                 case 1:
                     return "Competitor's ";
                 case 2:

@@ -64,6 +64,7 @@ namespace Server.Items
             TimeSpan duration;
             duration = TimeSpan.FromDays(1000);
             RandomClass rnd = new RandomClass();
+            from.SendMessage("The egg begins to move and");
             var eastereggroll = rnd.D100Roll(1);
             if (eastereggroll == 66)
             {
@@ -90,15 +91,18 @@ namespace Server.Items
             {
                 if (from.Skills.AnimalLore.Value >= 90)
                 {
+                    from.SendMessage("A baby frenzied ostard appears and accepts you as his master!");
                     creature.Controlled = true;
                 }
                 else
                 {
+                    from.SendMessage("A baby frenzied ostard appears!");
                     creature.Controlled = false;
                 }
             }
             else
             {
+                from.SendMessage("A baby frenzied ostard appears and accepts you as his master!");
                 creature.Controlled = true;
             }
             this.Consume(1);

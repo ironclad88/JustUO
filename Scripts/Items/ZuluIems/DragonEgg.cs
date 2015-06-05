@@ -42,6 +42,7 @@ namespace Server.Items
             duration = TimeSpan.FromDays(1);
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
             creature.Summoned = false;
+            from.SendMessage("The egg begins to move and");
             RandomClass rnd = new RandomClass();
             var diceRoll = rnd.D20Roll(1);
             Console.WriteLine("D20 Dice roll: " + diceRoll);
@@ -49,6 +50,7 @@ namespace Server.Items
             {
                 if (from.Skills.AnimalLore.Value >= 115)
                 {
+                    from.SendMessage("A baby dragon appears and accepts you as his master!");
                     creature.Controlled = true;
                 }
                 else { 
@@ -57,7 +59,8 @@ namespace Server.Items
             }
             else
             {
-                creature.Controlled = true;
+                from.SendMessage("A baby dragon appears!");
+                creature.Controlled = false;
             }
             this.Consume(1);
         }

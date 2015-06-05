@@ -2104,14 +2104,12 @@ namespace Server.Items
             if (!Ethics.Ethic.CheckEquip(from, this))
                 return false;
 
-            // JustZH Mages can´t equip certain types of armor
+            // JustZH Mages can´t equip certain types of armor, need to add STEEL type items to this later
             if (from.SpecClasse == SpecClasse.Mage)
             {
-                Console.WriteLine("in specclasse armor");
                 if (this.MaterialType == AMT.Chainmail || this.MaterialType == AMT.Plate || this.MaterialType == AMT.Ringmail || this.GetType() == typeof(BaseShield) || this.MaterialType == AMT.Studded)
                 {
-                    Console.WriteLine("whajj");
-                    from.SendMessage("You can´t wear this as a mage"); // dunno what this one should say
+                    from.SendMessage("Your classe prevents you from using this."); // dunno what this one should say
                     return false;
                 }
             }

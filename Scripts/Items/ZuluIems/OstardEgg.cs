@@ -22,7 +22,7 @@ namespace Server.Items
         {
         }
 
-        private static readonly Type[] m_Types = new Type[]
+        private static readonly Type[] m_Types = new Type[] // should not include awesome ostards like necro or holy
         {
             typeof(DesertOstard),
             typeof(ForestOstard)
@@ -35,31 +35,18 @@ namespace Server.Items
                 return "Ostard Egg";
             }
         }
-        public override void OnDoubleClick(Mobile from)
+        public override void OnDoubleClick(Mobile from) // regular ostards are always tame
         {
             BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
             TimeSpan duration;
-            duration = TimeSpan.FromDays(1);
+            duration = TimeSpan.FromDays(1000);
+            from.SendMessage("The egg begins to move and");
             SpellHelper.Summon(creature, from, 0x215, duration, false, false);
             creature.Summoned = false;
-            RandomClass rnd = new RandomClass();
-            var diceRoll = rnd.D20Roll(1);
-            Console.WriteLine("D20 Dice roll: " + diceRoll);
-            if (diceRoll <= 2)
-            {
-                if (from.Skills.AnimalLore.Value >= 40)
-                {
-                    creature.Controlled = true;
-                }
-                else
-                {
-                    creature.Controlled = false;
-                }
-            }
-            else
-            {
-                creature.Controlled = true;
-            }
+
+            from.SendMessage("A baby ostard appears and accepts you as his master!");
+            creature.Controlled = true;
+
             this.Consume(1);
         }
 
