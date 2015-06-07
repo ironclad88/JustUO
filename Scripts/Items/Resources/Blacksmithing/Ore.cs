@@ -288,6 +288,25 @@ namespace Server.Items
             }
         }
 
+        // JustZH remove comments to enable double-click smelt
+        /*private bool IsForge(object obj)
+        {
+            if (Core.ML && obj is Mobile && ((Mobile)obj).IsDeadBondedPet)
+                return false;
+
+            if (obj.GetType().IsDefined(typeof(ForgeAttribute), false))
+                return true;
+
+            int itemID = 0;
+
+            if (obj is Item)
+                itemID = ((Item)obj).ItemID;
+            else if (obj is StaticTarget)
+                itemID = ((StaticTarget)obj).ItemID;
+
+            return (itemID == 4017 || (itemID >= 6522 && itemID <= 6569));
+        }*/
+
         public override void OnDoubleClick(Mobile from)
         {
             if (!this.Movable)
@@ -306,6 +325,145 @@ namespace Server.Items
             {
                 from.SendLocalizedMessage(501976); // The ore is too far away.
             }
+
+            // JustZH remove comments and comment the stuff above to enable double-click smelting. Need to fix the diffculty and add more ore. Also needs testing
+            /*if (!Movable)
+                return;
+
+            if (RootParent is BaseCreature)
+            {
+                from.SendLocalizedMessage(500447); // That is not accessible
+            }
+
+            bool forgeinrange = false;
+            var items = GetItemsInRange(2);
+
+            foreach (var item in items)
+            {
+                if (IsForge(item))
+                {
+                    forgeinrange = true;
+                }
+            }
+
+            if (forgeinrange && from.InRange(GetWorldLocation(), 2))
+            {
+                double difficulty;
+
+                switch (Resource)
+                {
+                    default:
+                        difficulty = 50.0;
+                        break;
+                    case CraftResource.DullCopper:
+                        difficulty = 65.0;
+                        break;
+                    case CraftResource.ShadowIron:
+                        difficulty = 70.0;
+                        break;
+                    case CraftResource.Copper:
+                        difficulty = 75.0;
+                        break;
+                    case CraftResource.Bronze:
+                        difficulty = 80.0;
+                        break;
+                    case CraftResource.Gold:
+                        difficulty = 85.0;
+                        break;
+                    case CraftResource.Agapite:
+                        difficulty = 90.0;
+                        break;
+                    case CraftResource.Verite:
+                        difficulty = 95.0;
+                        break;
+                    case CraftResource.Valorite:
+                        difficulty = 99.0;
+                        break;
+                }
+
+                double minSkill = difficulty - 25.0;
+                double maxSkill = difficulty + 25.0;
+
+                if (difficulty > 50.0 && difficulty > from.Skills[SkillName.Mining].Value)
+                {
+                    from.SendLocalizedMessage(501986); // You have no idea how to smelt this strange ore!
+                    return;
+                }
+
+                if (ItemID == 0x19B7 && Amount < 2)
+                {
+                    from.SendLocalizedMessage(501987); // There is not enough metal-bearing ore in this pile to make an ingot.
+                    return;
+                }
+
+                if (from.CheckTargetSkill(SkillName.Mining, null, minSkill, maxSkill))
+                {
+                    int toConsume = Amount;
+
+                    if (toConsume <= 0)
+                    {
+                        from.SendLocalizedMessage(501987); // There is not enough metal-bearing ore in this pile to make an ingot.
+                    }
+                    else
+                    {
+                        if (toConsume > 30000)
+                            toConsume = 30000;
+
+                        int ingotAmount;
+
+                        if (ItemID == 0x19B7)
+                        {
+                            ingotAmount = toConsume / 2;
+
+                            if (toConsume % 2 != 0)
+                                --toConsume;
+                        }
+                        else if (ItemID == 0x19B9)
+                        {
+                            ingotAmount = toConsume * 2;
+                        }
+                        else
+                        {
+                            ingotAmount = toConsume;
+                        }
+
+                        BaseIngot ingot = GetIngot();
+                        ingot.Amount = ingotAmount;
+
+                        Consume(toConsume);
+                        from.AddToBackpack(ingot);
+                        //from.PlaySound( 0x57 );
+
+                        from.SendLocalizedMessage(501988); // You smelt the ore removing the impurities and put the metal in your backpack.
+                    }
+                }
+                else
+                {
+                    if (Amount < 2)
+                    {
+                        if (ItemID == 0x19B9)
+                            ItemID = 0x19B8;
+                        else
+                            ItemID = 0x19B7;
+                    }
+                    else
+                    {
+                        Amount /= 2;
+                    }
+
+                    from.SendLocalizedMessage(501990); // You burn away the impurities but are left with less useable metal.
+                }
+            }
+
+            else if (from.InRange(GetWorldLocation(), 2))
+            {
+                from.SendLocalizedMessage(501971); // Select the forge on which to smelt the ore, or another pile of ore with which to combine it.
+                from.Target = new InternalTarget(this);
+            }
+            else
+            {
+                from.SendLocalizedMessage(501976); // The ore is too far away.
+            }*/
         }
 
         private class InternalTarget : Target

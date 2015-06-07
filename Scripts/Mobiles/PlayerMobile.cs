@@ -2935,6 +2935,12 @@ namespace Server.Mobiles
         private DateTime m_SavagePaintExpiration;
         private SkillName m_Learning = (SkillName)(-1);
 
+        #region Player Messaging
+        public bool Onshow;
+        public bool LocShow;
+        private List<Mobile> m_IgnoreList;
+        #endregion
+
         public SkillName Learning { get { return m_Learning; } set { m_Learning = value; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -3013,7 +3019,7 @@ namespace Server.Mobiles
         public PlayerMobile()
         {
             m_AutoStabled = new List<Mobile>();
-
+            m_IgnoreList = new List<Mobile>();
             #region Mondain's Legacy
             m_Quests = new List<BaseQuest>();
             m_Chains = new Dictionary<QuestChain, BaseChain>();
@@ -3239,12 +3245,18 @@ namespace Server.Mobiles
         public PlayerMobile(Serial s)
             : base(s)
         {
+            m_IgnoreList = new List<Mobile>();
             m_VisList = new List<Mobile>();
             m_AntiMacroTable = new Hashtable();
             InvalidateMyRunUO();
         }
 
         public List<Mobile> VisibilityList { get { return m_VisList; } }
+
+        public List<Mobile> IgnoreList
+        {
+            get { return m_IgnoreList; }
+        }
 
         public List<Mobile> PermaFlags { get { return m_PermaFlags; } }
 
@@ -3337,6 +3349,11 @@ namespace Server.Mobiles
 
             switch (version)
             {
+                case 30:
+                    {
+                      Onshow = reader.ReadBool();
+                      goto case 29;
+                    }
                 case 29:
                     {
                         m_GauntletPoints = reader.ReadDouble();
@@ -3741,11 +3758,11 @@ namespace Server.Mobiles
             CheckKillDecay();
 
             CheckAtrophies(this);
-
+            
             base.Serialize(writer);
-
-            writer.Write(29); // version old 28
-
+            
+            writer.Write(30); // version old 29
+            writer.Write((bool)Onshow);
             // Version 29
             writer.Write(m_GauntletPoints);
 

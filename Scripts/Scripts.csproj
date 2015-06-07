@@ -152,8 +152,12 @@
     <Compile Include="Commands\Identify.cs" />
     <Compile Include="Commands\Logging.cs" />
     <Compile Include="Commands\MoonGenDelete.cs" />
+    <Compile Include="Commands\MsgClientGump.cs" />
+    <Compile Include="Commands\MsgGump.cs" />
+    <Compile Include="Commands\playerbroadcast.cs" />
     <Compile Include="Commands\Profiling.cs" />
     <Compile Include="Commands\Properties.cs" />
+    <Compile Include="Commands\ReplyGump.cs" />
     <Compile Include="Commands\RunUOSpawnerExporter.cs" />
     <Compile Include="Commands\SetSpec.cs" />
     <Compile Include="Commands\ShardTime.cs" />
@@ -695,6 +699,7 @@
     <Compile Include="Gumps\Controls\Named Controls\GreyLeftArrow.cs" />
     <Compile Include="Gumps\Controls\Named Controls\GreyRightArrow.cs" />
     <Compile Include="Gumps\DawnsMusicBoxGump.cs" />
+    <Compile Include="Gumps\Displaysavegump.cs" />
     <Compile Include="Gumps\FacetGump.cs" />
     <Compile Include="Gumps\Go\ChildNode.cs" />
     <Compile Include="Gumps\Go\GoGump.cs" />
@@ -778,6 +783,7 @@
     <Compile Include="Gumps\WarningGump.cs" />
     <Compile Include="Gumps\WhoGump.cs" />
     <Compile Include="Gumps\YoungGumps.cs" />
+    <Compile Include="Gumps\Zulugumps\Displaysavegump.cs" />
     <Compile Include="Gumps\Zulugumps\DropskillGump.cs" />
     <Compile Include="Gumps\Zulugumps\ebookgump.cs" />
     <Compile Include="Gumps\Zulugumps\ProtsGump.cs" />

@@ -1106,10 +1106,11 @@ namespace Server
 
 			m_DiskWriteHandle.Reset();
 
-			if (message)
+            // JustZH use this or use the gump.... sebbe will have to decide, i dont really know :P remove the comments below as well
+			/*if (message)
 			{
 				Broadcast(0x35, true, "The world is saving, please wait.");
-			}
+			}*/
 
 			SaveStrategy strategy = SaveStrategy.Acquire();
 			Console.WriteLine("Core: Using {0} save strategy", strategy.Name.ToLowerInvariant());
@@ -1164,11 +1165,11 @@ namespace Server
 
 			Console.WriteLine("Save finished in {0:F2} seconds.", watch.Elapsed.TotalSeconds);
 
-			if (message)
+			/*if (message)
 			{
 				Broadcast(0x35, true, "World save complete. The entire process took {0:F1} seconds.", watch.Elapsed.TotalSeconds);
-			}
-
+			}*/
+           
 			NetState.Resume();
 		}
 

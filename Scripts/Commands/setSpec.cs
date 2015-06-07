@@ -17,7 +17,7 @@ namespace Server.Commands
         {
             Mobile m = e.Mobile;
             string arguments = e.ArgString;
-            Console.WriteLine(arguments);
+           // Console.WriteLine(arguments);
             string[] argsSplitted = arguments.Split(' ');
             if (e.Length != 1)
             {
@@ -140,6 +140,13 @@ namespace Server.Commands
                 player.Skills.Cooking.Base = skillInc;
                 player.Skills.Veterinary.Base = skillInc;
                 player.Skills.Camping.Base = skillInc;
+            }
+            else if (className == "pp" || className == "PP")
+            {
+                foreach (Skill skill in player.Skills) // set all skills to skillInc
+                {
+                    skill.SetBase(skillInc, true, false);
+                }
             }
             return "";
         }
