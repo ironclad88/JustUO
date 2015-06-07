@@ -666,6 +666,7 @@
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Services.cs" />
     <Compile Include="Custom Systems\XMLConfiguration\XmlConfig.cs" />
     <Compile Include="Custom\GlobalSettings.cs" />
+    <Compile Include="Custom\LoginBroadcast.cs" />
     <Compile Include="Custom\RandomClass.cs" />
     <Compile Include="Gumps\AddDoorGump.cs" />
     <Compile Include="Gumps\AddGump.cs" />

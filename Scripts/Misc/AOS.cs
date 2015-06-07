@@ -78,6 +78,17 @@ namespace Server
                 return damage;
             }
 
+            // JustZH dmg boost by spec test
+            if (from.SpecClasse == SpecClasse.Ranger)
+            {
+                damage *= (int)from.SpecBonus(SpecClasse.Ranger);
+            }
+
+            if (m.SpecClasse == SpecClasse.Mage)
+            {
+                damage *= (int)m.SpecBonus(SpecClasse.Mage);
+            }
+
             Fix(ref phys);
             Fix(ref fire);
             Fix(ref cold);
