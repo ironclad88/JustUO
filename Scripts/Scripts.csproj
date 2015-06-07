@@ -102,6 +102,7 @@
     <Compile Include="Commands\Batch.cs" />
     <Compile Include="Commands\BoundingBoxPicker.cs" />
     <Compile Include="Commands\ConvertPlayers.cs" />
+    <Compile Include="Commands\Count.cs" />
     <Compile Include="Commands\CreateWorld.cs" />
     <Compile Include="Commands\Decorate.cs" />
     <Compile Include="Commands\DecorateDelete.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Commands\Handlers.cs" />
     <Compile Include="Commands\HelpInfo.cs" />
     <Compile Include="Commands\Hungry.cs" />
+    <Compile Include="Commands\Identify.cs" />
     <Compile Include="Commands\Logging.cs" />
     <Compile Include="Commands\MoonGenDelete.cs" />
     <Compile Include="Commands\Profiling.cs" />
