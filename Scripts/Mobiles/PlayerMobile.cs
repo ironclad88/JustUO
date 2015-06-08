@@ -73,7 +73,16 @@ namespace Server.Mobiles
         ToggleClippings = 0x00800000,
         ToggleCutClippings = 0x01000000,
         ToggleCutReeds = 0x02000000,
-        MechanicalLife = 0x04000000
+        MechanicalLife = 0x04000000,
+        #region ColorWars
+        ColorWarRed = 0x00020000,
+        ColorWarBlue = 0x00040000,
+        ColorWarWhite = 0x00080000,
+        ColorWarBlack = 0x00100000,
+        #endregion
+        #region Event
+        IsInEvent = 0x00020000,
+  #endregion
     }
 
     public enum NpcGuild
@@ -227,6 +236,44 @@ namespace Server.Mobiles
 
         private int m_GuildMessageHue, m_AllianceMessageHue;
 
+        #region ColorWars
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool ColorWarRed
+        {
+            get { return GetFlag(PlayerFlag.ColorWarRed); }
+            set { SetFlag(PlayerFlag.ColorWarRed, value); }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool ColorWarBlue
+        {
+            get { return GetFlag(PlayerFlag.ColorWarBlue); }
+            set { SetFlag(PlayerFlag.ColorWarBlue, value); }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool ColorWarWhite
+        {
+            get { return GetFlag(PlayerFlag.ColorWarWhite); }
+            set { SetFlag(PlayerFlag.ColorWarWhite, value); }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool ColorWarBlack
+        {
+            get { return GetFlag(PlayerFlag.ColorWarBlack); }
+            set { SetFlag(PlayerFlag.ColorWarBlack, value); }
+        }
+        #endregion
+
+        #region Event
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool IsInEvent
+        {
+            get { return GetFlag(PlayerFlag.IsInEvent); }
+            set { SetFlag(PlayerFlag.IsInEvent, value); }
+        }
+        #endregion
         private List<Mobile> m_AutoStabled;
         private List<Mobile> m_AllFollowers;
         private List<Mobile> m_RecentlyReported;

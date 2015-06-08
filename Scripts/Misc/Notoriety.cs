@@ -308,6 +308,8 @@ namespace Server.Misc
                         return Notoriety.Enemy;
                 }
 
+            
+
                 Faction srcFaction = Faction.Find(source, true, true);
                 Faction trgFaction = Faction.Find(target.Owner, true, true);
 
@@ -468,7 +470,33 @@ namespace Server.Misc
                 else if (sourceGuild.IsEnemy(targetGuild))
                     return Notoriety.Enemy;
             }
+            #region ColorWars
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarRed && target is PlayerMobile && (((PlayerMobile)target).ColorWarBlue || ((PlayerMobile)target).ColorWarWhite || ((PlayerMobile)target).ColorWarBlack))
+                return Notoriety.Enemy;
 
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarRed && target is PlayerMobile && ((PlayerMobile)target).ColorWarRed)
+                return Notoriety.Ally;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarBlue && target is PlayerMobile && (((PlayerMobile)target).ColorWarRed || ((PlayerMobile)target).ColorWarWhite || ((PlayerMobile)target).ColorWarBlack))
+                return Notoriety.Enemy;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarBlue && target is PlayerMobile && ((PlayerMobile)target).ColorWarBlue)
+                return Notoriety.Ally;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarWhite && target is PlayerMobile && (((PlayerMobile)target).ColorWarBlue || ((PlayerMobile)target).ColorWarRed || ((PlayerMobile)target).ColorWarBlack))
+                return Notoriety.Enemy;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarWhite && target is PlayerMobile && ((PlayerMobile)target).ColorWarWhite)
+                return Notoriety.Ally;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarBlack && target is PlayerMobile && (((PlayerMobile)target).ColorWarRed || ((PlayerMobile)target).ColorWarWhite || ((PlayerMobile)target).ColorWarBlue))
+                return Notoriety.Enemy;
+
+            if (source is PlayerMobile && ((PlayerMobile)source).ColorWarBlack && target is PlayerMobile && ((PlayerMobile)target).ColorWarBlack)
+                return Notoriety.Ally;
+
+
+            #endregion
             Faction srcFaction = Faction.Find(source, true, true);
             Faction trgFaction = Faction.Find(target, true, true);
 

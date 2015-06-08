@@ -43,7 +43,7 @@ namespace Server.Items
             }
         }
 
-        bool debug = true;
+        bool debug = false;
 
         #region Factions
         private FactionItem m_FactionState;

@@ -175,6 +175,7 @@ namespace Server.Spells.Fifth
 
                 Poison p;
 
+                // JustZH just saw this.... this aint right
                 if (Core.AOS)
                 {
                     int total = (this.m_Caster.Skills.Magery.Fixed + this.m_Caster.Skills.Poisoning.Fixed) / 2;
