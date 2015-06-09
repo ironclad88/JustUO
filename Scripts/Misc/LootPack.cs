@@ -120,20 +120,20 @@ namespace Server
 		public static readonly LootPackItem[] Instruments = new[] {new LootPackItem(typeof(BaseInstrument), 1)};
 
 		public static readonly LootPackItem[] LowScrollItems = new[]
-		{new LootPackItem(typeof(ClumsyScroll), 1), new LootPackItem(typeof(NetherBoltScroll), 1)};
+		{new LootPackItem(typeof(ClumsyScroll), 1)/*, new LootPackItem(typeof(NetherBoltScroll), 1)*/};
 
 		public static readonly LootPackItem[] MedScrollItems = new[]
 		{
-			new LootPackItem(typeof(ArchCureScroll), 1), new LootPackItem(typeof(AnimatedWeaponScroll), 1),
+			new LootPackItem(typeof(ArchCureScroll), 1)/*, new LootPackItem(typeof(AnimatedWeaponScroll), 1),
 			new LootPackItem(typeof(PurgeMagicScroll), 1), new LootPackItem(typeof(SleepScroll), 1),
-			new LootPackItem(typeof(MassSleepScroll), 1)
+			new LootPackItem(typeof(MassSleepScroll), 1)*/
 		};
 
 		public static readonly LootPackItem[] HighScrollItems = new[]
 		{
-			new LootPackItem(typeof(SummonAirElementalScroll), 1), new LootPackItem(typeof(SpellPlagueScroll), 1),
+			new LootPackItem(typeof(SummonAirElementalScroll), 1)/*, new LootPackItem(typeof(SpellPlagueScroll), 1),
 			new LootPackItem(typeof(HailStormScroll), 1), new LootPackItem(typeof(CleansingWindsScroll), 1),
-			new LootPackItem(typeof(BombardScroll), 1)
+			new LootPackItem(typeof(BombardScroll), 1)*/
 		};
 
 		public static readonly LootPackItem[] GemItems = new[] {new LootPackItem(typeof(Amber), 1)};

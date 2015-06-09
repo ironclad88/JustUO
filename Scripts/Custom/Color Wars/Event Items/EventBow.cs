@@ -38,7 +38,7 @@ namespace Server.Items
 		public override int DefMaxRange { get { return 15; } }
 		public override Type AmmoType {
 			get {
-				return null;
+				return null; // this requires no ammo... sweeeeet, gotta make an half crappy gm wep with no ammo type
 			}
 		}
 

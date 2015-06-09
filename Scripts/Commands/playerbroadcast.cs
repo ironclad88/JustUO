@@ -33,7 +33,7 @@ namespace Server.Commands
         {
             Packet p;
             string textToAll = from.Name + ": " + text;
-            p = new UnicodeMessage(Serial.MinusOne, -1, MessageType.Regular, 0x3B2, 3, "ENU", "System", textToAll);
+            p = new UnicodeMessage(Serial.MinusOne, -1, MessageType.Regular, 0x35, 3, "ENU", "System", textToAll);
 
             List<NetState> list = NetState.Instances;
 

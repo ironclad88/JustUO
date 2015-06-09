@@ -83,7 +83,7 @@ namespace Server.Items
 
 
                             if (pm.ColorWarRed == true)
-                            m.BankBox.DropItem(new Token(1)); // this dont seem to be working either
+                                m.AddToBackpack(new Token(1)); // this dont seem to be working either
                             pm.ColorWarRed = false;
                             pm.ColorWarBlue = false;
                             pm.ColorWarWhite = false;
@@ -241,7 +241,7 @@ namespace Server.Items
                             }
 
                             if (pm.ColorWarBlue == true)
-                                m.BankBox.DropItem(new Token(1));
+                                m.AddToBackpack(new Token(1));
                             pm.ColorWarRed = false;
                             pm.ColorWarBlue = false;
                             pm.ColorWarWhite = false;
@@ -400,7 +400,7 @@ namespace Server.Items
                             }
 
                             if (pm.ColorWarWhite == true)
-                                m.BankBox.DropItem(new Token(1));
+                                m.AddToBackpack(new Token(1));
                             pm.ColorWarRed = false;
                             pm.ColorWarBlue = false;
                             pm.ColorWarWhite = false;
@@ -548,7 +548,7 @@ namespace Server.Items
                             }
 
                             if (pm.ColorWarBlack == true)
-                                m.BankBox.DropItem(new Token(1));
+                                m.AddToBackpack(new Token(1));
                             pm.ColorWarRed = false;
                             pm.ColorWarBlue = false;
                             pm.ColorWarWhite = false;

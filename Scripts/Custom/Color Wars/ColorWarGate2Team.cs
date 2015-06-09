@@ -63,13 +63,13 @@ namespace Server.Items
         }
 
         [Constructable] // JustZH need a better way to use this, automate it. its just stupid to use it manually
-        public ColorWarGate2Team()
-            : base(0xF6C)
+        public ColorWarGate2Team() // Added a stone instead of moongate
+            : base(0x0ed4)
         {
             Movable = false;
             Light = LightType.Circle300;
-            Hue = 962;
-            Name = "Color Wars 2 Team Gate";
+            Hue = 1627;
+            Name = "Color Wars Arena Stone";
         }
 
         public ColorWarGate2Team(Serial serial)
@@ -77,17 +77,31 @@ namespace Server.Items
         {
         }
 
-        
-
-        public override bool OnMoveOver(Mobile m)
+        public override void OnDoubleClick(Mobile m)
         {
-            Mobile from = m;
+            //Mobile from = m;
+            bool eligable = true;
+            if (m.Mounted == true)
+            {
+                m.SendMessage("You must dismount to play Color Wars.");
+                eligable = false;
+            }
+            else if (m.RawInt < 90 || m.RawDex < 90 || m.RawStr < 90)
+            {
+                m.SendMessage("Sorry, your base stats are not high enough.");
+                eligable = false;
+            }
+            if(eligable == true)
+            { 
             PlayerMobile pm = m as PlayerMobile;
             Backpack bag = new Backpack();
             Container pack = m.Backpack;
             BankBox box = m.BankBox;
             ArrayList equipitems = new ArrayList(m.Items);
             ArrayList bagitems = new ArrayList(pack.Items);
+
+            
+
             foreach (Item item in equipitems)
             {
                 if ((item.Layer != Layer.Bank) && (item.Layer != Layer.Backpack) && (item.Layer != Layer.Hair) && (item.Layer != Layer.FacialHair))
@@ -107,61 +121,52 @@ namespace Server.Items
 
             if (pm != null)
             {
-                PlayerMobile PVP = from as PlayerMobile;
-               // PVP.PVM = PVM.Null; // wtf is dis? gave me alotta errors
+                PlayerMobile PVP = m as PlayerMobile;
+                // PVP.PVM = PVM.Null; // wtf is dis? gave me alotta errors
                 pm.IsInEvent = true;
-                pm.Title = "[Color War]";
+                
 
                 switch (Utility.Random(2)) // JustZH need a better system for this, the teams can become unbalanced
-                    {
-                        case 0:
-                            m.SendMessage("You joined the Red Team");
-                            pm.ColorWarRed = true;
-                            m.Map = Map.Felucca;
-                            m.X = 5990;
-                            m.Y = 485;
-                            m.Z = -22;
-                            m.HueMod = 32;
-                            break;
-                        case 1:
-                            m.SendMessage("You joined the Blue Team");
-                            pm.ColorWarBlue = true;
-                            m.Map = Map.Felucca;
-                            m.X = 5911;
-                            m.Y = 406;
-                            m.Z = -22;
-                            
-                            m.HueMod = 3;
-                            break;
-                    }
+                {
+                    case 0:
+                        m.SendMessage("You joined the Red Team");
+                        pm.ColorWarRed = true;
+                        m.Map = Map.Felucca;
+                        m.X = 5990;
+                        m.Y = 485;
+                        m.Z = -22;
+                        m.HueMod = 32;
+                        break;
+                    case 1:
+                        m.SendMessage("You joined the Blue Team");
+                        pm.ColorWarBlue = true;
+                        m.Map = Map.Felucca;
+                        m.X = 5911;
+                        m.Y = 406;
+                        m.Z = -22;
+
+                        m.HueMod = 3;
+                        break;
                 }
+            }
             // Fixed by pillzan
             int EventItemHue = 0;
             if (pm.ColorWarRed == true) EventItemHue = 32;
             if (pm.ColorWarBlue == true) EventItemHue = 2;
 
             m.PlaySound(0x1FE);
-            // JustZH needs to use the players spec (ranger = chainmail and bow, Warrior = shield, bandage, weapon of every skill and plate, Mage = just a spellbook, if pp, just add everything (except maybe chainmail)
-            if (m_Weapons != false)
+            // JustZH maybe add for bards later (theifs needs balancing i think)
+            if (m.SpecClasse == SpecClasse.Mage)
+            {
+                pm.AddToBackpack(new Spellbook(UInt64.MaxValue));
+                m.AddToBackpack(new EventBox(EventItemHue)); // dunno what this is used for.... will add it anyways
+                pm.AddToBackpack(new EventRobe(EventItemHue));
+                pm.Title = "[Color Wars Mage]";
+            }
+            else if (m.SpecClasse == SpecClasse.Warrior)
             {
                 pm.AddToBackpack(new EventSword(EventItemHue)); // maybe make it power?
-                pm.AddToBackpack(new EventBow(EventItemHue));  // maybe make it power?
-                pm.AddToBackpack(new Spellbook(UInt64.MaxValue));
-            }
-
-
-            if (m_Bandages != false)
-            {
                 m.AddToBackpack(new EventAids(m_BandageAmount, EventItemHue));
-            }
-
-            if (m_EventBox != false)
-            {
-                m.AddToBackpack(new EventBox(EventItemHue));
-            }
-
-            if (m_Armor != false)
-            {
                 pm.AddToBackpack(new EventChest(EventItemHue)); // buff armor stats?
                 pm.AddToBackpack(new EventArms(EventItemHue));
                 pm.AddToBackpack(new EventGloves(EventItemHue));
@@ -170,14 +175,57 @@ namespace Server.Items
                 pm.AddToBackpack(new EventGorget(EventItemHue));
                 pm.AddToBackpack(new EventShield(EventItemHue));
                 pm.AddToBackpack(new EventRobe(EventItemHue));
+                m.AddToBackpack(new EventBox(EventItemHue)); // dunno what this is used for.... will add it anyways
+                pm.Title = "[Color Wars Warrior]";
+            }
+            else if (m.SpecClasse == SpecClasse.Ranger)
+            {
+                pm.AddToBackpack(new EventBow(EventItemHue));  // maybe make it power?
+                pm.AddToBackpack(new EventChainChest(EventItemHue));
+                pm.AddToBackpack(new EventChainCoif(EventItemHue));
+                pm.AddToBackpack(new EventChainLegs(EventItemHue));
+                pm.AddToBackpack(new EventRobe(EventItemHue));
+                pm.AddToBackpack(new GreaterPoisonPotion());
+                pm.AddToBackpack(new GreaterPoisonPotion()); // needs to be balanced, not really sure about this
+                pm.AddToBackpack(new GreaterPoisonPotion());
+                m.AddToBackpack(new EventBox(EventItemHue)); // dunno what this is used for.... will add it anyways
+                pm.Title = "[Color Wars Ranger]";
+            }
+            else if (m.SpecClasse == SpecClasse.Thief)
+            {
+                pm.AddToBackpack(new EventStuddedArms(EventItemHue));
+                pm.AddToBackpack(new EventStuddedChest(EventItemHue));
+                pm.AddToBackpack(new EventStuddedGloves(EventItemHue));
+                pm.AddToBackpack(new EventStuddedGorget(EventItemHue));
+                pm.AddToBackpack(new EventBow(EventItemHue));
+                pm.AddToBackpack(new EventRobe(EventItemHue));
+                m.AddToBackpack(new EventBox(EventItemHue)); // dunno what this is used for.... will add it anyways
+                pm.Title = "[Color Wars Theif]";
+            }
+            else
+            {
+                pm.AddToBackpack(new Spellbook(UInt64.MaxValue));
+                m.AddToBackpack(new EventBox(EventItemHue)); // dunno what this is used for.... will add it anyways
+                pm.AddToBackpack(new EventRobe(EventItemHue));
+                pm.AddToBackpack(new EventSword(EventItemHue)); // maybe make it power?
+                m.AddToBackpack(new EventAids(m_BandageAmount, EventItemHue));
+                pm.AddToBackpack(new EventChest(EventItemHue)); // buff armor stats?
+                pm.AddToBackpack(new EventArms(EventItemHue));
+                pm.AddToBackpack(new EventGloves(EventItemHue));
+                pm.AddToBackpack(new EventLegs(EventItemHue));
+                pm.AddToBackpack(new EventHelm(EventItemHue));
+                pm.AddToBackpack(new EventGorget(EventItemHue));
+                pm.AddToBackpack(new EventShield(EventItemHue));
+                pm.Title = "[Color Wars PP]";
             }
             if (m_EtherealMount != false)
             {
                 pm.AddToBackpack(new EventEthereal(Hue));
             }
 
-                return false;
             }
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

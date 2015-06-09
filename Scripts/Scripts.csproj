@@ -679,6 +679,9 @@
     <Compile Include="Custom\Color Wars\Event Items\EventArms.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventBow.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventBox.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventChainChest.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventChainCoif.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventChainLegs.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventChest.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventEnd.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventEthereal.cs" />
@@ -688,6 +691,11 @@
     <Compile Include="Custom\Color Wars\Event Items\EventLegs.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventRobe.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventShield.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventStuddedArms.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventStuddedChest.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventStuddedGloves.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventStuddedGorget.cs" />
+    <Compile Include="Custom\Color Wars\Event Items\EventStuddedLeggings.cs" />
     <Compile Include="Custom\Color Wars\Event Items\EventSword.cs" />
     <Compile Include="Custom\Color Wars\Token.cs" />
     <Compile Include="Custom\Color Wars\Walldown.cs" />
