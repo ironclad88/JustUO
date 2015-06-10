@@ -4023,6 +4023,17 @@ namespace Server.Mobiles
             m_DamageMax = max;
         }
 
+        public void SetDiceDmg(int rolls, int diceSides)
+        {
+            int total = 0;
+            for (int i = 0; i < rolls; i++)
+            {
+                total += Utility.RandomMinMax(1, diceSides);
+            }
+            m_DamageMin = total;
+            m_DamageMax = total;
+        }
+
         public void SetHits(int val)
         {
             if (val < 1000 && !Core.AOS)
@@ -4151,6 +4162,37 @@ namespace Server.Mobiles
         public void SetResistance(ResistanceType type, int min, int max)
         {
             SetResistance(type, Utility.RandomMinMax(min, max));
+        }
+
+        public void SetResistanceImmunity(ResistanceType type)
+        {
+            SetResistance(type, 170); //JustZH can´t remember what immunity level is.
+        }
+
+        public void SetResistanceLevel(ResistanceType type, int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    SetResistance(type, Utility.RandomMinMax(0, 17));
+                    break;
+                case 2:
+                    SetResistance(type, Utility.RandomMinMax(17, 33));
+                    break;
+                case 3:
+                    SetResistance(type, Utility.RandomMinMax(33, 50));
+                    break;
+                case 4:
+                    SetResistance(type, Utility.RandomMinMax(50, 65));
+                    break;
+                case 5:
+                    SetResistance(type, Utility.RandomMinMax(65, 85));
+                    break;
+                case 6:
+                    SetResistance(type, Utility.RandomMinMax(85, 105));
+                    break;
+            }
+            
         }
 
         public void SetResistance(ResistanceType type, int val)

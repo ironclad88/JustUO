@@ -3,12 +3,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-    [CorpseName("an behemoth corpse")]
+    [CorpseName("an behemoth corpse")] 
     public class Behemoth : BaseCreature
     {
         [Constructable]
-        public Behemoth()
-            : base(AIType.AI_Melee, FightMode.Evil, 10, 1, 0.2, 0.4)
+        public Behemoth()   // using this mob as an template right now (All stats/skills and everything is taken from Fantasia scripts)
+            : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4) // 0.2 is standard apparently
+        //  : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.4) // not sure about 0.4 or 02, havent had time to test
         {
             this.Name = "an behemoth";
             this.Body = 0x0e;
@@ -16,16 +17,26 @@ namespace Server.Mobiles
 
             this.Hue = 0x488;
 
-            this.SetStr(200, 230);
-            this.SetDex(200, 250);
-            this.SetInt(45, 50);
+            this.SetStr(2250);
+            this.SetDex(400);
+            this.SetInt(55);
 
-            this.SetHits(210, 211);
+            this.SetHits(2250);
+            this.SetMana(55);
+            this.SetStam(400);
 
-            this.SetDamage(20, 70);
+          //  this.SetDamage(50);
+            this.SetDiceDmg(10, 6);
 
-            this.BoostStr(1000);
+            this.SetResistanceLevel(ResistanceType.Physical, 3);
+            this.SetResistanceLevel(ResistanceType.Earth, 3);
+            this.SetResistanceLevel(ResistanceType.Fire, 3);
+            this.SetResistanceLevel(ResistanceType.Cold, 3); // Cold == Water
+            this.SetResistanceLevel(ResistanceType.Necro, 3);
+            this.SetResistanceImmunity(ResistanceType.Poison); // not sure about this one
+            // this.SetResistanceLevel(ResistanceType.Magic, 3); // JustZH not done yet, Behemoth in fantasia scripts have (PermMagicProtection i6)
 
+            /*
             this.SetDamageType(ResistanceType.Physical, 100);
 
             this.SetResistance(ResistanceType.Physical, 50, 60);
@@ -33,16 +44,20 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Cold, 50, 60);
             this.SetResistance(ResistanceType.Poison, 50, 60);
             this.SetResistance(ResistanceType.Energy, 50, 60);
+             */
 
-            this.SetSkill(SkillName.MagicResist, 60, 65);
-            this.SetSkill(SkillName.Tactics, 150, 155);
-            this.SetSkill(SkillName.Wrestling, 175, 180);
+            this.SetSkill(SkillName.DetectHidden, 100);
+            this.SetSkill(SkillName.MagicResist, 200);
+            this.SetSkill(SkillName.Tactics, 175);
+            this.SetSkill(SkillName.Wrestling, 175);
 
-            this.Fame = 3500;
+            this.Fame = 3500; // Fame and Karma are not defined in npcdesc.cfg (the cfg file which contains all mobs), gotta find the script for this somewhere.
             this.Karma = -3500;
 
-            this.VirtualArmor = 50;
-            this.ControlSlots = 2;
+            // saw an awesome "AI Setting" in the scripts for behemoth (	AISetting	OpenDoors	i1 ), awesoooome, i guess the bastard can open doors
+
+            this.VirtualArmor = 50; 
+          //  this.ControlSlots = 2;
         }
 
         public Behemoth(Serial serial)
