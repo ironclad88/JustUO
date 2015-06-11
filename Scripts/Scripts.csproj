@@ -2953,11 +2953,13 @@
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\ValleyFrenziedOstard.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\WindOstard.cs" />
     <Compile Include="Mobiles\Monsters\Reptile\Melee\GoldenDragon.cs" />
-    <Compile Include="Mobiles\Monsters\ZuluMobs\Behemoth.cs" />
-    <Compile Include="Mobiles\Monsters\ZuluMobs\BlackWisp.cs" />
-    <Compile Include="Mobiles\Monsters\ZuluMobs\NecroTestMob.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
     <Compile Include="Mobiles\Vendors\NPC\Botanist.cs" />
     <Compile Include="Mobiles\Vendors\SBInfo\SBBotanist.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\OrcMage.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\SkeletonArcher.cs" />
     <Compile Include="Mobiles\ZuluSpecial\CrazyHermit.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRatingGump.cs" />
     <Compile Include="Services\Loyalty System\LoyaltyRating.cs" />

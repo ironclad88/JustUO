@@ -3052,14 +3052,14 @@ namespace Server.Mobiles
         public virtual bool IsScaryToPets { get { return false; } }
         public virtual bool IsScaredOfScaryThings { get { return true; } }
 
-        public virtual bool CanRummageCorpses { get { return false; } }
+        public virtual bool CanRummageCorpses { get { return false; } } // JustZH disabled CanRummageCorpses (Monster loots your shit)
 
         public virtual void OnGotMeleeAttack(Mobile attacker)
         {
             if (AutoDispel && attacker is BaseCreature && ((BaseCreature)attacker).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-                Dispel(attacker); // why dispell?
+                Dispel(attacker); //JustZH why dispell?
             }
         }
 

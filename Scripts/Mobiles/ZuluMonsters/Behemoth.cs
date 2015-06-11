@@ -33,7 +33,9 @@ namespace Server.Mobiles
             this.SetResistanceLevel(ResistanceType.Fire, 3);
             this.SetResistanceLevel(ResistanceType.Cold, 3); // Cold == Water
             this.SetResistanceLevel(ResistanceType.Necro, 3);
-            this.SetResistanceImmunity(ResistanceType.Poison); // not sure about this one
+
+            //this.SetResistanceImmunity(ResistanceType.Poison); // just found out this existed: public override Poison PoisonImmune
+
             // this.SetResistanceLevel(ResistanceType.Magic, 3); // JustZH not done yet, Behemoth in fantasia scripts have (PermMagicProtection i6)
 
             /*
@@ -84,6 +86,13 @@ namespace Server.Mobiles
             get
             {
                 return true;
+            }
+        }
+        public override Poison PoisonImmune // hmmm didnt know this existed, added
+        {
+            get
+            {
+                return Poison.Deadly;
             }
         }
         public override int TreasureMapLevel // not done (dunno what it even means)
