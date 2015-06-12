@@ -2067,6 +2067,7 @@ namespace Server.Items
 
             if (attacker is BaseCreature)
             {
+                Console.WriteLine(attacker.Name + " is Attacking OnHit()");
                 ((BaseCreature)attacker).AlterMeleeDamageTo(defender, ref damage);
             }
 
@@ -2945,7 +2946,7 @@ namespace Server.Items
             if (attacker is BaseCreature)
             {
                 BaseCreature c = (BaseCreature)attacker;
-
+                Console.WriteLine(attacker.Name + " is Attacking GetBaseDamageRange()");
                 if (c.DamageMin >= 0)
                 {
                     min = c.DamageMin;
@@ -2960,7 +2961,7 @@ namespace Server.Items
                     return;
                 }
             }
-
+            
             min = MinDamage;
             max = MaxDamage;
         }

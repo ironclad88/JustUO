@@ -2636,7 +2636,10 @@ namespace Server.Mobiles
         { }
 
         public virtual void OnActionCombat()
-        { }
+        {
+            
+        
+        }
 
         public virtual void OnActionGuard()
         { }
@@ -3056,10 +3059,11 @@ namespace Server.Mobiles
 
         public virtual void OnGotMeleeAttack(Mobile attacker)
         {
+            
             if (AutoDispel && attacker is BaseCreature && ((BaseCreature)attacker).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-                Dispel(attacker); //JustZH why dispell?
+              //  Dispel(attacker); //JustZH why dispell?
             }
         }
 
@@ -3075,6 +3079,7 @@ namespace Server.Mobiles
 
         public virtual void OnGaveMeleeAttack(Mobile defender)
         {
+            
             Poison p = HitPoison;
 
             XmlPoison xp = (XmlPoison)XmlAttach.FindAttachment(this, typeof(XmlPoison));
@@ -3102,7 +3107,7 @@ namespace Server.Mobiles
             if (AutoDispel && defender is BaseCreature && ((BaseCreature)defender).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-                Dispel(defender); // why dispel?
+              //  Dispel(defender); //JustZH why dispel?
             }
         }
 
@@ -4360,7 +4365,7 @@ namespace Server.Mobiles
                 return;
             }
 
-            PackItem(Loot.Construct(Loot.ArcanistScrollTypes));
+          //  PackItem(Loot.Construct(Loot.ArcanistScrollTypes));
         }
 
         public void PackNecroScroll(int index)
@@ -4370,7 +4375,7 @@ namespace Server.Mobiles
                 return;
             }
 
-            PackItem(Loot.Construct(Loot.NecromancyScrollTypes, index));
+            // PackItem(Loot.Construct(Loot.NecromancyScrollTypes, index)); // JustZH removed necro scrolls from loot (not zulu necro, but osi necro)
         }
 
         public void PackScroll(int minCircle, int maxCircle)
