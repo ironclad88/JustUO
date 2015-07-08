@@ -75,6 +75,10 @@ namespace Server
 
 		public void Generate(Mobile from, Container cont, bool spawning, int luckChance)
 		{
+            BaseCreature c = (BaseCreature)from;
+           // Console.WriteLine("Generate");
+            int level = c.MagicLevel;
+            Console.WriteLine(level);
 			if (cont == null)
 			{
 				return;
@@ -223,6 +227,11 @@ namespace Server
 			new LootPackItem(typeof(BaseWeapon), 276), new LootPackItem(typeof(BaseRanged), 69),
 			new LootPackItem(typeof(BaseArmor), 397), new LootPackItem(typeof(BaseShield), 52),
 			new LootPackItem(typeof(BaseJewel), 207), new LootPackItem(typeof(BaseClothing), 305)
+		};
+
+        public static readonly LootPackItem[] JewelTest = new[]
+		{
+			new LootPackItem(typeof(BaseJewel), 397)
 		};
 		#endregion
 
@@ -388,6 +397,14 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 35, 100),
 					new LootPackEntry(false, Instruments, 2.00, 1)
+				});
+
+        public static readonly LootPack JewelTestz =
+    new LootPack(
+        new[]
+				{
+					new LootPackEntry(false, JewelTest, 100.00, 1, 5, 25, 100)
+
 				});
 
 		public static readonly LootPack AosSuperBoss =
@@ -699,6 +716,8 @@ namespace Server
 
                         int props = 1 + bonusProps;
 
+                        BaseCreature c = (BaseCreature)from;
+
 						// Make sure we're not spawning items with 6 properties.
 						if (props > m_MaxProps)
 						{
@@ -715,7 +734,8 @@ namespace Server
 						}
 						else if (item is BaseJewel)
 						{
-							BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                            BaseRunicToolRewrite.ApplyEffect((BaseJewel)item, c.MagicLevel);
+							//BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 						else if (item is BaseClothing)
 						{

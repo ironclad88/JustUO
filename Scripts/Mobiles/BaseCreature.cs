@@ -239,6 +239,9 @@ namespace Server.Mobiles
         private int m_NecroResistance, m_NecroDamage;
         private int m_HolyResistance, m_HolyDamage;
 
+        private int m_LootIndex;
+        private int m_MagicLevel;
+
         private List<Mobile> m_Owners;
         private List<Mobile> m_Friends;
 
@@ -291,6 +294,12 @@ namespace Server.Mobiles
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int QLPoints { get { return m_QLPoints; } set { m_QLPoints = value; } }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int LootIndex { get { return m_LootIndex; } set { m_LootIndex = value; } }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int MagicLevel { get { return m_MagicLevel; } set { m_MagicLevel = value; } }
 
         protected DateTime SummonEnd { get { return m_SummonEnd; } set { m_SummonEnd = value; } }
 
@@ -4485,6 +4494,7 @@ namespace Server.Mobiles
 
         public virtual void AddLoot(LootPack pack)
         {
+           // Console.WriteLine("AddLoot");
             if (Summoned)
             {
                 return;
@@ -4511,6 +4521,7 @@ namespace Server.Mobiles
 
         public bool PackArmor(int minLevel, int maxLevel, double chance)
         {
+            
             if (chance <= Utility.RandomDouble())
             {
                 return false;
@@ -4533,10 +4544,12 @@ namespace Server.Mobiles
 
                 if (item is BaseArmor)
                 {
+                    Console.WriteLine(item.ItemData.Name);
                     BaseRunicTool.ApplyAttributesTo((BaseArmor)item, attributeCount, min, max);
                 }
                 else if (item is BaseJewel)
                 {
+                    Console.WriteLine(item.ItemData.Name);
                     BaseRunicTool.ApplyAttributesTo((BaseJewel)item, attributeCount, min, max);
                 }
 
@@ -4715,10 +4728,12 @@ namespace Server.Mobiles
 
                 if (item is BaseWeapon)
                 {
+                    Console.WriteLine(item.ItemData.Name);
                     BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, attributeCount, min, max);
                 }
                 else if (item is BaseJewel)
                 {
+                    Console.WriteLine(item.ItemData.Name);
                     BaseRunicTool.ApplyAttributesTo((BaseJewel)item, attributeCount, min, max);
                 }
 

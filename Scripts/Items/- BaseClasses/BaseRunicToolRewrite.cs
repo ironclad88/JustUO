@@ -1,11 +1,12 @@
+﻿using Server.Custom;
 using System;
 using System.Collections;
 
 namespace Server.Items
 {
-    public abstract class BaseRunicTool : BaseTool
+    public abstract class BaseRunicToolRewrite : BaseTool
     {
-
+        private static Random rnd = new Random();
         private static bool debug = false;
 
         private static readonly SkillName[] m_PossibleBonusSkills = new SkillName[]
@@ -51,19 +52,19 @@ namespace Server.Items
         private static int m_LuckChance;
         private const int MaxProperties = 32;
         private CraftResource m_Resource;
-        public BaseRunicTool(CraftResource resource, int itemID)
+        public BaseRunicToolRewrite(CraftResource resource, int itemID)
             : base(itemID)
         {
             this.m_Resource = resource;
         }
 
-        public BaseRunicTool(CraftResource resource, int uses, int itemID)
+        public BaseRunicToolRewrite(CraftResource resource, int uses, int itemID)
             : base(uses, itemID)
         {
             this.m_Resource = resource;
         }
 
-        public BaseRunicTool(Serial serial)
+        public BaseRunicToolRewrite(Serial serial)
             : base(serial)
         {
         }
@@ -126,7 +127,7 @@ namespace Server.Items
 
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
-          //  Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
+            Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
             int maxDamage = min;
             int minDamage = min;
             for (int i = 0; maxDamage < max; i++)
@@ -147,7 +148,7 @@ namespace Server.Items
             minDamage = (int)(minDamage * scalar);
             maxDamage = (int)(maxDamage * scalar);
             ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, minDamage, maxDamage);
-          //  Console.WriteLine("min + {1} = {0} ({2})", primary[AosAttribute.WeaponDamage], (primary[AosAttribute.WeaponDamage] - min), maxDamage);
+            Console.WriteLine("min + {1} = {0} ({2})", primary[AosAttribute.WeaponDamage], (primary[AosAttribute.WeaponDamage] - min), maxDamage);
 
             m_Props.SetAll(false);
 
@@ -580,7 +581,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                            //    Console.WriteLine("loop");
+                                Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -649,7 +650,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                           //     Console.WriteLine("loop");
+                                Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -776,7 +777,7 @@ namespace Server.Items
             m_Props.Set(12, true); //SelfRepair
             m_Props.Set(13, true); // DurabilityBonus
             m_Props.Set(14, true); //resist, disable resist on head gear
-            
+
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(15);
@@ -870,15 +871,15 @@ namespace Server.Items
         {
             m_IsRunicTool = isRunicTool;
             m_LuckChance = luckChance;
-            
+
             if (attributeCount != 0)
             {
                 clothing.Unidentified = true;
                 clothing.IdHue = Utility.Random(3000) + 1; //any hue id, for now
             }
-         //   Console.WriteLine("ItemName: " + clothing.ItemData.Name);
-         //   Console.WriteLine("MIN: " + min);
-         //   Console.WriteLine("MAX: " + max);
+            Console.WriteLine("ItemName: " + clothing.ItemData.Name);
+            Console.WriteLine("MIN: " + min);
+            Console.WriteLine("MAX: " + max);
             AosAttributes primary = clothing.Attributes;
             AosArmorAttributes secondary = clothing.ClothingAttributes;
             AosElementAttributes resists = clothing.Resistances;
@@ -900,11 +901,11 @@ namespace Server.Items
             m_Props.Set(8, true); //lower mana
             m_Props.Set(9, true); //lower regs
             m_Props.Set(14, true); //resist
-           // m_Props.Set(15, true); //stat
+            // m_Props.Set(15, true); //stat
             m_Props.Set(16, true); //resist
             m_Props.Set(17, true); //resist
             m_Props.Set(18, true); //resist
-            
+
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(16);
@@ -1014,14 +1015,10 @@ namespace Server.Items
                 }
             }
             RenameItemToZuluStandard(clothing);
-          //  Console.WriteLine("ItemName RENAMED: " + clothing.Name);
+            Console.WriteLine("ItemName RENAMED: " + clothing.Name);
 
         }
 
-        public static void ApplyAttributesTo(BaseJewel jewelry, int attributeCount, int min, int max)
-        {
-            ApplyAttributesTo(jewelry, false, 0, attributeCount, min, max);
-        }
 
         public static void ApplyAttributesTo(BaseJewel jewelry, bool isRunicTool, int luckChance, int attributeCount, int min, int max)
         {
@@ -1033,15 +1030,14 @@ namespace Server.Items
                 jewelry.Unidentified = true;
             }
 
-
-           // Console.WriteLine(jewelry.ItemData.Name);
+            Console.WriteLine(jewelry.ItemData.Name);
 
             AosAttributes primary = jewelry.Attributes;
             AosElementAttributes resists = jewelry.Resistances;
             AosSkillBonuses skills = jewelry.SkillBonuses;
-           // Console.WriteLine("ItemName: " + jewelry.ItemData.Name);
-          //  Console.WriteLine("MIN: " + min);
-          //  Console.WriteLine("MAX: " + max);
+            Console.WriteLine("ItemName: " + jewelry.ItemData.Name);
+            Console.WriteLine("MIN: " + min);
+            Console.WriteLine("MAX: " + max);
             if (Utility.Random(2) == 1)
             {
                 ApplySkillBonus(skills, min, max, 0, 1, 6);
@@ -1066,7 +1062,7 @@ namespace Server.Items
             m_Props.Set(17, true); //SpellDamage
             m_Props.Set(18, true); //night sight
 
-          //  Console.WriteLine("Rolling Jewlery BEGIN");
+            Console.WriteLine("Rolling Jewlery BEGIN");
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(19);
@@ -1076,7 +1072,7 @@ namespace Server.Items
 
                 switch (random)
                 {
-                        
+
                     case 0:
                         switch (Utility.Random(8))
                         {
@@ -1106,18 +1102,18 @@ namespace Server.Items
                                 break;
                         }
                         break;
-                   /* case 1:
-                        ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 15);
-                        break;
-                    case 2:
-                        ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 15);
-                        break;
-                    case 3:
-                        ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 15);
-                        break;
-                    case 4:
-                        ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 15);
-                        break;*/
+                    /* case 1:
+                         ApplyAttribute(resists, min, max, AosElementAttribute.Fire, 1, 15);
+                         break;
+                     case 2:
+                         ApplyAttribute(resists, min, max, AosElementAttribute.Cold, 1, 15);
+                         break;
+                     case 3:
+                         ApplyAttribute(resists, min, max, AosElementAttribute.Poison, 1, 15);
+                         break;
+                     case 4:
+                         ApplyAttribute(resists, min, max, AosElementAttribute.Energy, 1, 15);
+                         break;*/
                     case 1:
                         ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, 1, 25);
                         break;
@@ -1188,15 +1184,15 @@ namespace Server.Items
                     //    break;
                 }
             }
-           /*Console.WriteLine(jewelry.Resistances.Chaos);
-            Console.WriteLine(jewelry.SkillBonuses.Skill_1_Name);
-            Console.WriteLine(jewelry.Attributes.CastSpeed);
-            Console.WriteLine(jewelry.Attributes.CastRecovery);
-            Console.WriteLine(jewelry.Attributes.BonusMana);
-            Console.WriteLine(jewelry.Attributes.SpellDamage);
-            */
+            /*Console.WriteLine(jewelry.Resistances.Chaos);
+             Console.WriteLine(jewelry.SkillBonuses.Skill_1_Name);
+             Console.WriteLine(jewelry.Attributes.CastSpeed);
+             Console.WriteLine(jewelry.Attributes.CastRecovery);
+             Console.WriteLine(jewelry.Attributes.BonusMana);
+             Console.WriteLine(jewelry.Attributes.SpellDamage);
+             */
             //Console.WriteLine(jewelry.GetProperties(this));
-          //  Console.WriteLine("Rolling Jewlery DONE");
+            Console.WriteLine("Rolling Jewlery DONE");
             RenameItemToZuluStandard(jewelry);
         }
 
@@ -1425,6 +1421,11 @@ namespace Server.Items
             attrs[attr] = Scale(min, max, low, high);
         }
 
+        private static void ApplyAttribute(AosElementAttributes attrs, AosElementAttribute attr, int percentage)
+        {
+            attrs[attr] = percentage;
+        }
+
         private static void ApplyAttribute(AosElementAttributes attrs, int min, int max, AosElementAttribute attr, int low, int high, int scale)
         {
             attrs[attr] = Scale(min, max, low / scale, high / scale) * scale;
@@ -1462,7 +1463,7 @@ namespace Server.Items
 
                 if (laps >= count)
                 {
-                  //  Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
+                    Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
                     break;
                 }
 
@@ -1473,6 +1474,51 @@ namespace Server.Items
             while (found);
 
             attrs.SetValues(index, sk, Scale(min, max, low, high));
+        }
+
+        private static void ApplySkillBonus(AosSkillBonuses attrs, int index, int level)
+        {
+            SkillName[] possibleSkills;// = (attrs.Owner is Spellbook ? m_PossibleSpellbookSkills : m_PossibleBonusSkills);
+            if (attrs.Owner is Spellbook)
+            {
+                possibleSkills = m_PossibleSpellbookSkills;
+            }
+            else if (attrs.Owner is Pickaxe)
+            {
+                possibleSkills = new SkillName[] { SkillName.Mining };
+            }
+            else if (attrs.Owner is SmithHammer)
+            {
+                possibleSkills = new SkillName[] { SkillName.Blacksmith };
+            }
+            else
+            {
+                possibleSkills = m_PossibleBonusSkills;
+            }
+            int count = (Core.SE ? possibleSkills.Length : possibleSkills.Length - 2);
+
+            SkillName sk, check;
+            double bonus;
+            bool found;
+            int laps = 0;
+            do
+            {
+                found = false;
+                sk = possibleSkills[Utility.Random(count)];
+
+                if (laps >= count)
+                {
+                    Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
+                    break;
+                }
+
+                for (int i = 0; !found && i < 5; ++i)
+                    found = (attrs.GetValues(i, out check, out bonus) && check == sk);
+                laps++;
+            }
+            while (found);
+            Console.WriteLine("In ApplySkillBonus: " + index + " " + sk + " " + level);
+            attrs.SetValues(index, sk, level);
         }
 
         private static void ApplyResistance(BaseArmor ar, int min, int max, ResistanceType res, int low, int high)
@@ -1512,7 +1558,7 @@ namespace Server.Items
                 return 0;
 
             int random = (Utility.Random(5) + 1) * 5;
-         //   Console.WriteLine("got random % ele dmg: " + random);
+            Console.WriteLine("got random % ele dmg: " + random);
             random = (random > totalDamage) ? totalDamage : random;
             weapon.AosElementDamages[attr] = random;
             weapon.IdHue = weapon.GetElementalDamageHue();
@@ -1521,33 +1567,34 @@ namespace Server.Items
 
         private static void RenameItemToZuluStandard(Item item)
         {
-         //   if (debug) Console.WriteLine("Starting to rename item! Item: " + item.ItemData.Name);
-
+            if (debug) Console.WriteLine("Starting to rename item! Item: " + item.ItemData.Name);
             string newPrefix = "";
             string newSuffix = "";
 
             if (item is BaseJewel)
             {
+                // Add armor stat prefix (steel, meteoric steel.... )
                 newPrefix += GetStatPrefix((item as BaseJewel).Attributes);
                 newPrefix += GetSkillPrefix((item as BaseJewel).SkillBonuses);
             }
-            else if(item is BaseClothing)
+            else if (item is BaseClothing)
             {
                 newPrefix += GetStatPrefix((item as BaseClothing).Attributes);
                 newPrefix += GetSkillPrefix((item as BaseClothing).SkillBonuses);
             }
-            
+
             // Since 
             newSuffix += GetProtectionSuffix(item);
 
 
             item.IdPrefix = newPrefix;
             item.IdSuffix = newSuffix;
-         //   if (debug) Console.WriteLine("Renaming DONE Item: " + item.Name);
+            if (debug) Console.WriteLine("Renaming DONE Item: " + item.Name);
         }
-        
 
-        private static string GetSkillPrefix(AosSkillBonuses AosS){
+
+        private static string GetSkillPrefix(AosSkillBonuses AosS)
+        {
             if (AosS.Skill_1_Value != 0)
             {
                 return GetSkillNameSuffix(AosS.Skill_1_Name, AosS.Skill_1_Value);
@@ -1574,7 +1621,7 @@ namespace Server.Items
         private static string GetProtectionSuffix(Item aosE)
         {
             const int Curse_lv2_limit = -17;
-            const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it�s a good gold sink
+            const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it´s a good gold sink
             const int Curse_lv4_limit = -50;
             const int Curse_lv5_limit = -65;
             const int Curse_lv6_limit = -85;
@@ -1586,9 +1633,9 @@ namespace Server.Items
             const int lv6_limit = 85;
 
             int curr_resist = aosE.FireResistance;
-            if (curr_resist > 0) 
+            if (curr_resist > 0)
             {
-                if ( curr_resist <= lv2_limit) return " of Elemental Fire Bane";
+                if (curr_resist <= lv2_limit) return " of Elemental Fire Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Fire Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Fire Protection";
                 else if (curr_resist < lv5_limit) return " of Elemental Fire Immunity";
@@ -1597,9 +1644,9 @@ namespace Server.Items
             }
 
             curr_resist = aosE.EarthResistance;
-            if (curr_resist > 0) 
+            if (curr_resist > 0)
             {
-                if ( curr_resist <= lv2_limit) return " of Elemental Earth Bane";
+                if (curr_resist <= lv2_limit) return " of Elemental Earth Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Earth Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Earth Protection";
                 else if (curr_resist < lv5_limit) return " of Elemental Earth Immunity";
@@ -1608,9 +1655,9 @@ namespace Server.Items
             }
 
             curr_resist = aosE.ColdResistance;
-            if (curr_resist > 0) 
+            if (curr_resist > 0)
             {
-                if ( curr_resist <= lv2_limit) return " of Elemental Water Bane";
+                if (curr_resist <= lv2_limit) return " of Elemental Water Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Water Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Water Protection";
                 else if (curr_resist < lv5_limit) return " of Elemental Water Immunity";
@@ -1619,9 +1666,9 @@ namespace Server.Items
             }
 
             curr_resist = aosE.EnergyResistance;
-            if (curr_resist > 0) 
+            if (curr_resist > 0)
             {
-                if ( curr_resist <= lv2_limit) return " of Elemental Air Bane";
+                if (curr_resist <= lv2_limit) return " of Elemental Air Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Air Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Air Protection";
                 else if (curr_resist < lv5_limit) return " of Elemental Air Immunity";
@@ -1645,7 +1692,7 @@ namespace Server.Items
             if (curr_resist > 0)
             {
                 aosE.IdHue = 1170;
-                if ( curr_resist <= lv2_limit) return " of Mystic Barrier";
+                if (curr_resist <= lv2_limit) return " of Mystic Barrier";
                 else if (curr_resist < lv3_limit) return " of Divine Shielding";
                 else if (curr_resist < lv4_limit) return " of Heavenly Sanctuary";
                 else if (curr_resist < lv5_limit) return " of Angelic Protection";
@@ -1658,7 +1705,7 @@ namespace Server.Items
             {
                 aosE.IdHue = 1172;
                 if (curr_resist <= lv2_limit) return " of Dark Barriers";
-                else if (curr_resist < lv3_limit)  return " of Infernal Shielding";
+                else if (curr_resist < lv3_limit) return " of Infernal Shielding";
                 else if (curr_resist < lv4_limit) return " of Hellish Sanctuary";
                 else if (curr_resist < lv5_limit) return " of Daemonic Protection";
                 else if (curr_resist < lv6_limit) return " of Arch-Fiend's Guidance";
@@ -1683,55 +1730,55 @@ namespace Server.Items
         private static string GetStatPrefix(AosAttributes aosA)
         {
             // Havent fixed much, need to change the > < = ^^
-            /*if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Heavy�s ";
-            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Leaden�s ";
-            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Encumbering�s ";
-            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Binding�s ";
-            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Fumbling�s ";
-            else if (aosA.BonusDex > 15) return "Blundering�s ";*/
+            /*if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Heavy´s ";
+            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Leaden´s ";
+            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Encumbering´s ";
+            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Binding´s ";
+            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Fumbling´s ";
+            else if (aosA.BonusDex > 15) return "Blundering´s ";*/
 
-            if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Cutpuse�s ";
-            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Thief�s ";
-            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Catburgler�s ";
-            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Tumbler�s ";
-            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Acrobat�s ";
-            else if (aosA.BonusDex > 15) return "Escape Artist�s ";
+            if (aosA.BonusDex > 0 && aosA.BonusDex <= 3) return "Cutpuse´s ";
+            else if (aosA.BonusDex > 3 && aosA.BonusDex <= 6) return "Thief´s ";
+            else if (aosA.BonusDex > 6 && aosA.BonusDex <= 9) return "Catburgler´s ";
+            else if (aosA.BonusDex > 9 && aosA.BonusDex <= 12) return "Tumbler´s ";
+            else if (aosA.BonusDex > 12 && aosA.BonusDex <= 15) return "Acrobat´s ";
+            else if (aosA.BonusDex > 15) return "Escape Artist´s ";
 
             else if (aosA.BonusInt > 0)
             {
                 // Havent fixed much, need to change the > < = ^^
-                /*if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Fool�s ";
-                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Simpletons�s ";
+                /*if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Fool´s ";
+                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Simpletons´s ";
                 else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Infantile ";
                 else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Senile ";
                 else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Demented ";
-                else if (aosA.BonusInt > 15) return "Madman�s ";*/
+                else if (aosA.BonusInt > 15) return "Madman´s ";*/
 
-                if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Apprentice�s ";
-                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Adept�s ";
-                else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Wizard�s ";
-                else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Archmage�s ";
-                else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Magister�s ";
-                else if (aosA.BonusInt > 15) return "Oracle�s ";
+                if (aosA.BonusInt > 0 && aosA.BonusInt <= 3) return "Apprentice´s ";
+                else if (aosA.BonusInt > 3 && aosA.BonusInt <= 6) return "Adept´s ";
+                else if (aosA.BonusInt > 6 && aosA.BonusInt <= 9) return "Wizard´s ";
+                else if (aosA.BonusInt > 9 && aosA.BonusInt <= 12) return "Archmage´s ";
+                else if (aosA.BonusInt > 12 && aosA.BonusInt <= 15) return "Magister´s ";
+                else if (aosA.BonusInt > 15) return "Oracle´s ";
 
             }
 
             else if (aosA.BonusStr > 0)
             {
                 // Havent fixed much, need to change the > < = ^^
-                /*if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Weakling�s ";
+                /*if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Weakling´s ";
                 else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Enfeebling ";
                 else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Powerless ";
                 else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Frail ";
                 else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Diseased ";
-                else if (aosA.BonusStr > 15) return "Leper�s ";*/
+                else if (aosA.BonusStr > 15) return "Leper´s ";*/
 
-                if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Warrior�s ";
-                else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Veteran�s ";
-                else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Champion�s ";
-                else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Hero�s ";
-                else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Warlord�s ";
-                else if (aosA.BonusStr > 15) return "King�s ";
+                if (aosA.BonusStr > 0 && aosA.BonusStr <= 3) return "Warrior´s ";
+                else if (aosA.BonusStr > 3 && aosA.BonusStr <= 6) return "Veteran´s ";
+                else if (aosA.BonusStr > 6 && aosA.BonusStr <= 9) return "Champion´s ";
+                else if (aosA.BonusStr > 9 && aosA.BonusStr <= 12) return "Hero´s ";
+                else if (aosA.BonusStr > 12 && aosA.BonusStr <= 15) return "Warlord´s ";
+                else if (aosA.BonusStr > 15) return "King´s ";
             }
             return "";
         }
@@ -1749,9 +1796,9 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Naturalist's ";
                 case SkillName.AnimalTaming:
                     return GetSkillValueSuffix(skillVal) + "Druid's ";
-                case SkillName.ArmsLore: 
+                case SkillName.ArmsLore:
                     return GetSkillValueSuffix(skillVal) + "Arms Dealer's ";
-                case SkillName.Begging: 
+                case SkillName.Begging:
                     return GetSkillValueSuffix(skillVal) + "Beggar's ";
                 case SkillName.Blacksmith:
                     return GetSkillValueSuffix(skillVal) + "Blacksmith's ";
@@ -1767,7 +1814,7 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Scout's ";
                 case SkillName.Discordance: // wonder if we can change this skillname to the old "Enticement" instead...
                     return GetSkillValueSuffix(skillVal) + "Commander's ";
-                case SkillName.EvalInt: 
+                case SkillName.EvalInt:
                     return GetSkillValueSuffix(skillVal) + "Scholar's ";
                 case SkillName.Fishing:
                     return GetSkillValueSuffix(skillVal) + "Fisherman's ";
@@ -1823,24 +1870,24 @@ namespace Server.Items
                     return GetSkillValueSuffix(skillVal) + "Veterinarian's ";
                 case SkillName.Magery:
                     return GetSkillValueSuffix(skillVal) + "Mage's ";
-                    /* Skills that require function to rename */
-                case SkillName.Wrestling: 
+                /* Skills that require function to rename */
+                case SkillName.Wrestling:
                     return GetWeaponSkillValue(skillVal);
                 case SkillName.Archery:
                     return GetArcherySkillValue(skillVal);
-                case SkillName.Swords: 
+                case SkillName.Swords:
                     return GetWeaponSkillValue(skillVal);
                 case SkillName.Tactics:
                     return GetTacticsSkillValue(skillVal);
                 case SkillName.Macing:
-                    return GetWeaponSkillValue(skillVal); 
-                case SkillName.MagicResist: 
-                    return GetMagicResistSkillValue(skillVal);
-                case SkillName.Fencing: 
                     return GetWeaponSkillValue(skillVal);
-                case SkillName.Hiding:  
+                case SkillName.MagicResist:
+                    return GetMagicResistSkillValue(skillVal);
+                case SkillName.Fencing:
+                    return GetWeaponSkillValue(skillVal);
+                case SkillName.Hiding:
                     return GetHidingSkillValue(skillVal);
-                    /* End of custom naming skills */
+                /* End of custom naming skills */
             }
 
             return "";
@@ -1864,17 +1911,17 @@ namespace Server.Items
                     return "Dirty ";
                 case -30:
                     return "Tarnised ";*/
-                case 5:
+                case 1:
                     return "Iron ";
-                case 10:
+                case 2:
                     return "Steel ";
-                case 15:
+                case 3:
                     return "Meteoric Steel ";
-                case 20:
+                case 4:
                     return "Obsidian ";
-                case 25:
+                case 5:
                     return "Onyx ";
-                case 30:
+                case 6:
                     return "Adamantium ";
                 default:
                     return "";
@@ -2084,6 +2131,216 @@ namespace Server.Items
                     return "Arms Master's ";
             }
             return " GetWeaponSkillValue() ERROR ";
+        }
+
+
+
+        private static int GetChanceLevel(int MagicLevel)
+        {
+            
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            var chances = rnd.Next(1, 100) * MagicLevel;
+            Console.WriteLine("Chance roll: " + chances);
+
+
+            var level = 0;
+            if (chances < 180)
+                level = 1;
+            else if (chances < 360)
+                level = 2;
+            else if (chances < 480)
+                level = 3;
+            else if (chances < 500)
+                level = 4;
+            else if (chances < 582)
+                level = 5;
+            else
+                level = 6;
+
+
+            return level;
+        }
+
+        // JustZH NEW STUFF //
+
+
+        public static void ApplyAttributesTo(BaseJewel jewelry, int attributeCount, int min, int max)
+        {
+            ApplyAttributesTo(jewelry, false, 0, attributeCount, min, max);
+        }
+
+
+        public static void ApplyEnchant(BaseJewel jewelry, bool isRunicTool, int attributeCount, int MagicLevel)
+        {
+            m_IsRunicTool = isRunicTool;
+            // m_LuckChance = luckChance;
+
+            // var chances := CInt( RandomDiceRoll( "1d100+1" ) * magicLevel );
+            Random rnd = new Random();
+            var chance = rnd.Next(1, 100) * MagicLevel;
+
+            Console.WriteLine("In ApplyEnchant: " + chance);
+
+            if (chance < 450)
+            {
+                ApplyProtection(jewelry, MagicLevel);
+            }
+            if (chance < 550)
+            {
+                ApplyImmunity(jewelry, MagicLevel);
+            }
+            else
+                ApplyElementalProtection(jewelry, MagicLevel);
+
+            // Roll for another enchantment
+            if (rnd.Next(100) <= (10 * MagicLevel))
+                ApplyMiscSkillMod(jewelry, MagicLevel);
+            else
+                ApplyMiscArMod(jewelry, MagicLevel);
+
+        }
+
+
+        private static void ApplyProtection(BaseJewel jewelry, int MagicLevel)
+        { // should work on all items later 
+            Random rnd = new Random();
+            //
+            var chanceCase = rnd.Next(2) + 1;
+            Console.WriteLine("Adding Protection");
+            var charges = GetChanceLevel(MagicLevel) * 5;
+
+            switch (Utility.Random(3)) // NOT YET IMPLEMENTED
+            {
+                case 1:
+                    // SpellReflection
+                    break;
+                case 2:
+                    // MagicProtection
+                    break;
+                case 3:
+                    // PoisonProtection
+                    break;
+            }
+
+        }
+
+        private static void ApplyImmunity(BaseJewel jewelry, int MagicLevel)
+        {
+            Console.WriteLine("Adding Immunity"); // Not yet implemented
+        }
+
+        public static void ApplyEffect(BaseJewel jewelry, int MagicLevel)
+        {
+
+            jewelry.Unidentified = true;
+
+
+            AosAttributes primary = jewelry.Attributes;
+            AosElementAttributes resists = jewelry.Resistances;
+            AosSkillBonuses skills = jewelry.SkillBonuses;
+
+            //var chances := CInt( RandomDiceRoll( "1d75+25" ) * ( CInt( magicLevel / 2 ) + 1 ));
+            var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
+            // Console.WriteLine("ApplyEffect - chances: " + chances);
+
+            if (chances < 275)
+                ApplyMiscSkillMod(jewelry, MagicLevel);
+            else if (chances < 300)
+                ApplyEnchant(jewelry, true, 1, MagicLevel);
+            else
+                ApplyMiscArMod(jewelry, MagicLevel);
+
+            // Console.WriteLine("Rolling Jewlery DONE");
+            RenameItemToZuluStandard(jewelry);
+
+            RenameItemToZuluStandard(jewelry);
+        }
+
+        private static void ApplyMiscSkillMod(BaseJewel jewelry, int MagicLevel)
+        {
+
+            AosSkillBonuses skills = jewelry.SkillBonuses;
+            // Console.WriteLine("Adding skill");
+            if (rnd.Next(1000) <= 5)
+                ApplyStatMod(jewelry, MagicLevel);
+            var level = GetChanceLevel(MagicLevel);
+            // Console.WriteLine("level: " + level);
+            ApplySkillBonus(skills, 0, level);
+
+        }
+
+        private static void ApplyStatMod(BaseJewel jewelry, int MagicLevel)
+        {
+            Console.WriteLine("Adding stat mod");   // Not yet implemented
+        }
+
+        private static void ApplyMiscArMod(BaseJewel jewelry, int MagicLevel)
+        {
+            Console.WriteLine("Adding armor mod"); // Not yet implemented
+
+            var level = GetChanceLevel(MagicLevel);
+        }
+
+        private static int LevelToPercantage(int level)
+        {
+            Random rnd = new Random();
+
+            if (level == 1)
+                return rnd.Next(1, 16);
+            else if (level == 2)
+                return rnd.Next(17, 33);
+            else if (level == 3)
+                return rnd.Next(33, 50);
+            else if (level == 4)
+                return rnd.Next(50, 65);
+            else if (level == 5)
+                return rnd.Next(65, 85);
+            else
+                return rnd.Next(85, 100);
+        }
+
+        private static void ApplyElementalProtection(BaseJewel jewelry, int MagicLevel)
+        {
+            Console.WriteLine("Adding Elemental Protection");
+            AosAttributes primary = jewelry.Attributes;
+            AosElementAttributes resists = jewelry.Resistances;
+            AosSkillBonuses skills = jewelry.SkillBonuses;
+
+
+            var level = GetChanceLevel(MagicLevel);
+            int resistLevel = LevelToPercantage(level);
+
+            switch (Utility.Random(9))
+            {
+                case 1:
+                    ApplyAttribute(resists, AosElementAttribute.Fire, resistLevel);
+                    break;
+                case 2:
+                    ApplyAttribute(resists, AosElementAttribute.Water, resistLevel);
+                    break;
+                case 3:
+                    ApplyAttribute(resists, AosElementAttribute.Air, resistLevel);
+                    break;
+                case 4:
+                    ApplyAttribute(resists, AosElementAttribute.Earth, resistLevel);
+                    break;
+                case 5:
+                    ApplyAttribute(resists, AosElementAttribute.Necro, resistLevel);
+                    break;
+                case 6:
+                    ApplyAttribute(resists, AosElementAttribute.Holy, resistLevel);
+                    break;
+                case 7:
+                    // ApplyAttribute(resists, AosElementAttribute.Healing, resistLevel); // Healing mod not yet implemented :(
+                    break;
+                case 8:
+                    ApplyAttribute(resists, AosElementAttribute.Physical, resistLevel);
+                    break;
+                case 9:
+                    // ApplyAttribute(resists, AosElementAttribute.FreeAction, resistLevel); // Free action not yet implemented :(
+                    break;
+            }
+
         }
     }
 }

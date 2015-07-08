@@ -909,6 +909,7 @@
     <Compile Include="Items\- BaseClasses\BaseReagent.cs" />
     <Compile Include="Items\- BaseClasses\BaseRefreshPotion.cs" />
     <Compile Include="Items\- BaseClasses\BaseRunicTool.cs" />
+    <Compile Include="Items\- BaseClasses\BaseRunicToolRewrite.cs" />
     <Compile Include="Items\- BaseClasses\BaseShield.cs" />
     <Compile Include="Items\- BaseClasses\BaseSign.cs" />
     <Compile Include="Items\- BaseClasses\BaseSpear.cs" />
