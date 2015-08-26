@@ -52,6 +52,8 @@ namespace Server.Items
             }
         }
 
+        private int m_ArmorBase = 0;
+
         private int m_MaxHitPoints;
         private int m_HitPoints;
         private Mobile m_Crafter;
@@ -82,6 +84,29 @@ namespace Server.Items
                 this.m_MaxHitPoints = value;
                 this.InvalidateProperties();
             }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int BaseArmorRating
+        {
+            get
+            {
+                if (this.m_ArmorBase == 0)
+                    return this.ArmorBase;
+                else
+                    return this.m_ArmorBase;
+            }
+            set
+            {
+                this.m_ArmorBase = value;
+                this.Invalidate();
+            }
+        }
+
+        protected void Invalidate()
+        {
+            if (this.Parent is Mobile)
+                ((Mobile)this.Parent).Delta(MobileDelta.Armor); // Tell them armor rating has changed
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -408,6 +433,14 @@ namespace Server.Items
             }
         }
 
+        public virtual int BaseArBonus
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
         public override bool AllowSecureTrade(Mobile from, Mobile to, Mobile newOwner, bool accepted)
         {
             if (!Ethics.Ethic.CheckTrade(from, to, newOwner, this))
@@ -538,6 +571,15 @@ namespace Server.Items
                 return true;
             }
         }
+
+        public virtual int ArmorBase
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
         public virtual bool AllowFemaleWearer
         {
             get

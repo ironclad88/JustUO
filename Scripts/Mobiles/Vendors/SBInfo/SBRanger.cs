@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Custom;
+using Server.Items.ZuluIems.Weapons.Ranged;
 
 namespace Server.Mobiles
 {
@@ -39,6 +40,13 @@ namespace Server.Mobiles
                 this.Add(new GenericBuyInfo(typeof(Arrow), 2, GlobalSettings.ArrowAmount, 0xF3F, 0));
                 this.Add(new GenericBuyInfo(typeof(Feather), 2, GlobalSettings.ArrowAmount, 0x1BD1, 0));
                 this.Add(new GenericBuyInfo(typeof(Shaft), 3, GlobalSettings.ArrowAmount, 0x1BD4, 0));
+
+                this.Add(new GenericBuyInfo(typeof(Icebow), 500, 20, 0x13B2, 0x0492));
+                this.Add(new GenericBuyInfo(typeof(IceArrow), 50, GlobalSettings.ArrowAmount, 0xF3F, 0x0492));
+
+                this.Add(new GenericBuyInfo(typeof(Firebow), 500, 20, 0x13B2, 0x0494));
+                this.Add(new GenericBuyInfo(typeof(FireArrow), 50, GlobalSettings.ArrowAmount, 0xF3F, 0x0494));
+
             }
         }
 

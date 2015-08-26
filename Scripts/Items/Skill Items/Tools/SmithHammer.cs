@@ -16,7 +16,7 @@ namespace Server.Items
 
         [Constructable]
         public SmithHammer(int uses)
-            : base(uses, 0x13E3)
+            : base("lol", 0x13E3)
         {
             this.Weight = 8.0;
             this.Layer = Layer.OneHanded;

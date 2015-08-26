@@ -61,7 +61,7 @@ namespace Server.Spells.Fourth
                     eable.Free();
                 }
 
-                if (Core.AOS)
+                if (!Core.AOS) // JustZH wont use this if case anymore, added an !
                 {
                     Party party = Party.Get(this.Caster);
 
@@ -124,6 +124,7 @@ namespace Server.Spells.Fourth
                 m.VirtualArmorMod -= v;
                 if (m.VirtualArmorMod < 0)
                     m.VirtualArmorMod = 0;
+                //JustZH update Virtualmods ??
             }
         }
 

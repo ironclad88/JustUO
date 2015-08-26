@@ -24,6 +24,8 @@ namespace Server.Items
         private int m_MaxHitPoints;
         private int m_HitPoints;
 
+        private int m_ArmorBase = 0;
+
         private AosAttributes m_AosAttributes;
         private AosElementAttributes m_AosResistances;
         private AosSkillBonuses m_AosSkillBonuses;
@@ -31,6 +33,7 @@ namespace Server.Items
         private CraftResource m_Resource;
         private GemType m_GemType;
         private int m_TimesImbued;
+        // JustZH Need to add ArmorRating on jewels (for use with steel, meteoric steel.... items)
 
         private Mobile m_BlessedBy;
 
@@ -46,6 +49,29 @@ namespace Server.Items
                 this.m_BlessedBy = value;
                 this.InvalidateProperties();
             }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int BaseArmorRating
+        {
+            get
+            {
+                if (this.m_ArmorBase == 0)
+                    return this.ArmorBase;
+                else
+                    return this.m_ArmorBase;
+            }
+            set
+            {
+                this.m_ArmorBase = value;
+                this.Invalidate();
+            }
+        }
+
+        protected void Invalidate()
+        {
+            if (this.Parent is Mobile)
+                ((Mobile)this.Parent).Delta(MobileDelta.Armor); // Tell them armor rating has changed
         }
 
         public override void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
@@ -84,6 +110,7 @@ namespace Server.Items
                 }
             }
         }
+
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int MaxHitPoints
@@ -167,6 +194,14 @@ namespace Server.Items
             }
             set
             {
+            }
+        }
+
+        public virtual int ArmorBase
+        {
+            get
+            {
+                return 0;
             }
         }
 
@@ -478,8 +513,15 @@ namespace Server.Items
                     if (intBonus != 0)
                         from.AddStatMod(new StatMod(StatType.Int, modName + "Int", intBonus, TimeSpan.Zero));
                 }
-
+                //JustZH seems to work (added armor to jewels, havent tested so much and im tired as shit.. probable bug when using arch protection? ^^)
+                from.VirtualArmorMod = GetArmorRating(from);
                 from.CheckStatTimers();
+
+                if (this.m_AosResistances.FreeAction != null)
+                {
+                    from.FreeAction = true;
+                }
+
 
                 #region Mondain's Legacy Sets
                 if (this.IsSetItem)
@@ -504,6 +546,23 @@ namespace Server.Items
             }
         }
 
+        public static int GetArmorRating(Mobile m)
+        {
+            int ar = 0;
+
+            for (int i = 0; i < m.Items.Count; i++)
+            {
+                BaseJewel armor = m.Items[i] as BaseJewel;
+
+                if (armor == null)
+                    continue;
+
+                ar += armor.BaseArmorRating;
+                
+            }
+            return ar;
+        }
+
         public override void OnRemoved(IEntity parent)
         {
             if (Core.AOS && parent is Mobile)
@@ -519,12 +578,19 @@ namespace Server.Items
                 from.RemoveStatMod(modName + "Int");
 
                 from.CheckStatTimers();
+                from.VirtualArmorMod = GetArmorRating(from);
+
+                if (this.m_AosResistances.FreeAction != null)
+                {
+                    from.FreeAction = false;
+                }
 
                 #region Mondain's Legacy Sets
                 if (this.IsSetItem && this.m_SetEquipped)
                     SetHelper.RemoveSetBonus(from, this.SetID, this);
                 #endregion
             }
+            
 
             Server.Engines.XmlSpawner2.XmlAttach.CheckOnRemoved(this, parent);
         }
@@ -711,6 +777,7 @@ namespace Server.Items
             base.Serialize(writer);
 
             writer.Write(6); // version
+            writer.Write((int)this.m_ArmorBase);
 
             // Version 5
             //writer.Write(m_IdHue); // Removed in version 6
@@ -739,6 +806,7 @@ namespace Server.Items
             this.m_AosAttributes.Serialize(writer);
             this.m_AosResistances.Serialize(writer);
             this.m_AosSkillBonuses.Serialize(writer);
+
         }
 
         public override void Deserialize(GenericReader reader)
@@ -750,6 +818,7 @@ namespace Server.Items
             switch (version)
             {
                 case 6:
+                    this.m_ArmorBase = reader.ReadEncodedInt();
                     goto case 4; //skipping 5 because idhue was removed in this version
                 case 5:
                     {

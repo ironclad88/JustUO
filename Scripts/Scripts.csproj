@@ -670,6 +670,7 @@
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Init.cs" />
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Modules.cs" />
     <Compile Include="Custom Systems\VitaNex\Core\VitaNex_Services.cs" />
+    <Compile Include="Custom Systems\WeaponDiceDefaults.cs" />
     <Compile Include="Custom Systems\XMLConfiguration\XmlConfig.cs" />
     <Compile Include="Custom\Color Wars\Color Wars Exit Stones.cs" />
     <Compile Include="Custom\Color Wars\CTFWalls.cs" />
@@ -2898,6 +2899,10 @@
     <Compile Include="Items\ZuluIems\SOS\SOS4.cs" />
     <Compile Include="Items\ZuluIems\SOS\SOS5.cs" />
     <Compile Include="Items\ZuluIems\SOS\SOS6.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\Firearrow.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\Firebow.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\Icearrow.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\Icebow.cs" />
     <Compile Include="Items\ZuluIems\YuccaTree.cs" />
     <Compile Include="Misc\AccountPrompt.cs" />
     <Compile Include="Misc\Animations.cs" />

@@ -15,12 +15,16 @@ namespace Server.SkillHandlers
 
         public static TimeSpan OnUse(Mobile m)
         {
-            Target target = new InternalTargetSrc();
-            m.Target = target;
-            m.SendLocalizedMessage(1046295); // Target the book you wish to copy.
-            target.BeginTimeout(m, TimeSpan.FromMinutes(1.0));
+            
+           // Target target = new InternalTargetSrc();
+            //m.Target = target;
+           // m.SendLocalizedMessage(1046295); // Target the book you wish to copy.
+            // JustZH can´t think of an good message right now
+            m.SendMessage("Use an Scribes pen to use inscription");
+            //target.BeginTimeout(m, TimeSpan.FromMinutes(1.0));
 
-            return TimeSpan.FromSeconds(3.0);
+            return TimeSpan.FromSeconds(5.0); // 5 sec cooldown
+
         }
 
         public static Mobile GetUser(BaseBook book)

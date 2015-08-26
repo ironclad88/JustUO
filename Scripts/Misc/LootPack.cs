@@ -3,6 +3,7 @@ using System;
 
 using Server.Items;
 using Server.Mobiles;
+using Server.Misc;
 #endregion
 
 namespace Server
@@ -78,19 +79,19 @@ namespace Server
             BaseCreature c = (BaseCreature)from;
            // Console.WriteLine("Generate");
             int level = c.MagicLevel;
-            Console.WriteLine(level);
+            //Console.WriteLine(level);
 			if (cont == null)
 			{
 				return;
 			}
 
-			bool checkLuck = Core.AOS;
+		//	bool checkLuck = Core.AOS;
 
 			for (int i = 0; i < m_Entries.Length; ++i)
 			{
 				LootPackEntry entry = m_Entries[i];
 
-				bool shouldAdd = (entry.Chance > Utility.Random(10000));
+				/*bool shouldAdd = (entry.Chance > Utility.Random(10000));
 
 				if (!shouldAdd && checkLuck)
 				{
@@ -106,7 +107,7 @@ namespace Server
 				{
 					continue;
 				}
-
+                */
 				Item item = entry.Construct(from, luckChance, spawning);
 
 				if (item != null)
@@ -212,27 +213,91 @@ namespace Server
 		{
 			new LootPackItem(typeof(BaseWeapon), 219), new LootPackItem(typeof(BaseRanged), 55),
 			new LootPackItem(typeof(BaseArmor), 315), new LootPackItem(typeof(BaseShield), 41),
-			new LootPackItem(typeof(BaseJewel), 164), new LootPackItem(typeof(BaseClothing), 180)
+			new LootPackItem(typeof(BaseJewel), 164), new LootPackItem(typeof(BaseClothing), 100),
+            new LootPackItem(typeof(BaseHat), 180)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsFilthyRichType2 = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 239), new LootPackItem(typeof(BaseRanged), 60),
 			new LootPackItem(typeof(BaseArmor), 343), new LootPackItem(typeof(BaseShield), 90),
-			new LootPackItem(typeof(BaseJewel), 45), new LootPackItem(typeof(BaseClothing), 100)
+			new LootPackItem(typeof(BaseJewel), 45), new LootPackItem(typeof(BaseClothing), 100),
+            new LootPackItem(typeof(BaseHat), 80)
 		};
 
 		public static readonly LootPackItem[] AosMagicItemsUltraRich = new[]
 		{
 			new LootPackItem(typeof(BaseWeapon), 276), new LootPackItem(typeof(BaseRanged), 69),
 			new LootPackItem(typeof(BaseArmor), 397), new LootPackItem(typeof(BaseShield), 52),
-			new LootPackItem(typeof(BaseJewel), 207), new LootPackItem(typeof(BaseClothing), 305)
+			new LootPackItem(typeof(BaseJewel), 207), new LootPackItem(typeof(BaseClothing), 305),
+            new LootPackItem(typeof(BaseHat), 400)//, new LootPackItem(RandomCloth(), 400) // test
 		};
 
-        public static readonly LootPackItem[] JewelTest = new[]
+        public static readonly LootPackItem[] AosMagicItemsWeaponTest = new[]
+		{
+			new LootPackItem(typeof(BaseWeapon), 276)
+		};
+
+        public static readonly LootPackItem[] OnlyCloth = new[]
+		{
+			new LootPackItem(typeof(PlainDress), 1), new LootPackItem(typeof(BodySash), 1), new LootPackItem(typeof(Robe), 1),
+            new LootPackItem(typeof(Doublet), 1), new LootPackItem(typeof(Surcoat), 1), new LootPackItem(typeof(MonkRobe), 1),
+            new LootPackItem(typeof(FullApron), 1), new LootPackItem(typeof(Tunic), 1), new LootPackItem(typeof(FormalShirt), 1),
+            new LootPackItem(typeof(JesterSuit), 1), new LootPackItem(typeof(ShortPants), 1), new LootPackItem(typeof(LongPants), 1),
+            new LootPackItem(typeof(HalfApron), 1), new LootPackItem(typeof(FancyShirt), 1), new LootPackItem(typeof(FancyDress), 1),
+            new LootPackItem(typeof(Boots), 1), new LootPackItem(typeof(FurBoots), 1), new LootPackItem(typeof(Boots), 1),
+            new LootPackItem(typeof(ThighBoots), 1), new LootPackItem(typeof(Shoes), 1), new LootPackItem(typeof(Sandals), 1)
+		};
+
+        public static readonly LootPackItem[] OnlyArmor = new[]
+		{
+			new LootPackItem(typeof(BaseArmor), 397)
+		};
+
+        public static readonly LootPackItem[] OnlyShield = new[]
+		{
+			new LootPackItem(typeof(BaseShield), 397)
+		};
+
+        public static readonly LootPackItem[] OnlyJewel = new[]
 		{
 			new LootPackItem(typeof(BaseJewel), 397)
 		};
+
+        public static readonly LootPackItem[] OnlyHats = new[]
+		{
+			new LootPackItem(typeof(Bonnet), 1), new LootPackItem(typeof(FloppyHat), 1), new LootPackItem(typeof(FeatheredHat), 1),
+            new LootPackItem(typeof(JesterHat), 1), new LootPackItem(typeof(WizardsHat), 1), new LootPackItem(typeof(SkullCap), 1),
+            new LootPackItem(typeof(FloppyHat), 1), new LootPackItem(typeof(WideBrimHat), 1), new LootPackItem(typeof(Cap), 1),
+            new LootPackItem(typeof(SkullCap), 1), new LootPackItem(typeof(Bandana), 1), new LootPackItem(typeof(BearMask), 1),
+            new LootPackItem(typeof(DeerMask), 1), new LootPackItem(typeof(HornedTribalMask), 1), new LootPackItem(typeof(TribalMask), 1),
+            new LootPackItem(typeof(TallStrawHat), 1), new LootPackItem(typeof(StrawHat), 1), new LootPackItem(typeof(SavageMask), 1),
+            new LootPackItem(typeof(TricorneHat), 1)
+		};
+
+        public static readonly LootPackItem[] AllClothing = new[]
+		{
+			new LootPackItem(typeof(PlainDress), 1), new LootPackItem(typeof(BodySash), 1), new LootPackItem(typeof(Robe), 1),
+            new LootPackItem(typeof(Doublet), 1), new LootPackItem(typeof(Surcoat), 1), new LootPackItem(typeof(MonkRobe), 1),
+            new LootPackItem(typeof(FullApron), 1), new LootPackItem(typeof(Tunic), 1), new LootPackItem(typeof(FormalShirt), 1),
+            new LootPackItem(typeof(JesterSuit), 1), new LootPackItem(typeof(ShortPants), 1), new LootPackItem(typeof(LongPants), 1),
+            new LootPackItem(typeof(HalfApron), 1), new LootPackItem(typeof(FancyShirt), 1), new LootPackItem(typeof(FancyDress), 1),
+            new LootPackItem(typeof(Boots), 1), new LootPackItem(typeof(FurBoots), 1), new LootPackItem(typeof(Boots), 1),
+            new LootPackItem(typeof(ThighBoots), 1), new LootPackItem(typeof(Shoes), 1), new LootPackItem(typeof(Sandals), 1),
+            new LootPackItem(typeof(Bonnet), 1), new LootPackItem(typeof(FloppyHat), 1), new LootPackItem(typeof(FeatheredHat), 1),
+            new LootPackItem(typeof(JesterHat), 1), new LootPackItem(typeof(WizardsHat), 1), new LootPackItem(typeof(SkullCap), 1),
+            new LootPackItem(typeof(FloppyHat), 1), new LootPackItem(typeof(WideBrimHat), 1), new LootPackItem(typeof(Cap), 1),
+            new LootPackItem(typeof(SkullCap), 1), new LootPackItem(typeof(Bandana), 1), new LootPackItem(typeof(BearMask), 1),
+            new LootPackItem(typeof(DeerMask), 1), new LootPackItem(typeof(HornedTribalMask), 1), new LootPackItem(typeof(TribalMask), 1),
+            new LootPackItem(typeof(TallStrawHat), 1), new LootPackItem(typeof(StrawHat), 1), new LootPackItem(typeof(SavageMask), 1),
+            new LootPackItem(typeof(TricorneHat), 1)
+		};
+
+        public static readonly LootPackItem[] LootTesterz = new[] // seems broken, dunno why
+		{
+			new LootPackItem(typeof(BaseClothing), 400), new LootPackItem(typeof(BaseHat), 400)
+		};
+
 		#endregion
 
 		#region ML definitions
@@ -244,7 +309,7 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsRichType1, 100.00, 1, 3, 0, 75),
 					new LootPackEntry(false, AosMagicItemsRichType1, 80.00, 1, 3, 0, 75),
 					new LootPackEntry(false, AosMagicItemsRichType1, 60.00, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 1.00, 1)
+					//new LootPackEntry(false, Instruments, 1.00, 1)
 				});
 		#endregion
 
@@ -253,8 +318,8 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "2d10+20"), new LootPackEntry(false, AosMagicItemsPoor, 1.00, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 0.02, 1)
+					new LootPackEntry(true, Gold, 100.00, "2d10+20"), new LootPackEntry(false, AosMagicItemsPoor, 1.00, 1, 5, 0, 100)//,
+					//new LootPackEntry(false, Instruments, 0.02, 1)
 				});
 
 		public static readonly LootPack SeMeager =
@@ -263,8 +328,8 @@ namespace Server
 				{
 					new LootPackEntry(true, Gold, 100.00, "4d10+40"),
 					new LootPackEntry(false, AosMagicItemsMeagerType1, 20.40, 1, 2, 0, 50),
-					new LootPackEntry(false, AosMagicItemsMeagerType2, 10.20, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 0.10, 1)
+					new LootPackEntry(false, AosMagicItemsMeagerType2, 10.20, 1, 5, 0, 100)//,
+					//new LootPackEntry(false, Instruments, 0.10, 1)
 				});
 
 		public static readonly LootPack SeAverage =
@@ -274,8 +339,8 @@ namespace Server
 					new LootPackEntry(true, Gold, 100.00, "8d10+100"),
 					new LootPackEntry(false, AosMagicItemsAverageType1, 32.80, 1, 3, 0, 50),
 					new LootPackEntry(false, AosMagicItemsAverageType1, 32.80, 1, 4, 0, 75),
-					new LootPackEntry(false, AosMagicItemsAverageType2, 19.50, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 0.40, 1)
+					new LootPackEntry(false, AosMagicItemsAverageType2, 19.50, 1, 5, 0, 100)//,
+					//new LootPackEntry(false, Instruments, 0.40, 1)
 				});
 
 		public static readonly LootPack SeRich =
@@ -285,8 +350,8 @@ namespace Server
 					new LootPackEntry(true, Gold, 100.00, "15d10+225"),
 					new LootPackEntry(false, AosMagicItemsRichType1, 76.30, 1, 4, 0, 75),
 					new LootPackEntry(false, AosMagicItemsRichType1, 76.30, 1, 4, 0, 75),
-					new LootPackEntry(false, AosMagicItemsRichType2, 61.70, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 1.00, 1)
+					new LootPackEntry(false, AosMagicItemsRichType2, 61.70, 1, 5, 0, 100)//,
+					//new LootPackEntry(false, Instruments, 1.00, 1)
 				});
 
 		public static readonly LootPack SeFilthyRich =
@@ -296,8 +361,8 @@ namespace Server
 					new LootPackEntry(true, Gold, 100.00, "3d100+400"),
 					new LootPackEntry(false, AosMagicItemsFilthyRichType1, 79.50, 1, 5, 0, 100),
 					new LootPackEntry(false, AosMagicItemsFilthyRichType1, 79.50, 1, 5, 0, 100),
-					new LootPackEntry(false, AosMagicItemsFilthyRichType2, 77.60, 1, 5, 25, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
+					new LootPackEntry(false, AosMagicItemsFilthyRichType2, 77.60, 1, 5, 25, 100)//,
+					//new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 
 		public static readonly LootPack SeUltraRich =
@@ -310,8 +375,8 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
-					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 33, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
+					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 33, 100)//,
+					//new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 
 		public static readonly LootPack SeSuperBoss =
@@ -328,8 +393,8 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 33, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 33, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 50, 100),
-					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 50, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
+					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 50, 100)//,
+					//new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 		#endregion
 
@@ -339,7 +404,7 @@ namespace Server
 				new[]
 				{
 					new LootPackEntry(true, Gold, 100.00, "1d10+10"), new LootPackEntry(false, AosMagicItemsPoor, 0.02, 1, 5, 0, 90),
-					new LootPackEntry(false, Instruments, 0.02, 1)
+					//new LootPackEntry(false, Instruments, 0.02, 1)
 				});
 
 		public static readonly LootPack AosMeager =
@@ -349,7 +414,7 @@ namespace Server
 					new LootPackEntry(true, Gold, 100.00, "3d10+20"),
 					new LootPackEntry(false, AosMagicItemsMeagerType1, 1.00, 1, 2, 0, 10),
 					new LootPackEntry(false, AosMagicItemsMeagerType2, 0.20, 1, 5, 0, 90),
-					new LootPackEntry(false, Instruments, 0.10, 1)
+					//new LootPackEntry(false, Instruments, 0.10, 1)
 				});
 
 		public static readonly LootPack AosAverage =
@@ -360,7 +425,7 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsAverageType1, 5.00, 1, 4, 0, 20),
 					new LootPackEntry(false, AosMagicItemsAverageType1, 2.00, 1, 3, 0, 50),
 					new LootPackEntry(false, AosMagicItemsAverageType2, 0.50, 1, 5, 0, 90),
-					new LootPackEntry(false, Instruments, 0.40, 1)
+					//new LootPackEntry(false, Instruments, 0.40, 1)
 				});
 
 		public static readonly LootPack AosRich =
@@ -370,7 +435,7 @@ namespace Server
 					new LootPackEntry(true, Gold, 100.00, "10d10+150"),
 					new LootPackEntry(false, AosMagicItemsRichType1, 20.00, 1, 4, 0, 40),
 					new LootPackEntry(false, AosMagicItemsRichType1, 10.00, 1, 5, 0, 60),
-					new LootPackEntry(false, AosMagicItemsRichType2, 1.00, 1, 5, 0, 90), new LootPackEntry(false, Instruments, 1.00, 1)
+					new LootPackEntry(false, AosMagicItemsRichType2, 1.00, 1, 5, 0, 90) //new LootPackEntry(false, Instruments, 1.00, 1)
 				});
 
 		public static readonly LootPack AosFilthyRich =
@@ -382,7 +447,6 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsFilthyRichType1, 33.00, 1, 4, 0, 60),
 					new LootPackEntry(false, AosMagicItemsFilthyRichType2, 20.00, 1, 5, 0, 75),
 					new LootPackEntry(false, AosMagicItemsFilthyRichType2, 5.00, 1, 5, 0, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 
 		public static readonly LootPack AosUltraRich =
@@ -396,15 +460,54 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 25, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 35, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 
-        public static readonly LootPack JewelTestz =
+        public static readonly LootPack WeaponTest =
     new LootPack(
         new[]
 				{
-					new LootPackEntry(false, JewelTest, 100.00, 1, 5, 25, 100)
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, AosMagicItemsWeaponTest, 100.00, 1, 5, 25, 100),
+				});
 
+        public static readonly LootPack HatTest =
+new LootPack(
+new[]
+				{
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, OnlyHats, 100.00, 1, 5, 25, 100),
+				});
+
+        public static readonly LootPack JewelTest =
+new LootPack(
+new[]
+				{
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, OnlyHats, 100.00, 1, 5, 25, 100),
+				});
+        
+        public static readonly LootPack ClothTest =
+new LootPack(
+new[]
+				{
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, OnlyCloth, 100.00, 1, 5, 25, 100),
+				});
+
+        public static readonly LootPack ArmorTest =
+new LootPack(
+new[]
+				{
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, OnlyArmor, 100.00, 1, 5, 25, 100),
+				});
+
+        public static readonly LootPack ShieldTest =
+new LootPack(
+new[]
+				{
+					//new LootPackEntry(true, Gold, 100.00, "5d100+500"),
+					new LootPackEntry(false, OnlyShield, 100.00, 1, 5, 25, 100),
 				});
 
 		public static readonly LootPack AosSuperBoss =
@@ -422,19 +525,20 @@ namespace Server
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 33, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 50, 100),
 					new LootPackEntry(false, AosMagicItemsUltraRich, 100.00, 1, 5, 50, 100),
-					new LootPackEntry(false, Instruments, 2.00, 1)
+					//new LootPackEntry(false, Instruments, 2.00, 1)
 				});
 		#endregion
 
 		#region Pre-AOS definitions
 		public static readonly LootPack OldPoor =
-			new LootPack(new[] {new LootPackEntry(true, Gold, 100.00, "1d25"), new LootPackEntry(false, Instruments, 0.02, 1)});
+			new LootPack(new[] {new LootPackEntry(true, Gold, 100.00, "1d25")//, new LootPackEntry(false, Instruments, 0.02, 1)
+            });
 
 		public static readonly LootPack OldMeager =
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "5d10+25"), new LootPackEntry(false, Instruments, 0.10, 1),
+					new LootPackEntry(true, Gold, 100.00, "5d10+25"), //new LootPackEntry(false, Instruments, 0.10, 1),
 					new LootPackEntry(false, OldMagicItems, 1.00, 1, 1, 0, 60),
 					new LootPackEntry(false, OldMagicItems, 0.20, 1, 1, 10, 70)
 				});
@@ -443,7 +547,7 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "10d10+50"), new LootPackEntry(false, Instruments, 0.40, 1),
+					new LootPackEntry(true, Gold, 100.00, "10d10+50"), //new LootPackEntry(false, Instruments, 0.40, 1),
 					new LootPackEntry(false, OldMagicItems, 5.00, 1, 1, 20, 80),
 					new LootPackEntry(false, OldMagicItems, 2.00, 1, 1, 30, 90),
 					new LootPackEntry(false, OldMagicItems, 0.50, 1, 1, 40, 100)
@@ -453,7 +557,7 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "10d10+250"), new LootPackEntry(false, Instruments, 1.00, 1),
+					new LootPackEntry(true, Gold, 100.00, "10d10+250"), //new LootPackEntry(false, Instruments, 1.00, 1),
 					new LootPackEntry(false, OldMagicItems, 20.00, 1, 1, 60, 100),
 					new LootPackEntry(false, OldMagicItems, 10.00, 1, 1, 65, 100),
 					new LootPackEntry(false, OldMagicItems, 1.00, 1, 1, 70, 100)
@@ -463,7 +567,7 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "2d125+400"), new LootPackEntry(false, Instruments, 2.00, 1),
+					new LootPackEntry(true, Gold, 100.00, "2d125+400"), //new LootPackEntry(false, Instruments, 2.00, 1),
 					new LootPackEntry(false, OldMagicItems, 33.00, 1, 1, 50, 100),
 					new LootPackEntry(false, OldMagicItems, 33.00, 1, 1, 60, 100),
 					new LootPackEntry(false, OldMagicItems, 20.00, 1, 1, 70, 100),
@@ -474,7 +578,7 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "5d100+500"), new LootPackEntry(false, Instruments, 2.00, 1),
+					new LootPackEntry(true, Gold, 100.00, "5d100+500"), //new LootPackEntry(false, Instruments, 2.00, 1),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 40, 100),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 40, 100),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 50, 100),
@@ -487,7 +591,7 @@ namespace Server
 			new LootPack(
 				new[]
 				{
-					new LootPackEntry(true, Gold, 100.00, "5d100+500"), new LootPackEntry(false, Instruments, 2.00, 1),
+					new LootPackEntry(true, Gold, 100.00, "5d100+500"), //new LootPackEntry(false, Instruments, 2.00, 1),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 40, 100),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 40, 100),
 					new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 40, 100),
@@ -701,7 +805,7 @@ namespace Server
                 //    return item;
                 //}
 
-				if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseClothing)
+				if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseClothing || item is BaseHat)
 				{
 					if (Core.AOS)
 					{
@@ -726,20 +830,30 @@ namespace Server
 
 						if (item is BaseWeapon)
 						{
-							BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                            BaseRunicToolRewrite.ApplyEffectWeapon((BaseWeapon)item, c.MagicLevel);
+							//BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 						else if (item is BaseArmor)
 						{
-							BaseRunicTool.ApplyAttributesTo((BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                            BaseRunicToolRewrite.ApplyEffectArmor((BaseArmor)item, c.MagicLevel);
+						//	BaseRunicTool.ApplyAttributesTo((BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 						else if (item is BaseJewel)
 						{
-                            BaseRunicToolRewrite.ApplyEffect((BaseJewel)item, c.MagicLevel);
+                            BaseRunicToolRewrite.ApplyEffectJewlery((BaseJewel)item, c.MagicLevel);
 							//BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 						else if (item is BaseClothing)
 						{
-                            BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                            Console.WriteLine("Cloth!");
+                            BaseRunicToolRewrite.ApplyEffectClothing((BaseClothing)item, c.MagicLevel);
+                          //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+						}
+                        else if (item is BaseHat)
+						{
+                            Console.WriteLine("Hat!");
+                            BaseRunicToolRewrite.ApplyEffectClothing((BaseHat)item, c.MagicLevel);
+                          //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
 					}
 					else // not aos

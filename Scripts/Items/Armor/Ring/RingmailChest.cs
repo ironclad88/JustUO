@@ -17,6 +17,14 @@ namespace Server.Items
         {
         }
 
+        public override int Dexpenalty
+        {
+            get
+            {
+                return 5;
+            }
+        }
+
         public override int BasePhysicalResistance
         {
             get

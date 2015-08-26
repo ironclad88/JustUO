@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Items.ZuluIems.Weapons.Ranged;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -31,7 +33,11 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                this.Add(new GenericBuyInfo(typeof(FletcherTools), 2, 20, 0x1022, 0));
+                this.Add(new GenericBuyInfo(typeof(Icebow), 500, 20, 0x13B2, 0x0492));
+                this.Add(new GenericBuyInfo(typeof(IceArrow), 50, GlobalSettings.ArrowAmount, 0xF3F, 0x0492));
+
+                this.Add(new GenericBuyInfo(typeof(Firebow), 500, 20, 0x13B2, 0x0494));
+                this.Add(new GenericBuyInfo(typeof(FireArrow), 50, GlobalSettings.ArrowAmount, 0xF3F, 0x0494));
             }
         }
 

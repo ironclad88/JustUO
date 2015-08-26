@@ -48,6 +48,9 @@ namespace Server.Mobiles
             this.VirtualArmor = 130;
 
             this.PackItem(new LesserPoisonPotion());
+
+            this.MagicLevel = 8;
+
         }
 
         public GoldenDragon(Serial serial)

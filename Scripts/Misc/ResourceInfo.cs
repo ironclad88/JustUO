@@ -81,6 +81,7 @@ namespace Server.Items
     {
         private int m_CraftDifficulty;
         private double m_Quality = 1.0;
+        private int m_Dexpen;
 
         private int m_WeaponFireDamage;
         private int m_WeaponColdDamage;
@@ -132,6 +133,18 @@ namespace Server.Items
             set
             {
                 this.m_Quality = value;
+            }
+        }
+
+        public int DexPenReduction
+        {
+            get
+            {
+                return this.m_Dexpen;
+            }
+            set
+            {
+                this.m_Dexpen = value;
             }
         }
 
@@ -621,6 +634,7 @@ namespace Server.Items
 
             dullCopper.Difficulty = 30;
             dullCopper.Quality = 1.15;
+         //   dullCopper.
             //dullCopper.ArmorPhysicalResist = 6;
             //dullCopper.ArmorDurability = 50;
             //dullCopper.ArmorLowerRequirements = 20;

@@ -61,6 +61,7 @@ namespace Server.Items
         private ArmorProtectionLevel m_Protection;
         private CraftResource m_Resource;
         private bool m_PlayerConstructed;
+        private int m_dexpenalty;
         //private bool m_Identified;
         //private int m_IdHue;
         private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus;
@@ -200,6 +201,17 @@ namespace Server.Items
             get
             {
                 return 0;
+            }
+        }
+        public virtual int Dexpenalty
+        {
+            get
+            {
+                return 0;
+            }
+            set
+            {
+                Dexpenalty = value;
             }
         }
         public virtual int OldDexReq
@@ -1334,6 +1346,64 @@ namespace Server.Items
             return v;
         }
 
+        private bool isNegative(int val)
+        {
+            if (val > 0){ return true; } return false;
+        }
+
+        //JustZH stupid function for crafting resources different penalties
+        private int checkDexRed(int tempDex){
+            if (this.m_Resource == CraftResource.Fruity) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Spectral) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Onyx) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.RedElven) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Pyrite) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Virginity) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Azurite) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Peachblue) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Destruction) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Anra) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.Zulu) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.ETS) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.DSR) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
+            if (this.m_Resource == CraftResource.RND) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
+            return tempDex;
+        }
+
+        public override bool OnEquip(Mobile from)
+        {
+            from.CheckStatTimers();
+
+            int strBonus = this.ComputeStatBonus(StatType.Str);
+            int dexBonus = this.ComputeStatBonus(StatType.Dex);
+            int intBonus = this.ComputeStatBonus(StatType.Int);
+
+            if (strBonus != 0 || dexBonus != 0 || intBonus != 0)
+            {
+                string modName = this.Serial.ToString();
+
+                if (strBonus != 0)
+                    from.AddStatMod(new StatMod(StatType.Str, modName + "Str", strBonus, TimeSpan.Zero));
+
+                if (dexBonus != 0)
+                    from.AddStatMod(new StatMod(StatType.Dex, modName + "Dex", dexBonus, TimeSpan.Zero));
+
+                if (intBonus != 0)
+                    from.AddStatMod(new StatMod(StatType.Int, modName + "Int", intBonus, TimeSpan.Zero));
+            }
+
+            //JustZH adds armor dex penalty
+            if (this.Dexpenalty != 0)
+            {
+                int tempDex = checkDexRed(this.Dexpenalty);
+                from.RawDex -= tempDex;
+            }
+
+            Server.Engines.XmlSpawner2.XmlAttach.CheckOnEquip(this, from);
+
+            return base.OnEquip(from);
+        }
+
         public override void OnAdded(IEntity parent)
         {
             if (parent is Mobile)
@@ -1342,19 +1412,6 @@ namespace Server.Items
 
                 if (Core.AOS)
                     this.m_AosSkillBonuses.AddTo(from);
-
-                #region Mondain's Legacy Sets
-                if (this.IsSetItem)
-                {
-                    this.m_SetEquipped = SetHelper.FullSetEquipped(from, this.SetID, this.Pieces);
-
-                    if (this.m_SetEquipped)
-                    {
-                        this.m_LastEquipped = true;
-                        SetHelper.AddSetBonus(from, this.SetID);
-                    }
-                }
-                #endregion
 
                 from.Delta(MobileDelta.Armor); // Tell them armor rating has changed
             }
@@ -2202,32 +2259,7 @@ namespace Server.Items
             return false;
         }
 
-        public override bool OnEquip(Mobile from)
-        {
-            from.CheckStatTimers();
-
-            int strBonus = this.ComputeStatBonus(StatType.Str);
-            int dexBonus = this.ComputeStatBonus(StatType.Dex);
-            int intBonus = this.ComputeStatBonus(StatType.Int);
-
-            if (strBonus != 0 || dexBonus != 0 || intBonus != 0)
-            {
-                string modName = this.Serial.ToString();
-
-                if (strBonus != 0)
-                    from.AddStatMod(new StatMod(StatType.Str, modName + "Str", strBonus, TimeSpan.Zero));
-
-                if (dexBonus != 0)
-                    from.AddStatMod(new StatMod(StatType.Dex, modName + "Dex", dexBonus, TimeSpan.Zero));
-
-                if (intBonus != 0)
-                    from.AddStatMod(new StatMod(StatType.Int, modName + "Int", intBonus, TimeSpan.Zero));
-            }
-
-            Server.Engines.XmlSpawner2.XmlAttach.CheckOnEquip(this, from);
-
-            return base.OnEquip(from);
-        }
+        
 
         public override void OnRemoved(IEntity parent)
         {
@@ -2239,6 +2271,13 @@ namespace Server.Items
                 m.RemoveStatMod(modName + "Str");
                 m.RemoveStatMod(modName + "Dex");
                 m.RemoveStatMod(modName + "Int");
+
+                //JustZH removes armor dex penalty
+                if (this.Dexpenalty >= 0)
+                {
+                    int tempDex = checkDexRed(this.Dexpenalty);
+                    m.RawDex += tempDex;
+                }
 
                 if (Core.AOS)
                     this.m_AosSkillBonuses.Remove();

@@ -28,7 +28,8 @@ namespace Server.Items
         Might,
         Force,
         Power,
-        Vanq
+        Vanq,
+        Deva
     }
 
     public enum WeaponAccuracyLevel

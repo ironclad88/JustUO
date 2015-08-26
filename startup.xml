@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <startupinfo>
   <shardname>JustZH</shardname>
-  <clientpath>C:\Ultima Online Classic</clientpath>
+  <clientpath>D:\UOProj\Ultima Online Classic</clientpath>
   <saves>15</saves>
   <rewards>30</rewards>
   <skillcap>99999</skillcap>

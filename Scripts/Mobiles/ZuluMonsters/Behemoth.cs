@@ -47,7 +47,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 50, 60);
             this.SetResistance(ResistanceType.Energy, 50, 60);
              */
-            this.MagicLevel = 7;
+            this.MagicLevel = 8;
             this.LootIndex = 4;
 
             this.SetSkill(SkillName.DetectHidden, 100);
@@ -106,7 +106,12 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot() // not done
         {
-            this.AddLoot(LootPack.JewelTestz, 5);
+            this.AddLoot(LootPack.ShieldTest, 2);
+            this.AddLoot(LootPack.ArmorTest, 2);
+            this.AddLoot(LootPack.ClothTest, 2);
+            this.AddLoot(LootPack.HatTest, 2);
+            this.AddLoot(LootPack.WeaponTest, 2);
+            this.AddLoot(LootPack.JewelTest, 2);
         }
 
         public override void Serialize(GenericWriter writer)

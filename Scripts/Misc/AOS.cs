@@ -2277,7 +2277,8 @@ namespace Server
         Direct = 0x00000040,
         Earth = 0x00000080,
         Necro = 0x00000100,
-        Holy = 0x00000200
+        Holy = 0x00000200,
+        FreeAction = 0x00000400
     }
 
     public sealed class AosElementAttributes : BaseAttributes
@@ -2364,6 +2365,19 @@ namespace Server
             set
             {
                 this[AosElementAttribute.Water] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int FreeAction
+        {
+            get
+            {
+                return this[AosElementAttribute.FreeAction];
+            }
+            set
+            {
+                this[AosElementAttribute.FreeAction] = value;
             }
         }
 

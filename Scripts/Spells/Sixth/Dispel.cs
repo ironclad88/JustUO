@@ -7,7 +7,7 @@ namespace Server.Spells.Sixth
 {
     public class DispelSpell : MagerySpell
     {
-        private static readonly SpellInfo m_Info = new SpellInfo(
+        private static readonly SpellInfo m_Info = new SpellInfo(   // JustZH dispel wont remove "current buffs" from buff gump. Dunno how to explain better ^^
             "Dispel", "An Ort",
             218,
             9002,

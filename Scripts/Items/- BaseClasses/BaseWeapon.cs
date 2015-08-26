@@ -43,6 +43,10 @@ namespace Server.Items
             }
         }
 
+        //DICE-DAMAGE Mod
+        private static int m_DiceNum, m_DiceSides, m_DiceOffset;
+        //DICE-DAMAGE Mod
+
         bool debug = false;
 
         #region Factions
@@ -188,6 +192,8 @@ namespace Server.Items
         public override int EnergyResistance { get { return m_AosWeaponAttributes.ResistEnergyBonus; } }
 
         public virtual SkillName AccuracySkill { get { return SkillName.Tactics; } }
+
+
 
         #region Personal Bless Deed
         private Mobile m_BlessedBy;
@@ -488,7 +494,9 @@ namespace Server.Items
         [CommandProperty(AccessLevel.GameMaster)]
         public int MissSound { get { return (m_MissSound == -1 ? Core.AOS ? AosMissSound : OldMissSound : m_MissSound); } set { m_MissSound = value; } }
 
-        [CommandProperty(AccessLevel.GameMaster)]
+
+        //JustZH commented out for Dice dmg
+        /*[CommandProperty(AccessLevel.GameMaster)]
         public int MinDamage
         {
             get { return (m_MinDamage == -1 ? Core.AOS ? AosMinDamage : OldMinDamage : m_MinDamage); }
@@ -508,7 +516,7 @@ namespace Server.Items
                 m_MaxDamage = value;
                 InvalidateProperties();
             }
-        }
+        }*/
 
         [CommandProperty(AccessLevel.GameMaster)]
         public float Speed
@@ -591,6 +599,116 @@ namespace Server.Items
                 }
             }
         }
+        #endregion
+
+        #region Dice Dmg
+        //DICE-DAMAGE Mod
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Dice_Num
+        {
+            get
+            {
+                try
+                {
+                    return WeaponDiceDefaults.GetDice(this.GetType()).getNum;
+                }
+                catch
+                {
+                    if (m_DiceNum == 0)
+                        return (1);
+                    return m_DiceNum;
+                }
+            }
+            set
+            {
+                try
+                {
+                    WeaponDiceDefaults.ReplaceDice(this.GetType(), value, Dice_Sides, Dice_Offset);
+                    InvalidateProperties();
+                }
+                catch
+                {
+                    m_DiceNum = value;
+                    InvalidateProperties();
+                }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Dice_Sides
+        {
+            get
+            {
+                try
+                {
+                    return WeaponDiceDefaults.GetDice(this.GetType()).getSides;
+                }
+                catch
+                {
+                    if (m_DiceSides == 0)
+                        return (AosMaxDamage - AosMinDamage + 1);
+                    return m_DiceSides;
+                }
+            }
+            set
+            {
+                try
+                {
+                    WeaponDiceDefaults.ReplaceDice(this.GetType(), Dice_Num, value, Dice_Offset);
+                    InvalidateProperties();
+                }
+                catch
+                {
+                    m_DiceSides = value;
+                    InvalidateProperties();
+                }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Dice_Offset
+        {
+            get
+            {
+                try
+                {
+                    return WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
+                }
+                catch
+                {
+                    if (m_DiceOffset == 0)
+                        return (AosMinDamage - 1);
+                    return m_DiceOffset;
+                }
+            }
+            set
+            {
+                try
+                {
+                    WeaponDiceDefaults.ReplaceDice(this.GetType(), Dice_Num, Dice_Sides, value);
+                    InvalidateProperties();
+                }
+                catch
+                {
+                    m_DiceOffset = value;
+                    InvalidateProperties();
+                }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int MinDamage
+        {
+            get { return (Dice_Num + Dice_Offset); }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int MaxDamage
+        {
+            get { return (Dice_Num * Dice_Sides + Dice_Offset); }
+        }
+        //DICE-DAMAGE Mod
         #endregion
 
         public override void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
@@ -3057,19 +3175,22 @@ namespace Server.Items
                 switch (m_DamageLevel)
                 {
                     case WeaponDamageLevel.Ruin:
-                        bonus += 15;
+                        bonus += 5;
                         break;
                     case WeaponDamageLevel.Might:
-                        bonus += 20;
+                        bonus += 10;
                         break;
                     case WeaponDamageLevel.Force:
-                        bonus += 25;
+                        bonus += 15;
                         break;
                     case WeaponDamageLevel.Power:
-                        bonus += 30;
+                        bonus += 20;
                         break;
                     case WeaponDamageLevel.Vanq:
-                        bonus += 35;
+                        bonus += 25;
+                        break;
+                    case WeaponDamageLevel.Deva:
+                        bonus += 30;
                         break;
                 }
             }
@@ -3170,13 +3291,13 @@ namespace Server.Items
             double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + //lumberBonus +
                                 ((GetDamageBonus() + damageBonus) / 100.0);
 
-            if (debug) Console.WriteLine("BEFORE SPEC Damage: " + damage);
-            if (debug) Console.WriteLine("BEFORE SPEC Damage bonus: " + totalBonus);
+            //if (debug) Console.WriteLine("BEFORE SPEC Damage: " + damage);
+            //if (debug) Console.WriteLine("BEFORE SPEC Damage bonus: " + totalBonus);
             // JustZH DMG bonus for Warriors using Weapons
-            if (attacker.SpecClasse == SpecClasse.Warrior)
-            {
+            //if (attacker.SpecClasse == SpecClasse.Warrior)
+           // {
                // totalBonus += attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
-            }
+           // }
             
 
             return damage + (int)(damage * totalBonus);
@@ -4301,6 +4422,13 @@ namespace Server.Items
             : base(itemID)
         {
             Layer = (Layer)ItemData.Quality;
+
+            //DICE-DAMAGE Mod
+            // This is just for error catching. These values are not Serialized.
+            m_DiceNum = 0;
+            m_DiceSides = 0;
+            m_DiceOffset = 0;
+            //DICE-DAMAGE Mod
 
             m_Quality = WeaponQuality.Regular;
             m_StrReq = -1;

@@ -15,7 +15,7 @@ namespace Server.Items
 
         [Constructable]
         public Saw(int uses)
-            : base(uses, 0x1034)
+            : base("lol", 0x1034)
         {
             this.Weight = 2.0;
         }

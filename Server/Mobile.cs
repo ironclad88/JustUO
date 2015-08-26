@@ -775,6 +775,7 @@ namespace Server
         private Timer _ManaTimer, _HitsTimer, _StamTimer;
         private long _NextSkillTime;
         private long _NextActionMessage;
+        private bool _FreeActionEquipped;
         private bool _Paralyzed;
         private ParalyzedTimer _ParaTimer;
         private bool _Sleep;
@@ -998,6 +999,7 @@ namespace Server
             UpdateResistances();
         }
 
+        // JustZH Max Player Resistance
         private static int _MaxPlayerResistance = 70;
 
         public static int MaxPlayerResistance { get { return _MaxPlayerResistance; } set { _MaxPlayerResistance = value; } }
@@ -1643,6 +1645,13 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
+        public int DexReductionFixer
+        {
+            get { return Dex; }
+            set { Dex = value; }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public int skillBoost
         {
             get { return _boostedSkills; }
@@ -1655,6 +1664,11 @@ namespace Server
             sl.GetLevel(this, out _SpecClasse, out _specLevel);
         }
 
+       /* public virtual void UpdateArmorDexReduction()
+        {
+            
+        }
+        */
         [CommandProperty(AccessLevel.GameMaster)]
         public int Thirst { get { return _Thirst; } set { _Thirst = value; } }
 
@@ -1763,6 +1777,16 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
+        public virtual bool FreeAction
+        {
+            get { return _FreeActionEquipped; }
+            set
+            {
+                _FreeActionEquipped = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public virtual bool Asleep
         {
             get { return _Sleep; }
@@ -1824,14 +1848,17 @@ namespace Server
             }
         }
 
+        // JustZH put free action item check here?
         public void Paralyze(TimeSpan duration)
         {
             if (!_Paralyzed)
             {
+                if (!FreeAction) { 
                 Paralyzed = true;
-
                 _ParaTimer = new ParalyzedTimer(this, duration);
                 _ParaTimer.Start();
+                }
+                SendMessage("You feel yourself resisting the spell...");
             }
         }
 
@@ -12279,6 +12306,18 @@ namespace Server
         public Item HeadArmor { get { return FindItemOnLayer(Layer.Helm); } }
 
         public Item ArmsArmor { get { return FindItemOnLayer(Layer.Arms); } }
+
+        public Item BraceletArmor { get { return FindItemOnLayer(Layer.Bracelet); } }
+
+        public Item RingArmor { get { return FindItemOnLayer(Layer.Ring); } }
+
+        public Item ShirtArmor { get { return FindItemOnLayer(Layer.Shirt); } }
+
+        public Item OuterTorsoArmor { get { return FindItemOnLayer(Layer.OuterTorso); } }
+
+        public Item PantsArmor { get { return FindItemOnLayer(Layer.Pants); } }
+
+        public Item EarringsArmor { get { return FindItemOnLayer(Layer.Earrings); } }
 
         public Item LegsArmor
         {

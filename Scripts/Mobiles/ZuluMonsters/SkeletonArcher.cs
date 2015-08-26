@@ -18,7 +18,7 @@ namespace Server.Mobiles.ZuluMonsters
             this.BaseSoundID = 0x48D;
 
             this.SetStr(100);
-            this.SetDex(150);
+            this.SetDex(1500);
             this.SetInt(25);
 
             this.SetHits(50);
@@ -28,9 +28,11 @@ namespace Server.Mobiles.ZuluMonsters
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
-            this.SetSkill(SkillName.MagicResist, 30);
-            this.SetSkill(SkillName.Tactics, 50);
-            this.SetSkill(SkillName.Archery, 60);
+            this.SetSkill(SkillName.Anatomy, 70, 90);
+            this.SetSkill(SkillName.Archery, 50, 90);
+            this.SetSkill(SkillName.MagicResist, 65.1, 90.0);
+            this.SetSkill(SkillName.Tactics, 50.1, 75.0);
+            this.SetSkill(SkillName.Wrestling, 50.1, 75.0);
 
             this.Fame = 450;
             this.Karma = -450;

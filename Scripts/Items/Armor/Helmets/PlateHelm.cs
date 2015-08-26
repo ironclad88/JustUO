@@ -23,6 +23,14 @@ namespace Server.Items
                 return 5;
             }
         }
+
+        public override int Dexpenalty
+        {
+            get
+            {
+                return 3;
+            }
+        }
         public override int BaseFireResistance
         {
             get

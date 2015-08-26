@@ -17,7 +17,8 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse(Mobile m)
 		{
-			if (Core.AOS)
+            // JustZH SS now works as in zulu
+			/*if (Core.AOS)
 			{
 				Spell spell = new SpiritSpeakSpell(m);
 
@@ -29,7 +30,7 @@ namespace Server.SkillHandlers
 				}
 
 				return TimeSpan.Zero;
-			}
+			}*/
 
 			m.RevealingAction();
 

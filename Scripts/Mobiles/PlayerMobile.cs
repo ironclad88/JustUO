@@ -976,11 +976,33 @@ namespace Server.Mobiles
             {
                 ((PlayerMobile)from).ClaimAutoStabledPets();
                 from.GetSpec();
+               // from.UpdateArmorDexReduction();
+                from.VirtualArmorMod = GetArmorRating(from);
                 if(from.SpecLevel > 0)
                 {
                     from.SendMessage("You're qualified level {0} {1}.", from.SpecLevel, from.SpecClasse.ToString());
                 }
             }
+        }
+
+        
+
+        //JustZH this fucks up with arcane protection
+        public static int GetArmorRating(Mobile m)
+        {
+            int ar = 0;
+
+            for (int i = 0; i < m.Items.Count; i++)
+            {
+                BaseJewel armor = m.Items[i] as BaseJewel;
+
+                if (armor == null)
+                    continue;
+
+                ar += armor.BaseArmorRating;
+
+            }
+            return ar;
         }
 
         private bool m_NoDeltaRecursion;
@@ -1528,6 +1550,11 @@ namespace Server.Mobiles
                 AddArmorRating(ref rating, ChestArmor);
                 AddArmorRating(ref rating, ShieldArmor);
 
+                //JustZH test
+                AddArmorRating(ref rating, BraceletArmor);
+                AddArmorRating(ref rating, RingArmor);
+                AddArmorRating(ref rating, EarringsArmor);
+
                 return VirtualArmor + VirtualArmorMod + rating;
             }
         }
@@ -1541,6 +1568,7 @@ namespace Server.Mobiles
                 rating += ar.ArmorRatingScaled;
             }
         }
+
 
         #region [Stats]Max
         [CommandProperty(AccessLevel.GameMaster)]

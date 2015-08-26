@@ -407,8 +407,9 @@ namespace Server
                             weapontomake.Animation = weapon.Animation;
                             weapontomake.HitSound = weapon.HitSound;
                             weapontomake.MissSound = weapon.MissSound;
-                            weapontomake.MinDamage = weapon.MinDamage;
-                            weapontomake.MaxDamage = weapon.MaxDamage;
+                            // JustZH needed to comment this out for DiceDmg (BaseWeapon.cs) to work, some ability for some mob to mimic player?
+                           // weapontomake.MinDamage = weapon.MinDamage;
+                           // weapontomake.MaxDamage = weapon.MaxDamage;
                             weapontomake.Speed = weapon.Speed;
                             from.EquipItem(weapontomake);
                         }

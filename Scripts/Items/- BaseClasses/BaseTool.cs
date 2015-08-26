@@ -97,15 +97,30 @@ namespace Server.Items
 
         public abstract CraftSystem CraftSystem { get; }
 
-        public BaseTool(int itemID)
+        // JustZH remove the randomness in this?
+        /*public BaseTool(int itemID)
             : this(Utility.RandomMinMax(25, 75), itemID)
         {
+        }*/
+
+        // JustZH not using randomness anymore, 100 uses always
+        public BaseTool(int itemID)
+            : this(50, itemID)
+        {
         }
+
+
 
         public BaseTool(int uses, int itemID)
             : base(itemID)
         {
             this.m_UsesRemaining = uses;
+            this.m_Quality = ToolQuality.Regular;
+        }
+
+        public BaseTool(string crap, int itemID)
+            : base(itemID)
+        {
             this.m_Quality = ToolQuality.Regular;
         }
 
@@ -125,7 +140,9 @@ namespace Server.Items
             if (this.m_Quality == ToolQuality.Exceptional)
                 list.Add(1060636); // exceptional
 
+            if (this.m_UsesRemaining > 0) { 
             list.Add(1060584, this.m_UsesRemaining.ToString()); // uses remaining: ~1_val~
+            }
         }
 
         public virtual void DisplayDurabilityTo(Mobile m)

@@ -241,6 +241,26 @@ namespace Server
             to.CheckStatTimers();
         }
 
+        public static void AddStatBonusesForDexReduction(Mobile to, Item item, int str, int dex, int intel)
+        {
+            if ((str != 0 || dex != 0 || intel != 0))
+            {
+                string modName = item.Serial.ToString();
+
+                if (str != 0)
+                    to.AddStatMod(new StatMod(StatType.Str, modName + "SetStr", str, TimeSpan.Zero));
+
+                if (dex != 0)
+                    to.AddStatMod(new StatMod(StatType.Dex, modName + "SetDex", dex, TimeSpan.Zero));
+
+                if (intel != 0)
+                    to.AddStatMod(new StatMod(StatType.Int, modName + "SetInt", intel, TimeSpan.Zero));
+            }
+
+           // to.CheckStatTimers();
+        }
+
+
         public static bool SetCraftedWith(Mobile from, ISetItem setItem, CraftResource resource)
         {
             int count = 0;
