@@ -67,7 +67,8 @@ namespace Server.Items
 
         public override int OnHit(BaseWeapon weapon, int damage)
         {
-            if (Core.AOS)
+            // JustZH added (!) 26/8-15
+            if (!Core.AOS)
             {
                 if (this.ArmorAttributes.SelfRepair > Utility.Random(10))
                 {

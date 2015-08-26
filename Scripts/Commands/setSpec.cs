@@ -15,6 +15,7 @@ namespace Server.Commands
         [Description("Set level and spec.")]
         private static void Classe_OnCommand(CommandEventArgs e)
         {
+            try { 
             Mobile m = e.Mobile;
             string arguments = e.ArgString;
            // Console.WriteLine(arguments);
@@ -30,6 +31,11 @@ namespace Server.Commands
             //Console.WriteLine(argsSplitted[0], argsSplitted[1]);
             getClass(argsSplitted[0], Convert.ToInt32(argsSplitted[1]), m);
             m.GetSpec();
+            }
+            catch (Exception z)
+            {
+                Console.WriteLine(z);
+            }
         }
 
         private static string getClass(string className, int level, Mobile player){

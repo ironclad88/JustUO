@@ -798,7 +798,8 @@ namespace Server.Items
                     break;
             }
 
-            if (Core.AOS)
+            // JustZH , removed 26/8-15
+            /*if (Core.AOS)
             {
                 bonus += m_AosWeaponAttributes.DurabilityBonus;
 
@@ -821,7 +822,7 @@ namespace Server.Items
                 {
                     bonus += attrInfo.WeaponDurability;
                 }
-            }
+            }*/
 
             return bonus;
         }
@@ -1251,7 +1252,9 @@ namespace Server.Items
             }
             #endregion
 
-            if (Core.AOS)
+            // JustZH removed 26/8-15
+
+            /*if (Core.AOS)
             {
                 if (atkValue <= -20.0)
                 {
@@ -1347,7 +1350,7 @@ namespace Server.Items
                 bonus = 0;
             }
             else
-            {
+            {*/
                 if (atkValue <= -50.0)
                 {
                     atkValue = -49.9;
@@ -1360,7 +1363,7 @@ namespace Server.Items
 
                 ourValue = (atkValue + 50.0);
                 theirValue = (defValue + 50.0);
-            }
+           // }
 
             double chance = ourValue / (theirValue * 2.0);
 
@@ -1838,10 +1841,11 @@ namespace Server.Items
 
         public virtual int AbsorbDamage(Mobile attacker, Mobile defender, int damage)
         {
-            if (Core.AOS)
+            //JustZH removed 26/8-15
+           /* if (Core.AOS)
             {
                 return AbsorbDamageAOS(attacker, defender, damage);
-            }
+            }*/
 
             BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
             if (shield != null)
@@ -2038,9 +2042,9 @@ namespace Server.Items
 
             attacker.PlaySound(GetHitAttackSound(attacker, defender));
             defender.PlaySound(GetHitDefendSound(attacker, defender));
-
+            
             int damage = ComputeDamage(attacker, defender);
-            if(debug)Console.WriteLine("AFTER SPEC Damage: " + damage);
+            //Console.WriteLine("AFTER SPEC Damage: " + damage);
             #region Damage Multipliers
             /*
             * The following damage bonuses multiply damage by a factor.
@@ -2185,7 +2189,6 @@ namespace Server.Items
 
             if (attacker is BaseCreature)
             {
-                Console.WriteLine(attacker.Name + " is Attacking OnHit()");
                 ((BaseCreature)attacker).AlterMeleeDamageTo(defender, ref damage);
             }
 
@@ -3064,7 +3067,6 @@ namespace Server.Items
             if (attacker is BaseCreature)
             {
                 BaseCreature c = (BaseCreature)attacker;
-                Console.WriteLine(attacker.Name + " is Attacking GetBaseDamageRange()");
                 if (c.DamageMin >= 0)
                 {
                     min = c.DamageMin;
@@ -3092,10 +3094,11 @@ namespace Server.Items
 
             int damage = Utility.RandomMinMax(min, max);
 
-            if (Core.AOS)
+            //JustZH removed 26/8-15
+            /*if (Core.AOS)
             {
                 return damage;
-            }
+            }*/
 
             /* Apply damage level offset
              * : Regular : 0
@@ -3160,7 +3163,8 @@ namespace Server.Items
         {
             int bonus = VirtualDamageBonus;
 
-            if (!Core.AOS)
+            //JustZH removed (!) 26/8-15
+            if (Core.AOS)
             {
                 switch (m_Quality)
                 {
@@ -3204,16 +3208,17 @@ namespace Server.Items
 
             GetBaseDamageRange(from, out baseMin, out baseMax);
 
-            if (Core.AOS)
+            //JustZH removed 26/8-15
+           /* if (!Core.AOS)
             {
                 min = Math.Max((int)ScaleDamageAOS(from, baseMin, false), 1);
                 max = Math.Max((int)ScaleDamageAOS(from, baseMax, false), 1);
             }
             else
-            {
+            {*/
                 min = Math.Max((int)ScaleDamageOld(from, baseMin, false), 1);
                 max = Math.Max((int)ScaleDamageOld(from, baseMax, false), 1);
-            }
+            //}
         }
 
         public virtual double ScaleDamageAOS(Mobile attacker, double damage, bool checkSkills)
@@ -3378,6 +3383,13 @@ namespace Server.Items
                 modifiers += (VirtualDamageBonus / 100.0);
             }
 
+             if (attacker.SpecClasse == SpecClasse.Warrior)
+             {
+                 Console.WriteLine("BEFORE SPEC Damage: " + damage);
+                 damage *= attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
+                 Console.WriteLine("BEFORE SPEC Damage: " + damage);
+             }
+
             // Apply bonuses
             damage += (damage * modifiers);
 
@@ -3398,10 +3410,11 @@ namespace Server.Items
 
         public virtual int ComputeDamage(Mobile attacker, Mobile defender)
         {
-            if (Core.AOS)
+            //JustZH removed 26/8-15
+            /*if (Core.AOS)
             {
                 return ComputeDamageAOS(attacker, defender);
-            }
+            }*/
 
             int damage = (int)ScaleDamageOld(attacker, GetBaseDamage(attacker), true);
 
@@ -3410,6 +3423,11 @@ namespace Server.Items
             {
                 damage = (int)(damage / 2.0);
             }*/
+            
+            if (defender.SpecClasse == SpecClasse.Mage)
+            {
+                damage *= (int)attacker.SpecBonus(SpecClasse.Mage);             // not sure about this yet, commented out for now
+            }
 
             return damage;
         }

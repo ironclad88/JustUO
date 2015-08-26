@@ -55,7 +55,7 @@ namespace Server.Misc
         * If you would like to listen on additional ports (i.e. 22, 23, 80, for clients behind highly restrictive egress
         * firewalls) or specific IP adddresses you can do so by modifying the file SocketOptions.cs found in this directory.
         */
-		public static readonly string Address = null;
+		public static readonly string Address = "127.0.0.1";
 
 		public static readonly string ServerName = StartupReader.GetShardName();
 		public static readonly bool AutoDetect = true;

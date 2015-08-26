@@ -1199,7 +1199,8 @@ namespace Server.Items
                     break;
             }
 
-            if (Core.AOS)
+            // JustZH removed 26/8-15
+            /*if (Core.AOS)
             {
                 bonus += this.m_AosArmorAttributes.DurabilityBonus;
 
@@ -1214,7 +1215,7 @@ namespace Server.Items
 
                 if (attrInfo != null)
                     bonus += attrInfo.ArmorDurability;
-            }
+            }*/
 
             return bonus;
         }
@@ -2354,6 +2355,7 @@ namespace Server.Items
                 }
             }
 
+
             return damageTaken;
         }
 
@@ -2769,6 +2771,7 @@ namespace Server.Items
                 this.CrafterLevel = from.SpecLevel;
             }
 
+            //JustZH
             //TODO: revamp... make resources have a "quality" attribute that is a scalar, apply it here.
             // this is the zh pol script:
             /*

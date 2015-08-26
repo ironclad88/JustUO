@@ -1851,15 +1851,20 @@ namespace Server
         // JustZH put free action item check here?
         public void Paralyze(TimeSpan duration)
         {
-            if (!_Paralyzed)
-            {
-                if (!FreeAction) { 
+            if (!FreeAction && !_Paralyzed)
+            { 
+                if (!_Paralyzed)
+                {
                 Paralyzed = true;
                 _ParaTimer = new ParalyzedTimer(this, duration);
                 _ParaTimer.Start();
                 }
+            }
+            else
+            {
                 SendMessage("You feel yourself resisting the spell...");
             }
+        
         }
 
         public void Sleep(TimeSpan duration)
