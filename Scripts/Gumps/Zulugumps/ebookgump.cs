@@ -13,71 +13,130 @@ namespace Server.Gumps.Zulugumps
 
     public class ebookgump : Gump
     {
-
-        public ebookgump(Mobile owner)
-            : this(owner, ResurrectMessage.Generic, false)
-        {
-        }
-
-
-        public ebookgump(Mobile owner, ResurrectMessage msg, bool fromSacrifice)
-            : this(owner, msg)
-        {
-        }
-
-
-        public ebookgump(Mobile owner, ResurrectMessage msg)
+        public ebookgump(Mobile owner, bool[] array)
             : base(100, 0)
         {
+            try {
+            int xName1 = 80;
+            int xName2 = 240;
+            int yName1 = 65;
+            int yName2 = 65;
 
-            int xName1 = 90;
-            int xName2 = 295;
-            int yName1 = 90;
-            int yName2 = 90;
-
-            int btnX1 = 70;
-            int btnX2 = 275;
-            int btnY1 = 94;
-            int btnY2 = 94;
+            int btnX1 = 60;
+            int btnX2 = 220;
+            int btnY1 = 70;
+            int btnY2 = 70;
 
             this.Closable = true;
             this.Disposable = true;
             this.Dragable = true;
             this.Resizable = false;
             this.AddPage(0);
-            this.AddImage(27, 79, 500);
+            this.AddImage(30, 30, 2203);
+
+            this.AddLabel(70, 40, 28, @"Circle 1 Spells");
+            this.AddLabel(230, 40, 28, @"Circle 2 Spells");
+
+            if (array[1]) { // starts with 1 instead of 0, 0 is the event for book close, if you start with 0 you cast antidote when you close the damn book
             this.AddLabel(xName1, yName1, 66, @"Antidote");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Owl Sight");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Shifting Earth");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Summon Mammals");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Call Lightning");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Earth Blessing");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Earth Portal");
-            this.AddLabel(xName1, yName1 += 25, 66, @"Nature´s Touch");
-            this.AddLabel(xName2, yName2, 66, @"Gust of Air");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Rising Fire");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Shapeshift");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Ice Strike");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Earth Spirit");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Fire Spirit");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Storm Spirit");
-            this.AddLabel(xName2, yName2 += 25, 66, @"Water Spirit");
-            this.AddButton(btnX1, btnY1, 216, 216, 1, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 2, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 3, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 4, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 5, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 6, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 7, GumpButtonType.Reply, 0);
-            this.AddButton(btnX1, btnY1 += 25, 216, 216, 8, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2, 216, 216, 9, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 10, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 11, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 12, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 13, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 14, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 15, GumpButtonType.Reply, 0);
-            this.AddButton(btnX2, btnY2 += 25, 216, 216, 16, GumpButtonType.Reply, 0);
+            this.AddButton(btnX1, btnY1, 2104, 2103, 1, GumpButtonType.Reply, 0);
+            }
+
+            if (array[2])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Owl Sight");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 2, GumpButtonType.Reply, 0);
+            }
+
+            if (array[3])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Shifting Earth");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 3, GumpButtonType.Reply, 0);
+            }
+
+            if (array[4])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Summon Mammals");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 4, GumpButtonType.Reply, 0);
+            }
+
+            if (array[5])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Call Lightning");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 5, GumpButtonType.Reply, 0);
+            }
+
+            if (array[6])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Earth Blessing");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 6, GumpButtonType.Reply, 0);
+            }
+
+            if (array[7])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Earth Portal");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 7, GumpButtonType.Reply, 0);
+            }
+
+            if (array[8])
+            {
+                this.AddLabel(xName1, yName1 += 20, 66, @"Nature´s Touch");
+                this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 8, GumpButtonType.Reply, 0);
+            }
+
+             if (array[9])
+            {
+                this.AddLabel(xName2, yName2, 66, @"Gust of Air");
+                this.AddButton(btnX2, btnY2, 2104, 2103, 9, GumpButtonType.Reply, 0);
+            }
+
+            if (array[10])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Rising Fire");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 10, GumpButtonType.Reply, 0);
+            }
+
+            if (array[11])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Shapeshift");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 11, GumpButtonType.Reply, 0);
+            }
+
+            if (array[12])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Ice Strike");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 12, GumpButtonType.Reply, 0);
+            }
+
+            if (array[13])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Earth Spirit");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 13, GumpButtonType.Reply, 0);
+            }
+
+            if (array[14])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Fire Spirit");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 14, GumpButtonType.Reply, 0);
+            }
+
+            if (array[15])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Storm Spirit");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 15, GumpButtonType.Reply, 0);
+            }
+
+            if (array[16])
+            {
+                this.AddLabel(xName2, yName2 += 20, 66, @"Water Spirit");
+                this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 16, GumpButtonType.Reply, 0);
+            }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
         }
 
@@ -121,7 +180,7 @@ namespace Server.Gumps.Zulugumps
                     Console.WriteLine("Casting Shapeshift");
                     break;
                 case 12:
-                    Console.WriteLine("Casting Ice Striket");
+                    Console.WriteLine("Casting Ice Strike");
                     break;
                 case 13:
                     Console.WriteLine("Casting Earth Spirit");

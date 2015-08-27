@@ -839,6 +839,7 @@
     <Compile Include="Gumps\YoungGumps.cs" />
     <Compile Include="Gumps\Zulugumps\DropskillGump.cs" />
     <Compile Include="Gumps\Zulugumps\ebookgump.cs" />
+    <Compile Include="Gumps\Zulugumps\necrobookgump.cs" />
     <Compile Include="Gumps\Zulugumps\ProtsGump.cs" />
     <Compile Include="Gumps\Zulugumps\skillBoostGump.cs" />
     <Compile Include="Gumps\Zulugumps\statBoostGump.cs" />
@@ -2869,7 +2870,7 @@
     <Compile Include="Items\Weapons\Wooden\ArcanistsWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\HardenedWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\ThornedWildStaff.cs" />
-    <Compile Include="Items\ZuluIems\BookOfTheEarth.cs" />
+    <Compile Include="Items\ZuluIems\EarthBook.cs" />
     <Compile Include="Items\ZuluIems\DragonEgg.cs" />
     <Compile Include="Items\ZuluIems\FrenziedOstardEgg.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Ryous\ArmsofRyous.cs" />

@@ -3,18 +3,18 @@ using System;
 
 namespace Server.Items
 {
-    public class NecroBook : Item
+    public class EarthBook : Item
     {
         [Constructable]
-        public NecroBook()
-            : base(0x1C13) //0xFF2
+        public EarthBook()
+            : base(0xFF2) //0xFF2
         {
             this.Movable = true;
-            this.Hue = 0x66D;
+            this.Hue = 0x48a;
             this.LootType = LootType.Blessed;
         }
 
-        public NecroBook(Serial serial)
+        public EarthBook(Serial serial)
             : base(serial)
         {
         }
@@ -22,7 +22,7 @@ namespace Server.Items
         private bool[] spellArray = new bool[17]; // 1-16, 0 is reserved for closing book event
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool ControlUndead
+        public bool Antidote
         {
             get
             {
@@ -35,7 +35,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Darkness
+        public bool OwlSight
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool DecayingRay
+        public bool ShiftingEarth
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool SpectresTouch
+        public bool SummonMammals
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool AbyssalFlame
+        public bool CallLightning
         {
             get
             {
@@ -87,7 +87,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool AnimateDead
+        public bool EarthBlessing
         {
             get
             {
@@ -100,7 +100,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Sacrifice
+        public bool EarthPortal
         {
             get
             {
@@ -113,7 +113,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool WraithBreath
+        public bool NaturesTouch
         {
             get
             {
@@ -126,7 +126,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool SorcerersBane
+        public bool GustofAir
         {
             get
             {
@@ -139,7 +139,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool SummonSpirit
+        public bool RisingFire
         {
             get
             {
@@ -152,7 +152,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Wraithform
+        public bool Shapeshift
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool WyvernStrike
+        public bool IceStrike
         {
             get
             {
@@ -178,7 +178,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Kill
+        public bool EarthSpirit
         {
             get
             {
@@ -191,7 +191,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Liche
+        public bool FireSpirit
         {
             get
             {
@@ -204,7 +204,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Plague
+        public bool StormSpirit
         {
             get
             {
@@ -217,7 +217,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Spellbind
+        public bool WaterSpirit
         {
             get
             {
@@ -233,22 +233,22 @@ namespace Server.Items
         {
             get
             {
-                return "Codex Damnorum";
+                return "Book of the Earth";
             }
         }
         public override void OnDoubleClick(Mobile from)
         {
 
-            from.CloseGump(typeof(necrobookgump));
-            from.SendGump(new necrobookgump(from, spellArray));
+            from.CloseGump(typeof(ebookgump));
+            from.SendGump(new ebookgump(from, spellArray));
         }
 
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-
+            
             writer.Write((int)1); // version
-            for (int k = 0; k < spellArray.Length; k++)
+            for (int k=0; k < spellArray.Length; k++)
             {
                 writer.Write(spellArray[k]);
             }
@@ -257,7 +257,7 @@ namespace Server.Items
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-
+            
             int version = reader.ReadInt();
             switch (version)
             {

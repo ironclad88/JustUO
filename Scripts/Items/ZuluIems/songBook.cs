@@ -29,8 +29,8 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
 
-            from.CloseGump(typeof(ebookgump));
-            from.SendGump(new ebookgump(from));
+            /*from.CloseGump(typeof(ebookgump));
+            from.SendGump(new ebookgump(from));*/
         }
 
         public override void Serialize(GenericWriter writer)
