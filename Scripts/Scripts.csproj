@@ -2197,6 +2197,7 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\TeleportScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\UnlockScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\Third Circle\WallOfStoneScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\EarthBlessScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\KillScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\WyvernStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Spellbook.cs" />
@@ -5306,6 +5307,12 @@
     <Compile Include="Spells\Third\Unlock.cs" />
     <Compile Include="Spells\Third\WallOfStone.cs" />
     <Compile Include="Spells\UnsummonTimer.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\Antidote.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\Earthbless.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\Earthportal.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\EarthSpell.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\NaturesTouch.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\OwlSight.cs" />
     <Compile Include="Spells\Zulu\NecroSpells\KillSpell.cs" />
     <Compile Include="Spells\Zulu\NecroSpells\LicheSpell.cs" />
     <Compile Include="Spells\Zulu\NecroSpells\NecroSpell.cs" />
@@ -5461,9 +5468,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Items\Clothing\ZuluClothing\" />
-    <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\" />
     <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\" />
-    <Folder Include="Spells\Zulu\EarthSpells\" />
     <Folder Include="Spells\Zulu\HolySpells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

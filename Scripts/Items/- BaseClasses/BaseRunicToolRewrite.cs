@@ -598,7 +598,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                                Console.WriteLine("loop");
+                               // Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -667,7 +667,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                                Console.WriteLine("loop");
+                            //    Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -2561,7 +2561,7 @@ namespace Server.Items
 
             if (rnd.Next(1, 100)  <= (10 * MagicLevel))
             {
-                Console.WriteLine("HP MOD");
+               // Console.WriteLine("HP MOD");
                 ApplyHPModArmor(armor, MagicLevel);
                 // HP MOD
             }

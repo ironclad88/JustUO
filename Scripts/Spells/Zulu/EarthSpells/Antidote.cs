@@ -1,37 +1,46 @@
+﻿using Server.Targeting;
 using System;
-using Server.Targeting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Spells.Second
+namespace Server.Spells.Zulu.EarthSpells
 {
-    public class AgilitySpell : MagerySpell
+    class Antidote : EarthSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Agility", "Ex Uus",
-            212,
-            9061,
-            Reagent.Bloodmoss,
-            Reagent.MandrakeRoot);
-        public AgilitySpell(Mobile caster, Item scroll)
+            "Antidote", "Puissante Terre Traite Ce Patient",
+            236,
+            9031,
+            Reagent.FertileDirt,
+            Reagent.ExecutionersCap,
+            Reagent.FertileDirt);
+
+        public Antidote(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
 
-        public override SpellCircle Circle
+        public override TimeSpan CastDelayBase
         {
             get
             {
-                return SpellCircle.Second;
+                return TimeSpan.FromSeconds(1.5);
             }
         }
-        public override bool CheckCast()
+        public override double RequiredSkill
         {
-            if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
+            get
             {
-                this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
-                return false;
+                return 85; // dunno about this, gotta check
             }
-
-            return base.CheckCast();
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 5;
+            }
         }
 
         public override void OnCast()
@@ -50,24 +59,25 @@ namespace Server.Spells.Second
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
+                Poison p = m.Poison;
 
-                m.FixedParticles(0x375A, 10, 15, 5010, EffectLayer.Waist);
-                m.PlaySound(0x1e7);
+                if (p != null)
+                {
+                    m.CurePoison(this.Caster); // always cure any poison
+                    m.SendLocalizedMessage(1010059); // You have been cured of all poisons.
+                }
 
-                int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 100);
-                TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
-
-                BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Agility, 1075841, length, m, percentage.ToString()));
+                m.FixedParticles(0x373A, 10, 15, 5012, EffectLayer.Waist);
+                m.PlaySound(0x1E0);
             }
 
             this.FinishSequence();
         }
 
-        private class InternalTarget : Target
+        public class InternalTarget : Target
         {
-            private readonly AgilitySpell m_Owner;
-            public InternalTarget(AgilitySpell owner)
+            private readonly Antidote m_Owner;
+            public InternalTarget(Antidote owner)
                 : base(Core.ML ? 10 : 12, false, TargetFlags.Beneficial)
             {
                 this.m_Owner = owner;

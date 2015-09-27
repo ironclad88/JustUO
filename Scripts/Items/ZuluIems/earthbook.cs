@@ -1,23 +1,15 @@
-﻿using Server.Gumps.Zulugumps;
-using System;
+﻿using System;
+using Server.Network;
+using Server.Gumps;
+using Server.Spells;
+using Server.Mobiles;
+using Server.Gumps.Zulugumps;
 
 namespace Server.Items
 {
-    public class EarthBook : Item
+    public class EarthBook : Spellbook
     {
-        [Constructable]
-        public EarthBook()
-            : base(0xFF2) //0xFF2
-        {
-            this.Movable = true;
-            this.Hue = 0x48a;
-            this.LootType = LootType.Blessed;
-        }
-
-        public EarthBook(Serial serial)
-            : base(serial)
-        {
-        }
+        public override SpellbookType SpellbookType { get { return SpellbookType.Earth; } }
 
         private bool[] spellArray = new bool[17]; // 1-16, 0 is reserved for closing book event
 
@@ -229,26 +221,92 @@ namespace Server.Items
             }
         }
 
-        public override string DefaultName
+       
+        [Constructable]
+        public EarthBook()
+            : this((ulong)0)
         {
-            get
-            {
-                return "Book of the Earth";
-            }
         }
+
+        [Constructable]
+        public EarthBook(ulong content)
+            : base(content, 0x2D50)
+        {
+            Hue = 0x48a;
+            Name = "book of the Earth";
+        }
+
+        public override bool OnDragDrop(Mobile from, Item dropped)
+        {
+            if (from == null || dropped == null)
+                return false;
+
+            if (dropped is SpellScroll && dropped.Amount == 1)
+            {
+                SpellScroll scroll = (SpellScroll)dropped;
+
+                SpellbookType type = GetTypeForSpell(scroll.SpellID);
+
+                if (type != SpellbookType)
+                {
+                    return false;
+                }
+                addSpell(scroll, from);
+                
+            }
+            Mobile m = from;
+            PlayerMobile mobile = m as PlayerMobile;
+
+           
+            return base.OnDragDrop(from, dropped);
+        }
+
+        private bool SkillCheck(SpellScroll scroll, Mobile player)
+        {
+            return true;
+        }
+
+        private void addSpell(SpellScroll scroll, Mobile player){
+
+            if (!SkillCheck(scroll, player)) { return; } // gotta fix later
+
+            switch (scroll.Name)
+            {
+                case "Earth bless scroll":
+                    {
+                        if (EarthBlessing == true) { player.SendMessage("The Earth book already contains this spell"); } else { EarthBlessing = true; scroll.Consume(1); }
+                        break;
+                    }
+                    // Add more
+            }
+
+        }
+
         public override void OnDoubleClick(Mobile from)
         {
 
-            from.CloseGump(typeof(ebookgump));
-            from.SendGump(new ebookgump(from, spellArray));
+            Container pack = from.Backpack;
+            if (Parent == from || (pack != null && Parent == pack))
+            {
+                from.CloseGump(typeof(ebookgump));
+                from.SendGump(new ebookgump(from, spellArray));
+            }
+            else from.SendLocalizedMessage(500207); // The spellbook must be in your backpack (and not in a container within) to open.         
+        }
+
+
+
+        public EarthBook(Serial serial)
+            : base(serial)
+        {
         }
 
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            
+
             writer.Write((int)1); // version
-            for (int k=0; k < spellArray.Length; k++)
+            for (int k = 0; k < spellArray.Length; k++)
             {
                 writer.Write(spellArray[k]);
             }
@@ -257,7 +315,7 @@ namespace Server.Items
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-            
+
             int version = reader.ReadInt();
             switch (version)
             {

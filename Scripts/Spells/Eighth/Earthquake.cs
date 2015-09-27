@@ -35,6 +35,7 @@ namespace Server.Spells.Eighth
         }
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             if (SpellHelper.CheckTown(this.Caster, this.Caster) && this.CheckSequence())
             {
                 List<Mobile> targets = new List<Mobile>();

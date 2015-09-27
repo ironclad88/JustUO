@@ -25,7 +25,9 @@ namespace Server.SkillHandlers
         {
             get
             {
-                return (Core.ML ? 30.0 : (Core.SE ? 50.0 : 80.0));
+                // JustZH, 80 hiding needed for stealth
+                //return (Core.ML ? 30.0 : (Core.SE ? 50.0 : 80.0));
+                return 80;
             }
         }
         public static int[,] ArmorTable
@@ -42,9 +44,10 @@ namespace Server.SkillHandlers
 
         public static int GetArmorRating(Mobile m)
         {
-            if (!Core.AOS)
+            // JustZH removed 27/8-15
+            /*if (!Core.AOS)
                 return (int)m.ArmorRating;
-
+            */
             int ar = 0;
 
             for (int i = 0; i < m.Items.Count; i++)

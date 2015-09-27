@@ -33,6 +33,7 @@ namespace Server.Spells.Zulu.NecroSpells
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -40,7 +41,7 @@ namespace Server.Spells.Zulu.NecroSpells
         {
             get
             {
-                return TimeSpan.FromSeconds(1.5);
+                return TimeSpan.FromSeconds(2.4);
             }
         }
         public override double RequiredSkill

@@ -67,6 +67,11 @@ namespace Server
 			return (chance > Utility.Random(10000));
 		}
 
+        public static bool checkChance(int chance)
+        {
+            return (chance > Utility.Random(100));
+        }
+
 		private readonly LootPackEntry[] m_Entries;
 
 		public LootPack(LootPackEntry[] entries)
@@ -77,7 +82,7 @@ namespace Server
 		public void Generate(Mobile from, Container cont, bool spawning, int luckChance)
 		{
             BaseCreature c = (BaseCreature)from;
-           // Console.WriteLine("Generate");
+            Console.WriteLine("Generate");
             int level = c.MagicLevel;
             //Console.WriteLine(level);
 			if (cont == null)
@@ -119,6 +124,9 @@ namespace Server
 				}
 			}
 		}
+
+
+
 
 		public static readonly LootPackItem[] Gold = new[] {new LootPackItem(typeof(Gold), 1)};
 
@@ -726,6 +734,7 @@ new[]
 
 		public Item Construct(Mobile from, int luckChance, bool spawning)
 		{
+            Console.WriteLine("construct");
 			if (m_AtSpawnTime != spawning)
 			{
 				return null;
@@ -733,11 +742,11 @@ new[]
 
 			int totalChance = 0;
 
-			for (int i = 0; i < m_Items.Length; ++i)
-			{
-				totalChance += m_Items[i].Chance;
-			}
-
+			//for (int i = 0; i < m_Items.Length; ++i)
+			//{
+			//	totalChance += m_Items[i].Chance;
+			//}
+            Console.WriteLine(totalChance);
 			int rnd = Utility.Random(totalChance);
 
 			for (int i = 0; i < m_Items.Length; ++i)
@@ -845,13 +854,13 @@ new[]
 						}
 						else if (item is BaseClothing)
 						{
-                            Console.WriteLine("Cloth!");
+                            //Console.WriteLine("Cloth!");
                             BaseRunicToolRewrite.ApplyEffectClothing((BaseClothing)item, c.MagicLevel);
                           //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
                         else if (item is BaseHat)
 						{
-                            Console.WriteLine("Hat!");
+                           // Console.WriteLine("Hat!");
                             BaseRunicToolRewrite.ApplyEffectClothing((BaseHat)item, c.MagicLevel);
                           //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
 						}
@@ -957,8 +966,7 @@ new[]
 			: this(atSpawnTime, items, chance, new LootPackDice(quantity), maxProps, minIntensity, maxIntensity)
 		{ }
 
-		public LootPackEntry(
-			bool atSpawnTime, LootPackItem[] items, double chance, int quantity, int maxProps, int minIntensity, int maxIntensity)
+		public LootPackEntry(bool atSpawnTime, LootPackItem[] items, double chance, int quantity, int maxProps, int minIntensity, int maxIntensity)
 			: this(atSpawnTime, items, chance, new LootPackDice(0, 0, quantity), maxProps, minIntensity, maxIntensity)
 		{ }
 

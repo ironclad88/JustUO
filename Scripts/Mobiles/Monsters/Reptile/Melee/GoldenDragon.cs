@@ -24,7 +24,7 @@ namespace Server.Mobiles
             this.SetMana(1000);
             this.SetStam(200);
 
-            this.SetDamage(60, 80);
+            this.SetDamage(30, 40);
 
             this.SetDamageType(ResistanceType.Physical, 80);
             this.SetDamageType(ResistanceType.Poison, 100);
@@ -35,12 +35,12 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 100, 120);
             this.SetResistance(ResistanceType.Energy, 100, 120);
 
-            this.SetSkill(SkillName.Anatomy, 300, 300);
-            this.SetSkill(SkillName.EvalInt, 300, 300);
-            this.SetSkill(SkillName.Poisoning, 300, 300);
-            this.SetSkill(SkillName.MagicResist, 300, 300);
-            this.SetSkill(SkillName.Tactics, 300, 300);
-            this.SetSkill(SkillName.Wrestling, 300, 300);
+            this.SetSkill(SkillName.Anatomy, 100, 150);
+            this.SetSkill(SkillName.EvalInt, 100, 150);
+            this.SetSkill(SkillName.Poisoning, 100, 150);
+            this.SetSkill(SkillName.MagicResist, 100, 150);
+            this.SetSkill(SkillName.Tactics, 100, 150);
+            this.SetSkill(SkillName.Wrestling, 100, 150);
 
             this.Fame = 24000;
             this.Karma = -24000;
@@ -92,10 +92,6 @@ namespace Server.Mobiles
             {
                 return true;
             }
-        }
-        public override WeaponAbility GetWeaponAbility()
-        {
-            return WeaponAbility.BleedAttack;
         }
         public override int TreasureMapLevel
         {

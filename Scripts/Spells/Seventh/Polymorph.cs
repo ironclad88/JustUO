@@ -103,6 +103,7 @@ namespace Server.Spells.Seventh
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             /*if ( Caster.Mounted )
             {
             Caster.SendLocalizedMessage( 1042561 ); //Please dismount first.

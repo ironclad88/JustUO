@@ -86,8 +86,13 @@ namespace Server.Spells
             Register(62, typeof(Eighth.FireElementalSpell));
             Register(63, typeof(Eighth.WaterElementalSpell));
 
+            // Necro
             Register(70, typeof(Zulu.NecroSpells.WyvernStrikeSpell));
             Register(71, typeof(Zulu.NecroSpells.KillSpell));
+
+            // Earth
+            Register(85, typeof(Zulu.EarthSpells.EarthBless));
+            //Register(86, typeof(Zulu.NecroSpells.KillSpell));
 
             if (Core.AOS)
             {

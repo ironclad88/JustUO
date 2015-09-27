@@ -111,13 +111,13 @@ namespace Server.Mobiles
                 return Poison.Regular;
             }
         }
-        public override Poison HitPoison
+      /*  public override Poison HitPoison
         {
             get
             {
                 return Utility.RandomBool() ? Poison.Lesser : Poison.Regular;
             }
-        }
+        }*/
         public override int TreasureMapLevel
         {
             get

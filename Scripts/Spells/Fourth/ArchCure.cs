@@ -36,6 +36,7 @@ namespace Server.Spells.Fourth
         }
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 

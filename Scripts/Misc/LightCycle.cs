@@ -103,7 +103,25 @@ namespace Server
         {
             private readonly Mobile m_Owner;
             public NightSightTimer(Mobile owner)
-                : base(TimeSpan.FromMinutes(Utility.Random(15, 25)))
+                : base(TimeSpan.FromMinutes(Utility.Random(10, 20)))
+            {
+                this.m_Owner = owner;
+                this.Priority = TimerPriority.OneMinute;
+            }
+
+            protected override void OnTick()
+            {
+                this.m_Owner.EndAction(typeof(LightCycle));
+                this.m_Owner.LightLevel = 0;
+                BuffInfo.RemoveBuff(this.m_Owner, BuffIcon.NightSight);
+            }
+        }
+
+        public class OwlsightTimer : Timer
+        {
+            private readonly Mobile m_Owner;
+            public OwlsightTimer(Mobile owner, int timer)
+                : base(TimeSpan.FromMinutes(timer))
             {
                 this.m_Owner = owner;
                 this.Priority = TimerPriority.OneMinute;

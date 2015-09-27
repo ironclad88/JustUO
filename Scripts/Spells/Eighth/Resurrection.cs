@@ -27,17 +27,18 @@ namespace Server.Spells.Eighth
         }
         public override bool CheckCast()
         {
-            if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
+            /*if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
             {
                 this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
                 return false;
-            }
+            }*/
 
             return base.CheckCast();
         }
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -59,7 +60,7 @@ namespace Server.Spells.Eighth
             {
                 this.Caster.SendLocalizedMessage(501041); // Target is not dead.
             }
-            else if (!this.Caster.InRange(m, 1))
+            else if (!this.Caster.InRange(m, 5))
             {
                 this.Caster.SendLocalizedMessage(501042); // Target is not close enough.
             }
@@ -67,7 +68,7 @@ namespace Server.Spells.Eighth
             {
                 this.Caster.SendLocalizedMessage(501043); // Target is not a being.
             }
-            else if (m.Map == null || !m.Map.CanFit(m.Location, 16, false, false))
+           /* else if (m.Map == null || !m.Map.CanFit(m.Location, 16, false, false))
             {
                 this.Caster.SendLocalizedMessage(501042); // Target can not be resurrected at that location.
                 m.SendLocalizedMessage(502391); // Thou can not be resurrected there!
@@ -75,7 +76,7 @@ namespace Server.Spells.Eighth
             else if (m.Region != null && m.Region.IsPartOf("Khaldun"))
             {
                 this.Caster.SendLocalizedMessage(1010395); // The veil of death in this area is too strong and resists thy efforts to restore life.
-            }
+            }*/
             else if (this.CheckBSequence(m, true))
             {
                 SpellHelper.Turn(this.Caster, m);

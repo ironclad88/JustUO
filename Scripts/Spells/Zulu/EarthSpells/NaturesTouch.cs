@@ -1,39 +1,57 @@
-using System;
-using Server.Mobiles;
+﻿using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Spells.Fourth
+namespace Server.Spells.Zulu.EarthSpells
 {
-    public class GreaterHealSpell : MagerySpell
+    class NaturesTouch : EarthSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Greater Heal", "In Vas Mani",
-            204,
-            9061,
-            Reagent.Garlic,
-            Reagent.Ginseng,
-            Reagent.MandrakeRoot,
-            Reagent.SpidersSilk);
-        public GreaterHealSpell(Mobile caster, Item scroll)
+            "Natures Touch", "Guerissez Par Terre ",
+            236,
+            9031,
+            Reagent.Pumice,
+            Reagent.VialofBlood,
+            Reagent.Obsidian);
+
+        public NaturesTouch(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
 
-        public override SpellCircle Circle
+        public override TimeSpan CastDelayBase
         {
             get
             {
-                return SpellCircle.Fourth;
+                return TimeSpan.FromSeconds(1.5);
             }
         }
+        public override double RequiredSkill
+        {
+            get
+            {
+                return 90; // dunno about this, gotta check
+            }
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 10;
+            }
+        }
+
         public override bool CheckCast()
         {
-           /* if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
+            if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
             {
                 this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
                 return false;
-            }*/
+            }
 
             return base.CheckCast();
         }
@@ -58,22 +76,14 @@ namespace Server.Spells.Fourth
             {
                 this.Caster.SendLocalizedMessage(1060177); // You cannot heal a creature that is already dead!
             }
-            else if (m is Golem)
-            {
-                this.Caster.LocalOverheadMessage(MessageType.Regular, 0x3B2, 500951); // You cannot heal that.
-            }
-            else if (m.Poisoned || Server.Items.MortalStrike.IsWounded(m))
-            {
-                this.Caster.LocalOverheadMessage(MessageType.Regular, 0x22, (this.Caster == m) ? 1005000 : 1010398);
-            }
             else if (this.CheckBSequence(m))
             {
                 SpellHelper.Turn(this.Caster, m);
 
                 // Algorithm: (40% of magery) + (1-10)
 
-                int toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.4 * this.Caster.SpecBonus(SpecClasse.Mage)); // justZh buffed greater heal with spec bonus
-                toHeal += Utility.Random(1, 10);
+                int toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.4 * this.Caster.SpecBonus(SpecClasse.Mage));
+                toHeal += Utility.Random(20, 40);
 
                 //m.Heal( toHeal, Caster );
                 SpellHelper.Heal(toHeal, m, this.Caster);
@@ -87,8 +97,8 @@ namespace Server.Spells.Fourth
 
         public class InternalTarget : Target
         {
-            private readonly GreaterHealSpell m_Owner;
-            public InternalTarget(GreaterHealSpell owner)
+            private readonly NaturesTouch m_Owner;
+            public InternalTarget(NaturesTouch owner)
                 : base(Core.ML ? 10 : 12, false, TargetFlags.Beneficial)
             {
                 this.m_Owner = owner;

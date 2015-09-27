@@ -1,40 +1,58 @@
-using System;
-using Server.Items;
+﻿using Server.Items;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Spells.Seventh
+namespace Server.Spells.Zulu.EarthSpells
 {
-    public class GateTravelSpell : MagerySpell
+    class Earthportal : EarthSpell
     {
-        private static readonly SpellInfo m_Info = new SpellInfo(
-            "Gate Travel", "Vas Rel Por",
+         private static readonly SpellInfo m_Info = new SpellInfo(
+            "Earth Portal", "Destraves Limites Da Natureza",
             263,
             9032,
-            Reagent.BlackPearl,
-            Reagent.MandrakeRoot,
-            Reagent.SulfurousAsh);
+            Reagent.BrimStone,
+            Reagent.ExecutionersCap,
+            Reagent.EyeofNewt);
         private readonly RunebookEntry m_Entry;
-        public GateTravelSpell(Mobile caster, Item scroll)
+        public Earthportal(Mobile caster, Item scroll)
             : this(caster, scroll, null)
         {
         }
 
-        public GateTravelSpell(Mobile caster, Item scroll, RunebookEntry entry)
+        public Earthportal(Mobile caster, Item scroll, RunebookEntry entry)
             : base(caster, scroll, m_Info)
         {
             this.m_Entry = entry;
         }
 
-        public override SpellCircle Circle
+        public override TimeSpan CastDelayBase
         {
             get
             {
-                return SpellCircle.Seventh;
+                return TimeSpan.FromSeconds(1.5);
             }
         }
+        public override double RequiredSkill
+        {
+            get
+            {
+                return 90; // dunno about this, gotta check
+            }
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 10;
+            }
+        }
+
         public override void OnCast()
         {
             setCords(Caster.Y, Caster.X);
@@ -46,21 +64,6 @@ namespace Server.Spells.Seventh
 
         public override bool CheckCast()
         {
-            if (Factions.Sigil.ExistsOn(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(1061632); // You can't do that while carrying the sigil.
-                return false;
-            }
-            else if (this.Caster.Criminal)
-            {
-                this.Caster.SendLocalizedMessage(1005561, "", 0x22); // Thou'rt a criminal and cannot escape so easily.
-                return false;
-            }
-            else if (SpellHelper.CheckCombat(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(1005564, "", 0x22); // Wouldst thou flee during the heat of battle??
-                return false;
-            }
 
             return SpellHelper.CheckTravel(this.Caster, TravelCheckType.GateFrom);
         }
@@ -93,6 +96,10 @@ namespace Server.Spells.Seventh
 
                 InternalItem firstGate = new InternalItem(loc, map);
                 firstGate.MoveToWorld(this.Caster.Location, this.Caster.Map);
+
+                firstGate.Hue = 1160;
+
+               
 
                 Effects.PlaySound(loc, map, 0x20E);
 
@@ -166,7 +173,7 @@ namespace Server.Spells.Seventh
             {
                 private readonly Item m_Item;
                 public InternalTimer(Item item)
-                    : base(TimeSpan.FromSeconds(30.0))
+                    : base(TimeSpan.FromSeconds(50.0)) // longer duration, but still a worhtless spell ^^
                 {
                     this.Priority = TimerPriority.OneSecond;
                     this.m_Item = item;
@@ -181,8 +188,8 @@ namespace Server.Spells.Seventh
 
         private class InternalTarget : Target
         {
-            private readonly GateTravelSpell m_Owner;
-            public InternalTarget(GateTravelSpell owner)
+            private readonly Earthportal m_Owner;
+            public InternalTarget(Earthportal owner)
                 : base(12, false, TargetFlags.None)
             {
                 this.m_Owner = owner;
