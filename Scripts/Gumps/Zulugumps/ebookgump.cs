@@ -154,31 +154,31 @@ namespace Server.Gumps.Zulugumps
             switch (info.ButtonID)
             {
                 case 1:
-                    Console.WriteLine("Casting Antidote");
+                    new Antidote(caster, null).Cast();
                     break;
                 case 2:
-                    Console.WriteLine("Casting Owl Sight");
+                    new OwlSight(caster, null).Cast();
                     break;
                 case 3:
-                    Console.WriteLine("Casting Shifting Earth");
+                    new ShiftingEarth(caster, null).Cast();
                     break;
                 case 4:
-                    Console.WriteLine("Casting Summon Mammals");
+                    new SummonMammal(caster, null).Cast();
                     break;
                 case 5:
-                    Console.WriteLine("Casting Call Lightning");
+                    new CallLightning(caster, null).Cast();
                     break;
                 case 6:
                     new EarthBless(caster, null).Cast();
                     break;
                 case 7:
-                    Console.WriteLine("Casting Earth Portal");
+                    new Earthportal(caster, null).Cast();
                     break;
                 case 8:
-                    Console.WriteLine("Casting Nature´s Touch");
+                    new NaturesTouch(caster, null).Cast();
                     break;
                 case 9:
-                    Console.WriteLine("Casting Gust of Air");
+                    new Gustofair(caster, null).Cast();
                     break;
                 case 10:
                     Console.WriteLine("Casting Rising Fire");

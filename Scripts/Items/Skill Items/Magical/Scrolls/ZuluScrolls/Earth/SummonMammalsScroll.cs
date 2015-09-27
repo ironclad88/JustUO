@@ -5,23 +5,23 @@ using System.Text;
 
 namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Necro
 {
-    public class EarthBlessScroll : SpellScroll
+    public class SummonMammalsScroll : SpellScroll
     {
         [Constructable]
-        public EarthBlessScroll()
+        public SummonMammalsScroll()
             : this(1)
         {
         }
 
         [Constructable]
-        public EarthBlessScroll(int amount)
-            : base(87, 0x1f3c, amount)
+        public SummonMammalsScroll(int amount)
+            : base(93, 0x1f3c, amount)
         {
             this.Hue = 1159;
-            this.Name = "Earth bless scroll";
+            this.Name = "Summon mammals scroll";
         }
 
-        public EarthBlessScroll(Serial serial)
+        public SummonMammalsScroll(Serial serial)
             : base(serial)
         {
         }

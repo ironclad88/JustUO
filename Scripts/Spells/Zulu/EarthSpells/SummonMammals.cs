@@ -1,57 +1,49 @@
+﻿using Server.Mobiles;
+using Server.Targeting;
 using System;
-using Server.Mobiles;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Spells.Fifth
+namespace Server.Spells.Zulu.EarthSpells
 {
-    public class SummonCreatureSpell : MagerySpell
+    public class SummonMammal : EarthSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Summon Creature", "Kal Xen",
+            "Summon Mammals", "Chame O Mamifero Agora",
             16,
             false,
-            Reagent.Bloodmoss,
-            Reagent.MandrakeRoot,
-            Reagent.SpidersSilk);
+            Reagent.SerpentsScales,
+            Reagent.PigIron,
+            Reagent.EyeofNewt);
         // NOTE: Creature list based on 1hr of summon/release on OSI.
-        private static readonly Type[] m_Types = new Type[]
+        // JustZH fix this list
+        private static readonly Type[] m_Types = new Type[] // fix this list
         {
             typeof(PolarBear),
             typeof(GrizzlyBear),
             typeof(BlackBear),
-            typeof(Horse),
             typeof(Walrus),
-            typeof(Chicken),
             typeof(Scorpion),
             typeof(GiantSerpent),
             typeof(Llama),
             typeof(Alligator),
             typeof(GreyWolf),
             typeof(Slime),
-            typeof(Eagle),
             typeof(Gorilla),
-            typeof(SnowLeopard),
-            typeof(Pig),
-            typeof(Hind),
-            typeof(Rabbit)
+            typeof(SnowLeopard)
         };
-        public SummonCreatureSpell(Mobile caster, Item scroll)
+        public SummonMammal(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
 
-        public override SpellCircle Circle
-        {
-            get
-            {
-                return SpellCircle.Fifth;
-            }
-        }
         public override bool CheckCast()
         {
             if (!base.CheckCast())
                 return false;
 
-            if ((this.Caster.Followers + 2) > this.Caster.FollowersMax)
+            if ((this.Caster.Followers + 3) > this.Caster.FollowersMax)
             {
                 this.Caster.SendLocalizedMessage(1049645); // You have too many followers to summon that creature.
                 return false;
@@ -60,11 +52,35 @@ namespace Server.Spells.Fifth
             return true;
         }
 
+        public override TimeSpan CastDelayBase
+        {
+            get
+            {
+                return TimeSpan.FromSeconds(2);
+            }
+        }
+        public override double RequiredSkill
+        {
+            get
+            {
+                return 85; // dunno about this, gotta check
+            }
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 5;
+            }
+        }
+
         public override void OnCast()
         {
             setCords(Caster.Y, Caster.X);
             if (this.CheckSequence())
             {
+                int count = 0;
+                do{
                 try
                 {
                     BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
@@ -79,10 +95,12 @@ namespace Server.Spells.Fifth
                         duration = TimeSpan.FromSeconds(4.0 * this.Caster.Skills[SkillName.Magery].Value);
 
                     SpellHelper.Summon(creature, this.Caster, 0x215, duration, false, false);
+                    count++;
                 }
                 catch
                 {
                 }
+                    }while( count > 3 );
             }
 
             this.FinishSequence();

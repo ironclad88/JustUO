@@ -91,8 +91,15 @@ namespace Server.Spells
             Register(71, typeof(Zulu.NecroSpells.KillSpell));
 
             // Earth
-            Register(85, typeof(Zulu.EarthSpells.EarthBless));
-            //Register(86, typeof(Zulu.NecroSpells.KillSpell));
+            Register(85, typeof(Zulu.EarthSpells.Antidote));
+            Register(86, typeof(Zulu.EarthSpells.CallLightning));
+            Register(87, typeof(Zulu.EarthSpells.EarthBless));
+            Register(88, typeof(Zulu.EarthSpells.Earthportal));
+            Register(89, typeof(Zulu.EarthSpells.Gustofair));
+            Register(90, typeof(Zulu.EarthSpells.NaturesTouch));
+            Register(91, typeof(Zulu.EarthSpells.OwlSight));
+            Register(92, typeof(Zulu.EarthSpells.ShiftingEarth));
+            Register(93, typeof(Zulu.EarthSpells.SummonMammal));
 
             if (Core.AOS)
             {

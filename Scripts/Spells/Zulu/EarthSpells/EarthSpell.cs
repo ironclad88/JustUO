@@ -27,34 +27,54 @@ namespace Server.Spells.Zulu.EarthSpells
             get
             {
                 return SkillName.Magery;
-                // return SkillName.EvalInt; // not sure about this one
             }
         }
-        //public override int CastDelayBase{ get{ return base.CastDelayBase; } } // Reference, 3
+
         public override bool ClearHandsOnCast
         {
             get
             {
-                return false;
+                return true;
             }
         }
-        public override double CastDelayFastScalar
-        {
-            get
-            {
-                return (Core.SE ? base.CastDelayFastScalar : 0);
-            }
-        }// Necromancer spells are not affected by fast cast items, though they are by fast cast recovery
+
         public override int ComputeKarmaAward()
         {
-            //TODO: Verify this formula being that Necro spells don't HAVE a circle.
-            //int karma = -(70 + (10 * (int)Circle));
-            int karma = -(40 + (int)(10 * (this.CastDelayBase.TotalSeconds / this.CastDelaySecondsPerTick)));
+            return 0;
+        }
 
-            if (Core.ML) // Pub 36: "Added a new property called Increased Karma Loss which grants higher karma loss for casting necromancy spells."
-                karma += AOS.Scale(karma, AosAttributes.GetValue(this.Caster, AosAttribute.IncreasedKarmaLoss));
+        public virtual bool CheckResisted(Mobile target) // JustZH TODO: remake this
+        {
+            double n = this.GetResistPercent(target);
 
-            return karma;
+            n /= 100.0;
+
+            if (n <= 0.0)
+                return false;
+
+            if (n >= 1.0)
+                return true;
+
+            int maxSkill = (1 + 10) * 10;
+            maxSkill += (1 + (10 / 6)) * 25;
+
+            if (target.Skills[SkillName.MagicResist].Value < maxSkill)
+                target.CheckSkill(SkillName.MagicResist, 0.0, target.Skills[SkillName.MagicResist].Cap);
+
+            return (n >= Utility.RandomDouble());
+        }
+
+        public virtual double GetResistPercentForCircle(Mobile target) // JustZH TODO: remake this
+        {
+            double firstPercent = target.Skills[SkillName.MagicResist].Value / 5.0;
+            double secondPercent = target.Skills[SkillName.MagicResist].Value - (((this.Caster.Skills[this.CastSkill].Value - 20.0) / 5.0) + (1 + 10 * 5.0));
+
+            return (firstPercent > secondPercent ? firstPercent : secondPercent) / 2.0; // Seems should be about half of what stratics says.
+        }
+
+        public virtual double GetResistPercent(Mobile target) // JustZH TODO: remake this
+        {
+            return this.GetResistPercentForCircle(target);
         }
 
         public override void GetCastSkills(out double min, out double max)
