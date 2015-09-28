@@ -232,7 +232,7 @@ namespace Server.Items
         public HolyBook(ulong content)
             : base(content, 0x2D50)
         {
-            Hue = 2431;
+            Hue = 0x49E;
             Name = "Codex Caelestis";
         }
 
@@ -303,8 +303,8 @@ namespace Server.Items
             Container pack = from.Backpack;
             if (Parent == from || (pack != null && Parent == pack))
             {
-                from.CloseGump(typeof(ebookgump));
-                from.SendGump(new ebookgump(from, spellArray));
+                from.CloseGump(typeof(holybookgump));
+                from.SendGump(new holybookgump(from, spellArray));
             }
             else from.SendLocalizedMessage(500207); // The spellbook must be in your backpack (and not in a container within) to open.      
             }

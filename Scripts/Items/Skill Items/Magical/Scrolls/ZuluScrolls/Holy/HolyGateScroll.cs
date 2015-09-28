@@ -17,7 +17,7 @@ namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Holy
         public HolyGateScroll(int amount)
             : base(700, 0x1f3c, amount)
         {
-            this.Hue = 2431;
+            this.Hue = 0x49E;
             this.Name = "Holy gate scroll";
         }
 

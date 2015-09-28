@@ -839,6 +839,7 @@
     <Compile Include="Gumps\YoungGumps.cs" />
     <Compile Include="Gumps\Zulugumps\DropskillGump.cs" />
     <Compile Include="Gumps\Zulugumps\ebookgump.cs" />
+    <Compile Include="Gumps\Zulugumps\holybookgump.cs" />
     <Compile Include="Gumps\Zulugumps\necrobookgump.cs" />
     <Compile Include="Gumps\Zulugumps\ProtsGump.cs" />
     <Compile Include="Gumps\Zulugumps\skillBoostGump.cs" />
