@@ -101,6 +101,9 @@ namespace Server.Spells
             Register(92, typeof(Zulu.EarthSpells.ShiftingEarth));
             Register(93, typeof(Zulu.EarthSpells.SummonMammal));
 
+            // holy (cleric)
+            Register(700, typeof(Zulu.ClericSpells.HolyGate));
+
             if (Core.AOS)
             {
                 // Necromancy spells

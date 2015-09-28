@@ -485,7 +485,8 @@ namespace Server
         Mage,
         Ranger,
         Thief,
-        Warrior
+        Warrior,
+        Cleric
     }
     #endregion
 

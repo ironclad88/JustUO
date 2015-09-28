@@ -2207,6 +2207,7 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\OwlsightScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\ShiftingearthScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\SummonMammalsScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\HolyGateScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\KillScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\WyvernStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Spellbook.cs" />
@@ -5316,6 +5317,8 @@
     <Compile Include="Spells\Third\Unlock.cs" />
     <Compile Include="Spells\Third\WallOfStone.cs" />
     <Compile Include="Spells\UnsummonTimer.cs" />
+    <Compile Include="Spells\Zulu\ClericSpells\HolyGate.cs" />
+    <Compile Include="Spells\Zulu\ClericSpells\HolySpell.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\Antidote.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\CallLightning.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\Earthbless.cs" />
@@ -5481,8 +5484,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Items\Clothing\ZuluClothing\" />
-    <Folder Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\" />
-    <Folder Include="Spells\Zulu\HolySpells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

@@ -80,27 +80,21 @@ namespace Server.Spells.Zulu.EarthSpells
             if (this.CheckSequence())
             {
                 int count = 0;
-                do{
-                try
+                Timer timer = Timer.DelayCall(TimeSpan.FromMilliseconds(50), new TimerCallback(delegate() // this is awesome!
                 {
-                    BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
+                    do
+                    {
+                        BaseCreature creature = (BaseCreature)Activator.CreateInstance(m_Types[Utility.Random(m_Types.Length)]);
+                        TimeSpan duration;
 
-                    //creature.ControlSlots = 2;
+                        duration = TimeSpan.FromSeconds(4.0 * this.Caster.Skills[SkillName.Magery].Value * this.Caster.SpecBonus(SpecClasse.Mage));
 
-                    TimeSpan duration;
+                        SpellHelper.Summon(creature, this.Caster, 0x215, duration, false, false);
+                        count++;
 
-                    if (Core.AOS)
-                        duration = TimeSpan.FromSeconds((2 * this.Caster.Skills.Magery.Fixed) / 5);
-                    else
-                        duration = TimeSpan.FromSeconds(4.0 * this.Caster.Skills[SkillName.Magery].Value);
+                    } while (count < 3);
+                }));
 
-                    SpellHelper.Summon(creature, this.Caster, 0x215, duration, false, false);
-                    count++;
-                }
-                catch
-                {
-                }
-                    }while( count > 3 );
             }
 
             this.FinishSequence();
