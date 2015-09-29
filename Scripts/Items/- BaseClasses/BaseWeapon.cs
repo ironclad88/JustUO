@@ -2044,7 +2044,39 @@ namespace Server.Items
             defender.PlaySound(GetHitDefendSound(attacker, defender));
             
             int damage = ComputeDamage(attacker, defender);
-            //Console.WriteLine("AFTER SPEC Damage: " + damage);
+            //JustZH: apply spec scalars
+            // scale this bonus directly, this means spec bonus will be applied to "base" damage BEFORE all the
+            // multipliers added in the Damage Multipliers region below, this means spec bonus will be more powerful
+            // than if it was added with the other multipliers.
+
+            //JustZH: add spec damage bonus an vulnerabilities
+            double spec_scalar_d = 1.0;
+            // spec bonuses
+            double spec_damage_bonus = 0.15;
+            double spec_damage_reduction = 0.15;
+
+            if (this is BaseRanged && (attacker.SpecClasse == SpecClasse.Ranger))
+                spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
+            else if (attacker.SpecClasse == SpecClasse.Warrior)
+                spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
+
+            // spec penalties
+            if (attacker.SpecClasse == SpecClasse.Mage)
+                spec_scalar_d -= spec_damage_bonus * defender.SpecLevel;
+            if (defender.SpecClasse == SpecClasse.Mage) spec_scalar_d += spec_damage_bonus * defender.SpecLevel;
+            if (defender.SpecClasse == SpecClasse.Warrior) spec_scalar_d -= spec_damage_reduction * defender.SpecLevel;
+
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " SPEC SCALAR: " + spec_scalar_d);
+
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " BEFORE SPEC Damage: " + damage);
+
+            damage = AOS.Scale(damage, (int)(spec_scalar_d*100));
+
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " AFTER SPEC Damage: " + damage);
+
             #region Damage Multipliers
             /*
             * The following damage bonuses multiply damage by a factor.
@@ -2184,7 +2216,11 @@ namespace Server.Items
 
             percentageBonus = Math.Min(percentageBonus, 300);
 
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " BEFORE AOS SCALE DAMAGE: " + damage);
             damage = AOS.Scale(damage, 100 + percentageBonus);
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " AFTER AOS SCALE DAMAGE: " + damage);
             #endregion
 
             if (attacker is BaseCreature)
@@ -2330,6 +2366,9 @@ namespace Server.Items
 
             bool ignoreArmor = (a is ArmorIgnore || (move != null && move.IgnoreArmor(attacker)));
 
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " BEFORE RESISTANCE DAMAGE: " + damageGiven);
+
             damageGiven = AOS.Damage(
                 defender,
                 attacker,
@@ -2348,6 +2387,9 @@ namespace Server.Items
                 false,
                 this is BaseRanged,
                 false);
+
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " AFTER RESISTANCE DAMAGE: " + damageGiven);
 
             double propertyBonus = (move == null) ? 1.0 : move.GetPropertyBonus(attacker);
 
@@ -2618,7 +2660,8 @@ namespace Server.Items
                 }
             }
 
-           
+            if (attacker.IsStaff())
+                Console.WriteLine(attacker.Name + " FINAL DAMAGE: " + damageGiven);
            
             XmlAttach.OnWeaponHit(this, attacker, defender, damageGiven);
         }
@@ -3088,11 +3131,25 @@ namespace Server.Items
 
         public virtual double GetBaseDamage(Mobile attacker)
         {
-            int min, max;
+            //JustZH removed 24/9-15
+            //int min, max;
 
-            GetBaseDamageRange(attacker, out min, out max);
+            //GetBaseDamageRange(attacker, out min, out max);
 
-            int damage = Utility.RandomMinMax(min, max);
+            //int damage = Utility.RandomMinMax(min, max);
+
+            // Roll dice
+            int damage = 0;
+            for (int i = 0; i < Dice_Num; i++ )
+            {
+                damage += Utility.RandomMinMax(1, Dice_Sides);
+            }
+            damage += Dice_Offset;
+            if(attacker.IsStaff() == true)
+            {
+                //extra debugging for staff
+                Console.WriteLine("Damage roll: " + Dice_Num + "d" + Dice_Sides + "+" + Dice_Offset + " (" + damage + ")");
+            }
 
             //JustZH removed 26/8-15
             /*if (Core.AOS)
@@ -3101,16 +3158,21 @@ namespace Server.Items
             }*/
 
             /* Apply damage level offset
-             * : Regular : 0
-             * : Ruin    : 1
-             * : Might   : 3
-             * : Force   : 5
-             * : Power   : 7
-             * : Vanq    : 9
-             */
+                * : Regular : 0
+                * : Ruin    : 1
+                * : Might   : 3
+                * : Force   : 5
+                * : Power   : 7
+                * : Vanq    : 9
+                */
             if (m_DamageLevel != WeaponDamageLevel.Regular)
             {
-                damage += (2 * (int)m_DamageLevel) - 1;
+                damage += (5 * (int)m_DamageLevel);
+                if (attacker.IsStaff() == true)
+                {
+                    //extra debugging for staff
+                    Console.WriteLine("Damage after damage mod ("+m_DamageLevel+") add: " + damage);
+                }
             }
 
             return damage;
@@ -3382,13 +3444,6 @@ namespace Server.Items
             {
                 modifiers += (VirtualDamageBonus / 100.0);
             }
-
-             if (attacker.SpecClasse == SpecClasse.Warrior)
-             {
-                 Console.WriteLine("BEFORE SPEC Damage: " + damage);
-                 damage *= attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
-                 Console.WriteLine("BEFORE SPEC Damage: " + damage);
-             }
 
             // Apply bonuses
             damage += (damage * modifiers);
@@ -4887,11 +4942,11 @@ namespace Server.Items
                     list.Add(1060400); // use best weapon skill
                 }
 
-                if ((prop = (GetDamageBonus() + m_AosAttributes.WeaponDamage)) != 0)
+                if ((prop = GetDamageBonus()) != 0)
                 {
                    /* BaseWeapon wea = this as BaseWeapon;
                     wea.Name = "test"; */
-                    list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
+                    list.Add("Damage bonus +" + prop); // damage increase ~1_val~%
                 }
 
                 if ((prop = m_AosAttributes.DefendChance) != 0)

@@ -76,9 +76,7 @@ namespace Server
 
 		public void Generate(Mobile from, Container cont, bool spawning, int luckChance)
 		{
-            BaseCreature c = (BaseCreature)from;
            // Console.WriteLine("Generate");
-            int level = c.MagicLevel;
             //Console.WriteLine(level);
 			if (cont == null)
 			{
@@ -746,7 +744,13 @@ new[]
 
 				if (rnd < item.Chance)
 				{
-					return Mutate(from, luckChance, item.Construct(IsInTokuno(from), IsMondain(from)));
+                    Item gen_item = item.Construct(IsInTokuno(from), IsMondain(from));
+                    //JustZH: moved this here instead of Mutate to be able to have Mutate static to be called from chest classes etc.
+                    if (gen_item != null && gen_item.Stackable)
+                    {
+                        gen_item.Amount = m_Quantity.Roll();
+                    }
+                    return Mutate(from, luckChance, gen_item);
 				}
 
 				rnd -= item.Chance;
@@ -793,11 +797,16 @@ new[]
 
 			return 5;
 		}
-
-		public Item Mutate(Mobile from, int luckChance, Item item)
-		{
-			if (item != null)
-			{
+        public static Item Mutate(Mobile from, int luckChance, Item item, int magicLevel)
+        {
+            int magic_level = magicLevel;
+            if(from != null)
+            {
+                //JustZH: mobile's magiclevel overwrites parameter
+                magic_level = ((BaseCreature)from).MagicLevel;
+            }
+            if (item != null)
+            {
                 //if (item is BaseWeapon && 1 > Utility.Random(100))
                 //{
                 //    item.Delete();
@@ -805,137 +814,141 @@ new[]
                 //    return item;
                 //}
 
-				if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseClothing || item is BaseHat)
-				{
-					if (Core.AOS)
-					{
-                        int bonusProps = GetBonusProperties();
-						int min = m_MinIntensity;
-						int max = m_MaxIntensity;
+                if (item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseClothing || item is BaseHat)
+                {
+                    if (Core.AOS)
+                    {
+                        //int bonusProps = GetBonusProperties();
+                        //int min = m_MinIntensity;
+                        //int max = m_MaxIntensity;
 
                         //if (bonusProps < m_MaxProps && LootPack.CheckLuck(luckChance))
                         //{
                         //    ++bonusProps;
                         //}
 
-                        int props = 1 + bonusProps;
+                        //int props = 1 + bonusProps;
 
-                        BaseCreature c = (BaseCreature)from;
+                        // Make sure we're not spawning items with 6 properties.
+                        //if (props > m_MaxProps)
+                        //{
+                        //    props = m_MaxProps;
+                        //}
 
-						// Make sure we're not spawning items with 6 properties.
-						if (props > m_MaxProps)
-						{
-							props = m_MaxProps;
-						}
-
-						if (item is BaseWeapon)
-						{
-                            BaseRunicToolRewrite.ApplyEffectWeapon((BaseWeapon)item, c.MagicLevel);
-							//BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
-						}
-						else if (item is BaseArmor)
-						{
-                            BaseRunicToolRewrite.ApplyEffectArmor((BaseArmor)item, c.MagicLevel);
-						//	BaseRunicTool.ApplyAttributesTo((BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
-						}
-						else if (item is BaseJewel)
-						{
-                            BaseRunicToolRewrite.ApplyEffectJewlery((BaseJewel)item, c.MagicLevel);
-							//BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
-						}
-						else if (item is BaseClothing)
-						{
+                        if (item is BaseWeapon)
+                        {
+                            BaseRunicToolRewrite.ApplyEffectWeapon((BaseWeapon)item, magic_level);
+                            //BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                        }
+                        else if (item is BaseArmor)
+                        {
+                            BaseRunicToolRewrite.ApplyEffectArmor((BaseArmor)item, magic_level);
+                            //	BaseRunicTool.ApplyAttributesTo((BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                        }
+                        else if (item is BaseJewel)
+                        {
+                            BaseRunicToolRewrite.ApplyEffectJewlery((BaseJewel)item, magic_level);
+                            //BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                        }
+                        else if (item is BaseClothing)
+                        {
                             Console.WriteLine("Cloth!");
-                            BaseRunicToolRewrite.ApplyEffectClothing((BaseClothing)item, c.MagicLevel);
-                          //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
-						}
+                            BaseRunicToolRewrite.ApplyEffectClothing((BaseClothing)item, magic_level);
+                            //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                        }
                         else if (item is BaseHat)
-						{
+                        {
                             Console.WriteLine("Hat!");
-                            BaseRunicToolRewrite.ApplyEffectClothing((BaseHat)item, c.MagicLevel);
-                          //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
-						}
-					}
-					else // not aos
-					{
-						if (item is BaseWeapon)
-						{
-							BaseWeapon weapon = (BaseWeapon)item;
+                            BaseRunicToolRewrite.ApplyEffectClothing((BaseHat)item, magic_level);
+                            //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
+                        }
+                    }
+                    //else // not aos
+                    //{
+                    //    if (item is BaseWeapon)
+                    //    {
+                    //        BaseWeapon weapon = (BaseWeapon)item;
 
-							if (80 > Utility.Random(100))
-							{
-								weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
-							}
+                    //        if (80 > Utility.Random(100))
+                    //        {
+                    //            weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
+                    //        }
 
-							if (60 > Utility.Random(100))
-							{
-								weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
-							}
+                    //        if (60 > Utility.Random(100))
+                    //        {
+                    //            weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
+                    //        }
 
-							if (40 > Utility.Random(100))
-							{
-								weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
-							}
+                    //        if (40 > Utility.Random(100))
+                    //        {
+                    //            weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
+                    //        }
 
-							if (5 > Utility.Random(100))
-							{
-								weapon.Slayer = SlayerName.Silver;
-							}
+                    //        if (5 > Utility.Random(100))
+                    //        {
+                    //            weapon.Slayer = SlayerName.Silver;
+                    //        }
 
-							if (from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 &&
-								weapon.Slayer == SlayerName.None && 5 > Utility.Random(100))
-							{
-								weapon.Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
-							}
-						}
-						else if (item is BaseArmor)
-						{
-							BaseArmor armor = (BaseArmor)item;
+                    //        if (from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 &&
+                    //            weapon.Slayer == SlayerName.None && 5 > Utility.Random(100))
+                    //        {
+                    //            //JustZH: only possible to get slayer if mob drops wepon like this.. should modify later!
+                    //            weapon.Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
+                    //        }
+                    //    }
+                    //    else if (item is BaseArmor)
+                    //    {
+                    //        BaseArmor armor = (BaseArmor)item;
 
-							if (80 > Utility.Random(100))
-							{
-								armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
-							}
+                    //        if (80 > Utility.Random(100))
+                    //        {
+                    //            armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
+                    //        }
 
-							if (40 > Utility.Random(100))
-							{
-								armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
-							}
-						}
-					}
-				}
-				else if (item is BaseInstrument)
-				{
-					SlayerName slayer = SlayerName.None;
+                    //        if (40 > Utility.Random(100))
+                    //        {
+                    //            armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
+                    //        }
+                    //    }
+                    //}
+                }
+                else if (item is BaseInstrument)
+                {
+                    SlayerName slayer = SlayerName.None;
 
-					if (Core.AOS)
-					{
-						slayer = BaseRunicTool.GetRandomSlayer();
-					}
-					else
-					{
-						slayer = SlayerGroup.GetLootSlayerType(from.GetType());
-					}
+                    if (Core.AOS)
+                    {
+                        slayer = BaseRunicTool.GetRandomSlayer();
+                    }
+                    else
+                    {
+                        slayer = SlayerGroup.GetLootSlayerType(from.GetType());
+                    }
 
-					if (slayer == SlayerName.None)
-					{
-						item.Delete();
-						return null;
-					}
+                    if (slayer == SlayerName.None)
+                    {
+                        item.Delete();
+                        return null;
+                    }
 
-					BaseInstrument instr = (BaseInstrument)item;
+                    BaseInstrument instr = (BaseInstrument)item;
 
-					instr.Quality = InstrumentQuality.Regular;
-					instr.Slayer = slayer;
-				}
+                    instr.Quality = InstrumentQuality.Regular;
+                    instr.Slayer = slayer;
+                }
 
-				if (item.Stackable)
-				{
-					item.Amount = m_Quantity.Roll();
-				}
-			}
+                //JustZH: moved to Construct()..
+                //if (item.Stackable)
+                //{
+                //    item.Amount = m_Quantity.Roll();
+                //}
+            }
 
-			return item;
+            return item;
+        }
+		public Item Mutate(Mobile from, int luckChance, Item item)
+		{
+            return Mutate(from, luckChance, item, 0);
 		}
 
 		public LootPackEntry(bool atSpawnTime, LootPackItem[] items, double chance, string quantity)

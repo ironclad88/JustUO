@@ -218,174 +218,18 @@ namespace Server.Items
                 {
                     Item item;
 
-                    if (Core.AOS)
-                        //item = Loot.RandomArmorOrShieldOrWeaponOrJewelry();
-                        if (Utility.Random(4) == 1)
-                        {
-                            item = Loot.RandomRangedWeapon();
-                        }
-                        else
-                        {
-                            item = Loot.RandomWeapon();
-                        }
+                    if (Utility.Random(4) == 1)
+                    {
+                        item = Loot.RandomRangedWeapon();
+                    }
                     else
-                        item = Loot.RandomArmorOrShieldOrWeapon();
-
-                    if (item is BaseWeapon)
                     {
-                        int attributeCount;
-                        int min, max;
-
-                        //GetRandomAOSStats(out attributeCount, out min, out max);
-                        switch (level)
-                        {
-                            case 0:
-                                min = 0;
-                                max = 20;
-                                attributeCount = 2;
-                                break;
-                            case 1:
-                                min = 0;
-                                max = 40;
-                                attributeCount = 2;
-                                break;
-                            case 2:
-                                min = 10;
-                                max = 50;
-                                attributeCount = 3;
-                                break;
-                            case 3:
-                                min = 20;
-                                max = 60;
-                                attributeCount = 3;
-                                break;
-                            case 4:
-                                min = 30;
-                                max = 75;
-                                attributeCount = 4;
-                                break;
-                            case 5:
-                                min = 50;
-                                max = 100;
-                                attributeCount = 5;
-                                break;
-                            case 6:
-                                min = 80;
-                                max = 100;
-                                attributeCount = 5;
-                                break;
-                            case 7:
-                                min = 100;
-                                max = 100;
-                                attributeCount = 6;
-                                break;
-                            default:
-                                min = 0;
-                                max = 100;
-                                attributeCount = 4;
-                                break;
-                        }
-
-                        BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, attributeCount, min, max);
-                        item.Unidentified = false;
-                        cont.DropItem(item);
+                        item = Loot.RandomWeapon();
                     }
-                    else if (item is BaseArmor)
-                    {
-                        BaseArmor armor = (BaseArmor)item;
 
-                        if (Core.AOS)
-                        {
-                            int attributeCount;
-                            int min, max;
-
-                            GetRandomAOSStats(out attributeCount, out min, out max);
-
-                            BaseRunicTool.ApplyAttributesTo(armor, attributeCount, min, max);
-                        }
-                        else
-                        {
-                            armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random(6);
-                            armor.Durability = (ArmorDurabilityLevel)Utility.Random(6);
-                        }
-
-                        cont.DropItem(item);
-                    }
-                    else if (item is BaseHat)
-                    {
-                        BaseHat hat = (BaseHat)item;
-
-                        if (Core.AOS)
-                        {
-                            int attributeCount;
-                            int min, max;
-
-                            GetRandomAOSStats(out attributeCount, out min, out max);
-
-                            BaseRunicTool.ApplyAttributesTo(hat, attributeCount, min, max);
-                        }
-
-                        cont.DropItem(item);
-                    }
-                    else if (item is BaseJewel)
-                    {
-                        int attributeCount;
-                        int min, max;
-
-                        //GetRandomAOSStats(out attributeCount, out min, out max);
-                        switch (level)
-                        {
-                            case 0:
-                                min = 0;
-                                max = 20;
-                                attributeCount = 2;
-                                break;
-                            case 1:
-                                min = 0;
-                                max = 40;
-                                attributeCount = 2;
-                                break;
-                            case 2:
-                                min = 10;
-                                max = 50;
-                                attributeCount = 3;
-                                break;
-                            case 3:
-                                min = 20;
-                                max = 60;
-                                attributeCount = 3;
-                                break;
-                            case 4:
-                                min = 30;
-                                max = 75;
-                                attributeCount = 4;
-                                break;
-                            case 5:
-                                min = 50;
-                                max = 100;
-                                attributeCount = 5;
-                                break;
-                            case 6:
-                                min = 80;
-                                max = 100;
-                                attributeCount = 5;
-                                break;
-                            case 7:
-                                min = 100;
-                                max = 100;
-                                attributeCount = 6;
-                                break;
-                            default:
-                                min = 0;
-                                max = 100;
-                                attributeCount = 4;
-                                break;
-                        }
-
-                        BaseRunicTool.ApplyAttributesTo((BaseJewel)item, attributeCount, min, max);
-
-                        cont.DropItem(item);
-                    }
+                    item = LootPackEntry.Mutate(null, 0, item, level);
+                    item.Unidentified = false;
+                    cont.DropItem(item);
                 }
             }
 

@@ -1825,17 +1825,26 @@ namespace Server.Items
 
         private static string GetDmgSuffix(BaseWeapon wep)
         {
-            var temp = Convert.ToInt32(wep.DamageLevel);
-            if (temp >= 1 && temp <= 5) return " of Ruin ";
-            else if (temp > 6 && temp <= 10) return " of Might ";
-            else if (temp > 11 && temp <= 15) return " of Force ";
-            else if (temp > 16 && temp <= 20) return " of Power ";
-            else if (temp > 21 && temp <= 25) return " of Vanquishing ";
-            else if (temp > 26) return " of Devastation ";
-
-            return "";
+            if (wep.DamageLevel == WeaponDamageLevel.Regular) return "";
+            switch (wep.DamageLevel)
+            {
+                case WeaponDamageLevel.Ruin:
+                case WeaponDamageLevel.Might:
+                case WeaponDamageLevel.Force:
+                case WeaponDamageLevel.Power:
+                    return " of " + wep.DamageLevel;
+                    break;
+                case WeaponDamageLevel.Vanq:
+                    return " of Vanquishing";
+                    break;
+                case WeaponDamageLevel.Deva:
+                    return " of Devastation";
+                    break;
+                default:
+                    return "";
+                    break;
+            }
         }
-
         private static string GetArmorSuffix(BaseArmor armor)
         {
             var temp = Convert.ToInt32(armor.ProtectionLevel);
@@ -2679,12 +2688,12 @@ namespace Server.Items
                     break;
             }
 
-            if (numb < 150) { weapon.DamageLevel = (WeaponDamageLevel)5; }
-            else if (numb < 300) { weapon.DamageLevel = (WeaponDamageLevel)10; }
-            else if (numb < 400) { weapon.DamageLevel = (WeaponDamageLevel)15; }
-            else if (numb < 500) { weapon.DamageLevel = (WeaponDamageLevel)20; }
-            else if (numb < 600) { weapon.DamageLevel = (WeaponDamageLevel)25; }
-            else { weapon.DamageLevel = (WeaponDamageLevel)30; }
+            if (numb < 150) { weapon.DamageLevel = WeaponDamageLevel.Ruin; }
+            else if (numb < 300) { weapon.DamageLevel = WeaponDamageLevel.Force; }
+            else if (numb < 400) { weapon.DamageLevel = WeaponDamageLevel.Might; }
+            else if (numb < 500) { weapon.DamageLevel = WeaponDamageLevel.Power; }
+            else if (numb < 600) { weapon.DamageLevel = WeaponDamageLevel.Vanq; }
+            else { weapon.DamageLevel = WeaponDamageLevel.Deva; }
 
             var another = rnd.Next(1, 85);
             if (another <= (10 * MagicLevel))
@@ -2971,7 +2980,7 @@ namespace Server.Items
         private static void ZuluApplySkillBonus(AosSkillBonuses attrs, int index, int level, SkillName skillname)
         {
 
-            SkillName sk;
+            SkillName sk = skillname;
 
             if (attrs.Owner is Pickaxe)
             {
@@ -2981,8 +2990,6 @@ namespace Server.Items
             {
                 sk = SkillName.Blacksmith;
             }
-
-            sk = skillname;
 
             attrs.SetValues(index, sk, level);
         }

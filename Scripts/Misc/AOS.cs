@@ -187,13 +187,16 @@ namespace Server
             }
             else if (Core.ML && m is PlayerMobile && from is PlayerMobile)
             {
-                if (quiver != null)
-                    damage += damage * quiver.DamageIncrease / 100;
+                totalDamage = damage;
 
-                if (!deathStrike)
-                    totalDamage = Math.Min(damage, 35);	// Direct Damage cap of 35
-                else
-                    totalDamage = Math.Min(damage, 70);	// Direct Damage cap of 70
+                if (quiver != null)
+                    totalDamage += damage * quiver.DamageIncrease / 100;
+
+                //JustZH: remmoved this shiet, BAM!
+                //if (!deathStrike)
+                //    totalDamage = Math.Min(damage, 35);	// Direct Damage cap of 35
+                //else
+                //    totalDamage = Math.Min(damage, 70);	// Direct Damage cap of 70
             }
             else
             {
