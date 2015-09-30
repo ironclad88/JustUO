@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Server.ContextMenus;
 using Server.Engines.Craft;
@@ -408,7 +408,7 @@ namespace Server.Items
                 //        break;
                 //}
 
-                
+
                 //int bonus = (int)((-8 + (8 * (int)this.m_Quality)));
                 //ar += bonus;
                 return this.ScaleArmorByDurability(ar);
@@ -668,10 +668,10 @@ namespace Server.Items
             set
             {
                 this.UnscaleDurability();
-                if(value != ArmorQuality.Exceptional)
+                if (value != ArmorQuality.Exceptional)
                 {
                     //we are setting quality to non-exceptional
-                    if(this.m_Quality == ArmorQuality.Exceptional)
+                    if (this.m_Quality == ArmorQuality.Exceptional)
                     {
                         //item was previously exceptional, store quality scalar
                         this.m_ExceQualityScalar = this.QualityScalar;
@@ -1349,11 +1349,12 @@ namespace Server.Items
 
         private bool isNegative(int val)
         {
-            if (val > 0){ return true; } return false;
+            if (val > 0) { return true; } return false;
         }
 
         //JustZH stupid function for crafting resources different penalties
-        private int checkDexRed(int tempDex){
+        private int checkDexRed(int tempDex)
+        {
             if (this.m_Resource == CraftResource.Fruity) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
             if (this.m_Resource == CraftResource.Spectral) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
             if (this.m_Resource == CraftResource.Onyx) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
@@ -1722,7 +1723,7 @@ namespace Server.Items
                     goto case 9;
                 case 9:
                     {
-                        if(version < 13) reader.ReadInt(); // only read (m_IdHue), don't assign..
+                        if (version < 13) reader.ReadInt(); // only read (m_IdHue), don't assign..
                         goto case 8;
                     }
                 case 8:
@@ -2162,7 +2163,7 @@ namespace Server.Items
             if (!Ethics.Ethic.CheckEquip(from, this))
                 return false;
 
-            // JustZH Mages can�t equip certain types of armor, need to add STEEL type items to this later
+            // JustZH Mages can´t equip certain types of armor, need to add STEEL type items to this later
             if (from.SpecClasse == SpecClasse.Mage)
             {
                 if (this.MaterialType == AMT.Chainmail || this.MaterialType == AMT.Plate || this.MaterialType == AMT.Ringmail || this.GetType() == typeof(BaseShield) || this.MaterialType == AMT.Studded)
@@ -2260,7 +2261,7 @@ namespace Server.Items
             return false;
         }
 
-        
+
 
         public override void OnRemoved(IEntity parent)
         {
@@ -2438,9 +2439,9 @@ namespace Server.Items
             if (this.m_Quality == ArmorQuality.Exceptional)
             {
                 if (this.Resource != CraftResource.Iron)
-                    list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + " " + name); 
-                    //list.Add(1053100, "#{0}\t{1}", oreType, name); // exceptional ~1_oretype~ ~2_armortype~
-                    //JustZH : this should be something like this, but this doesn't work for some reason:
+                    list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + " " + name);
+                //list.Add(1053100, "#{0}\t{1}", oreType, name); // exceptional ~1_oretype~ ~2_armortype~
+                //JustZH : this should be something like this, but this doesn't work for some reason:
                 //list.Add("Exceptional " + CraftResources.GetInfo(this.Resource).Name + name); // exceptional ~1_oretype~ ~2_armortype~
                 else
                     list.Add(1050040, name); // exceptional ~1_ITEMNAME~
@@ -2448,8 +2449,8 @@ namespace Server.Items
             else
             {
                 if (this.Resource != CraftResource.Iron)
-                    list.Add(CraftResources.GetInfo(this.Resource).Name + " " + name); 
-                    //list.Add(1053099, "#{0}\t{1}", oreType, name); // ~1_oretype~ ~2_armortype~
+                    list.Add(CraftResources.GetInfo(this.Resource).Name + " " + name);
+                //list.Add(1053099, "#{0}\t{1}", oreType, name); // ~1_oretype~ ~2_armortype~
                 else if (this.Name == null)
                     list.Add(this.LabelNumber);
                 else
@@ -2537,7 +2538,7 @@ namespace Server.Items
                 {
                     list.Add("Armor Rating " + prop.ToString());
                 }
-                
+
 
                 if ((prop = this.m_AosAttributes.WeaponDamage) != 0)
                     list.Add(1060401, prop.ToString()); // damage increase ~1_val~%

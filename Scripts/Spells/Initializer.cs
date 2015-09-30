@@ -103,6 +103,7 @@ namespace Server.Spells
 
             // holy (cleric)
             Register(700, typeof(Zulu.ClericSpells.HolyGate));
+            Register(701, typeof(Zulu.ClericSpells.TrialByFire));
 
             if (Core.AOS)
             {

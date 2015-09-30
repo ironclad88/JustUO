@@ -196,7 +196,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool StormSpirit
+        public bool TrialbyFire
         {
             get
             {
@@ -238,6 +238,7 @@ namespace Server.Items
 
         public override bool OnDragDrop(Mobile from, Item dropped)
         {
+            
             if (from.SpecClasse == SpecClasse.Cleric)
             {
                 if (from == null || dropped == null)
@@ -292,21 +293,27 @@ namespace Server.Items
                         if (SkillCheck(player, 90)) { if (HolyGate == true) { player.SendMessage("This book already contains this spell"); } else { HolyGate = true; scroll.Consume(1); } }
                         break;
                     }
-                
+                case "Trial by Fire scroll":
+                    {
+                        if (SkillCheck(player, 90)) { if (TrialbyFire == true) { player.SendMessage("This book already contains this spell"); } else { TrialbyFire = true; scroll.Consume(1); } }
+                        break;
+                    }
+
                 // Add more
             }
         }
 
         public override void OnDoubleClick(Mobile from)
         {
-            if (from.SpecClasse == SpecClasse.Cleric) { 
-            Container pack = from.Backpack;
-            if (Parent == from || (pack != null && Parent == pack))
+            if (from.SpecClasse == SpecClasse.Cleric)
             {
-                from.CloseGump(typeof(holybookgump));
-                from.SendGump(new holybookgump(from, spellArray));
-            }
-            else from.SendLocalizedMessage(500207); // The spellbook must be in your backpack (and not in a container within) to open.      
+                Container pack = from.Backpack;
+                if (Parent == from || (pack != null && Parent == pack))
+                {
+                    from.CloseGump(typeof(holybookgump));
+                    from.SendGump(new holybookgump(from, spellArray));
+                }
+                else from.SendLocalizedMessage(500207); // The spellbook must be in your backpack (and not in a container within) to open.      
             }
             else
             {

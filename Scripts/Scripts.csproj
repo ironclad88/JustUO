@@ -88,6 +88,311 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccBook.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccBookEntry.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccBookGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccBuyGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccFilter.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PowerScrollAccFilterGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PSExchange\PowerScrollExchange.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PSExchange\PSCredits.cs" />
+    <Compile Include="ACC Systems\ACC Related\PowerScrollAccBook\PSExchange\PSCreditsGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\Gumps\PGAddEditGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\Gumps\PGGump.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\Items\PublicGate.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\PGEntry.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\PGGlobalSettings.cs" />
+    <Compile Include="ACC Systems\ACC Related\Public Gates\PGSystem.cs" />
+    <Compile Include="ACC Systems\ACC\ACC.cs" />
+    <Compile Include="ACC Systems\ACC\ACCGump.cs" />
+    <Compile Include="ACC Systems\ACC\ACCGumpParams.cs" />
+    <Compile Include="ACC Systems\ACC\ACCSystem.cs" />
+    <Compile Include="ACC Systems\ACC\Global Settings.cs" />
+    <Compile Include="ACC Systems\Central Memory\CentralMemory.cs" />
+    <Compile Include="ACC Systems\Central Memory\Module.cs" />
+    <Compile Include="ACC Systems\Central Memory\ModuleList.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\BaseInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CastCommandsModule.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CastInfo.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CSpellScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\CSS.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\IconPlacementGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\Icons Module\ApplyIcons.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\Icons Module\IconInfo.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\Icons Module\IconsModule.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\ScrollBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\ScrollGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\SpellIconGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 01 Core\SpellInfoRegistry.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\CReagent.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\CSkillCheck.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\CSSettings.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\Reagents\DestroyingAngel.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\Reagents\PetrafiedWood.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\Reagents\SpringWater.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\School.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 02 Changing\SpellRestrictions.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\AncientBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\AncientInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\AncientSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\AncientSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\AncientSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\FakeGold.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\GreaterNaturalFire.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\HouseTrapDeeds.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\HouseTraps.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\NaturalFire.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Items\SleepingBody.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Mobiles\CharmedMobile.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Mobiles\DeathVortex.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Mobiles\Souless.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\AwakenAllScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\AwakenScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\CauseFearScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\CharmScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\CloneScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\DanceScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\DeathVortexScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\DestroyTrapScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\DetectTrapScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\DouseScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\EnchantScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\FalseCoinScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\FireRingScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\FireworksScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\GlimmerScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\GreatDouseScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\GreatIgniteScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\GreatLightScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\IgniteScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\InvisibilityAllScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\LocateScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\MassCharmScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\MassDeathScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\MassMightScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\MassSleepScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\PeerScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\SeanceScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\SleepFieldScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\SleepScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\SwarmScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\ThunderScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\TremorScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Scrolls\WeatherScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\AwakenAllSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\AwakenSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\CauseFearSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\CharmSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\CloneSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\DanceSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\DeathVortexSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\DestroyTrapSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\DetectTrapSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\DouseSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\EnchantSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\FalseCoinSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\FireRingSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\FireworksSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\GlimmerSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\GreaterDouseSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\GreatIgniteSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\GreatLightSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\IgniteSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\InvisibilityAllSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\LocateSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\MassCharmSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\MassDeathSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\MassMightSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\MassSleepSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\PeerSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\SeanceSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\SleepFieldSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\SleepSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\SwarmSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\ThunderSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\TremorSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\Spells\WeatherSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\AvatarBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\AvatarInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\AvatarSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\AvatarSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\AvatarSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Scrolls\HeavenlyLightScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Scrolls\HeavensGateScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Scrolls\MarkOfGodsScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Spells\HeavenlyLightSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Spells\HeavensGateSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Avatar\Spells\MarkOfGodsSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\BardBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\BardInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\BardSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\BardSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\BardSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\ArmysPaeonScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\EnchantingEtudeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\EnergyCarolScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\EnergyThrenodyScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\FireCarolScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\FireThrenodyScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\FoeRequiemScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\IceCarolScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\IceThrenodyScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\KnightsMinneScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\MagesBalladScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\MagicFinaleScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\PoisonCarolScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\PoisonThrenodyScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\SheepfoeMamboScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Scrolls\SinewyEtudeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\ArmysPaeonSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\EnchantingEtudeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\EnergyCarolSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\EnergyThrenodySpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\FireCarolSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\FireThrenodySpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\FoeRequiemSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\IceCarolSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\IceThrenodySpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\KnightsMinneSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\MagesBalladSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\MagicFinaleSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\PoisonCarolSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\PoisonThrenodySpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\SheepfoeMamboSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Bard\Spells\SinewyEtudeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\ClericBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\ClericInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\ClericSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\ClericSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\ClericSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\PlayerEvent.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\AngelicFaithScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\BanishEvilScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\DampenSpiritScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\DivineFocusScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\HammerOfFaithScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\PurgeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\RestorationScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\SacredBoonScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\SacrificeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\SmiteScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\TouchOfLifeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Scrolls\TrialByFireScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\AngelicFaithSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\BanishEvilSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\DampenSpiritSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\DivineFocusSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\HammerOfFaithSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\PurgeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\RestorationSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\SacredBoonSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\SacrificeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\SmiteSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\TouchOfLifeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Cleric\Cleric\Spells\TrialByFireSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Chivalry\ChivalryInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Chivalry\ChivalrySpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Chivalry\ChivalrySpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Magery\MageInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Magery\MageSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Magery\MageSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Necro\NecroInitialzier.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Necro\NecroSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Distro\Necro\NecroSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\DruidBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\DruidInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\DruidSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\DruidSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\DruidSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\DryadFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\PixieFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\QuagmireFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\SkitteringHopperFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\SpiritEagleFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Familiars\SummonedTreefellowFamiliar.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Items\LureStone.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Items\MushroomCircle.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Items\MushroomGateCircle.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Items\SacredStone.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\BlendWithForestScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\DruidFamiliarScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\EnchantedGroveScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\GraspingRootsScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\HollowReedScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\LeafWhirlwindScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\LureStoneScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\MushroomGatewayScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\NaturesPassageScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\PackOfBeastScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\RestorativeSoilScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\ShieldOfEarthScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\SpringOfLifeScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\StoneCircleScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\SwarmOfInsectsScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Scrolls\VolcanicEruptionScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\BlendWithForrestSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\DruidFamiliarSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\EnchantedGroveSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\GraspingRootsSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\HollowReedSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\LeafWhirlwindSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\LureStoneSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\MushroomGatewaySpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\NaturesPassageSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\PackOfBeastSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\RestorativeSoilSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\ShieldOfEarthSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\SpringOfLifeSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\StoneCircleSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\SwarmofInsectsSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Druid\Spells\VolcanicEruptionSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\HellHound.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\IceHound.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\PackRat.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\ThunderHound.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\Tiger.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Familars\VampireWolf.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\RangerBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\RangerInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\RangerSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\RangerSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\RangerSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\FireBowScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\HuntersAimScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\IceBowScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\LightningBowScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\NoxBowScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\PhoenixFlight.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\RangerFamiliarScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Scrolls\SummonMountScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\FamiliarSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\FireBowSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\HuntersAimSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\IceBowSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\LightningBowSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\NoxBowSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\PhoenixFlightSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ranger\Spells\SummonMountSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Items\CharmedMobile.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Items\FalseCoin.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\RogueBag.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\RogueInitializer.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\RogueSpell.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\RogueSpellbook.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\RogueSpellbookGump.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Scrolls\CharmScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Scrolls\FalseCoinScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Scrolls\IntimidationScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Scrolls\ShadowScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Scrolls\SlyFoxScroll.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Spells\Charm.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Spells\FalseCoin.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Spells\Intimidation.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Spells\Shadow.cs" />
+    <Compile Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Rogue\Spells\SlyFox.cs" />
     <Compile Include="Accounting\AccessRestrictions.cs" />
     <Compile Include="Accounting\Account.cs" />
     <Compile Include="Accounting\AccountAttackLimiter.cs" />
@@ -2209,6 +2514,7 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\ShiftingearthScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\SummonMammalsScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\HolyGateScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\TrialbyFireScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\KillScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Necro\WyvernStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Spellbook.cs" />
@@ -5320,6 +5626,7 @@
     <Compile Include="Spells\UnsummonTimer.cs" />
     <Compile Include="Spells\Zulu\ClericSpells\HolyGate.cs" />
     <Compile Include="Spells\Zulu\ClericSpells\HolySpell.cs" />
+    <Compile Include="Spells\Zulu\ClericSpells\TrialByFire.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\Antidote.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\CallLightning.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\Earthbless.cs" />
@@ -5484,6 +5791,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ACC Systems\ACC\searchplugins\" />
+    <Folder Include="ACC Systems\Complete Spell System\-=+ 02 Changing\searchplugins\" />
+    <Folder Include="ACC Systems\Complete Spell System\-=+ 03 Systems\Ancient\searchplugins\" />
     <Folder Include="Items\Clothing\ZuluClothing\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

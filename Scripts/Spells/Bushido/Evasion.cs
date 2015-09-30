@@ -106,13 +106,14 @@ namespace Server.Spells.Bushido
                 }
             }
 			
-            if (IsEvading(defender) && BaseWeapon.CheckParry(defender))
+            // JustZH removed 
+          /*  if (IsEvading(defender) && BaseWeapon.CheckParry(defender))
             {
                 defender.Emote("*evades*"); // Yes.  Eew.  Blame OSI.
                 defender.FixedEffect(0x37B9, 10, 16);
                 return true;
             }
-
+            */
             return false;
         }
 

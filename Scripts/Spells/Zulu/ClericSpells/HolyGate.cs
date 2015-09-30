@@ -81,6 +81,7 @@ namespace Server.Spells.Zulu.ClericSpells
             FinishSequence();
         }
 
+
         public static void playEffect(Mobile m)
         {
 
@@ -88,22 +89,23 @@ namespace Server.Spells.Zulu.ClericSpells
 
         private class InternalTarget : Target
         {
-            private readonly HolyGate m_Owner;
+            private HolyGate m_Owner;
+
             public InternalTarget(HolyGate owner)
-                : base(Core.ML ? 10 : 12, false, TargetFlags.None)
+                : base(12, true, TargetFlags.None)
             {
-                this.m_Owner = owner;
+                m_Owner = owner;
             }
 
             protected override void OnTarget(Mobile from, object o)
             {
-                if (o is Mobile)
-                    this.m_Owner.Target((Mobile)o);
+                if (o is IPoint3D)
+                    m_Owner.Target((IPoint3D)o);
             }
 
             protected override void OnTargetFinish(Mobile from)
             {
-                this.m_Owner.FinishSequence();
+                m_Owner.FinishSequence();
             }
         }
 

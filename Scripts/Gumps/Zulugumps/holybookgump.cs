@@ -33,10 +33,10 @@ namespace Server.Gumps.Zulugumps
             this.Dragable = true;
             this.Resizable = false;
             this.AddPage(0);
-            this.AddImage(30, 30, 2203);
+            this.AddImage(30, 30, 2201);
 
-            this.AddLabel(70, 40, 28, @"Circle 1 Spells");
-            this.AddLabel(230, 40, 28, @"Circle 2 Spells");
+            this.AddLabel(70, 40, 28, @"Lesser Prayers");
+            this.AddLabel(230, 40, 28, @"Greater Prayers");
 
             if (array[1]) { // starts with 1 instead of 0, 0 is the event for book close, if you start with 0 you cast antidote when you close the damn book
             this.AddLabel(xName1, yName1, 66, @"Antidote");
@@ -123,7 +123,7 @@ namespace Server.Gumps.Zulugumps
 
             if (array[15])
             {
-                this.AddLabel(xName2, yName2 += 20, 66, @"Storm Spirit");
+                this.AddLabel(xName2, yName2 += 20, 66, @"Trial of Fire");
                 this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 15, GumpButtonType.Reply, 0);
             }
 
@@ -191,11 +191,12 @@ namespace Server.Gumps.Zulugumps
                     Console.WriteLine("Casting Fire Spirit");
                     break;
                 case 15:
-                    Console.WriteLine("Casting Storm Spirit");
+                    new TrialByFire(caster, null).Cast();
+                  //  Console.WriteLine("Casting Storm Spirit");
                     break;
                 case 16:
                     new HolyGate(caster, null).Cast();
-                    Console.WriteLine("Casting Water Spirit");
+                  //  Console.WriteLine("Casting Water Spirit");
                     break;
 
             }
