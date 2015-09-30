@@ -36,6 +36,7 @@ namespace Server.Spells.Fifth
         }
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -57,8 +58,9 @@ namespace Server.Spells.Fifth
 
                     int damage = (int)((this.Caster.Skills[SkillName.Magery].Value + this.Caster.Int) / 5);
 					
-                    if (damage > 60)
+                    /*if (damage > 60)
                         damage = 60;
+                    */
 
                     Timer.DelayCall(TimeSpan.FromSeconds(1.0),
                         new TimerStateCallback(AosDelay_Callback),

@@ -147,6 +147,18 @@ namespace Server.Commands
                 player.Skills.Veterinary.Base = skillInc;
                 player.Skills.Camping.Base = skillInc;
             }
+            else if (className == "Cleric" || className == "cleric")
+            {
+                player.Skills.Macing.Base = skillInc;
+                player.Skills.Anatomy.Base = skillInc;
+                player.Skills.Tactics.Base = skillInc;
+                player.Skills.EvalInt.Base = skillInc;
+                player.Skills.Magery.Base = skillInc;
+                player.Skills.Meditation.Base = skillInc;
+                player.Skills.Parry.Base = skillInc;
+                player.Skills.SpiritSpeak.Base = skillInc;
+            }
+
             else if (className == "pp" || className == "PP")
             {
                 foreach (Skill skill in player.Skills) // set all skills to skillInc

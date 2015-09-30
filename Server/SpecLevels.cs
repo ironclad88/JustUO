@@ -14,49 +14,34 @@ namespace Server
 
         public void GetLevel(Mobile player, out SpecClasse curr_classe, out int curr_level)
         {
-            double s_warrior, s_bard, s_crafter, s_mage, s_ranger, s_thief;
-            double total = 0;
-            total += s_warrior = totalWarrior(player);
-            total += s_bard = totalBard(player);
-            total += s_crafter = totalCrafter(player);
-            total += s_mage = totalMage(player);
-            total += s_ranger = totalRanger(player);
-            total += s_thief = totalThief(player);
-
-            //calculate which spec the player has most skill points in
-            double max = 0;
-            SpecClasse spec = SpecClasse.None;
+           // double s_warrior, s_bard, s_crafter, s_mage, s_ranger, s_thief, s_cleric;
+            double total = 0, max = 0;
             int level = 0;
+            var classDict = new Dictionary<SpecClasse, double>(6);
 
-            if (s_warrior > max)
-            {
-                max = s_warrior;
-                spec = SpecClasse.Warrior;
+            try { 
+            classDict.Add(SpecClasse.Warrior, totalWarrior(player));
+            classDict.Add(SpecClasse.Bard, totalBard(player));
+            classDict.Add(SpecClasse.Crafter, totalCrafter(player));
+            classDict.Add(SpecClasse.Mage, totalMage(player));
+            classDict.Add(SpecClasse.Ranger, totalRanger(player));
+            classDict.Add(SpecClasse.Thief, totalThief(player));
+            classDict.Add(SpecClasse.Cleric, totalCleric(player));
             }
-            if (s_bard > max)
+            catch (Exception e)
             {
-                max = s_bard;
-                spec = SpecClasse.Bard;
+                Console.WriteLine(e); // this wont happen, sissy catch
             }
-            if (s_crafter > max)
+         
+            SpecClasse spec = SpecClasse.None;
+          
+            foreach (var val in classDict)
             {
-                max = s_crafter;
-                spec = SpecClasse.Crafter;
-            }
-            if (s_mage > max)
-            {
-                max = s_mage;
-                spec = SpecClasse.Mage;
-            }
-            if (s_ranger > max)
-            {
-                max = s_ranger;
-                spec = SpecClasse.Ranger;
-            }
-            if (s_thief > max)
-            {
-                max = s_thief;
-                spec = SpecClasse.Thief;
+                if (val.Value > max)
+                {
+                    spec = val.Key;
+                    max = val.Value;
+                }
             }
 
             // spec == current classe, now calculate level
@@ -72,9 +57,10 @@ namespace Server
                     level++;
                 }
             }
-
+            
             curr_level = level;
             curr_classe = spec;
+            Console.WriteLine("level " + curr_level + " classe " + curr_classe);
         }
 
         private double totalWarrior(Mobile player)
@@ -161,5 +147,19 @@ namespace Server
             return skillsTotal;
         }
 
+        private double totalCleric(Mobile player)
+        {
+            double skillsTotal = 0;
+            skillsTotal += player.Skills.Macing.Value;
+            skillsTotal += player.Skills.Anatomy.Value;
+            skillsTotal += player.Skills.EvalInt.Value;
+            skillsTotal += player.Skills.Magery.Value;
+            skillsTotal += player.Skills.SpiritSpeak.Value;
+            skillsTotal += player.Skills.Parry.Value;
+            skillsTotal += player.Skills.Meditation.Value;
+            skillsTotal += player.Skills.Tactics.Value; 
+            return skillsTotal;
+        }
+        
     }
 }

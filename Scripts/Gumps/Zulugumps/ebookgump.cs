@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
+using Server.Spells;
+using Server.Spells.Zulu.EarthSpells;
 
 /*
  *  Author Oscar Ternström
@@ -10,13 +12,17 @@ using Server.Network;
 
 namespace Server.Gumps.Zulugumps
 {
-
+    
     public class ebookgump : Gump
     {
+
+        Mobile test;
+
         public ebookgump(Mobile owner, bool[] array)
             : base(100, 0)
         {
             try {
+                test = owner;
             int xName1 = 80;
             int xName2 = 240;
             int yName1 = 65;
@@ -144,34 +150,35 @@ namespace Server.Gumps.Zulugumps
         public override void OnResponse(NetState state, RelayInfo info)
         {
             Mobile from = state.Mobile;
+            Mobile caster = test;
             switch (info.ButtonID)
             {
                 case 1:
-                    Console.WriteLine("Casting Antidote");
+                    new Antidote(caster, null).Cast();
                     break;
                 case 2:
-                    Console.WriteLine("Casting Owl Sight");
+                    new OwlSight(caster, null).Cast();
                     break;
                 case 3:
-                    Console.WriteLine("Casting Shifting Earth");
+                    new ShiftingEarth(caster, null).Cast();
                     break;
                 case 4:
-                    Console.WriteLine("Casting Summon Mammals");
+                    new SummonMammal(caster, null).Cast();
                     break;
                 case 5:
-                    Console.WriteLine("Casting Call Lightning");
+                    new CallLightning(caster, null).Cast();
                     break;
                 case 6:
-                    Console.WriteLine("Casting Earth Blessing");
+                    new EarthBless(caster, null).Cast();
                     break;
                 case 7:
-                    Console.WriteLine("Casting Earth Portal");
+                    new Earthportal(caster, null).Cast();
                     break;
                 case 8:
-                    Console.WriteLine("Casting Nature´s Touch");
+                    new NaturesTouch(caster, null).Cast();
                     break;
                 case 9:
-                    Console.WriteLine("Casting Gust of Air");
+                    new Gustofair(caster, null).Cast();
                     break;
                 case 10:
                     Console.WriteLine("Casting Rising Fire");

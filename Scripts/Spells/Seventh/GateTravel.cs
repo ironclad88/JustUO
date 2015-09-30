@@ -37,6 +37,7 @@ namespace Server.Spells.Seventh
         }
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             if (this.m_Entry == null)
                 this.Caster.Target = new InternalTarget(this);
             else
@@ -64,37 +65,13 @@ namespace Server.Spells.Seventh
             return SpellHelper.CheckTravel(this.Caster, TravelCheckType.GateFrom);
         }
 
-        public void Effect(Point3D loc, Map map, bool checkMulti)
+        public void Effect(Point3D loc, Map map, bool checkMulti) // JustZH removed some stupid conditions
         {
-            if (Factions.Sigil.ExistsOn(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(1061632); // You can't do that while carrying the sigil.
-            }
-            else if (map == null || (!Core.AOS && this.Caster.Map != map))
-            {
-                this.Caster.SendLocalizedMessage(1005570); // You can not gate to another facet.
-            }
-            else if (!SpellHelper.CheckTravel(this.Caster, TravelCheckType.GateFrom))
+            if (!SpellHelper.CheckTravel(this.Caster, TravelCheckType.GateFrom))
             {
             }
             else if (!SpellHelper.CheckTravel(this.Caster, map, loc, TravelCheckType.GateTo))
             {
-            }
-            else if (map == Map.Felucca && this.Caster is PlayerMobile && ((PlayerMobile)this.Caster).Young)
-            {
-                this.Caster.SendLocalizedMessage(1049543); // You decide against traveling to Felucca while you are still young.
-            }
-            else if (this.Caster.Kills >= 5 && map != Map.Felucca)
-            {
-                this.Caster.SendLocalizedMessage(1019004); // You are not allowed to travel there.
-            }
-            else if (this.Caster.Criminal)
-            {
-                this.Caster.SendLocalizedMessage(1005561, "", 0x22); // Thou'rt a criminal and cannot escape so easily.
-            }
-            else if (SpellHelper.CheckCombat(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(1005564, "", 0x22); // Wouldst thou flee during the heat of battle??
             }
             else if (!map.CanSpawnMobile(loc.X, loc.Y, loc.Z))
             {

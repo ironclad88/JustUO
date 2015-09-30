@@ -12,7 +12,8 @@ namespace Server.Items
 {
 	public class Bandage : Item, IDyable
 	{
-		public static int Range = (Core.AOS ? 2 : 1);
+        // JustZH range set to 2 27/8-15, much nicer with some range
+		public static int Range = 2;
 
 		public override double DefaultWeight { get { return 0.1; } }
 
@@ -444,16 +445,17 @@ namespace Server.Items
 
 					double min, max;
 
-					if (Core.AOS)
+                    // JustZH removed 27/8-15
+					/*if (Core.AOS)
 					{
 						min = (anatomy / 8.0) + (healing / 5.0) + 4.0;
 						max = (anatomy / 6.0) + (healing / 2.5) + 4.0;
 					}
 					else
-					{
+					{*/
 						min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
 						max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
-					}
+					//}
 
 					double toHeal = min + (Utility.RandomDouble() * (max - min));
 
@@ -574,14 +576,15 @@ namespace Server.Items
 
 				if (onSelf)
 				{
-					if (Core.AOS)
+                    // JustZH removed 27/8-15
+					/*if (Core.AOS)
 					{
 						seconds = 5.0 + (0.5 * ((double)(120 - dex) / 10)); // TODO: Verify algorithm
 					}
 					else
-					{
+					{*/
 						seconds = 9.4 + (0.6 * ((double)(120 - dex) / 10));
-					}
+					//}
 				}
 				else
 				{
@@ -589,7 +592,8 @@ namespace Server.Items
 					{
 						seconds = 2.0;
 					}
-					else if (Core.AOS)
+                    // JustZH removed 27/8-15
+					/*else if (Core.AOS)
 					{
 						if (dex < 204)
 						{
@@ -601,7 +605,7 @@ namespace Server.Items
 						}
 					}
 					else
-					{
+					{*/
 						if (dex >= 100)
 						{
 							seconds = 3.0 + resDelay;
@@ -614,7 +618,7 @@ namespace Server.Items
 						{
 							seconds = 5.0 + resDelay;
 						}
-					}
+					//}
 				}
 
 				BandageContext context = GetContext(healer);

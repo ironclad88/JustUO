@@ -38,7 +38,7 @@ namespace Server.Spells
             typeof(Obsidian),
             typeof(BloodSpawn),
             typeof(EyeofNewt),
-            typeof(Pumice),
+            typeof(Pumice)
 
             
         };
@@ -350,6 +350,7 @@ namespace Server.Spells
             m_Types[27] = value;
             }
         }
+
    
         public Type[] Types
         {

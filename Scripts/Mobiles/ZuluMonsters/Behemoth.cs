@@ -47,7 +47,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 50, 60);
             this.SetResistance(ResistanceType.Energy, 50, 60);
              */
-            this.MagicLevel = 8;
+            this.MagicLevel = 7;
             this.LootIndex = 4;
 
             this.SetSkill(SkillName.DetectHidden, 100);

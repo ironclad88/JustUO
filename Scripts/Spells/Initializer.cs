@@ -86,8 +86,23 @@ namespace Server.Spells
             Register(62, typeof(Eighth.FireElementalSpell));
             Register(63, typeof(Eighth.WaterElementalSpell));
 
+            // Necro
             Register(70, typeof(Zulu.NecroSpells.WyvernStrikeSpell));
             Register(71, typeof(Zulu.NecroSpells.KillSpell));
+
+            // Earth
+            Register(85, typeof(Zulu.EarthSpells.Antidote));
+            Register(86, typeof(Zulu.EarthSpells.CallLightning));
+            Register(87, typeof(Zulu.EarthSpells.EarthBless));
+            Register(88, typeof(Zulu.EarthSpells.Earthportal));
+            Register(89, typeof(Zulu.EarthSpells.Gustofair));
+            Register(90, typeof(Zulu.EarthSpells.NaturesTouch));
+            Register(91, typeof(Zulu.EarthSpells.OwlSight));
+            Register(92, typeof(Zulu.EarthSpells.ShiftingEarth));
+            Register(93, typeof(Zulu.EarthSpells.SummonMammal));
+
+            // holy (cleric)
+            Register(700, typeof(Zulu.ClericSpells.HolyGate));
 
             if (Core.AOS)
             {

@@ -22,7 +22,9 @@ namespace Server.Items
 		Ninja,
 		Samurai,
 		Arcanist,
-		Mystic
+		Mystic,
+        Earth,
+        Necro
 	}
 
 	public enum BookQuality
@@ -218,6 +220,10 @@ namespace Server.Items
 			{
 				return SpellbookType.Regular;
 			}
+            else if (spellID >= 84 && spellID < 95) // temp values, change later
+            {
+                return SpellbookType.Earth;
+            }
 			else if (spellID >= 100 && spellID < 117)
 			{
 				return SpellbookType.Necromancer;

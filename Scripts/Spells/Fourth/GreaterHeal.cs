@@ -29,17 +29,18 @@ namespace Server.Spells.Fourth
         }
         public override bool CheckCast()
         {
-            if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
+           /* if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
             {
                 this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
                 return false;
-            }
+            }*/
 
             return base.CheckCast();
         }
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -71,7 +72,7 @@ namespace Server.Spells.Fourth
 
                 // Algorithm: (40% of magery) + (1-10)
 
-                int toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.4);
+                int toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.4 * this.Caster.SpecBonus(SpecClasse.Mage)); // justZh buffed greater heal with spec bonus
                 toHeal += Utility.Random(1, 10);
 
                 //m.Heal( toHeal, Caster );

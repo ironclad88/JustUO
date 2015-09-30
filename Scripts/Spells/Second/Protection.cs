@@ -119,6 +119,7 @@ namespace Server.Spells.Second
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             if (Core.AOS)
             {
                 if (this.CheckSequence())

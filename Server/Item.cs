@@ -4768,12 +4768,10 @@ namespace Server
             {
                 if (m_IdPrefix == value)
                 {
-                    Console.WriteLine("Got Value");
                     return;
                 }
                 if (value != null)
                 {
-                    Console.WriteLine("null Value");
                     m_IdPrefix = value;
                     InvalidateProperties();
                 }

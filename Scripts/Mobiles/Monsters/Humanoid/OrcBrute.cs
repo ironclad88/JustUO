@@ -15,13 +15,13 @@ namespace Server.Mobiles
             this.Name = "an orc brute";
             this.BaseSoundID = 0x45A;
 
-            this.SetStr(767, 945);
-            this.SetDex(66, 75);
-            this.SetInt(46, 70);
+            this.SetStr(2250, 2250);
+            this.SetDex(325, 325);
+            this.SetInt(300, 300);
 
             this.SetHits(476, 552);
 
-            this.SetDamage(20, 25);
+            this.SetDamage(20, 70);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 

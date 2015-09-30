@@ -36,6 +36,7 @@ namespace Server.Spells.Third
 
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -58,7 +59,7 @@ namespace Server.Spells.Third
                 m.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
                 m.PlaySound(0x1EA);
 
-                int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 100);
+                int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 120 * this.Caster.SpecBonus(SpecClasse.Mage));
                 TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
 
                 string args = String.Format("{0}\t{1}\t{2}", percentage, percentage, percentage);
@@ -77,7 +78,7 @@ namespace Server.Spells.Third
             {
                 this.m_Owner = owner;
             }
-
+            
             protected override void OnTarget(Mobile from, object o)
             {
                 if (o is Mobile)

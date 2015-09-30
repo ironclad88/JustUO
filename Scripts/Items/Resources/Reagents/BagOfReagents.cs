@@ -1,3 +1,4 @@
+using Server.Items.Resources.Reagents.ZuluReags;
 using System;
 
 namespace Server.Items
@@ -21,6 +22,18 @@ namespace Server.Items
             this.DropItem(new Nightshade(amount));
             this.DropItem(new SulfurousAsh(amount));
             this.DropItem(new SpidersSilk(amount));
+
+            this.DropItem(new BlackMoor(amount));
+            this.DropItem(new EyeofNewt(amount));
+            this.DropItem(new BrimStone(amount));
+            this.DropItem(new DragonsBlood(amount));
+            this.DropItem(new Obsidian(amount));
+            this.DropItem(new Pumice(amount));
+            this.DropItem(new SerpentsScales(amount));
+            this.DropItem(new VialofBlood(amount));
+            this.DropItem(new VolcanicAsh(amount));
+            this.DropItem(new WyrmsHeart(amount));
+            this.DropItem(new BloodSpawn(amount));
         }
 
         public BagOfReagents(Serial serial)

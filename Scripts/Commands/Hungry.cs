@@ -22,6 +22,7 @@ namespace Server.Commands
             Mobile m = e.Mobile;
 
             var hungerLevel = m.Hunger;
+            m.Hunger = 20; // not really needed, but who knows? maybe some hunger bug out there
             if(debug)Console.WriteLine(hungerLevel);
             if (hungerLevel == 20) // hunger should always be 20. But im not 100% certain yet
             {

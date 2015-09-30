@@ -26,6 +26,7 @@ namespace Server.Spells.Second
         }
         public override void OnCast()
         {
+            setCords(Caster.Y, Caster.X);
             this.Caster.Target = new InternalTarget(this);
             this.Caster.SendMessage("What do you wish to untrap?");
         }

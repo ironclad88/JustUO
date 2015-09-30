@@ -4048,6 +4048,17 @@ namespace Server.Mobiles
             m_DamageMax = total;
         }
 
+        public void SetDiceDmg(int rolls, int diceSides, int plus)
+        {
+            int total = 0;
+            for (int i = 0; i < rolls; i++)
+            {
+                total += Utility.RandomMinMax(1, diceSides);
+            }
+            m_DamageMin = total + plus;
+            m_DamageMax = total + plus;
+        }
+
         public void SetHits(int val)
         {
             if (val < 1000 && !Core.AOS)
