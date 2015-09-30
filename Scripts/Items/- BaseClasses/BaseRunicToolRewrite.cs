@@ -11,6 +11,30 @@ namespace Server.Items
 
         private static readonly SkillName[] m_PossibleBonusSkills = new SkillName[]
         {
+            SkillName.Herding,
+            SkillName.Snooping,
+            SkillName.Alchemy,
+            SkillName.RemoveTrap,
+            SkillName.EvalInt,
+            SkillName.AnimalLore,
+            SkillName.Lockpicking,
+            SkillName.Poisoning,
+            SkillName.Cooking,
+            SkillName.Inscribe,
+            SkillName.DetectHidden,
+            SkillName.ItemID,
+            SkillName.Tracking,
+            SkillName.Tinkering,
+            SkillName.Fishing,
+            SkillName.Tailoring,
+            SkillName.Lumberjacking,
+            SkillName.Carpentry,
+            SkillName.Fletching,
+            SkillName.Blacksmith,
+            SkillName.ArmsLore,
+            SkillName.TasteID,
+            SkillName.Begging,
+            SkillName.Cartography,
             SkillName.Swords,
             SkillName.Fencing,
             SkillName.Macing,
@@ -20,6 +44,7 @@ namespace Server.Items
             SkillName.Tactics,
             SkillName.Hiding,
             SkillName.Anatomy,
+            SkillName.Mining,
             SkillName.Healing,
             SkillName.Magery,
             SkillName.Meditation,
@@ -1522,48 +1547,20 @@ namespace Server.Items
 
         private static void ApplySkillBonus(AosSkillBonuses attrs, int index, int level)
         {
-         //   Console.WriteLine("ApplySkillBonus");
-            SkillName[] possibleSkills;// = (attrs.Owner is Spellbook ? m_PossibleSpellbookSkills : m_PossibleBonusSkills);
-            if (attrs.Owner is Spellbook)
+            int SkillRoll = Utility.Random(m_PossibleBonusSkills.Length);
+
+            var RolledSkill = m_PossibleBonusSkills[SkillRoll];
+
+            if (attrs.Owner is Pickaxe)
             {
-                possibleSkills = m_PossibleSpellbookSkills;
-            }
-            else if (attrs.Owner is Pickaxe)
-            {
-                possibleSkills = new SkillName[] { SkillName.Mining };
+                RolledSkill = SkillName.Mining;
             }
             else if (attrs.Owner is SmithHammer)
             {
-                possibleSkills = new SkillName[] { SkillName.Blacksmith };
+                RolledSkill = SkillName.Blacksmith;
             }
-            else
-            {
-                possibleSkills = m_PossibleBonusSkills;
-            }
-            int count = (Core.SE ? possibleSkills.Length : possibleSkills.Length - 2);
-
-            SkillName sk, check;
-            double bonus;
-            bool found;
-            int laps = 0;
-            do
-            {
-                found = false;
-                sk = possibleSkills[Utility.Random(count)];
-
-                if (laps >= count)
-                {
-                 //   Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
-                    break;
-                }
-
-                for (int i = 0; !found && i < 5; ++i)
-                    found = (attrs.GetValues(i, out check, out bonus) && check == sk);
-                laps++;
-            }
-            while (found);
-          //  Console.WriteLine("In ApplySkillBonus: " + index + " " + sk + " " + level);
-            attrs.SetValues(index, sk, level);
+            
+            attrs.SetValues(index, RolledSkill, level);
         }
 
         private static void ApplyResistance(BaseArmor ar, int min, int max, ResistanceType res, int low, int high)
@@ -2304,6 +2301,8 @@ namespace Server.Items
         {
             var chances = rnd.Next(1, 100) * MagicLevel;
 
+           // var chances = rnd.Next(1, 100) * MagicLevel;
+
             var level = 0;
             if (chances < 180)
                 level = 1;
@@ -2318,6 +2317,12 @@ namespace Server.Items
             else
                 level = 6;
 
+
+            if (MagicLevel >= 7 && level <= 2) { level++; }
+            else if (MagicLevel >= 8 && level <= 2) { level += 2; }
+            else if (MagicLevel >= 9 && level <= 2) { level += 2; }
+
+            Console.WriteLine("Apprentice Debug: MagicLevel = " + MagicLevel + " Chance = " + chances + " Final Level = " + level);
             return level;
         }
 
@@ -2981,15 +2986,6 @@ namespace Server.Items
         {
 
             SkillName sk = skillname;
-
-            if (attrs.Owner is Pickaxe)
-            {
-                sk = SkillName.Mining;
-            }
-            else if (attrs.Owner is SmithHammer)
-            {
-                sk = SkillName.Blacksmith;
-            }
 
             attrs.SetValues(index, sk, level);
         }
