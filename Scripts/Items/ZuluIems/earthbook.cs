@@ -245,14 +245,14 @@ namespace Server.Items
             {
                 SpellScroll scroll = (SpellScroll)dropped;
 
-                SpellbookType type = GetTypeForSpell(scroll.SpellID);
+               /* SpellbookType type = GetTypeForSpell(scroll.SpellID);
 
                 if (type != SpellbookType)
                 {
                     return false;
-                }
+                }*/
                 addSpell(scroll, from);
-
+                return true;
             }
             Mobile m = from;
             PlayerMobile mobile = m as PlayerMobile;
@@ -276,54 +276,66 @@ namespace Server.Items
 
         private void addSpell(SpellScroll scroll, Mobile player)
         {
-
-
-
-            switch (scroll.Name)
+            switch (scroll.SpellID) // SpellID == the registered ID in Initializer.cs 
             {
-                case "Earth bless scroll":
+                case 87:
                     {
                         if (SkillCheck(player, 90)){ if (EarthBlessing == true){ player.SendMessage("The Earth book already contains this spell"); } else  { EarthBlessing = true; scroll.Consume(1); }}
                         break;
                     }
-                case "Antidote scroll":
+                case 85:
                     {
                         if (SkillCheck(player, 90)) { if (Antidote == true) { player.SendMessage("The Earth book already contains this spell"); } else { Antidote = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Call lightning scroll":
+                case 86:
                     {
                         if (SkillCheck(player, 90)) { if (CallLightning == true) { player.SendMessage("The Earth book already contains this spell"); } else { CallLightning = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Earth portal scroll":
+                case 88:
                     {
                         if (SkillCheck(player, 90)) { if (EarthPortal == true) { player.SendMessage("The Earth book already contains this spell"); } else { EarthPortal = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Gust of air scroll":
+                case 89:
                     {
                         if (SkillCheck(player, 90)) { if (GustofAir == true) { player.SendMessage("The Earth book already contains this spell"); } else { GustofAir = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Nature´s touch scroll":
+                case 90:
                     {
                         if (SkillCheck(player, 90)) { if (NaturesTouch == true) { player.SendMessage("The Earth book already contains this spell"); } else { NaturesTouch = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Owl sight scroll":
+                case 91:
                     {
                         if (SkillCheck(player, 90)) { if (OwlSight == true) { player.SendMessage("The Earth book already contains this spell"); } else { OwlSight = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Shifting earth scroll":
+                case 92:
                     {
                         if (SkillCheck(player, 90)) { if (ShiftingEarth == true) { player.SendMessage("The Earth book already contains this spell"); } else { ShiftingEarth = true; scroll.Consume(1); } }
                         break;
                     }
-                case "Summon mammals scroll":
+                case 93:
                     {
                         if (SkillCheck(player, 90)) { if (SummonMammals == true) { player.SendMessage("The Earth book already contains this spell"); } else { SummonMammals = true; scroll.Consume(1); } }
+                        break;
+                    }
+                case 94:
+                    {
+                        if (SkillCheck(player, 90)) { if (IceStrike == true) { player.SendMessage("The Earth book already contains this spell"); } else { IceStrike = true; scroll.Consume(1); } }
+                        break;
+                    }
+                case 95:
+                    {
+                        if (SkillCheck(player, 90)) { if (RisingFire == true) { player.SendMessage("The Earth book already contains this spell"); } else { RisingFire = true; scroll.Consume(1); } }
+                        break;
+                    }
+                case 96:
+                    {
+                        if (SkillCheck(player, 90)) { if (StormSpirit == true) { player.SendMessage("The Earth book already contains this spell"); } else { StormSpirit = true; scroll.Consume(1); } }
                         break;
                     }
                 // Add more

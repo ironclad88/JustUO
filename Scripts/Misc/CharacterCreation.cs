@@ -676,6 +676,82 @@ namespace Server.Misc
             //newChar.Hue = Utility.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
             newChar.Hue = newChar.Race.ClipSkinHue(args.Hue & 0x3FFF) | 0x8000;
 
+            SkillName[] emptySkills = new SkillName[]
+                {
+ 
+                    #region SkillNames
+                    SkillName.Alchemy,
+                    SkillName.Anatomy,
+                    SkillName.AnimalLore,
+                    SkillName.ItemID,
+                    SkillName.ArmsLore,
+                    SkillName.Parry,
+                    SkillName.Begging,
+                    SkillName.Blacksmith,
+                    SkillName.Fletching,
+                    SkillName.Peacemaking,
+                    SkillName.Camping,
+                    SkillName.Carpentry,
+                    SkillName.Cartography,
+                    SkillName.Cooking,
+                    SkillName.DetectHidden,
+                    SkillName.Discordance,
+                    SkillName.EvalInt,
+                    SkillName.Healing,
+                    SkillName.Fishing,
+                    SkillName.Forensics,
+                    SkillName.Herding,
+                    SkillName.Hiding,
+                    SkillName.Provocation,
+                    SkillName.Inscribe,
+                    SkillName.Lockpicking,
+                    SkillName.Magery,
+                    SkillName.MagicResist,
+                    SkillName.Tactics,
+                    SkillName.Snooping,
+                    SkillName.Musicianship,
+                    SkillName.Poisoning,
+                    SkillName.Archery,
+                    SkillName.SpiritSpeak,
+                    SkillName.Stealing,
+                    SkillName.Tailoring,
+                    SkillName.AnimalTaming,
+                    SkillName.TasteID,
+                    SkillName.Tinkering,
+                    SkillName.Tracking,
+                    SkillName.Veterinary,
+                    SkillName.Swords,
+                    SkillName.Macing,
+                    SkillName.Fencing,
+                    SkillName.Wrestling,
+                    SkillName.Lumberjacking,
+                    SkillName.Mining,
+                    SkillName.Meditation,
+                    SkillName.Stealth,
+                    SkillName.RemoveTrap,
+                    //SkillName.Necromancy,
+                    SkillName.Focus,
+                    //SkillName.Chivalry,
+                    //SkillName.Bushido,
+                    //SkillName.Ninjitsu,
+                    //SkillName.Spellweaving,
+                    //SkillName.Mysticism,
+                    //SkillName.Imbuing,
+                    //SkillName.Throwing
+                    #endregion
+ 
+                };
+
+            for (int i = 0; i < SkillInfo.Table.Length; i++)
+            {
+                newChar.Skills[i].Base = 0;
+
+                if (Array.IndexOf<SkillName>(emptySkills, newChar.Skills[i].SkillName) > -1)
+                    newChar.Skills[i].Cap = 130;
+                else
+                    newChar.Skills[i].Cap = 0;
+            }
+
             newChar.Hunger = 20;
             newChar.Skills.Cap = 1300;
             newChar.SkillsCap = StartupReader.GetSkillcap();

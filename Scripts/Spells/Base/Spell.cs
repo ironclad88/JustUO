@@ -1087,7 +1087,6 @@ namespace Server.Spells
 
         public bool CheckBSequence(Mobile target)
         {
-            Console.WriteLine("test");
             return CheckBSequence(target, false);
         }
 
@@ -1100,6 +1099,11 @@ namespace Server.Spells
             }
             else if (Caster.CanBeBeneficial(target, true, allowDead) && CheckSequence())
             {
+                if (Caster is BaseCreature)
+                {
+                    Caster.DoBeneficial(target);
+                    return true;
+                }
                 endX = m_Caster.X;
                 endY = m_Caster.Y;
                 Console.WriteLine("start coords: " + startX + " : " + startY);
@@ -1131,6 +1135,11 @@ namespace Server.Spells
             }
             else if (Caster.CanBeHarmful(target) && CheckSequence())
             {
+                if (Caster is BaseCreature)
+                {
+                    Caster.DoBeneficial(target);
+                    return true;
+                }
                 endX = m_Caster.X;
                 endY = m_Caster.Y;
                 Console.WriteLine("start coords: " + startX + " : " + startY);

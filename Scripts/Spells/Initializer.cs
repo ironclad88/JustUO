@@ -100,6 +100,9 @@ namespace Server.Spells
             Register(91, typeof(Zulu.EarthSpells.OwlSight));
             Register(92, typeof(Zulu.EarthSpells.ShiftingEarth));
             Register(93, typeof(Zulu.EarthSpells.SummonMammal));
+            Register(94, typeof(Zulu.EarthSpells.CallLightning));
+            Register(95, typeof(Zulu.EarthSpells.RisingFire));
+            Register(96, typeof(Zulu.EarthSpells.StormSpirit));
 
             // holy (cleric)
             Register(700, typeof(Zulu.ClericSpells.HolyGate));

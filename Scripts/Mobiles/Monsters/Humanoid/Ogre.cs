@@ -25,12 +25,6 @@ namespace Server.Mobiles
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
-            this.SetResistance(ResistanceType.Physical, 30, 35);
-            this.SetResistance(ResistanceType.Fire, 15, 25);
-            this.SetResistance(ResistanceType.Cold, 15, 25);
-            this.SetResistance(ResistanceType.Poison, 15, 25);
-            this.SetResistance(ResistanceType.Energy, 25);
-
             this.SetSkill(SkillName.MagicResist, 55.1, 70.0);
             this.SetSkill(SkillName.Tactics, 60.1, 70.0);
             this.SetSkill(SkillName.Wrestling, 70.1, 80.0);
@@ -40,7 +34,6 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 32;
 
-            this.PackItem(new Club());
         }
 
         public Ogre(Serial serial)

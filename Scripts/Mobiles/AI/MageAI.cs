@@ -10,6 +10,7 @@ using Server.Spells.Seventh;
 using Server.Spells.Sixth;
 using Server.Spells.Third;
 using Server.Targeting;
+using Server.Spells.Zulu.EarthSpells;
 
 namespace Server.Mobiles
 {
@@ -234,6 +235,16 @@ namespace Server.Mobiles
         {
             int maxCircle = (int)((this.m_Mobile.Skills[SkillName.Magery].Value + 20.0) / (100.0 / 7.0));
 
+            if (this.m_Mobile is AirLordElemental) // bad system, just for testing. Need a function to declare mob spells in the monster class
+            {
+                switch (Utility.Random(2))
+                {
+                    case 0:
+                        return new CallLightning(this.m_Mobile, null);
+                    case 1:
+                        return new Gustofair(this.m_Mobile, null);
+                }
+            }
             if (maxCircle < 1)
                 maxCircle = 1;
             else if (maxCircle > 8)

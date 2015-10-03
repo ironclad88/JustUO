@@ -2509,9 +2509,12 @@
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\EarthBlessScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\EarthPortalScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\GustofairScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\IceStrikeScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\NaturesTouchScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\OwlsightScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\RisingFireScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\ShiftingearthScroll.cs" />
+    <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\StormSpiritScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Earth\SummonMammalsScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\HolyGateScroll.cs" />
     <Compile Include="Items\Skill Items\Magical\Scrolls\ZuluScrolls\Holy\TrialbyFireScroll.cs" />
@@ -3278,6 +3281,7 @@
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\ValleyFrenziedOstard.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\WindOstard.cs" />
     <Compile Include="Mobiles\Monsters\Reptile\Melee\GoldenDragon.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\AirLordElemental.cs" />
     <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
     <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
     <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
@@ -5633,9 +5637,12 @@
     <Compile Include="Spells\Zulu\EarthSpells\Earthportal.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\EarthSpell.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\Gustofair.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\IceStrike.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\NaturesTouch.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\OwlSight.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\RisingFire.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\ShiftingEarth.cs" />
+    <Compile Include="Spells\Zulu\EarthSpells\StormSpirit.cs" />
     <Compile Include="Spells\Zulu\EarthSpells\SummonMammals.cs" />
     <Compile Include="Spells\Zulu\NecroSpells\KillSpell.cs" />
     <Compile Include="Spells\Zulu\NecroSpells\LicheSpell.cs" />

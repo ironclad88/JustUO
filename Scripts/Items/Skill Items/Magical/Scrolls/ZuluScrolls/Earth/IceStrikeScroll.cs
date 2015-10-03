@@ -5,23 +5,23 @@ using System.Text;
 
 namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Necro
 {
-    public class CallLightningScroll : SpellScroll
+    public class IceStrikeScroll : SpellScroll
     {
         [Constructable]
-        public CallLightningScroll()
+        public IceStrikeScroll()
             : this(1)
         {
         }
 
         [Constructable]
-        public CallLightningScroll(int amount)
+        public IceStrikeScroll(int amount)
             : base(94, 0x1f3c, amount)
         {
             this.Hue = 1159;
-            this.Name = "Call lightning scroll";
+            this.Name = "Ice strike scroll";
         }
 
-        public CallLightningScroll(Serial serial)
+        public IceStrikeScroll(Serial serial)
             : base(serial)
         {
         }

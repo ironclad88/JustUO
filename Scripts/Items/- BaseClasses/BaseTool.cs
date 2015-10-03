@@ -11,7 +11,7 @@ namespace Server.Items
         Exceptional
     }
 
-    public abstract class BaseTool : Item, IUsesRemaining, ICraftable
+    public abstract class BaseTool : BaseMeleeWeapon, IUsesRemaining, ICraftable
     {
         private Mobile m_Crafter;
         private ToolQuality m_Quality;
