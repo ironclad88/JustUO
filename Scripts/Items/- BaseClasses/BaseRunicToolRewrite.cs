@@ -169,7 +169,7 @@ namespace Server.Items
            
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
-        //    Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
+        if(debug) Console.WriteLine("generating damage for item with attributeCount: {0}, min: {1} max: {2}", attributeCount, min, max);
             int maxDamage = min;
             int minDamage = min;
             for (int i = 0; maxDamage < max; i++)
@@ -190,7 +190,7 @@ namespace Server.Items
             minDamage = (int)(minDamage * scalar);
             maxDamage = (int)(maxDamage * scalar);
             ApplyAttribute(primary, min, max, AosAttribute.WeaponDamage, minDamage, maxDamage);
-          //  Console.WriteLine("min + {1} = {0} ({2})", primary[AosAttribute.WeaponDamage], (primary[AosAttribute.WeaponDamage] - min), maxDamage);
+          if(debug) Console.WriteLine("min + {1} = {0} ({2})", primary[AosAttribute.WeaponDamage], (primary[AosAttribute.WeaponDamage] - min), maxDamage);
 
             m_Props.SetAll(false);
 
@@ -623,7 +623,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                               // Console.WriteLine("loop");
+                               if(debug) Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -692,7 +692,7 @@ namespace Server.Items
                             bool found = false;
                             while (found == false)
                             {
-                            //    Console.WriteLine("loop");
+                            if(debug) Console.WriteLine("loop");
                                 switch (Utility.Random(8))
                                 {
                                     case 0:
@@ -919,8 +919,8 @@ namespace Server.Items
                 clothing.Unidentified = true;
                 clothing.IdHue = Utility.Random(3000) + 1; //any hue id, for now
             }
-           // Console.WriteLine("ItemName: " + clothing.ItemData.Name);
-          //  Console.WriteLine("MIN: " + min);
+           if(debug) Console.WriteLine("ItemName: " + clothing.ItemData.Name);
+          if(debug) Console.WriteLine("MIN: " + min);
          //   Console.WriteLine("MAX: " + max);
             AosAttributes primary = clothing.Attributes;
             AosArmorAttributes secondary = clothing.ClothingAttributes;
@@ -1057,7 +1057,7 @@ namespace Server.Items
                 }
             }
             RenameItemToZuluStandard(clothing);
-          //  Console.WriteLine("ItemName RENAMED: " + clothing.Name);
+          if(debug) Console.WriteLine("ItemName RENAMED: " + clothing.Name);
 
         }
 
@@ -1072,13 +1072,13 @@ namespace Server.Items
                 jewelry.Unidentified = true;
             }
 
-          //  Console.WriteLine(jewelry.ItemData.Name);
+          if(debug) Console.WriteLine(jewelry.ItemData.Name);
 
             AosAttributes primary = jewelry.Attributes;
             AosElementAttributes resists = jewelry.Resistances;
             AosSkillBonuses skills = jewelry.SkillBonuses;
-          //  Console.WriteLine("ItemName: " + jewelry.ItemData.Name);
-          //  Console.WriteLine("MIN: " + min);
+          if(debug) Console.WriteLine("ItemName: " + jewelry.ItemData.Name);
+          if(debug) Console.WriteLine("MIN: " + min);
          //   Console.WriteLine("MAX: " + max);
             if (Utility.Random(2) == 1)
             {
@@ -1104,7 +1104,7 @@ namespace Server.Items
             m_Props.Set(17, true); //SpellDamage
             m_Props.Set(18, true); //night sight
 
-          //  Console.WriteLine("Rolling Jewlery BEGIN");
+          if(debug) Console.WriteLine("Rolling Jewlery BEGIN");
             for (int i = 0; i < attributeCount; ++i)
             {
                 int random = GetUniqueRandom(19);
@@ -1532,7 +1532,7 @@ namespace Server.Items
 
                 if (laps >= count)
                 {
-                   // Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
+                   if(debug) Console.WriteLine("Warning: Assigning random skill mod reached end of possible skill list, probably resulting in reassignment of old skill mod, count: " + count);
                     break;
                 }
 
@@ -1647,12 +1647,12 @@ namespace Server.Items
 
                 if ((item as BaseArmor).SkillBonuses.Skill_1_Name == SkillName.Hiding)
                 {
-                   // Console.WriteLine("HIDING!");
+                   if(debug) Console.WriteLine("HIDING!");
                     newPrefix += GetHidingSkillValue((item as BaseArmor).SkillBonuses.Skill_1_Value);
                 }
                 else if ((item as BaseArmor).SkillBonuses.Skill_1_Name == SkillName.MagicResist)
                 {
-                    //Console.WriteLine("RESIST!");
+                    if(debug) Console.WriteLine("RESIST!");
                     newPrefix += GetMagicResistSkillValue((item as BaseArmor).SkillBonuses.Skill_1_Value);
                 }
                 
@@ -1667,12 +1667,12 @@ namespace Server.Items
 
                 if ((item as BaseArmor).SkillBonuses.Skill_1_Name == SkillName.Hiding)
                 {
-                    //Console.WriteLine("HIDING!");
+                    if(debug) Console.WriteLine("HIDING!");
                     newPrefix += GetHidingSkillValue((item as BaseArmor).SkillBonuses.Skill_1_Value);
                 }
                 else if ((item as BaseArmor).SkillBonuses.Skill_1_Name == SkillName.MagicResist)
                 {
-                   // Console.WriteLine("RESIST!");
+                   if(debug) Console.WriteLine("RESIST!");
                     newPrefix += GetMagicResistSkillValue((item as BaseArmor).SkillBonuses.Skill_1_Value);
                 }
 
@@ -1713,11 +1713,11 @@ namespace Server.Items
 
         private static string GetProtectionSuffix(Item aosE)
         {
-            const int Curse_lv2_limit = -17;
-            const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it´s a good gold sink
-            const int Curse_lv4_limit = -50;
-            const int Curse_lv5_limit = -65;
-            const int Curse_lv6_limit = -85;
+            //const int Curse_lv2_limit = -17;
+            //const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it´s a good gold sink
+            //const int Curse_lv4_limit = -50;
+            //const int Curse_lv5_limit = -65;
+            //const int Curse_lv6_limit = -85;
 
             const int lv2_limit = 17;
             const int lv3_limit = 33;
@@ -1834,16 +1834,12 @@ namespace Server.Items
                 case WeaponDamageLevel.Force:
                 case WeaponDamageLevel.Power:
                     return " of " + wep.DamageLevel;
-                    break;
                 case WeaponDamageLevel.Vanq:
                     return " of Vanquishing";
-                    break;
                 case WeaponDamageLevel.Deva:
                     return " of Devastation";
-                    break;
                 default:
                     return "";
-                    break;
             }
         }
         private static string GetArmorSuffix(BaseArmor armor)
@@ -2062,7 +2058,7 @@ namespace Server.Items
         // JustZH just added a base frame for +ar/-ar gear on cloth/jewlery
         private static string GetArmorPrefix(int arValue)
         {
-           // Console.WriteLine("IN GETARMORPREFIX");
+           if(debug) Console.WriteLine("IN GETARMORPREFIX");
             switch (arValue)
             {
                 /*case -5:
@@ -2326,7 +2322,7 @@ namespace Server.Items
             else if (MagicLevel >= 8 && level <= 2) { level += 2; }
             else if (MagicLevel >= 9 && level <= 2) { level += 2; }
 
-        //    Console.WriteLine("Apprentice Debug: MagicLevel = " + MagicLevel + " Chance = " + chances + " Final Level = " + level);
+        if(debug) Console.WriteLine("Apprentice Debug: MagicLevel = " + MagicLevel + " Chance = " + chances + " Final Level = " + level);
             return level;
         }
 
@@ -2343,7 +2339,7 @@ namespace Server.Items
 
             weapon.Unidentified = true;
 
-            //Console.WriteLine("Started parsing weapon");
+            if(debug) Console.WriteLine("Started parsing weapon");
             var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
 
             if (chances >= 450)
@@ -2353,16 +2349,16 @@ namespace Server.Items
             }
 
             if (chances < 75){
-              //  Console.WriteLine("ApplyHPModWeapon");
+              if(debug) Console.WriteLine("ApplyHPModWeapon");
                 ApplyHPModWeapon(weapon, MagicLevel);
             }
 
             else if (chances < 350) {
-              //  Console.WriteLine("ApplyDmgMod");
+              if(debug) Console.WriteLine("ApplyDmgMod");
                 ApplyDmgMod(weapon, MagicLevel);
             }
             else {
-              //  Console.WriteLine("ApplyHitScript");
+              if(debug) Console.WriteLine("ApplyHitScript");
                 ApplyHitScript(weapon, MagicLevel);
             }
 
@@ -2374,26 +2370,26 @@ namespace Server.Items
 
             shield.Unidentified = true;
 
-           // Console.WriteLine("Started parsing weapon");
+           if(debug) Console.WriteLine("Started parsing weapon");
             var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
 
             if (chances < 150)
             {
-              //  Console.WriteLine("Apply AR skillmod");
+              if(debug) Console.WriteLine("Apply AR skillmod");
                 ApplyArmorSkill(shield, MagicLevel);
                 // Apply AR skillmod
             }
 
             if (chances < 300)
             {
-              //  Console.WriteLine("Durability MOD");
+              if(debug) Console.WriteLine("Durability MOD");
                 ApplyHPModArmor(shield, MagicLevel);
                 // HP MOD
             }
 
             else
             {
-              //  Console.WriteLine("Apply AR mod");
+              if(debug) Console.WriteLine("Apply AR mod");
                 ApplyArmorSkill(shield, MagicLevel);
                 // Apply AR mod
             }
@@ -2407,12 +2403,12 @@ namespace Server.Items
 
             armor.Unidentified = true;
 
-           // Console.WriteLine("Started parsing weapon");
+           if(debug) Console.WriteLine("Started parsing weapon");
             var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
 
             if (chances < 75)
             {
-              //  Console.WriteLine("Durability MOD");
+              if(debug) Console.WriteLine("Durability MOD");
                 ApplyHPModArmor(armor, MagicLevel);
                 // HP MOD
             }
@@ -2420,7 +2416,7 @@ namespace Server.Items
             if (chances < 150)
             {
                 ApplyArmorSkill(armor, MagicLevel);
-              //  Console.WriteLine("Apply AR skillmod");
+              if(debug) Console.WriteLine("Apply AR skillmod");
                 // Apply AR skillmod
             }
 
@@ -2579,7 +2575,7 @@ namespace Server.Items
 
             if (rnd.Next(1, 100)  <= (10 * MagicLevel))
             {
-               // Console.WriteLine("HP MOD");
+               if(debug) Console.WriteLine("HP MOD");
                 ApplyHPModArmor(armor, MagicLevel);
                 // HP MOD
             }
@@ -2620,7 +2616,7 @@ namespace Server.Items
             {
                 return " of Frost";
             }
-            else if (weapon.WeaponAttributes.HitElementalFury != 0) // sounds cool, dunno what it does
+            else if (weapon.WeaponAttributes.HitElementalFury != 0) 
             {
                 return " of Elemental Fury";
             }
@@ -2635,31 +2631,31 @@ namespace Server.Items
                 // doesnt take magiclevel into consideration yet, maybe have to add efficiency too..
                 switch(rand){
                     case 1:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitMagicArrow, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitMagicArrow, 2, 100);
                         break;
                     case 2:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitLightning, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitLightning, 2, 100);
                         break;
                     case 3:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitFireball, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitFireball, 2, 100);
                         break;
                     case 4:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitCurse, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitCurse, 2, 100);
                         break;
                     case 5:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitManaDrain, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitManaDrain, 2, 100);
                         break;
                     case 6:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitHarm, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitHarm, 2, 100);
                         break;
                     case 7:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitFatigue, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitFatigue, 2, 100);
                         break;
                     case 8:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitColdArea, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitColdArea, 2, 100);
                         break;
                     case 9:
-                        ApplyAttribute(secondary, AosWeaponAttribute.HitElementalFury, 2, 50);
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitElementalFury, 2, 100);
                         break;
                 }
             var another = rnd.Next(1, 100);
@@ -2725,7 +2721,7 @@ namespace Server.Items
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
 
             var numb = rnd.Next(1, 100);
-          //  Console.WriteLine("numb: " + numb);
+          if(debug) Console.WriteLine("numb: " + numb);
             if (numb >= 93)
             {
                 // styg
@@ -2733,12 +2729,12 @@ namespace Server.Items
                 ApplyAttribute(primary2, AosAttribute.WeaponSpeed, 50, 75, 0);
                 weapon.IdHue = 1174;
                 wepEnchant = 1;
-              //  Console.WriteLine("Stygian");
+              if(debug) Console.WriteLine("Stygian");
             }
             else if (numb >= 75)
             {
                 // swift
-              //  Console.WriteLine("swift");
+              if(debug) Console.WriteLine("swift");
                 ApplyAttribute(primary, AosAttribute.WeaponSpeed, 50, 75, 0);
                 weapon.IdHue = 621;
                 wepEnchant = 2;
@@ -2746,7 +2742,7 @@ namespace Server.Items
             else if (numb >= 65)
             {
                 // mystical
-               // Console.WriteLine("mystical");
+               if(debug) Console.WriteLine("mystical");
                 ApplyAttribute(primary, AosAttribute.SpellChanneling, 1, 1);
                 weapon.IdHue = 6;
                 wepEnchant = 3;
@@ -2894,7 +2890,7 @@ namespace Server.Items
 
           private static void ApplyImmunity(BaseJewel jewelry, int MagicLevel)
           {
-          //    Console.WriteLine("Adding Immunity");
+          if(debug) Console.WriteLine("Adding Immunity");
               /*
               var chance_case := RandomInt(2)+1,
               level := GetChanceLevel(),
@@ -2931,7 +2927,7 @@ namespace Server.Items
             jewelry.Unidentified = true;
 
             var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
-          //  Console.WriteLine("ApplyEffectJewlery: " + chances);
+          if(debug) Console.WriteLine("ApplyEffectJewlery: " + chances);
             if (chances < 250)
                 ApplyMiscSkillMod(jewelry, MagicLevel);
             else if (chances < 300)
@@ -2974,7 +2970,7 @@ namespace Server.Items
 
         private static void ApplyMiscSkillMod(BaseClothing cloth, int MagicLevel)
         {
-          //  Console.WriteLine("ApplyMiscSkillMod");
+          if(debug) Console.WriteLine("ApplyMiscSkillMod");
             AosSkillBonuses skills = cloth.SkillBonuses;
             var level = GetChanceLevel(MagicLevel);
 
@@ -3009,7 +3005,7 @@ namespace Server.Items
 
         private static void ApplyStatModCloth(BaseClothing cloth, int MagicLevel)
         {
-          //  Console.WriteLine("ApplyStatModCloth");
+          if(debug) Console.WriteLine("ApplyStatModCloth");
             AosAttributes primary = cloth.Attributes;
 
             var level = (GetChanceLevel(MagicLevel) * 5);
@@ -3039,7 +3035,7 @@ namespace Server.Items
 
         private static void ApplyMiscArMod(BaseJewel jewelry, int MagicLevel) // there currently is no base armor on jewels. gotta change
         {
-          //  Console.WriteLine("ApplyMiscArMod");
+          if(debug) Console.WriteLine("ApplyMiscArMod");
             var level = GetChanceLevel(MagicLevel);
 
             if (level == 1) { jewelry.BaseArmorRating = 1; }
@@ -3058,7 +3054,7 @@ namespace Server.Items
 
         private static void ApplyMiscArModClothing(BaseClothing cloth, int MagicLevel) // there currently is no base armor on jewels. gotta change
         {
-           // Console.WriteLine("ApplyMiscArMod");
+           if(debug) Console.WriteLine("ApplyMiscArMod");
             var level = GetChanceLevel(MagicLevel);
 
             if (level == 1) { cloth.BaseArmorRating = 1; }
@@ -3114,7 +3110,7 @@ namespace Server.Items
 
             var level = GetChanceLevel(MagicLevel);
             int resistLevel = LevelToPercantage(level);
-           // Console.WriteLine("In ApplyElementalProtection");
+           if(debug) Console.WriteLine("In ApplyElementalProtection");
         DoAgain: // remove later, GOTO sux
             
             switch (Utility.Random(7))

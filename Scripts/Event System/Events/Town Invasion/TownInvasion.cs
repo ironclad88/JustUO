@@ -16,7 +16,7 @@ namespace Server.EventSystem
 
 		private int m_MinSpawnZ;
 		private int m_MaxSpawnZ;
-		private int m_LastMsg;
+        //private int m_LastMsg;
 
 		private bool m_Broadcast = true;
 		private bool m_FinalStage;

@@ -517,7 +517,7 @@ namespace Server.Items
                 from.VirtualArmorMod = GetArmorRating(from);
                 from.CheckStatTimers();
 
-                if (this.m_AosResistances.FreeAction != null)
+                if (this.m_AosResistances.FreeAction != 0)
                 {
                     from.FreeAction = true;
                 }
@@ -580,7 +580,7 @@ namespace Server.Items
                 from.CheckStatTimers();
                 from.VirtualArmorMod = GetArmorRating(from);
 
-                if (this.m_AosResistances.FreeAction != null)
+                if (this.m_AosResistances.FreeAction != 0)
                 {
                     from.FreeAction = false;
                 }

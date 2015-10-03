@@ -92,6 +92,8 @@ namespace Server.Spells
         private static readonly TimeSpan AosDamageDelay = TimeSpan.FromSeconds(1.0);
         private static readonly TimeSpan OldDamageDelay = TimeSpan.FromSeconds(0.5);
 
+        static bool debug = true;
+
         public static TimeSpan GetDamageDelayForSpell(Spell sp)
         {
             if (!sp.DelayedDamage)
@@ -1105,6 +1107,40 @@ namespace Server.Spells
                // damage *= (int)target.SpecBonus(SpecClasse.Warrior);
 
             int iDamage = (int)damage;
+
+            //JustZH: apply spec scalars
+            // scale this bonus directly, this means spec bonus will be applied to "base" damage BEFORE all the
+            // multipliers added in the Damage Multipliers region below, this means spec bonus will be more powerful
+            // than if it was added with the other multipliers.
+
+            //JustZH: add spec damage bonus an vulnerabilities
+            double spec_scalar_d = 1.0;
+            double spec_damage_bonus = 0.15;
+            double spec_damage_reduction = 0.05;
+
+            // spec bonuses
+            if (from.SpecClasse == SpecClasse.Mage) spec_scalar_d += spec_damage_bonus * from.SpecLevel;
+            if (target.SpecClasse == SpecClasse.Mage) spec_scalar_d -= spec_damage_reduction * target.SpecLevel;
+
+            // spec penalties
+            if (from.SpecClasse == SpecClasse.Warrior)
+                spec_scalar_d -= spec_damage_bonus * from.SpecLevel;
+            if (target.SpecClasse == SpecClasse.Warrior) spec_scalar_d += spec_damage_bonus * target.SpecLevel;
+            
+
+            if (debug == true && from.IsStaff())
+                Console.WriteLine(from.Name + " SPEC MAGIC SCALAR: " + spec_scalar_d);
+
+            if (debug == true && from.IsStaff())
+                Console.WriteLine(from.Name + " BEFORE MAGIC SPEC Damage: " + damage);
+
+            iDamage = AOS.Scale(iDamage, (int)(spec_scalar_d * 100));
+
+            if (debug == true && from.IsStaff())
+                Console.WriteLine(from.Name + " AFTER MAGIC SPEC Damage: " + damage);
+
+
+
             if (delay == TimeSpan.Zero)
             {
                 if (from is BaseCreature)

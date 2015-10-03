@@ -10,7 +10,7 @@ namespace Server.Gumps.RaceGumps
     public class BarbarianGump : Gump
     {
         private readonly Mobile m_Healer;
-        private readonly int m_Price;
+        //private readonly int m_Price;
         private readonly bool m_FromSacrifice;
         private readonly double m_HitsScalar;
         private readonly ResurrectMessage m_Msg;

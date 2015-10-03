@@ -48,7 +48,7 @@ namespace Server.Items
         private static int m_DiceNum, m_DiceSides, m_DiceOffset;
         //DICE-DAMAGE Mod
 
-        bool debug = false;
+        bool debug = true;
 
         #region Factions
         private FactionItem m_FactionState;
@@ -2052,30 +2052,28 @@ namespace Server.Items
 
             //JustZH: add spec damage bonus an vulnerabilities
             double spec_scalar_d = 1.0;
-            // spec bonuses
             double spec_damage_bonus = 0.15;
             double spec_damage_reduction = 0.05;
 
-            if (this is BaseRanged && (attacker.SpecClasse == SpecClasse.Ranger))
-                spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
-            else if (attacker.SpecClasse == SpecClasse.Warrior)
-                spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
+            // spec bonuses
+            if (this is BaseRanged && (attacker.SpecClasse == SpecClasse.Ranger)) spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
+            else if (attacker.SpecClasse == SpecClasse.Warrior) spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
+            if (defender.SpecClasse == SpecClasse.Warrior) spec_scalar_d -= spec_damage_reduction * defender.SpecLevel;
 
             // spec penalties
             if (attacker.SpecClasse == SpecClasse.Mage)
-                spec_scalar_d -= spec_damage_bonus * defender.SpecLevel;
+                spec_scalar_d -= spec_damage_bonus * attacker.SpecLevel;
             if (defender.SpecClasse == SpecClasse.Mage) spec_scalar_d += spec_damage_bonus * defender.SpecLevel;
-            if (defender.SpecClasse == SpecClasse.Warrior) spec_scalar_d -= spec_damage_reduction * defender.SpecLevel;
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " SPEC SCALAR: " + spec_scalar_d);
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " BEFORE SPEC Damage: " + damage);
 
             damage = AOS.Scale(damage, (int)(spec_scalar_d*100));
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " AFTER SPEC Damage: " + damage);
 
             #region Damage Multipliers
@@ -2217,10 +2215,10 @@ namespace Server.Items
 
             percentageBonus = Math.Min(percentageBonus, 300);
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " BEFORE AOS SCALE DAMAGE: " + damage);
             damage = AOS.Scale(damage, 100 + percentageBonus);
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " AFTER AOS SCALE DAMAGE: " + damage);
             #endregion
 
@@ -2367,7 +2365,7 @@ namespace Server.Items
 
             bool ignoreArmor = (a is ArmorIgnore || (move != null && move.IgnoreArmor(attacker)));
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " BEFORE RESISTANCE DAMAGE: " + damageGiven);
 
             damageGiven = AOS.Damage(
@@ -2389,7 +2387,7 @@ namespace Server.Items
                 this is BaseRanged,
                 false);
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " AFTER RESISTANCE DAMAGE: " + damageGiven);
 
             double propertyBonus = (move == null) ? 1.0 : move.GetPropertyBonus(attacker);
@@ -2667,7 +2665,7 @@ namespace Server.Items
                 }
             }
 
-            if (attacker.IsStaff())
+            if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " FINAL DAMAGE: " + damageGiven);
            
             XmlAttach.OnWeaponHit(this, attacker, defender, damageGiven);
@@ -2688,6 +2686,7 @@ namespace Server.Items
                 damageBonus += 5;
             }
             */
+
             if (attacker.Player)
             {
                 // Int bonus
@@ -2792,8 +2791,10 @@ namespace Server.Items
 
             // Icestrike
             SpellHelper.Damage(TimeSpan.Zero, defender, attacker, damage, 0, 0, 100, 0, 0);
-            defender.FixedEffect(0x3789, 30, 30); // gotta fix
-            defender.FixedEffect(0x37CC, 30, 30); // gotta fix
+            defender.FixedParticles(0x3789, 10, 20, 5032, EffectLayer.Waist);
+            attacker.PlaySound(0x117);
+            //defender.FixedEffect(0x3789, 30, 30); // gotta fix
+            //defender.FixedEffect(0x37CC, 30, 30); // gotta fix
         }
 
         public virtual void DoLightning(Mobile attacker, Mobile defender)
@@ -3174,7 +3175,7 @@ namespace Server.Items
             // Roll dice
             int damage = Utility.Dice(Dice_Num, Dice_Sides, Dice_Offset);
 
-            if(attacker.IsStaff() == true)
+            if (debug == true && attacker.IsStaff())
             {
                 //extra debugging for staff
                 Console.WriteLine("Damage roll: " + Dice_Num + "d" + Dice_Sides + "+" + Dice_Offset + " (" + damage + ")");
@@ -3197,7 +3198,7 @@ namespace Server.Items
             if (m_DamageLevel != WeaponDamageLevel.Regular)
             {
                 damage += (5 * (int)m_DamageLevel);
-                if (attacker.IsStaff() == true)
+                if (debug == true && attacker.IsStaff())
                 {
                     //extra debugging for staff
                     Console.WriteLine("Damage after damage mod ("+m_DamageLevel+") add: " + damage);
@@ -5036,6 +5037,11 @@ namespace Server.Items
                 if ((prop = m_AosWeaponAttributes.HitLightning) != 0)
                 {
                     list.Add(1060423, prop.ToString()); // hit lightning ~1_val~%
+                }
+
+                if ((prop = m_AosWeaponAttributes.HitElementalFury) != 0)
+                {
+                    list.Add("Hit Elemental Fury " + prop.ToString() + "%");
                 }
 
                 #region Stygian Abyss

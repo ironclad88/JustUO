@@ -6,7 +6,7 @@ namespace Server.Items
     public abstract class BaseRunicTool : BaseTool
     {
 
-        private static bool debug = false;
+        //private static bool debug = false;
 
         private static readonly SkillName[] m_PossibleBonusSkills = new SkillName[]
         {
@@ -1573,11 +1573,11 @@ namespace Server.Items
 
         private static string GetProtectionSuffix(Item aosE)
         {
-            const int Curse_lv2_limit = -17;
-            const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it´s a good gold sink
-            const int Curse_lv4_limit = -50;
-            const int Curse_lv5_limit = -65;
-            const int Curse_lv6_limit = -85;
+            //const int Curse_lv2_limit = -17;
+            //const int Curse_lv3_limit = -33; // not sure if needed yet, needs to be discussed.... it´s a good gold sink
+            //const int Curse_lv4_limit = -50;
+            //const int Curse_lv5_limit = -65;
+            //const int Curse_lv6_limit = -85;
 
             const int lv2_limit = 17;
             const int lv3_limit = 33;

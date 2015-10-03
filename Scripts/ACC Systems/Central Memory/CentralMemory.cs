@@ -228,7 +228,7 @@ namespace Server.ACC.CM
         private List<Mobile> m_MobileList;
         private List<Item> m_ItemList;
         private List<Module> m_ModuleList;
-        private Module m_Module;
+        private Module m_Module = null;
 
         #region Gump
         public override void Gump(Mobile from, Gump gump, ACCGumpParams subParams)
