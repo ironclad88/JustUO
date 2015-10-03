@@ -101,8 +101,9 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
                     test = m.GetRandomPoint3D(5); // get new cord
                 }
-                m.FixedEffect(0x3bd5, 10, 40); // gotta fix
-
+                m.FixedEffect(0x3789, 30, 30); // gotta fix
+                m.FixedEffect(0x37CC, 30, 30); // gotta fix
+                
                 SpellHelper.Damage(this, m, damage, 0, 0, 100, 0, 0, 0, 0, 0);
             }
 

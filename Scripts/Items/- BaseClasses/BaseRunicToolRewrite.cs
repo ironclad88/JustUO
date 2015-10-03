@@ -1728,6 +1728,7 @@ namespace Server.Items
             int curr_resist = aosE.FireResistance;
             if (curr_resist > 0)
             {
+                aosE.IdHue = 240;
                 if (curr_resist <= lv2_limit) return " of Elemental Fire Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Fire Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Fire Protection";
@@ -1739,6 +1740,7 @@ namespace Server.Items
             curr_resist = aosE.EarthResistance;
             if (curr_resist > 0)
             {
+                aosE.IdHue = 343;
                 if (curr_resist <= lv2_limit) return " of Elemental Earth Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Earth Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Earth Protection";
@@ -1750,6 +1752,7 @@ namespace Server.Items
             curr_resist = aosE.ColdResistance;
             if (curr_resist > 0)
             {
+                aosE.IdHue = 206;
                 if (curr_resist <= lv2_limit) return " of Elemental Water Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Water Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Water Protection";
@@ -1761,6 +1764,7 @@ namespace Server.Items
             curr_resist = aosE.EnergyResistance;
             if (curr_resist > 0)
             {
+                aosE.IdHue = 1001;
                 if (curr_resist <= lv2_limit) return " of Elemental Air Bane";
                 else if (curr_resist < lv3_limit) return " of Elemental Air Warding";
                 else if (curr_resist < lv4_limit) return " of Elemental Air Protection";
@@ -2322,7 +2326,7 @@ namespace Server.Items
             else if (MagicLevel >= 8 && level <= 2) { level += 2; }
             else if (MagicLevel >= 9 && level <= 2) { level += 2; }
 
-            Console.WriteLine("Apprentice Debug: MagicLevel = " + MagicLevel + " Chance = " + chances + " Final Level = " + level);
+        //    Console.WriteLine("Apprentice Debug: MagicLevel = " + MagicLevel + " Chance = " + chances + " Final Level = " + level);
             return level;
         }
 
@@ -2616,6 +2620,10 @@ namespace Server.Items
             {
                 return " of Frost";
             }
+            else if (weapon.WeaponAttributes.HitElementalFury != 0) // sounds cool, dunno what it does
+            {
+                return " of Elemental Fury";
+            }
             else {return ""; }
         }
 
@@ -2623,17 +2631,7 @@ namespace Server.Items
         {
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
 
-            /*if (rnd.Next(1, 500) <= 3 && chances <= 550)
-            {
-                int power = (rnd.Next(1, 10) * MagicLevel / 6);
-
-                // roll for poison wep
-                // roll for blackrock
-                // roll for other great stuff (void, piercing, leech, elemental fury) and so on.
-                // move this to ApplyHitScript
-            }
-            else { */
-                var rand = rnd.Next(1, 8);
+                var rand = rnd.Next(1, 10);
                 // doesnt take magiclevel into consideration yet, maybe have to add efficiency too..
                 switch(rand){
                     case 1:
@@ -2660,8 +2658,10 @@ namespace Server.Items
                     case 8:
                         ApplyAttribute(secondary, AosWeaponAttribute.HitColdArea, 2, 50);
                         break;
+                    case 9:
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitElementalFury, 2, 50);
+                        break;
                 }
-           // }   
             var another = rnd.Next(1, 100);
             if (another <= (10 * MagicLevel))
             {
@@ -2811,84 +2811,131 @@ namespace Server.Items
             else { weapon.DurabilityLevel = (WeaponDurabilityLevel)60; }
         }
 
-        public static void ApplyEnchant(BaseJewel jewelry, bool isRunicTool, int attributeCount, int MagicLevel)
+        private static void ApplyJewelEnchant(BaseJewel jewel, int MagicLevel)
         {
 
-            var chance = rnd.Next(1, 100) * MagicLevel;
+              var chance = rnd.Next(1, 100) * MagicLevel;
+           //   Console.WriteLine("Chance: " + chance);
+              if (chance < 300)
+              {
+                  ApplyProtection(jewel, MagicLevel); // charges reflect, absorb and so on, not constant immunity (NOT YET IMPLEMENTED)
+              }
+              else if (chance < 500)
+              {
+                  ApplyElementalProtection(jewel, MagicLevel); 
+              }
+              else if (chance <= 550)
+              {
+                  //Apply magic immunity // (NOT YET IMPLEMENTED)
+              }
 
-            if (chance < 450)
-            {
-                ApplyProtection(jewelry, MagicLevel);
-            }
-            if (chance < 550)
-            {
-                ApplyImmunity(jewelry, MagicLevel);
-            }
-            else
-                ApplyElementalProtection(jewelry, MagicLevel); // gotta buff this
+              if (rnd.Next(1, 100) <= (5 * MagicLevel))
+              {
+                  var secchance = rnd.Next(1, 100);
+                  if (secchance < 75)
+                  {
+                      ApplyMiscSkillMod(jewel, MagicLevel);
+                  }
+                  else
+                  {
+                      ApplyMiscArMod(jewel, MagicLevel);
+                  }
+              }
 
-            // Roll for another enchantment
-            if (rnd.Next(100) <= (10 * MagicLevel))
-                ApplyMiscSkillMod(jewelry, MagicLevel);
-            else
-                ApplyMiscArMod(jewelry, MagicLevel);
+          }
 
-        }
+          public static void ApplyEnchant(BaseJewel jewelry, int MagicLevel) // Fantasia DONE 
+          {
+        
+              var chance = rnd.Next(1, 100) * MagicLevel;
+           //   Console.WriteLine("ApplyEnchant: " + chance);
+           
+              if (chance < 400) 
+              {
+                  ApplyProtection(jewelry, MagicLevel);
+              }
+              if (chance < 500) 
+              {
+                  if(rnd.Next(1,100) <= 25) // made Immunity items even more rare
+                    ApplyImmunity(jewelry, MagicLevel);
+              }
+              else
+                  ApplyElementalProtection(jewelry, MagicLevel); // gotta buff this
 
-
-        private static void ApplyProtection(BaseJewel jewelry, int MagicLevel)
-        {
-            var chanceCase = rnd.Next(2) + 1;
-
-            var charges = GetChanceLevel(MagicLevel) * 5;
-
-            switch (Utility.Random(3)) // NOT YET IMPLEMENTED
-            {
-                case 1:
-                    // SpellReflection
-                    break;
-                case 2:
-                    // MagicProtection
-                    break;
-                case 3:
-                    // PoisonProtection
-                    break;
-            }
-
-        }
-
-        private static void ApplyImmunity(BaseJewel jewelry, int MagicLevel)
-        {
-            /*
-            var chance_case := RandomInt(2)+1,
-            level := GetChanceLevel(),
-            element;
+              // Roll for another enchantment
+              if (rnd.Next(1, 100) <= (10 * MagicLevel))
+                  ApplyMiscSkillMod(jewelry, MagicLevel);
+              else
+                  ApplyMiscArMod(jewelry, MagicLevel);
             
-	        case( chance_case )
-		        1:	element := "PermSpellReflection";
-			        break;
+          }
 
-		        2:	element := "PermMagicProtection";
-			        break;
 
-		        3:	element := "PermPoisonProtection";
-			        break;
-	        endcase
-        */
+          private static void ApplyProtection(BaseJewel jewelry, int MagicLevel)
+          {
+              var chanceCase = rnd.Next(2) + 1;
+
+              var charges = GetChanceLevel(MagicLevel) * 5;
+
+              switch (Utility.Random(3)) // NOT YET IMPLEMENTED
+              {
+                  case 1:
+                      // SpellReflection
+                      break;
+                  case 2:
+                      // MagicProtection
+                      break;
+                  case 3:
+                      // PoisonProtection
+                      break;
+              }
+
+          }
+
+          private static void ApplyImmunity(BaseJewel jewelry, int MagicLevel)
+          {
+          //    Console.WriteLine("Adding Immunity");
+              /*
+              var chance_case := RandomInt(2)+1,
+              level := GetChanceLevel(),
+              element;
+            
+              case( chance_case )
+                  1:	element := "PermSpellReflection";
+                      break;
+
+                  2:	element := "PermMagicProtection";
+                      break;
+
+                  3:	element := "PermPoisonProtection";
+                      break;
+              endcase
+          */
          //   Console.WriteLine("Adding Immunity"); // Not yet implemented
         }
 
-        public static void ApplyEffectJewlery(BaseJewel jewelry, int MagicLevel)
+        public static void ApplyEffectJewlery(BaseJewel jewelry, int MagicLevel) // Fantasia DONE
         {
-
+            /*	var enchant := (Random(75)+26) * Cint(magiclevel/2 + 1);                
+             * if(enchant < 250)
+                               ApplyMiscSkillMod( item );
+                           elseif(enchant < 300 )
+                               ApplyEnchant ( who , item );
+                           else
+                               ApplyMiscArMod( item );
+                           endif
+						
+                           AddName( item );
+                           break;*/
+           
             jewelry.Unidentified = true;
 
             var chances = (rnd.Next(1, 75) + 25) * ((MagicLevel / 2) + 1);
-
-            if (chances < 275)
+          //  Console.WriteLine("ApplyEffectJewlery: " + chances);
+            if (chances < 250)
                 ApplyMiscSkillMod(jewelry, MagicLevel);
             else if (chances < 300)
-                ApplyEnchant(jewelry, true, 1, MagicLevel);
+                ApplyEnchant(jewelry, MagicLevel);
             else
                 ApplyMiscArMod(jewelry, MagicLevel);
 
@@ -2912,9 +2959,9 @@ namespace Server.Items
             RenameItemToZuluStandard(cloth);
         }
 
-        private static void ApplyMiscSkillMod(BaseJewel jewelry, int MagicLevel)
+        private static void ApplyMiscSkillMod(BaseJewel jewelry, int MagicLevel) // Fantasia DONE
         {
-          //  Console.WriteLine("ApplyMiscSkillMod");
+
             AosSkillBonuses skills = jewelry.SkillBonuses;
 
             if (rnd.Next(1000) <= 5) // maybe an small buff needed
@@ -3067,10 +3114,10 @@ namespace Server.Items
 
             var level = GetChanceLevel(MagicLevel);
             int resistLevel = LevelToPercantage(level);
-
-            DoAgain: // remove later, GOTO sux
-
-            switch (Utility.Random(9))
+           // Console.WriteLine("In ApplyElementalProtection");
+        DoAgain: // remove later, GOTO sux
+            
+            switch (Utility.Random(7))
             {
                 case 1:
                     ApplyAttribute(resists, AosElementAttribute.Fire, resistLevel);
@@ -3091,14 +3138,14 @@ namespace Server.Items
                     ApplyAttribute(resists, AosElementAttribute.Holy, resistLevel);
                     
                     break;
-                case 7:
+               // case 7:
                     // ApplyAttribute(resists, AosElementAttribute.Healing, resistLevel); // Healing mod not yet implemented :(
-                    goto DoAgain; // remove later
+             //       goto DoAgain; // remove later
                     //break;
-                case 8:
+                case 7:
                     ApplyAttribute(resists, AosElementAttribute.Physical, resistLevel);
                     break;
-                case 9:
+                case 8:
                     ApplyAttribute(resists, AosElementAttribute.FreeAction, resistLevel);
                     // ApplyAttribute(resists, AosElementAttribute.FreeAction, resistLevel); // Free action not yet implemented :(
                     goto DoAgain; // remove later
