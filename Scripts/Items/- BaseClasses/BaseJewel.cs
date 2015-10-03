@@ -777,7 +777,7 @@ namespace Server.Items
             base.Serialize(writer);
 
             writer.Write(6); // version
-            writer.Write((int)this.m_ArmorBase);
+            writer.Write(this.m_ArmorBase);
 
             // Version 5
             //writer.Write(m_IdHue); // Removed in version 6
@@ -818,7 +818,7 @@ namespace Server.Items
             switch (version)
             {
                 case 6:
-                    this.m_ArmorBase = reader.ReadEncodedInt();
+                    this.m_ArmorBase = reader.ReadInt();
                     goto case 4; //skipping 5 because idhue was removed in this version
                 case 5:
                     {
