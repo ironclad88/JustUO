@@ -847,18 +847,19 @@ new[]
                         }
                         else if (item is BaseJewel)
                         {
+                          //  Console.WriteLine("Jewel!");
                             BaseRunicToolRewrite.ApplyEffectJewlery((BaseJewel)item, magic_level);
                             //BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
                         }
                         else if (item is BaseClothing)
                         {
-                            Console.WriteLine("Cloth!");
+                           // Console.WriteLine("Cloth!");
                             BaseRunicToolRewrite.ApplyEffectClothing((BaseClothing)item, magic_level);
                             //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
                         }
                         else if (item is BaseHat)
                         {
-                            Console.WriteLine("Hat!");
+                          //  Console.WriteLine("Hat!");
                             BaseRunicToolRewrite.ApplyEffectClothing((BaseHat)item, magic_level);
                             //  BaseRunicTool.ApplyAttributesTo((BaseClothing)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity);
                         }
