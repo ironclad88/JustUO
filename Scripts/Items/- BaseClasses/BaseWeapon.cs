@@ -18,6 +18,7 @@ using Server.Spells.Ninjitsu;
 using Server.Spells.Sixth;
 using Server.Spells.Spellweaving;
 using Server.XMLConfiguration;
+using Server.Spells.Zulu.EarthSpells;
 #endregion
 
 namespace Server.Items
@@ -2559,6 +2560,7 @@ namespace Server.Items
                 int fireballChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitFireball) * propertyBonus);
                 int lightningChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLightning) * propertyBonus);
                 int dispelChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitDispel) * propertyBonus);
+                int ElementalFuryChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitElementalFury) * propertyBonus);
 
                 #region Stygian Abyss
                 int curseChance = (int)(m_AosWeaponAttributes.HitCurse * propertyBonus);
@@ -2589,6 +2591,11 @@ namespace Server.Items
                 if (dispelChance != 0 && dispelChance > Utility.Random(100))
                 {
                     DoDispel(attacker, defender);
+                }
+
+                if (ElementalFuryChance != 0 && ElementalFuryChance > Utility.Random(100))
+                {
+                    DoElementalFury(attacker, defender);
                 }
 
                 #region Stygian Abyss
@@ -2761,6 +2768,32 @@ namespace Server.Items
             attacker.PlaySound(0x15E);
 
             SpellHelper.Damage(TimeSpan.FromSeconds(1.0), defender, attacker, damage, 0, 100, 0, 0, 0);
+        }
+
+        public virtual void DoElementalFury(Mobile attacker, Mobile defender)
+        {
+            if (!attacker.CanBeHarmful(defender, false))
+            {
+                return;
+            }
+
+            attacker.DoHarmful(defender);
+
+            double damage = GetAosDamage(attacker, 25, 3, 6); // scale this after magery
+
+            // Fireball
+            attacker.MovingParticles(defender, 0x36D4, 7, 0, false, true, 9502, 4019, 0x160);
+            attacker.PlaySound(0x15E);
+            SpellHelper.Damage(TimeSpan.FromSeconds(1.0), defender, attacker, damage, 0, 100, 0, 0, 0);
+
+            // Lightning
+            defender.BoltEffect(0);
+            SpellHelper.Damage(TimeSpan.Zero, defender, attacker, damage, 0, 0, 0, 0, 100);
+
+            // Icestrike
+            SpellHelper.Damage(TimeSpan.Zero, defender, attacker, damage, 0, 0, 100, 0, 0);
+            defender.FixedEffect(0x3789, 30, 30); // gotta fix
+            defender.FixedEffect(0x37CC, 30, 30); // gotta fix
         }
 
         public virtual void DoLightning(Mobile attacker, Mobile defender)

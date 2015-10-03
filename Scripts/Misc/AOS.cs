@@ -954,7 +954,8 @@ namespace Server
         BattleLust = 0x04000000,
         HitCurse = 0x08000000,
         HitFatigue = 0x10000000,
-        HitManaDrain = 0x20000000
+        HitManaDrain = 0x20000000,
+        HitElementalFury = 0x40000000
         #endregion
     }
 
@@ -1170,6 +1171,19 @@ namespace Server
             set
             {
                 this[AosWeaponAttribute.HitFireball] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int HitElementalFury
+        {
+            get
+            {
+                return this[AosWeaponAttribute.HitElementalFury];
+            }
+            set
+            {
+                this[AosWeaponAttribute.HitElementalFury] = value;
             }
         }
 

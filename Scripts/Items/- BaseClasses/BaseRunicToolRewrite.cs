@@ -2620,6 +2620,10 @@ namespace Server.Items
             {
                 return " of Frost";
             }
+            else if (weapon.WeaponAttributes.HitElementalFury != 0) // sounds cool, dunno what it does
+            {
+                return " of Elemental Fury";
+            }
             else {return ""; }
         }
 
@@ -2627,17 +2631,7 @@ namespace Server.Items
         {
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
 
-            /*if (rnd.Next(1, 500) <= 3 && chances <= 550)
-            {
-                int power = (rnd.Next(1, 10) * MagicLevel / 6);
-
-                // roll for poison wep
-                // roll for blackrock
-                // roll for other great stuff (void, piercing, leech, elemental fury) and so on.
-                // move this to ApplyHitScript
-            }
-            else { */
-                var rand = rnd.Next(1, 8);
+                var rand = rnd.Next(1, 10);
                 // doesnt take magiclevel into consideration yet, maybe have to add efficiency too..
                 switch(rand){
                     case 1:
@@ -2664,8 +2658,10 @@ namespace Server.Items
                     case 8:
                         ApplyAttribute(secondary, AosWeaponAttribute.HitColdArea, 2, 50);
                         break;
+                    case 9:
+                        ApplyAttribute(secondary, AosWeaponAttribute.HitElementalFury, 2, 50);
+                        break;
                 }
-           // }   
             var another = rnd.Next(1, 100);
             if (another <= (10 * MagicLevel))
             {

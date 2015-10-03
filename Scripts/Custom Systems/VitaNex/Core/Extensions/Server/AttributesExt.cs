@@ -147,6 +147,7 @@ namespace Server
 				{AosWeaponAttribute.HitEnergyArea, new AttributeFactors(1.0, 0, 50, 5)},
 				{AosWeaponAttribute.HitFireArea, new AttributeFactors(1.0, 0, 50, 5)},
 				{AosWeaponAttribute.HitFireball, new AttributeFactors(1.4, 0, 50, 5)},
+                {AosWeaponAttribute.HitElementalFury, new AttributeFactors(1.4, 0, 50, 5)},
 				{AosWeaponAttribute.HitHarm, new AttributeFactors(1.1, 0, 50, 5)},
 				{AosWeaponAttribute.HitLeechHits, new AttributeFactors(1.1, 0, 100, 10)},
 				{AosWeaponAttribute.HitLeechMana, new AttributeFactors(1.1, 0, 100, 10)},
