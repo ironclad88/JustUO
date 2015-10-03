@@ -99,13 +99,11 @@ namespace Server.Spells.Zulu.EarthSpells
 
             this.FinishSequence();
         }
-
+        
         public override TimeSpan GetCastDelay()
         {
-            if (Core.AOS)
-                return TimeSpan.FromTicks(base.GetCastDelay().Ticks * 5);
-
-            return base.GetCastDelay() + TimeSpan.FromSeconds(6.0);
+            
+            return base.GetCastDelay() + TimeSpan.FromSeconds(2.0);
         }
     }
 }
