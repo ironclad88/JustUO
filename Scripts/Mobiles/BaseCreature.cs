@@ -3116,7 +3116,7 @@ namespace Server.Mobiles
             if (AutoDispel && defender is BaseCreature && ((BaseCreature)defender).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-              //  Dispel(defender); //JustZH why dispel?
+                Dispel(defender);
             }
         }
 
@@ -4035,6 +4035,14 @@ namespace Server.Mobiles
         {
             m_DamageMin = min;
             m_DamageMax = max;
+            BaseWeapon wep = this.Weapon as BaseWeapon;
+            if(wep != null )
+            {
+                wep.Dice_Num = ((max - min) / 6) + 1;
+                wep.Dice_Sides = 6;
+                wep.Dice_Offset = min - wep.Dice_Num;
+                Console.WriteLine("Old damage set for " + this.Name + " converted " + min + " to " + max + " damage to " + wep.Dice_Num + "d" + wep.Dice_Sides + "+" + wep.Dice_Offset);
+            }
         }
 
         public void SetDiceDmg(int rolls, int diceSides)

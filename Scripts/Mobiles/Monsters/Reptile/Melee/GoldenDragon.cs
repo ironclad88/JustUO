@@ -26,14 +26,14 @@ namespace Server.Mobiles
 
             this.SetDamage(30, 40);
 
-            this.SetDamageType(ResistanceType.Physical, 80);
-            this.SetDamageType(ResistanceType.Poison, 100);
+            this.SetDamageType(ResistanceType.Physical, 70);
+            this.SetDamageType(ResistanceType.Fire, 30);
 
-            this.SetResistance(ResistanceType.Physical, 100, 120);
+            this.SetResistance(ResistanceType.Physical, 30, 40);
             this.SetResistance(ResistanceType.Fire, 100, 120);
-            this.SetResistance(ResistanceType.Cold, 100, 120);
-            this.SetResistance(ResistanceType.Poison, 100, 120);
-            this.SetResistance(ResistanceType.Energy, 100, 120);
+            this.SetResistance(ResistanceType.Cold, 30, 40);
+            this.SetResistance(ResistanceType.Poison, 80, 95);
+            this.SetResistance(ResistanceType.Energy, 80, 95);
 
             this.SetSkill(SkillName.Anatomy, 100, 150);
             this.SetSkill(SkillName.EvalInt, 100, 150);

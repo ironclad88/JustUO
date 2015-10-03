@@ -2053,7 +2053,7 @@ namespace Server.Items
             double spec_scalar_d = 1.0;
             // spec bonuses
             double spec_damage_bonus = 0.15;
-            double spec_damage_reduction = 0.15;
+            double spec_damage_reduction = 0.05;
 
             if (this is BaseRanged && (attacker.SpecClasse == SpecClasse.Ranger))
                 spec_scalar_d += spec_damage_bonus * attacker.SpecLevel;
@@ -3139,12 +3139,8 @@ namespace Server.Items
             //int damage = Utility.RandomMinMax(min, max);
 
             // Roll dice
-            int damage = 0;
-            for (int i = 0; i < Dice_Num; i++ )
-            {
-                damage += Utility.RandomMinMax(1, Dice_Sides);
-            }
-            damage += Dice_Offset;
+            int damage = Utility.Dice(Dice_Num, Dice_Sides, Dice_Offset);
+
             if(attacker.IsStaff() == true)
             {
                 //extra debugging for staff
@@ -3479,11 +3475,6 @@ namespace Server.Items
                 damage = (int)(damage / 2.0);
             }*/
             
-            if (defender.SpecClasse == SpecClasse.Mage)
-            {
-                damage *= (int)attacker.SpecBonus(SpecClasse.Mage);             // not sure about this yet, commented out for now
-            }
-
             return damage;
         }
 

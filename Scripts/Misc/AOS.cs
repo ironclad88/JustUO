@@ -71,22 +71,11 @@ namespace Server
 
             if (phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0 && earth == 0 && necro == 0 && holy == 0)
                 Mobiles.MeerMage.StopEffect(m, true);
-
+            
             if (!Core.AOS)
             {
                 m.Damage(damage, from);
                 return damage;
-            }
-
-            // JustZH dmg boost by spec test
-            if (from.SpecClasse == SpecClasse.Ranger)
-            {
-                damage *= (int)from.SpecBonus(SpecClasse.Ranger);
-            }
-
-            if (m.SpecClasse == SpecClasse.Mage)
-            {
-                damage *= (int)m.SpecBonus(SpecClasse.Mage);
             }
 
             Fix(ref phys);
@@ -99,6 +88,11 @@ namespace Server
             Fix(ref holy);
             Fix(ref chaos);
             Fix(ref direct);
+
+            if((phys + fire + cold + pois + nrgy + earth + necro + holy + chaos + direct) > 100)
+            {
+                Console.WriteLine(from.Name + " has over 100% damage from all elements combined: " + (phys + fire + cold + pois + nrgy + earth + necro + holy + chaos + direct));
+            }
 
             if (Core.ML && chaos > 0)
             {
@@ -137,13 +131,17 @@ namespace Server
                 quiver = from.FindItemOnLayer(Layer.Cloak) as BaseQuiver;
 
             int totalDamage;
-
+            int resPhys = m.PhysicalResistance;
             if (!ignoreArmor)
             {
                 // Armor Ignore on OSI ignores all defenses, not just physical.
-                int resPhys = m.PhysicalResistance;
+                if (resPhys > 100)
+                {
+                    Console.WriteLine(from.Name + " has over 100% phys resist, setting it to 100%");
+                    resPhys = 100;
+                }
                 #region SA
-                int physDamage = damage * phys * (100 - m.PhysicalResistance);
+                int physDamage = damage * phys * (100 - resPhys);
                 int fireDamage = damage * fire * (100 - m.FireResistance);
                 int coldDamage = damage * cold * (100 - m.ColdResistance);
                 int poisonDamage = damage * pois * (100 - m.PoisonResistance);
@@ -250,7 +248,7 @@ namespace Server
                     }
                     else
                     {
-                        from.Damage(Scale((damage * phys * (100 - (ignoreArmor ? 0 : m.PhysicalResistance))) / 10000, reflectPhys), m);
+                        from.Damage(Scale((damage * phys * (100 - (ignoreArmor ? 0 : resPhys))) / 10000, reflectPhys), m);
                     }
                 }
             }
