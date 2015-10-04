@@ -71,7 +71,7 @@ namespace Server
 
             if (phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0 && earth == 0 && necro == 0 && holy == 0)
                 Mobiles.MeerMage.StopEffect(m, true);
-            
+
             if (!Core.AOS)
             {
                 m.Damage(damage, from);
@@ -89,7 +89,7 @@ namespace Server
             Fix(ref chaos);
             Fix(ref direct);
 
-            if((phys + fire + cold + pois + nrgy + earth + necro + holy + chaos + direct) > 100)
+            if ((phys + fire + cold + pois + nrgy + earth + necro + holy + chaos + direct) > 100)
             {
                 Console.WriteLine(from.Name + " has over 100% damage from all elements combined: " + (phys + fire + cold + pois + nrgy + earth + necro + holy + chaos + direct));
             }
@@ -215,7 +215,7 @@ namespace Server
                     int absorbed = Scale(totalDamage, percent);
 
                     totalDamage -= absorbed;
-					
+
                     // Mondain's Legacy mod
                     if (!(pet is ParoxysmusSwampDragon))
                         pet.BardingHP -= absorbed;
@@ -361,29 +361,30 @@ namespace Server
             return (input * percent) / 100;
         }
 
-		public static int GetStatus( Mobile from, int index )
-		{
-			switch ( index )
-			{
-				// TODO: Account for buffs/debuffs
-				case 0: return from.GetMaxResistance( ResistanceType.Physical );
-				case 1: return from.GetMaxResistance( ResistanceType.Fire );
-				case 2: return from.GetMaxResistance( ResistanceType.Cold );
-				case 3: return from.GetMaxResistance( ResistanceType.Poison );
-				case 4: return from.GetMaxResistance( ResistanceType.Energy );
-				case 5: return AosAttributes.GetValue( from, AosAttribute.DefendChance );
-				case 6: return 45;
-				case 7: return AosAttributes.GetValue( from, AosAttribute.AttackChance );
-				case 8: return AosAttributes.GetValue( from, AosAttribute.WeaponSpeed );
-				case 9: return AosAttributes.GetValue( from, AosAttribute.WeaponDamage );
-				case 10: return AosAttributes.GetValue( from, AosAttribute.LowerRegCost );
-				case 11: return AosAttributes.GetValue( from, AosAttribute.SpellDamage );
-				case 12: return AosAttributes.GetValue( from, AosAttribute.CastRecovery );
-				case 13: return AosAttributes.GetValue( from, AosAttribute.CastSpeed );
-				case 14: return AosAttributes.GetValue( from, AosAttribute.LowerManaCost );
-				default: return 0;
-			}
-		}
+        public static int GetStatus(Mobile from, int index)
+        {
+            switch (index)
+            {
+                // TODO: Account for buffs/debuffs
+                case 0: return from.GetMaxResistance(ResistanceType.Physical);
+                case 1: return from.GetMaxResistance(ResistanceType.Fire);
+                case 2: return from.GetMaxResistance(ResistanceType.Cold);
+                case 3: return from.GetMaxResistance(ResistanceType.Poison);
+                case 4: return from.GetMaxResistance(ResistanceType.Energy);
+                case 5: return AosAttributes.GetValue(from, AosAttribute.DefendChance);
+                case 6: return 45;
+                case 7: return AosAttributes.GetValue(from, AosAttribute.AttackChance);
+                case 8: return AosAttributes.GetValue(from, AosAttribute.WeaponSpeed);
+                case 9: return AosAttributes.GetValue(from, AosAttribute.WeaponDamage);
+                case 10: return AosAttributes.GetValue(from, AosAttribute.LowerRegCost);
+                case 11: return AosAttributes.GetValue(from, AosAttribute.SpellDamage);
+                case 12: return AosAttributes.GetValue(from, AosAttribute.CastRecovery);
+                case 13: return AosAttributes.GetValue(from, AosAttribute.CastSpeed);
+                case 14: return AosAttributes.GetValue(from, AosAttribute.LowerManaCost);
+                case 15: return from.GetMaxResistance(ResistanceType.FreeAction);
+                default: return 0;
+            }
+        }
     }
 
     [Flags]
@@ -503,7 +504,7 @@ namespace Server
                     if (attrs != null)
                         value += attrs[attribute];
                 }
-				
+
                 #region Mondain's Legacy
                 if (attribute == AosAttribute.WeaponDamage)
                 {
@@ -527,11 +528,11 @@ namespace Server
                 }
 
                 if (obj is ISetItem)
-                { 
+                {
                     ISetItem item = (ISetItem)obj;
 
                     AosAttributes attrs = item.SetAttributes;
-										
+
                     if (attrs != null && item.LastEquipped)
                         value += attrs[attribute];
                 }

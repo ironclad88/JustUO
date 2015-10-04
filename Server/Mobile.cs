@@ -466,7 +466,8 @@ namespace Server
         Energy,
         Earth,
         Necro,
-        Holy
+        Holy,
+        FreeAction
     }
 
     public enum ApplyPoisonResult
@@ -6844,7 +6845,7 @@ namespace Server
 
                 if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
                     item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                    item.NecroResistance != 0 || item.HolyResistance != 0)
+                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.FreeAction != 0)
                 {
                     UpdateResistances();
                 }

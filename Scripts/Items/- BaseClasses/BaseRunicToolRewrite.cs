@@ -1621,6 +1621,7 @@ namespace Server.Items
                     newPrefix += GetArmorPrefix((item as BaseJewel).BaseArmorRating);
                 }
                 newPrefix += GetSkillPrefix((item as BaseJewel).SkillBonuses);
+                if ((item as BaseJewel).Resistances.FreeAction >= 1) { newSuffix += getFreeActionString(); item.IdHue = 590; }
                 newSuffix += GetProtectionSuffix(item);
             }
             else if (item is BaseClothing)
@@ -1718,6 +1719,12 @@ namespace Server.Items
             return "";
         }
 
+        private static string getFreeActionString()
+        {
+            Console.WriteLine("HIT!");
+            return " of Free Action";
+        }
+
         private static string GetProtectionSuffix(Item aosE)
         {
             //const int Curse_lv2_limit = -17;
@@ -1731,7 +1738,7 @@ namespace Server.Items
             const int lv4_limit = 50;
             const int lv5_limit = 65;
             const int lv6_limit = 85;
-
+            
             int curr_resist = aosE.FireResistance;
             if (curr_resist > 0)
             {
@@ -2308,15 +2315,15 @@ namespace Server.Items
             // var chances = rnd.Next(1, 100) * MagicLevel;
 
             var level = 0;
-            if (chances < 180)
+            if (chances < 200)
                 level = 1;
-            else if (chances < 360)
+            else if (chances < 400)
                 level = 2;
-            else if (chances < 480)
-                level = 3;
             else if (chances < 500)
+                level = 3;
+            else if (chances < 550)
                 level = 4;
-            else if (chances < 582)
+            else if (chances < 630)
                 level = 5;
             else
                 level = 6;
@@ -2968,7 +2975,6 @@ namespace Server.Items
         {
 
             var chance = rnd.Next(1, 100) * MagicLevel;
-            //   Console.WriteLine("ApplyEnchant: " + chance);
 
             if (chance < 400)
             {
@@ -2976,8 +2982,14 @@ namespace Server.Items
             }
             if (chance < 500)
             {
-                if (rnd.Next(1, 100) <= 25) // made Immunity items even more rare
+                if (rnd.Next(1, 100) <= 25)
+                { // made Immunity items even more rare
                     ApplyImmunity(jewelry, MagicLevel);
+                }
+                else
+                {
+                    ApplyElementalProtection(jewelry, MagicLevel); // gotta buff this
+                }
             }
             else
                 ApplyElementalProtection(jewelry, MagicLevel); // gotta buff this
@@ -2995,6 +3007,11 @@ namespace Server.Items
         {
             var chanceCase = rnd.Next(2) + 1;
 
+            AosElementAttributes resists = jewelry.Resistances;
+
+            var level = GetChanceLevel(MagicLevel);
+            int resistLevel = LevelToPercantage(level);
+
             var charges = GetChanceLevel(MagicLevel) * 5;
 
             switch (Utility.Random(3)) // NOT YET IMPLEMENTED
@@ -3006,6 +3023,7 @@ namespace Server.Items
                     // MagicProtection
                     break;
                 case 3:
+                    ApplyAttribute(resists, AosElementAttribute.Poison, resistLevel);
                     // PoisonProtection
                     break;
             }
@@ -3015,6 +3033,21 @@ namespace Server.Items
         private static void ApplyImmunity(BaseJewel jewelry, int MagicLevel)
         {
             if (debug) Console.WriteLine("Adding Immunity");
+            var level = (GetChanceLevel(MagicLevel) * 5);
+
+            int resistLevel = LevelToPercantage(level);
+
+            AosElementAttributes resists = jewelry.Resistances;
+
+            switch(rnd.Next(1,3)){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    ApplyAttribute(resists, AosElementAttribute.Poison, resistLevel);
+                    break;
+            }
             /*
             var chance_case := RandomInt(2)+1,
             level := GetChanceLevel(),
@@ -3031,6 +3064,7 @@ namespace Server.Items
                     break;
             endcase
         */
+
             //   Console.WriteLine("Adding Immunity"); // Not yet implemented
         }
 
@@ -3235,27 +3269,29 @@ namespace Server.Items
 
             var level = GetChanceLevel(MagicLevel);
             int resistLevel = LevelToPercantage(level);
-            if (debug) Console.WriteLine("In ApplyElementalProtection");
-        DoAgain: // remove later, GOTO sux
 
-            switch (Utility.Random(7))
+            
+            
+            if (debug) Console.WriteLine("In ApplyElementalProtection");
+
+            switch (Utility.Random(8))
             {
-                case 1:
+                case 0:
                     ApplyAttribute(resists, AosElementAttribute.Fire, resistLevel);
                     break;
-                case 2:
+                case 1:
                     ApplyAttribute(resists, AosElementAttribute.Water, resistLevel);
                     break;
-                case 3:
+                case 2:
                     ApplyAttribute(resists, AosElementAttribute.Air, resistLevel);
                     break;
-                case 4:
+                case 3:
                     ApplyAttribute(resists, AosElementAttribute.Earth, resistLevel);
                     break;
-                case 5:
+                case 4:
                     ApplyAttribute(resists, AosElementAttribute.Necro, resistLevel);
                     break;
-                case 6:
+                case 5:
                     ApplyAttribute(resists, AosElementAttribute.Holy, resistLevel);
 
                     break;
@@ -3263,13 +3299,12 @@ namespace Server.Items
                 // ApplyAttribute(resists, AosElementAttribute.Healing, resistLevel); // Healing mod not yet implemented :(
                 //       goto DoAgain; // remove later
                 //break;
-                case 7:
+                case 6:
                     ApplyAttribute(resists, AosElementAttribute.Physical, resistLevel);
                     break;
-                case 8:
-                    ApplyAttribute(resists, AosElementAttribute.FreeAction, resistLevel);
-                    // ApplyAttribute(resists, AosElementAttribute.FreeAction, resistLevel); // Free action not yet implemented :(
-                    goto DoAgain; // remove later
+                case 7:
+                    ApplyAttribute(resists, AosElementAttribute.FreeAction, 1);
+                    break;
                 //break;
             }
 

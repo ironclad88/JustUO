@@ -219,8 +219,9 @@ namespace Server.Items
                     Item item;
 
                     item = Loot.RandomJewelry();
-                    item = LootPackEntry.Mutate(null, 0, item, level + 2);
                     item.Unidentified = false;
+                    item = LootPackEntry.Mutate(null, 0, item, level + 2);
+                    
                     cont.DropItem(LootPackEntry.Mutate(null, 0, item, level));
                 }
             }

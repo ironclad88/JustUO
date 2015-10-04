@@ -14,5 +14,6 @@
 /Backups
 *.log
 *.suo
+*.xml
 /VitaNexCore
 /.JustCode

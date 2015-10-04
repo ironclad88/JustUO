@@ -1346,6 +1346,12 @@ namespace Server
                 //list.Add(1060528, v.ToString()); // holy resist ~1_val~%
                 list.Add("Holy Resistance " + v.ToString() + "%");
             }
+
+            v = FreeAction; // won´t work :( awwwwww
+            if (v != 0)
+            {
+                list.Add("Permanent paralyze Immunity");
+            }
         }
 
         /// <summary>
@@ -4543,6 +4549,7 @@ namespace Server
         public virtual int EnergyResistance { get { return 0; } }
         public virtual int EarthResistance { get { return 0; } }
         public virtual int NecroResistance { get { return 0; } }
+        public virtual int FreeAction { get { return 0; } }
         public virtual int HolyResistance { get { return 0; } }
 
         [CommandProperty(AccessLevel.Counselor)]
