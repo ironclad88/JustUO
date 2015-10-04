@@ -57,7 +57,7 @@ namespace Server.Items
             get
             {
                 if (this.m_ArmorBase == 0)
-                    return this.ArmorBase;
+                    return 0;
                 else
                     return this.m_ArmorBase;
             }
@@ -254,7 +254,7 @@ namespace Server.Items
             get { return base.Unidentified; }
             set
             {
-                if(value == base.Unidentified)
+                if (value == base.Unidentified)
                 {
                     return;
                 }
@@ -454,39 +454,92 @@ namespace Server.Items
             this.m_SAAbsorptionAttributes = new SAAbsorptionAttributes(this);
         }
 
-        #region Stygian Abyss
-        public override bool CanEquip(Mobile from)
+        private static bool WarriorSkills(Mobile from, SkillName sn, double skillVal)
         {
-            if (this.BlessedBy != null && this.BlessedBy != from)
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return false; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Macing || sn == SkillName.Parry || sn == SkillName.Tactics || sn == SkillName.Anatomy || sn == SkillName.Fencing || sn == SkillName.Swords || sn == SkillName.Healing || sn == SkillName.Wrestling)
             {
-                from.SendLocalizedMessage(1075277); // That item is blessed by another player.
-                return false;
+                return true;
             }
-
-            if (from.AccessLevel < AccessLevel.GameMaster)
-            {
-                if (from.Race == Race.Gargoyle && !this.CanBeWornByGargoyles)
-                {
-                    from.SendLocalizedMessage(1111708); // Gargoyles can't wear this.
-                    return false;
-                }
-                else if (this.RequiredRace != null && from.Race != this.RequiredRace)
-                {
-                    if (this.RequiredRace == Race.Elf)
-                        from.SendLocalizedMessage(1072203); // Only Elves may use this.
-                    else if (this.RequiredRace == Race.Gargoyle)
-                        from.SendLocalizedMessage(1111707); // Only gargoyles can wear this.
-                    else
-                        from.SendMessage("Only {0} may use this.", this.RequiredRace.PluralName);
-
-                    return false;
-                }
-            }
-
-            return base.CanEquip(from);
+            return false;
         }
 
-        #endregion
+        private static bool MageSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return true; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Magery || sn == SkillName.SpiritSpeak || sn == SkillName.EvalInt || sn == SkillName.Meditation || sn == SkillName.Inscribe || sn == SkillName.ItemID || sn == SkillName.MagicResist)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool CrafterSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return false; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Mining || sn == SkillName.Blacksmith || sn == SkillName.ArmsLore || sn == SkillName.Fletching || sn == SkillName.Carpentry || sn == SkillName.Tinkering || sn == SkillName.Lumberjacking || sn == SkillName.Tailoring)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool RangerSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return true; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Archery || sn == SkillName.AnimalLore || sn == SkillName.AnimalTaming || sn == SkillName.Camping || sn == SkillName.Tracking || sn == SkillName.Cooking || sn == SkillName.Fishing || sn == SkillName.Veterinary)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool TheifSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return true; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Hiding || sn == SkillName.DetectHidden || sn == SkillName.Poisoning || sn == SkillName.Stealing || sn == SkillName.Snooping || sn == SkillName.Stealth || sn == SkillName.Lockpicking || sn == SkillName.RemoveTrap)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool BardSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return true; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Begging || sn == SkillName.Musicianship || sn == SkillName.Discordance || sn == SkillName.Provocation || sn == SkillName.Peacemaking || sn == SkillName.Herding || sn == SkillName.TasteID || sn == SkillName.Cartography)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool ClericSkills(Mobile from, SkillName sn, double skillVal)
+        {
+            if (sn == SkillName.Alchemy) { if (skillVal <= 1) { return true; } } // fix for non skill item, the skillName is always Alchemy
+            if (sn == SkillName.Macing || sn == SkillName.Tactics || sn == SkillName.Anatomy || sn == SkillName.EvalInt || sn == SkillName.Magery || sn == SkillName.SpiritSpeak || sn == SkillName.Parry || sn == SkillName.Meditation)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool CanEquip(Mobile from)
+        {
+            if (from.SpecClasse == SpecClasse.Thief) { if (TheifSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Warrior) { if (WarriorSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Crafter) { if (CrafterSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Ranger) { if (RangerSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Bard) { if (BardSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Cleric) { if (ClericSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            else if (from.SpecClasse == SpecClasse.Mage) { if (MageSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false || this.BaseArmorRating > 0) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+
+            return true;
+
+
+        }
+
+
 
         public override void OnAdded(IEntity parent)
         {
@@ -558,7 +611,7 @@ namespace Server.Items
                     continue;
 
                 ar += armor.BaseArmorRating;
-                
+
             }
             return ar;
         }
@@ -590,7 +643,7 @@ namespace Server.Items
                     SetHelper.RemoveSetBonus(from, this.SetID, this);
                 #endregion
             }
-            
+
 
             Server.Engines.XmlSpawner2.XmlAttach.CheckOnRemoved(this, parent);
         }
