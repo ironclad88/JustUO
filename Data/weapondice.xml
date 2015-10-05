@@ -251,4 +251,10 @@
     <Sides>4</Sides>
     <Offset>0</Offset>
   </Values>
+<Values>
+    <Type>Server.Items.SmithHammer</Type>
+    <Num>1</Num>
+    <Sides>4</Sides>
+    <Offset>0</Offset>
+  </Values>
 </Weapons>

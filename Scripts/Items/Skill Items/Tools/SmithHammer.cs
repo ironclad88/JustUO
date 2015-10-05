@@ -4,22 +4,50 @@ using Server.Engines.Craft;
 namespace Server.Items
 {
     [FlipableAttribute(0x13E3, 0x13E4)]
-    public class SmithHammer : BaseTool
+    public class SmithHammer : BaseBashing, ICraftable, IUsesRemaining
     {
+        private SmithHammerTool m_Tool;
+
+        private class SmithHammerTool : BaseTool
+        {
+            public SmithHammerTool()
+            : base(0x13E3)
+            {
+            }
+            public SmithHammerTool( Serial serial)
+                : base(serial)
+            {
+            }
+            public override CraftSystem CraftSystem
+            {
+                get
+                {
+                    return DefBlacksmithy.CraftSystem;
+                }
+            }
+            public override void Serialize(GenericWriter writer)
+            {
+                base.Serialize(writer);
+
+                writer.Write((int)0); // version
+            }
+
+            public override void Deserialize(GenericReader reader)
+            {
+                base.Deserialize(reader);
+
+                int version = reader.ReadInt();
+            }
+        }
+
         [Constructable]
         public SmithHammer()
             : base(0x13E3)
         {
             this.Weight = 8.0;
             this.Layer = Layer.OneHanded;
-        }
-
-        [Constructable]
-        public SmithHammer(int uses)
-            : base("lol", 0x13E3)
-        {
-            this.Weight = 8.0;
-            this.Layer = Layer.OneHanded;
+            this.m_Tool = new SmithHammerTool();
+            this.m_Tool.UsesRemaining = 100;
         }
 
         public SmithHammer(Serial serial)
@@ -27,53 +55,103 @@ namespace Server.Items
         {
         }
 
-        public override WeaponAnimation DefAnimation
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int UsesRemaining
         {
             get
             {
-                return WeaponAnimation.Bash1H;
+                return this.m_Tool.UsesRemaining;
+            }
+            set
+            {
+                this.m_Tool.UsesRemaining = value;
+                this.InvalidateProperties();
             }
         }
-        public override SkillName DefSkill
+        public bool ShowUsesRemaining
         {
             get
             {
-                return SkillName.Macing;
+                return true;
+            }
+            set
+            {
+            }
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (this.IsChildOf(from.Backpack) || this.Parent == from)
+            {
+                CraftSystem system = m_Tool.CraftSystem;
+                m_Tool.Parent = this.Parent;
+
+                int num = system.CanCraft(from, this.m_Tool, null);
+
+                if (num > 0 && (num != 1044267 || !Core.SE)) // Blacksmithing shows the gump regardless of proximity of an anvil and forge after SE
+                {
+                    from.SendLocalizedMessage(num);
+                }
+                else
+                {
+                    CraftContext context = system.GetContext(from);
+
+                    from.SendGump(new CraftGump(from, system, m_Tool, null));
+                }
+            }
+            else
+            {
+                from.SendLocalizedMessage(1042001); // That must be in your pack for you to use it.
+            }
+        }
+
+        public override WeaponAbility PrimaryAbility
+        {
+            get
+            {
+                return WeaponAbility.CrushingBlow;
+            }
+        }
+        public override WeaponAbility SecondaryAbility
+        {
+            get
+            {
+                return WeaponAbility.MortalStrike;
             }
         }
         public override int AosStrengthReq
         {
             get
             {
-                return 50;
+                return 80;
             }
         }
         public override int AosMinDamage
         {
             get
             {
-                return 13;
+                return 16;
             }
         }
         public override int AosMaxDamage
         {
             get
             {
-                return 16;
+                return 20;
             }
         }
         public override int AosSpeed
         {
             get
             {
-                return 42;
+                return 26;
             }
         }
         public override float MlSpeed
         {
             get
             {
-                return 2.75f;
+                return 4.00f;
             }
         }
         public override int OldStrengthReq
@@ -87,21 +165,21 @@ namespace Server.Items
         {
             get
             {
-                return 2;
+                return 10;
             }
         }
         public override int OldMaxDamage
         {
             get
             {
-                return 36;
+                return 30;
             }
         }
         public override int OldSpeed
         {
             get
             {
-                return 46;
+                return 32;
             }
         }
         public override int InitMinHits
@@ -115,22 +193,16 @@ namespace Server.Items
         {
             get
             {
-                return 80;
+                return 110;
             }
         }
 
-        public override CraftSystem CraftSystem
-        {
-            get
-            {
-                return DefBlacksmithy.CraftSystem;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
 
-            writer.Write((int)0); // version
+            writer.Write((int)1); // version
+            m_Tool.Serialize(writer);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -138,6 +210,10 @@ namespace Server.Items
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
+            if(version >= 1)
+            {
+                m_Tool.Deserialize(reader);
+            }
         }
     }
 }
