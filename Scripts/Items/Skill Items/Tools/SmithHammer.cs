@@ -53,6 +53,7 @@ namespace Server.Items
         public SmithHammer(Serial serial)
             : base(serial)
         {
+            this.m_Tool = new SmithHammerTool();
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -202,7 +203,7 @@ namespace Server.Items
             base.Serialize(writer);
 
             writer.Write((int)1); // version
-            m_Tool.Serialize(writer);
+            writer.Write(m_Tool.UsesRemaining);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -212,7 +213,7 @@ namespace Server.Items
             int version = reader.ReadInt();
             if(version >= 1)
             {
-                m_Tool.Deserialize(reader);
+                m_Tool.UsesRemaining = reader.ReadInt();
             }
         }
     }

@@ -126,6 +126,12 @@
     <Offset>0</Offset>
   </Values>
   <Values>
+    <Type>Server.Items.SmithHammer</Type>
+    <Num>1</Num>
+    <Sides>4</Sides>
+    <Offset>0</Offset>
+  </Values>
+  <Values>
     <Type>Server.Items.BattleAxe</Type>
     <Num>2</Num>
     <Sides>17</Sides>
@@ -242,18 +248,12 @@
   <Values>
     <Type>Server.Items.Fists</Type>
     <Num>1</Num>
-    <Sides>8</Sides>
-    <Offset>0</Offset>
+    <Sides>6</Sides>
+    <Offset>3</Offset>
   </Values>
   <Values>
     <Type>Server.Items.TestCustomWeapon</Type>
     <Num>2</Num>
-    <Sides>4</Sides>
-    <Offset>0</Offset>
-  </Values>
-<Values>
-    <Type>Server.Items.SmithHammer</Type>
-    <Num>1</Num>
     <Sides>4</Sides>
     <Offset>0</Offset>
   </Values>
