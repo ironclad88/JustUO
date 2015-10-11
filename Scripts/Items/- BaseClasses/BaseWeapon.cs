@@ -1077,11 +1077,6 @@ namespace Server.Items
                 from.AddSkillMod(m_MageMod);
             }
 
-            if (this.Blackrock == true)
-            {
-                from.Mana = 0;
-                from.DispelMagicMods();
-            }
             XmlAttach.CheckOnEquip(this, from);
 
             return true;
@@ -2490,6 +2485,13 @@ namespace Server.Items
                 }
             }
 
+            if(this.Blackrock == true)
+            {
+                defender.DispelMagicMods();
+                defender.Mana = 0;
+                attacker.Mana = 0;
+            }
+
             if (m_MaxHits > 0 &&
                 ((MaxRange <= 1 && (defender is Slime || defender is ToxicElemental || defender is CorrosiveSlime)) ||
                  Utility.Random(25) == 0)) // Stratics says 50% chance, seems more like 4%..
@@ -3671,7 +3673,9 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write(13); // version
+            writer.Write(14); // version
+
+            writer.Write(m_blackrock);
 
             // Version 12
 
@@ -4004,6 +4008,9 @@ namespace Server.Items
 
             switch (version)
             {
+                case 14:
+                    m_blackrock = reader.ReadBool();
+                    goto case 13;
                 case 13:
                     goto case 11; // skip 12 here because idHue has been moved to Item.cs
                 case 12:
