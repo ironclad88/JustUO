@@ -94,9 +94,11 @@ namespace Server.Items
         private WeaponQuality m_Quality;
         private Mobile m_Crafter;
         private Poison m_Poison;
+        private bool m_PermaPoison;
         private int m_PoisonCharges;
         //private bool m_Identified;
         //private int m_IdHue;
+        private bool m_blackrock;
         private int m_Hits;
         private int m_MaxHits;
         private SlayerName m_Slayer;
@@ -348,6 +350,28 @@ namespace Server.Items
             set
             {
                 m_PoisonCharges = value;
+                InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool PermaPoison
+        {
+            get { return m_PermaPoison; }
+            set
+            {
+                m_PermaPoison = value;
+                InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool Blackrock
+        {
+            get { return m_blackrock; }
+            set
+            {
+                m_blackrock = value;
                 InvalidateProperties();
             }
         }
@@ -1053,6 +1077,11 @@ namespace Server.Items
                 from.AddSkillMod(m_MageMod);
             }
 
+            if (this.Blackrock == true)
+            {
+                from.Mana = 0;
+                from.DispelMagicMods();
+            }
             XmlAttach.CheckOnEquip(this, from);
 
             return true;
@@ -3645,8 +3674,8 @@ namespace Server.Items
             writer.Write(13); // version
 
             // Version 12
-            // writer.Write(m_IdHue); // Removed in version 13!
 
+         //   m_IdHue
             // Version 11
             writer.Write(m_TimesImbued);
 
@@ -3718,6 +3747,7 @@ namespace Server.Items
             SetSaveFlag(ref flags, SaveFlag.PoisonCharges, m_PoisonCharges != 0);
             SetSaveFlag(ref flags, SaveFlag.Crafter, m_Crafter != null);
             //SetSaveFlag(ref flags, SaveFlag.Identified, m_Identified);
+            SetSaveFlag(ref flags, SaveFlag.PermaPoison, m_PermaPoison);
             SetSaveFlag(ref flags, SaveFlag.StrReq, m_StrReq != -1);
             SetSaveFlag(ref flags, SaveFlag.DexReq, m_DexReq != -1);
             SetSaveFlag(ref flags, SaveFlag.IntReq, m_IntReq != -1);
@@ -3790,6 +3820,11 @@ namespace Server.Items
             if (GetSaveFlag(flags, SaveFlag.Crafter))
             {
                 writer.Write(m_Crafter);
+            }
+
+            if (GetSaveFlag(flags, SaveFlag.PermaPoison))
+            {
+                writer.Write(m_PermaPoison);
             }
 
             if (GetSaveFlag(flags, SaveFlag.StrReq))
@@ -3909,7 +3944,7 @@ namespace Server.Items
             Poison = 0x00000080,
             PoisonCharges = 0x00000100,
             Crafter = 0x00000200,
-            //Identified = 0x00000400,
+            PermaPoison = 0x00000400,
             StrReq = 0x00000800,
             DexReq = 0x00001000,
             IntReq = 0x00002000,
@@ -4112,10 +4147,10 @@ namespace Server.Items
                             m_Crafter = reader.ReadMobile();
                         }
 
-                        //if (GetSaveFlag(flags, SaveFlag.Identified))
-                        //{
-                        //    m_Identified = (version >= 6 || reader.ReadBool());
-                        //}
+                        if (GetSaveFlag(flags, SaveFlag.PermaPoison))
+                        {
+                            m_PermaPoison = reader.ReadBool();
+                        }
 
                         if (GetSaveFlag(flags, SaveFlag.StrReq))
                         {
@@ -4383,8 +4418,12 @@ namespace Server.Items
 
                         m_Crafter = reader.ReadMobile();
 
+                        
+
                         m_Poison = Poison.Deserialize(reader);
                         m_PoisonCharges = reader.ReadInt();
+
+                        
 
                         if (m_StrReq == OldStrengthReq)
                         {
@@ -4899,6 +4938,11 @@ namespace Server.Items
                     #region Mondain's Legacy mod
                     list.Add(m_Poison.LabelNumber, m_PoisonCharges.ToString());
                     #endregion
+                }
+
+                if (m_Poison != null && PermaPoison == true)
+                {
+                    list.Add(1116797, this.Poison.Level.ToString());
                 }
 
                 if (m_Slayer != SlayerName.None)
@@ -5497,6 +5541,16 @@ namespace Server.Items
                 attrs.Add(new EquipInfoAttribute(1017383, m_PoisonCharges));
             }
 
+            if (m_Poison != null && PermaPoison == true)
+            {
+                attrs.Add(new EquipInfoAttribute(1017383));
+            }
+            if (Blackrock == true)
+            {
+                attrs.Add(new EquipInfoAttribute(1116798));
+            }
+
+           
             int number;
 
             if (Name == null)
