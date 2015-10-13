@@ -49,7 +49,7 @@
     <OutputPath>..\</OutputPath>
     <DefineConstants>TRACE;DEBUG;JustUO, NEWPARENT, NEWTIMERS</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>

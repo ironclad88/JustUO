@@ -71,7 +71,7 @@ namespace Server.Engines.Craft
 
         public static CraftSystem CraftSystem { get { return m_CraftSystem ?? (m_CraftSystem = new DefBlacksmithy()); } }
 
-        public override CraftECA ECA { get { return CraftECA.ChanceMinusSixtyToFourtyFive; } }
+        public override CraftECA ECA { get { return CraftECA.ChanceMinusSixty; } }
 
         public override double GetChanceAtMin(CraftItem item)
         {

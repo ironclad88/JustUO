@@ -12,6 +12,7 @@ namespace Server.Items.ZuluIems.GMItems.Armor.Ryous
             : base(0x1410)
         {
             this.Name = "Platemail Arms of Ryous";
+            
             this.Weight = 10.0;
             this.IdHue = 1413;
             this.PhysicalBonus = this.BasePhysicalResistance;
@@ -23,6 +24,7 @@ namespace Server.Items.ZuluIems.GMItems.Armor.Ryous
             this.NecroBonus = this.BaseNecroResistance;
             this.HolyBonus = this.BaseHolyResistance;
         }
+
 
         public ArmsofRyous(Serial serial)
             : base(serial)

@@ -122,6 +122,7 @@ namespace Server.Items
 
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
+
             if (AmmoType != null && attacker.Player && !defender.Player && (defender.Body.IsAnimal || defender.Body.IsMonster) &&
                 0.4 >= Utility.RandomDouble())
             {

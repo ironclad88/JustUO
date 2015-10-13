@@ -1636,6 +1636,7 @@ namespace Server.Items
             }
             else if (item is BaseWeapon)
             {
+                newPrefix += GetDurabilityPrefix(item as BaseWeapon);
                 newPrefix += GetEnchantPrefix(item as BaseWeapon); // not sure about the order
                 if ((item as BaseWeapon).SkillBonuses.Skill_1_Value != 0)
                 {
@@ -1643,11 +1644,20 @@ namespace Server.Items
                     else if (item is SmithHammer) { newPrefix += GetSkillNameSuffix(SkillName.Blacksmith, (item as BaseWeapon).SkillBonuses.Skill_1_Value); }
                     else { newPrefix += GetSkillNameSuffix((item as BaseWeapon).Skill, (item as BaseWeapon).SkillBonuses.Skill_1_Value); }
                 }
+                if ((item as BaseWeapon).PermaPoison == true)
+                {
+                    newPrefix += "Poisoned ";
+                    item.IdHue = 0x491;
+                }
+
                 // GetTacticsSkillValue
                 newSuffix += GetDmgSuffix(item as BaseWeapon);
                 newSuffix += GetOnHitEnchant(item as BaseWeapon);
-
-                newPrefix += GetDurabilityPrefix(item as BaseWeapon);
+                if ((item as BaseWeapon).Blackrock == true)
+                {
+                    newSuffix += " of Blackrock";
+                    item.IdHue = 0x485;
+                }
             }
             else if (item is BaseArmor)
             {
@@ -1738,7 +1748,7 @@ namespace Server.Items
             const int lv4_limit = 50;
             const int lv5_limit = 65;
             const int lv6_limit = 85;
-            
+
             int curr_resist = aosE.FireResistance;
             if (curr_resist > 0)
             {
@@ -2696,6 +2706,7 @@ namespace Server.Items
             switch (numb)
             {
                 case 1:
+                    
                     // Magicresist
                     break;
                 case 2:
@@ -2746,6 +2757,10 @@ namespace Server.Items
             {
                 return " of Frost";
             }
+            else if (weapon.WeaponAttributes.HitManaDrain != 0) // sounds cool, dunno what it does
+            {
+                return " of Mages Bane";
+            }
             else if (weapon.WeaponAttributes.HitElementalFury != 0)
             {
                 return " of Elemental Fury";
@@ -2756,7 +2771,6 @@ namespace Server.Items
         private static void ApplyHitScript(BaseWeapon weapon, int MagicLevel)
         {
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
-
             var rand = rnd.Next(1, 10);
             // doesnt take magiclevel into consideration yet, maybe have to add efficiency too..
             switch (rand)
@@ -2788,6 +2802,9 @@ namespace Server.Items
                 case 9:
                     ApplyAttribute(secondary, AosWeaponAttribute.HitElementalFury, 2, 100);
                     break;
+                case 10:
+                    ApplyAttribute(secondary, AosWeaponAttribute.HitManaDrain, 2, 100);
+                    break;
             }
             var another = rnd.Next(1, 100);
             if (another <= (10 * MagicLevel))
@@ -2800,44 +2817,91 @@ namespace Server.Items
         private static void ApplyDmgMod(BaseWeapon weapon, int MagicLevel)
         {
             var chances = GetChanceLevel(MagicLevel * 5);
-
+            var another = rnd.Next(1, 100);
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
-
-            var numb = rnd.Next(50 + 1) * (MagicLevel * 2);
-
-            switch (MagicLevel / 3)
+            if (rnd.Next(1, 1000) <= 2)
             {
-                case 0:
-                    break;
-                case 1:
-                    if (numb < 300)
-                        numb = 300;
-                    break;
-                case 2:
-                    if (numb < 150)
-                        numb = 150;
-                    break;
-            }
+                weapon.Blackrock = true;
 
-            if (numb < 150) { weapon.DamageLevel = WeaponDamageLevel.Ruin; }
-            else if (numb < 300) { weapon.DamageLevel = WeaponDamageLevel.Force; }
-            else if (numb < 400) { weapon.DamageLevel = WeaponDamageLevel.Might; }
-            else if (numb < 500) { weapon.DamageLevel = WeaponDamageLevel.Power; }
-            else if (numb < 600) { weapon.DamageLevel = WeaponDamageLevel.Vanq; }
-            else { weapon.DamageLevel = WeaponDamageLevel.Deva; }
-
-            var another = rnd.Next(1, 85);
-            if (another <= (10 * MagicLevel))
-            {
-                ApplyHPModWeapon(weapon, MagicLevel);
-                if (rnd.Next(1, 100) <= 75)
+                if (another <= (10 * MagicLevel))
                 {
-                    ApplyWepEnchant(weapon, MagicLevel);
+                    ApplyHPModWeapon(weapon, MagicLevel);
+                    if (rnd.Next(1, 100) <= 75)
+                    {
+                        ApplyWepEnchant(weapon, MagicLevel);
+                    }
+                    else
+                    {
+                        // ApplyWeapSkillMod
+                    }
+                }
+            }
+            else
+            {
+                var numb = rnd.Next(50 + 1) * (MagicLevel * 2);
+                if (rnd.Next(1, 1000) <= 2)
+                {
+                    weapon.PermaPoison = true;
+                    if (numb < 150) { weapon.Poison = Poison.Lesser; }
+                    else if (numb < 300) { weapon.Poison = Poison.Lesser; }
+                    else if (numb < 400) { weapon.Poison = Poison.Regular; }
+                    else if (numb < 500) { weapon.Poison = Poison.Greater; }
+                    else if (numb < 600) { weapon.Poison = Poison.Deadly; }
+                    else { weapon.Poison = Poison.Lethal; }
+
+                    if (another <= (10 * MagicLevel))
+                    {
+                        ApplyHPModWeapon(weapon, MagicLevel);
+                        if (rnd.Next(1, 100) <= 75)
+                        {
+                            ApplyWepEnchant(weapon, MagicLevel);
+                        }
+                        else
+                        {
+                            // ApplyWeapSkillMod
+                        }
+                    }
                 }
                 else
                 {
-                    // ApplyWeapSkillMod
+
+                    switch (MagicLevel / 3)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            if (numb < 300)
+                                numb = 300;
+                            break;
+                        case 2:
+                            if (numb < 150)
+                                numb = 150;
+                            break;
+                    }
+
+
+
+                    if (numb < 150) { weapon.DamageLevel = WeaponDamageLevel.Ruin; }
+                    else if (numb < 300) { weapon.DamageLevel = WeaponDamageLevel.Force; }
+                    else if (numb < 400) { weapon.DamageLevel = WeaponDamageLevel.Might; }
+                    else if (numb < 500) { weapon.DamageLevel = WeaponDamageLevel.Power; }
+                    else if (numb < 600) { weapon.DamageLevel = WeaponDamageLevel.Vanq; }
+                    else { weapon.DamageLevel = WeaponDamageLevel.Deva; }
+
+                    another = rnd.Next(1, 85);
+                    if (another <= (10 * MagicLevel))
+                    {
+                        ApplyHPModWeapon(weapon, MagicLevel);
+                        if (rnd.Next(1, 100) <= 75)
+                        {
+                            ApplyWepEnchant(weapon, MagicLevel);
+                        }
+                        else
+                        {
+                            // ApplyWeapSkillMod
+                        }
+                    }
                 }
             }
         }
@@ -3039,7 +3103,8 @@ namespace Server.Items
 
             AosElementAttributes resists = jewelry.Resistances;
 
-            switch(rnd.Next(1,3)){
+            switch (rnd.Next(1, 3))
+            {
                 case 1:
                     break;
                 case 2:
@@ -3270,8 +3335,8 @@ namespace Server.Items
             var level = GetChanceLevel(MagicLevel);
             int resistLevel = LevelToPercantage(level);
 
-            
-            
+
+
             if (debug) Console.WriteLine("In ApplyElementalProtection");
 
             switch (Utility.Random(8))

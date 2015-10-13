@@ -158,7 +158,7 @@ namespace Server.Engines.Craft
 
             if (context != null)
                 resIndex = (this.m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex);
-
+            var test = CraftGump.ResourceSelected;
             bool allRequiredSkills = true;
             double chance = this.m_CraftItem.GetSuccessChance(this.m_From, resIndex > -1 ? res.GetAt(resIndex).ItemType : null, this.m_CraftSystem, false, ref allRequiredSkills);
             double excepChance = this.m_CraftItem.GetExceptionalChance(this.m_CraftSystem, chance, this.m_From);
@@ -213,7 +213,7 @@ namespace Server.Engines.Craft
                 type = craftResource.ItemType;
                 nameString = craftResource.NameString;
                 nameNumber = craftResource.NameNumber;
-				
+                Console.WriteLine(type);
                 // Resource Mutation
                 if (type == res.ResType && resIndex > -1)
                 {

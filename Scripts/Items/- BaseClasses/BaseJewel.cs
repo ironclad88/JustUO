@@ -570,6 +570,12 @@ namespace Server.Items
                 from.VirtualArmorMod = GetArmorRating(from);
                 from.CheckStatTimers();
 
+                if (this.m_AosResistances.PermaMagic != 0)
+                {
+                    var PermaMagicValue = this.Resistances.PermaMagic;
+                    from.PermaMagic = PermaMagicValue;
+                }
+
                 if (this.m_AosResistances.FreeAction != 0)
                 {
                     from.FreeAction = true;
@@ -636,6 +642,12 @@ namespace Server.Items
                 if (this.m_AosResistances.FreeAction != 0)
                 {
                     from.FreeAction = false;
+                }
+
+                if (this.m_AosResistances.PermaMagic != 0)
+                {
+                    var PermaMagicValue = this.Resistances.PermaMagic;
+                    from.PermaMagic = PermaMagicValue;
                 }
 
                 #region Mondain's Legacy Sets

@@ -68,6 +68,20 @@ namespace Server.Items
             base.OnHit(attacker, defender, damageBonus);
 
             defender.Stam -= Utility.Random(3, 3); // 3-5 points of stamina loss
+
+            if (this.Poison != null && this.PoisonCharges > 0)
+            {
+                --this.PoisonCharges;
+
+                if (Utility.RandomDouble() >= 0.5) // 50% chance to poison
+                    defender.ApplyPoison(attacker, this.Poison);
+            }
+            if (this.Poison != null && this.PermaPoison == true)
+            {
+                if (Utility.RandomDouble() >= 0.3) // 30% chance to poison
+                    defender.ApplyPoison(attacker, this.Poison);
+            }
+
         }
 
         public override double GetBaseDamage(Mobile attacker)

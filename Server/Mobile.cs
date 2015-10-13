@@ -467,7 +467,9 @@ namespace Server
         Earth,
         Necro,
         Holy,
-        FreeAction
+        FreeAction,
+        PermaMagic,
+        Healing
     }
 
     public enum ApplyPoisonResult
@@ -720,6 +722,26 @@ namespace Server
         }
 
         #region Var declarations
+        private bool AP1 = false;
+        private bool AP2 = false;
+        private bool AP3 = false;
+        private bool AP4 = false;
+        private bool AP5 = false;
+        private bool AP6 = false;
+        private bool AP7 = false;
+        private bool AP8 = false;
+        private bool AP9 = false;
+
+        private bool WP1 = false;
+        private bool WP2 = false;
+        private bool WP3 = false;
+        private bool WP4 = false; // god damn this is ugly, but i am lazy
+        private bool WP5 = false;
+        private bool WP6 = false;
+        private bool WP7 = false;
+        private bool WP8 = false;
+        private bool WP9 = false;
+
         private SpecClasse _SpecClasse = SpecClasse.None;
         private int _specLevel = 0;
         private bool _boostedStat = false;
@@ -778,6 +800,8 @@ namespace Server
         private long _NextSkillTime;
         private long _NextActionMessage;
         private bool _FreeActionEquipped;
+        private int _PermaMagicEquipped;
+        private int _HealingModEquipped;
         private bool _Paralyzed;
         private ParalyzedTimer _ParaTimer;
         private bool _Sleep;
@@ -1322,6 +1346,8 @@ namespace Server
 
         public List<Mobile> Stabled { get { return _Stabled; } }
 
+
+
         [CommandProperty(AccessLevel.Counselor, AccessLevel.GameMaster)]
         public VirtueInfo Virtues { get { return _Virtues; } set { } }
 
@@ -1342,6 +1368,156 @@ namespace Server
                 }
             }
         }
+
+        #region WaterPents
+        public bool WaterPent1
+        {
+            get { return WP1; }
+            set
+            {
+                WP1 = value;
+            }
+        }
+        public bool WaterPent2
+        {
+            get { return WP2; }
+            set
+            {
+                WP2 = value;
+            }
+        }
+        public bool WaterPent3
+        {
+            get { return WP3; }
+            set
+            {
+                WP3 = value;
+            }
+        }
+        public bool WaterPent4
+        {
+            get { return WP4; }
+            set
+            {
+                WP4 = value;
+            }
+        }
+        public bool WaterPent5
+        {
+            get { return WP5; }
+            set
+            {
+                WP5 = value;
+            }
+        }
+        public bool WaterPent6
+        {
+            get { return WP6; }
+            set
+            {
+                WP6 = value;
+            }
+        }
+        public bool WaterPent7
+        {
+            get { return WP7; }
+            set
+            {
+                WP7 = value;
+            }
+        }
+        public bool WaterPent8
+        {
+            get { return WP8; }
+            set
+            {
+                WP8 = value;
+            }
+        }
+        public bool WaterPent9
+        {
+            get { return WP9; }
+            set
+            {
+                WP9 = value;
+            }
+        }
+        #endregion
+
+        #region AirPents
+        public bool AirPent1
+        {
+            get { return AP1; }
+            set
+            {
+                AP1 = value;
+            }
+        }
+        public bool AirPent2
+        {
+            get { return AP2; }
+            set
+            {
+                AP2 = value;
+            }
+        }
+        public bool AirPent3
+        {
+            get { return AP3; }
+            set
+            {
+                AP3 = value;
+            }
+        }
+        public bool AirPent4
+        {
+            get { return AP4; }
+            set
+            {
+                AP4 = value;
+            }
+        }
+        public bool AirPent5
+        {
+            get { return AP5; }
+            set
+            {
+                AP5 = value;
+            }
+        }
+        public bool AirPent6
+        {
+            get { return AP6; }
+            set
+            {
+                AP6 = value;
+            }
+        }
+        public bool AirPent7
+        {
+            get { return AP7; }
+            set
+            {
+                AP7 = value;
+            }
+        }
+        public bool AirPent8
+        {
+            get { return AP8; }
+            set
+            {
+                AP8 = value;
+            }
+        }
+        public bool AirPent9
+        {
+            get { return AP9; }
+            set
+            {
+                AP9 = value;
+            }
+        }
+        #endregion
 
         /// <summary>
         ///     Overridable. Virtual event invoked when <paramref name="skill" /> changes in some way.
@@ -1382,6 +1558,8 @@ namespace Server
                 }
             }
         }
+
+
 
         public virtual void AddSkillMod(SkillMod mod)
         {
@@ -1666,11 +1844,11 @@ namespace Server
             sl.GetLevel(this, out _SpecClasse, out _specLevel);
         }
 
-       /* public virtual void UpdateArmorDexReduction()
-        {
+        /* public virtual void UpdateArmorDexReduction()
+         {
             
-        }
-        */
+         }
+         */
         [CommandProperty(AccessLevel.GameMaster)]
         public int Thirst { get { return _Thirst; } set { _Thirst = value; } }
 
@@ -1789,6 +1967,26 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
+        public virtual int PermaMagic
+        {
+            get { return _PermaMagicEquipped; }
+            set
+            {
+                _PermaMagicEquipped = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public virtual int HealingMod
+        {
+            get { return _HealingModEquipped; }
+            set
+            {
+                _HealingModEquipped = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public virtual bool Asleep
         {
             get { return _Sleep; }
@@ -1805,6 +2003,17 @@ namespace Server
                         _SleepTimer = null;
                     }
                 }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool OppositionGroup
+        {
+            get { return _DisarmReady; }
+            set
+            {
+                _DisarmReady = value;
+                //SendLocalizedMessage( value ? 1019013 : 1019014 );
             }
         }
 
@@ -1854,19 +2063,19 @@ namespace Server
         public void Paralyze(TimeSpan duration)
         {
             if (!FreeAction && !_Paralyzed)
-            { 
+            {
                 if (!_Paralyzed)
                 {
-                Paralyzed = true;
-                _ParaTimer = new ParalyzedTimer(this, duration);
-                _ParaTimer.Start();
+                    Paralyzed = true;
+                    _ParaTimer = new ParalyzedTimer(this, duration);
+                    _ParaTimer.Start();
                 }
             }
             else
             {
                 SendMessage("You feel yourself resisting the spell...");
             }
-        
+
         }
 
         public void Sleep(TimeSpan duration)
@@ -5938,6 +6147,34 @@ namespace Server
 
             switch (version)
             {
+                case 38:
+                    {
+                        AP1 = reader.ReadBool();
+                        AP2 = reader.ReadBool();
+                        AP3 = reader.ReadBool();
+                        AP4 = reader.ReadBool();
+                        AP5 = reader.ReadBool();
+                        AP6 = reader.ReadBool();
+                        AP7 = reader.ReadBool();
+                        AP8 = reader.ReadBool();
+                        AP9 = reader.ReadBool();
+
+                        WP1 = reader.ReadBool();
+                        WP2 = reader.ReadBool();
+                        WP3 = reader.ReadBool();
+                        WP4 = reader.ReadBool();
+                        WP5 = reader.ReadBool();
+                        WP6 = reader.ReadBool();
+                        WP7 = reader.ReadBool();
+                        WP8 = reader.ReadBool();
+                        WP9 = reader.ReadBool();
+                            goto case 37;
+                    }
+                case 37:
+                    {
+                       // _SpecClasse = (SpecClasse)reader.ReadInt();
+                        goto case 36;
+                    }
                 case 36:
                     {
                         _SpecClasse = (SpecClasse)reader.ReadInt();
@@ -6435,7 +6672,28 @@ namespace Server
 
         public virtual void Serialize(GenericWriter writer)
         {
-            writer.Write(36); // version
+            writer.Write(38); // version
+
+            writer.Write(AP1);
+            writer.Write(AP2);
+            writer.Write(AP3);
+            writer.Write(AP4);
+            writer.Write(AP5);
+            writer.Write(AP6);
+            writer.Write(AP7);
+            writer.Write(AP8);
+            writer.Write(AP9);
+
+            writer.Write(WP1);
+            writer.Write(WP2);
+            writer.Write(WP3);
+            writer.Write(WP4);
+            writer.Write(WP5);
+            writer.Write(WP6);
+            writer.Write(WP7);
+            writer.Write(WP8);
+            writer.Write(WP9);
+
             writer.Write((int)_SpecClasse);
             writer.Write(_boostedStat);
             writer.Write(_specLevel);
@@ -6845,7 +7103,7 @@ namespace Server
 
                 if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
                     item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.FreeAction != 0)
+                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.FreeAction != 0 || item.PermaMagic != 0 || item.HealingMod != 0)
                 {
                     UpdateResistances();
                 }
