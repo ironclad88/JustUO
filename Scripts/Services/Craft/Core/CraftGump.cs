@@ -402,6 +402,7 @@ namespace Server.Engines.Craft
         {
             int num = this.m_CraftSystem.CanCraft(this.m_From, this.m_Tool, item.ItemType);
 
+            
             if (num > 0)
             {
                 this.m_From.SendGump(new CraftGump(this.m_From, this.m_CraftSystem, this.m_Tool, num));
@@ -416,6 +417,9 @@ namespace Server.Engines.Craft
                 {
                     CraftSubResCol res = (item.UseSubRes2 ? this.m_CraftSystem.CraftSubRes2 : this.m_CraftSystem.CraftSubRes);
                     int resIndex = (item.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex);
+
+
+                  //  ResourceSelected = res.ItemType.FullName.Substring(13);
 
                     if (resIndex >= 0 && resIndex < res.Count)
                         type = res.GetAt(resIndex).ItemType;

@@ -744,7 +744,7 @@ namespace Server
 
 				if (sk == null)
 				{
-					m_Skills[skillID] = sk = new Skill(this, SkillInfo.Table[skillID], 0, 1000, SkillLock.Up);
+					m_Skills[skillID] = sk = new Skill(this, SkillInfo.Table[skillID], 0, 1300, SkillLock.Up);
 				}
 
 				return sk;
@@ -914,7 +914,7 @@ namespace Server
 							{
 								var sk = new Skill(this, info[i], reader);
 
-								if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1000 || sk.Lock != SkillLock.Up)
+								if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1300 || sk.Lock != SkillLock.Up)
 								{
 									m_Skills[i] = sk;
 									Total += sk.BaseFixedPoint;

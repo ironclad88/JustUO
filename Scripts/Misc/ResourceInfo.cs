@@ -719,7 +719,7 @@ namespace Server.Items
             //    bronze.RunicMaxIntensity = 65;
             //}
 
-            CraftAttributeInfo golden = Golden = new CraftAttributeInfo();
+            CraftAttributeInfo golden = Golden = new CraftAttributeInfo(); // Used as Iron difficulty and Quality in CraftGumpItem.cs Line 334
 
             golden.Difficulty = 1;
             golden.Quality = 1.0;
