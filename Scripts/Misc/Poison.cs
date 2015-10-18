@@ -17,8 +17,9 @@ namespace Server
 		[CallPriority(10)]
 		public static void Configure()
 		{
-			if (Core.AOS)
-			{
+            // JustZH needs to be tested
+			//if (Core.AOS)
+			//{
 				/*Register(new PoisonImpl("Lesser", 0, 4, 16, 7.5, 3.0, 2.25, 10, 4));
 				Register(new PoisonImpl("Regular", 1, 8, 18, 10.0, 3.0, 3.25, 10, 3));
 				Register(new PoisonImpl("Greater", 2, 12, 20, 15.0, 3.0, 4.25, 10, 2));
@@ -27,12 +28,13 @@ namespace Server
                  * */
 
 
-                Register(new PoisonImpl("Lesser", 0, 4, 16, 7.5, 3.0, 2.25, 15, 4));        // buffed poison abit
-                Register(new PoisonImpl("Regular", 1, 8, 18, 10.0, 3.0, 3.25, 15, 3));
-                Register(new PoisonImpl("Greater", 2, 12, 20, 15.0, 3.0, 4.25, 15, 2));
-                Register(new PoisonImpl("Deadly", 3, 20, 40, 35.0, 3.0, 4.25, 20, 2));
-                Register(new PoisonImpl("Lethal", 4, 40, 70, 45.0, 3.0, 4.25, 30, 2));
-			}
+                Register(new PoisonImpl("Lesser", 1, 4, 16, 7.5, 3.0, 2.25, 15, 4));        // buffed poison abit
+                Register(new PoisonImpl("Regular", 2, 8, 18, 10.0, 3.0, 3.25, 15, 3));
+                Register(new PoisonImpl("Greater", 3, 12, 20, 15.0, 3.0, 4.25, 15, 2));
+                Register(new PoisonImpl("Deadly", 4, 20, 40, 35.0, 3.0, 4.25, 20, 2));
+                Register(new PoisonImpl("Lethal", 5, 40, 70, 45.0, 3.0, 4.25, 30, 2));
+                Register(new PoisonImpl("Parasitic", 6, 50, 80, 50.0, 3.0, 4.25, 30, 2));
+			/*}
 			else
 			{
 				Register(new PoisonImpl("Lesser", 0, 4, 26, 2.500, 3.5, 3.0, 10, 2));
@@ -40,9 +42,9 @@ namespace Server
 				Register(new PoisonImpl("Greater", 2, 6, 26, 6.250, 3.5, 3.0, 10, 2));
 				Register(new PoisonImpl("Deadly", 3, 7, 26, 12.500, 3.5, 4.0, 10, 2));
 				Register(new PoisonImpl("Lethal", 4, 9, 26, 25.000, 3.5, 5.0, 10, 2));
-			}
+			}*/
 
-			#region Mondain's Legacy
+		/*	#region Mondain's Legacy
 			if (Core.ML)
 			{
 				Register(new PoisonImpl("LesserDarkglow", 10, 4, 16, 7.5, 3.0, 2.25, 10, 4));
@@ -56,8 +58,10 @@ namespace Server
 				Register(new PoisonImpl("DeadlyParasitic", 17, 16, 30, 30.0, 3.0, 5.25, 15, 2));
 				Register(new PoisonImpl("LethalParasitic", 18, 20, 50, 35.0, 3.0, 5.25, 20, 2));
 			}
-			#endregion
+         #endregion
+         */
 		}
+         
 
 		public static Poison IncreaseLevel(Poison oldPoison)
 		{

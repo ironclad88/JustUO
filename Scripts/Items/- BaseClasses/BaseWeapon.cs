@@ -1373,19 +1373,19 @@ namespace Server.Items
             }
             else
             {*/
-                if (atkValue <= -50.0)
-                {
-                    atkValue = -49.9;
-                }
+            if (atkValue <= -50.0)
+            {
+                atkValue = -49.9;
+            }
 
-                if (defValue <= -50.0)
-                {
-                    defValue = -49.9;
-                }
+            if (defValue <= -50.0)
+            {
+                defValue = -49.9;
+            }
 
-                ourValue = (atkValue + 50.0);
-                theirValue = (defValue + 50.0);
-           // }
+            ourValue = (atkValue + 50.0);
+            theirValue = (defValue + 50.0);
+            // }
 
             double chance = ourValue / (theirValue * 2.0);
 
@@ -1699,17 +1699,17 @@ namespace Server.Items
                 }
 
                 // Parry/Bushido over 100 grants a 5% bonus.
-               /* if (parry >= 100.0 || bushido >= 100.0)
-                {
-                    chance += 0.05;
-                }
+                /* if (parry >= 100.0 || bushido >= 100.0)
+                 {
+                     chance += 0.05;
+                 }
 
-                // Evasion grants a variable bonus post ML. 50% prior.
-                if (Evasion.IsEvading(defender))
-                {
-                    chance *= Evasion.GetParryScalar(defender);
-                }
-                */
+                 // Evasion grants a variable bonus post ML. 50% prior.
+                 if (Evasion.IsEvading(defender))
+                 {
+                     chance *= Evasion.GetParryScalar(defender);
+                 }
+                 */
                 // Low dexterity lowers the chance.
                 if (defender.Dex < 80)
                 {
@@ -1796,17 +1796,17 @@ namespace Server.Items
                         CounterAttack.StopCountering(defender);
                     }
 
-                   /* if (Confidence.IsConfident(defender))
-                    {
-                        defender.SendLocalizedMessage(1063117);
-                        // Your confidence reassures you as you successfully block your opponent's blow.
+                    /* if (Confidence.IsConfident(defender))
+                     {
+                         defender.SendLocalizedMessage(1063117);
+                         // Your confidence reassures you as you successfully block your opponent's blow.
 
-                        double bushido = defender.Skills.Bushido.Value;
+                         double bushido = defender.Skills.Bushido.Value;
 
-                        defender.Hits += Utility.RandomMinMax(1, (int)(bushido / 12));
-                        defender.Stam += Utility.RandomMinMax(1, (int)(bushido / 5));
-                    }
-                    */
+                         defender.Hits += Utility.RandomMinMax(1, (int)(bushido / 12));
+                         defender.Stam += Utility.RandomMinMax(1, (int)(bushido / 5));
+                     }
+                     */
                     BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
 
                     if (shield != null)
@@ -1864,10 +1864,10 @@ namespace Server.Items
         public virtual int AbsorbDamage(Mobile attacker, Mobile defender, int damage)
         {
             //JustZH removed 26/8-15
-           /* if (Core.AOS)
-            {
-                return AbsorbDamageAOS(attacker, defender, damage);
-            }*/
+            /* if (Core.AOS)
+             {
+                 return AbsorbDamageAOS(attacker, defender, damage);
+             }*/
 
             BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
             if (shield != null)
@@ -2064,7 +2064,7 @@ namespace Server.Items
 
             attacker.PlaySound(GetHitAttackSound(attacker, defender));
             defender.PlaySound(GetHitDefendSound(attacker, defender));
-            
+
             int damage = ComputeDamage(attacker, defender);
             //JustZH: apply spec scalars
             // scale this bonus directly, this means spec bonus will be applied to "base" damage BEFORE all the
@@ -2092,7 +2092,7 @@ namespace Server.Items
             if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " BEFORE SPEC Damage: " + damage);
 
-            damage = AOS.Scale(damage, (int)(spec_scalar_d*100));
+            damage = AOS.Scale(damage, (int)(spec_scalar_d * 100));
 
             if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " AFTER SPEC Damage: " + damage);
@@ -2131,51 +2131,51 @@ namespace Server.Items
                 percentageBonus += 100;
             }
 
-           /* if (!attacker.Player)           // not sure about this one
-            {
-                if (defender is PlayerMobile)
-                {
-                    PlayerMobile pm = (PlayerMobile)defender;
+            /* if (!attacker.Player)           // not sure about this one
+             {
+                 if (defender is PlayerMobile)
+                 {
+                     PlayerMobile pm = (PlayerMobile)defender;
 
-                    if (pm.EnemyOfOneType != null && pm.EnemyOfOneType != attacker.GetType())
-                    {
-                        percentageBonus += 100;
-                    }
-                }
-            }
-            else if (!defender.Player)      // not sure about this one
-            {
-                if (attacker is PlayerMobile)
-                {
-                    PlayerMobile pm = (PlayerMobile)attacker;
+                     if (pm.EnemyOfOneType != null && pm.EnemyOfOneType != attacker.GetType())
+                     {
+                         percentageBonus += 100;
+                     }
+                 }
+             }
+             else if (!defender.Player)      // not sure about this one
+             {
+                 if (attacker is PlayerMobile)
+                 {
+                     PlayerMobile pm = (PlayerMobile)attacker;
 
-                    if (pm.WaitingForEnemy)
-                    {
-                        pm.EnemyOfOneType = defender.GetType();
-                        pm.WaitingForEnemy = false;
-                    }
+                     if (pm.WaitingForEnemy)
+                     {
+                         pm.EnemyOfOneType = defender.GetType();
+                         pm.WaitingForEnemy = false;
+                     }
 
-                    if (pm.EnemyOfOneType == defender.GetType())
-                    {
-                        defender.FixedEffect(0x37B9, 10, 5, 1160, 0);
+                     if (pm.EnemyOfOneType == defender.GetType())
+                     {
+                         defender.FixedEffect(0x37B9, 10, 5, 1160, 0);
 
-                        percentageBonus += 50;
-                    }
-                }
-            }*/
+                         percentageBonus += 50;
+                     }
+                 }
+             }*/
 
-           /* int packInstinctBonus = GetPackInstinctBonus(attacker, defender);     // dunno what this is, that means i dont want it! ^^
+            /* int packInstinctBonus = GetPackInstinctBonus(attacker, defender);     // dunno what this is, that means i dont want it! ^^
 
-            if (packInstinctBonus != 0)
-            {
-                percentageBonus += packInstinctBonus;
-            }
+             if (packInstinctBonus != 0)
+             {
+                 percentageBonus += packInstinctBonus;
+             }
 
-            if (m_InDoubleStrike)
-            {
-                percentageBonus -= 10;
-            }
-            */
+             if (m_InDoubleStrike)
+             {
+                 percentageBonus -= 10;
+             }
+             */
             TransformContext context = TransformationSpellHelper.GetContext(defender);
 
             if ((m_Slayer == SlayerName.Silver || m_Slayer2 == SlayerName.Silver) && context != null &&
@@ -2482,11 +2482,16 @@ namespace Server.Items
                 }
             }
 
-            if(this.Blackrock == true)
+            if (this.Blackrock == true)
             {
                 defender.DispelMagicMods();
                 defender.Mana = 0;
                 attacker.Mana = 0;
+            }
+
+            if (this.Poison != null && this.PermaPoison == true)
+            {
+                defender.ApplyPoison(attacker, this.Poison);
             }
 
             if (m_MaxHits > 0 &&
@@ -2695,7 +2700,7 @@ namespace Server.Items
 
             if (debug == true && attacker.IsStaff())
                 Console.WriteLine(attacker.Name + " FINAL DAMAGE: " + damageGiven);
-           
+
             XmlAttach.OnWeaponHit(this, attacker, defender, damageGiven);
         }
 
@@ -3186,7 +3191,7 @@ namespace Server.Items
                     return;
                 }
             }
-            
+
             min = MinDamage;
             max = MaxDamage;
         }
@@ -3229,7 +3234,7 @@ namespace Server.Items
                 if (debug == true && attacker.IsStaff())
                 {
                     //extra debugging for staff
-                    Console.WriteLine("Damage after damage mod ("+m_DamageLevel+") add: " + damage);
+                    Console.WriteLine("Damage after damage mod (" + m_DamageLevel + ") add: " + damage);
                 }
             }
 
@@ -3329,15 +3334,15 @@ namespace Server.Items
             GetBaseDamageRange(from, out baseMin, out baseMax);
 
             //JustZH removed 26/8-15
-           /* if (!Core.AOS)
-            {
-                min = Math.Max((int)ScaleDamageAOS(from, baseMin, false), 1);
-                max = Math.Max((int)ScaleDamageAOS(from, baseMax, false), 1);
-            }
-            else
-            {*/
-                min = Math.Max((int)ScaleDamageOld(from, baseMin, false), 1);
-                max = Math.Max((int)ScaleDamageOld(from, baseMax, false), 1);
+            /* if (!Core.AOS)
+             {
+                 min = Math.Max((int)ScaleDamageAOS(from, baseMin, false), 1);
+                 max = Math.Max((int)ScaleDamageAOS(from, baseMax, false), 1);
+             }
+             else
+             {*/
+            min = Math.Max((int)ScaleDamageOld(from, baseMin, false), 1);
+            max = Math.Max((int)ScaleDamageOld(from, baseMax, false), 1);
             //}
         }
 
@@ -3420,10 +3425,10 @@ namespace Server.Items
             //if (debug) Console.WriteLine("BEFORE SPEC Damage bonus: " + totalBonus);
             // JustZH DMG bonus for Warriors using Weapons
             //if (attacker.SpecClasse == SpecClasse.Warrior)
-           // {
-               // totalBonus += attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
-           // }
-            
+            // {
+            // totalBonus += attacker.SpecBonus(SpecClasse.Warrior);             // not sure about this yet, commented out for now
+            // }
+
 
             return damage + (int)(damage * totalBonus);
         }
@@ -3536,7 +3541,7 @@ namespace Server.Items
             {
                 damage = (int)(damage / 2.0);
             }*/
-            
+
             return damage;
         }
 
@@ -3676,7 +3681,7 @@ namespace Server.Items
 
             // Version 12
 
-         //   m_IdHue
+            //   m_IdHue
             // Version 11
             writer.Write(m_TimesImbued);
 
@@ -4422,12 +4427,12 @@ namespace Server.Items
 
                         m_Crafter = reader.ReadMobile();
 
-                        
+
 
                         m_Poison = Poison.Deserialize(reader);
                         m_PoisonCharges = reader.ReadInt();
 
-                        
+
 
                         if (m_StrReq == OldStrengthReq)
                         {
@@ -5017,8 +5022,8 @@ namespace Server.Items
 
                 if ((prop = GetDamageBonus()) != 0)
                 {
-                   /* BaseWeapon wea = this as BaseWeapon;
-                    wea.Name = "test"; */
+                    /* BaseWeapon wea = this as BaseWeapon;
+                     wea.Name = "test"; */
                     list.Add("Damage bonus +" + prop); // damage increase ~1_val~%
                 }
 
@@ -5472,7 +5477,7 @@ namespace Server.Items
         public override void OnSingleClick(Mobile from)
         {
             var attrs = new List<EquipInfoAttribute>();
-           // WeaponAttributeInfo test = new Weapon
+            // WeaponAttributeInfo test = new Weapon
 
             if (DisplayLootType)
             {
@@ -5554,7 +5559,7 @@ namespace Server.Items
                 attrs.Add(new EquipInfoAttribute(1116798));
             }
 
-           
+
             int number;
 
             if (Name == null)

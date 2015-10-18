@@ -326,12 +326,12 @@ namespace Server
 				//There has to be this distinction between the racial values and not to account for gaining skills and these skills aren't displayed nor Totaled up.
 				double value = NonRacialValue;
 
-				double raceBonus = Owner.Owner.RacialSkillBonus;
+				// double raceBonus = Owner.Owner.RacialSkillBonus;
 
-				if (raceBonus > value)
+				/*if (raceBonus > value)
 				{
 					value = raceBonus;
-				}
+				}*/
 
 				return value;
 			}
@@ -744,7 +744,7 @@ namespace Server
 
 				if (sk == null)
 				{
-					m_Skills[skillID] = sk = new Skill(this, SkillInfo.Table[skillID], 0, 1000, SkillLock.Up);
+					m_Skills[skillID] = sk = new Skill(this, SkillInfo.Table[skillID], 0, 1300, SkillLock.Up);
 				}
 
 				return sk;
@@ -914,7 +914,7 @@ namespace Server
 							{
 								var sk = new Skill(this, info[i], reader);
 
-								if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1000 || sk.Lock != SkillLock.Up)
+								if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1300 || sk.Lock != SkillLock.Up)
 								{
 									m_Skills[i] = sk;
 									Total += sk.BaseFixedPoint;

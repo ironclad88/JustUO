@@ -6,7 +6,7 @@ namespace Server.Spells
     public abstract class MagerySpell : Spell
     {
 
-        
+
 
         private static readonly int[] m_ManaTable = new int[] { 4, 6, 9, 11, 14, 20, 40, 50 };
         private const double ChanceOffset = 20.0, ChanceLength = 100.0 / 7.0;
@@ -37,10 +37,10 @@ namespace Server.Spells
 
         public override void GetCastSkills(out double min, out double max)
         {
-           // int circle = (int)this.Circle;
+            // int circle = (int)this.Circle;
 
-          //  if (this.Scroll != null)
-          //      circle -= 2;
+            //  if (this.Scroll != null)
+            //      circle -= 2;
 
             double avg = ChanceLength * (int)this.Circle;
 
@@ -53,7 +53,7 @@ namespace Server.Spells
             if (this.Scroll is BaseWand)
                 return 0;
 
-            
+
 
             return m_ManaTable[(int)this.Circle];
         }
@@ -88,6 +88,36 @@ namespace Server.Spells
                 target.CheckSkill(SkillName.MagicResist, 0.0, target.Skills[SkillName.MagicResist].Cap);
 
             return (n >= Utility.RandomDouble());
+        }
+
+        public virtual bool checkPermaMagic(Mobile target, SpellCircle circle)
+        {
+            string permaMagicResistString = "You feel yourself resisting magical energy!";
+            if (target.PermaMagic != 0)
+            {
+                switch (target.PermaMagic)
+                {
+                    case 1:
+                        if (circle == SpellCircle.First) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                    case 2:
+                        if (circle == SpellCircle.Second) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                    case 3:
+                        if (circle == SpellCircle.Third) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                    case 4:
+                        if (circle == SpellCircle.Fourth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                    case 5:
+                        if (circle == SpellCircle.Fifth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                    case 6:
+                        if (circle == SpellCircle.Sixth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        break;
+                }
+            }
+            return false;
         }
 
         public virtual double GetResistPercentForCircle(Mobile target, SpellCircle circle)

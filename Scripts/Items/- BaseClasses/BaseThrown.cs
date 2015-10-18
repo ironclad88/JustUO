@@ -124,6 +124,7 @@ namespace Server.Items
 
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
+
             this.m_Target = defender;
             this.m_KillSave = defender.Location;
 

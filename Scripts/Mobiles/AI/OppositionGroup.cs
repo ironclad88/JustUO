@@ -1,5 +1,6 @@
 using System;
 using Server.Mobiles;
+using Server.Mobiles.ZuluSpecial;
 
 namespace Server
 {
@@ -79,7 +80,8 @@ namespace Server
                 typeof(LadyOfTheSnow),
                 typeof(RottingCorpse),
                 typeof(SkeletalDragon),
-                typeof(Lich)
+                typeof(Lich),
+                typeof(BlackLich)
             }
         });
         private readonly Type[][] m_Types;

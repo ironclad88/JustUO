@@ -13,6 +13,8 @@ namespace Server.Engines.Craft
         private readonly CraftSystem m_CraftSystem;
         private readonly BaseTool m_Tool;
 
+        public static string ResourceSelected;
+
         private readonly CraftPage m_Page;
 
         private const int LabelHue = 0x480;
@@ -400,6 +402,7 @@ namespace Server.Engines.Craft
         {
             int num = this.m_CraftSystem.CanCraft(this.m_From, this.m_Tool, item.ItemType);
 
+            
             if (num > 0)
             {
                 this.m_From.SendGump(new CraftGump(this.m_From, this.m_CraftSystem, this.m_Tool, num));
@@ -415,10 +418,13 @@ namespace Server.Engines.Craft
                     CraftSubResCol res = (item.UseSubRes2 ? this.m_CraftSystem.CraftSubRes2 : this.m_CraftSystem.CraftSubRes);
                     int resIndex = (item.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex);
 
+
+                  //  ResourceSelected = res.ItemType.FullName.Substring(13);
+
                     if (resIndex >= 0 && resIndex < res.Count)
                         type = res.GetAt(resIndex).ItemType;
                 }
-
+                
                 this.m_CraftSystem.CreateItem(this.m_From, item.ItemType, type, this.m_Tool, item);
             }
         }
@@ -516,7 +522,8 @@ namespace Server.Engines.Craft
                             int groupIndex = (context == null ? -1 : context.LastGroupIndex);
 
                             CraftSubRes res = system.CraftSubRes.GetAt(index);
-
+                            ResourceSelected = res.ItemType.FullName.Substring(13);
+                            
                             if (this.m_From.Skills[system.MainSkill].Base < res.RequiredSkill)
                             {
                                 this.m_From.SendGump(new CraftGump(this.m_From, system, this.m_Tool, res.Message));
@@ -679,6 +686,10 @@ namespace Server.Engines.Craft
                         break;
                     }
             }
+        }
+
+        public static string selectedOre(){
+            return ResourceSelected;
         }
     }
 }

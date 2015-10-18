@@ -84,7 +84,7 @@ namespace Server.SkillHandlers
                         if (!Engines.ConPVP.DuelContext.IsFreeConsume(from))
                         {
                             this.m_Potion.Consume();
-                            from.AddToBackpack(new Bottle());
+                            from.AddToBackpack(new Bottle()); 
                         }
                     }
                     else // Target can't be poisoned

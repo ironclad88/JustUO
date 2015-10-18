@@ -382,6 +382,8 @@ namespace Server
                 case 13: return AosAttributes.GetValue(from, AosAttribute.CastSpeed);
                 case 14: return AosAttributes.GetValue(from, AosAttribute.LowerManaCost);
                 case 15: return from.GetMaxResistance(ResistanceType.FreeAction);
+                case 16: return from.GetMaxResistance(ResistanceType.PermaMagic);
+                case 17: return from.GetMaxResistance(ResistanceType.Healing);
                 default: return 0;
             }
         }
@@ -2294,7 +2296,9 @@ namespace Server
         Earth = 0x00000080,
         Necro = 0x00000100,
         Holy = 0x00000200,
-        FreeAction = 0x00000400
+        FreeAction = 0x00000400,
+        PermaMagic = 0x00001600,
+        Healing = 0x0000800
     }
 
     public sealed class AosElementAttributes : BaseAttributes
@@ -2394,6 +2398,32 @@ namespace Server
             set
             {
                 this[AosElementAttribute.FreeAction] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int PermaMagic
+        {
+            get
+            {
+                return this[AosElementAttribute.PermaMagic];
+            }
+            set
+            {
+                this[AosElementAttribute.PermaMagic] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Healing
+        {
+            get
+            {
+                return this[AosElementAttribute.Healing];
+            }
+            set
+            {
+                this[AosElementAttribute.Healing] = value;
             }
         }
 

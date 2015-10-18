@@ -4550,6 +4550,8 @@ namespace Server
         public virtual int EarthResistance { get { return 0; } }
         public virtual int NecroResistance { get { return 0; } }
         public virtual int FreeAction { get { return 0; } }
+        public virtual int PermaMagic { get { return 0; } }
+        public virtual int HealingMod { get { return 0; } }
         public virtual int HolyResistance { get { return 0; } }
 
         [CommandProperty(AccessLevel.Counselor)]

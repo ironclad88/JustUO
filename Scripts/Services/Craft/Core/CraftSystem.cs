@@ -233,15 +233,17 @@ namespace Server.Engines.Craft
 
         public virtual bool ConsumeOnFailure(Mobile from, Type resourceType, CraftItem craftItem)
         {
-            return true;
+            return false; // was true
         }
 
         public void CreateItem(Mobile from, Type type, Type typeRes, BaseTool tool, CraftItem realCraftItem)
-        { 
+        {
+
             // Verify if the type is in the list of the craftable item
             CraftItem craftItem = this.m_CraftItems.SearchFor(type);
             if (craftItem != null)
             {
+               
                 // The item is in the list, try to create it
                 // Test code: items like sextant parts can be crafted either directly from ingots, or from different parts
                 realCraftItem.Craft(from, this, typeRes, tool);
@@ -269,7 +271,7 @@ namespace Server.Engines.Craft
             CraftItem craftItem = new CraftItem(typeItem, group, name);
             craftItem.AddRes(typeRes, nameRes, amount, message);
             craftItem.AddSkill(skillToMake, minSkill, maxSkill);
-
+            
             this.DoGroup(group, craftItem);
             return this.m_CraftItems.Add(craftItem);
         }

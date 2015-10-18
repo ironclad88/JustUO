@@ -164,6 +164,7 @@ namespace Server.Engines.Craft
             index = this.AddCraft(typeof(GreaterExplosionPotion), 1044537, 1044557, 90.0, 110.0, typeof(SulfurousAsh), 1044359, 20, 1044367);
             this.AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
+            
             // Zulu Potions
 
             // JustZH need to add TamlaPot here. and stuff needs to get fixed

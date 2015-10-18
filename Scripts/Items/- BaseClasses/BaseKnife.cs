@@ -75,13 +75,6 @@ namespace Server.Items
         {
             base.OnHit(attacker, defender, damageBonus);
 
-            if (!Core.AOS && this.Poison != null && this.PoisonCharges > 0)
-            {
-                --this.PoisonCharges;
-
-                if (Utility.RandomDouble() >= 0.5) // 50% chance to poison
-                    defender.ApplyPoison(attacker, this.Poison);
-            }
         }
     }
 }
