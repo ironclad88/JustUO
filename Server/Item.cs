@@ -4687,12 +4687,24 @@ namespace Server
             {
                 CompactInfo info = LookupCompactInfo();
 
-                if (info != null && info.m_Name != null)
+                if (Unidentified == true)
                 {
-                    return info.m_Name;
-                }
+                    if (info != null && info.m_Name != null)
+                    {
+                        return "A glimmering " + ItemData.Name;
+                    }
 
-                return DefaultName;
+                    return "A magic " + ItemData.Name;
+                }
+                else
+                {
+                    if (info != null && info.m_Name != null)
+                    {
+                        return info.m_Name;
+                    }
+
+                    return m_IdPrefix + ItemData.Name + m_IdSuffix;
+                }
             }
             set
             {
@@ -4754,13 +4766,10 @@ namespace Server
                 if (value == false)
                 {
                     if (m_Hue == 0) Hue = m_IdHue; // only color uncolored items
-                    Name = m_IdPrefix + ItemData.Name + m_IdSuffix;
                 }
                 else
                 {
-                    //this item has just explicitly been set to Unidentified, add magic prefix
-                    if (m_Hue == m_IdHue) m_Hue = 0; // only uncolor items that have a magic color
-                    Name = "magic " + ItemData.Name;
+                    if (m_Hue == m_IdHue) Hue = 0; // only uncolor items that have a magic color
                 }
 
                 InvalidateProperties();

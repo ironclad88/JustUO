@@ -634,29 +634,28 @@ namespace Server.Items
         {
             get
             {
-                try
+                if(m_DiceNum > 0)
                 {
-                    return WeaponDiceDefaults.GetDice(this.GetType()).getNum;
-                }
-                catch
-                {
-                    if (m_DiceNum == 0)
-                        return (1);
                     return m_DiceNum;
                 }
+                else
+                {
+                    try
+                    {
+                        return WeaponDiceDefaults.GetDice(this.GetType()).getNum;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! " + this.Name + " will roll 0 dice");
+                        return (0);
+                    }
+                }
+                
             }
             set
             {
-                try
-                {
-                    WeaponDiceDefaults.ReplaceDice(this.GetType(), value, Dice_Sides, Dice_Offset);
-                    InvalidateProperties();
-                }
-                catch
-                {
-                    m_DiceNum = value;
-                    InvalidateProperties();
-                }
+                m_DiceNum = value;
+                InvalidateProperties();
             }
         }
 
@@ -665,29 +664,28 @@ namespace Server.Items
         {
             get
             {
-                try
+                if (m_DiceSides > 0)
                 {
-                    return WeaponDiceDefaults.GetDice(this.GetType()).getSides;
-                }
-                catch
-                {
-                    if (m_DiceSides == 0)
-                        return (AosMaxDamage - AosMinDamage + 1);
                     return m_DiceSides;
                 }
+                else
+                {
+                    try
+                    {
+                        return WeaponDiceDefaults.GetDice(this.GetType()).getSides;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! " + this.Name + " will roll 0 side dice");
+                        return (0);
+                    }
+                }
+
             }
             set
             {
-                try
-                {
-                    WeaponDiceDefaults.ReplaceDice(this.GetType(), Dice_Num, value, Dice_Offset);
-                    InvalidateProperties();
-                }
-                catch
-                {
-                    m_DiceSides = value;
-                    InvalidateProperties();
-                }
+                m_DiceSides = value;
+                InvalidateProperties();
             }
         }
 
@@ -696,29 +694,28 @@ namespace Server.Items
         {
             get
             {
-                try
+                if (m_DiceOffset > 0)
                 {
-                    return WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
-                }
-                catch
-                {
-                    if (m_DiceOffset == 0)
-                        return (AosMinDamage - 1);
                     return m_DiceOffset;
                 }
+                else
+                {
+                    try
+                    {
+                        return WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! " + this.Name + " will roll with 0 offset");
+                        return (0);
+                    }
+                }
+
             }
             set
             {
-                try
-                {
-                    WeaponDiceDefaults.ReplaceDice(this.GetType(), Dice_Num, Dice_Sides, value);
-                    InvalidateProperties();
-                }
-                catch
-                {
-                    m_DiceOffset = value;
-                    InvalidateProperties();
-                }
+                m_DiceOffset = value;
+                InvalidateProperties();
             }
         }
 

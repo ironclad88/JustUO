@@ -6,16 +6,14 @@ using System.Text;
 
 namespace Server.Items.ZuluIems.GMItems.Tools
 {
-    public class OmerosPickAxe : BaseAxe
+    public class OmerosPickAxe : Pickaxe
     {
         [Constructable]
         public OmerosPickAxe()
-            : base(0xE86)
         {
-            this.Name = "Omero´s pickaxe";
-            this.Layer = Layer.OneHanded;
-            this.Weight = 11.0;
-            this.Hue = 1301;
+            this.Name = ("Omero´s pickaxe");
+            this.IdHue = 1301;
+            this.ShowUsesRemaining = false;
         }
 
         public OmerosPickAxe(Serial serial)
@@ -113,6 +111,20 @@ namespace Server.Items.ZuluIems.GMItems.Tools
             get
             {
                 return WeaponAnimation.Slash1H;
+            }
+        }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public new int UsesRemaining
+        {
+            get
+            {
+                // Always report at least 1..
+                return 1;
+            }
+            set
+            {
+                // Infinite uses
+                return;
             }
         }
         public override void Serialize(GenericWriter writer)
