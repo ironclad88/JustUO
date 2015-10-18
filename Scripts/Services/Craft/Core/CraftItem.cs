@@ -60,6 +60,8 @@ namespace Server.Engines.Craft
         private readonly CraftSkillCol m_arCraftSkill;
         private readonly Type m_Type;
 
+        public bool excep;
+
         private double[] OreInfo;
 
         private readonly string m_GroupNameString;
@@ -1067,7 +1069,7 @@ namespace Server.Engines.Craft
             }
             // chance -= 2.1;
 
-            //  Console.WriteLine(chance);
+
             if (chance > 0)
             {
                 return chance + bonus;
@@ -1090,10 +1092,26 @@ namespace Server.Engines.Craft
 
             if (GetExceptionalChance2(craftSystem, chance, from, OreInfo) > Utility.RandomDouble())
             {
-               // quality = (int)OreInfo[1];
+                quality = (int)OreInfo[1];
+                excep = true;
+                //quality = 2;
+            }
+
+            return (chance > Utility.RandomDouble());
+        }
+
+        public bool CheckSkills2(
+    Mobile from, Type typeRes, CraftSystem craftSystem, ref int quality, ref bool allRequiredSkills, bool gainSkills, ref bool excep)
+        {
+
+            double chance = GetSuccessChance2(from, typeRes, craftSystem, gainSkills, ref allRequiredSkills, OreInfo);
+
+            if (GetExceptionalChance2(craftSystem, chance, from, OreInfo) > Utility.RandomDouble())
+            {
+                excep = true;
                 quality = 2;
             }
-            Console.WriteLine(chance > Utility.RandomDouble());
+
             return (chance > Utility.RandomDouble());
         }
 
@@ -1831,7 +1849,9 @@ namespace Server.Engines.Craft
                     int quality = 1;
                     bool allRequiredSkills = true;
 
-                    m_CraftItem.CheckSkills(m_From, m_TypeRes, m_CraftSystem, ref quality, ref allRequiredSkills, false);
+                    bool MakeExcep = false;
+
+                    m_CraftItem.CheckSkills2(m_From, m_TypeRes, m_CraftSystem, ref quality, ref allRequiredSkills, false, ref MakeExcep);
 
                     CraftContext context = m_CraftSystem.GetContext(m_From);
 
@@ -1864,8 +1884,9 @@ namespace Server.Engines.Craft
 
                     bool makersMark = false;
 
-                    if (quality == 2 && m_From.Skills[m_CraftSystem.MainSkill].Base >= 130.0)
+                    if (MakeExcep == true) //  if (MakeExcep == true)
                     {
+                        
                         makersMark = m_CraftItem.IsMarkable(m_CraftItem.ItemType);
                     }
 

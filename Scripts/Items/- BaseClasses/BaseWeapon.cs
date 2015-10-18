@@ -3321,6 +3321,13 @@ namespace Server.Items
                     case WeaponDamageLevel.Deva:
                         bonus += 30;
                         break;
+                    case WeaponDamageLevel.DMG35:
+                        bonus += 35;
+                        break;
+                    case WeaponDamageLevel.DMG40:
+                        bonus += 40;
+                        break;
+
                 }
             }
 

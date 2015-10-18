@@ -93,6 +93,9 @@ namespace Server.Items
         private static int wepEnchant = 0;
         private static int m_LuckChance;
         private const int MaxProperties = 32;
+
+        private static int armorLevel = 0;
+
         private CraftResource m_Resource;
         public BaseRunicToolRewrite(CraftResource resource, int itemID)
             : base(itemID)
@@ -1868,7 +1871,8 @@ namespace Server.Items
         }
         private static string GetArmorSuffix(BaseArmor armor)
         {
-            var temp = Convert.ToInt32(armor.ProtectionLevel);
+            var temp = armorLevel;
+            armorLevel = 0;
             if (temp >= 1 && temp <= 5) return " of Defence ";
             else if (temp > 6 && temp <= 10) return " of Guarding ";
             else if (temp > 11 && temp <= 15) return " of Hardening ";
@@ -2603,8 +2607,9 @@ namespace Server.Items
             else
                 arLevel = 30;
 
-            armor.ProtectionLevel = (ArmorProtectionLevel)arLevel;
-
+       //     armor.ProtectionLevel = (ArmorProtectionLevel)arLevel;
+            armor.BaseArmorRating += arLevel;
+            armorLevel = arLevel;
 
             if (rnd.Next(1, 100) <= (10 * MagicLevel))
             {
@@ -2917,7 +2922,7 @@ namespace Server.Items
 
             var numb = rnd.Next(1, 100);
             if (debug) Console.WriteLine("numb: " + numb);
-            if (numb >= 93)
+            if (numb >= 90)
             {
                 // styg
                 ApplyAttribute(primary, AosAttribute.SpellChanneling, 1, 1);
@@ -3013,11 +3018,12 @@ namespace Server.Items
             }
             else if (chance < 500)
             {
-                ApplyElementalProtection(jewel, MagicLevel);
-            }
-            else if (chance <= 550)
-            {
+                ApplyImmunity(jewel, MagicLevel);
                 //Apply magic immunity // (NOT YET IMPLEMENTED)
+            }
+            else
+            {
+                ApplyElementalProtection(jewel, MagicLevel);
             }
 
             if (rnd.Next(1, 100) <= (5 * MagicLevel))

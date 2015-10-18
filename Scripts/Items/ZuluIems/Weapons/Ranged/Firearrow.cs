@@ -12,6 +12,7 @@ namespace Server.Items.ZuluIems.Weapons.Ranged
             : this(1)
         {
             this.Name = "Fire arrow";
+            this.Hue = 0x0494;
         }
 
         [Constructable]

@@ -223,9 +223,20 @@ namespace Server.Items
                     // lower ammo cost should not work when we have no ammo at all
                     return false;
                 }
+            } 
+            if (AmmoType == typeof(FireArrow))
+            {
+                attacker.MovingEffect(defender, 0x1BFE, 18, 1, false, false, 0x0494, 1);
             }
-
-            attacker.MovingEffect(defender, EffectID, 18, 1, false, false);
+            else if (AmmoType == typeof(IceArrow))
+            {
+                attacker.MovingEffect(defender, 0x1BFE, 18, 1, false, false, 0x0492, 0);
+            }
+            else
+            {
+                attacker.MovingEffect(defender, EffectID, 18, 1, false, false);
+            }
+            
 
             return true;
         }

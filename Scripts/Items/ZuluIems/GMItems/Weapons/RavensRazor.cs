@@ -14,13 +14,31 @@ namespace Server.Items.ZuluIems.GMItems.Weapons
             Name = ("Raven`s Razor");
 
             IdHue = 1179;
-            Attributes.WeaponSpeed = 40; // dunno what is better, is lower faster or what?
-            Attributes.WeaponDamage = 60;
+            Attributes.WeaponSpeed = 50; // dunno what is better, is lower faster or what?
+            Attributes.WeaponDamage = 65;
+            this.Attributes.SpellChanneling = 1;
+            this.DamageLevel = WeaponDamageLevel.DMG40;
         }
 
         public RavensRazor(Serial serial)
             : base(serial)
         {
+        }
+
+        public override int AosHitSound
+        {
+            get
+            {
+                return 0x238;
+            }
+        }
+
+        public override int DefHitSound
+        {
+            get
+            {
+                return 0x238;
+            }
         }
 
         public override int InitMinHits

@@ -44,7 +44,7 @@ namespace Server.Spells
         private static TimeSpan AnimateDelay = TimeSpan.FromSeconds(1.5);
 
         public virtual SkillName CastSkill { get { return SkillName.Magery; } }
-        public virtual SkillName DamageSkill { get { return SkillName.EvalInt; } }
+        public virtual SkillName DamageSkill { get { return SkillName.Magery; } }
 
         public virtual bool RevealOnCast { get { return true; } }
         public virtual bool ClearHandsOnCast { get { return true; } }

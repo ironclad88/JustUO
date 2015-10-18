@@ -27,6 +27,7 @@ namespace Server.Items
         Hardening,
         Fortification,
         Invulnerability,
+        Invincibility
     }
 
     public enum ArmorBodyType

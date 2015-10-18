@@ -252,6 +252,42 @@
     <Offset>8</Offset>
   </Values>
   <Values>
+    <Type>Server.Items.ZuluIems.ElementalGear.Water.Weapon.AirBow</Type>
+    <Num>1</Num>
+    <Sides>6</Sides>
+    <Offset>12</Offset>
+  </Values>
+  <Values>
+    <Type>Server.Items.ZuluIems.ElementalGear.Water.Weapon.WaterWarFork</Type>
+    <Num>2</Num>
+    <Sides>6</Sides>
+    <Offset>3</Offset>
+  </Values>
+  <Values>
+    <Type>Server.Items.ZuluIems.GMItems.Weapons.BaldersDead</Type>
+    <Num>1</Num>
+    <Sides>6</Sides>
+    <Offset>12</Offset>
+  </Values>
+  <Values>
+    <Type>Server.Items.ZuluIems.GMItems.Weapons.RavensRazor</Type>
+    <Num>3</Num>
+    <Sides>6</Sides>
+    <Offset>7</Offset>
+  </Values>
+  <Values>
+    <Type>Server.Items.ZuluIems.Weapons.Ranged.Firebow</Type>
+    <Num>1</Num>
+    <Sides>8</Sides>
+    <Offset>12</Offset>
+  </Values>
+  <Values>
+    <Type>Server.Items.ZuluIems.Weapons.Ranged.Icebow</Type>
+    <Num>1</Num>
+    <Sides>8</Sides>
+    <Offset>12</Offset>
+  </Values>
+  <Values>
     <Type>Server.Items.TestCustomWeapon</Type>
     <Num>2</Num>
     <Sides>4</Sides>

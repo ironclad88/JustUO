@@ -1140,14 +1140,18 @@ namespace Server.Items
         {
             switch (this.m_Protection)
             {
+                case ArmorProtectionLevel.Defense:
+                    return 5;
                 case ArmorProtectionLevel.Guarding:
-                    return 1;
+                    return 10;
                 case ArmorProtectionLevel.Hardening:
-                    return 2;
+                    return 15;
                 case ArmorProtectionLevel.Fortification:
-                    return 3;
+                    return 20;
                 case ArmorProtectionLevel.Invulnerability:
-                    return 4;
+                    return 25;
+                case ArmorProtectionLevel.Invincibility:
+                    return 30;
             }
 
             return 0;
@@ -2801,7 +2805,7 @@ namespace Server.Items
                 // JustZH Crafting bonus
                 if (from.SpecClasse == SpecClasse.Crafter)
                 {
-                    multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter) * 2));
+                    multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter)));
                 }
                 multiplier += 100;
                 newquality = (this.QualityScalar * multiplier);

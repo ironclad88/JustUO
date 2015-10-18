@@ -14,8 +14,9 @@ namespace Server.Items.ZuluIems.GMItems.Weapons
             Name = ("Balder`s Dead");
             
             IdHue = 1296;
-            Attributes.WeaponSpeed = 15; // dunno what is better, is lower faster or what?
-            Attributes.WeaponDamage = 45;
+            this.DamageLevel = WeaponDamageLevel.Deva;
+            this.Attributes.SpellChanneling = 1;
+            this.Attributes.WeaponSpeed += 40;
         }
 
         public BaldersDead(Serial serial)

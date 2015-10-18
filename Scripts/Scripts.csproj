@@ -1183,6 +1183,7 @@
     <Compile Include="Gumps\Zulugumps\holybookgump.cs" />
     <Compile Include="Gumps\Zulugumps\necrobookgump.cs" />
     <Compile Include="Gumps\Zulugumps\ProtsGump.cs" />
+    <Compile Include="Gumps\Zulugumps\ReagGump.cs" />
     <Compile Include="Gumps\Zulugumps\skillBoostGump.cs" />
     <Compile Include="Gumps\Zulugumps\statBoostGump.cs" />
     <Compile Include="Gumps\Zulugumps\SureCheckGump.cs" />
