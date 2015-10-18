@@ -4041,11 +4041,36 @@ namespace Server.Mobiles
             BaseWeapon wep = this.Weapon as BaseWeapon;
             if(wep != null )
             {
-                wep.Dice_Num = Math.Max(1,((max - min) / 6));
-                wep.Dice_Sides = 6;
+                const int max_sides = 6;
+                const int min_sides = 3;
+                int dmg_diff = max - min + 1;
+                if (dmg_diff > max_sides)
+                {
+                    int best_sides = max_sides;
+                    for(int i = max_sides; i >= min_sides ; i --)
+                    {
+                        best_sides = i;
+                        if (dmg_diff % i == 0) break;
+                    }
+                    wep.Dice_Sides = best_sides;
+                    wep.Dice_Num = Math.Max(1, (dmg_diff / best_sides));
+                }
+                else
+                {
+                    wep.Dice_Sides = dmg_diff;
+                    wep.Dice_Num = 1;
+                }
+                
                 wep.Dice_Offset = min - wep.Dice_Num;
+                int max_dmg = (wep.Dice_Sides * wep.Dice_Num + wep.Dice_Offset);
+                if (max - max_dmg > wep.Dice_Sides) wep.Dice_Num += (max - max_dmg) / wep.Dice_Sides;
 #if DEBUG
-                Console.WriteLine("Old damage set for " + this.Name + " converted " + min + " to " + max + " damage to " + wep.Dice_Num + "d" + wep.Dice_Sides + "+" + wep.Dice_Offset);
+                //Console.WriteLine("Old damage set for " + this.Name + " converted " + min + " to " + max + " damage to " + wep.Dice_Num + "d" + wep.Dice_Sides + "+" + wep.Dice_Offset);
+                if ((Math.Abs(min - (wep.Dice_Num + wep.Dice_Offset)) > 3) ||
+                    (Math.Abs(max - (wep.Dice_Num * wep.Dice_Sides + wep.Dice_Offset)) > 3))
+                {
+                    Console.WriteLine("Old damage set for " + this.Name + " high variance! From: " + min + " to " + max + " damage to " + wep.Dice_Num + "d" + wep.Dice_Sides + "+" + wep.Dice_Offset);
+                }
 #endif
             }
         }

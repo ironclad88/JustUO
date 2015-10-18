@@ -694,7 +694,7 @@ namespace Server.Items
         {
             get
             {
-                if (m_DiceOffset > 0)
+                if (m_DiceOffset > -1)
                 {
                     return m_DiceOffset;
                 }
@@ -4573,7 +4573,7 @@ namespace Server.Items
             // This is just for error catching. These values are not Serialized.
             m_DiceNum = 0;
             m_DiceSides = 0;
-            m_DiceOffset = 0;
+            m_DiceOffset = -1;
             //DICE-DAMAGE Mod
 
             m_Quality = WeaponQuality.Regular;

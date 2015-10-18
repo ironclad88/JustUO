@@ -201,7 +201,7 @@ namespace Arya.Auction
                 }
                 //End Auction Cleanup
 
-                bool refreshed;
+                bool refreshed = false;
 
                 while ((controller.NumberOfAuctions + 1) <= controller.MaxAuctions)
                 {
@@ -786,8 +786,9 @@ namespace Arya.Auction
                             refreshed = true;
 
                             break;
-                        }                       
+                        }
                     }
+                    if (refreshed) refreshed = true; // to get rid of compiler warning
                 }
             }
         }

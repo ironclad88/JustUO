@@ -2007,17 +2007,6 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool OppositionGroup
-        {
-            get { return _DisarmReady; }
-            set
-            {
-                _DisarmReady = value;
-                //SendLocalizedMessage( value ? 1019013 : 1019014 );
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
         public bool DisarmReady
         {
             get { return _DisarmReady; }
