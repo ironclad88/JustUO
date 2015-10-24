@@ -30,7 +30,7 @@ namespace Server.Items
                 double ar = base.ArmorRating;
 
                 if (m != null)
-                    return ((m.Skills[SkillName.Parry].Value * ar) / 200.0) + 1.0;
+                    return ((m.Skills[SkillName.Parry].Value * ar) / 250.0) + 1.0; // 250 was 200
                 else
                     return ar;
             }

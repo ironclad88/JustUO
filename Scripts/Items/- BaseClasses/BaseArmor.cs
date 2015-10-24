@@ -365,11 +365,20 @@ namespace Server.Items
         {
             get
             {
+
+                /*
                 int ar = this.BaseArmorRating;
                 ar = (int)(ar * this.QualityScalar);
 
                 if (this.m_Protection != ArmorProtectionLevel.Regular)
                     ar += 10 + (5 * (int)this.m_Protection);
+                */
+
+                double ar = this.BaseArmorRating;
+                ar = (int)(ar * this.QualityScalar);
+                ar /= 1.3;
+                if (this.m_Protection != ArmorProtectionLevel.Regular)
+                    ar += 5 + (3 * (int)this.m_Protection);
 
                 //switch (this.m_Resource)
                 //{
@@ -983,7 +992,8 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BasePhysicalResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorPhysicalResist + this.m_PhysicalBonus + (this.m_SetEquipped ? this.m_SetPhysicalBonus : 0);
+                return /*this.BasePhysicalResistance + */
+                this.GetProtOffset() + this.GetResourceAttrs().ArmorPhysicalResist + this.m_PhysicalBonus + (this.m_SetEquipped ? this.m_SetPhysicalBonus : 0);
             }
         }
 
@@ -2807,9 +2817,9 @@ namespace Server.Items
                 {
                     multiplier = (int)(multiplier * (from.SpecBonus(SpecClasse.Crafter)));
                 }
-                multiplier += 100;
+                multiplier += 75; // 100
                 newquality = (this.QualityScalar * multiplier);
-                newquality /= 100;
+                newquality /= 90;
                 this.QualityScalar = newquality;
             }
             this.ScaleDurability();
