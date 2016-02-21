@@ -19,7 +19,9 @@ namespace Server.SkillHandlers
 	{
 		private static readonly Hashtable m_BeingTamed = new Hashtable();
 		private static bool m_DisableMessage;
-		public static bool DisableMessage { get { return m_DisableMessage; } set { m_DisableMessage = value; } }
+        private static int m_Range = 8;
+        private static int m_MaxRange = 10; 
+        public static bool DisableMessage { get { return m_DisableMessage; } set { m_DisableMessage = value; } }
 
 		public static void Initialize()
 		{
@@ -122,7 +124,7 @@ namespace Server.SkillHandlers
 			private bool m_SetSkillTime = true;
 
 			public InternalTarget()
-				: base(Core.AOS ? 3 : 2, false, TargetFlags.None)
+				: base(m_Range, false, TargetFlags.None)
 			{ }
 
 			public virtual void ResetPacify(object obj)
@@ -343,7 +345,7 @@ namespace Server.SkillHandlers
 					DamageEntry de = m_Creature.FindMostRecentDamageEntry(false);
 					bool alreadyOwned = m_Creature.Owners.Contains(m_Tamer);
 
-					if (!m_Tamer.InRange(m_Creature, Core.AOS ? 7 : 6))
+					if (!m_Tamer.InRange(m_Creature, m_MaxRange))
 					{
 						m_BeingTamed.Remove(m_Creature);
 						m_Tamer.NextSkillTime = Core.TickCount;
@@ -519,7 +521,7 @@ namespace Server.SkillHandlers
 						return false;
 					}
 
-					if (m_Creature.InRange(new Point3D(p), 1))
+					if (m_Creature.InRange(new Point3D(p), m_MaxRange))
 					{
 						return true;
 					}

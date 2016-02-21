@@ -14,7 +14,12 @@ namespace Server.Items
 			set { m_Resource = value; InvalidateProperties(); }
 		}
 
-		int ICommodity.DescriptionNumber { get { return CraftResources.IsStandard( m_Resource ) ? LabelNumber : 1075062 + ( (int)m_Resource - (int)CraftResource.RegularWood ); } }
+		int ICommodity.DescriptionNumber {
+            get
+            {
+                return CraftResources.IsStandard( m_Resource ) ? LabelNumber : 1075062 + ( (int)m_Resource - (int)CraftResource.RegularWood );
+            }
+        }
 		bool ICommodity.IsDeedable { get { return true; } }
 		[Constructable]
 		public BaseLog() : this( 1 )
@@ -43,19 +48,33 @@ namespace Server.Items
 			Hue = CraftResources.GetHue( resource );
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
+        public override void AddNameProperty(ObjectPropertyList list)
+        {
+            string name = "";
+            if (this.Resource != CraftResource.RegularWood)
+            {
+                // Only display name for special logs
+                name = CraftResources.GetInfo(this.Resource).Name;
+            }
+            if (this.Amount > 1)
+                list.Add(this.Amount + " " + name + " Logs");
+            else
+                list.Add(name + " Log");
+        }
+
+        public override void GetProperties( ObjectPropertyList list )
 		{
 			base.GetProperties( list );
 
-			if ( !CraftResources.IsStandard( m_Resource ) )
-			{
-				int num = CraftResources.GetLocalizationNumber( m_Resource );
+			//if ( !CraftResources.IsStandard( m_Resource ) )
+			//{
+			//	int num = CraftResources.GetLocalizationNumber( m_Resource );
 
-				if ( num > 0 )
-					list.Add( num );
-				else
-					list.Add( CraftResources.GetName( m_Resource ) );
-			}
+			//	if ( num > 0 )
+			//		list.Add( num );
+			//	else
+			//		list.Add( CraftResources.GetName( m_Resource ) );
+			//}
 		}
 		public BaseLog( Serial serial ) : base( serial )
 		{

@@ -105,25 +105,26 @@ namespace Server.Items
 
         public override void AddNameProperty(ObjectPropertyList list)
         {
+            string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(1050039, "{0}\t#{1}", this.Amount, 1024216); // ~1_NUMBER~ ~2_ITEMNAME~
+                list.Add(this.Amount + " " + name + " Hides");
             else
-                list.Add(1024216); // pile of hides
+                list.Add(name + " Hide");
         }
 
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
 
-            if (!CraftResources.IsStandard(this.m_Resource))
-            {
-                int num = CraftResources.GetLocalizationNumber(this.m_Resource);
+            //if (!CraftResources.IsStandard(this.m_Resource))
+            //{
+            //    int num = CraftResources.GetLocalizationNumber(this.m_Resource);
 
-                if (num > 0)
-                    list.Add(num);
-                else
-                    list.Add(CraftResources.GetName(this.m_Resource));
-            }
+            //    if (num > 0)
+            //        list.Add(num);
+            //    else
+            //        list.Add(CraftResources.GetName(this.m_Resource));
+            //}
         }
     }
 

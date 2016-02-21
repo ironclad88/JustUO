@@ -5408,7 +5408,9 @@ namespace Server.Items
                     list.Add(AosElementAttribute.Direct + " Damage " + direct.ToString() + "%");
                 }
 
-                list.Add(1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString()); // weapon damage ~1_val~ - ~2_val~
+                //list.Add(1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString()); // weapon damage ~1_val~ - ~2_val~
+                String offsetString = (Dice_Offset < 0) ? "-" + Dice_Offset.ToString() : "+ " + Dice_Offset.ToString();
+                list.Add(Dice_Num.ToString() + "d" + Dice_Sides.ToString() + offsetString); // xdy+z
 
                 //if (Core.ML)
                 //{

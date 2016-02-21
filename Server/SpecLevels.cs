@@ -15,7 +15,7 @@ namespace Server
         public void GetLevel(Mobile player, out SpecClasse curr_classe, out int curr_level)
         {
            // double s_warrior, s_bard, s_crafter, s_mage, s_ranger, s_thief, s_cleric;
-            double total = 0, max = 0;
+            double total = player.SkillsTotal, max = 0;
             int level = 0;
             var classDict = new Dictionary<SpecClasse, double>(6);
 
@@ -52,14 +52,21 @@ namespace Server
             else
             {
                 int i;
-                for (i = 0; i < SpecLevelSkills.Length && max >= SpecLevelSkills[i] && (100 * max / total) >= SpecLevelPercent[i]; i++)
+                for (i = 0; i < SpecLevelSkills.Length && max >= SpecLevelSkills[i] && (1000 * max / total) >= SpecLevelPercent[i]; i++)
                 {
                     level++;
                 }
             }
             
             curr_level = level;
-            curr_classe = spec;
+            if (level > 0)
+            {
+                curr_classe = spec;
+            }
+            else
+            {
+                curr_classe = SpecClasse.None;
+            }
             Console.WriteLine("level " + curr_level + " classe " + curr_classe);
         }
 

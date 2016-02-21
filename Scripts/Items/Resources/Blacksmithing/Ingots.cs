@@ -265,7 +265,7 @@ namespace Server.Items
         {
             string name = CraftResources.GetInfo(this.Resource).Name;
             if (this.Amount > 1)
-                list.Add(this.Amount + " " + name + " Ingot");
+                list.Add(this.Amount + " " + name + " Ingots");
             else
                 list.Add(name + " Ingot");
         }
