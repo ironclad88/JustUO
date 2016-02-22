@@ -765,6 +765,7 @@ namespace Server
         private bool _Female, _Warmode, _Hidden, _Blessed, _Flying;
         private int _StatCap;
         private int _Str, _Dex, _Int;
+        private int _SpellGrp;
         private int _Hits, _Stam, _Mana;
         private int _Fame, _Karma;
         private AccessLevel _AccessLevel;
@@ -8658,6 +8659,16 @@ namespace Server
                     Delta(MobileDelta.Hits);
                     OnHitsChange(oldValue);
                 }
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int SpellGrp
+        {
+            get { return _SpellGrp; }
+            set
+            {
+                _SpellGrp = value;
             }
         }
 
