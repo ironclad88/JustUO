@@ -7,8 +7,8 @@ using Server.Spells.Seventh;
 using Server.Spells.Sixth;
 using Server.Spells.Eighth;
 using Server.Spells.Fifth;
+using System;
 using Server.Spells.Zulu.EarthSpells;
-using System.Collections.Generic;
 
 namespace Server.Mobiles.AI
 {
@@ -36,7 +36,7 @@ namespace Server.Mobiles.AI
                 spell = new CureSpell(mobile, null);
             }
 
-            switch (Utility.Random(0, 5))
+            switch (Utility.Random(0, 7)) // more chance to bless
             {
                 case 0:
                     mobile.Say("Flam Sanct");
@@ -55,6 +55,9 @@ namespace Server.Mobiles.AI
                     spell = new StrengthSpell(mobile, null);
                     break;
                 case 4:
+                    if (mobile.EarthMob)
+                        spell = new EarthBless(mobile, null);
+
                     mobile.Say("Rel Sanct");
                     spell = new BlessSpell(mobile, null);
                     break;
@@ -62,7 +65,23 @@ namespace Server.Mobiles.AI
                     mobile.Say("In Jux Sanct");
                     spell = new MagicReflectSpell(mobile, null);
                     break;
+                case 6:
+                    if (mobile.EarthMob)
+                        spell = new EarthBless(mobile, null);
+
+                    mobile.Say("Rel Sanct");
+                    spell = new BlessSpell(mobile, null);
+                    break;
+                case 7:
+                    if (mobile.EarthMob)
+                        spell = new EarthBless(mobile, null);
+
+                    mobile.Say("Rel Sanct");
+                    spell = new BlessSpell(mobile, null);
+                    break;
             }
+
+            
 
             return spell;
         }
@@ -70,7 +89,7 @@ namespace Server.Mobiles.AI
         public Spell getRandomDetrimental(BaseCreature mobile) // cast a random benificial spell on enemy (player)
         {
             Spell spell = null;
-            
+
             switch (Utility.Random(0, 4))
             {
                 case 0:
@@ -106,11 +125,6 @@ namespace Server.Mobiles.AI
         public Spell getRandomMiscSpell() // dunno yet
         {
             return null;
-        }
-
-        public Spell HealSpell(BaseCreature mobile) // just heal
-        {
-            return new GreaterHealSpell(mobile, null);
         }
 
         public virtual Spell getRandomLowLevelDamageSpell(BaseCreature mobile) // Casts a low level damage spell on enemy
@@ -239,6 +253,124 @@ namespace Server.Mobiles.AI
             return spell;
         }
 
+        public virtual Spell getRandomEarthSpell(BaseCreature mobile)
+        {
+            Spell spell = null;
+
+            switch (Utility.Random(0, 4))
+            {
+                case 0:
+                    mobile.Say("Esmagamento Con Pedra");
+                    spell = new ShiftingEarth(mobile, null);
+                    break;
+                case 1:
+                    mobile.Say("Batida Do Deus");
+                    spell = new CallLightning(mobile, null);
+                    break;
+                case 2:
+                    mobile.Say("Gust Do Ar");
+                    spell = new Gustofair(mobile, null);
+                    break;
+                case 3:
+                    mobile.Say("Batida Do Fogo");
+                    spell = new RisingFire(mobile, null);
+                    break;
+                case 4:
+                    mobile.Say("Geada Com Inverno");
+                    spell = new IceStrike(mobile, null);
+                    break;
+            }
+            return spell;
+        }
+
+        public virtual Spell getRandomNecroSpell(BaseCreature mobile)
+        {
+            return null;
+        }
+
+        public virtual Spell EarthBless(BaseCreature mobile)
+        {
+            return new EarthBless(mobile, null);
+        }
+
+        public virtual Spell CheckIfHealingNeeded(BaseCreature mobile)
+        {
+            Spell spell = null;
+            var maxHits = mobile.HitsMax;
+            var currentHits = mobile.Hits;
+            var checkForHeal = currentHits / maxHits;
+
+            if (mobile.Poisoned)
+            {
+                if (mobile.EarthMob)
+                    spell = new Antidote(mobile, null);
+
+                spell = new CureSpell(mobile, null);
+                return spell;
+            }
+
+            if (checkForHeal <= 0.4)
+            {
+                if (mobile.EarthMob)
+                    spell = new NaturesTouch(mobile, null);
+
+                spell = new GreaterHealSpell(mobile, null);
+            }
+
+            return spell;
+        }
+
+        private const double HealChance = 0.10;// 10% chance to heal at gm magery //  only used in CheckCastHealingSpell right now
+        private DateTime m_NextHealTime;
+        private Spell CheckCastHealingSpell(BaseCreature mobile) // stolen function from MageAI, havent checked it out
+        {
+            // If I'm poisoned, always attempt to cure.
+            if (mobile.Poisoned)
+                return new CureSpell(mobile, null);
+
+            // Summoned creatures never heal themselves.
+            if (mobile.Summoned)
+                return null;
+
+            if (mobile.Controlled)
+            {
+                if (DateTime.UtcNow < m_NextHealTime)
+                    return null;
+            }
+
+
+            if (Utility.Random(0, 4 + (mobile.Hits == 0 ? mobile.HitsMax : (mobile.HitsMax / mobile.Hits))) < 3)
+                return null;
+
+
+            Spell spell = null;
+
+            if (mobile.Hits < (mobile.HitsMax - 50))
+            {
+
+                spell = new GreaterHealSpell(mobile, null);
+
+                if (spell == null)
+                    spell = new HealSpell(mobile, null);
+
+            }
+            else if (mobile.Hits < (mobile.HitsMax - 10))
+            {
+                spell = new HealSpell(mobile, null);
+            }
+
+            double delay;
+
+            if (mobile.Int >= 500)
+                delay = Utility.RandomMinMax(7, 10);
+            else
+                delay = Math.Sqrt(600 - mobile.Int);
+
+            this.m_NextHealTime = DateTime.UtcNow + TimeSpan.FromSeconds(delay);
+
+            return spell;
+        }
+
         public virtual Spell GetRandomDamageSpell(BaseCreature mobile) // Casts a random damage spell on enemy
         {
 
@@ -248,7 +380,7 @@ namespace Server.Mobiles.AI
 
             if (checkForHeal <= 0.3)
             { // test
-                HealSpell(mobile);
+                CheckIfHealingNeeded(mobile);
             }
 
             switch (Utility.Random(11))

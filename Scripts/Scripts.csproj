@@ -3371,6 +3371,7 @@
     <Compile Include="Mobiles\ZuluMonsters\AirLordElemental.cs" />
     <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
     <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\Dracoliche.cs" />
     <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
     <Compile Include="Mobiles\Vendors\NPC\Botanist.cs" />
     <Compile Include="Mobiles\Vendors\SBInfo\SBBotanist.cs" />
@@ -5906,4 +5907,7 @@
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>--debug</PostBuildEvent>
+  </PropertyGroup>
 </Project>

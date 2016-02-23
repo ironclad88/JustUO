@@ -766,6 +766,7 @@ namespace Server
         private int _StatCap;
         private int _Str, _Dex, _Int;
         private int _SpellGrp;
+        private bool _Earth, _Necro;
         private int _Hits, _Stam, _Mana;
         private int _Fame, _Karma;
         private AccessLevel _AccessLevel;
@@ -8669,6 +8670,26 @@ namespace Server
             set
             {
                 _SpellGrp = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool EarthMob
+        {
+            get { return _Earth; }
+            set
+            {
+                _Earth = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool NecroMob
+        {
+            get { return _Necro; }
+            set
+            {
+                _Necro = value;
             }
         }
 

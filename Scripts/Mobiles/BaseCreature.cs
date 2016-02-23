@@ -4155,6 +4155,16 @@ namespace Server.Mobiles
             SpellGrp = val;
         }
 
+        public void SetEarthMob(bool val)
+        {
+            EarthMob = val;
+        }
+
+        public void SetNecroMob(bool val)
+        {
+            NecroMob = val;
+        }
+
         public void SetStr(int min, int max)
         {
             RawStr = Utility.RandomMinMax(min, max);
