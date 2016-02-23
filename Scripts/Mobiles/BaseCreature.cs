@@ -4150,6 +4150,11 @@ namespace Server.Mobiles
             Hits = HitsMax;
         }
 
+        public void SetSpellGrp(int val)
+        {
+            SpellGrp = val;
+        }
+
         public void SetStr(int min, int max)
         {
             RawStr = Utility.RandomMinMax(min, max);

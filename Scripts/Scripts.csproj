@@ -3322,6 +3322,7 @@
     <Compile Include="Misc\CharacterCreation.cs" />
     <Compile Include="Mobiles\AI\ElementalAI.cs" />
     <Compile Include="Mobiles\AI\HermitAI.cs" />
+    <Compile Include="Mobiles\AI\SpellGroups.cs" />
     <Compile Include="Mobiles\AI\TestNecroAI.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluMounts\GhostLlama.cs" />
     <Compile Include="Mobiles\Animals\Mounts\ZuluOstards\AmethystFrenziedOstard.cs" />

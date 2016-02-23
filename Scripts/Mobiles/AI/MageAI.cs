@@ -11,6 +11,7 @@ using Server.Spells.Sixth;
 using Server.Spells.Third;
 using Server.Targeting;
 using Server.Spells.Zulu.EarthSpells;
+using Server.Mobiles.AI;
 
 namespace Server.Mobiles
 {
@@ -231,9 +232,18 @@ namespace Server.Mobiles
             }
         }
 
+       /* public virtual Spell getSpellByGroup(int grp)
+        {
+            SpellGroups SG = new SpellGroups();
+            return SG.getSpellByGroup(5, this.m_Mobile);
+        }*/
+
         public virtual Spell GetRandomDamageSpellMage()
         {
             int maxCircle = (int)((this.m_Mobile.Skills[SkillName.Magery].Value + 20.0) / (100.0 / 7.0));
+           
+           
+            
 
             if (this.m_Mobile is AirLordElemental) // bad system, just for testing. Need a function to declare mob spells in the monster class
             {
@@ -356,6 +366,8 @@ namespace Server.Mobiles
         public virtual Spell ChooseSpell(Mobile c)
         {
             Spell spell = null;
+          //  spell = getSpellByGroup(this.m_Mobile.SpellGrp);
+          //  return spell;
 
             if (!this.SmartAI)
             {
@@ -492,7 +504,7 @@ namespace Server.Mobiles
                             break;
                         }
                 }
-
+              //  spell = getSpellByGroup(this.m_Mobile.SpellGrp);
                 return spell;
             }
 
