@@ -402,6 +402,7 @@
     <Compile Include="Accounting\AccountTag.cs" />
     <Compile Include="Accounting\Firewall.cs" />
     <Compile Include="Accounting\IPLimiter.cs" />
+    <Compile Include="Commands\Heal.cs" />
     <Compile Include="Custom Systems\Auction System\Auction Bot\AuctionBotController.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionComparer.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionItem.cs" />
@@ -5908,6 +5909,7 @@
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>--debug</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

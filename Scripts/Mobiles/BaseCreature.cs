@@ -3179,7 +3179,7 @@ namespace Server.Mobiles
             if ((bPlayerOnly && m.Player) || !bPlayerOnly)
             {
                 switch (acqType)
-                {
+                {///JustZH strongest character is the one with the most str and tactics? maybe change this?
                     case FightMode.Strongest:
                         return (m.Skills[SkillName.Tactics].Value + m.Str); //returns strongest mobile
 

@@ -8,7 +8,7 @@ namespace Server.Mobiles
     {
         [Constructable]
         public BlackWisp()
-            : base(AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4)
+            : base(AIType.AI_Mage, FightMode.Weakest, 10, 1, 0.2, 0.4)
         {
             this.Name = "an black wisp";
             this.Body = 0x3a;
@@ -23,7 +23,7 @@ namespace Server.Mobiles
             this.SetMana(120, 150);
             this.SetHits(210, 211);
 
-            this.SetDamage(20, 70);
+            this.SetDamage(20, 40);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
