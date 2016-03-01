@@ -2924,16 +2924,15 @@ namespace Server.Items
 
             if(chance >= 75) // only 25% chance to color cloth
             {
-                if(chance >= 95) // 5% chance to get cool hue 
+                if (chance >= 95) // 5% chance to get cool hue 
                 {
-                    var coolhue = rnd.Next(0, CoolhueArray.Length - 1);
+                    var coolhue = CoolhueArray[rnd.Next(0, CoolhueArray.Length - 1)];
                     clothing.SetHue = coolhue;
                 }
                 else
                 {
                     var ordinaryHue = rnd.Next(1, 860);
                     clothing.SetHue = ordinaryHue;
-                    // 860
                 }
             }
         }
@@ -3035,7 +3034,6 @@ namespace Server.Items
 
         private static void ApplyJewelEnchant(BaseJewel jewel, int MagicLevel)
         {
-
             var chance = rnd.Next(1, 100) * MagicLevel;
             //   Console.WriteLine("Chance: " + chance);
             if (chance < 300)
