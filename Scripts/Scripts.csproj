@@ -402,6 +402,7 @@
     <Compile Include="Accounting\AccountTag.cs" />
     <Compile Include="Accounting\Firewall.cs" />
     <Compile Include="Accounting\IPLimiter.cs" />
+    <Compile Include="Commands\Heal.cs" />
     <Compile Include="Custom Systems\Auction System\Auction Bot\AuctionBotController.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionComparer.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionItem.cs" />
@@ -3371,6 +3372,7 @@
     <Compile Include="Mobiles\ZuluMonsters\AirLordElemental.cs" />
     <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
     <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\Dracoliche.cs" />
     <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
     <Compile Include="Mobiles\Vendors\NPC\Botanist.cs" />
     <Compile Include="Mobiles\Vendors\SBInfo\SBBotanist.cs" />
@@ -5906,4 +5908,8 @@
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

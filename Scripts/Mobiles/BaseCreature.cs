@@ -3179,7 +3179,7 @@ namespace Server.Mobiles
             if ((bPlayerOnly && m.Player) || !bPlayerOnly)
             {
                 switch (acqType)
-                {
+                {///JustZH strongest character is the one with the most str and tactics? maybe change this?
                     case FightMode.Strongest:
                         return (m.Skills[SkillName.Tactics].Value + m.Str); //returns strongest mobile
 
@@ -4153,6 +4153,16 @@ namespace Server.Mobiles
         public void SetSpellGrp(int val)
         {
             SpellGrp = val;
+        }
+
+        public void SetEarthMob(bool val)
+        {
+            EarthMob = val;
+        }
+
+        public void SetNecroMob(bool val)
+        {
+            NecroMob = val;
         }
 
         public void SetStr(int min, int max)

@@ -1123,11 +1123,22 @@ namespace Server.Misc
             {
                 case 1: // Warrior
                     {
-
+                        EquipItem(new Robe());
+                        break;
+                    }
+                case 2:
+                    {
+                        EquipItem(new Robe());
+                        break;
+                    }
+                case 3:
+                    {
+                        EquipItem(new Robe());
                         break;
                     }
                 case 4: // Necromancer
                     {
+                        EquipItem(new Robe());
                         /*Container regs = new BagOfNecroReagents(50);
 
                         if (!Core.AOS)
@@ -1185,6 +1196,7 @@ namespace Server.Misc
                     }
                 case 5: // Paladin
                     {
+                        EquipItem(new Robe());
                         if (elf)
                         {
                             /*  EquipItem(new ElvenMachete());
@@ -1226,6 +1238,7 @@ namespace Server.Misc
 
                 case 6: // Samurai
                     {
+                        EquipItem(new Robe());
                         if (elf || human)
                         {
                               /*EquipItem(new HakamaShita(0x2C3));
@@ -1259,7 +1272,8 @@ namespace Server.Misc
                     }
                 case 7: // Ninja
                     {
-                        int[] hues = new int[] { 0x1A8, 0xEC, 0x99, 0x90, 0xB5, 0x336, 0x89 };
+                        EquipItem(new Robe());
+                       // int[] hues = new int[] { 0x1A8, 0xEC, 0x99, 0x90, 0xB5, 0x336, 0x89 };
                         //TODO: Verify that's ALL the hues for that above.
 
                         if (elf || human)

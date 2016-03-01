@@ -1,29 +1,31 @@
 ﻿using System;
-using Server.Items;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Mobiles
+namespace Server.Mobiles.ZuluMonsters
 {
-    [CorpseName("an black wisp corpse")]
-    public class BlackWisp : BaseCreature
+    [CorpseName("an dracoliche corpse")]
+    public class Dracoliche : BaseCreature
     {
         [Constructable]
-        public BlackWisp()
-            : base(AIType.AI_Mage, FightMode.Weakest, 10, 1, 0.2, 0.4)
+        public Dracoliche()
+            : base(AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4)
         {
-            this.Name = "an black wisp";
-            this.Body = 0x3a;
+            this.Name = "a dracoliche wisp";
+            this.Body = 0xc;
             this.BaseSoundID = 466;
 
-            this.Hue = 0x0455;
+            this.Hue = 1282;
 
-            this.SetStr(200, 230);
-            this.SetDex(200, 250);
-            this.SetInt(100, 120);
+            this.SetStr(600, 650);
+            this.SetDex(700, 750);
+            this.SetInt(150, 160);
 
-            this.SetMana(120, 150);
-            this.SetHits(210, 211);
+            this.SetMana(700, 750);
+            this.SetHits(600, 650);
 
-            this.SetDamage(20, 40);
+            this.SetDamage(50, 80);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -42,11 +44,14 @@ namespace Server.Mobiles
             this.Fame = 3500;
             this.Karma = -3500;
 
-            this.VirtualArmor = 35;
+            this.MagicLevel = 5;
+            this.LootIndex = 4;
+
+            this.VirtualArmor = 60;
             this.ControlSlots = 2;
         }
 
-        public BlackWisp(Serial serial)
+        public Dracoliche(Serial serial)
             : base(serial)
         {
         }

@@ -11,12 +11,12 @@ namespace Server
         public static void Configure()
         {
             Core.Expansion = Expansion;
-
-            bool Enabled = Core.AOS;
+            
+            bool Enabled = Core.HS;
 
             Mobile.InsuranceEnabled = !Enabled;
             ObjectPropertyList.Enabled = Enabled;
-            Mobile.VisibleDamageType = Enabled ? VisibleDamageType.Related : VisibleDamageType.None;
+            Mobile.VisibleDamageType = Enabled ? VisibleDamageType.Everyone : VisibleDamageType.Everyone;
             Mobile.GuildClickMessage = !Enabled;
             Mobile.AsciiClickMessage = !Enabled;
 

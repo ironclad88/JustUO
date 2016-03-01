@@ -366,8 +366,10 @@ namespace Server.Mobiles
         public virtual Spell ChooseSpell(Mobile c)
         {
             Spell spell = null;
-          //  spell = getSpellByGroup(this.m_Mobile.SpellGrp);
-          //  return spell;
+            
+            // Add new Magic casting logic here.
+            // this.m_Mobile <- Caster (monster)
+            // c.player <- Target (player)
 
             if (!this.SmartAI)
             {
