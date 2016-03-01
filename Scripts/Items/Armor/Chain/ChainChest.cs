@@ -10,6 +10,7 @@ namespace Server.Items
             : base(0x13BF)
         {
             this.Weight = 7.0;
+            Dexpenalty = 5;
         }
 
         public ChainChest(Serial serial)
@@ -17,13 +18,6 @@ namespace Server.Items
         {
         }
 
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 5;
-            }
-        }
 
         public override int BasePhysicalResistance
         {

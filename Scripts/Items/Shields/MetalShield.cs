@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x1B7B)
         {
             this.Weight = 6.0;
+            Dexpenalty = 3;
         }
 
         public MetalShield(Serial serial)
@@ -28,13 +29,6 @@ namespace Server.Items
             get
             {
                 return 1;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 3;
             }
         }
         public override int BaseColdResistance

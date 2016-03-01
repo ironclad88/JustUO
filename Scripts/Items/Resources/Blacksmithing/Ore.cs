@@ -594,43 +594,12 @@ namespace Server.Items
                 if (this.IsForge(targeted))
                 {
                     double difficulty;
+                    CraftResourceInfo resourceInfo = CraftResources.GetInfo(this.m_Ore.Resource);
+                    difficulty = resourceInfo.AttributeInfo.Difficulty;
 
-                    switch (this.m_Ore.Resource)
-                    {
-                        default:
-                            difficulty = 50.0;
-                            break;
-                        case CraftResource.DullCopper:
-                            difficulty = 65.0;
-                            break;
-                        case CraftResource.ShadowIron:
-                            difficulty = 70.0;
-                            break;
-                        case CraftResource.Copper:
-                            difficulty = 75.0;
-                            break;
-                        case CraftResource.Bronze:
-                            difficulty = 80.0;
-                            break;
-                        case CraftResource.Gold:
-                            difficulty = 85.0;
-                            break;
-                        case CraftResource.Agapite:
-                            difficulty = 90.0;
-                            break;
-                        case CraftResource.Verite:
-                            difficulty = 95.0;
-                            break;
-                        case CraftResource.Valorite:
-                            difficulty = 99.0;
-                            break;
-                        case CraftResource.Zulu:
-                            difficulty = 99.0;
-                            break;
-                    }
-
-                    double minSkill = difficulty - 25.0;
-                    double maxSkill = difficulty + 25.0;
+                    // JustZH: Adjust smelting difficulty here.
+                    double minSkill = difficulty;
+                    double maxSkill = difficulty + 15;
 
                     if (difficulty > 50.0 && difficulty > from.Skills[SkillName.Mining].Value)
                     {

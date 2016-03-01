@@ -16,6 +16,7 @@ namespace Server.Items.ZuluIems.GMItems.Tools
             this.Layer = Layer.TwoHanded;
             this.Weight = 11.0;
             this.Hue = 1162;
+            base.ShowUsesRemaining = false;
         }
 
         public XarafaxAxe(Serial serial)
@@ -127,7 +128,6 @@ namespace Server.Items.ZuluIems.GMItems.Tools
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
-            this.ShowUsesRemaining = true;
         }
     }
 }

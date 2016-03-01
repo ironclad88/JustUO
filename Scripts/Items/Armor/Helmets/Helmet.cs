@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x140A)
         {
             this.Weight = 5.0;
+            Dexpenalty = 3;
         }
 
         public Helmet(Serial serial)
@@ -21,13 +22,6 @@ namespace Server.Items
             get
             {
                 return 2;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 3;
             }
         }
         public override int BaseFireResistance

@@ -10,6 +10,7 @@ namespace Server.Items
             : base(0x13BB)
         {
             this.Weight = 1.0;
+            Dexpenalty = 2;
         }
 
         public ChainCoif(Serial serial)
@@ -22,13 +23,6 @@ namespace Server.Items
             get
             {
                 return 4;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 2;
             }
         }
         public override int BaseFireResistance

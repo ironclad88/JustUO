@@ -99,7 +99,7 @@ namespace Server.Misc
             else if (value >= maxSkill)
                 return true; // No challenge
 
-            double chance = (value - minSkill) / (maxSkill - minSkill);
+            double chance = (value - minSkill) / ((maxSkill - minSkill)/2); // JustUO: gains too infrequent with high max skill, adjust
 
             Point2D loc = new Point2D(from.Location.X / LocationSize, from.Location.Y / LocationSize);
             return CheckSkill(from, skill, loc, chance);
@@ -127,7 +127,7 @@ namespace Server.Misc
                 return false;
 
             bool success = (chance >= Utility.RandomDouble());
-            double gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
+            double gc = 1.0; // JustZH: was (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
             gc += (skill.Cap - skill.Base) / skill.Cap;
             gc /= 4; // was 2
 

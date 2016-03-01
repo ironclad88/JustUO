@@ -102,8 +102,8 @@ namespace Server.Engines.Harvest
 
                 lumber.BonusResources = new BonusHarvestResource[]
                 {
-                    new BonusHarvestResource(0, 83.9, null, null), //Nothing
                     new BonusHarvestResource(40, 10.0, 1072548, typeof(DeadWood)),
+                    //new BonusHarvestResource(0, 83.9, null, null), //Nothing JustZH: MUST BE LAST!
 
                 };
             }

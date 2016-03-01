@@ -15,6 +15,7 @@ namespace Server.Items.ZuluIems.ElementalGear.Water.Plate
             this.Hue = 1167;
             this.ColdBonus = 20;
             this.Name = "Plate helm of the Water Element";
+            Dexpenalty = 0;
         }
 
         public WaterPlateHelm(Serial serial)
@@ -30,13 +31,6 @@ namespace Server.Items.ZuluIems.ElementalGear.Water.Plate
             }
         }
 
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 0;
-            }
-        }
         public override int BaseFireResistance
         {
             get

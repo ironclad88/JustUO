@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x1B76)
         {
             this.Weight = 8.0;
+            Dexpenalty = 5;
         }
 
         public HeaterShield(Serial serial)
@@ -21,13 +22,6 @@ namespace Server.Items
             get
             {
                 return 0;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 5;
             }
         }
         public override int BaseFireResistance

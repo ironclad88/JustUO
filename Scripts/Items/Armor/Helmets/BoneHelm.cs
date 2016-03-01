@@ -10,6 +10,7 @@ namespace Server.Items
             : base(0x1451)
         {
             this.Weight = 3.0;
+            this.Dexpenalty = 2;
         }
 
         public BoneHelm(Serial serial)
@@ -78,13 +79,6 @@ namespace Server.Items
             get
             {
                 return 40;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get 
-            { 
-                return 2; 
             }
         }
 

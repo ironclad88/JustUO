@@ -815,20 +815,20 @@ namespace Server.Items
 
             CraftAttributeInfo zulu = Zulu = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -2
             //JustZH : reduce spell effectiveness on wearer
+            zulu.DexPenReduction = 2;
             zulu.Difficulty = 129;
             zulu.Quality = 2.0;
 
             CraftAttributeInfo onyx = Onyx = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            onyx.DexPenReduction = 1;
             onyx.Difficulty = 70;
             onyx.Quality = 1.25;
             
             CraftAttributeInfo pyrite = Pyrite = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            pyrite.DexPenReduction = 1;
             pyrite.Difficulty = 85;
             pyrite.Quality = 1.3;
             
@@ -839,7 +839,7 @@ namespace Server.Items
 
             CraftAttributeInfo azurite = Azurite = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            azurite.DexPenReduction = 1;
             azurite.ArmorEnergyResist = level2_prot;
             azurite.Difficulty = 98;
             azurite.Quality = 1.5;
@@ -869,7 +869,7 @@ namespace Server.Items
 
             CraftAttributeInfo fruity = Fruity = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            fruity.DexPenReduction = 1;
             fruity.Difficulty = 10;
             fruity.Quality = 1.05;
 
@@ -887,7 +887,7 @@ namespace Server.Items
             
             CraftAttributeInfo spectral = Spectral = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -3
+            spectral.DexPenReduction = 3;
             spectral.Difficulty = 60;
             spectral.Quality = 1.1;
             
@@ -909,7 +909,7 @@ namespace Server.Items
 
             CraftAttributeInfo virginity = Virginity = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            virginity.DexPenReduction = 1;
             virginity.ArmorNecroResist = level2_prot;
             virginity.Difficulty = 90;
             virginity.Quality = 1.25;
@@ -921,8 +921,8 @@ namespace Server.Items
             
             CraftAttributeInfo redelven = RedElven = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -2
             //JustZH : reduce spell damage to wearer
+            redelven.DexPenReduction = 2;
             redelven.Difficulty = 75;
             redelven.Quality = 1.15;
 
@@ -941,20 +941,20 @@ namespace Server.Items
             
             CraftAttributeInfo peachblue = Peachblue = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -2
+            peachblue.DexPenReduction = 2;
             peachblue.Difficulty = 108;
             peachblue.Quality = 1.7;
             
             CraftAttributeInfo destruction = Destruction = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -1
+            destruction.DexPenReduction = 1;
             destruction.ArmorEarthResist = level1_prot;
             destruction.Difficulty = 112;
             destruction.Quality = 1.7;
 
             CraftAttributeInfo anra = Anra = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -2
+            anra.DexPenReduction = 2;
             anra.Difficulty = 116;
             anra.Quality = 1.8;
 
@@ -979,26 +979,26 @@ namespace Server.Items
 
             CraftAttributeInfo ets = ETS = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -3
             //JustZH : reduce spell damage to wearer
             //JustZH : blackrock to circle 2
+            ets.DexPenReduction = 3;
             ets.ArmorColdResist = level3_prot;
             ets.Difficulty = 130;
             ets.Quality = 2.2;
 
             CraftAttributeInfo dsr = DSR = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -3
             //JustZH : reduce damage to wearer
             //JustZH : blackrock to circle 2
+            dsr.DexPenReduction = 3;
             dsr.ArmorFireResist = level3_prot;
             dsr.Difficulty = 130;
             dsr.Quality = 2.2;
 
             CraftAttributeInfo rnd = RND = new CraftAttributeInfo();
 
-            //JustZH : dex penalty -3
             //JustZH : blackrock to circle 4
+            rnd.DexPenReduction = 3;
             rnd.ArmorEnergyResist = level3_prot;
             rnd.ArmorEarthResist = level3_prot;
             rnd.ArmorNecroResist = level3_prot;

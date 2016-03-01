@@ -76,6 +76,8 @@ namespace Server.Items
             }
             set
             {
+                if (m_ShowUsesRemaining == false) // JustZH: for tools without uses remaining, don't change.
+                    return;
                 if (this.m_UsesRemaining == value + 1)
                 {
                     this.FindOwner().SendLocalizedMessage(1044118); // Your tool suffers some damage.

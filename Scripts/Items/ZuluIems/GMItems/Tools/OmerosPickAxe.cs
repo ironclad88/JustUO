@@ -13,7 +13,7 @@ namespace Server.Items.ZuluIems.GMItems.Tools
         {
             this.Name = ("Omero´s pickaxe");
             this.IdHue = 1301;
-            this.ShowUsesRemaining = false;
+            base.ShowUsesRemaining = false;
         }
 
         public OmerosPickAxe(Serial serial)
@@ -139,7 +139,6 @@ namespace Server.Items.ZuluIems.GMItems.Tools
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
-            this.ShowUsesRemaining = true;
         }
     }
 }

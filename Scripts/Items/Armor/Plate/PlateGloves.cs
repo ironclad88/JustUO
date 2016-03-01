@@ -10,18 +10,12 @@ namespace Server.Items
             : base(0x1414)
         {
             this.Weight = 2.0;
+            Dexpenalty = 1;
         }
 
         public PlateGloves(Serial serial)
             : base(serial)
         {
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 1;
-            }
         }
 
         public override int BasePhysicalResistance

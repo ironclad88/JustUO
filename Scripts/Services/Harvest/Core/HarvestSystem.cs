@@ -212,19 +212,27 @@ namespace Server.Engines.Harvest
                             item.Delete();
                         }
 
-                        BonusHarvestResource bonus = def.GetBonusResource();
+                        // JustZH : add bonus resource bonus here, spec crafter, omero's/xarafax's?
+                        BonusHarvestResource bonus = def.GetBonusResource((from.SpecClasse == SpecClasse.Crafter) ? 2.0 : 1.0); 
 
                         if (bonus != null && bonus.Type != null && skillBase >= bonus.ReqSkill)
                         {
-                            Item bonusItem = this.Construct(bonus.Type, from);
+                            if (bonus.Type != typeof(ETSOre) ||
+                                bonus.Type != typeof(RNDOre) ||
+                                bonus.Type != typeof(DSROre) ||
+                                from.SpecClasse == SpecClasse.Crafter)
+                            {
+                                // JustZH: only get dsr/ets/rnd if spec crafter.
+                                Item bonusItem = this.Construct(bonus.Type, from);
 
-                            if (this.Give(from, bonusItem, true))	//Bonuses always allow placing at feet, even if pack is full irregrdless of def
-                            {
-                                bonus.SendSuccessTo(from);
-                            }
-                            else
-                            {
-                                item.Delete();
+                                if (this.Give(from, bonusItem, true))   //Bonuses always allow placing at feet, even if pack is full irregrdless of def
+                                {
+                                    bonus.SendSuccessTo(from);
+                                }
+                                else
+                                {
+                                    item.Delete();
+                                }
                             }
                         }
 

@@ -8,6 +8,7 @@ namespace Server.Items
         public OrcHelm()
             : base(0x1F0B)
         {
+            Dexpenalty = 2;
         }
 
         public OrcHelm(Serial serial)
@@ -20,13 +21,6 @@ namespace Server.Items
             get
             {
                 return 3;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 2;
             }
         }
         public override int BaseFireResistance

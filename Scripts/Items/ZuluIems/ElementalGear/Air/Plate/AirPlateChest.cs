@@ -16,19 +16,13 @@ namespace Server.Items.ZuluIems.ElementalGear.Water
             this.Hue = 1161;
             this.EnergyBonus = 20;
             this.Attributes.BonusDex = 3;
+            this.Dexpenalty = 0;
             this.Name = "Plate chest of the Air Element";
         }
 
         public AirPlateChest(Serial serial)
             : base(serial)
         {
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 0;
-            }
         }
 
         public override int BasePhysicalResistance

@@ -441,7 +441,8 @@ namespace Server.Gumps
                 SkillName.Discordance,
                 SkillName.Musicianship,
                 SkillName.Peacemaking,
-                SkillName.Provocation
+                SkillName.Provocation,
+                SkillName.TasteID
             }),
             new SkillsGumpGroup("Mage", new SkillName[]
             {
@@ -456,7 +457,6 @@ namespace Server.Gumps
             }),
             new SkillsGumpGroup("Miscellaneous", new SkillName[]
             {
-                SkillName.TasteID,
                 SkillName.Focus,
                 SkillName.Throwing,
                 SkillName.Chivalry,

@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x1B73)
         {
             this.Weight = 5.0;
+            Dexpenalty = 1;
         }
 
         public Buckler(Serial serial)
@@ -21,13 +22,6 @@ namespace Server.Items
             get
             {
                 return 0;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 1;
             }
         }
         public override int BaseFireResistance

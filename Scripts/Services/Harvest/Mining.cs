@@ -89,63 +89,68 @@ namespace Server.Engines.Harvest
             oreAndStone.ToolBrokeMessage = 1044038; // You have worn out your tool!
 
             int difficulty = 0;
-            const int max_skill = 150;
+            int max_skill_offset = 50;
             res = new HarvestResource[]
             {
-                new HarvestResource(00.0, 00.0, max_skill, 1007072, typeof(IronOre)),
+                new HarvestResource(00.0, 00.0, difficulty+max_skill_offset, 1007072, typeof(IronOre)),
                 
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Iron).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Iron ore and put it in your backpack.", typeof(IronOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Iron).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Iron ore and put it in your backpack.", typeof(IronOre)),
                 //new HarvestResource(70.0, 30.0, 110.0, 1007074, typeof(ShadowIronOre),	typeof(ShadowIronGranite), typeof(ShadowIronElemental)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DullCopper).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Dull Copper ore and put it in your backpack.", typeof(DullCopperOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Copper).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Copper ore and put it in your backpack.", typeof(CopperOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Bronze).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Bronze ore and put it in your backpack.", typeof(BronzeOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DullCopper).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Dull Copper ore and put it in your backpack.", typeof(DullCopperOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Copper).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Copper ore and put it in your backpack.", typeof(CopperOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Bronze).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Bronze ore and put it in your backpack.", typeof(BronzeOre)),
                 //new HarvestResource(85.0, 45.0, 125.0, 1007077, typeof(GoldOre), typeof(GoldGranite), typeof(GoldenElemental)),
                 //new HarvestResource(90.0, 50.0, 130.0, 1007078, typeof(AgapiteOre), typeof(AgapiteGranite), typeof(AgapiteElemental)),
                 //new HarvestResource(95.0, 55.0, 135.0, 1007079, typeof(VeriteOre), typeof(VeriteGranite), typeof(VeriteElemental)),
                 //new HarvestResource(99.0, 59.0, 139.0, 1007080, typeof(ValoriteOre), typeof(ValoriteGranite), typeof(ValoriteElemental)),
                 //JustZH : remove zulu ore here and put it with the gems..
-                //new HarvestResource(99.0, 59.0, max_skill, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Onyx).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Onyx ore and put it in your backpack.", typeof(OnyxOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Pyrite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Pyrite ore and put it in your backpack.", typeof(PyriteOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Malachite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Malachite ore and put it in your backpack.", typeof(MalachiteOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Azurite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Azurite ore and put it in your backpack.", typeof(AzuriteOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Platinum).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Platinum ore and put it in your backpack.", typeof(PlatinumOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Lavarock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Lavarock ore and put it in your backpack.", typeof(LavarockOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Mystic).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Mystic ore and put it in your backpack.", typeof(MysticOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Spike).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Spike ore and put it in your backpack.", typeof(SpikeOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Fruity).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Fruity ore and put it in your backpack.", typeof(FruityOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.IceRock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Ice Rock ore and put it in your backpack.", typeof(IceRockOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.SilverRock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Silver Rock ore and put it in your backpack.", typeof(SilverRockOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Spectral).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Spectral ore and put it in your backpack.", typeof(SpectralOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Undead).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Undead ore and put it in your backpack.", typeof(UndeadOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DarkPagan).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Dark Pagan ore and put it in your backpack.", typeof(DarkPaganOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.OldBritain).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Old Britain ore and put it in your backpack.", typeof(OldBritainOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Virginity).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Virginity ore and put it in your backpack.", typeof(VirginityOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.BlackDwarf).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Black Dwarf ore and put it in your backpack.", typeof(BlackDwarfOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.RedElven).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Red Elven ore and put it in your backpack.", typeof(RedElvenOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Dripstone).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Dripstone ore and put it in your backpack.", typeof(DripstoneOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Executor).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Executor ore and put it in your backpack.", typeof(ExecutorOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Peachblue ore and put it in your backpack.", typeof(PeachblueOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Destruction ore and put it in your backpack.", typeof(DestructionOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Anra ore and put it in your backpack.", typeof(AnraOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Goddess).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Goddess ore and put it in your backpack.", typeof(GoddessOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Crystal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Crystal ore and put it in your backpack.", typeof(CrystalOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Doom).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), max_skill, "You dig up some Doom ore and put it in your backpack.", typeof(DoomOre)),
+                //new HarvestResource(99.0, 59.0, difficulty+max_skill_offset, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Onyx).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Onyx ore and put it in your backpack.", typeof(OnyxOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Pyrite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Pyrite ore and put it in your backpack.", typeof(PyriteOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Malachite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Malachite ore and put it in your backpack.", typeof(MalachiteOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Azurite).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Azurite ore and put it in your backpack.", typeof(AzuriteOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Platinum).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Platinum ore and put it in your backpack.", typeof(PlatinumOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Lavarock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Lavarock ore and put it in your backpack.", typeof(LavarockOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Mystic).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Mystic ore and put it in your backpack.", typeof(MysticOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Spike).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Spike ore and put it in your backpack.", typeof(SpikeOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Fruity).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Fruity ore and put it in your backpack.", typeof(FruityOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.IceRock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Ice Rock ore and put it in your backpack.", typeof(IceRockOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.SilverRock).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Silver Rock ore and put it in your backpack.", typeof(SilverRockOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Spectral).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Spectral ore and put it in your backpack.", typeof(SpectralOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Undead).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Undead ore and put it in your backpack.", typeof(UndeadOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DarkPagan).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Dark Pagan ore and put it in your backpack.", typeof(DarkPaganOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.OldBritain).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Old Britain ore and put it in your backpack.", typeof(OldBritainOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Virginity).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Virginity ore and put it in your backpack.", typeof(VirginityOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.BlackDwarf).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Black Dwarf ore and put it in your backpack.", typeof(BlackDwarfOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.RedElven).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Red Elven ore and put it in your backpack.", typeof(RedElvenOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Dripstone).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Dripstone ore and put it in your backpack.", typeof(DripstoneOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Executor).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Executor ore and put it in your backpack.", typeof(ExecutorOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Peachblue ore and put it in your backpack.", typeof(PeachblueOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Destruction ore and put it in your backpack.", typeof(DestructionOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Anra ore and put it in your backpack.", typeof(AnraOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Goddess).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Goddess ore and put it in your backpack.", typeof(GoddessOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Crystal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Crystal ore and put it in your backpack.", typeof(CrystalOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Doom).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Doom ore and put it in your backpack.", typeof(DoomOre)),
             };
 
-            veins = new HarvestVein[]
+            veins = new HarvestVein[res.Length];
+            //{
+            //    new HarvestVein(10.0, 0.0, res[0], null), // Iron
+            //    new HarvestVein(10.0, 0.0, res[1], res[0]), // Dull Copper
+            //    new HarvestVein(10.0, 0.0, res[2], res[0]), // Shadow Iron
+            //    new HarvestVein(10.0, 0.0, res[3], res[0]), // Copper
+            //    new HarvestVein(10.0, 0.0, res[4], res[0]), // Bronze
+            //    new HarvestVein(10.0, 0.0, res[5], res[0]), // Gold
+            //    new HarvestVein(10.0, 0.0, res[6], res[0]), // Agapite
+            //    new HarvestVein(10.0, 0.0, res[7], res[0]), // Verite
+            //    new HarvestVein(10.0, 0.0, res[8], res[0]),// Valorite
+            //    new HarvestVein(10.0, 0.0, res[9], res[0])// Zulu
+            //};
+
+            for(int i = 0; i < res.Length; i++)
             {
-                new HarvestVein(10.0, 0.0, res[0], null), // Iron
-                new HarvestVein(10.0, 0.0, res[1], res[0]), // Dull Copper
-                new HarvestVein(10.0, 0.0, res[2], res[0]), // Shadow Iron
-                new HarvestVein(10.0, 0.0, res[3], res[0]), // Copper
-                new HarvestVein(10.0, 0.0, res[4], res[0]), // Bronze
-                new HarvestVein(10.0, 0.0, res[5], res[0]), // Gold
-                new HarvestVein(10.0, 0.0, res[6], res[0]), // Agapite
-                new HarvestVein(10.0, 0.0, res[7], res[0]), // Verite
-                new HarvestVein(10.0, 0.0, res[8], res[0]),// Valorite
-                new HarvestVein(10.0, 0.0, res[9], res[0])// Zulu
-            };
+                veins[i] = new HarvestVein((100/ res.Length), 0.0, res[i], (i == 0) ? null : res[0]);
+            }
 
             oreAndStone.Resources = res;
             oreAndStone.Veins = veins;
@@ -155,13 +160,13 @@ namespace Server.Engines.Harvest
                 oreAndStone.BonusResources = new BonusHarvestResource[]
                 {
                     //JustZH : fucked up chances right now for debugging purposes.
-                    new BonusHarvestResource(0, 70.0, null, null), //Nothing
-                    new BonusHarvestResource(50, 5.0, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty-30, 5.0, "You found a rare Ebon Twiligh Saphire!", typeof(ETSOre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty-30, 5.0, "You found a rare Dark Sable Ruby!", typeof(DSROre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty-30, 5.0, "You found a rare Radiant Nimbus Diamond!", typeof(RNDOre)),
+                    new BonusHarvestResource(50, 1.0, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty-30, 0.01, "You found a rare Ebon Twiligh Saphire!", typeof(ETSOre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty-30, 0.01, "You found a rare Dark Sable Ruby!", typeof(DSROre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty-30, 0.01, "You found a rare Radiant Nimbus Diamond!", typeof(RNDOre)),
                     new BonusHarvestResource(50, 5.0, "You found a diamond!", typeof(Diamond)),
                     new BonusHarvestResource(0, 5.0, "You found a piece of amber!", typeof(Amber)),
+                    //new BonusHarvestResource(0, 88.7, null, null), //Nothing, THIS MUST BE LAST! JustZH: increased this a lot
                     //new BonusHarvestResource(100, .1, 1072562, typeof(BlueDiamond)),
                     //new BonusHarvestResource(100, .1, 1072567, typeof(DarkSapphire)),
                     //new BonusHarvestResource(100, .1, 1072570, typeof(EcruCitrine)),

@@ -15,6 +15,7 @@ namespace Server.Items.ZuluIems.ElementalGear.Water.Plate
             this.Hue = 1161;
             this.EnergyBonus = 20;
             this.Attributes.BonusDex = 2;
+            this.Dexpenalty = 0;
             this.Name = "Plate helm of the Air Element";
         }
 
@@ -31,13 +32,6 @@ namespace Server.Items.ZuluIems.ElementalGear.Water.Plate
             }
         }
 
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 0;
-            }
-        }
         public override int BaseFireResistance
         {
             get

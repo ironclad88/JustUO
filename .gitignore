@@ -1,6 +1,7 @@
 /Server/bin
 /JustUO.pdb
 /JustUO.exe
+/startup.xml
 /Docs
 /Docs/*
 /Server/obj

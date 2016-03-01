@@ -13,6 +13,7 @@ namespace Server.Items
                 this.LootType = LootType.Newbied;
 
             this.Weight = 5.0;
+            Dexpenalty = 5;
         }
 
         public ChaosShield(Serial serial)
@@ -32,13 +33,6 @@ namespace Server.Items
             get
             {
                 return 0;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 5;
             }
         }
         public override int BaseColdResistance

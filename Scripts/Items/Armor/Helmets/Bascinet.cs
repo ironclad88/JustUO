@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x140C)
         {
             this.Weight = 5.0;
+            this.Dexpenalty = 1;
         }
 
         public Bascinet(Serial serial)
@@ -21,13 +22,6 @@ namespace Server.Items
             get
             {
                 return 7;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 1;
             }
         }
         public override int BaseFireResistance

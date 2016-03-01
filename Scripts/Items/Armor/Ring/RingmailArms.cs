@@ -10,6 +10,7 @@ namespace Server.Items
             : base(0x13EE)
         {
             this.Weight = 15.0;
+            Dexpenalty = 2;
         }
 
         public RingmailArms(Serial serial)
@@ -17,13 +18,6 @@ namespace Server.Items
         {
         }
 
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 2;
-            }
-        }
 
         public override int BasePhysicalResistance
         {

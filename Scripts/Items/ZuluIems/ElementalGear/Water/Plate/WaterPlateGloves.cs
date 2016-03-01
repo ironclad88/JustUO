@@ -16,18 +16,12 @@ namespace Server.Items.ZuluIems.ElementalGear.Water.Plate
             this.Hue = 1167;
             this.ColdBonus = 20;
             this.Name = "Plate gloves of the Water Element";
+            Dexpenalty = 0;
         }
 
         public WaterPlateGloves(Serial serial)
             : base(serial)
         {
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 0;
-            }
         }
 
         public override int BasePhysicalResistance

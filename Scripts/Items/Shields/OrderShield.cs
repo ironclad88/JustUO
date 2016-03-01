@@ -13,6 +13,7 @@ namespace Server.Items
                 this.LootType = LootType.Newbied;
 
             this.Weight = 7.0;
+            Dexpenalty = 5;
         }
 
         public OrderShield(Serial serial)
@@ -25,13 +26,6 @@ namespace Server.Items
             get
             {
                 return 1;
-            }
-        }
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 5;
             }
         }
         public override int BaseFireResistance

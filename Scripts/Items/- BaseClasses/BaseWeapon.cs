@@ -646,8 +646,15 @@ namespace Server.Items
                     }
                     catch
                     {
-                        Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! " + this.Name + " will roll 0 dice");
-                        return (0);
+                        try
+                        {
+                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getNum;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! " + this.Name + " will roll 0 dice");
+                            return (0);
+                        }
                     }
                 }
                 
@@ -676,8 +683,15 @@ namespace Server.Items
                     }
                     catch
                     {
-                        Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! " + this.Name + " will roll 0 side dice");
-                        return (0);
+                        try
+                        {
+                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getSides;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! " + this.Name + " will roll 0 side dice");
+                            return (0);
+                        }
                     }
                 }
 
@@ -706,8 +720,15 @@ namespace Server.Items
                     }
                     catch
                     {
-                        Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! " + this.Name + " will roll with 0 offset");
-                        return (0);
+                        try
+                        {
+                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getOffset;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! " + this.Name + " will roll with 0 offset");
+                            return (0);
+                        }
                     }
                 }
 
@@ -4944,7 +4965,13 @@ namespace Server.Items
                     list.Add(1061078, ArtifactRarity.ToString()); // artifact rarity ~1_val~
                 }
 
-                if (this is IUsesRemaining && ((IUsesRemaining)this).ShowUsesRemaining)
+                if(this is BaseAxe)
+                {
+                    // JustZH : need to find way to skip this for omeros/xarafax's... but how?
+                    if((this as BaseAxe).ShowUsesRemaining)
+                        list.Add(1060584, ((BaseAxe)this).UsesRemaining.ToString()); // uses remaining: ~1_val~
+                }
+                else if (this is IUsesRemaining && (this as IUsesRemaining).ShowUsesRemaining)
                 {
                     list.Add(1060584, ((IUsesRemaining)this).UsesRemaining.ToString()); // uses remaining: ~1_val~
                 }

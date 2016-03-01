@@ -203,11 +203,13 @@ namespace Server.Items
                 return 0;
             }
         }
+        [CommandProperty(AccessLevel.GameMaster)]
         public virtual int Dexpenalty
         {
             get
             {
-                return m_dexpenalty;
+                // JustZH: reduce dex penalty by resource property
+                return Math.Max((m_dexpenalty - GetResourceAttrs().DexPenReduction), 0);
             }
             set
             {
@@ -1366,32 +1368,13 @@ namespace Server.Items
             if (val > 0) { return true; } return false;
         }
 
-        //JustZH stupid function for crafting resources different penalties
-        private int checkDexRed(int tempDex)
-        {
-            if (this.m_Resource == CraftResource.Fruity) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Spectral) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Onyx) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.RedElven) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Pyrite) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Virginity) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Azurite) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Peachblue) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Destruction) { tempDex -= 1; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Anra) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.Zulu) { tempDex -= 2; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.ETS) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.DSR) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
-            if (this.m_Resource == CraftResource.RND) { tempDex -= 3; if (!isNegative(tempDex)) { tempDex = 0; } };
-            return tempDex;
-        }
 
         public override bool OnEquip(Mobile from)
         {
             from.CheckStatTimers();
 
             int strBonus = this.ComputeStatBonus(StatType.Str);
-            int dexBonus = this.ComputeStatBonus(StatType.Dex);
+            int dexBonus = this.ComputeStatBonus(StatType.Dex) - this.Dexpenalty;  //JustZH adds armor dex penalty
             int intBonus = this.ComputeStatBonus(StatType.Int);
 
             if (strBonus != 0 || dexBonus != 0 || intBonus != 0)
@@ -1408,13 +1391,7 @@ namespace Server.Items
                     from.AddStatMod(new StatMod(StatType.Int, modName + "Int", intBonus, TimeSpan.Zero));
             }
 
-            //JustZH adds armor dex penalty
-            if (this.Dexpenalty != 0)
-            {
-                int tempDex = checkDexRed(this.Dexpenalty);
-                from.RawDex -= tempDex;
-            }
-
+            
             Server.Engines.XmlSpawner2.XmlAttach.CheckOnEquip(this, from);
 
             return base.OnEquip(from);
@@ -2287,13 +2264,6 @@ namespace Server.Items
                 m.RemoveStatMod(modName + "Str");
                 m.RemoveStatMod(modName + "Dex");
                 m.RemoveStatMod(modName + "Int");
-
-                //JustZH removes armor dex penalty
-                if (this.Dexpenalty >= 0)
-                {
-                    int tempDex = checkDexRed(this.Dexpenalty);
-                    m.RawDex += tempDex;
-                }
 
                 if (Core.AOS)
                     this.m_AosSkillBonuses.Remove();

@@ -9,6 +9,7 @@ namespace Server.Items
             : base(0x1413)
         {
             this.Weight = 2.0;
+            Dexpenalty = 1;
         }
 
         public PlateGorget(Serial serial)
@@ -16,13 +17,6 @@ namespace Server.Items
         {
         }
 
-        public override int Dexpenalty
-        {
-            get
-            {
-                return 1;
-            }
-        }
         public override int BasePhysicalResistance
         {
             get

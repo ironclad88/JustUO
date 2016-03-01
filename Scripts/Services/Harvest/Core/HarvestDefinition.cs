@@ -444,6 +444,11 @@ namespace Server.Engines.Harvest
 
         public BonusHarvestResource GetBonusResource()
         {
+            return GetBonusResource(1.0);
+        }
+
+        public BonusHarvestResource GetBonusResource(double multiplier)
+        {
             if (this.m_BonusResources == null)
                 return null;
 
@@ -451,7 +456,7 @@ namespace Server.Engines.Harvest
 
             for (int i = 0; i < this.m_BonusResources.Length; ++i)
             {
-                if (randomValue <= this.m_BonusResources[i].Chance)
+                if (randomValue <= this.m_BonusResources[i].Chance * multiplier)
                     return this.m_BonusResources[i];
 
                 randomValue -= this.m_BonusResources[i].Chance;
