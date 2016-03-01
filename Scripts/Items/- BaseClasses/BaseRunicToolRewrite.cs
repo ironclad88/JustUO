@@ -1635,6 +1635,10 @@ namespace Server.Items
                     item.IdHue = 1109;
                     newPrefix += GetArmorPrefix((item as BaseClothing).BaseArmorRating);
                 }
+                else
+                {
+                    ApplyClothingColor(item as BaseClothing);
+                }
                 newPrefix += GetSkillPrefix((item as BaseClothing).SkillBonuses);
             }
             else if (item is BaseWeapon)
@@ -2911,8 +2915,30 @@ namespace Server.Items
             }
         }
 
+        private static void ApplyClothingColor(BaseClothing clothing)
+        {
+            var chance = rnd.Next(1, 100);
 
+            int[] CoolhueArray = { 1151, 1154, 1086, 1068, 1070, 1167, 1168, 1177, 1178, 1179, 1196, 1270, 1288, 1296, 1297, 1304, 1305, 1354, 1367, 1368, 1370, 1374,
+            1399, 1455, 1481, 1568, 1690, 1691, 1760, 1763, 1775, 1772, 1787, 1916, 1960, 1961, 1969, 1991, 2025, 2054, 2055, 2056, 2057, 2058, 2059 };
 
+            if(chance >= 75) // only 25% chance to color cloth
+            {
+                if(chance >= 95) // 5% chance to get cool hue 
+                {
+                    var coolhue = rnd.Next(0, CoolhueArray.Length - 1);
+                    clothing.SetHue = coolhue;
+                }
+                else
+                {
+                    var ordinaryHue = rnd.Next(1, 860);
+                    clothing.SetHue = ordinaryHue;
+                    // 860
+                }
+            }
+        }
+
+        
         private static void ApplyWepEnchant(BaseWeapon weapon, int MagicLevel)
         {
 

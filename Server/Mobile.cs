@@ -8271,6 +8271,7 @@ namespace Server
                     RemoveStatMod(_StatMods[i].Name);
                 }
             }
+            CanHearGhosts = false; // dispels spiritspeak aswell
         }
 
         /// <summary>
