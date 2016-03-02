@@ -127,7 +127,7 @@ namespace Server.EventSystem
 		{
 			if( !this.IsRunning )
 			{
-				switch( Utility.Random(6) )
+				switch( Utility.Random(5) )
 				{
 					/*case 0:  //Britain Doesn't Get Invaded Anymore
 					{
@@ -155,7 +155,7 @@ namespace Server.EventSystem
 						
 						break;
 					}
-					case 1:  //Minoc
+                    /*case 1:  //Minoc //Britain Doesn't Get Invaded Anymore, poor crafters of minoc town :(
 					{
 						this.Top = new Point3D(2443, 420, 15);
 						this.Bottom = new Point3D(2520, 539, 0);
@@ -167,8 +167,8 @@ namespace Server.EventSystem
 						this.TownChampionType = TownChampionType.LordOaks;
 						
 						break;
-					}
-					case 2:  //Delucia
+					}*/
+                    case 1:  //Delucia
 					{
 						this.Top = new Point3D(5171, 3980, 41);
 						this.Bottom = new Point3D(5300, 4040, 39);
@@ -181,7 +181,7 @@ namespace Server.EventSystem
 						
 						break;
 					}
-					case 3:  //Ocllo
+					case 2:  //Ocllo
 					{
 						this.Top = new Point3D(3617, 2482, 0);
 						this.Bottom = new Point3D(3712, 2630, 20);
@@ -194,7 +194,7 @@ namespace Server.EventSystem
 						
 						break;
 					}
-					case 4:  //Skara Brae
+					case 3:  //Skara Brae
 					{
 						this.Top = new Point3D(577, 2131, -90);
 						this.Bottom = new Point3D(634, 2234, -90);
@@ -207,7 +207,7 @@ namespace Server.EventSystem
 						
 						break;
 					}
-					case 5:  //Yew
+					case 4:  //Yew
 					{
 						this.Top = new Point3D(457, 913, 30);
 						this.Bottom = new Point3D(662, 1117, 0);

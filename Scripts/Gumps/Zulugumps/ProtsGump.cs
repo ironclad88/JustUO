@@ -1,27 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Server.Items;
-using Server.Mobiles;
-using Server.Network;
+﻿using Server.Mobiles;
 
 namespace Server.Gumps.Zulugumps
 {
 
     public class ProtsGump : Gump
     {
-
         public ProtsGump(Mobile owner)
-            : this(owner, ResurrectMessage.Generic, false)
-        {
-        }
-
-
-        public ProtsGump(Mobile owner, ResurrectMessage msg, bool fromSacrifice)
-            : this(owner, msg)
-        {
-        }
-
-        public ProtsGump(Mobile owner, ResurrectMessage msg)
             : base(100, 0)
         {
 

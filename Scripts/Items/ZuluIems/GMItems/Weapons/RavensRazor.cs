@@ -17,7 +17,7 @@ namespace Server.Items.ZuluIems.GMItems.Weapons
             Attributes.WeaponSpeed = 50; // dunno what is better, is lower faster or what?
             Attributes.WeaponDamage = 65;
             this.Attributes.SpellChanneling = 1;
-            this.DamageLevel = WeaponDamageLevel.DMG40;
+            this.DamageLevel = WeaponDamageLevel.DMG40; // probably to overkill
         }
 
         public RavensRazor(Serial serial)
