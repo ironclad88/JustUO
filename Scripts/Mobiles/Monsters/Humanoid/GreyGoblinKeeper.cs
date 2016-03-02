@@ -81,8 +81,8 @@ namespace Server.Mobiles
                     break;
             }
 
-            if (0.2 > Utility.RandomDouble())
-                PackItem(new BolaBall());
+            //if (0.2 > Utility.RandomDouble())
+            //    PackItem(new BolaBall());
         }
 
         public GrayGoblinKeeper(Serial serial)

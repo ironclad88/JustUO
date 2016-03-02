@@ -41,14 +41,14 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 28;
 
-            if (0.25 > Utility.RandomDouble())
-                this.PackItem(new Board(10));
-            else
-                this.PackItem(new Log(10));
+            //if (0.25 > Utility.RandomDouble())
+            //    this.PackItem(new Board(10));
+            //else
+            //    this.PackItem(new Log(10));
 
-            this.PackReg(3);
-            this.PackItem(new Engines.Plants.Seed());
-            this.PackItem(new Engines.Plants.Seed());
+            //this.PackReg(3);
+            //this.PackItem(new Engines.Plants.Seed());
+            //this.PackItem(new Engines.Plants.Seed());
         }
 
         public BogThing(Serial serial)

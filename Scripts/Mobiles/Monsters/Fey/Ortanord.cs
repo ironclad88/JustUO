@@ -45,8 +45,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 40;
 
-            if (0.25 > Utility.RandomDouble())
-                this.PackItem(new DaemonBone(10));
+            //if (0.25 > Utility.RandomDouble())
+            //    this.PackItem(new DaemonBone(10));
         }
 
         public Ortanord(Serial serial)
@@ -73,15 +73,15 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Average, 2);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.05)
-            {
-                c.DropItem(new VoidOrb()); 
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.05)
+        //    {
+        //        c.DropItem(new VoidOrb()); 
+        //    }
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

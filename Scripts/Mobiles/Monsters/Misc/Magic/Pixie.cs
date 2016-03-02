@@ -91,13 +91,13 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Gems, 2);
         }
 
-		public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+		//public override void OnDeath(Container c)
+  //      {
+  //          base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.3)
-                c.DropItem(new PixieLeg());
-        }
+  //          if (Utility.RandomDouble() < 0.3)
+  //              c.DropItem(new PixieLeg());
+  //      }
 
         public override void Serialize(GenericWriter writer)
         {

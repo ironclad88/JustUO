@@ -43,20 +43,20 @@ namespace Server.Mobiles
             Karma = -14500;
 
             VirtualArmor = 16;
-			switch (Utility.Random(16))
-            {
-                case 0: PackItem(new BloodOathScroll()); break;
-                case 1: PackItem(new CurseWeaponScroll()); break;
-                case 2: PackItem(new StrangleScroll()); break;
-                case 3: PackItem(new LichFormScroll()); break;
-			}
+			//switch (Utility.Random(16))
+   //         {
+   //             case 0: PackItem(new BloodOathScroll()); break;
+   //             case 1: PackItem(new CurseWeaponScroll()); break;
+   //             case 2: PackItem(new StrangleScroll()); break;
+   //             case 3: PackItem(new LichFormScroll()); break;
+			//}
             PackReg(23);
             PackItem(new Sandals());
 
-            if (Utility.RandomDouble() < 0.75)
-            {
-                PackItem(new SeveredHumanEars());
-            }
+            //if (Utility.RandomDouble() < 0.75)
+            //{
+            //    PackItem(new SeveredHumanEars());
+            //}
         }
 
         public Archmage(Serial serial)

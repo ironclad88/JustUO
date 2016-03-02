@@ -34,13 +34,13 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 30.0, 50.0);
             this.SetSkill(SkillName.Wrestling, 30.0, 80.0);
 
-            if (0.1 > Utility.RandomDouble())
-                this.PackItem(new VialOfVitriol());
+            //if (0.1 > Utility.RandomDouble())
+            //    this.PackItem(new VialOfVitriol());
 
-            if (0.75 > Utility.RandomDouble())
-                this.PackItem(new AcidSac());
+            //if (0.75 > Utility.RandomDouble())
+            //    this.PackItem(new AcidSac());
 
-            this.PackItem(new CongealedSlugAcid());
+            //this.PackItem(new CongealedSlugAcid());
         }
 
         public AcidSlug(Serial serial)
@@ -52,21 +52,21 @@ namespace Server.Mobiles
         {
             this.AddLoot(LootPack.Average);
         }
-        public override void OnDeath(Container c)
-        {
+        //public override void OnDeath(Container c)
+        //{
 
-            base.OnDeath(c);
-            Region reg = Region.Find(c.GetWorldLocation(), c.Map);
-            if (0.25 > Utility.RandomDouble() && reg.Name == "Passage of Tears")
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0: c.DropItem(new EssenceSingularity()); break;
-                    case 1: c.DropItem(new VialOfVitriol()); break;
+        //    base.OnDeath(c);
+        //    Region reg = Region.Find(c.GetWorldLocation(), c.Map);
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "Passage of Tears")
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0: c.DropItem(new EssenceSingularity()); break;
+        //            case 1: c.DropItem(new VialOfVitriol()); break;
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
         public override int GetIdleSound()
         {
             return 1499;

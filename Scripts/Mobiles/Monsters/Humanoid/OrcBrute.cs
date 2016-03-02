@@ -41,16 +41,16 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 50;
 
-            Item ore = new ShadowIronOre(25);
-            ore.ItemID = 0x19B9;
-            this.PackItem(ore);
-            this.PackItem(new IronIngot(10));
+            //Item ore = new ShadowIronOre(25);
+            //ore.ItemID = 0x19B9;
+            //this.PackItem(ore);
+            //this.PackItem(new IronIngot(10));
 
-            if (0.05 > Utility.RandomDouble())
-                this.PackItem(new OrcishKinMask());
+            //if (0.05 > Utility.RandomDouble())
+            //    this.PackItem(new OrcishKinMask());
 
-            if (0.2 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (0.2 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
         }
 
         public OrcBrute(Serial serial)

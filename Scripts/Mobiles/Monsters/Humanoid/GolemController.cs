@@ -16,10 +16,10 @@ namespace Server.Mobiles
             this.Body = 400;
             this.Hue = 0x455;
 
-            this.AddArcane(new Robe());
-            this.AddArcane(new ThighBoots());
-            this.AddArcane(new LeatherGloves());
-            this.AddArcane(new Cloak());
+            //this.AddArcane(new Robe());
+            //this.AddArcane(new ThighBoots());
+            //this.AddArcane(new LeatherGloves());
+            //this.AddArcane(new Cloak());
 
             this.SetStr(126, 150);
             this.SetDex(96, 120);
@@ -49,8 +49,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 16;
 
-            if (0.7 > Utility.RandomDouble())
-                this.PackItem(new ArcaneGem());
+            //if (0.7 > Utility.RandomDouble())
+            //    this.PackItem(new ArcaneGem());
         }
 
         public GolemController(Serial serial)
@@ -84,19 +84,19 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Rich);
         }
 
-        public void AddArcane(Item item)
-        {
-            if (item is IArcaneEquip)
-            {
-                IArcaneEquip eq = (IArcaneEquip)item;
-                eq.CurArcaneCharges = eq.MaxArcaneCharges = 20;
-            }
+        //public void AddArcane(Item item)
+        //{
+        //    if (item is IArcaneEquip)
+        //    {
+        //        IArcaneEquip eq = (IArcaneEquip)item;
+        //        eq.CurArcaneCharges = eq.MaxArcaneCharges = 20;
+        //    }
 
-            item.Hue = ArcaneGem.DefaultArcaneHue;
-            item.LootType = LootType.Newbied;
+        //    item.Hue = ArcaneGem.DefaultArcaneHue;
+        //    item.LootType = LootType.Newbied;
 
-            this.AddItem(item);
-        }
+        //    this.AddItem(item);
+        //}
 
         public override void Serialize(GenericWriter writer) 
         { 

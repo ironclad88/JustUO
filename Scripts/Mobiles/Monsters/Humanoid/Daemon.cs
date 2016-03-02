@@ -44,14 +44,14 @@ namespace Server.Mobiles
 
             VirtualArmor = 58;
 
-			switch (Utility.Random(20))
-            {
-                case 0: PackItem(new LichFormScroll()); break;
-                case 1: PackItem(new PoisonStrikeScroll()); break;
-                case 2: PackItem(new StrangleScroll()); break;
-                case 3: PackItem(new VengefulSpiritScroll()); break;
-				case 4: PackItem(new WitherScroll()); break;
-			}
+			//switch (Utility.Random(20))
+   //         {
+   //             case 0: PackItem(new LichFormScroll()); break;
+   //             case 1: PackItem(new PoisonStrikeScroll()); break;
+   //             case 2: PackItem(new StrangleScroll()); break;
+   //             case 3: PackItem(new VengefulSpiritScroll()); break;
+			//	case 4: PackItem(new WitherScroll()); break;
+			//}
 
 
             ControlSlots = Core.SE ? 4 : 5;
@@ -131,17 +131,17 @@ namespace Server.Mobiles
             AddLoot(LootPack.Average, 2);
             AddLoot(LootPack.MedScrolls, 2);
         }
-        public override void OnDeath(Container c)
-        {
+        //public override void OnDeath(Container c)
+        //{
 
-            base.OnDeath(c);
-            Region reg = Region.Find(c.GetWorldLocation(), c.Map);
-            if (0.25 > Utility.RandomDouble() && reg.Name == "Abyssal Lair Entrance")
-            {
-                if (Utility.RandomDouble() < 0.6)
-                    c.DropItem(new EssenceAchievement());
-            }
-        }
+        //    base.OnDeath(c);
+        //    Region reg = Region.Find(c.GetWorldLocation(), c.Map);
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "Abyssal Lair Entrance")
+        //    {
+        //        if (Utility.RandomDouble() < 0.6)
+        //            c.DropItem(new EssenceAchievement());
+        //    }
+        //}
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

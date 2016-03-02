@@ -103,26 +103,26 @@ namespace Server.Mobiles
             AddLoot(LootPack.Average);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new VoidOrb());
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new VoidOrb());
 
-            if (Utility.RandomDouble() < 0.10)
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0:
-                        AddToBackpack(new VoidEssence());
-                        break;
-                    case 1:
-                        AddToBackpack(new AncientPotteryFragments());
-                        break;
-                }
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.10)
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0:
+        //                AddToBackpack(new VoidEssence());
+        //                break;
+        //            case 1:
+        //                AddToBackpack(new AncientPotteryFragments());
+        //                break;
+        //        }
+        //    }
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

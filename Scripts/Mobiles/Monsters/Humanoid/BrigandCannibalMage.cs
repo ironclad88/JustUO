@@ -41,20 +41,20 @@ namespace Server.Mobiles
 
             VirtualArmor = 16;
             //All Loot Unknown So i just gave him what Archmage had
-			switch (Utility.Random(16))
-            {
-                case 0: PackItem(new BloodOathScroll()); break;
-                case 1: PackItem(new CurseWeaponScroll()); break;
-                case 2: PackItem(new StrangleScroll()); break;
-                case 3: PackItem(new LichFormScroll()); break;
-			}
+			//switch (Utility.Random(16))
+   //         {
+   //             case 0: PackItem(new BloodOathScroll()); break;
+   //             case 1: PackItem(new CurseWeaponScroll()); break;
+   //             case 2: PackItem(new StrangleScroll()); break;
+   //             case 3: PackItem(new LichFormScroll()); break;
+			//}
             PackReg(23);
-            PackItem(new Sandals());
+            //PackItem(new Sandals());
 
-            if (Utility.RandomDouble() < 0.75)
-            {
-                PackItem(new SeveredHumanEars());
-            }
+            //if (Utility.RandomDouble() < 0.75)
+            //{
+            //    PackItem(new SeveredHumanEars());
+            //}
         }
 
         public BrigandCannibalMage(Serial serial)

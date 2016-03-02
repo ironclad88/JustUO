@@ -44,8 +44,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 50;
 
-            if (0.2 > Utility.RandomDouble())
-                this.PackItem(new GargoylesPickaxe());
+            //if (0.2 > Utility.RandomDouble())
+            //    this.PackItem(new GargoylesPickaxe());
         }
 
         public GargoyleDestroyer(Serial serial)

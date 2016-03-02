@@ -82,17 +82,17 @@ namespace Server.Mobiles
             return 0x56;
         }
 
-        public override bool OnBeforeDeath()
-        {
-            if (!base.OnBeforeDeath())
-                return false;
+        //public override bool OnBeforeDeath()
+        //{
+        //    if (!base.OnBeforeDeath())
+        //        return false;
 
-            Gold gold = new Gold(Utility.RandomMinMax(240, 375));
-            gold.MoveToWorld(this.Location, this.Map);
+        //    Gold gold = new Gold(Utility.RandomMinMax(240, 375));
+        //    gold.MoveToWorld(this.Location, this.Map);
 
-            Effects.SendLocationEffect(this.Location, this.Map, 0x376A, 10, 1);
-            return true;
-        }
+        //    Effects.SendLocationEffect(this.Location, this.Map, 0x376A, 10, 1);
+        //    return true;
+        //}
 
         public override void Serialize(GenericWriter writer) 
         { 

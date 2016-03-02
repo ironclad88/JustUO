@@ -92,26 +92,26 @@ namespace Server.Mobiles
             AddLoot(LootPack.Gems);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.3)
-                c.DropItem(new VoidOrb());
+        //    if (Utility.RandomDouble() < 0.3)
+        //        c.DropItem(new VoidOrb());
 
-            if (Utility.RandomDouble() < 0.10)
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0:
-                        AddToBackpack(new VoidEssence());
-                        break;
-                    case 1:
-                        AddToBackpack(new AncientPotteryFragments());
-                        break;
-                }
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.10)
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0:
+        //                AddToBackpack(new VoidEssence());
+        //                break;
+        //            case 1:
+        //                AddToBackpack(new AncientPotteryFragments());
+        //                break;
+        //        }
+        //    }
+        //}
 
         public override int GetIdleSound()
         {

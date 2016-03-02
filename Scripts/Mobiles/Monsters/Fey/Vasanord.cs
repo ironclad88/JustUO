@@ -48,8 +48,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 88;
 
-            this.PackItem(new DaemonBone(30));
-            this.PackItem(new Board(10));
+         //   this.PackItem(new DaemonBone(30));
+        //    this.PackItem(new Board(10));
         }
 
         public Vasanord(Serial serial)
@@ -99,29 +99,29 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.MedScrolls, 2);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.6)
-                c.DropItem(new TaintedSeeds(2));
+        //    if (Utility.RandomDouble() < 0.6)
+        //        c.DropItem(new TaintedSeeds(2));
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new VoidEssence(2));
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new VoidEssence(2));
 
-            if (Utility.RandomDouble() < 0.10)
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0:
-                        this.AddToBackpack(new VoidOrb());
-                        break;
-                    case 1:
-                        this.AddToBackpack(new VoidCore());
-                        break;
-                }
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.10)
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0:
+        //                this.AddToBackpack(new VoidOrb());
+        //                break;
+        //            case 1:
+        //                this.AddToBackpack(new VoidCore());
+        //                break;
+        //        }
+        //    }
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

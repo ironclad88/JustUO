@@ -37,39 +37,39 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 18;
 			
-            switch ( Utility.Random(10))
-            {
-                case 0:
-                    this.PackItem(new LeftArm());
-                    break;
-                case 1:
-                    this.PackItem(new RightArm());
-                    break;
-                case 2:
-                    this.PackItem(new Torso());
-                    break;
-                case 3:
-                    this.PackItem(new Bone());
-                    break;
-                case 4:
-                    this.PackItem(new RibCage());
-                    break;
-                case 5:
-                    this.PackItem(new RibCage());
-                    break;
-                case 6:
-                    this.PackItem(new BonePile());
-                    break;
-                case 7:
-                    this.PackItem(new BonePile());
-                    break;
-                case 8:
-                    this.PackItem(new BonePile());
-                    break;
-                case 9:
-                    this.PackItem(new BonePile());
-                    break;
-            }
+            //switch ( Utility.Random(10))
+            //{
+            //    case 0:
+            //        this.PackItem(new LeftArm());
+            //        break;
+            //    case 1:
+            //        this.PackItem(new RightArm());
+            //        break;
+            //    case 2:
+            //        this.PackItem(new Torso());
+            //        break;
+            //    case 3:
+            //        this.PackItem(new Bone());
+            //        break;
+            //    case 4:
+            //        this.PackItem(new RibCage());
+            //        break;
+            //    case 5:
+            //        this.PackItem(new RibCage());
+            //        break;
+            //    case 6:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 7:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 8:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 9:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //}
         }
 
         public Zombie(Serial serial)
@@ -102,17 +102,17 @@ namespace Server.Mobiles
         {
             this.AddLoot(LootPack.Meager);
         }
-        public override void OnDeath(Container c)
-        {
+        //public override void OnDeath(Container c)
+        //{
 
-            base.OnDeath(c);
-            Region reg = Region.Find(c.GetWorldLocation(), c.Map);
-            if (0.25 > Utility.RandomDouble() && reg.Name == "The Lands of the Lich")
-            {
-                if (Utility.RandomDouble() < 0.6)
-                    c.DropItem(new EssenceDirection());
-            }
-        }
+        //    base.OnDeath(c);
+        //    Region reg = Region.Find(c.GetWorldLocation(), c.Map);
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "The Lands of the Lich")
+        //    {
+        //        if (Utility.RandomDouble() < 0.6)
+        //            c.DropItem(new EssenceDirection());
+        //    }
+        //}
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

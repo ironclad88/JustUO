@@ -50,15 +50,15 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.AosFilthyRich, 6);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);	
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);	
 			
-                c.DropItem(new TigerClawKey());
+        //        c.DropItem(new TigerClawKey());
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new TigerClawSectBadge());
-        }
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new TigerClawSectBadge());
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

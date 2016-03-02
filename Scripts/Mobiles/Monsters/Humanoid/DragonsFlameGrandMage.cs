@@ -50,15 +50,15 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.AosFilthyRich, 6);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);	
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);	
 			
-                c.DropItem(new DragonFlameKey());
+        //        c.DropItem(new DragonFlameKey());
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new DragonFlameSectBadge());
-        }
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new DragonFlameSectBadge());
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

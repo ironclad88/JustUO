@@ -43,12 +43,12 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 35;
 
-            SolenHelper.PackPicnicBasket(this);
+           // SolenHelper.PackPicnicBasket(this);
 
-            this.PackItem(new ZoogiFungus((0.05 > Utility.RandomDouble()) ? 3 : 13));
+           // this.PackItem(new ZoogiFungus((0.05 > Utility.RandomDouble()) ? 3 : 13));
 
-            if (Utility.RandomDouble() < 0.05)
-                this.PackItem(new BraceletOfBinding());
+           // if (Utility.RandomDouble() < 0.05)
+           //     this.PackItem(new BraceletOfBinding());
         }
 
         public BlackSolenWarrior(Serial serial)

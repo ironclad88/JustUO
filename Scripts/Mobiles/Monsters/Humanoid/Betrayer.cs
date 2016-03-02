@@ -46,10 +46,10 @@ namespace Server.Mobiles
             this.VirtualArmor = 65;
             this.SpeechHue = Utility.RandomDyedHue();
 
-            this.PackItem(new PowerCrystal());
+            //this.PackItem(new PowerCrystal());
 
-            if (0.02 > Utility.RandomDouble())
-                this.PackItem(new BlackthornWelcomeBook());
+            //if (0.02 > Utility.RandomDouble())
+            //    this.PackItem(new BlackthornWelcomeBook());
 
             this.m_NextAbilityTime = DateTime.UtcNow + TimeSpan.FromSeconds(Utility.RandomMinMax(5, 30));
         }
@@ -94,23 +94,23 @@ namespace Server.Mobiles
                 return 5;
             }
         }
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (0.05 > Utility.RandomDouble())
-            {
-                if (!this.IsParagon)
-                {
-                    if (0.75 > Utility.RandomDouble())
-                        c.DropItem(DawnsMusicGear.RandomCommon);
-                    else
-                        c.DropItem(DawnsMusicGear.RandomUncommon);
-                }
-                else
-                    c.DropItem(DawnsMusicGear.RandomRare);
-            }
-        }
+        //    if (0.05 > Utility.RandomDouble())
+        //    {
+        //        if (!this.IsParagon)
+        //        {
+        //            if (0.75 > Utility.RandomDouble())
+        //                c.DropItem(DawnsMusicGear.RandomCommon);
+        //            else
+        //                c.DropItem(DawnsMusicGear.RandomUncommon);
+        //        }
+        //        else
+        //            c.DropItem(DawnsMusicGear.RandomRare);
+        //    }
+        //}
 
         public override int GetDeathSound()
         {

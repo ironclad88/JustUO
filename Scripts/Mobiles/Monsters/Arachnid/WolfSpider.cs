@@ -89,13 +89,13 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Gems, 2);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.15)
-                c.DropItem(new BottleIchor());
-        }
+        //    if (Utility.RandomDouble() < 0.15)
+        //        c.DropItem(new BottleIchor());
+        //}
 
         public override int GetIdleSound()
         {

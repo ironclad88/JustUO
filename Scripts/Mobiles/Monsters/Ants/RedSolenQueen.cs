@@ -42,12 +42,12 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 45;
 
-            SolenHelper.PackPicnicBasket(this);
+            //SolenHelper.PackPicnicBasket(this);
 
-            this.PackItem(new ZoogiFungus((Utility.RandomDouble() > 0.05) ? 5 : 25));
+            //this.PackItem(new ZoogiFungus((Utility.RandomDouble() > 0.05) ? 5 : 25));
 
-            if (Utility.RandomDouble() < 0.05)
-                this.PackItem(new BallOfSummoning());
+            //if (Utility.RandomDouble() < 0.05)
+            //    this.PackItem(new BallOfSummoning());
         }
 
         public RedSolenQueen(Serial serial)

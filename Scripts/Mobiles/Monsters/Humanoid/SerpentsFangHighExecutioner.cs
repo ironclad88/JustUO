@@ -57,15 +57,15 @@ namespace Server.Mobiles
                 from.Damage(damage / 2, from);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);	
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);	
 
-                c.DropItem(new SerpentFangKey());
+        //        c.DropItem(new SerpentFangKey());
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new SerpentFangSectBadge());
-        }
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new SerpentFangSectBadge());
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

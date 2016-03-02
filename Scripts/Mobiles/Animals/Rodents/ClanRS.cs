@@ -73,7 +73,7 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Rich, 3);
         }
 
-        public override void OnDeath(Container c)
+    /*    public override void OnDeath(Container c)
         {
 
             base.OnDeath(c);
@@ -94,7 +94,7 @@ namespace Server.Mobiles
                     case 9: c.DropItem(new ElvenFletchings()); break;
                 }
             }
-        }
+        }*/
       
 
         public override void Serialize(GenericWriter writer)

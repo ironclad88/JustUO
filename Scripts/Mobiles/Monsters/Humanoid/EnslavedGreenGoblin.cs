@@ -81,8 +81,8 @@ namespace Server.Mobiles
                     break;
             }
 
-            if (0.2 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (0.2 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
         }
 
         //Item item = aggressor.FindItemOnLayer( Layer.Helm );
@@ -143,21 +143,21 @@ namespace Server.Mobiles
         {
             this.AddLoot(LootPack.Meager);
         }
-        public override void OnDeath(Container c)
-        {
+        //public override void OnDeath(Container c)
+        //{
 
-            base.OnDeath(c);
-            Region reg = Region.Find(c.GetWorldLocation(), c.Map);
-            if (0.25 > Utility.RandomDouble() && reg.Name == "Enslaved Goblins")
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0: c.DropItem(new EssenceControl()); break;
-                    case 1: c.DropItem(new GoblinBlood()); break;
+        //    base.OnDeath(c);
+        //    Region reg = Region.Find(c.GetWorldLocation(), c.Map);
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "Enslaved Goblins")
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0: c.DropItem(new EssenceControl()); break;
+        //            case 1: c.DropItem(new GoblinBlood()); break;
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

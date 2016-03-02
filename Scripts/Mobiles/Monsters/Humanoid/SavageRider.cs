@@ -38,8 +38,8 @@ namespace Server.Mobiles
 
             this.PackItem(new Bandage(Utility.RandomMinMax(1, 15)));
 
-            if (0.1 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (0.1 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
 
             this.AddItem(new TribalSpear());
             this.AddItem(new BoneArms());

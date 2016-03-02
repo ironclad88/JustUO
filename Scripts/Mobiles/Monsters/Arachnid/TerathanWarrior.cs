@@ -40,8 +40,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 30;
 
-            if (Core.ML && Utility.RandomDouble() < .33)
-                this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(3));
+            //if (Core.ML && Utility.RandomDouble() < .33)
+            //    this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(3));
         }
 
         public TerathanWarrior(Serial serial)

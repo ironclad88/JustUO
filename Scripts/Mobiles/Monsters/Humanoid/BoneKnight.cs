@@ -40,31 +40,31 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 40;
 			
-            switch ( Utility.Random(6) )
-            {
-                case 0:
-                    this.PackItem(new PlateArms());
-                    break;
-                case 1:
-                    this.PackItem(new PlateChest());
-                    break;
-                case 2:
-                    this.PackItem(new PlateGloves());
-                    break;
-                case 3:
-                    this.PackItem(new PlateGorget());
-                    break;
-                case 4:
-                    this.PackItem(new PlateLegs());
-                    break;
-                case 5:
-                    this.PackItem(new PlateHelm());
-                    break;
-            }
+            //switch ( Utility.Random(6) )
+            //{
+            //    case 0:
+            //        this.PackItem(new PlateArms());
+            //        break;
+            //    case 1:
+            //        this.PackItem(new PlateChest());
+            //        break;
+            //    case 2:
+            //        this.PackItem(new PlateGloves());
+            //        break;
+            //    case 3:
+            //        this.PackItem(new PlateGorget());
+            //        break;
+            //    case 4:
+            //        this.PackItem(new PlateLegs());
+            //        break;
+            //    case 5:
+            //        this.PackItem(new PlateHelm());
+            //        break;
+            //}
 
-            this.PackSlayer();
-            this.PackItem(new Scimitar());
-            this.PackItem(new WoodenShield());
+            //this.PackSlayer();
+            //this.PackItem(new Scimitar());
+            //this.PackItem(new WoodenShield());
         }
 
         public BoneKnight(Serial serial)
@@ -91,23 +91,23 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Average);
             this.AddLoot(LootPack.Meager);
         }
-        public override void OnDeath(Container c)
-        {
+        //public override void OnDeath(Container c)
+        //{
 
-            base.OnDeath(c);
-            Region reg = Region.Find(c.GetWorldLocation(), c.Map);
-            if (0.25 > Utility.RandomDouble() && reg.Name == "The Lands of the Lich")
-            {
-                if (Utility.RandomDouble() < 0.6)
-                    c.DropItem(new EssenceDirection());
-            }
-            if (0.25 > Utility.RandomDouble() && reg.Name == "Skeletal Dragon")
-            {
-                if (Utility.RandomDouble() < 0.6)
-                    c.DropItem(new EssencePersistence());
+        //    base.OnDeath(c);
+        //    Region reg = Region.Find(c.GetWorldLocation(), c.Map);
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "The Lands of the Lich")
+        //    {
+        //        if (Utility.RandomDouble() < 0.6)
+        //            c.DropItem(new EssenceDirection());
+        //    }
+        //    if (0.25 > Utility.RandomDouble() && reg.Name == "Skeletal Dragon")
+        //    {
+        //        if (Utility.RandomDouble() < 0.6)
+        //            c.DropItem(new EssencePersistence());
 
-            }
-        }
+        //    }
+        //}
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

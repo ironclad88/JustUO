@@ -51,8 +51,8 @@ namespace Server.Mobiles
             this.PackItem(new MortarPestle());
             this.PackItem(new LesserExplosionPotion());
 
-            if (0.2 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (0.2 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
         }
 
         public OrcBomber(Serial serial)

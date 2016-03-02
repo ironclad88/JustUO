@@ -40,41 +40,41 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 18;
 
-            this.AddItem(new LightSource());
+            //this.AddItem(new LightSource());
 
-            switch ( Utility.Random(10))
-            {
-                case 0:
-                    this.PackItem(new LeftArm());
-                    break;
-                case 1:
-                    this.PackItem(new RightArm());
-                    break;
-                case 2:
-                    this.PackItem(new Torso());
-                    break;
-                case 3:
-                    this.PackItem(new Bone());
-                    break;
-                case 4:
-                    this.PackItem(new RibCage());
-                    break;
-                case 5:
-                    this.PackItem(new RibCage());
-                    break;
-                case 6:
-                    this.PackItem(new BonePile());
-                    break;
-                case 7:
-                    this.PackItem(new BonePile());
-                    break;
-                case 8:
-                    this.PackItem(new BonePile());
-                    break;
-                case 9:
-                    this.PackItem(new BonePile());
-                    break;
-            }
+            //switch ( Utility.Random(10))
+            //{
+            //    case 0:
+            //        this.PackItem(new LeftArm());
+            //        break;
+            //    case 1:
+            //        this.PackItem(new RightArm());
+            //        break;
+            //    case 2:
+            //        this.PackItem(new Torso());
+            //        break;
+            //    case 3:
+            //        this.PackItem(new Bone());
+            //        break;
+            //    case 4:
+            //        this.PackItem(new RibCage());
+            //        break;
+            //    case 5:
+            //        this.PackItem(new RibCage());
+            //        break;
+            //    case 6:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 7:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 8:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //    case 9:
+            //        this.PackItem(new BonePile());
+            //        break;
+            //}
         }
 
         public ShadowWisp(Serial serial)

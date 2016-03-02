@@ -41,32 +41,31 @@ namespace Server.Mobiles
             this.VirtualArmor = 34;
 
             // TODO: Skull?
-            switch ( Utility.Random(7) )
-            {
-                case 0:
-                    this.PackItem(new Arrow());
-                    break;
-                case 1:
-                    this.PackItem(new Lockpick());
-                    break;
-                case 2:
-                    this.PackItem(new Shaft());
-                    break;
-                case 3:
-                    this.PackItem(new Ribs());
-                    break;
-                case 4:
-                    this.PackItem(new Bandage());
-                    break;
-                case 5:
-                    this.PackItem(new BeverageBottle(BeverageType.Wine));
-                    break;
-                case 6:
-                    this.PackItem(new Jug(BeverageType.Cider));
-                    break;
-            }
-
-            if (Core.AOS)
+            //switch ( Utility.Random(7) )
+            //{
+            //    case 0:
+            //        this.PackItem(new Arrow());
+            //        break;
+            //    case 1:
+            //        this.PackItem(new Lockpick());
+            //        break;
+            //    case 2:
+            //        this.PackItem(new Shaft());
+            //        break;
+            //    case 3:
+            //        this.PackItem(new Ribs());
+            //        break;
+            //    case 4:
+            //        this.PackItem(new Bandage());
+            //        break;
+            //    case 5:
+            //        this.PackItem(new BeverageBottle(BeverageType.Wine));
+            //        break;
+            //    case 6:
+            //        this.PackItem(new Jug(BeverageType.Cider));
+            //        break;
+            //}
+            
                 this.PackItem(Loot.RandomNecromancyReagent());
         }
 

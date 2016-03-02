@@ -56,10 +56,10 @@ namespace Server.Mobiles
 			PackReg(10, 15);
 			PackItem(new Bandage(Utility.RandomMinMax(1, 15)));
 
-			if (0.1 > Utility.RandomDouble())
-			{
-				PackItem(new TribalBerry());
-			}
+			//if (0.1 > Utility.RandomDouble())
+			//{
+			//	PackItem(new TribalBerry());
+			//}
 
 			AddItem(new BoneArms());
 			AddItem(new BoneLegs());

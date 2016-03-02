@@ -40,13 +40,13 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 32;
 
-            if (0.025 > Utility.RandomDouble())
-                this.PackItem(new GargoylesPickaxe());
+   //         if (0.025 > Utility.RandomDouble())
+   //             this.PackItem(new GargoylesPickaxe());
 
-			switch (Utility.Random(6))
-            {
-                case 0: PackItem(new PainSpikeScroll()); break;
-			}
+			//switch (Utility.Random(6))
+   //         {
+   //             case 0: PackItem(new PainSpikeScroll()); break;
+			//}
 
         }
 

@@ -5,9 +5,6 @@ namespace Server.Spells
 {
     public abstract class MagerySpell : Spell
     {
-
-
-
         private static readonly int[] m_ManaTable = new int[] { 4, 6, 9, 11, 14, 20, 40, 50 };
         private const double ChanceOffset = 20.0, ChanceLength = 100.0 / 7.0;
         public MagerySpell(Mobile caster, Item scroll, SpellInfo info)
@@ -90,7 +87,7 @@ namespace Server.Spells
             return (n >= Utility.RandomDouble());
         }
 
-        public virtual bool checkPermaMagic(Mobile target, SpellCircle circle)
+        public virtual bool checkPermaMagic(Mobile target, SpellCircle circle) // JustZH fix later
         {
             string permaMagicResistString = "You feel yourself resisting magical energy!";
             if (target.PermaMagic != 0)

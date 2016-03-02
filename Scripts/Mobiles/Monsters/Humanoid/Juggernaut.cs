@@ -43,11 +43,11 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 70;
 
-            if (0.1 > Utility.RandomDouble())
-                this.PackItem(new PowerCrystal());
+            //if (0.1 > Utility.RandomDouble())
+            //    this.PackItem(new PowerCrystal());
 
-            if (0.4 > Utility.RandomDouble())
-                this.PackItem(new ClockworkAssembly());
+            //if (0.4 > Utility.RandomDouble())
+            //    this.PackItem(new ClockworkAssembly());
         }
 
         public Juggernaut(Serial serial)
@@ -97,23 +97,23 @@ namespace Server.Mobiles
                 return 5;
             }
         }
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (0.05 > Utility.RandomDouble())
-            {
-                if (!this.IsParagon)
-                {
-                    if (0.75 > Utility.RandomDouble())
-                        c.DropItem(DawnsMusicGear.RandomCommon);
-                    else
-                        c.DropItem(DawnsMusicGear.RandomUncommon);
-                }
-                else
-                    c.DropItem(DawnsMusicGear.RandomRare);
-            }
-        }
+        //    if (0.05 > Utility.RandomDouble())
+        //    {
+        //        if (!this.IsParagon)
+        //        {
+        //            if (0.75 > Utility.RandomDouble())
+        //                c.DropItem(DawnsMusicGear.RandomCommon);
+        //            else
+        //                c.DropItem(DawnsMusicGear.RandomUncommon);
+        //        }
+        //        else
+        //            c.DropItem(DawnsMusicGear.RandomRare);
+        //    }
+        //}
 
         public override void GenerateLoot()
         {

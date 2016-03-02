@@ -44,16 +44,6 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.AosUltraRich, 2);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);		
-			
-            c.DropItem(new SalivasFeather());
-			
-            if (Utility.RandomDouble() < 0.1)				
-                c.DropItem(new ParrotItem());
-        }
-
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

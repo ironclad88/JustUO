@@ -53,14 +53,14 @@ namespace Server.Mobiles
 			PackItem(new Arrow(Utility.RandomMinMax(60, 70)));
 			PackItem(new Bandage(Utility.RandomMinMax(1, 15)));
 
-			if (0.1 > Utility.RandomDouble())
-			{
-				AddItem(new OrcishBow());
-			}
-			else
-			{
-				AddItem(new Bow());
-			}
+			//if (0.1 > Utility.RandomDouble())
+			//{
+			//	AddItem(new OrcishBow());
+			//}
+			//else
+			//{
+			//	AddItem(new Bow());
+			//}
 		}
 
 		public OrcScout(Serial serial)

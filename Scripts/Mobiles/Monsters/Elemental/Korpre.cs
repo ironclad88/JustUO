@@ -38,7 +38,7 @@ namespace Server.Mobiles
             Fame = 300;
             Karma = -300;
 
-            QLPoints = 3;
+            QLPoints = 3; // QLPoints? wat?
 
             VirtualArmor = 8;
         }
@@ -109,15 +109,15 @@ namespace Server.Mobiles
             AddLoot(LootPack.Gems);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);		
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);		
 			
-            if (Utility.RandomDouble() < 0.05)
-            {
-                c.DropItem(new VoidOrb());
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.05)
+        //    {
+        //        c.DropItem(new VoidOrb());
+        //    }
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

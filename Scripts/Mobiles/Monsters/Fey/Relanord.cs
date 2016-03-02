@@ -41,7 +41,7 @@ namespace Server.Mobiles
             QLPoints = 20;
             VirtualArmor = 50;
 
-            PackItem(new DaemonBone(5));
+            //PackItem(new DaemonBone(5));
         }
 
         public Relanord(Serial serial)
@@ -82,13 +82,13 @@ namespace Server.Mobiles
             AddLoot(LootPack.FilthyRich, 1);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.5)
-                c.DropItem(new VoidOrb());
-        }
+        //    if (Utility.RandomDouble() < 0.5)
+        //        c.DropItem(new VoidOrb());
+        //}
 
         public override int GetIdleSound()
         {

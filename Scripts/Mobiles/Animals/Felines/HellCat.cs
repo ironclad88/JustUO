@@ -89,7 +89,7 @@ namespace Server.Mobiles
         {
             this.AddLoot(LootPack.Meager);
         }
-        public override void OnDeath(Container c)
+        /*public override void OnDeath(Container c)
         {
 
             base.OnDeath(c);            
@@ -104,7 +104,7 @@ namespace Server.Mobiles
                 if (Utility.RandomDouble() < 0.25)
                     c.DropItem(new EssencePassion());
             }
-        }
+        }*/
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

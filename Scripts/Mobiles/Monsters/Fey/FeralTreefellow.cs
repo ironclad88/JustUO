@@ -36,7 +36,7 @@ namespace Server.Mobiles
             this.Karma = -3000;  //Unknown
 
             this.VirtualArmor = 24;
-            this.PackItem(new Log(Utility.RandomMinMax(23, 34)));
+            //this.PackItem(new Log(Utility.RandomMinMax(23, 34)));
         }
 
         public FeralTreefellow(Serial serial)

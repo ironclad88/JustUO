@@ -86,16 +86,16 @@ namespace Server.Mobiles
             AddLoot(LootPack.FilthyRich);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.10)
-                c.DropItem(new VoidOrb());
+        //    if (Utility.RandomDouble() < 0.10)
+        //        c.DropItem(new VoidOrb());
 
-            if (Utility.RandomDouble() < 0.20)
-                c.DropItem(new VoidEssence());
-        }
+        //    if (Utility.RandomDouble() < 0.20)
+        //        c.DropItem(new VoidEssence());
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

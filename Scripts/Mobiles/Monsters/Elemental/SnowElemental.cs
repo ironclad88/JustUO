@@ -41,9 +41,9 @@ namespace Server.Mobiles
             this.VirtualArmor = 50;
 
             this.PackItem(new BlackPearl(3));
-            Item ore = new IronOre(3);
-            ore.ItemID = 0x19B8;
-            this.PackItem(ore);
+            //Item ore = new IronOre(3);
+            //ore.ItemID = 0x19B8;
+          //  this.PackItem(ore);
         }
 
         public SnowElemental(Serial serial)

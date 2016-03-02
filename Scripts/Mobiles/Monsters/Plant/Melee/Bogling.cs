@@ -40,7 +40,6 @@ namespace Server.Mobiles
             this.VirtualArmor = 28;
 
             this.PackItem(new Log(4));
-            this.PackItem(new Engines.Plants.Seed());
         }
 
         public Bogling(Serial serial)

@@ -36,9 +36,9 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 18;
 
-            this.AddItem(new LightSource());
+            //this.AddItem(new LightSource());
 
-            this.PackItem(new Bone(3));
+            //this.PackItem(new Bone(3));
             // TODO: Body parts
         }
 

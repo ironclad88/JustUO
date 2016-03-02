@@ -40,9 +40,9 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 40;
 
-            SolenHelper.PackPicnicBasket(this);
+            //SolenHelper.PackPicnicBasket(this);
 
-            this.PackItem(new ZoogiFungus((0.05 < Utility.RandomDouble()) ? 3 : 13));
+            //this.PackItem(new ZoogiFungus((0.05 < Utility.RandomDouble()) ? 3 : 13));
         }
 
         public RedSolenInfiltratorWarrior(Serial serial)

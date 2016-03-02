@@ -55,7 +55,7 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
-            base.OnDeath(c);
+            /*base.OnDeath(c);
             Region reg = Region.Find(c.GetWorldLocation(), c.Map);
             if (0.25 > Utility.RandomDouble() && reg.Name == "The Secret Gardens")
             {
@@ -68,7 +68,7 @@ namespace Server.Mobiles
                 if (Utility.RandomDouble() < 0.3)
                     c.DropItem(new PixieLeg());
                 #endregion
-            }
+            }*/
         }
 
         public override void GenerateLoot()

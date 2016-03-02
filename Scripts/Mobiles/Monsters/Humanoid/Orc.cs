@@ -77,8 +77,8 @@ namespace Server.Mobiles
                     break;
             }
 
-            if (0.2 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (0.2 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
         }
 
         public Orc(Serial serial)

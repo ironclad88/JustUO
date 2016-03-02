@@ -38,10 +38,10 @@ namespace Server.Mobiles
             int carrots = Utility.RandomMinMax(5, 10);
             this.PackItem(new Carrot(carrots));
 
-            if (Utility.Random(5) == 0)
-                this.PackItem(new BrightlyColoredEggs());
+            //if (Utility.Random(5) == 0)
+            //    this.PackItem(new BrightlyColoredEggs());
 
-            this.PackStatue();
+            //this.PackStatue();
 
             this.DelayBeginTunnel();
         }

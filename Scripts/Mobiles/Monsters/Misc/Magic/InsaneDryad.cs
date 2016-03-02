@@ -60,8 +60,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 28; // Don't know what it should be
 
-            if (Core.ML && Utility.RandomDouble() < .60)
-                this.PackItem(Seed.RandomPeculiarSeed(1));
+            //if (Core.ML && Utility.RandomDouble() < .60)
+            //    this.PackItem(Seed.RandomPeculiarSeed(1));
         }
 
         public override void GenerateLoot()
@@ -204,13 +204,13 @@ namespace Server.Mobiles
         {
         }
 		
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);		
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);		
 						
-            if (Utility.RandomDouble() < 0.1)				
-                c.DropItem(new ParrotItem());	
-        }
+        //    if (Utility.RandomDouble() < 0.1)				
+        //        c.DropItem(new ParrotItem());	
+        //}
 
         public override void Serialize(GenericWriter writer)
         {

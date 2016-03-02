@@ -40,10 +40,10 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 18;
 
-            if (0.25 > Utility.RandomDouble())
-                this.PackItem(new Board(10));
-            else
-                this.PackItem(new Log(10));
+            //if (0.25 > Utility.RandomDouble())
+            //    this.PackItem(new Board(10));
+            //else
+            //    this.PackItem(new Log(10));
 
             this.PackItem(new MandrakeRoot(3));
         }

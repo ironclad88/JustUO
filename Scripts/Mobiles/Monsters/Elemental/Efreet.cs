@@ -61,27 +61,27 @@ namespace Server.Mobiles
             this.AddLoot(LootPack.Average);
             this.AddLoot(LootPack.Gems);
 
-            if (0.02 > Utility.RandomDouble())
-            {
-                switch ( Utility.Random(5) )
-                {
-                    case 0:
-                        this.PackItem(new DaemonArms());
-                        break;
-                    case 1:
-                        this.PackItem(new DaemonChest());
-                        break;
-                    case 2:
-                        this.PackItem(new DaemonGloves());
-                        break;
-                    case 3:
-                        this.PackItem(new DaemonLegs());
-                        break;
-                    case 4:
-                        this.PackItem(new DaemonHelm());
-                        break;
-                }
-            }
+            //if (0.02 > Utility.RandomDouble())
+            //{
+            //    switch ( Utility.Random(5) )
+            //    {
+            //        case 0:
+            //            this.PackItem(new DaemonArms());
+            //            break;
+            //        case 1:
+            //            this.PackItem(new DaemonChest());
+            //            break;
+            //        case 2:
+            //            this.PackItem(new DaemonGloves());
+            //            break;
+            //        case 3:
+            //            this.PackItem(new DaemonLegs());
+            //            break;
+            //        case 4:
+            //            this.PackItem(new DaemonHelm());
+            //            break;
+            //    }
+            //}
         }
 
         public override void Serialize(GenericWriter writer)

@@ -37,19 +37,19 @@ namespace Server.Mobiles
 
             this.PackItem(new Bandage(Utility.RandomMinMax(1, 15)));
 
-            if (this.Female && 0.1 > Utility.RandomDouble())
-                this.PackItem(new TribalBerry());
-            else if (!this.Female && 0.1 > Utility.RandomDouble())
-                this.PackItem(new BolaBall());
+            //if (this.Female && 0.1 > Utility.RandomDouble())
+            //    this.PackItem(new TribalBerry());
+            //else if (!this.Female && 0.1 > Utility.RandomDouble())
+            //    this.PackItem(new BolaBall());
 
             this.AddItem(new Spear());
             this.AddItem(new BoneArms());
             this.AddItem(new BoneLegs());
 
-            if (0.5 > Utility.RandomDouble())
-                this.AddItem(new SavageMask());
-            else if (0.1 > Utility.RandomDouble())
-                this.AddItem(new OrcishKinMask());
+            //if (0.5 > Utility.RandomDouble())
+            //    this.AddItem(new SavageMask());
+            //else if (0.1 > Utility.RandomDouble())
+            //    this.AddItem(new OrcishKinMask());
         }
 
         public Savage(Serial serial)

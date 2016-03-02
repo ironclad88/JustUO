@@ -45,7 +45,7 @@ namespace Server.Mobiles
 
             this.PackItem(new SulfurousAsh(3));
 
-            this.AddItem(new LightSource());
+            //this.AddItem(new LightSource());
         }
 
         public FireElemental(Serial serial)

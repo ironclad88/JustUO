@@ -41,37 +41,37 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 54;
 
-            this.PackItem(new Log(Utility.RandomMinMax(1, 10)));
-            this.PackItem(new Board(Utility.RandomMinMax(10, 20)));
-            this.PackItem(new ExecutionersAxe());
+            //this.PackItem(new Log(Utility.RandomMinMax(1, 10)));
+            //this.PackItem(new Board(Utility.RandomMinMax(10, 20)));
+            //this.PackItem(new ExecutionersAxe());
 
-            // TODO: Skull?
-            switch (Utility.Random(7))
-            {
-                case 0:
-                    this.PackItem(new Arrow());
-                    break;
-                case 1:
-                    this.PackItem(new Lockpick());
-                    break;
-                case 2:
-                    this.PackItem(new Shaft());
-                    break;
-                case 3:
-                    this.PackItem(new Ribs());
-                    break;
-                case 4:
-                    this.PackItem(new Bandage());
-                    break;
-                case 5:
-                    this.PackItem(new BeverageBottle(BeverageType.Wine));
-                    break;
-                case 6:
-                    this.PackItem(new Jug(BeverageType.Cider));
-                    break;
-            }
+            //// TODO: Skull?
+            //switch (Utility.Random(7))
+            //{
+            //    case 0:
+            //        this.PackItem(new Arrow());
+            //        break;
+            //    case 1:
+            //        this.PackItem(new Lockpick());
+            //        break;
+            //    case 2:
+            //        this.PackItem(new Shaft());
+            //        break;
+            //    case 3:
+            //        this.PackItem(new Ribs());
+            //        break;
+            //    case 4:
+            //        this.PackItem(new Bandage());
+            //        break;
+            //    case 5:
+            //        this.PackItem(new BeverageBottle(BeverageType.Wine));
+            //        break;
+            //    case 6:
+            //        this.PackItem(new Jug(BeverageType.Cider));
+            //        break;
+            //}
 
-            if (Core.AOS)
+            //if (Core.AOS)
                 this.PackItem(Loot.RandomNecromancyReagent());
         }
 
@@ -120,21 +120,21 @@ namespace Server.Mobiles
             }
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+        //public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            c.DropItem(new DoubleAxe());
+        //    c.DropItem(new DoubleAxe());
 
-            if (Core.ML)
-            {
-                if (Utility.RandomDouble() < 0.05)
-                    c.DropItem(new StoutWhip());
-            }
+        //    if (Core.ML)
+        //    {
+        //        if (Utility.RandomDouble() < 0.05)
+        //            c.DropItem(new StoutWhip());
+        //    }
 
-            if (Utility.RandomDouble() < 0.1)
-                c.DropItem(new EvilOrcHelm());
-        }
+        //    if (Utility.RandomDouble() < 0.1)
+        //        c.DropItem(new EvilOrcHelm());
+        //}
 
         public override void GenerateLoot()
         {

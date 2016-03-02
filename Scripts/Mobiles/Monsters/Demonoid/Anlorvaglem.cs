@@ -94,26 +94,26 @@ namespace Server.Mobiles
             AddLoot(LootPack.AosUltraRich, 3);
         }
 
-        public override void OnDeath(Container c)
-        {
-            base.OnDeath(c);
+      //  public override void OnDeath(Container c)
+        //{
+        //    base.OnDeath(c);
 
-            if (Utility.RandomDouble() < 0.3)
-                c.DropItem(new VoidOrb());
+        //    if (Utility.RandomDouble() < 0.3)
+        //        c.DropItem(new VoidOrb());
 
-            if (Utility.RandomDouble() < 0.10)
-            {
-                switch (Utility.Random(2))
-                {
-                    case 0:
-                        AddToBackpack(new VoidEssence());
-                        break;
-                    case 1:
-                        AddToBackpack(new VoidCore());
-                        break;
-                }
-            }
-        }
+        //    if (Utility.RandomDouble() < 0.10)
+        //    {
+        //        switch (Utility.Random(2))
+        //        {
+        //            case 0:
+        //                AddToBackpack(new VoidEssence());
+        //                break;
+        //            case 1:
+        //                AddToBackpack(new VoidCore());
+        //                break;
+        //        }
+        //    }
+        //}
 
         public override void Serialize(GenericWriter writer)
         {
