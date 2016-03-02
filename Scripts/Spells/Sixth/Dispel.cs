@@ -65,7 +65,7 @@ namespace Server.Spells.Sixth
                     {
                         from.SendLocalizedMessage(1005049); // That cannot be dispelled.
                     }
-                    else if (this.m_Owner.CheckHSequence(m))
+                    /*else if (this.m_Owner.CheckHSequence(m))
                     {
                         SpellHelper.Turn(from, m);
 
@@ -83,7 +83,7 @@ namespace Server.Spells.Sixth
                             m.FixedEffect(0x3779, 10, 20);
                             from.SendLocalizedMessage(1010084); // The creature resisted the attempt to dispel it!
                         }
-                    }
+                    }*/
                 }
             }
 

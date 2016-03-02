@@ -82,6 +82,11 @@ namespace Server.Spells.Fourth
                 else
                     duration = TimeSpan.FromSeconds(4.0 + (this.Caster.Skills[SkillName.Magery].Value * 0.5));
 
+                if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromSeconds(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 for (int i = -2; i <= 2; ++i)
                 {
                     Point3D loc = new Point3D(eastToWest ? p.X + i : p.X, eastToWest ? p.Y : p.Y + i, p.Z);

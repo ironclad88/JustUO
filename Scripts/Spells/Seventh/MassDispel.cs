@@ -31,6 +31,7 @@ namespace Server.Spells.Seventh
         public override void OnCast()
         {
             setCords(Caster.Y, Caster.X);
+            
             this.Caster.Target = new InternalTarget(this);
         }
 
@@ -42,6 +43,10 @@ namespace Server.Spells.Seventh
             }
             else if (this.CheckSequence())
             {
+                var temp = CheckBSequence(Caster);
+
+                
+
                 SpellHelper.Turn(this.Caster, p);
 
                 SpellHelper.GetSurfaceTop(ref p);
@@ -49,12 +54,14 @@ namespace Server.Spells.Seventh
                 List<Mobile> targets = new List<Mobile>();
 
                 Map map = this.Caster.Map;
+                
+                
 
                 if (map != null)
                 {
                     IPooledEnumerable eable = map.GetMobilesInRange(new Point3D(p), 8);
 
-                    foreach (Mobile m in eable)
+                    foreach (Mobile m in eable) // gotta debug this
                         if (m is BaseCreature && (m as BaseCreature).IsDispellable && this.Caster.CanBeHarmful(m, false))
                             targets.Add(m);
 
@@ -67,6 +74,14 @@ namespace Server.Spells.Seventh
 
                     BaseCreature bc = m as BaseCreature;
 
+                    if (this.CheckHSequence(Caster)) // untested, gotta test
+                    {
+                        Effects.SendLocationParticles(EffectItem.Create(m.Location, m.Map, EffectItem.DefaultDuration), 0x3728, 8, 20, 5042);
+                        Effects.PlaySound(m, m.Map, 0x201);
+                        m.DispelMagicMods();
+                    }
+
+                    /*
                     if (bc == null)
                         continue;
 
@@ -84,7 +99,7 @@ namespace Server.Spells.Seventh
                         this.Caster.DoHarmful(m);
 
                         m.FixedEffect(0x3779, 10, 20);
-                    }
+                    }*/
                 }
             }
 

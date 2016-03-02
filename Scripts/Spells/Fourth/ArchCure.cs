@@ -95,9 +95,14 @@ namespace Server.Spells.Fourth
 
                         if (poison != null)
                         {
-                            int chanceToCure = 10000 + (int)(this.Caster.Skills[SkillName.Magery].Value * 75) - ((poison.Level + 1) * 1750);
+                            int chanceToCure = 10000 + (int)(this.Caster.Skills[SkillName.Magery].Value * 85) - ((poison.Level + 1) * 1750); // 85 was 75, made it easier to cure poison
                             chanceToCure /= 100;
                             chanceToCure -= 1;
+
+                            if(Caster.SpecClasse == SpecClasse.Mage) // made it easier for spec mages to cure psn, untested, but specced mages should be able to cure all poisons easily
+                            {
+                                chanceToCure += 20 + (poison.Level * 3);
+                            }
 
                             if (chanceToCure > Utility.Random(100) && m.CurePoison(this.Caster))
                                 ++cured;

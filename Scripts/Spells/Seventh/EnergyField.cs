@@ -80,6 +80,11 @@ namespace Server.Spells.Seventh
                 else
                     duration = TimeSpan.FromSeconds(this.Caster.Skills[SkillName.Magery].Value * 0.28 + 2.0); // (28% of magery) + 2.0 seconds
 
+                if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromSeconds(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 int itemID = eastToWest ? 0x3946 : 0x3956;
 
                 for (int i = -2; i <= 2; ++i)

@@ -3229,7 +3229,13 @@
     <Compile Include="Items\Weapons\Wooden\ArcanistsWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\HardenedWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\ThornedWildStaff.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorArms.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorChest.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorGloves.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorHead.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorLegs.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Clothing\RobeoftheCleric.cs" />
+    <Compile Include="Items\ZuluIems\GMItems\Weapons\DartthrowerofAmroth.cs" />
     <Compile Include="Items\ZuluIems\Pentagram\BagOfAirPentagrams.cs" />
     <Compile Include="Items\ZuluIems\EarthBook.cs" />
     <Compile Include="Items\ZuluIems\DragonEgg.cs" />

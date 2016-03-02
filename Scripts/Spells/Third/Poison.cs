@@ -59,9 +59,10 @@ namespace Server.Spells.Third
                     {
                         if (this.Caster.InRange(m, 2))
                         {
-                            int total = (this.Caster.Skills.Magery.Fixed + this.Caster.Skills.Poisoning.Fixed) / 2;
+                            //int total = (this.Caster.Skills.Magery.Fixed + this.Caster.Skills.Poisoning.Fixed) / 2;
+                            int total = (this.Caster.Skills.Magery.Fixed) / 2; // Removed poisoning
 
-                            if (total >= 1000)
+                            if (total >= 1000) // lvl 3 psn is best
                                 level = 3;
                             else if (total > 850)
                                 level = 2;

@@ -78,6 +78,11 @@ namespace Server.Spells.Fifth
                     else
                         duration = TimeSpan.FromSeconds(4.0 * this.Caster.Skills[SkillName.Magery].Value);
 
+                    if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                    {
+                        duration.Add(TimeSpan.FromSeconds(this.Caster.SpecBonus(SpecClasse.Mage)));
+                    }
+
                     SpellHelper.Summon(creature, this.Caster, 0x215, duration, false, false);
                 }
                 catch

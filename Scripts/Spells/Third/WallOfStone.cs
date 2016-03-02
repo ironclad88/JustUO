@@ -115,7 +115,14 @@ namespace Server.Spells.Third
                     return;
 
                 this.m_Timer = new InternalTimer(this, TimeSpan.FromSeconds(10.0));
+
+                if (caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    m_Timer.Interval = TimeSpan.FromSeconds(20.0); // double duration
+                }
+
                 this.m_Timer.Start();
+                
 
                 this.m_End = DateTime.UtcNow + TimeSpan.FromSeconds(10.0);
             }
@@ -160,7 +167,7 @@ namespace Server.Spells.Third
                         }
                     case 0:
                         {
-                            TimeSpan duration = TimeSpan.FromSeconds(10.0);
+                            TimeSpan duration = TimeSpan.FromSeconds(10.0); // wont bother with deserialize buffing for specced mages
 
                             this.m_Timer = new InternalTimer(this, duration);
                             this.m_Timer.Start();
