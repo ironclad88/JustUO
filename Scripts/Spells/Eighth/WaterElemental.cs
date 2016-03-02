@@ -45,6 +45,11 @@ namespace Server.Spells.Eighth
             {
                 TimeSpan duration = TimeSpan.FromSeconds((2 * this.Caster.Skills.Magery.Fixed) / 5);
 
+                if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromMinutes(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 if (Core.AOS)
                     SpellHelper.Summon(new SummonedWaterElemental(), this.Caster, 0x217, duration, false, false);
                 else

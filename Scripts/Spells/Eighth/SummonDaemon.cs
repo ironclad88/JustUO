@@ -46,6 +46,11 @@ namespace Server.Spells.Eighth
             { 
                 TimeSpan duration = TimeSpan.FromSeconds((2 * this.Caster.Skills.Magery.Fixed) / 5);
 
+                if(this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromMinutes(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 if (Core.AOS)  /* Why two diff daemons? TODO: solve this */
                 {
                     BaseCreature m_Daemon = new SummonedDaemon();

@@ -65,6 +65,11 @@ namespace Server.Spells.Eighth
                 else
                     duration = TimeSpan.FromSeconds(Utility.Random(80, 40));
 
+                if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromMinutes(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 BaseCreature.Summon(new EnergyVortex(), false, this.Caster, new Point3D(p), 0x212, duration);
             }
 

@@ -72,6 +72,11 @@ namespace Server.Spells.Fifth
                 else
                     duration = TimeSpan.FromSeconds(Utility.Random(80, 40));
 
+                if (this.Caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
+                {
+                    duration.Add(TimeSpan.FromSeconds(this.Caster.SpecBonus(SpecClasse.Mage)));
+                }
+
                 BaseCreature.Summon(new BladeSpirits(), false, this.Caster, new Point3D(p), 0x212, duration);
             }
 
