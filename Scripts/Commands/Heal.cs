@@ -1,9 +1,4 @@
-﻿using Server.Items;
-using Server.Targeting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Server.Targeting;
 
 namespace Server.Commands
 {
@@ -20,8 +15,6 @@ namespace Server.Commands
         {
             e.Mobile.SendMessage("Select target to heal/cure");
             e.Mobile.Target = new HealTarget();
-            
-
         }
 
         public class HealTarget : Target
@@ -40,10 +33,7 @@ namespace Server.Commands
                 mob.Stam = mob.StamMax;
 
                 mob.CurePoison(from);
-
                 
-
-
                 mob.PlaySound(0x214);
                 mob.FixedEffect(0x376A, 10, 16);
 

@@ -139,7 +139,7 @@ namespace Server.Engines.Harvest
         {
             new MutateEntry(80.0, 80.0, 4080.0, false, typeof(SpecialFishingNet)),
             new MutateEntry(80.0, 80.0, 4080.0, false, typeof(BigFish)),
-           // new MutateEntry(90.0, 80.0, 4080.0, false, typeof(TreasureMap)),
+            new MutateEntry(90.0, 80.0, 4080.0, false, typeof(TreasureMap)),
             new MutateEntry(100.0, 80.0, 4080.0, false, typeof(MessageInABottle)),
             new MutateEntry(0.0, 125.0, 4080.0, false, typeof(BlessFish), typeof(DexFish), typeof(DispelFish), typeof(StrFish), typeof(IntFish)),
             //new MutateEntry(0.0, 105.0, -420.0, false, typeof(Boots), typeof(Shoes), typeof(Sandals), typeof(ThighBoots)),
@@ -148,62 +148,62 @@ namespace Server.Engines.Harvest
 
         public override bool SpecialHarvest(Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc)
         {
-            PlayerMobile player = from as PlayerMobile;
+            /*  PlayerMobile player = from as PlayerMobile;
 
-                        Container pack = from.Backpack;
+                         Container pack = from.Backpack;
 
-            if (player != null)
-            {
-                QuestSystem qs = player.Quest;
+             if (player != null)
+             {
+                 QuestSystem qs = player.Quest;
 
-                if (qs is CollectorQuest)
-                {
-                    QuestObjective obj = qs.FindObjective(typeof(FishPearlsObjective));
+                 if (qs is CollectorQuest)
+                 {
+                     QuestObjective obj = qs.FindObjective(typeof(FishPearlsObjective));
 
-                    if (obj != null && !obj.Completed)
-                    {
-                        if (Utility.RandomDouble() < 0.5)
-                        {
-                            player.SendLocalizedMessage(1055086, "", 0x59); // You pull a shellfish out of the water, and find a rainbow pearl inside of it.
+                     if (obj != null && !obj.Completed)
+                     {
+                         if (Utility.RandomDouble() < 0.5)
+                         {
+                             player.SendLocalizedMessage(1055086, "", 0x59); // You pull a shellfish out of the water, and find a rainbow pearl inside of it.
 
-                            obj.CurProgress++;
-                        }
-                        else
-                        {
-                            player.SendLocalizedMessage(1055087, "", 0x2C); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
-                        }
+                             obj.CurProgress++;
+                         }
+                         else
+                         {
+                             player.SendLocalizedMessage(1055087, "", 0x2C); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
+                         }
 
-						return true;
-					}
-				}    
+                         return true;
+                     }
+                 }    
 
-                foreach ( BaseQuest quest in player.Quests )
-                {
-                    if ( quest is SomethingFishy )
-                    {   							
-						if ( Utility.RandomDouble() < 0.1 && ( from.Region != null && from.Region.IsPartOf( "AbyssEntrance" ) ) )
-						{
-							Item red = new RedHerring(); 
-							pack.AddItem( red );
-                            player.SendLocalizedMessage( 1095047, "", 0x23 ); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
-                            break;
-						}	
-                        return true;
-				    }
-                        
-					if ( quest is ScrapingtheBottom )
-                    {
-                        if ( Utility.RandomDouble() < 0.1 && ( from.Region != null && from.Region.IsPartOf( "AbyssEntrance" ) ) )
-						{
-							Item mug = new MudPuppy(); 
-                            pack.AddItem( mug );
-                            player.SendLocalizedMessage( 1095064, "", 0x23 ); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
-                            break;
-				        }	
-						return true;
-                    }					
-				}				
-			}
+                 foreach ( BaseQuest quest in player.Quests )
+                 {
+                     if ( quest is SomethingFishy )
+                     {   							
+                         if ( Utility.RandomDouble() < 0.1 && ( from.Region != null && from.Region.IsPartOf( "AbyssEntrance" ) ) )
+                         {
+                             Item red = new RedHerring(); 
+                             pack.AddItem( red );
+                             player.SendLocalizedMessage( 1095047, "", 0x23 ); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
+                             break;
+                         }	
+                         return true;
+                     }
+
+                     if ( quest is ScrapingtheBottom )
+                     {
+                         if ( Utility.RandomDouble() < 0.1 && ( from.Region != null && from.Region.IsPartOf( "AbyssEntrance" ) ) )
+                         {
+                             Item mug = new MudPuppy(); 
+                             pack.AddItem( mug );
+                             player.SendLocalizedMessage( 1095064, "", 0x23 ); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
+                             break;
+                         }	
+                         return true;
+                     }					
+                 }				
+             } */
 
             return false;
         }
@@ -266,11 +266,15 @@ namespace Server.Engines.Harvest
         {
             if (type == typeof(TreasureMap))
             {
-                int level;
-                if (from is PlayerMobile && ((PlayerMobile)from).Young && from.Map == Map.Trammel && TreasureMap.IsInHavenIsland(from))
+                
+                /*if (from is PlayerMobile && ((PlayerMobile)from).Young && from.Map == Map.Trammel && TreasureMap.IsInHavenIsland(from))
                     level = 0;
                 else
                     level = 1;
+                    */
+                Random rnd = new Random();
+
+                int level = rnd.Next(1, 2);
 
                 return new TreasureMap(level, from.Map == Map.Felucca ? Map.Felucca : Map.Trammel);
             }
@@ -292,121 +296,18 @@ namespace Server.Engines.Harvest
 
                     if ((from.Map == Map.Felucca || from.Map == Map.Trammel) && from.InRange(sos.TargetLocation, 60))
                     {
-                        Item preLoot = null;
-
-                        switch ( Utility.Random(8) )
-                        {
-                            case 0: // Body parts
-                                {
-                                    int[] list = new int[]
-                                    {
-                                        0x1CDD, 0x1CE5, // arm
-                                        0x1CE0, 0x1CE8, // torso
-                                        0x1CE1, 0x1CE9, // head
-                                        0x1CE2, 0x1CEC // leg
-                                    };
-
-                                    preLoot = new ShipwreckedItem(Utility.RandomList(list));
-                                    break;
-                                }
-                            case 1: // Bone parts
-                                {
-                                    int[] list = new int[]
-                                    {
-                                        0x1AE0, 0x1AE1, 0x1AE2, 0x1AE3, 0x1AE4, // skulls
-                                        0x1B09, 0x1B0A, 0x1B0B, 0x1B0C, 0x1B0D, 0x1B0E, 0x1B0F, 0x1B10, // bone piles
-                                        0x1B15, 0x1B16 // pelvis bones
-                                    };
-
-                                    preLoot = new ShipwreckedItem(Utility.RandomList(list));
-                                    break;
-                                }
-                            case 2: // Paintings and portraits
-                                {
-                                    preLoot = new ShipwreckedItem(Utility.Random(0xE9F, 10));
-                                    break;
-                                }
-                            case 3: // Pillows
-                                {
-                                    preLoot = new ShipwreckedItem(Utility.Random(0x13A4, 11));
-                                    break;
-                                }
-                            case 4: // Shells
-                                {
-                                    preLoot = new ShipwreckedItem(Utility.Random(0xFC4, 9));
-                                    break;
-                                }
-                            case 5:	//Hats
-                                {
-                                    if (Utility.RandomBool())
-                                        preLoot = new SkullCap();
-                                    else
-                                        preLoot = new TricorneHat();
-
-                                    break;
-                                }
-                            case 6: // Misc
-                                {
-                                    int[] list = new int[]
-                                    {
-                                        0x1EB5, // unfinished barrel
-                                        0xA2A, // stool
-                                        0xC1F, // broken clock
-                                        0x1047, 0x1048, // globe
-                                        0x1EB1, 0x1EB2, 0x1EB3, 0x1EB4 // barrel staves
-                                    };
-
-                                    if (Utility.Random(list.Length + 1) == 0)
-                                        preLoot = new Candelabra();
-                                    else
-                                        preLoot = new ShipwreckedItem(Utility.RandomList(list));
-
-                                    break;
-                                }
-                        }
-
-                        if (preLoot != null)
-                        {
-                            if (preLoot is IShipwreckedItem)
-                                ((IShipwreckedItem)preLoot).IsShipwreckedItem = true;
-
-                            return preLoot;
-                        }
-
                         LockableContainer chest;
-						
-                        if (Utility.RandomBool())
-                            chest = new MetalGoldenChest();
-                        else
-                            chest = new WoodenChest();
-
-                        if (sos.IsAncient)
-                            chest.Hue = 0x481;
-
-                        TreasureMapChest.Fill(chest, Math.Max(1, Math.Min(4, sos.Level)));
-
-                        if (sos.IsAncient)
-                            chest.DropItem(new FabledFishingNet());
-                        else
-                            chest.DropItem(new SpecialFishingNet());
-
-						if (0.02 >= Utility.RandomDouble()) //2% chance
-						{
-						switch (Utility.Random(3))
-						{
-						case 0 : chest.DropItem(new BronzedArmorValkyrie()); break;
-						case 1 : chest.DropItem(new EnchantedKelpWovenLeggings()); break;
-						case 2 : chest.DropItem(new RunedDriftwoodBow()); break;	
-						case 3 : chest.DropItem(new AntiqueWeddingDress()); break;
-						}
-						}
-
+                        
+                        chest = new MetalChest();
+                       
+                        TreasureMapChest.Fill(chest, sos.Level);
+                       
                         chest.Movable = true;
                         chest.Locked = false;
                         chest.TrapType = TrapType.None;
                         chest.TrapPower = 0;
                         chest.TrapLevel = 0;
-
+                        
                         sos.Delete();
 
                         return chest;
@@ -453,18 +354,19 @@ namespace Server.Engines.Harvest
                 serp.RangeHome = 10;
 
                 serp.PackItem(item);
-                
+
                 m.SendLocalizedMessage(503170); // Uh oh! That doesn't look like a fish! */
                 m.AddToBackpack(item);
                 return true; // give it to the player
             }
 
-            if (item is BigFish || item is WoodenChest || item is MetalGoldenChest) { 
+            if (item is BigFish || item is WoodenChest || item is MetalGoldenChest || item is MetalChest)
+            {
                 //placeAtFeet = true;
                 m.AddToBackpack(item);
             }
 
-           // return base.Give(m, item, placeAtFeet);
+            // return base.Give(m, item, placeAtFeet);
             return base.Give(m, item, true);
         }
 
@@ -476,7 +378,7 @@ namespace Server.Engines.Harvest
 
                 ((BigFish)item).Fisher = from;
             }
-            else if (item is WoodenChest || item is MetalGoldenChest)
+            else if (item is WoodenChest || item is MetalGoldenChest || item is MetalChest)
             {
                 from.SendLocalizedMessage(503175); // You pull up a heavy chest from the depths of the ocean!
             }

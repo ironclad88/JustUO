@@ -54,9 +54,14 @@ namespace Server.Spells.Sixth
                     }
                     else if (m is PlayerMobile || !bc.IsDispellable)
                     {
-                        m.DispelMagicMods();
+                        if (this.m_Owner.CheckHSequence(m))
+                        {
+                            Effects.SendLocationParticles(EffectItem.Create(m.Location, m.Map, EffectItem.DefaultDuration), 0x3728, 8, 20, 5042);
+                            Effects.PlaySound(m, m.Map, 0x201);
+                            m.DispelMagicMods();
+                        }
                     }
-                    else if (bc == null )
+                    else if (bc == null)
                     {
                         from.SendLocalizedMessage(1005049); // That cannot be dispelled.
                     }

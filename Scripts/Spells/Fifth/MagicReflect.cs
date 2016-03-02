@@ -63,15 +63,15 @@ namespace Server.Spells.Fifth
 
         public override void OnCast()
         {
-            if (Core.AOS)
-            {
+           // if (Core.AOS)
+           // {
                 /* The magic reflection spell decreases the caster's physical resistance, while increasing the caster's elemental resistances.
                 * Physical decrease = 25 - (Inscription/20).
                 * Elemental resistance = +10 (-20 physical, +10 elemental at GM Inscription)
                 * The magic reflection spell has an indefinite duration, becoming active when cast, and deactivated when re-cast.
                 * Reactive Armor, Protection, and Magic Reflection will stay on—even after logging out, even after dying—until you “turn them off” by casting them again. 
                 */
-                if (this.CheckSequence())
+               /* if (this.CheckSequence())
                 {
                     Mobile targ = this.Caster;
 
@@ -120,7 +120,7 @@ namespace Server.Spells.Fifth
                 this.FinishSequence();
             }
             else
-            {
+            {*/
                 if (this.Caster.MagicDamageAbsorb > 0)
                 {
                     this.Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
@@ -151,4 +151,4 @@ namespace Server.Spells.Fifth
             }
         }
     }
-}
+//}

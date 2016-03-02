@@ -20,7 +20,7 @@ namespace Server.Items
             typeof(PolarBearMask), typeof(VioletCourage), typeof(HeartOfTheLion),
             typeof(ColdBlood), typeof(AlchemistsBauble), typeof(CaptainQuacklebushsCutlass),
 			typeof(ForgedPardon), typeof(ShieldOfInvulnerability), typeof(AncientShipModelOfTheHMSCape),*/
-			typeof(OmerosPickAxe), typeof(XarafaxAxe), typeof(PoseidonFishingpole)
+			typeof(OmerosPickAxe), typeof(EarthBook), typeof(NecroBook), typeof(XarafaxAxe), typeof(PoseidonFishingpole)
         };
         private int m_Level;
         private DateTime m_DeleteTime;
@@ -40,13 +40,14 @@ namespace Server.Items
         {
             this.m_Owner = owner;
             this.m_Level = level;
-            this.m_DeleteTime = DateTime.UtcNow + TimeSpan.FromHours(3.0);
 
             this.m_Temporary = temporary;
             this.m_Guardians = new List<Mobile>();
 
-            this.m_Timer = new DeleteTimer(this, this.m_DeleteTime);
-            this.m_Timer.Start();
+            // Removed deletetimer, may be added later JustZH
+            //   this.m_DeleteTime = DateTime.UtcNow + TimeSpan.FromHours(3.0);
+            //  this.m_Timer = new DeleteTimer(this, this.m_DeleteTime);
+            //  this.m_Timer.Start();
 
             Fill(this, level);
         }
@@ -63,6 +64,7 @@ namespace Server.Items
                 return m_Artifacts;
             }
         }
+
         public override int LabelNumber
         {
             get
@@ -70,6 +72,7 @@ namespace Server.Items
                 return 3000541;
             }
         }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int Level
         {
@@ -82,6 +85,7 @@ namespace Server.Items
                 this.m_Level = value;
             }
         }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public Mobile Owner
         {
@@ -94,6 +98,7 @@ namespace Server.Items
                 this.m_Owner = value;
             }
         }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public DateTime DeleteTime
         {
@@ -102,6 +107,7 @@ namespace Server.Items
                 return this.m_DeleteTime;
             }
         }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public bool Temporary
         {
@@ -114,6 +120,7 @@ namespace Server.Items
                 this.m_Temporary = value;
             }
         }
+
         public List<Mobile> Guardians
         {
             get
@@ -121,6 +128,7 @@ namespace Server.Items
                 return this.m_Guardians;
             }
         }
+
         public override bool IsDecoContainer
         {
             get
@@ -128,171 +136,98 @@ namespace Server.Items
                 return false;
             }
         }
+
         public static void Fill(LockableContainer cont, int level)
         {
             cont.Movable = false;
             cont.Locked = true;
             int numberItems;
-			
+
             if (level == 0)
             {
                 cont.LockLevel = 0; // Can't be unlocked
 
                 cont.DropItem(new Gold(Utility.RandomMinMax(50, 100)));
-
-                /*if (Utility.RandomDouble() < 0.75)
-                    cont.DropItem(new TreasureMap(0, Map.Trammel));
-                 */
             }
-            else
+            // JustZH Removed traps and locks on the chest, may be changed later (revent this class)
+            
+            cont.DropItem(new Gold(level * Utility.Random(900, 1300)));
+
+            for (int i = 0; i < level * Utility.Random(1, 3); ++i)
+                cont.DropItem(Loot.RandomScroll(0, 63, SpellbookType.Regular));
+
+            if(Utility.Random(1, 100) >= 85)
+                cont.DropItem(Loot.RandomScroll(0, 2, SpellbookType.Necro)); // change this later JustZH
+
+            if (Utility.Random(1, 100) >= 85)
+                cont.DropItem(Loot.RandomScroll(0, 11, SpellbookType.Earth)); // change this later JustZH
+
+            switch (level)
             {
-                cont.TrapType = TrapType.ExplosionTrap;     // not sure about this, not really used in zulu
-                cont.TrapPower = level * 25;
-                cont.TrapLevel = level;
+                case 1:
+                    numberItems = Utility.Random(4, 6);
+                    break;
+                case 2:
+                    numberItems = Utility.Random(8, 12);
+                    break;
+                case 3:
+                    numberItems = Utility.Random(9, 13);
+                    break;
+                case 4:
+                    numberItems = Utility.Random(10, 14);
+                    break;
+                case 5:
+                    numberItems = Utility.Random(10, 15);
+                    break;
+                case 6:
+                    numberItems = Utility.Random(10, 16);
+                    break;
+                default:
+                    numberItems = 0;
+                    break;
+            }
 
-                switch ( level )
+            for (int i = 0; i < numberItems; ++i)
+            {
+                Item item;
+
+                item = Loot.RandomArmorOrShieldOrWeaponOrJewelry();
+                if (item is BaseWeapon)
                 {
-                    case 1:
-                        cont.RequiredSkill = 36;
-                        break;
-                    case 2:
-                        cont.RequiredSkill = 76;
-                        break;
-                    case 3:
-                        cont.RequiredSkill = 84;
-                        break;
-                    case 4:
-                        cont.RequiredSkill = 92;
-                        break;
-                    case 5:
-                        cont.RequiredSkill = 100;
-                        break;
-                    case 6:
-                        cont.RequiredSkill = 100;
-                        break;
-                }
-
-                cont.LockLevel = cont.RequiredSkill - 10;
-                cont.MaxLockLevel = cont.RequiredSkill + 40;
-				
-                //Publish 67 gold change
-                //if ( Core.SA )
-                //	cont.DropItem( new Gold( level * 5000 ) );
-                //else					
-                cont.DropItem(new Gold(level * 1000));
-
-                for (int i = 0; i < level * 5; ++i)
-                    cont.DropItem(Loot.RandomScroll(0, 63, SpellbookType.Regular));
-
-                if (Core.SE)
-                {
-                    switch ( level )
-                    {
-                        case 1:
-                            numberItems = 5;
-                            break;
-                        case 2:
-                            numberItems = 10;
-                            break;
-                        case 3:
-                            numberItems = 15;
-                            break;
-                        case 4:
-                            numberItems = 38;
-                            break;
-                        case 5:
-                            numberItems = 50;
-                            break;
-                        case 6:
-                            numberItems = 60;
-                            break;
-                        default:
-                            numberItems = 0;
-                            break;
-                    }
-                }
-                else
-                    numberItems = level * 6;
-				
-                for (int i = 0; i < numberItems; ++i)
-                {
-                    Item item;
+                    BaseWeapon weapon = (BaseWeapon)item;
 
                     if (Core.AOS)
-                        item = Loot.RandomArmorOrShieldOrWeaponOrJewelry();
-                    else
-                        item = Loot.RandomArmorOrShieldOrWeapon();
-
-                    if (item is BaseWeapon)
                     {
-                        BaseWeapon weapon = (BaseWeapon)item;
-
-                        if (Core.AOS)
-                        {
-                            int attributeCount;
-                            int min, max;
-
-                            GetRandomAOSStats(out attributeCount, out min, out max);
-
-                            BaseRunicTool.ApplyAttributesTo(weapon, attributeCount, min, max);
-                        }
-                        else
-                        {
-                            weapon.DamageLevel = (WeaponDamageLevel)Utility.Random(6);
-                            weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random(6);
-                            weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random(6);
-                        }
-
-                        cont.DropItem(item);
+                        BaseRunicToolRewrite.ApplyEffectWeapon(weapon, level);
                     }
-                    else if (item is BaseArmor)
-                    {
-                        BaseArmor armor = (BaseArmor)item;
 
-                        if (Core.AOS)
-                        {
-                            int attributeCount;
-                            int min, max;
+                    cont.DropItem(item);
+                }
+                else if (item is BaseArmor)
+                {
+                    BaseArmor armor = (BaseArmor)item;
+                    
+                    BaseRunicToolRewrite.ApplyEffectArmor(armor, level);
+                    cont.DropItem(item);
+                }
+                else if (item is BaseClothing)
+                {
+                    BaseClothing clothing = (BaseClothing)item;
+                    
+                    BaseRunicToolRewrite.ApplyEffectClothing(clothing, level);
+                    cont.DropItem(item);
+                }
+                else if (item is BaseHat)
+                {
+                    BaseHat hat = (BaseHat)item;
 
-                            GetRandomAOSStats(out attributeCount, out min, out max);
-
-                            BaseRunicTool.ApplyAttributesTo(armor, attributeCount, min, max);
-                        }
-                        else
-                        {
-                            armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random(6);
-                            armor.Durability = (ArmorDurabilityLevel)Utility.Random(6);
-                        }
-
-                        cont.DropItem(item);
-                    }
-                    else if (item is BaseHat)
-                    {
-                        BaseHat hat = (BaseHat)item;
-
-                        if (Core.AOS)
-                        {
-                            int attributeCount;
-                            int min, max;
-
-                            GetRandomAOSStats(out attributeCount, out min, out max);
-
-                            BaseRunicTool.ApplyAttributesTo(hat, attributeCount, min, max);
-                        }
-
-                        cont.DropItem(item);
-                    }
-                    else if (item is BaseJewel)
-                    {
-                        int attributeCount;
-                        int min, max;
-
-                        GetRandomAOSStats(out attributeCount, out min, out max);
-
-                        BaseRunicTool.ApplyAttributesTo((BaseJewel)item, attributeCount, min, max);
-
-                        cont.DropItem(item);
-                    }
+                    BaseRunicToolRewrite.ApplyEffectClothing(hat, level);
+                    cont.DropItem(item);
+                }
+                else if (item is BaseJewel)
+                {
+                    BaseRunicToolRewrite.ApplyEffectJewlery((BaseJewel)item, level);
+                    cont.DropItem(item);
                 }
             }
 
@@ -300,7 +235,7 @@ namespace Server.Items
             if (level == 0)
                 reagents = 12;
             else
-                reagents = level * 3;
+                reagents = level * Utility.Random(3, 5);
 
             for (int i = 0; i < reagents; i++)
             {
@@ -321,7 +256,7 @@ namespace Server.Items
                 cont.DropItem(item);
             }
 
-            if (level == 6 && Core.AOS) // needs to be changed, level6 maps now drops random artifact everytime
+            if (level == 6 && Core.AOS) // needs to be changed, level6 maps now drops random artifact everytime JustZH
                 cont.DropItem((Item)Activator.CreateInstance(m_Artifacts[Utility.Random(m_Artifacts.Length)]));
         }
 
@@ -410,7 +345,7 @@ namespace Server.Items
 
             int version = reader.ReadInt();
 
-            switch ( version )
+            switch (version)
             {
                 case 2:
                     {
@@ -488,7 +423,7 @@ namespace Server.Items
         private static void GetRandomAOSStats(out int attributeCount, out int min, out int max)
         {
             int rnd = Utility.Random(15);
-			
+
             if (Core.SE)
             {
                 if (rnd < 1)

@@ -179,7 +179,8 @@ namespace Server.Spells.Fifth
                 // JustZH just saw this.... this aint right
                 if (Core.AOS)
                 {
-                    int total = (this.m_Caster.Skills.Magery.Fixed + this.m_Caster.Skills.Poisoning.Fixed) / 2;
+                    //int total = (this.m_Caster.Skills.Magery.Fixed + this.m_Caster.Skills.Poisoning.Fixed) / 2;
+                    int total = (this.m_Caster.Skills.Magery.Fixed) / 2; // removed poisoning
 
                     if (total >= 1000)
                         p = Poison.Deadly;
@@ -203,12 +204,51 @@ namespace Server.Spells.Fifth
                     ((BaseCreature)m).OnHarmfulSpell(this.m_Caster);
             }
 
+            public virtual double GetResistPercentForCircle(Mobile target, SpellCircle circle) // added this
+            {
+                double firstPercent = target.Skills[SkillName.MagicResist].Value / 5.0;
+                double secondPercent = target.Skills[SkillName.MagicResist].Value - (((this.m_Caster.Skills[SkillName.Magery].Value - 20.0) / 5.0) + (1 + (int)circle) * 5.0);
+
+                return (firstPercent > secondPercent ? firstPercent : secondPercent) / 2.0; // Seems should be about half of what stratics says.
+            }
+
+            public virtual double GetResistPercent(Mobile target) // added this
+            { 
+                return this.GetResistPercentForCircle(target, SpellCircle.Fifth);
+            }
+
+            public virtual bool CheckResisted(Mobile target) // added this
+            { 
+                double n = this.GetResistPercent(target);
+
+                n /= 100.0;
+
+                if (n <= 0.0)
+                    return false;
+
+                if (n >= 1.0)
+                    return true;
+
+                int maxSkill = (1 + (int)SpellCircle.Fifth) * 10;
+                maxSkill += (1 + ((int)SpellCircle.Fifth / 6)) * 25;
+
+                if (target.Skills[SkillName.MagicResist].Value < maxSkill)
+                    target.CheckSkill(SkillName.MagicResist, 0.0, target.Skills[SkillName.MagicResist].Cap);
+
+                return (n >= Utility.RandomDouble());
+            }
+
             public override bool OnMoveOver(Mobile m)
             {
-                if (this.Visible && this.m_Caster != null && (!Core.AOS || m != this.m_Caster) && SpellHelper.ValidIndirectTarget(this.m_Caster, m) && this.m_Caster.CanBeHarmful(m, false))
+                // if (this.Visible && this.m_Caster != null && (!Core.AOS || m != this.m_Caster) && SpellHelper.ValidIndirectTarget(this.m_Caster, m) && this.m_Caster.CanBeHarmful(m, false))
+                if (this.Visible && this.m_Caster != null &&  SpellHelper.ValidIndirectTarget(this.m_Caster, m) && this.m_Caster.CanBeHarmful(m, true))
                 {
+                    if (this.CheckResisted(m)) // added this
+                    {
+                        m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
+                    }
                     this.m_Caster.DoHarmful(m);
-
+                    
                     this.ApplyPoisonTo(m);
                     m.PlaySound(0x474);
                 }
@@ -267,7 +307,7 @@ namespace Server.Spells.Fifth
 
                             foreach (Mobile m in eable)
                             {
-                                if ((m.Z + 16) > this.m_Item.Z && (this.m_Item.Z + 12) > m.Z && (!Core.AOS || m != caster) && SpellHelper.ValidIndirectTarget(caster, m) && caster.CanBeHarmful(m, false))
+                                if ((m.Z + 16) > this.m_Item.Z && (this.m_Item.Z + 12) > m.Z && (!Core.AOS || m != caster) && SpellHelper.ValidIndirectTarget(caster, m) && caster.CanBeHarmful(m, true))
                                     m_Queue.Enqueue(m);
                             }
 

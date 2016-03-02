@@ -42,6 +42,7 @@ namespace Server.Items
                 return 1041080;
             }
         }// a message in a bottle
+
         [CommandProperty(AccessLevel.GameMaster)]
         public Map TargetMap
         {
@@ -54,6 +55,7 @@ namespace Server.Items
                 this.m_TargetMap = value;
             }
         }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int Level
         {
@@ -68,10 +70,13 @@ namespace Server.Items
         }
         public static int GetRandomLevel()
         {
-            if (Core.AOS && 1 > Utility.Random(25))
-                return 4; // ancient
-
             // JustZH needs to be fixed at a later date
+
+            int maxLvlChance = Utility.Random(1, 100);
+
+            if (maxLvlChance >= 95) // 5% chance to get lvl 4 SOS map
+                return 4;
+
             return Utility.RandomMinMax(1, 3);
         }
 
