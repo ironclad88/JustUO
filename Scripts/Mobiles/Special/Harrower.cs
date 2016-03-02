@@ -186,7 +186,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.SuperBoss, 2);
+            this.AddLoot(LootPack.SuperBoss, 2); 
             this.AddLoot(LootPack.Meager);
         }
 
