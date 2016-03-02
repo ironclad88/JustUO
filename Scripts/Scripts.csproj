@@ -3235,7 +3235,6 @@
     <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorHead.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorLegs.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Clothing\RobeoftheCleric.cs" />
-    <Compile Include="Items\ZuluIems\GMItems\Weapons\DartthrowerofAmroth.cs" />
     <Compile Include="Items\ZuluIems\Pentagram\BagOfAirPentagrams.cs" />
     <Compile Include="Items\ZuluIems\EarthBook.cs" />
     <Compile Include="Items\ZuluIems\DragonEgg.cs" />
