@@ -1106,11 +1106,11 @@ namespace Server.Spells
                 }
                 endX = m_Caster.X;
                 endY = m_Caster.Y;
-                Console.WriteLine("start coords: " + startX + " : " + startY);
-                Console.WriteLine("end coords: " + endX + " : " + endY);
+                //Console.WriteLine("start coords: " + startX + " : " + startY);
+                //Console.WriteLine("end coords: " + endX + " : " + endY);
                 if (startX != endX || startY != endY)
                 {
-                    Console.WriteLine("You Moved after spellcast is done!");
+                    //Console.WriteLine("You Moved after spellcast is done!");
                     DoFizzle();
                     return false;
                 }
@@ -1142,11 +1142,11 @@ namespace Server.Spells
                 }
                 endX = m_Caster.X;
                 endY = m_Caster.Y;
-                Console.WriteLine("start coords: " + startX + " : " + startY);
-                Console.WriteLine("end coords: " + endX + " : " + endY);
+                //Console.WriteLine("start coords: " + startX + " : " + startY);
+                //Console.WriteLine("end coords: " + endX + " : " + endY);
                 if (startX != endX || startY != endY)
                 {
-                    Console.WriteLine("You Moved after spellcast is done!");
+                    //Console.WriteLine("You Moved after spellcast is done!");
                     DoFizzle();
                     return false;
                 }

@@ -72,7 +72,7 @@ namespace Server.SkillHandlers
                         from.SendLocalizedMessage(502372); // You fail to disarm the trap... but you don't set it off
                     }
                 }
-                else if (targeted is BaseFactionTrap)
+                /*else if (targeted is BaseFactionTrap) // dunno what BaseFactionTrap is so.... it´s probably won´t be applicable to Zulu
                 {
                     BaseFactionTrap trap = (BaseFactionTrap)targeted;
                     Faction faction = Faction.Find(from);
@@ -117,7 +117,7 @@ namespace Server.SkillHandlers
                         if (!isOwner && kit != null)
                             kit.ConsumeCharge(from);
                     }
-                }
+                }*/
                 else
                 {
                     from.SendLocalizedMessage(502373); // That does'nt appear to be trapped
