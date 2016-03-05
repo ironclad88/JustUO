@@ -4700,6 +4700,11 @@ namespace Server
                 }
                 else
                 {
+                    if (ItemData.Name.IndexOf("%s") != -1)
+                    {
+                        // For stackable items with names from client files.
+                        return null;
+                    }
                     if (info != null && info.m_Name != null)
                     {
                         return info.m_Name;
