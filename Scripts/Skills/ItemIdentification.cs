@@ -16,7 +16,25 @@ namespace Server.Items
             from.SendLocalizedMessage(500343); // What do you wish to appraise and identify?
             from.Target = new InternalTarget();
 
-            return TimeSpan.FromSeconds(5.0); // 1, test
+            if(from.SpecClasse == SpecClasse.Mage)
+            {
+                switch (from.SpecLevel)
+                {
+                    case 1:
+                        return TimeSpan.FromSeconds(4.5);
+                    case 2:
+                        return TimeSpan.FromSeconds(3.0);
+                    case 3:
+                        return TimeSpan.FromSeconds(2.5);
+                    case 4:
+                        return TimeSpan.FromSeconds(2.0);
+                    case 5:
+                        return TimeSpan.FromSeconds(1.0);
+                    case 6:
+                        return TimeSpan.FromSeconds(1.0);
+                }
+            }
+            return TimeSpan.FromSeconds(5.0);
         }
 
         [PlayerVendorTarget]

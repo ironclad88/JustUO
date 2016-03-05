@@ -37,12 +37,12 @@ namespace Server.SkillHandlers
 
                 return TimeSpan.FromSeconds(5.0);
             }
-            else if (!Core.AOS && m.Hits < (m.HitsMax / 10)) // Less than 10% health
+            /*else if (!Core.AOS && m.Hits < (m.HitsMax / 10)) // Less than 10% health
             {
                 m.SendLocalizedMessage(501849); // The mind is strong but the body is weak.
 
                 return TimeSpan.FromSeconds(5.0);
-            }
+            }*/
             else if (m.Mana >= m.ManaMax)
             {
                 m.SendLocalizedMessage(501846); // You are at peace.

@@ -162,7 +162,7 @@ namespace Server.SkillHandlers
 							int effect;
 							double scalar;
 
-							if (Core.AOS)
+							/*if (Core.AOS)
 							{
 								double discord = from.Skills[SkillName.Discordance].Value;
 
@@ -197,7 +197,8 @@ namespace Server.SkillHandlers
 								}
 							}
 							else
-							{
+							{*/
+
 								effect = (int)(from.Skills[SkillName.Discordance].Value / -5.0);
 								scalar = effect * 0.01;
 
@@ -212,7 +213,7 @@ namespace Server.SkillHandlers
 										mods.Add(new DefaultSkillMod((SkillName)i, true, targ.Skills[i].Value * scalar));
 									}
 								}
-							}
+							
 
 							DiscordanceInfo info = new DiscordanceInfo(from, targ, Math.Abs(effect), mods);
 							info.m_Timer = Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(1.25), ProcessDiscordance, info);

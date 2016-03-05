@@ -256,7 +256,7 @@ namespace Server.Items
 
         public static int GetBardRange(Mobile bard, SkillName skill)
         {
-            return 8 + (int)(bard.Skills[skill].Value / 15);
+            return 8 + (int)(bard.Skills[skill].Value / 13); // increased range
         }
 
         public static void PickInstrument(Mobile from, InstrumentPickedCallback callback)

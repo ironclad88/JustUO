@@ -2510,9 +2510,14 @@ namespace Server.Items
                 attacker.Mana = 0;
             }
 
-            if (this.Poison != null && this.PermaPoison == true)
+            if (this.Poison != null && (this.PermaPoison == true || this.PoisonCharges > 0))
             {
+
                 defender.ApplyPoison(attacker, this.Poison);
+                if(this.PoisonCharges > 0)
+                {
+                    this.PoisonCharges -= 1;
+                }
             }
 
             if (m_MaxHits > 0 &&
