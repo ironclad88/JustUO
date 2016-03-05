@@ -41,7 +41,7 @@ namespace Server.Spells.First
 
                 SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
 
-                SpellHelper.AddStatCurse(this.Caster, m, StatType.Int);
+                SpellHelper.AddStatCurse(this.Caster, m, StatType.IntCunning);
 
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();

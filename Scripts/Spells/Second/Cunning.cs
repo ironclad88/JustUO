@@ -50,7 +50,7 @@ namespace Server.Spells.Second
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Int);
+                SpellHelper.AddStatBonus(this.Caster, m, StatType.IntCunning);
 
                 m.FixedParticles(0x375A, 10, 15, 5011, EffectLayer.Head);
                 m.PlaySound(0x1EB);

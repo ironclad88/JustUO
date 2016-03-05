@@ -375,10 +375,10 @@ namespace Server
         Str = 1,
         Dex = 2,
         Int = 4,
-        StrStrength = 5,
-        DexAgility = 6,
-        IntCunning = 7,
-        All = 8
+        StrStrength = 8, // used for buffing/cursing str only, with magic
+        DexAgility = 16, // used for buffing/cursing dex only, with magic
+        IntCunning = 32, // used for buffing/cursing int only, with magic
+        All = 63
     }
 
     public enum StatLockType : byte
@@ -8415,7 +8415,7 @@ namespace Server
         {
             get
             {
-                int value = _Str + GetStatOffset(StatType.Str);
+                int value = _Str + GetStatOffset(StatType.Str | StatType.StrStrength);
 
                 if (value < 1)
                 {
@@ -8499,7 +8499,7 @@ namespace Server
         {
             get
             {
-                int value = _Dex + GetStatOffset(StatType.Dex);
+                int value = _Dex + GetStatOffset(StatType.Dex | StatType.DexAgility);
 
                 if (value < 1)
                 {
@@ -8583,7 +8583,7 @@ namespace Server
         {
             get
             {
-                int value = _Int + GetStatOffset(StatType.Int);
+                int value = _Int + GetStatOffset(StatType.Int | StatType.IntCunning);
 
                 if (value < 1)
                 {

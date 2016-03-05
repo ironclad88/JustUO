@@ -41,7 +41,7 @@ namespace Server.Spells.First
 
                 SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
 
-                SpellHelper.AddStatCurse(this.Caster, m, StatType.Dex);
+                SpellHelper.AddStatCurse(this.Caster, m, StatType.DexAgility);
 
                 if (m.Spell != null)
                     m.Spell.OnCasterHurt();
