@@ -170,7 +170,7 @@ namespace Server.SkillHandlers
                                 }
 								m_From.AddToBackpack(gold);
 								m_From.PlaySound(gold.GetDropSound());
-                                theirPack.Consume(gold)
+                                
 								if (m_From.Karma > -3000)
 								{
 									int toLose = m_From.Karma + 3000;
