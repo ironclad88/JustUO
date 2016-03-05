@@ -88,13 +88,22 @@ namespace Server.Spells.Seventh
             }
             if (m_NewBody == 0)
             {
-                Gump gump;
-                if (Core.SE)
-                    gump = new NewPolymorphGump(Caster, Scroll);
-                else
-                    gump = new PolymorphGump(Caster, Scroll);
+                if (Caster.Int <= 60)
+                {
+                    Spell spell = new PolymorphSpell(Caster, Scroll, 18);
+                    spell.Cast();
+                }
+                else if (Caster.Int <= 90)
+                {
+                    Spell spell = new PolymorphSpell(Caster, Scroll, 39);
+                    spell.Cast();
+                }
+                else if (Caster.Int >= 110)
+                {
+                    Spell spell = new PolymorphSpell(Caster, Scroll, 58);
+                    spell.Cast();
+                }
 
-                Caster.SendGump(gump);
                 return false;
             }
 
@@ -115,10 +124,10 @@ namespace Server.Spells.Seventh
             }
             else if (!Caster.CanBeginAction(typeof(PolymorphSpell)))
             {
-                if (Core.ML)
+                /*if (Core.ML)
                     EndPolymorph(Caster);
-                else
-                    Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
+                else */
+                Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
             }
             else if (TransformationSpellHelper.UnderTransformation(Caster))
             {
@@ -142,13 +151,13 @@ namespace Server.Spells.Seventh
                 {
                     if (m_NewBody != 0)
                     {
-                        if (!((Body)m_NewBody).IsHuman)
-                        {
-                            IMount mt = Caster.Mount;
+                        /* if (!((Body)m_NewBody).IsHuman)
+                         {
+                             IMount mt = Caster.Mount;
 
-                            if (mt != null)
-                                mt.Rider = null;
-                        }
+                             if (mt != null)
+                                 mt.Rider = null;
+                        } */
 
                         Caster.BodyMod = m_NewBody;
 
@@ -160,16 +169,29 @@ namespace Server.Spells.Seventh
                         BaseArmor.ValidateMobile(Caster);
                         BaseClothing.ValidateMobile(Caster);
 
-                        if (!Core.ML)
-                        {
-                            StopTimer(Caster);
+                        StopTimer(Caster);
+                        
+                        Timer t = new InternalTimer(Caster);
 
-                            Timer t = new InternalTimer(Caster);
+                        m_Timers[Caster] = t;
 
-                            m_Timers[Caster] = t;
+                        SpellHelper.AddStatBonus(this.Caster, this.Caster, StatType.Str);
+                        SpellHelper.DisableSkillCheck = true;
+                        SpellHelper.AddStatBonus(this.Caster, this.Caster, StatType.Dex);
+                        SpellHelper.AddStatBonus(this.Caster, this.Caster, StatType.Int);
+                        SpellHelper.DisableSkillCheck = false;
 
-                            t.Start();
-                        }
+                        
+
+                        int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, this.Caster, false) * 120 * this.Caster.SpecBonus(SpecClasse.Mage));
+                        TimeSpan length = SpellHelper.GetDuration(this.Caster, this.Caster);
+
+                        string args = String.Format("{0}\t{1}\t{2}", percentage, percentage, percentage);
+
+                        BuffInfo.AddBuff(this.Caster, new BuffInfo(BuffIcon.AnimalForm, 1075847, 1075848, length, this.Caster, args.ToString()));
+
+                        t.Start();
+
                     }
                 }
                 else
@@ -184,6 +206,19 @@ namespace Server.Spells.Seventh
 
         private static void EndPolymorph(Mobile m)
         {
+
+            /*mod = m.GetStatMod( "[Magic] Str Offset" );
+				if ( mod != null && mod.Offset < 0 )
+					m.RemoveStatMod( "[Magic] Str Offset" );
+
+				mod = m.GetStatMod( "[Magic] Dex Offset" );
+				if ( mod != null && mod.Offset < 0 )
+					m.RemoveStatMod( "[Magic] Dex Offset" );
+
+				mod = m.GetStatMod( "[Magic] Int Offset" );
+				if ( mod != null && mod.Offset < 0 )
+					m.RemoveStatMod( "[Magic] Int Offset" );
+*/
             if (!m.CanBeginAction(typeof(PolymorphSpell)))
             {
                 m.BodyMod = 0;
@@ -219,3 +254,4 @@ namespace Server.Spells.Seventh
         }
     }
 }
+ 

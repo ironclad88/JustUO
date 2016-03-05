@@ -26,6 +26,29 @@ namespace Server.ACC.CSS
 
         private static void FillBook_OnTarget(Mobile from, object obj)
         {
+
+            if(obj is EarthBook)
+            {
+                EarthBook book = (EarthBook)obj;
+                book.Antidote = true;
+                book.OwlSight = true;
+                book.ShiftingEarth = true;
+                book.SummonMammals = true;
+                book.CallLightning = true;
+                book.EarthBlessing = true;
+                book.EarthPortal = true;
+                book.NaturesTouch = true;
+                book.GustofAir = true;
+                book.RisingFire = true;
+                book.Shapeshift = true;
+                book.IceStrike = true;
+                book.EarthSpirit = true;
+                book.FireSpirit = true;
+                book.StormSpirit = true;
+                book.WaterSpirit = true;
+
+                from.SendMessage("The spellbook has been filled.");
+            }
             if (obj is CSpellbook)
             {
                 CSpellbook book = (CSpellbook)obj;

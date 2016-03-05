@@ -183,11 +183,10 @@ namespace Server.Gumps.Zulugumps
                     new Gustofair(caster, null).Cast();
                     break;
                 case 10:
-                    //  Console.WriteLine("Casting Rising Fire");
                     new RisingFire(caster, null).Cast();
                     break;
                 case 11:
-                    Console.WriteLine("Casting Shapeshift");
+                    new Gustofair(caster, null).Cast();
                     break;
                 case 12:
                     new IceStrike(caster, null).Cast();

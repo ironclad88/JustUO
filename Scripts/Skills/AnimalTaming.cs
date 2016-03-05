@@ -343,9 +343,10 @@ namespace Server.SkillHandlers
 					m_Count++;
 
 					DamageEntry de = m_Creature.FindMostRecentDamageEntry(false);
-					bool alreadyOwned = m_Creature.Owners.Contains(m_Tamer);
+					bool alreadyOwned = false; // set to false
+                   // bool alreadyOwned = m_Creature.Owners.Contains(m_Tamer);
 
-					if (!m_Tamer.InRange(m_Creature, m_MaxRange))
+                    if (!m_Tamer.InRange(m_Creature, m_MaxRange))
 					{
 						m_BeingTamed.Remove(m_Creature);
 						m_Tamer.NextSkillTime = Core.TickCount;
@@ -426,10 +427,11 @@ namespace Server.SkillHandlers
 								break;
 						}
 
-						if (!alreadyOwned) // Passively check animal lore for gain
+                        // You no longer gain animallore from taming
+						/*if (!alreadyOwned) // Passively check animal lore for gain
 						{
 							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 130.0);
-						}
+						}*/
 
 						if (m_Creature.Paralyzed)
 						{
@@ -447,10 +449,10 @@ namespace Server.SkillHandlers
 							m_Paralyzed = true;
 						}
 
-						if (!alreadyOwned) // Passively check animal lore for gain
+						/*if (!alreadyOwned) // Passively check animal lore for gain
 						{
 							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 130.0);
-						}
+						}*/
 
 						double minSkill = m_Creature.MinTameSkill + (m_Creature.Owners.Count * 6.0);
 

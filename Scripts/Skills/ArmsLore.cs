@@ -87,7 +87,10 @@ namespace Server.SkillHandlers
                             from.SendLocalizedMessage(1038216 + hand + (damage * 9));
 
                         if (weap.Poison != null && weap.PoisonCharges > 0)
-                            from.SendLocalizedMessage(1038284); // It appears to have poison smeared on it.
+                        {
+                            from.SendMessage("Poison level: {0}", weap.Poison.Level); // you can now check the poison level with arms lore
+                        }
+                           
                     }
                     else
                     {
@@ -137,7 +140,7 @@ namespace Server.SkillHandlers
                         from.SendLocalizedMessage(500353); // You are not certain...
                     }
                 }
-                else if (targeted is SwampDragon && ((SwampDragon)targeted).HasBarding)
+                /*else if (targeted is SwampDragon && ((SwampDragon)targeted).HasBarding)
                 {
                     SwampDragon pet = (SwampDragon)targeted;
 
@@ -156,7 +159,7 @@ namespace Server.SkillHandlers
                     {
                         from.SendLocalizedMessage(500353); // You are not certain...
                     }
-                }
+                }*/
                 else
                 {
                     from.SendLocalizedMessage(500352); // This is neither weapon nor armor.

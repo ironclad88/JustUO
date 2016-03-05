@@ -3474,7 +3474,7 @@ namespace Server.Items
             {
                 attacker.CheckSkill(SkillName.Tactics, 0.0, attacker.Skills[SkillName.Tactics].Cap);
                 // Passively check tactics for gain
-                attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);
+           //     attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills[SkillName.Anatomy].Cap);
                 // Passively check Anatomy for gain
 
                 /*if (Type == WeaponType.Axe)
