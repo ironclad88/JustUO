@@ -353,6 +353,7 @@ namespace Server.Spells
 
         public static int GetOffset(Mobile caster, Mobile target, StatType type, bool curse)
         {
+            
             if (Core.AOS)
             {
                 if (!m_DisableSkillCheck)
@@ -372,6 +373,12 @@ namespace Server.Spells
                     case StatType.Dex:
                         return (int)(target.RawDex * percent);
                     case StatType.Int:
+                        return (int)(target.RawInt * percent);
+                    case StatType.StrStrength:
+                        return (int)(target.RawStr * percent);
+                    case StatType.DexAgility:
+                        return (int)(target.RawDex * percent);
+                    case StatType.IntCunning:
                         return (int)(target.RawInt * percent);
                 }
             }

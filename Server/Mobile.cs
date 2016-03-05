@@ -375,7 +375,10 @@ namespace Server
         Str = 1,
         Dex = 2,
         Int = 4,
-        All = 7
+        StrStrength = 5,
+        DexAgility = 6,
+        IntCunning = 7,
+        All = 8
     }
 
     public enum StatLockType : byte
@@ -8253,6 +8256,21 @@ namespace Server
             }
 
             if ((type & StatType.Int) != 0)
+            {
+                delta |= MobileDelta.Mana;
+            }
+
+            if ((type & StatType.StrStrength) != 0)
+            {
+                delta |= MobileDelta.Hits;
+            }
+
+            if ((type & StatType.DexAgility) != 0)
+            {
+                delta |= MobileDelta.Stam;
+            }
+
+            if ((type & StatType.IntCunning) != 0)
             {
                 delta |= MobileDelta.Mana;
             }

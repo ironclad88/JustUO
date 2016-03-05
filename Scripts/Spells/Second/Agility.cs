@@ -50,7 +50,7 @@ namespace Server.Spells.Second
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
+                SpellHelper.AddStatBonus(this.Caster, m, StatType.DexAgility); // DexAgility ?
 
                 m.FixedParticles(0x375A, 10, 15, 5010, EffectLayer.Waist);
                 m.PlaySound(0x1e7);
