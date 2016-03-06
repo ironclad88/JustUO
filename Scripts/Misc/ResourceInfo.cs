@@ -15,7 +15,7 @@ namespace Server.Items
         Agapite,
         Verite,
         Valorite,
-        Zulu,
+        ZuluMetal,
         Onyx,
         Pyrite,
         Malachite,
@@ -39,9 +39,9 @@ namespace Server.Items
         Peachblue,
         Destruction,
         Anra,
-        Goddess,
-        Crystal,
-        Doom,
+        GoddessMetal,
+        CrystalMetal,
+        DoomMetal,
         ETS,
         DSR,
         RND,
@@ -65,7 +65,31 @@ namespace Server.Items
         YewWood,
         Heartwood,
         Bloodwood,
-        Frostwood
+        Frostwood,
+        Pinetree,
+        Cherry,
+        Oak,
+        PurplePassion,
+        GoldenReflection,
+        Hardranger,
+        Jade,
+        Darkwood,
+        Stonewood,
+        Sun,
+        Gauntlet,
+        Swamp,
+        Stardust,
+        SilverLeaf,
+        Stormteal,
+        Emerald,
+        Blood,
+        CrystalLog,
+        Bloodhorse,
+        DoomLog,
+        GoddessLog,
+        ZuluLog,
+        Darkness,
+        Elven
     }
 
     public enum CraftResourceType
@@ -618,10 +642,11 @@ namespace Server.Items
         }
 
         public static readonly CraftAttributeInfo Blank;
-        public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite, Zulu, Onyx, Pyrite, Malachite, Azurite, Platinum, Lavarock, Mystic, Spike, Fruity, IceRock, SilverRock, Spectral, Undead, DarkPagan, OldBritain, Virginity, BlackDwarf, RedElven, DripStone, Executor, Peachblue, Destruction, Anra, Goddess, Crystal, Doom, ETS, DSR, RND;
+        public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite, ZuluMetal, Onyx, Pyrite, Malachite, Azurite, Platinum, Lavarock, Mystic, Spike, Fruity, IceRock, SilverRock, Spectral, Undead, DarkPagan, OldBritain, Virginity, BlackDwarf, RedElven, DripStone, Executor, Peachblue, Destruction, Anra, GoddessMetal, CrystalMetal, DoomMetal, ETS, DSR, RND;
         public static readonly CraftAttributeInfo Spined, Horned, Barbed, Dragon;
         public static readonly CraftAttributeInfo RedScales, YellowScales, BlackScales, GreenScales, WhiteScales, BlueScales;
         public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
+        public static readonly CraftAttributeInfo Pinetree, Cherry, Oak, PurplePassion, GoldenReflection, Hardranger, Jade, Darkwood, Stonewood, Sun, Gauntlet, Swamp, Stardust, SilverLeaf, Stormteal, Emerald, Blood, CrystalLog, Bloodhorse, DoomLog, GoddessLog, ZuluLog, Darkness, Elven;
 
         static CraftAttributeInfo()
         {
@@ -813,7 +838,7 @@ namespace Server.Items
             //    valorite.RunicMaxIntensity = 100;
             //}
 
-            CraftAttributeInfo zulu = Zulu = new CraftAttributeInfo();
+            CraftAttributeInfo zulu = ZuluMetal = new CraftAttributeInfo();
 
             //JustZH : reduce spell effectiveness on wearer
             zulu.DexPenReduction = 2;
@@ -958,21 +983,21 @@ namespace Server.Items
             anra.Difficulty = 116;
             anra.Quality = 1.8;
 
-            CraftAttributeInfo goddess = Goddess = new CraftAttributeInfo();
+            CraftAttributeInfo goddess = GoddessMetal = new CraftAttributeInfo();
 
             //JustZH : reduce spell damage to wearer
             goddess.ArmorEnergyResist = level1_prot;
             goddess.Difficulty = 125;
             goddess.Quality = 1.9;
 
-            CraftAttributeInfo crystal = Crystal = new CraftAttributeInfo();
+            CraftAttributeInfo crystal = CrystalMetal = new CraftAttributeInfo();
 
             //JustZH : reduce spell damage to wearer
             crystal.ArmorEarthResist = level1_prot;
             crystal.Difficulty = 119;
             crystal.Quality = 1.8;
 
-            CraftAttributeInfo doom = Doom = new CraftAttributeInfo();
+            CraftAttributeInfo doom = DoomMetal = new CraftAttributeInfo();
 
             doom.Difficulty = 122;
             doom.Quality = 1.9;
@@ -1196,6 +1221,107 @@ namespace Server.Items
             frostwood.WeaponColdDamage = 40;
             frostwood.WeaponDamage = 12;
             #endregion
+
+            #region Logs
+            //public static readonly CraftAttributeInfo Pinetree, Cherry, Oak, PurplePassion, GoldenReflection, Hardranger, Jade, Darkwood, Stonewood, Sun, Gauntlet, Swamp,
+            // Stardust, SilverLeaf, Stormteal, Emerald, Blood, CrystalLog, Bloodhorse, DoomLog, GoddessLog, ZuluLog, Darkness, Elven;
+
+            CraftAttributeInfo currentLog = Pinetree = new CraftAttributeInfo();
+            currentLog.Difficulty = 15;
+            currentLog.Quality = 1.05;
+
+            currentLog = Cherry = new CraftAttributeInfo();
+            currentLog.Difficulty = 28;
+            currentLog.Quality = 1.1;
+
+            currentLog = Oak = new CraftAttributeInfo();
+            currentLog.Difficulty = 39;
+            currentLog.Quality = 1.15;
+
+            currentLog = PurplePassion = new CraftAttributeInfo();
+            currentLog.Difficulty = 50;
+            currentLog.Quality = 1.2;
+
+            currentLog = GoldenReflection = new CraftAttributeInfo();
+            currentLog.Difficulty = 59;
+            currentLog.Quality = 1.25;
+
+            currentLog = Hardranger = new CraftAttributeInfo();
+            currentLog.Difficulty = 65;
+            currentLog.Quality = 1.25;
+
+            currentLog = Jade = new CraftAttributeInfo();
+            currentLog.Difficulty = 68;
+            currentLog.Quality = 1.3;
+
+            currentLog = Darkwood = new CraftAttributeInfo();
+            currentLog.Difficulty = 77;
+            currentLog.Quality = 1.35;
+
+            currentLog = Stonewood = new CraftAttributeInfo();
+            currentLog.Difficulty = 84;
+            currentLog.Quality = 1.4;
+
+            currentLog = Sun = new CraftAttributeInfo();
+            currentLog.Difficulty = 91;
+            currentLog.Quality = 1.45;
+
+            currentLog = Gauntlet = new CraftAttributeInfo();
+            currentLog.Difficulty = 95;
+            currentLog.Quality = 1.45;
+
+            currentLog = Swamp = new CraftAttributeInfo();
+            currentLog.Difficulty = 98;
+            currentLog.Quality = 1.5;
+
+            currentLog = Stardust = new CraftAttributeInfo();
+            currentLog.Difficulty = 105;
+            currentLog.Quality = 1.55;
+
+            currentLog = SilverLeaf = new CraftAttributeInfo();
+            currentLog.Difficulty = 110;
+            currentLog.Quality = 1.6;
+
+            currentLog = Stormteal = new CraftAttributeInfo();
+            currentLog.Difficulty = 114;
+            currentLog.Quality = 1.65;
+
+            currentLog = Emerald = new CraftAttributeInfo();
+            currentLog.Difficulty = 118;
+            currentLog.Quality = 1.7;
+
+            currentLog = Blood = new CraftAttributeInfo();
+            currentLog.Difficulty = 122;
+            currentLog.Quality = 1.75;
+
+            currentLog = CrystalLog = new CraftAttributeInfo();
+            currentLog.Difficulty = 125;
+            currentLog.Quality = 1.8;
+
+            currentLog = Bloodhorse = new CraftAttributeInfo();
+            currentLog.Difficulty = 127;
+            currentLog.Quality = 1.85;
+
+            currentLog = DoomLog = new CraftAttributeInfo();
+            currentLog.Difficulty = 128;
+            currentLog.Quality = 1.9;
+
+            currentLog = GoddessLog = new CraftAttributeInfo();
+            currentLog.Difficulty = 130;
+            currentLog.Quality = 1.95;
+
+            currentLog = ZuluLog = new CraftAttributeInfo();
+            currentLog.Difficulty = 132;
+            currentLog.Quality = 2;
+
+            currentLog = Darkness = new CraftAttributeInfo();
+            currentLog.Difficulty = 140;
+            currentLog.Quality = 2.05;
+
+            currentLog = Elven = new CraftAttributeInfo();
+            currentLog.Difficulty = 145;
+            currentLog.Quality = 2.1;
+            #endregion
         }
     }
 
@@ -1278,7 +1404,7 @@ namespace Server.Items
             new CraftResourceInfo(0x979, 1053103, "Agapite", CraftAttributeInfo.Agapite, CraftResource.Agapite, typeof(AgapiteIngot), typeof(AgapiteOre), typeof(AgapiteGranite)),  // remove later
             new CraftResourceInfo(0x89F, 1053102, "Verite", CraftAttributeInfo.Verite, CraftResource.Verite, typeof(VeriteIngot), typeof(VeriteOre), typeof(VeriteGranite)),  // remove later
             new CraftResourceInfo(0x8AB, 1053101, "Valorite", CraftAttributeInfo.Valorite,	CraftResource.Valorite, typeof(ValoriteIngot),	typeof(ValoriteOre), typeof(ValoriteGranite)), // remove later
-            new CraftResourceInfo(1160, 1063269, "New Zulu", CraftAttributeInfo.Zulu,	CraftResource.Zulu, typeof(ZuluIngot),	typeof(ZuluOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1160, 1063269, "New Zulu", CraftAttributeInfo.ZuluMetal,	CraftResource.ZuluMetal, typeof(ZuluIngot),	typeof(ZuluOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x455, 1098656, "Onyx", CraftAttributeInfo.Onyx,	CraftResource.Onyx, typeof(OnyxIngot),	typeof(OnyxOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x6b8, 1098657, "Pyrite", CraftAttributeInfo.Pyrite,	CraftResource.Pyrite, typeof(PyriteIngot),	typeof(PyriteOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1159, 1098658, "Malachite", CraftAttributeInfo.Malachite,	CraftResource.Malachite, typeof(MalachiteIngot),	typeof(MalachiteOre), typeof(ZuluGranite)),
@@ -1302,9 +1428,9 @@ namespace Server.Items
             new CraftResourceInfo(0x049c, 1098676, "Peachblue", CraftAttributeInfo.Peachblue,	CraftResource.Peachblue, typeof(PeachblueIngot),	typeof(PeachblueOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x0500, 1098677, "Destruction", CraftAttributeInfo.Destruction,	CraftResource.Destruction, typeof(DestructionIngot),	typeof(DestructionOre), typeof(ZuluGranite)),
             new CraftResourceInfo(0x048b, 1098678, "Anra", CraftAttributeInfo.Anra,	CraftResource.Anra, typeof(AnraIngot),	typeof(AnraOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0501, 1098679, "Goddess", CraftAttributeInfo.Goddess,	CraftResource.Goddess, typeof(GoddessIngot),	typeof(GoddessOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0492, 1098680, "Crystal", CraftAttributeInfo.Crystal,	CraftResource.Crystal, typeof(CrystalIngot),	typeof(CrystalOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049f, 1063281, "Doom", CraftAttributeInfo.Doom,	CraftResource.Doom, typeof(DoomIngot),	typeof(DoomOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0501, 1098679, "Goddess", CraftAttributeInfo.GoddessMetal,	CraftResource.GoddessMetal, typeof(GoddessIngot),	typeof(GoddessOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0492, 1098680, "Crystal", CraftAttributeInfo.CrystalMetal,	CraftResource.CrystalMetal, typeof(CrystalIngot),	typeof(CrystalOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049f, 1063281, "Doom", CraftAttributeInfo.DoomMetal,	CraftResource.DoomMetal, typeof(DoomIngot),	typeof(DoomOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1171, 1063285, "Ebon Twilight Saphire", CraftAttributeInfo.ETS,	CraftResource.ETS, typeof(ETSIngot),	typeof(ETSOre), typeof(ZuluGranite)),
             new CraftResourceInfo(1172, 1063283, "Dark Sable Ruby", CraftAttributeInfo.DSR,	CraftResource.DSR, typeof(DSRIngot),	typeof(DSROre), typeof(ZuluGranite)),
             new CraftResourceInfo(1176, 1063284, "Radiant Nimbus Diamond", CraftAttributeInfo.RND,	CraftResource.RND, typeof(RNDIngot),	typeof(RNDOre), typeof(ZuluGranite)),
@@ -1341,13 +1467,38 @@ namespace Server.Items
 
         private static readonly CraftResourceInfo[] m_WoodInfo = new CraftResourceInfo[]
         {
+
             new CraftResourceInfo(0x000, 1011542, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularWood,	typeof(Log), typeof(Board)),
             new CraftResourceInfo(0x7DA, 1072533, "Oak", CraftAttributeInfo.OakWood, CraftResource.OakWood, typeof(OakLog), typeof(OakBoard)),
             new CraftResourceInfo(0x4A7, 1072534, "Ash", CraftAttributeInfo.AshWood, CraftResource.AshWood, typeof(AshLog), typeof(AshBoard)),
             new CraftResourceInfo(0x4A8, 1072535, "Yew", CraftAttributeInfo.YewWood, CraftResource.YewWood, typeof(YewLog), typeof(YewBoard)),
-            new CraftResourceInfo(0x4A9, 1072536, "Heartwood", CraftAttributeInfo.Heartwood,	CraftResource.Heartwood,	typeof(HeartwoodLog),	typeof(HeartwoodBoard)),
-            new CraftResourceInfo(0x4AA, 1072538, "Bloodwood", CraftAttributeInfo.Bloodwood,	CraftResource.Bloodwood,	typeof(BloodwoodLog),	typeof(BloodwoodBoard)),
-            new CraftResourceInfo(0x47F, 1072539, "Frostwood", CraftAttributeInfo.Frostwood,	CraftResource.Frostwood,	typeof(FrostwoodLog),	typeof(FrostwoodBoard))
+            new CraftResourceInfo(0x4A9, 1072536, "Heartwood", CraftAttributeInfo.Heartwood,    CraftResource.Heartwood,    typeof(HeartwoodLog),   typeof(HeartwoodBoard)),
+            new CraftResourceInfo(0x4AA, 1072538, "Bloodwood", CraftAttributeInfo.Bloodwood,    CraftResource.Bloodwood,    typeof(BloodwoodLog),   typeof(BloodwoodBoard)),
+            new CraftResourceInfo(0x47F, 1072539, "Frostwood", CraftAttributeInfo.Frostwood,    CraftResource.Frostwood,    typeof(FrostwoodLog),   typeof(FrostwoodBoard)),
+            new CraftResourceInfo(1132, 1072533, "Pinetree", CraftAttributeInfo.Pinetree, CraftResource.Pinetree, typeof(PinetreeLog), typeof(Board)),
+            new CraftResourceInfo(1136, 1072533, "Cherry", CraftAttributeInfo.Cherry, CraftResource.Cherry, typeof(CherryLog), typeof(Board)),
+            new CraftResourceInfo(1045, 1072533, "Oak", CraftAttributeInfo.Oak, CraftResource.Oak, typeof(OakLog), typeof(Board)),
+            new CraftResourceInfo(515, 1072533, "Purple Passion", CraftAttributeInfo.PurplePassion, CraftResource.PurplePassion, typeof(PurplePassionLog), typeof(Board)),
+            new CraftResourceInfo(48, 1072533, "Golden Reflection", CraftAttributeInfo.GoldenReflection, CraftResource.GoldenReflection, typeof(GoldenReflectionLog), typeof(Board)),
+            new CraftResourceInfo(1285, 1072533, "Hardranger", CraftAttributeInfo.Hardranger, CraftResource.Hardranger, typeof(HardrangerLog), typeof(Board)),
+            new CraftResourceInfo(1162, 1072533, "Jade", CraftAttributeInfo.Jade, CraftResource.Jade, typeof(JadeLog), typeof(Board)),
+            new CraftResourceInfo(1109, 1072533, "Darkwood", CraftAttributeInfo.Darkwood, CraftResource.Darkwood, typeof(DarkwoodLog), typeof(Board)),
+            new CraftResourceInfo(1154, 1072533, "Stonewood", CraftAttributeInfo.Stonewood, CraftResource.Stonewood, typeof(StonewoodLog), typeof(Board)),
+            new CraftResourceInfo(1176, 1072533, "Sun", CraftAttributeInfo.Sun, CraftResource.Sun, typeof(SunLog), typeof(Board)),
+            new CraftResourceInfo(1284, 1072533, "Gauntlet", CraftAttributeInfo.Gauntlet, CraftResource.Gauntlet, typeof(GauntletLog), typeof(Board)),
+            new CraftResourceInfo(1177, 1072533, "Swamp", CraftAttributeInfo.Swamp, CraftResource.Swamp, typeof(SwampLog), typeof(Board)),
+            new CraftResourceInfo(1161, 1072533, "Stardust", CraftAttributeInfo.Stardust, CraftResource.Stardust, typeof(StardustLog), typeof(Board)),
+            new CraftResourceInfo(2301, 1072533, "Silver Leaf", CraftAttributeInfo.SilverLeaf, CraftResource.SilverLeaf, typeof(SilverLeafLog), typeof(Board)),
+            new CraftResourceInfo(1346, 1072533, "Stormteal", CraftAttributeInfo.Stormteal, CraftResource.Stormteal, typeof(StormtealLog), typeof(Board)),
+            new CraftResourceInfo(1159, 1072533, "Emerald", CraftAttributeInfo.Emerald, CraftResource.Emerald, typeof(EmeraldLog), typeof(Board)),
+            new CraftResourceInfo(1645, 1072533, "Blood", CraftAttributeInfo.Blood, CraftResource.Blood, typeof(BloodLog), typeof(Board)),
+            new CraftResourceInfo(1170, 1072533, "Crystal", CraftAttributeInfo.CrystalLog, CraftResource.CrystalLog, typeof(CrystalLog), typeof(Board)),
+            new CraftResourceInfo(1287, 1072533, "Bloodhorse", CraftAttributeInfo.Bloodhorse, CraftResource.Bloodhorse, typeof(BloodhorseLog), typeof(Board)),
+            new CraftResourceInfo(1183, 1072533, "Doom", CraftAttributeInfo.DoomLog, CraftResource.DoomLog, typeof(DoomLog), typeof(Board)),
+            new CraftResourceInfo(0x0501, 1072533, "Goddess", CraftAttributeInfo.GoddessLog, CraftResource.GoddessLog, typeof(GoddessLog), typeof(Board)),
+            new CraftResourceInfo(1160, 1072533, "Zulu", CraftAttributeInfo.ZuluLog, CraftResource.ZuluLog, typeof(ZuluLog), typeof(Board)),
+            new CraftResourceInfo(1157, 1072533, "Darkness", CraftAttributeInfo.Darkness, CraftResource.Darkness, typeof(DarknessLog), typeof(Board)),
+            new CraftResourceInfo(1165, 1072533, "Elven", CraftAttributeInfo.Elven, CraftResource.Elven, typeof(ElvenLog), typeof(Board))
         };
 
         /// <summary>
@@ -1435,7 +1586,7 @@ namespace Server.Items
             if (resource >= CraftResource.RedScales && resource <= CraftResource.BlueScales)
                 return CraftResourceType.Scales;
 
-            if (resource >= CraftResource.RegularWood && resource <= CraftResource.Frostwood)
+            if (resource >= CraftResource.RegularWood && resource <= CraftResource.Elven)
                 return CraftResourceType.Wood;
 
             return CraftResourceType.None;
@@ -1539,7 +1690,7 @@ namespace Server.Items
             else if (info.Level == 8)
                 return CraftResource.Valorite;
             else if (info.Level == 9)
-                return CraftResource.Zulu;
+                return CraftResource.ZuluMetal;
             else if (info.Level == 10)
                 return CraftResource.Onyx;
             else if (info.Level == 11)
@@ -1587,11 +1738,11 @@ namespace Server.Items
             else if (info.Level == 32)
                 return CraftResource.Anra;
             else if (info.Level == 33)
-                return CraftResource.Goddess;
+                return CraftResource.GoddessMetal;
             else if (info.Level == 34)
-                return CraftResource.Crystal;
+                return CraftResource.CrystalMetal;
             else if (info.Level == 35)
-                return CraftResource.Doom;
+                return CraftResource.DoomMetal;
             else if (info.Level == 36)
                 return CraftResource.ETS;
             else if (info.Level == 37)

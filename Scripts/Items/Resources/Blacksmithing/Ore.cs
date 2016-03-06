@@ -251,7 +251,7 @@ namespace Server.Items
             {
                 if (this.m_Resource >= CraftResource.DullCopper && this.m_Resource <= CraftResource.RND)
                 {
-                    if (this.m_Resource == CraftResource.Zulu) { return 1063269; };
+                    if (this.m_Resource == CraftResource.ZuluMetal) { return 1063269; };
                     if (this.m_Resource == CraftResource.Onyx) { return 1098656; };
                     if (this.m_Resource == CraftResource.Pyrite) { return 1098657; };
                     if (this.m_Resource == CraftResource.Malachite) { return 1098658; };
@@ -275,9 +275,9 @@ namespace Server.Items
                     if (this.m_Resource == CraftResource.Peachblue) { return 1098676; };
                     if (this.m_Resource == CraftResource.Destruction) { return 1098677; };
                     if (this.m_Resource == CraftResource.Anra) { return 1098678; };
-                    if (this.m_Resource == CraftResource.Goddess) { return 1098679; };
-                    if (this.m_Resource == CraftResource.Crystal) { return 1098680; };
-                    if (this.m_Resource == CraftResource.Doom) { return 1098681; };
+                    if (this.m_Resource == CraftResource.GoddessMetal) { return 1098679; };
+                    if (this.m_Resource == CraftResource.CrystalMetal) { return 1098680; };
+                    if (this.m_Resource == CraftResource.DoomMetal) { return 1098681; };
                     if (this.m_Resource == CraftResource.ETS) { return 1098685; };
                     if (this.m_Resource == CraftResource.DSR) { return 1098683; };
                     if (this.m_Resource == CraftResource.RND) { return 1098684; };
@@ -1054,7 +1054,7 @@ namespace Server.Items
 
     public class ZuluOre : BaseOre
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Zulu; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.ZuluMetal; } }
 
         [Constructable]
         public ZuluOre()
@@ -1064,7 +1064,7 @@ namespace Server.Items
 
         [Constructable]
         public ZuluOre(int amount)
-            : base(CraftResource.Zulu, amount)
+            : base(CraftResource.ZuluMetal, amount)
         {
         }
 
@@ -2064,7 +2064,7 @@ namespace Server.Items
 
     public class GoddessOre : BaseOre
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Goddess; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.GoddessMetal; } }
 
         [Constructable]
         public GoddessOre()
@@ -2074,7 +2074,7 @@ namespace Server.Items
 
         [Constructable]
         public GoddessOre(int amount)
-            : base(CraftResource.Goddess, amount)
+            : base(CraftResource.GoddessMetal, amount)
         {
         }
 
@@ -2106,7 +2106,7 @@ namespace Server.Items
 
     public class CrystalOre : BaseOre
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Crystal; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.CrystalMetal; } }
 
         [Constructable]
         public CrystalOre()
@@ -2116,7 +2116,7 @@ namespace Server.Items
 
         [Constructable]
         public CrystalOre(int amount)
-            : base(CraftResource.Crystal, amount)
+            : base(CraftResource.CrystalMetal, amount)
         {
         }
 
@@ -2148,7 +2148,7 @@ namespace Server.Items
 
     public class DoomOre : BaseOre
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Doom; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.DoomMetal; } }
 
         [Constructable]
         public DoomOre()
@@ -2158,7 +2158,7 @@ namespace Server.Items
 
         [Constructable]
         public DoomOre(int amount)
-            : base(CraftResource.Doom, amount)
+            : base(CraftResource.DoomMetal, amount)
         {
         }
 

@@ -212,8 +212,8 @@ namespace Server.Engines.Craft
                     OreNfo[1] = CraftAttributeInfo.Agapite.Quality;
                     break;
                 case "ZuluIngot":
-                    OreNfo[0] = CraftAttributeInfo.Zulu.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Zulu.Quality;
+                    OreNfo[0] = CraftAttributeInfo.ZuluMetal.Difficulty;
+                    OreNfo[1] = CraftAttributeInfo.ZuluMetal.Quality;
                     break;
                 case "OnyxIngot":
                     OreNfo[0] = CraftAttributeInfo.Onyx.Difficulty;
@@ -308,12 +308,12 @@ namespace Server.Engines.Craft
                     OreNfo[1] = CraftAttributeInfo.Anra.Quality;
                     break;
                 case "CrystalIngot":
-                    OreNfo[0] = CraftAttributeInfo.Crystal.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Crystal.Quality;
+                    OreNfo[0] = CraftAttributeInfo.CrystalMetal.Difficulty;
+                    OreNfo[1] = CraftAttributeInfo.CrystalMetal.Quality;
                     break;
                 case "DoomIngot":
-                    OreNfo[0] = CraftAttributeInfo.Doom.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Doom.Quality;
+                    OreNfo[0] = CraftAttributeInfo.DoomMetal.Difficulty;
+                    OreNfo[1] = CraftAttributeInfo.DoomMetal.Quality;
                     break;
                 case "ETSIngot":
                     OreNfo[0] = CraftAttributeInfo.ETS.Difficulty;
@@ -328,8 +328,8 @@ namespace Server.Engines.Craft
                     OreNfo[1] = CraftAttributeInfo.RND.Quality;
                     break;
                 case "GoddessIngot":
-                    OreNfo[0] = CraftAttributeInfo.Goddess.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Goddess.Quality;
+                    OreNfo[0] = CraftAttributeInfo.GoddessMetal.Difficulty;
+                    OreNfo[1] = CraftAttributeInfo.GoddessMetal.Quality;
                     break;
                 case "IronIngot":
                     OreNfo[0] = CraftAttributeInfo.Golden.Difficulty; // Golden is the same as Iron

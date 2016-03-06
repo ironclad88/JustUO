@@ -54,7 +54,7 @@ namespace Server.Items
 
                 if (this.m_Resource >= CraftResource.DullCopper && this.m_Resource <= CraftResource.RND)
                 {
-                    if (this.m_Resource == CraftResource.Zulu) { return 1063272; };
+                    if (this.m_Resource == CraftResource.ZuluMetal) { return 1063272; };
                     if (this.m_Resource == CraftResource.Onyx) { return 1063273; };
                     if (this.m_Resource == CraftResource.Pyrite) { return 1063274; };
                     if (this.m_Resource == CraftResource.Malachite) { return 1063275; };
@@ -78,9 +78,9 @@ namespace Server.Items
                     if (this.m_Resource == CraftResource.Peachblue) { return 1063496; };
                     if (this.m_Resource == CraftResource.Destruction) { return 1063497; };
                     if (this.m_Resource == CraftResource.Anra) { return 1063498; };
-                    if (this.m_Resource == CraftResource.Goddess) { return 1063499; };
-                    if (this.m_Resource == CraftResource.Crystal) { return 1063500; };
-                    if (this.m_Resource == CraftResource.Doom) { return 1063501; };
+                    if (this.m_Resource == CraftResource.GoddessMetal) { return 1063499; };
+                    if (this.m_Resource == CraftResource.CrystalMetal) { return 1063500; };
+                    if (this.m_Resource == CraftResource.DoomMetal) { return 1063501; };
                     if (this.m_Resource == CraftResource.ETS) { return 1063502; };
                     if (this.m_Resource == CraftResource.DSR) { return 1063503; };
                     if (this.m_Resource == CraftResource.RND) { return 1063504; };
@@ -620,7 +620,7 @@ namespace Server.Items
     [FlipableAttribute(0x1BF2, 0x1BEF)]
     public class ZuluIngot : BaseIngot
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Zulu; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.ZuluMetal; } }
 
         [Constructable]
         public ZuluIngot()
@@ -630,7 +630,7 @@ namespace Server.Items
 
         [Constructable]
         public ZuluIngot(int amount)
-            : base(CraftResource.Zulu, amount)
+            : base(CraftResource.ZuluMetal, amount)
         {
         }
 
@@ -1509,7 +1509,7 @@ namespace Server.Items
     [FlipableAttribute(0x1BF2, 0x1BEF)]
     public class GoddessIngot : BaseIngot
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Goddess; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.GoddessMetal; } }
 
         [Constructable]
         public GoddessIngot()
@@ -1519,7 +1519,7 @@ namespace Server.Items
 
         [Constructable]
         public GoddessIngot(int amount)
-            : base(CraftResource.Goddess, amount)
+            : base(CraftResource.GoddessMetal, amount)
         {
         }
 
@@ -1546,7 +1546,7 @@ namespace Server.Items
     [FlipableAttribute(0x1BF2, 0x1BEF)]
     public class CrystalIngot : BaseIngot
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Crystal; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.CrystalMetal; } }
 
         [Constructable]
         public CrystalIngot()
@@ -1556,7 +1556,7 @@ namespace Server.Items
 
         [Constructable]
         public CrystalIngot(int amount)
-            : base(CraftResource.Crystal, amount)
+            : base(CraftResource.CrystalMetal, amount)
         {
         }
 
@@ -1583,7 +1583,7 @@ namespace Server.Items
     [FlipableAttribute(0x1BF2, 0x1BEF)]
     public class DoomIngot : BaseIngot
     {
-        protected override CraftResource DefaultResource { get { return CraftResource.Doom; } }
+        protected override CraftResource DefaultResource { get { return CraftResource.DoomMetal; } }
 
         [Constructable]
         public DoomIngot()
@@ -1593,7 +1593,7 @@ namespace Server.Items
 
         [Constructable]
         public DoomIngot(int amount)
-            : base(CraftResource.Doom, amount)
+            : base(CraftResource.DoomMetal, amount)
         {
         }
 

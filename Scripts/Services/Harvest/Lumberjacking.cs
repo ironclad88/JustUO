@@ -78,27 +78,65 @@ namespace Server.Engines.Harvest
 
             if (Core.ML)
             {
+                int difficulty = 0;
+                int max_skill_offset = 50;
+                string pre_str = "You chop some ";
+                string post_str = " logs and put them into your backpack.";
                 res = new HarvestResource[]
                 {
-                    new HarvestResource(00.0, 00.0, 100.0, 1072540, typeof(Log)),
-                    new HarvestResource(65.0, 25.0, 105.0, 1072541, typeof(OakLog)),
-                    new HarvestResource(80.0, 40.0, 120.0, 1072542, typeof(AshLog)),
-                    new HarvestResource(95.0, 55.0, 135.0, 1072543, typeof(YewLog)),
-                    new HarvestResource(100.0, 60.0, 140.0, 1072544, typeof(HeartwoodLog)),
-                    new HarvestResource(100.0, 60.0, 140.0, 1072545, typeof(BloodwoodLog)),
-                    new HarvestResource(100.0, 60.0, 140.0, 1072546, typeof(FrostwoodLog)),
+                    //new HarvestResource(00.0, 00.0, 100.0, 1072540, typeof(Log)),
+                    //new HarvestResource(65.0, 25.0, 105.0, 1072541, typeof(OakLog)),
+                    //new HarvestResource(80.0, 40.0, 120.0, 1072542, typeof(AshLog)),
+                    //new HarvestResource(95.0, 55.0, 135.0, 1072543, typeof(YewLog)),
+                    //new HarvestResource(100.0, 60.0, 140.0, 1072544, typeof(HeartwoodLog)),
+                    //new HarvestResource(100.0, 60.0, 140.0, 1072545, typeof(BloodwoodLog)),
+                    //new HarvestResource(100.0, 60.0, 140.0, 1072546, typeof(FrostwoodLog)),
+                    // JustZH resources:
+                    new HarvestResource(00.0, 00.0, difficulty+max_skill_offset, 1072540, typeof(Log)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Pinetree).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Pinetree).Name + post_str, typeof(PinetreeLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Cherry).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Cherry).Name + post_str, typeof(CherryLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Oak).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Oak).Name + post_str, typeof(OakLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.PurplePassion).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.PurplePassion).Name + post_str, typeof(PurplePassionLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.GoldenReflection).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.GoldenReflection).Name + post_str, typeof(GoldenReflectionLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Hardranger).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Hardranger).Name + post_str, typeof(HardrangerLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Jade).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Jade).Name + post_str, typeof(JadeLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Darkwood).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Darkwood).Name + post_str, typeof(DarkwoodLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Stonewood).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Stonewood).Name + post_str, typeof(StonewoodLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Sun).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Sun).Name + post_str, typeof(SunLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Gauntlet).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Gauntlet).Name + post_str, typeof(GauntletLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Swamp).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Swamp).Name + post_str, typeof(SwampLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Stardust).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Stardust).Name + post_str, typeof(StardustLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.SilverLeaf).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.SilverLeaf).Name + post_str, typeof(SilverLeafLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Stormteal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Stormteal).Name + post_str, typeof(StormtealLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Emerald).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Emerald).Name + post_str, typeof(EmeraldLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Blood).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Blood).Name + post_str, typeof(BloodLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.CrystalLog).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.CrystalLog).Name + post_str, typeof(CrystalLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Bloodhorse).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Bloodhorse).Name + post_str, typeof(BloodhorseLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DoomLog).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.DoomLog).Name + post_str, typeof(DoomLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.GoddessLog).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.GoddessLog).Name + post_str, typeof(GoddessLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.ZuluLog).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.ZuluLog).Name + post_str, typeof(ZuluLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Darkness).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Darkness).Name + post_str, typeof(DarknessLog)),
+                    new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Elven).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, pre_str + CraftResources.GetInfo(CraftResource.Elven).Name + post_str, typeof(ElvenLog))
                 };
 
-                veins = new HarvestVein[]
+                //veins = new HarvestVein[]
+                //{
+                //    new HarvestVein(49.0, 0.0, res[0], null), // Ordinary Logs
+                //    new HarvestVein(30.0, 0.5, res[1], res[0]), // Oak
+                //    new HarvestVein(10.0, 0.5, res[2], res[0]), // Ash
+                //    new HarvestVein(05.0, 0.5, res[3], res[0]), // Yew
+                //    new HarvestVein(03.0, 0.5, res[4], res[0]), // Heartwood
+                //    new HarvestVein(02.0, 0.5, res[5], res[0]), // Bloodwood
+                //    new HarvestVein(01.0, 0.5, res[6], res[0]), // Frostwood
+                //};
+
+                // JustZH: add HarvestVeins for all logs, all with same chance to appear.
+                veins = new HarvestVein[res.Length];
+
+                for (int i = 0; i < res.Length; i++)
                 {
-                    new HarvestVein(49.0, 0.0, res[0], null), // Ordinary Logs
-                    new HarvestVein(30.0, 0.5, res[1], res[0]), // Oak
-                    new HarvestVein(10.0, 0.5, res[2], res[0]), // Ash
-                    new HarvestVein(05.0, 0.5, res[3], res[0]), // Yew
-                    new HarvestVein(03.0, 0.5, res[4], res[0]), // Heartwood
-                    new HarvestVein(02.0, 0.5, res[5], res[0]), // Bloodwood
-                    new HarvestVein(01.0, 0.5, res[6], res[0]), // Frostwood
-                };
+                    veins[i] = new HarvestVein((100 / res.Length), 0.0, res[i], (i == 0) ? null : res[0]);
+                }
 
                 lumber.BonusResources = new BonusHarvestResource[]
                 {

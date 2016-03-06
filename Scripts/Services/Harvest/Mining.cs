@@ -128,9 +128,9 @@ namespace Server.Engines.Harvest
                 new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Peachblue ore and put it in your backpack.", typeof(PeachblueOre)),
                 new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Destruction ore and put it in your backpack.", typeof(DestructionOre)),
                 new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Anra ore and put it in your backpack.", typeof(AnraOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Goddess).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Goddess ore and put it in your backpack.", typeof(GoddessOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Crystal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Crystal ore and put it in your backpack.", typeof(CrystalOre)),
-                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Doom).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Doom ore and put it in your backpack.", typeof(DoomOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.GoddessMetal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Goddess ore and put it in your backpack.", typeof(GoddessOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.CrystalMetal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Crystal ore and put it in your backpack.", typeof(CrystalOre)),
+                new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.DoomMetal).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Doom ore and put it in your backpack.", typeof(DoomOre)),
             };
 
             veins = new HarvestVein[res.Length];

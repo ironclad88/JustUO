@@ -985,10 +985,10 @@ namespace Server.Engines.Craft
             AddSubRes(typeof(PeachblueIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty, 1044036, 1044268);
             AddSubRes(typeof(DestructionIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty, 1044036, 1044268);
             AddSubRes(typeof(AnraIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty, 1044036, 1044268);
-            AddSubRes(typeof(CrystalIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Crystal).AttributeInfo.Difficulty, 1044036, 1044268);
-            AddSubRes(typeof(DoomIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Doom).AttributeInfo.Difficulty, 1044036, 1044268);
-            AddSubRes(typeof(GoddessIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Goddess).AttributeInfo.Difficulty, 1044036, 1044268);
-            AddSubRes(typeof(ZuluIngot), zulu_names++, CraftResources.GetInfo(CraftResource.Zulu).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(CrystalIngot), zulu_names++, CraftResources.GetInfo(CraftResource.CrystalMetal).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(DoomIngot), zulu_names++, CraftResources.GetInfo(CraftResource.DoomMetal).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(GoddessIngot), zulu_names++, CraftResources.GetInfo(CraftResource.GoddessMetal).AttributeInfo.Difficulty, 1044036, 1044268);
+            AddSubRes(typeof(ZuluIngot), zulu_names++, CraftResources.GetInfo(CraftResource.ZuluMetal).AttributeInfo.Difficulty, 1044036, 1044268);
             AddSubRes(typeof(ETSIngot), zulu_names++, CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty, 1044036, 1044268);
             AddSubRes(typeof(DSRIngot), zulu_names++, CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty, 1044036, 1044268);
             AddSubRes(typeof(RNDIngot), zulu_names++, CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty, 1044036, 1044268);
