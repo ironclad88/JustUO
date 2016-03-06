@@ -123,7 +123,7 @@ namespace Server.Commands
                 player.Skills.Provocation.Base = skillInc;
                 player.Skills.Herding.Base = skillInc;
                 player.Skills.Musicianship.Base = skillInc;
-                player.Skills.TasteID.Base = skillInc;
+                player.Skills.TasteID.Base = skillInc; 
             }
             else if (className == "Crafter" || className == "crafter")
             {
