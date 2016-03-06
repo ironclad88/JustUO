@@ -65,18 +65,6 @@ namespace Server.SkillHandlers
                     potion.SendLocalizedMessageTo(from, 502813); // You already know what kind of potion that is.
                     potion.SendLocalizedMessageTo(from, potion.LabelNumber);
                 }
-                else if(targeted is BaseWeapon)
-                {
-                    BaseWeapon wep = (BaseWeapon)targeted;
-
-                    if(wep.PoisonCharges > 0 || wep.PermaPoison) { 
-                    from.SendMessage("Poison level: {0} ", wep.Poison.Level);
-                    }
-                    else
-                    {
-                        from.SendMessage("This weapon isn´t poisoned");
-                    }
-                }
                 else if (targeted is PotionKeg)
                 {
                     PotionKeg keg = (PotionKeg)targeted;

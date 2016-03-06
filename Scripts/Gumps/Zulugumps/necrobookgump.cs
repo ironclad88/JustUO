@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using Server.Spells.Zulu.NecroSpells;
 
 /*
  *  Author Oscar Ternström
@@ -14,13 +13,11 @@ namespace Server.Gumps.Zulugumps
 
     public class necrobookgump : Gump
     {
-        Mobile test;
         public necrobookgump(Mobile owner, bool[] array)
             : base(100, 0)
         {
             try
             {
-                test = owner;
                 int xName1 = 80;
                 int xName2 = 240;
                 int yName1 = 65;
@@ -149,7 +146,6 @@ namespace Server.Gumps.Zulugumps
         public override void OnResponse(NetState state, RelayInfo info)
         {
             Mobile from = state.Mobile;
-            Mobile caster = test;
             switch (info.ButtonID)
             {
                 case 1:
@@ -186,16 +182,13 @@ namespace Server.Gumps.Zulugumps
                     Console.WriteLine("Casting Wraithform");
                     break;
                 case 12:
-                   // Console.WriteLine("Casting Wyvern Strike");
-                    new WyvernStrikeSpell(caster, null).Cast();
+                    Console.WriteLine("Casting Wyvern Strike");
                     break;
                 case 13:
                     Console.WriteLine("Casting Kill");
-                    new KillSpell(caster, null).Cast();
                     break;
                 case 14:
-                    new LicheSpell(caster, null).Cast();
-                    //Console.WriteLine("Casting Liche");
+                    Console.WriteLine("Casting Liche");
                     break;
                 case 15:
                     Console.WriteLine("Casting Plague");

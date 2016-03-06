@@ -19,7 +19,7 @@ namespace Server.SkillHandlers
             Map map = from.Map;
 
             if (to.Player)
-                return false; // cant snoop players
+                return from.CanBeHarmful(to, false, true); // normal restrictions
 
             if (map != null && (map.Rules & MapRules.HarmfulRestrictions) == 0)
                 return true; // felucca you can snoop anybody
@@ -78,9 +78,9 @@ namespace Server.SkillHandlers
                     }
                 }
 
-                /* if (from.IsPlayer())
-                     Titles.AwardKarma(from, -4, true);
-                     */
+                if (from.IsPlayer())
+                    Titles.AwardKarma(from, -4, true);
+
                 if (from.IsStaff() || from.CheckTargetSkill(SkillName.Snooping, cont, 0.0, 100.0))
                 {
                     if (cont is TrapableContainer && ((TrapableContainer)cont).ExecuteTrap(from))
@@ -91,7 +91,7 @@ namespace Server.SkillHandlers
                 else
                 {
                     from.SendLocalizedMessage(500210); // You failed to peek into the container.
-
+					
                     if (from.Skills[SkillName.Hiding].Value / 2 < Utility.Random(100))
                         from.RevealingAction();
                 }
