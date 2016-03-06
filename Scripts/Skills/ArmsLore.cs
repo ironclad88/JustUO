@@ -19,6 +19,10 @@ namespace Server.SkillHandlers
 
             m.SendLocalizedMessage(500349); // What item do you wish to get information about?
 
+            if(m.SpecClasse == SpecClasse.Crafter) // reduced cooldown for specced crafters
+            {
+                return TimeSpan.FromSeconds(3.0);
+            }
             return TimeSpan.FromSeconds(4.0);
         }
 

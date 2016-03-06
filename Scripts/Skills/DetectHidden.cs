@@ -23,6 +23,8 @@ namespace Server.SkillHandlers
 
         private class InternalTarget : Target
         {
+            private double trg;
+
             public InternalTarget()
                 : base(12, true, TargetFlags.None)
             {
@@ -42,10 +44,15 @@ namespace Server.SkillHandlers
                 else 
                     p = src.Location;
 
+                int range;
                 double srcSkill = src.Skills[SkillName.DetectHidden].Value;
-                int range = (int)(srcSkill / 9.0);
+                if(src.SpecClasse == SpecClasse.Thief) // better range for specced theifs
+                {
+                    range = (int)(srcSkill / 8.0) + 5;
+                }
+                range = (int)(srcSkill / 9.0);
 
-                if (!src.CheckSkill(SkillName.DetectHidden, 0.0, 100.0))
+                if (!src.CheckSkill(SkillName.DetectHidden, 0.0, 130.0))
                     range /= 2;
 
                 BaseHouse house = BaseHouse.FindHouseAt(p, src.Map, 16);
@@ -63,8 +70,63 @@ namespace Server.SkillHandlers
                     {
                         if (trg.Hidden && src != trg)
                         {
-                            double ss = srcSkill + Utility.Random(21) - 10;
-                            double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random(21) - 10;
+                            double ss;
+                            double ts;
+
+                            ss = srcSkill + Utility.Random(21) - 10;
+                            ts = trg.Skills[SkillName.Hiding].Value + Utility.Random(21) - 10;
+
+                            if (src.SpecClasse == SpecClasse.Thief) // better range for specced theifs
+                            {
+                                switch (src.SpecLevel)
+                                {
+                                    case 1:
+                                        ss = srcSkill + Utility.Random(25) - 10;
+                                        break;
+                                    case 2:
+                                        ss = srcSkill + Utility.Random(27) - 10;
+                                        break;
+                                    case 3:
+                                        ss = srcSkill + Utility.Random(29) - 10;
+                                        break;
+                                    case 4:
+                                        ss = srcSkill + Utility.Random(31) - 10;
+                                        break;
+                                    case 5:
+                                        ss = srcSkill + Utility.Random(35) - 10;
+                                        break;
+                                    case 6:
+                                        ss = srcSkill + Utility.Random(40) - 10;
+                                        break;
+                                }
+                               // ss = srcSkill + Utility.Random(21) - 10;
+                            }
+                            if (trg.SpecClasse == SpecClasse.Thief) // better range for specced theifs
+                            {
+                                switch (trg.SpecLevel)
+                                {
+                                    case 1:
+                                        this.trg = srcSkill + Utility.Random(25) - 10;
+                                        break;
+                                    case 2:
+                                        this.trg = srcSkill + Utility.Random(27) - 10;
+                                        break;
+                                    case 3:
+                                        this.trg = srcSkill + Utility.Random(29) - 10;
+                                        break;
+                                    case 4:
+                                        this.trg = srcSkill + Utility.Random(31) - 10;
+                                        break;
+                                    case 5:
+                                        this.trg = srcSkill + Utility.Random(35) - 10;
+                                        break;
+                                    case 6:
+                                        this.trg = srcSkill + Utility.Random(40) - 10;
+                                        break;
+                                }
+                            }
+
+                            
 
                             if (src.AccessLevel >= trg.AccessLevel && (ss >= ts || (inHouse && house.IsInside(trg))))
                             {

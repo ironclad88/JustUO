@@ -31,7 +31,7 @@ namespace Server.SkillHandlers
 
             m.SendLocalizedMessage(500397); // To whom do you wish to grovel?
 
-            return TimeSpan.FromHours(6.0);
+            return TimeSpan.FromHours(6.0); // 6 hour timespan, wat?
         }
 
         private class InternalTarget : Target

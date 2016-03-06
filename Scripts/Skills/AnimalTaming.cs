@@ -41,12 +41,12 @@ namespace Server.SkillHandlers
 			}
 
 			// return TimeSpan.FromHours(6.0); // ??????? 
-            return TimeSpan.FromSeconds(4.0);
+            return TimeSpan.FromSeconds(5.0); // 5 sec cooldown for taming
 		}
 
 		public static bool CheckMastery(Mobile tamer, BaseCreature creature)
 		{
-			BaseCreature familiar = (BaseCreature)SummonFamiliarSpell.Table[tamer];
+			/*BaseCreature familiar = (BaseCreature)SummonFamiliarSpell.Table[tamer];
 
 			if (familiar != null && !familiar.Deleted && familiar is DarkWolfFamiliar)
 			{
@@ -56,7 +56,7 @@ namespace Server.SkillHandlers
 					return true;
 				}
 			}
-
+            */
 			return false;
 		}
 
