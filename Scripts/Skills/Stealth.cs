@@ -104,7 +104,27 @@ namespace Server.SkillHandlers
                     // JustZH More stealth "steps" with specced Theif
                     if (m.SpecClasse == SpecClasse.Thief)
                     {
-                        steps *= (int)m.SpecBonus(SpecClasse.Thief);
+                        switch (m.SpecLevel)
+                        {
+                            case 1:
+                                steps += 5;
+                                break;
+                            case 2:
+                                steps += 7;
+                                break;
+                            case 3:
+                                steps += 9;
+                                break;
+                            case 4:
+                                steps += 11;
+                                break;
+                            case 5:
+                                steps += 13;
+                                break;
+                            case 6:
+                                steps += 15;
+                                break;
+                        }
                     }
 
                     m.AllowedStealthSteps = steps;

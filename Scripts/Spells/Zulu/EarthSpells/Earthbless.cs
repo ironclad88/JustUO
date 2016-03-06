@@ -57,8 +57,8 @@ namespace Server.Spells.Zulu.EarthSpells
                 //   if(this.Caster) // check if caster is already buffed
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Str);
                 SpellHelper.DisableSkillCheck = true;
+                SpellHelper.AddStatBonus(this.Caster, m, StatType.Str);
                 SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
                 SpellHelper.AddStatBonus(this.Caster, m, StatType.Int);
                 SpellHelper.DisableSkillCheck = false;
