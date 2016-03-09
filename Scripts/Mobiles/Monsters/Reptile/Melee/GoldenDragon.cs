@@ -111,14 +111,14 @@ namespace Server.Mobiles
         {
             get
             {
-                return 20;
+                return 2;
             }
         }
         public override HideType HideType
         {
             get
             {
-                return HideType.Horned;
+                return HideType.GoldenDragon;
             }
         }
         public override bool StatLossAfterTame

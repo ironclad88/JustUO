@@ -389,4 +389,1064 @@ namespace Server.Items
             return true;
         }
     }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class RatHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.RatLeather; } }
+
+        [Constructable]
+        public RatHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public RatHides(int amount)
+            : base(CraftResource.RatLeather, amount)
+        {
+        }
+
+        public RatHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class WolfHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.WolfLeather; } }
+
+        [Constructable]
+        public WolfHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public WolfHides(int amount)
+            : base(CraftResource.WolfLeather, amount)
+        {
+        }
+
+        public WolfHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class BearHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BearLeather; } }
+
+        [Constructable]
+        public BearHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BearHides(int amount)
+            : base(CraftResource.BearLeather, amount)
+        {
+        }
+
+        public BearHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class OrcHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.OrcLeather; } }
+
+        [Constructable]
+        public OrcHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public OrcHides(int amount)
+            : base(CraftResource.OrcLeather, amount)
+        {
+        }
+
+        public OrcHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class SerpentHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.SerpentLeather; } }
+
+        [Constructable]
+        public SerpentHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public SerpentHides(int amount)
+            : base(CraftResource.SerpentLeather, amount)
+        {
+        }
+
+        public SerpentHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class LizardHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LizardLeather; } }
+
+        [Constructable]
+        public LizardHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LizardHides(int amount)
+            : base(CraftResource.LizardLeather, amount)
+        {
+        }
+
+        public LizardHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class TrollHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.TrollLeather; } }
+
+        [Constructable]
+        public TrollHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public TrollHides(int amount)
+            : base(CraftResource.TrollLeather, amount)
+        {
+        }
+
+        public TrollHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class OstardHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.OstardLeather; } }
+
+        [Constructable]
+        public OstardHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public OstardHides(int amount)
+            : base(CraftResource.OstardLeather, amount)
+        {
+        }
+
+        public OstardHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class NecromancerHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.NecromancerLeather; } }
+
+        [Constructable]
+        public NecromancerHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public NecromancerHides(int amount)
+            : base(CraftResource.NecromancerLeather, amount)
+        {
+        }
+
+        public NecromancerHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class TerathanHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.TerathanLeather; } }
+
+        [Constructable]
+        public TerathanHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public TerathanHides(int amount)
+            : base(CraftResource.TerathanLeather, amount)
+        {
+        }
+
+        public TerathanHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class LavaHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LavaLeather; } }
+
+        [Constructable]
+        public LavaHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LavaHides(int amount)
+            : base(CraftResource.LavaLeather, amount)
+        {
+        }
+
+        public LavaHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class LicheHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LicheLeather; } }
+
+        [Constructable]
+        public LicheHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LicheHides(int amount)
+            : base(CraftResource.LicheLeather, amount)
+        {
+        }
+
+        public LicheHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class DaemonHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.DaemonLeather; } }
+
+        [Constructable]
+        public DaemonHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public DaemonHides(int amount)
+            : base(CraftResource.DaemonLeather, amount)
+        {
+        }
+
+        public DaemonHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class IceCrystalHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.IceCrystalLeather; } }
+
+        [Constructable]
+        public IceCrystalHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public IceCrystalHides(int amount)
+            : base(CraftResource.IceCrystalLeather, amount)
+        {
+        }
+
+        public IceCrystalHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class WyrmHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.WyrmLeather; } }
+
+        [Constructable]
+        public WyrmHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public WyrmHides(int amount)
+            : base(CraftResource.WyrmLeather, amount)
+        {
+        }
+
+        public WyrmHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class BalronHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BalronLeather; } }
+
+        [Constructable]
+        public BalronHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BalronHides(int amount)
+            : base(CraftResource.BalronLeather, amount)
+        {
+        }
+
+        public BalronHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class GoldenDragonHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.GoldenDragonLeather; } }
+
+        [Constructable]
+        public GoldenDragonHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public GoldenDragonHides(int amount)
+            : base(CraftResource.GoldenDragonLeather, amount)
+        {
+        }
+
+        public GoldenDragonHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class SilverDragonHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.SilverDragonLeather; } }
+
+        [Constructable]
+        public SilverDragonHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public SilverDragonHides(int amount)
+            : base(CraftResource.SilverDragonLeather, amount)
+        {
+        }
+
+        public SilverDragonHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class BalrogHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BalrogLeather; } }
+
+        [Constructable]
+        public BalrogHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BalrogHides(int amount)
+            : base(CraftResource.BalrogLeather, amount)
+        {
+        }
+
+        public BalrogHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
+
+    [FlipableAttribute(0x1079, 0x1078)]
+    public class AngelHides : BaseHides, IScissorable
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.AngelLeather; } }
+
+        [Constructable]
+        public AngelHides()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public AngelHides(int amount)
+            : base(CraftResource.AngelLeather, amount)
+        {
+        }
+
+        public AngelHides(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+
+        public bool Scissor(Mobile from, Scissors scissors)
+        {
+            if (this.Deleted || !from.CanSee(this))
+                return false;
+
+            if (Core.AOS && !this.IsChildOf(from.Backpack))
+            {
+                from.SendLocalizedMessage(502437); // Items you wish to cut must be in your backpack
+                return false;
+            }
+
+            base.ScissorHelper(from, new DragonLeather(), 1);
+
+            return true;
+        }
+    }
 }

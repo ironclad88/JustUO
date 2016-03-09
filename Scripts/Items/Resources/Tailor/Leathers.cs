@@ -314,4 +314,744 @@ namespace Server.Items
         }
     }
 
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class RatLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.RatLeather; } }
+
+        [Constructable]
+        public RatLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public RatLeather(int amount)
+            : base(CraftResource.RatLeather, amount)
+        {
+        }
+
+        public RatLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class WolfLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.WolfLeather; } }
+
+        [Constructable]
+        public WolfLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public WolfLeather(int amount)
+            : base(CraftResource.WolfLeather, amount)
+        {
+        }
+
+        public WolfLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class BearLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BearLeather; } }
+
+        [Constructable]
+        public BearLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BearLeather(int amount)
+            : base(CraftResource.BearLeather, amount)
+        {
+        }
+
+        public BearLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class OrcLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.OrcLeather; } }
+
+        [Constructable]
+        public OrcLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public OrcLeather(int amount)
+            : base(CraftResource.OrcLeather, amount)
+        {
+        }
+
+        public OrcLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class SerpentLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.SerpentLeather; } }
+
+        [Constructable]
+        public SerpentLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public SerpentLeather(int amount)
+            : base(CraftResource.SerpentLeather, amount)
+        {
+        }
+
+        public SerpentLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class LizardLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LizardLeather; } }
+
+        [Constructable]
+        public LizardLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LizardLeather(int amount)
+            : base(CraftResource.LizardLeather, amount)
+        {
+        }
+
+        public LizardLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class TrollLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.TrollLeather; } }
+
+        [Constructable]
+        public TrollLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public TrollLeather(int amount)
+            : base(CraftResource.TrollLeather, amount)
+        {
+        }
+
+        public TrollLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class OstardLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.OstardLeather; } }
+
+        [Constructable]
+        public OstardLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public OstardLeather(int amount)
+            : base(CraftResource.OstardLeather, amount)
+        {
+        }
+
+        public OstardLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class NecromancerLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.NecromancerLeather; } }
+
+        [Constructable]
+        public NecromancerLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public NecromancerLeather(int amount)
+            : base(CraftResource.NecromancerLeather, amount)
+        {
+        }
+
+        public NecromancerLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class TerathanLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.TerathanLeather; } }
+
+        [Constructable]
+        public TerathanLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public TerathanLeather(int amount)
+            : base(CraftResource.TerathanLeather, amount)
+        {
+        }
+
+        public TerathanLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class LavaLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LavaLeather; } }
+
+        [Constructable]
+        public LavaLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LavaLeather(int amount)
+            : base(CraftResource.LavaLeather, amount)
+        {
+        }
+
+        public LavaLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class LicheLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.LicheLeather; } }
+
+        [Constructable]
+        public LicheLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public LicheLeather(int amount)
+            : base(CraftResource.LicheLeather, amount)
+        {
+        }
+
+        public LicheLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class DaemonLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.DaemonLeather; } }
+
+        [Constructable]
+        public DaemonLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public DaemonLeather(int amount)
+            : base(CraftResource.DaemonLeather, amount)
+        {
+        }
+
+        public DaemonLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class IceCrystalLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.IceCrystalLeather; } }
+
+        [Constructable]
+        public IceCrystalLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public IceCrystalLeather(int amount)
+            : base(CraftResource.IceCrystalLeather, amount)
+        {
+        }
+
+        public IceCrystalLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class WyrmLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.WyrmLeather; } }
+
+        [Constructable]
+        public WyrmLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public WyrmLeather(int amount)
+            : base(CraftResource.WyrmLeather, amount)
+        {
+        }
+
+        public WyrmLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class BalronLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BalronLeather; } }
+
+        [Constructable]
+        public BalronLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BalronLeather(int amount)
+            : base(CraftResource.BalronLeather, amount)
+        {
+        }
+
+        public BalronLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class GoldenDragonLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.GoldenDragonLeather; } }
+
+        [Constructable]
+        public GoldenDragonLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public GoldenDragonLeather(int amount)
+            : base(CraftResource.GoldenDragonLeather, amount)
+        {
+        }
+
+        public GoldenDragonLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class SilverDragonLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.SilverDragonLeather; } }
+
+        [Constructable]
+        public SilverDragonLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public SilverDragonLeather(int amount)
+            : base(CraftResource.SilverDragonLeather, amount)
+        {
+        }
+
+        public SilverDragonLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class BalrogLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.BalrogLeather; } }
+
+        [Constructable]
+        public BalrogLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public BalrogLeather(int amount)
+            : base(CraftResource.BalrogLeather, amount)
+        {
+        }
+
+        public BalrogLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    [FlipableAttribute(0x1081, 0x1082)]
+    public class AngelLeather : BaseLeather
+    {
+        protected override CraftResource DefaultResource { get { return CraftResource.AngelLeather; } }
+
+        [Constructable]
+        public AngelLeather()
+            : this(1)
+        {
+        }
+
+        [Constructable]
+        public AngelLeather(int amount)
+            : base(CraftResource.AngelLeather, amount)
+        {
+        }
+
+        public AngelLeather(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
 }

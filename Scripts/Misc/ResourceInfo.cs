@@ -51,6 +51,27 @@ namespace Server.Items
         HornedLeather,
         BarbedLeather,
         DragonLeather,
+        RatLeather,
+        WolfLeather,
+        BearLeather,
+        OrcLeather,
+        SerpentLeather,
+        LizardLeather,
+        TrollLeather,
+        OstardLeather,
+        NecromancerLeather,
+        LavaLeather,
+        LicheLeather,
+        TerathanLeather,
+        DaemonLeather,
+        IceCrystalLeather,
+        WyrmLeather,
+        BalronLeather,
+        GoldenDragonLeather,
+        SilverDragonLeather,
+        BalrogLeather,
+        AngelLeather,
+
 
         RedScales = 201,
         YellowScales,
@@ -644,6 +665,7 @@ namespace Server.Items
         public static readonly CraftAttributeInfo Blank;
         public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite, ZuluMetal, Onyx, Pyrite, Malachite, Azurite, Platinum, Lavarock, Mystic, Spike, Fruity, IceRock, SilverRock, Spectral, Undead, DarkPagan, OldBritain, Virginity, BlackDwarf, RedElven, DripStone, Executor, Peachblue, Destruction, Anra, GoddessMetal, CrystalMetal, DoomMetal, ETS, DSR, RND;
         public static readonly CraftAttributeInfo Spined, Horned, Barbed, Dragon;
+        public static readonly CraftAttributeInfo Rat, Wolf, Bear, Orc, Serpent, Lizard, Troll, Ostard, Necromancer, Terathan, Lava, Liche, Daemon, IceCrystal, Wyrm, Balron, GoldenDragon, SilverDragon, Balrog, Angel;
         public static readonly CraftAttributeInfo RedScales, YellowScales, BlackScales, GreenScales, WhiteScales, BlueScales;
         public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
         public static readonly CraftAttributeInfo Pinetree, Cherry, Oak, PurplePassion, GoldenReflection, Hardranger, Jade, Darkwood, Stonewood, Sun, Gauntlet, Swamp, Stardust, SilverLeaf, Stormteal, Emerald, Blood, CrystalLog, Bloodhorse, DoomLog, GoddessLog, ZuluLog, Darkness, Elven;
@@ -654,7 +676,7 @@ namespace Server.Items
             const int level2_prot = 30; //50% on pol zh
             const int level3_prot = 45; //75% on pol zh
             Blank = new CraftAttributeInfo();
-
+            #region OldMetals
             CraftAttributeInfo dullCopper = DullCopper = new CraftAttributeInfo();
 
             dullCopper.Difficulty = 30;
@@ -838,6 +860,9 @@ namespace Server.Items
             //    valorite.RunicMaxIntensity = 100;
             //}
 
+            #endregion
+
+            #region JustZHMetals
             CraftAttributeInfo zulu = ZuluMetal = new CraftAttributeInfo();
 
             //JustZH : reduce spell effectiveness on wearer
@@ -1030,6 +1055,9 @@ namespace Server.Items
             rnd.Difficulty = 140;
             rnd.Quality = 2.25;
 
+            #endregion
+
+            #region OldHides
             CraftAttributeInfo spined = Spined = new CraftAttributeInfo();
 
             spined.ArmorPhysicalResist = 5;
@@ -1086,7 +1114,124 @@ namespace Server.Items
                 barbed.RunicMinIntensity = 40;
                 barbed.RunicMaxIntensity = 100;
             }
+            #endregion
 
+
+            #region JustZHLogs
+            //public static readonly CraftAttributeInfo Rat, Wolf, Bear, Orc, Serpent, Lizard, Troll, Ostard, Necromancer, Terathan, 
+            //Lava, Liche, Daemon, IceCrystal, Wyrm, Balron, GoldenDragon, SilverDragon, Balrog, Angel;
+
+
+            CraftAttributeInfo currentHide = Rat = new CraftAttributeInfo();
+            currentHide.Difficulty = 10;
+            currentHide.Quality = 1.1;
+
+            currentHide = Wolf = new CraftAttributeInfo();
+            currentHide.Difficulty = 20;
+            currentHide.Quality = 1.2;
+
+            currentHide = Bear = new CraftAttributeInfo();
+            currentHide.Difficulty = 30;
+            currentHide.Quality = 1.3;
+
+            currentHide = Orc = new CraftAttributeInfo();
+            currentHide.Difficulty = 30; // fill in, can't find in pol scripts
+            currentHide.Quality = 1.3;
+
+            currentHide = Serpent = new CraftAttributeInfo();
+            currentHide.Difficulty = 40;
+            currentHide.Quality = 1.4;
+
+            currentHide = Lizard = new CraftAttributeInfo();
+            currentHide.Difficulty = 50;
+            currentHide.Quality = 1.5;
+            
+            currentHide = Ostard = new CraftAttributeInfo();
+            currentHide.Difficulty = 70;
+            currentHide.Quality = 1.7;
+
+            currentHide = Necromancer = new CraftAttributeInfo();
+            currentHide.Difficulty = 80;
+            currentHide.Quality = 1.8;
+            currentHide.ArmorNecroResist = level1_prot;
+            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+
+            currentHide = Terathan = new CraftAttributeInfo();
+            currentHide.Difficulty = 65;
+            currentHide.Quality = 1.6;
+
+            currentHide = Lava = new CraftAttributeInfo();
+            currentHide.Difficulty = 90;
+            currentHide.Quality = 1.9;
+            currentHide.ArmorFireResist = level2_prot;
+
+            currentHide = Liche = new CraftAttributeInfo();
+            currentHide.Difficulty = 100;
+            currentHide.Quality = 2.0;
+            currentHide.ArmorNecroResist = level1_prot;
+            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+
+            currentHide = Daemon = new CraftAttributeInfo();
+            currentHide.Difficulty = 70; // set later, not in script
+            currentHide.Quality = 1.7;
+            currentHide.ArmorPhysicalResist = level2_prot;
+
+            currentHide = IceCrystal = new CraftAttributeInfo();
+            currentHide.Difficulty = 110;
+            currentHide.Quality = 2.2;
+            currentHide.ArmorColdResist = level2_prot;
+
+            currentHide = Wyrm = new CraftAttributeInfo();
+            currentHide.Difficulty = 120;
+            currentHide.Quality = 2.5;
+            currentHide.ArmorFireResist = level2_prot;
+            currentHide.ArmorEarthResist = level1_prot;
+            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+
+            currentHide = Balron = new CraftAttributeInfo();
+            currentHide.Difficulty = 125;
+            currentHide.Quality = 2.9;
+            currentHide.ArmorNecroResist = level1_prot;
+            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            //level 1 blackrock prot
+
+            currentHide = GoldenDragon = new CraftAttributeInfo();
+            currentHide.Difficulty = 130;
+            currentHide.Quality = 3.0;
+            currentHide.ArmorFireResist = level3_prot;
+            currentHide.ArmorEnergyResist = level1_prot;
+            currentHide.ArmorEarthResist = level1_prot;
+            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+
+            currentHide = SilverDragon = new CraftAttributeInfo();
+            currentHide.Difficulty = 140;
+            currentHide.Quality = 3.5;
+            currentHide.ArmorEnergyResist = level2_prot;
+            currentHide.ArmorColdResist = level2_prot;
+            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+
+            currentHide = Balrog = new CraftAttributeInfo();
+            currentHide.Difficulty = 135;
+            currentHide.Quality = 3.1;
+            currentHide.ArmorEnergyResist = level2_prot;
+            currentHide.ArmorNecroResist = level2_prot;
+            currentHide.ArmorEarthResist = level2_prot;
+            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            //level 2 blackrock prot
+
+            currentHide = Angel = new CraftAttributeInfo();
+            // not in script, adding our own values, same as Balrog but with holy instead of necro
+            currentHide.Difficulty = 135;
+            currentHide.Quality = 3.1;
+            currentHide.ArmorEnergyResist = level2_prot;
+            currentHide.ArmorHolyResist = level3_prot;
+            currentHide.ArmorEarthResist = level2_prot;
+            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            //level 2 blackrock prot
+
+            #endregion
+
+            #region OldScales
             CraftAttributeInfo red = RedScales = new CraftAttributeInfo();
 
             red.ArmorFireResist = 10;
@@ -1117,9 +1262,12 @@ namespace Server.Items
             blue.ArmorPoisonResist = -3;
             blue.ArmorEnergyResist = 10;
 
-            //public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
+            #endregion
 
-            #region Mondain's Legacy
+
+
+            #region Mondain's Legacy OldLogs
+            //public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
             CraftAttributeInfo oak = OakWood = new CraftAttributeInfo();
 
             oak.ArmorPhysicalResist = 3;
@@ -1222,7 +1370,7 @@ namespace Server.Items
             frostwood.WeaponDamage = 12;
             #endregion
 
-            #region Logs
+            #region JustZHLogs
             //public static readonly CraftAttributeInfo Pinetree, Cherry, Oak, PurplePassion, GoldenReflection, Hardranger, Jade, Darkwood, Stonewood, Sun, Gauntlet, Swamp,
             // Stardust, SilverLeaf, Stormteal, Emerald, Blood, CrystalLog, Bloodhorse, DoomLog, GoddessLog, ZuluLog, Darkness, Elven;
 
@@ -1452,18 +1600,39 @@ namespace Server.Items
             new CraftResourceInfo(0x283, 1049354, "Spined", CraftAttributeInfo.Spined, CraftResource.SpinedLeather,	typeof(SpinedLeather),	typeof(SpinedHides)),
             new CraftResourceInfo(0x227, 1049355, "Horned", CraftAttributeInfo.Horned, CraftResource.HornedLeather,	typeof(HornedLeather),	typeof(HornedHides)),
             new CraftResourceInfo(0x1C1, 1049356, "Barbed", CraftAttributeInfo.Barbed, CraftResource.BarbedLeather,	typeof(BarbedLeather),	typeof(BarbedHides)),
-            new CraftResourceInfo(0x0494, 1063505, "Dragon Leather", CraftAttributeInfo.Dragon, CraftResource.DragonLeather,	typeof(DragonLeather),	typeof(DragonHides))
+            new CraftResourceInfo(0x0494, 1063505, "Dragon", CraftAttributeInfo.Dragon, CraftResource.DragonLeather,	typeof(DragonLeather),	typeof(DragonHides)),
+            new CraftResourceInfo(0x07e2, 1063505, "Rat", CraftAttributeInfo.Rat, CraftResource.RatLeather,    typeof(RatLeather),  typeof(RatHides)),
+            new CraftResourceInfo(1102, 1063505, "Wolf", CraftAttributeInfo.Wolf, CraftResource.WolfLeather,    typeof(WolfLeather),  typeof(WolfHides)),
+            new CraftResourceInfo(44, 1063505, "Bear", CraftAttributeInfo.Bear, CraftResource.BearLeather,    typeof(BearLeather),  typeof(BearHides)),
+            new CraftResourceInfo(1054, 1063505, "Orc", CraftAttributeInfo.Orc, CraftResource.OrcLeather,    typeof(OrcLeather),  typeof(OrcHides)),
+            new CraftResourceInfo(0x08fd, 1063505, "Serpent", CraftAttributeInfo.Serpent, CraftResource.SerpentLeather,	typeof(SerpentLeather),	typeof(SerpentHides)),
+            new CraftResourceInfo(0x0852, 1063505, "Lizard", CraftAttributeInfo.Lizard, CraftResource.LizardLeather,    typeof(LizardLeather),  typeof(LizardHides)),
+            new CraftResourceInfo(0x054a, 1063505, "Troll", CraftAttributeInfo.Troll, CraftResource.TrollLeather,    typeof(TrollLeather),  typeof(TrollHides)),
+            new CraftResourceInfo(0x415, 1063505, "Ostard", CraftAttributeInfo.Ostard, CraftResource.OstardLeather,    typeof(OstardLeather),  typeof(OstardHides)),
+            new CraftResourceInfo(84, 1063505, "Necromancer", CraftAttributeInfo.Necromancer, CraftResource.NecromancerLeather,    typeof(NecromancerLeather),  typeof(NecromancerHides)),
+            new CraftResourceInfo(1285, 1063505, "Terathan", CraftAttributeInfo.Terathan, CraftResource.TerathanLeather,    typeof(TerathanLeather),  typeof(TerathanHides)),
+            new CraftResourceInfo(0x486, 1063505, "Lava", CraftAttributeInfo.Lava, CraftResource.LavaLeather,    typeof(LavaLeather),  typeof(LavaHides)),
+            new CraftResourceInfo(0x0496, 1063505, "Liche", CraftAttributeInfo.Liche, CraftResource.LicheLeather,    typeof(LicheLeather),  typeof(LicheHides)),
+            new CraftResourceInfo(1645, 1063505, "Daemon", CraftAttributeInfo.Daemon, CraftResource.DaemonLeather,    typeof(DaemonLeather),  typeof(DaemonHides)),
+            new CraftResourceInfo(0x0492, 1063505, "Ice Crystal", CraftAttributeInfo.IceCrystal, CraftResource.IceCrystalLeather,    typeof(IceCrystalLeather),  typeof(IceCrystalHides)),
+            new CraftResourceInfo(1159, 1063505, "Wyrm", CraftAttributeInfo.Wyrm, CraftResource.WyrmLeather,    typeof(WyrmLeather),  typeof(WyrmHides)),
+            new CraftResourceInfo(1157, 1063505, "Balron", CraftAttributeInfo.Balron, CraftResource.BalronLeather,    typeof(BalronLeather),  typeof(BalronHides)),
+            new CraftResourceInfo(48, 1063505, "Golden Dragon", CraftAttributeInfo.GoldenDragon, CraftResource.GoldenDragonLeather,    typeof(GoldenDragonLeather),  typeof(GoldenDragonHides)),
+            new CraftResourceInfo(1154, 1063505, "Silver Dragon", CraftAttributeInfo.SilverDragon, CraftResource.SilverDragonLeather,    typeof(SilverDragonLeather),  typeof(SilverDragonHides)),
+            new CraftResourceInfo(1160, 1063505, "Balrog", CraftAttributeInfo.Balrog, CraftResource.BalrogLeather,    typeof(BalrogLeather),  typeof(BalrogHides)),
+            new CraftResourceInfo(1165, 1063505, "Angel", CraftAttributeInfo.Angel, CraftResource.AngelLeather,    typeof(AngelLeather),  typeof(AngelHides))
+
         };
 
-        private static readonly CraftResourceInfo[] m_AOSLeatherInfo = new CraftResourceInfo[]
-        {
-            new CraftResourceInfo(0x000, 1049353, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularLeather,	typeof(Leather), typeof(Hides)),
-            new CraftResourceInfo(0x8AC, 1049354, "Spined", CraftAttributeInfo.Spined, CraftResource.SpinedLeather,	typeof(SpinedLeather),	typeof(SpinedHides)),
-            new CraftResourceInfo(0x845, 1049355, "Horned", CraftAttributeInfo.Horned, CraftResource.HornedLeather,	typeof(HornedLeather),	typeof(HornedHides)),
-            new CraftResourceInfo(0x851, 1049356, "Barbed", CraftAttributeInfo.Barbed, CraftResource.BarbedLeather,	typeof(BarbedLeather),	typeof(BarbedHides)),
-            new CraftResourceInfo(0x0494, 1063505, "Dragon Leather", CraftAttributeInfo.Dragon, CraftResource.DragonLeather,	typeof(DragonLeather),	typeof(DragonHides))
-            
-        };
+        // JustZH: we don't need this
+        //private static readonly CraftResourceInfo[] m_AOSLeatherInfo = new CraftResourceInfo[]
+        //{
+        //    new CraftResourceInfo(0x000, 1049353, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularLeather,	typeof(Leather), typeof(Hides)),
+        //    new CraftResourceInfo(0x8AC, 1049354, "Spined", CraftAttributeInfo.Spined, CraftResource.SpinedLeather,	typeof(SpinedLeather),	typeof(SpinedHides)),
+        //    new CraftResourceInfo(0x845, 1049355, "Horned", CraftAttributeInfo.Horned, CraftResource.HornedLeather,	typeof(HornedLeather),	typeof(HornedHides)),
+        //    new CraftResourceInfo(0x851, 1049356, "Barbed", CraftAttributeInfo.Barbed, CraftResource.BarbedLeather,	typeof(BarbedLeather),	typeof(BarbedHides)),
+
+        //};
 
         private static readonly CraftResourceInfo[] m_WoodInfo = new CraftResourceInfo[]
         {
@@ -1551,7 +1720,7 @@ namespace Server.Items
                     list = m_MetalInfo;
                     break;
                 case CraftResourceType.Leather:
-                    list = Core.AOS ? m_AOSLeatherInfo : m_LeatherInfo;
+                    list = /*Core.AOS ? m_AOSLeatherInfo :*/ m_LeatherInfo; // JustZH: we only want to keep one list..
                     break;
                 case CraftResourceType.Scales:
                     list = m_ScaleInfo;
@@ -1580,7 +1749,7 @@ namespace Server.Items
             if (resource >= CraftResource.Iron && resource <= CraftResource.RND)
                 return CraftResourceType.Metal;
 
-            if (resource >= CraftResource.RegularLeather && resource <= CraftResource.DragonLeather)
+            if (resource >= CraftResource.RegularLeather && resource <= CraftResource.AngelLeather)
                 return CraftResourceType.Leather;
 
             if (resource >= CraftResource.RedScales && resource <= CraftResource.BlueScales)

@@ -116,7 +116,28 @@ namespace Server.Mobiles
         Spined,
         Horned,
         Barbed,
-        Fur
+        Fur,
+        Dragon,
+        Rat,
+        Wolf,
+        Bear,
+        Orc,
+        Serpent,
+        Lizard,
+        Troll,
+        Ostard,
+        Necromancer,
+        Lava,
+        Liche,
+        Terathan,
+        Daemon,
+        IceCrystal,
+        Wyrm,
+        Balron,
+        GoldenDragon,
+        SilverDragon,
+        Balrog,
+        Angel
     }
     #endregion
 
@@ -549,7 +570,7 @@ namespace Server.Mobiles
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int EarthDamage { get { return m_EarthDamage; } set { m_EarthDamage = value; } }
-        
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int NecroDamage { get { return m_NecroDamage; } set { m_NecroDamage = value; } }
 
@@ -1196,11 +1217,11 @@ namespace Server.Mobiles
         }
 
         private static readonly Type[] m_AnimateDeadTypes = new[]
-		{
-			typeof(MoundOfMaggots), typeof(HellSteed), typeof(SkeletalMount), typeof(WailingBanshee), typeof(Wraith),
-			typeof(SkeletalDragon), typeof(LichLord), typeof(FleshGolem), typeof(Lich), typeof(SkeletalKnight),
-			typeof(BoneKnight), typeof(Mummy), typeof(SkeletalMage), typeof(BoneMagi), typeof(PatchworkSkeleton)
-		};
+        {
+            typeof(MoundOfMaggots), typeof(HellSteed), typeof(SkeletalMount), typeof(WailingBanshee), typeof(Wraith),
+            typeof(SkeletalDragon), typeof(LichLord), typeof(FleshGolem), typeof(Lich), typeof(SkeletalKnight),
+            typeof(BoneKnight), typeof(Mummy), typeof(SkeletalMage), typeof(BoneMagi), typeof(PatchworkSkeleton)
+        };
 
         public virtual bool IsAnimatedDead
         {
@@ -1338,9 +1359,9 @@ namespace Server.Mobiles
             return (p != null && p.RealLevel >= poison.RealLevel);
         }
 
-       /* [CommandProperty(AccessLevel.GameMaster)]
-        public int Loyalty { get { return m_Loyalty; } set { m_Loyalty = Math.Min(Math.Max(value, 0), MaxLoyalty); } }
-        */
+        /* [CommandProperty(AccessLevel.GameMaster)]
+         public int Loyalty { get { return m_Loyalty; } set { m_Loyalty = Math.Min(Math.Max(value, 0), MaxLoyalty); } }
+         */
         [CommandProperty(AccessLevel.GameMaster)]
         public int Loyalty { get { return m_Loyalty; } set { m_Loyalty = MaxLoyalty; } }
 
@@ -1678,18 +1699,19 @@ namespace Server.Mobiles
                     hides = (int)Math.Ceiling(hides * 1.1); // 10% bonus only applies to hides, ore & logs
                 }*/
 
-                if (corpse.Map == Map.Felucca)
-                {
-                    feathers *= 2;
-                    wool *= 2;
-                    hides *= 2;
+                // JustZH: same amount everywhere for us.
+                //if (corpse.Map == Map.Felucca)
+                //{
+                //    feathers *= 2;
+                //    wool *= 2;
+                //    hides *= 2;
 
-                    if (Core.ML)
-                    {
-                        meat *= 2;
-                        scales *= 2;
-                    }
-                }
+                //    if (Core.ML)
+                //    {
+                //        meat *= 2;
+                //        scales *= 2;
+                //    }
+                //}
 
                 new Blood(0x122D).MoveToWorld(corpse.Location, corpse.Map);
 
@@ -1734,74 +1756,138 @@ namespace Server.Mobiles
                 {
                     Item holding = from.Weapon as Item;
 
-                    if (Core.AOS && (holding is SkinningKnife /* TODO: || holding is ButcherWarCleaver || with is ButcherWarCleaver */))
+                    //if (Core.AOS && (holding is SkinningKnife /* TODO: || holding is ButcherWarCleaver || with is ButcherWarCleaver */))
+                    //{
+                    // JustZH: this is our default behaviour, we do not care bout equipped item.
+                    Item leather = null;
+
+                    switch (HideType)
                     {
-                        Item leather = null;
+                        case HideType.Regular:
+                            leather = new Hides(hides);
+                            break;
+                        case HideType.Spined:
+                            //leather = new SpinedHides(hides);
+                            leather = new Hides(hides);
+                            break;
+                        case HideType.Horned:
+                            //leather = new HornedHides(hides);
+                            leather = new Hides(hides);
+                            break;
+                        case HideType.Barbed:
+                            //leather = new BarbedHides(hides);
+                            leather = new Hides(hides);
+                            break;
+                        case HideType.Rat:
+                            leather = new RatHides(hides);
+                            break;
+                        case HideType.Wolf:
+                            leather = new WolfHides(hides);
+                            break;
+                        case HideType.Bear:
+                            leather = new BearHides(hides);
+                            break;
+                        case HideType.Orc:
+                            leather = new OrcHides(hides);
+                            break;
+                        case HideType.Serpent:
+                            leather = new SerpentHides(hides);
+                            break;
+                        case HideType.Lizard:
+                            leather = new LizardHides(hides);
+                            break;
+                        case HideType.Troll:
+                            leather = new TrollHides(hides);
+                            break;
+                        case HideType.Ostard:
+                            leather = new OstardHides(hides);
+                            break;
+                        case HideType.Necromancer:
+                            leather = new NecromancerHides(hides);
+                            break;
+                        case HideType.Lava:
+                            leather = new LavaHides(hides);
+                            break;
+                        case HideType.Liche:
+                            leather = new LicheHides(hides);
+                            break;
+                        case HideType.Terathan:
+                            leather = new TerathanHides(hides);
+                            break;
+                        case HideType.Daemon:
+                            leather = new DaemonHides(hides);
+                            break;
+                        case HideType.IceCrystal:
+                            leather = new IceCrystalHides(hides);
+                            break;
+                        case HideType.Wyrm:
+                            leather = new WyrmHides(hides);
+                            break;
+                        case HideType.Balron:
+                            leather = new BalronHides(hides);
+                            break;
+                        case HideType.GoldenDragon:
+                            leather = new GoldenDragonHides(hides);
+                            break;
+                        case HideType.SilverDragon:
+                            leather = new SilverDragonHides(hides);
+                            break;
+                        case HideType.Balrog:
+                            leather = new BalrogHides(hides);
+                            break;
+                        case HideType.Angel:
+                            leather = new AngelHides(hides);
+                            break;
+                    }
 
-                        switch (HideType)
+                    if (leather != null)
+                    {
+                        if (!from.PlaceInBackpack(leather))
                         {
-                            case HideType.Regular:
-                                leather = new Leather(hides);
-                                break;
-                            case HideType.Spined:
-                                leather = new SpinedLeather(hides);
-                                break;
-                            case HideType.Horned:
-                                leather = new HornedLeather(hides);
-                                break;
-                            case HideType.Barbed:
-                                leather = new BarbedLeather(hides);
-                                break;
+                            //corpse.DropItem(leather);
+                            // 
+                            //AddItem(leather);
+                            from.AddToBackpack(leather);
+                            //PackItem(leather);
+                            from.SendLocalizedMessage(500471); // You skin it, and the hides are now in the corpse.
                         }
-
-                        if (leather != null)
+                        else
                         {
-                            if (!from.PlaceInBackpack(leather))
-                            {
-                                //corpse.DropItem(leather);
-                                // 
-                                //AddItem(leather);
-                                from.AddToBackpack(leather);
-                                //PackItem(leather);
-                                from.SendLocalizedMessage(500471); // You skin it, and the hides are now in the corpse.
-                            }
-                            else
-                            {
-                                from.SendLocalizedMessage(1073555); // You skin it and place the cut-up hides in your backpack.
-                            }
+                            from.SendLocalizedMessage(1073555); // You skin it and place the cut-up hides in your backpack.
                         }
                     }
-                    else
-                    {
-                        if (HideType == HideType.Regular)
-                        {
-                            AddItem(new Hides(hides));
-                            // PackItem(new Hides(hides));
-                            //corpse.DropItem(new Hides(hides));
-                        }
-                        else if (HideType == HideType.Spined)
-                        {
-                            AddItem(new SpinedHides(hides));
-                            //  PackItem(new SpinedHides(hides));
-                            //corpse.DropItem(new SpinedHides(hides));
-                        }
-                        else if (HideType == HideType.Horned)
-                        {
-                            AddItem(new HornedHides(hides));
-                            //  PackItem(new HornedHides(hides));
-                            //corpse.DropItem(new HornedHides(hides));
-                        }
-                        else if (HideType == HideType.Barbed)
-                        {
+                    //}
+                    //else
+                    //{
+                    //    if (HideType == HideType.Regular)
+                    //    {
+                    //        AddItem(new Hides(hides));
+                    //        // PackItem(new Hides(hides));
+                    //        //corpse.DropItem(new Hides(hides));
+                    //    }
+                    //    else if (HideType == HideType.Spined)
+                    //    {
+                    //        AddItem(new SpinedHides(hides));
+                    //        //  PackItem(new SpinedHides(hides));
+                    //        //corpse.DropItem(new SpinedHides(hides));
+                    //    }
+                    //    else if (HideType == HideType.Horned)
+                    //    {
+                    //        AddItem(new HornedHides(hides));
+                    //        //  PackItem(new HornedHides(hides));
+                    //        //corpse.DropItem(new HornedHides(hides));
+                    //    }
+                    //    else if (HideType == HideType.Barbed)
+                    //    {
 
-                            //AddItem(new BarbedHides(hides));
-                            from.AddToBackpack(new BarbedHides(hides));
-                            //PackItem(new BarbedHides(hides));
-                            //corpse.DropItem(new BarbedHides(hides));
-                        }
+                    //        //AddItem(new BarbedHides(hides));
+                    //        from.AddToBackpack(new BarbedHides(hides));
+                    //        //PackItem(new BarbedHides(hides));
+                    //        //corpse.DropItem(new BarbedHides(hides));
+                    //    }
 
-                        from.SendLocalizedMessage(500471); // You skin it, and the hides are now in the corpse.
-                    }
+                    //    from.SendLocalizedMessage(500471); // You skin it, and the hides are now in the corpse.
+                    //}
                 }
 
                 /*if (scales != 0)
@@ -2446,33 +2532,33 @@ namespace Server.Mobiles
         private static readonly Type[] m_GrainsAndHay = new[] { typeof(BreadLoaf), typeof(FrenchBread), typeof(SheafOfHay) };
 
         private static readonly Type[] m_Meat = new[]
-		{
+        {
 			/* Cooked */
 			typeof(Bacon), typeof(CookedBird), typeof(Sausage), typeof(Ham), typeof(Ribs), typeof(LambLeg), typeof(ChickenLeg),
 			/* Uncooked */
 			typeof(RawBird), typeof(RawRibs), typeof(RawLambLeg), typeof(RawChickenLeg), /* Body Parts */
 			typeof(Head), typeof(LeftArm), typeof(LeftLeg), typeof(Torso), typeof(RightArm), typeof(RightLeg)
-		};
+        };
 
         private static readonly Type[] m_FruitsAndVegies = new[]
-		{
-			typeof(HoneydewMelon), typeof(YellowGourd), typeof(GreenGourd), typeof(Banana), typeof(Bananas), typeof(Lemon),
-			typeof(Lime), typeof(Dates), typeof(Grapes), typeof(Peach), typeof(Pear), typeof(Apple), typeof(Watermelon),
-			typeof(Squash), typeof(Cantaloupe), typeof(Carrot), typeof(Cabbage), typeof(Onion), typeof(Lettuce), typeof(Pumpkin)
-		};
+        {
+            typeof(HoneydewMelon), typeof(YellowGourd), typeof(GreenGourd), typeof(Banana), typeof(Bananas), typeof(Lemon),
+            typeof(Lime), typeof(Dates), typeof(Grapes), typeof(Peach), typeof(Pear), typeof(Apple), typeof(Watermelon),
+            typeof(Squash), typeof(Cantaloupe), typeof(Carrot), typeof(Cabbage), typeof(Onion), typeof(Lettuce), typeof(Pumpkin)
+        };
 
         private static Type[] m_Gold = new[]
-		{
+        {
 			// white wyrms eat gold..
 			typeof(Gold)
-		};
+        };
 
         private static readonly Type[] m_Metal = new[]
-		{
+        {
 			// Some Stygian Abyss Monsters eat Metal..
 			typeof(IronIngot), typeof(DullCopperIngot), typeof(ShadowIronIngot), typeof(CopperIngot), typeof(BronzeIngot),
-			typeof(GoldIngot), typeof(AgapiteIngot), typeof(VeriteIngot), typeof(ValoriteIngot)
-		};
+            typeof(GoldIngot), typeof(AgapiteIngot), typeof(VeriteIngot), typeof(ValoriteIngot)
+        };
 
         public virtual bool CheckFoodPreference(Item f)
         {
@@ -2646,8 +2732,8 @@ namespace Server.Mobiles
 
         public virtual void OnActionCombat()
         {
-            
-        
+
+
         }
 
         public virtual void OnActionGuard()
@@ -3071,11 +3157,11 @@ namespace Server.Mobiles
 
         public virtual void OnGotMeleeAttack(Mobile attacker)
         {
-            
+
             if (AutoDispel && attacker is BaseCreature && ((BaseCreature)attacker).IsDispellable &&
                 AutoDispelChance > Utility.RandomDouble())
             {
-              //  Dispel(attacker); //JustZH why dispell?
+                //  Dispel(attacker); //JustZH why dispell?
             }
         }
 
@@ -3091,7 +3177,7 @@ namespace Server.Mobiles
 
         public virtual void OnGaveMeleeAttack(Mobile defender)
         {
-            
+
             Poison p = HitPoison;
 
             XmlPoison xp = (XmlPoison)XmlAttach.FindAttachment(this, typeof(XmlPoison));
@@ -4039,7 +4125,7 @@ namespace Server.Mobiles
             m_DamageMin = min;
             m_DamageMax = max;
             BaseWeapon wep = this.Weapon as BaseWeapon;
-            if(wep != null )
+            if (wep != null)
             {
                 const int max_sides = 6;
                 const int min_sides = 3;
@@ -4047,7 +4133,7 @@ namespace Server.Mobiles
                 if (dmg_diff > max_sides)
                 {
                     int best_sides = max_sides;
-                    for(int i = max_sides; i >= min_sides ; i --)
+                    for (int i = max_sides; i >= min_sides; i--)
                     {
                         best_sides = i;
                         if (dmg_diff % i == 0) break;
@@ -4060,7 +4146,7 @@ namespace Server.Mobiles
                     wep.Dice_Sides = dmg_diff;
                     wep.Dice_Num = 1;
                 }
-                
+
                 wep.Dice_Offset = min - wep.Dice_Num;
                 int max_dmg = (wep.Dice_Sides * wep.Dice_Num + wep.Dice_Offset);
                 if (max - max_dmg > wep.Dice_Sides) wep.Dice_Num += (max - max_dmg) / wep.Dice_Sides;
@@ -4270,7 +4356,7 @@ namespace Server.Mobiles
                     SetResistance(type, Utility.RandomMinMax(85, 105));
                     break;
             }
-            
+
         }
 
         public void SetResistance(ResistanceType type, int val)
@@ -4438,7 +4524,7 @@ namespace Server.Mobiles
                 return;
             }
 
-          //  PackItem(Loot.Construct(Loot.ArcanistScrollTypes));
+            //  PackItem(Loot.Construct(Loot.ArcanistScrollTypes));
         }
 
         public void PackNecroScroll(int index)
@@ -4558,7 +4644,7 @@ namespace Server.Mobiles
 
         public virtual void AddLoot(LootPack pack)
         {
-           // Console.WriteLine("AddLoot");
+            // Console.WriteLine("AddLoot");
             if (Summoned)
             {
                 return;
@@ -4585,7 +4671,7 @@ namespace Server.Mobiles
 
         public bool PackArmor(int minLevel, int maxLevel, double chance)
         {
-            
+
             if (chance <= Utility.RandomDouble())
             {
                 return false;
@@ -5372,11 +5458,11 @@ namespace Server.Mobiles
         public virtual bool GivesSAArtifact { get { return false; } }
 
         private static readonly Type[] m_SAArtifacts = new[]
-		{
-			typeof(AxesOfFury), typeof(BreastplateOfTheBerserker), typeof(EternalGuardianStaff), typeof(LegacyOfDespair),
-			typeof(GiantSteps), typeof(StaffOfShatteredDreams), typeof(PetrifiedSnake), typeof(StoneDragonsTooth),
-			typeof(TokenOfHolyFavor), typeof(SwordOfShatteredHopes), typeof(Venom), typeof(StormCaller)
-		};
+        {
+            typeof(AxesOfFury), typeof(BreastplateOfTheBerserker), typeof(EternalGuardianStaff), typeof(LegacyOfDespair),
+            typeof(GiantSteps), typeof(StaffOfShatteredDreams), typeof(PetrifiedSnake), typeof(StoneDragonsTooth),
+            typeof(TokenOfHolyFavor), typeof(SwordOfShatteredHopes), typeof(Venom), typeof(StormCaller)
+        };
 
         public static void GiveSAArtifact(Mobile m)
         {
@@ -5854,11 +5940,11 @@ namespace Server.Mobiles
         }
 
         private static readonly Type[] m_MinorArtifactsMl = new[]
-		{
-			typeof(AegisOfGrace), typeof(BladeDance), typeof(Bonesmasher), typeof(Boomstick), typeof(FeyLeggings),
-			typeof(FleshRipper), typeof(HelmOfSwiftness), typeof(PadsOfTheCuSidhe), typeof(QuiverOfRage),
-			typeof(QuiverOfElements), typeof(RaedsGlory), typeof(RighteousAnger), typeof(RobeOfTheEclipse),
-			typeof(RobeOfTheEquinox), typeof(SoulSeeker), typeof(TalonBite), typeof(WildfireBow), typeof(Windsong),
+        {
+            typeof(AegisOfGrace), typeof(BladeDance), typeof(Bonesmasher), typeof(Boomstick), typeof(FeyLeggings),
+            typeof(FleshRipper), typeof(HelmOfSwiftness), typeof(PadsOfTheCuSidhe), typeof(QuiverOfRage),
+            typeof(QuiverOfElements), typeof(RaedsGlory), typeof(RighteousAnger), typeof(RobeOfTheEclipse),
+            typeof(RobeOfTheEquinox), typeof(SoulSeeker), typeof(TalonBite), typeof(WildfireBow), typeof(Windsong),
 			// TODO: Brightsight lenses, Bloodwood spirit, Totem of the void
 		};
 
@@ -5866,7 +5952,7 @@ namespace Server.Mobiles
 
         private static bool EnableRummaging = true;
 
-      //  private const double ChanceToRummage = 0.5; // 50%
+        //  private const double ChanceToRummage = 0.5; // 50%
         private const double ChanceToRummage = 0.0; // 0%
 
         private const double MinutesToNextRummageMin = 1.0;
