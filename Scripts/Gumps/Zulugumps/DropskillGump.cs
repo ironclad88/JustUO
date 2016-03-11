@@ -19,18 +19,8 @@ namespace Server.Gumps.Zulugumps
         // number of skill boosts
         const int NUMBER_OF_BOOSTS = 3;
 
+
         public DropskillGump(Mobile owner)
-            : this(owner, ResurrectMessage.Generic, false)
-        {
-        }
-
-
-        public DropskillGump(Mobile owner, ResurrectMessage msg, bool fromSacrifice)
-            : this(owner, msg)
-        {
-        }
-
-        public DropskillGump(Mobile owner, ResurrectMessage msg)
             : base(100, 0)
         {
 

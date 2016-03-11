@@ -16,18 +16,8 @@ namespace Server.Gumps.Zulugumps
 
         private Skill _skill;
 
+
         public SureCheckGump(Mobile owner, Skill skilltype, string name)
-            : this(owner, ResurrectMessage.Generic, false, skilltype, name)
-        {
-        }
-
-
-        public SureCheckGump(Mobile owner, ResurrectMessage msg, bool fromSacrifice, Skill skilltype, string name)
-            : this(owner, msg, skilltype, name)
-        {
-        }
-
-        public SureCheckGump(Mobile owner, ResurrectMessage msg, Skill skilltype, string name)
             : base(100, 0)
         {
 

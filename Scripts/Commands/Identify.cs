@@ -11,8 +11,8 @@ namespace Server.Commands
     {
         public static void Initialize()
         {
-            CommandSystem.Register("Identify", AccessLevel.Administrator, new CommandEventHandler(Identify_OnCommand));
-            CommandSystem.Register("id", AccessLevel.Administrator, new CommandEventHandler(Identify_OnCommand));
+            CommandSystem.Register("Identify", AccessLevel.GameMaster, new CommandEventHandler(Identify_OnCommand));
+            CommandSystem.Register("id", AccessLevel.GameMaster, new CommandEventHandler(Identify_OnCommand));
         }
 
         [Usage("Identify")]

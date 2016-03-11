@@ -402,6 +402,7 @@
     <Compile Include="Accounting\AccountTag.cs" />
     <Compile Include="Accounting\Firewall.cs" />
     <Compile Include="Accounting\IPLimiter.cs" />
+    <Compile Include="Commands\Fame.cs" />
     <Compile Include="Commands\Heal.cs" />
     <Compile Include="Custom Systems\Auction System\Auction Bot\AuctionBotController.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionComparer.cs" />
