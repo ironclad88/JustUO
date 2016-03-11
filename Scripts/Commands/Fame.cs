@@ -18,8 +18,8 @@ namespace Server.Commands
         {
             Mobile m = e.Mobile;
 
-            e.Mobile.SendMessage($"Fame: {e.Mobile.Fame}");
-            e.Mobile.SendMessage($"Karma: {e.Mobile.Karma}");
+            e.Mobile.SendMessage("Fame: {0}", e.Mobile.Fame);
+            e.Mobile.SendMessage("Karma: {0}", e.Mobile.Karma);
             
         }
     }
