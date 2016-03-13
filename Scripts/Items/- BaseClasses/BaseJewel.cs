@@ -327,6 +327,38 @@ namespace Server.Items
                 return this.m_AosResistances.Holy;
             }
         }
+
+        public override int PermaMagicResistance
+        {
+            get
+            {
+                return this.m_AosResistances.PermaMagicImunity;
+            }
+        }
+
+        public override int FreeActionResistance
+        {
+            get
+            {
+                return this.m_AosResistances.FreeAction;
+            }
+        }
+
+        public override int HealingResistance
+        {
+            get
+            {
+                return this.m_AosResistances.HealingMod;
+            }
+        }
+
+        public override int PermaMagicReflectResistance
+        {
+            get
+            {
+                return this.m_AosResistances.PermaMagicReflect;
+            }
+        }
         public virtual int BaseGemTypeNumber
         {
             get
@@ -570,17 +602,7 @@ namespace Server.Items
                 from.VirtualArmorMod = GetArmorRating(from);
                 from.CheckStatTimers();
 
-                if (this.m_AosResistances.PermaMagic != 0)
-                {
-                    var PermaMagicValue = this.Resistances.PermaMagic;
-                    from.PermaMagic = PermaMagicValue;
-                }
-
-                if (this.m_AosResistances.FreeAction != 0)
-                {
-                    from.FreeAction = true;
-                }
-
+                from.UpdateResistances(); // added this, solved some bugs, but it will probably slow down the server.... i think its negligible
 
                 #region Mondain's Legacy Sets
                 if (this.IsSetItem)
@@ -639,16 +661,7 @@ namespace Server.Items
                 from.CheckStatTimers();
                 from.VirtualArmorMod = GetArmorRating(from);
 
-                if (this.m_AosResistances.FreeAction != 0)
-                {
-                    from.FreeAction = false;
-                }
-
-                if (this.m_AosResistances.PermaMagic != 0)
-                {
-                    var PermaMagicValue = this.Resistances.PermaMagic;
-                    from.PermaMagic = PermaMagicValue;
-                }
+                from.UpdateResistances(); // added this, solved some bugs, but it will probably slow down the server.... i think its negligible
 
                 #region Mondain's Legacy Sets
                 if (this.IsSetItem && this.m_SetEquipped)

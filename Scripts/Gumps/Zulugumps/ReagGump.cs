@@ -14,6 +14,7 @@ namespace Server.Gumps.Zulugumps
         public ReagGump(Mobile owner)
             : base(100, 0)
         {
+            getReagCount(owner);
 
             this.Closable = true;
             this.Disposable = true;
@@ -24,36 +25,37 @@ namespace Server.Gumps.Zulugumps
             this.AddBackground(34, 30, 350, 554, 9200);
             this.AddLabel(175, 40, 0, @"Reagents");
             this.AddLabel(175, 231, 0, @"Pagans");
-            this.AddImage(51, 77, 3976);
-            this.AddImage(51, 77, 3976);
-            this.AddImage(51, 119, 3980);
+
+            this.AddItem(51, 77, 3976);
+            this.AddItem(51, 77, 3976);
+            this.AddItem(51, 119, 3980);
             this.AddLabel(93, 78, 0, @"New Label");
             this.AddLabel(94, 115, 0, @"New Label");
-            this.AddImage(52, 155, 3981);
-            this.AddImage(50, 195, 3974);
-            this.AddImage(241, 78, 3973);
-            this.AddImage(251, 115, 3972);
-            this.AddImage(250, 156, 3963);
-            this.AddImage(247, 196, 3962);
-            this.AddImage(254, 208, 3962);
-            this.AddImage(55, 258, 3971);
-            this.AddImage(58, 298, 3975);
-            this.AddImage(60, 326, 3977);
-            this.AddImage(58, 359, 3978);
-            this.AddImage(246, 264, 3979);
-            this.AddImage(255, 292, 3985);
-            this.AddImage(255, 331, 3984);
-            this.AddImage(250, 364, 3983);
-            this.AddImage(66, 399, 3970);
-            this.AddImage(255, 404, 3960);
-            this.AddImage(57, 442, 3966);
-            this.AddImage(261, 443, 3969);
-            this.AddImage(252, 481, 3979);
-            this.AddImage(68, 475, 3982);
-            this.AddImage(68, 509, 3964);
-            this.AddImage(254, 513, 3967);
-            this.AddImage(253, 547, 3968);
-            this.AddImage(63, 541, 3965);
+            this.AddItem(52, 155, 3981);
+            this.AddItem(50, 195, 3974);
+            this.AddItem(241, 78, 3973);
+            this.AddItem(251, 115, 3972);
+            this.AddItem(250, 156, 3963);
+            this.AddItem(247, 196, 3962);
+            this.AddItem(254, 208, 3962);
+            this.AddItem(55, 258, 3971);
+            this.AddItem(58, 298, 3975);
+            this.AddItem(60, 326, 3977);
+            this.AddItem(58, 359, 3978);
+            this.AddItem(246, 264, 3979);
+            this.AddItem(255, 292, 3985);
+            this.AddItem(255, 331, 3984);
+            this.AddItem(250, 364, 3983);
+            this.AddItem(66, 399, 3970);
+            this.AddItem(255, 404, 3960);
+            this.AddItem(57, 442, 3966);
+            this.AddItem(261, 443, 3969);
+            this.AddItem(252, 481, 3979);
+            this.AddItem(68, 475, 3982);
+            this.AddItem(68, 509, 3964);
+            this.AddItem(254, 513, 3967);
+            this.AddItem(253, 547, 3968);
+            this.AddItem(63, 541, 3965);
 
             this.AddLabel(93, 153, 0, @"New Label");
             this.AddLabel(95, 194, 0, @"New Label");
@@ -81,25 +83,10 @@ namespace Server.Gumps.Zulugumps
             this.AddLabel(103, 542, 0, @"New Label");
         }
 
-       /* private int getReagCount(BaseReagent reagName, Mobile from)
+        private int getReagCount(Mobile from)
         {
-            dynamic test = typeof(Nightshade);
-            Item[] reag = from.Backpack.FindItemsByType(test, true);
-
-            int reagsTotal = 0;
-
-            for (int i = 0; i < reag.Length; i++)
-            {
-                Nightshade shard = (Nightshade)reag[i];
-
-                if (shard.Stackable)
-                    reagsTotal += shard.Amount;
-                else
-                    reagsTotal++;
-            }
-
-           // from.Backpack.FindItemByType(typeof(Nightshade)).Amount;
+            from.SendMessage("Not yet implemented");
             return 0;
-        }*/
+        }
     }
 }

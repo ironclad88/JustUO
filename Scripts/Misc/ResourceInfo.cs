@@ -146,6 +146,7 @@ namespace Server.Items
         private int m_ArmorEnergyResist;
         private int m_ArmorEarthResist;
         private int m_ArmorNecroResist;
+        private int m_ArmorMagicResist;
         private int m_ArmorHolyResist;
         private int m_ArmorDurability;
         private int m_ArmorLuck;
@@ -368,6 +369,17 @@ namespace Server.Items
             set
             {
                 this.m_ArmorEarthResist = value;
+            }
+        }
+        public int ArmorMagicResist
+        {
+            get
+            {
+                return this.m_ArmorMagicResist;
+            }
+            set
+            {
+                this.m_ArmorMagicResist = value;
             }
         }
         public int ArmorNecroResist
@@ -1193,6 +1205,7 @@ namespace Server.Items
             currentHide.Quality = 2.9;
             currentHide.ArmorNecroResist = level1_prot;
             //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.ArmorMagicResist = 1;
             //level 1 blackrock prot
 
             currentHide = GoldenDragon = new CraftAttributeInfo();
@@ -1217,6 +1230,7 @@ namespace Server.Items
             currentHide.ArmorNecroResist = level2_prot;
             currentHide.ArmorEarthResist = level2_prot;
             //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.ArmorMagicResist = 2;
             //level 2 blackrock prot
 
             currentHide = Angel = new CraftAttributeInfo();
@@ -1226,7 +1240,8 @@ namespace Server.Items
             currentHide.ArmorEnergyResist = level2_prot;
             currentHide.ArmorHolyResist = level3_prot;
             currentHide.ArmorEarthResist = level2_prot;
-            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+
+            currentHide.ArmorMagicResist = 2; //JustZH for later
             //level 2 blackrock prot
 
             #endregion

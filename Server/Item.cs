@@ -1347,10 +1347,28 @@ namespace Server
                 list.Add("Holy Resistance " + v.ToString() + "%");
             }
 
-            v = FreeAction; // won´t work :( awwwwww
+            v = FreeActionResistance; 
             if (v != 0)
             {
                 list.Add("Permanent paralyze Immunity");
+            }
+
+            v = PermaMagicResistance; 
+            if (v != 0)
+            {
+                list.Add("Magic Immunity level: " + v.ToString());
+            }
+
+            v = HealingResistance;
+            if (v != 0)
+            {
+                list.Add("Healing modification level: " + v.ToString()); // dunno a good name atm // JustZH
+            }
+
+            v = PermaMagicReflectResistance;
+            if (v != 0)
+            {
+                list.Add("Magic Reflect level: " + v.ToString()); // dunno a good name atm // JustZH
             }
         }
 
@@ -4549,10 +4567,11 @@ namespace Server
         public virtual int EnergyResistance { get { return 0; } }
         public virtual int EarthResistance { get { return 0; } }
         public virtual int NecroResistance { get { return 0; } }
-        public virtual int FreeAction { get { return 0; } }
-        public virtual int PermaMagic { get { return 0; } }
-        public virtual int HealingMod { get { return 0; } }
+        public virtual int FreeActionResistance { get { return 0; } }
+        public virtual int PermaMagicResistance { get { return 0; } }
+        public virtual int HealingResistance { get { return 0; } }
         public virtual int HolyResistance { get { return 0; } }
+        public virtual int PermaMagicReflectResistance { get { return 0; } }
 
         [CommandProperty(AccessLevel.Counselor)]
         public Serial Serial { get { return m_Serial; } }

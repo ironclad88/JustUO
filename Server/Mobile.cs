@@ -470,9 +470,10 @@ namespace Server
         Earth,
         Necro,
         Holy,
+        PermaMagicImmunity,
         FreeAction,
-        PermaMagic,
-        Healing
+        Healing,
+        PermaMagicReflect
     }
 
     public enum ApplyPoisonResult
@@ -804,9 +805,6 @@ namespace Server
         private Timer _ManaTimer, _HitsTimer, _StamTimer;
         private long _NextSkillTime;
         private long _NextActionMessage;
-        private bool _FreeActionEquipped;
-        private int _PermaMagicEquipped;
-        private int _HealingModEquipped;
         private bool _Paralyzed;
         private ParalyzedTimer _ParaTimer;
         private bool _Sleep;
@@ -907,6 +905,10 @@ namespace Server
         public virtual int BaseEarthResistance { get { return 0; } }
         public virtual int BaseNecroResistance { get { return 0; } }
         public virtual int BaseHolyResistance { get { return 0; } }
+        public virtual int BasePermaMagicResistance { get { return 0; } }
+        public virtual int BaseFreeActionResistance { get { return 0; } }
+        public virtual int BaseHealingResistance { get { return 0; } }
+        public virtual int BaseMagicReflectResistance { get { return 0; } }
 
         public virtual void ComputeLightLevels(out int global, out int personal)
         {
@@ -951,11 +953,23 @@ namespace Server
         [CommandProperty(AccessLevel.Counselor)]
         public virtual int HolyResistance { get { return GetResistance(ResistanceType.Holy); } }
 
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int PermaMagicResistance { get { return GetResistance(ResistanceType.PermaMagicImmunity); } }
+
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int FreeActionResistance { get { return GetResistance(ResistanceType.FreeAction); } }
+
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int HealingResistance { get { return GetResistance(ResistanceType.Healing); } }
+
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int PermaMagicReflectResistance { get { return GetResistance(ResistanceType.PermaMagicReflect); } }
+
         public virtual void UpdateResistances()
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             bool delta = false;
@@ -979,7 +993,7 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             var v = (int)type;
@@ -1039,10 +1053,10 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
-            int[] MaxResBonus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] MaxResBonus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             for (int i = 0; i < _Resistances.Length; ++i)
             {
@@ -1057,6 +1071,11 @@ namespace Server
             _Resistances[5] += BaseEarthResistance;
             _Resistances[6] += BaseNecroResistance;
             _Resistances[7] += BaseHolyResistance;
+            _Resistances[8] += BasePermaMagicResistance;
+            _Resistances[9] += BaseFreeActionResistance;
+            _Resistances[10] += BaseHealingResistance;
+            _Resistances[11] += BaseMagicReflectResistance;
+            // BaseFreeActionResistance
 
             for (int i = 0; _ResistMods != null && i < _ResistMods.Count; ++i)
             {
@@ -1089,6 +1108,35 @@ namespace Server
                     MaxResBonus[5] = Math.Max(MaxResBonus[5], item.EarthResistance);
                     MaxResBonus[6] = Math.Max(MaxResBonus[6], item.NecroResistance);
                     MaxResBonus[7] = Math.Max(MaxResBonus[7], item.HolyResistance);
+                    if (this.PermaMagicResistance <= item.PermaMagicResistance)
+                    {
+                        MaxResBonus[8] = Math.Max(MaxResBonus[8], item.PermaMagicResistance);
+                    }
+                    else {
+                        MaxResBonus[8] = Math.Max(MaxResBonus[8], this.PermaMagicResistance);
+                    }
+                    if(this.FreeActionResistance != 0)
+                    {
+                        MaxResBonus[9] = Math.Max(MaxResBonus[9], item.FreeActionResistance);
+                    }
+                    else
+                    {
+                        MaxResBonus[9] = Math.Max(MaxResBonus[9], this.FreeActionResistance);
+                    }
+                    if (this.HealingResistance <= item.HealingResistance)
+                    {
+                        MaxResBonus[10] = Math.Max(MaxResBonus[10], item.HealingResistance);
+                    }
+                    else {
+                        MaxResBonus[10] = Math.Max(MaxResBonus[10], this.HealingResistance);
+                    }
+                    if (this.PermaMagicReflectResistance <= item.PermaMagicReflectResistance)
+                    {
+                        MaxResBonus[11] = Math.Max(MaxResBonus[8], item.PermaMagicReflectResistance);
+                    }
+                    else {
+                        MaxResBonus[11] = Math.Max(MaxResBonus[8], this.PermaMagicReflectResistance);
+                    }
                 }
 
                 _Resistances[0] += item.PhysicalResistance;
@@ -1099,6 +1147,35 @@ namespace Server
                 _Resistances[5] += item.EarthResistance;
                 _Resistances[6] += item.NecroResistance;
                 _Resistances[7] += item.HolyResistance;
+
+                if (this.PermaMagicResistance <= item.PermaMagicResistance)
+                {
+                    _Resistances[8] = item.PermaMagicResistance;
+                }
+                else {
+                    _Resistances[8] = this.PermaMagicResistance;
+                }
+                if (this.FreeActionResistance <= item.FreeActionResistance)
+                {
+                    _Resistances[9] = item.FreeActionResistance;
+                }
+                else {
+                    _Resistances[9] = this.FreeActionResistance;
+                }
+                if (this.HealingResistance <= item.HealingResistance)
+                {
+                    _Resistances[10] = item.HealingResistance;
+                }
+                else {
+                    _Resistances[10] = this.HealingResistance;
+                }
+                if (this.PermaMagicReflectResistance <= item.PermaMagicReflectResistance)
+                {
+                    _Resistances[11] = item.PermaMagicReflectResistance;
+                }
+                else {
+                    _Resistances[11] = this.PermaMagicReflectResistance;
+                }
             }
 
             for (int i = 0; i < _Resistances.Length; ++i)
@@ -1549,7 +1626,7 @@ namespace Server
 
         public virtual void ValidateSkillMods()
         {
-            for (int i = 0; i < _SkillMods.Count; )
+            for (int i = 0; i < _SkillMods.Count;)
             {
                 SkillMod mod = _SkillMods[i];
 
@@ -1960,37 +2037,7 @@ namespace Server
                 }
             }
         }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public virtual bool FreeAction
-        {
-            get { return _FreeActionEquipped; }
-            set
-            {
-                _FreeActionEquipped = value;
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public virtual int PermaMagic
-        {
-            get { return _PermaMagicEquipped; }
-            set
-            {
-                _PermaMagicEquipped = value;
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public virtual int HealingMod
-        {
-            get { return _HealingModEquipped; }
-            set
-            {
-                _HealingModEquipped = value;
-            }
-        }
-
+        
         [CommandProperty(AccessLevel.GameMaster)]
         public virtual bool Asleep
         {
@@ -2056,7 +2103,7 @@ namespace Server
         // JustZH put free action item check here?
         public void Paralyze(TimeSpan duration)
         {
-            if (!FreeAction && !_Paralyzed)
+            if (FreeActionResistance <= 0 && !_Paralyzed)
             {
                 if (!_Paralyzed)
                 {
@@ -6162,11 +6209,11 @@ namespace Server
                         WP7 = reader.ReadBool();
                         WP8 = reader.ReadBool();
                         WP9 = reader.ReadBool();
-                            goto case 37;
+                        goto case 37;
                     }
                 case 37:
                     {
-                       // _SpecClasse = (SpecClasse)reader.ReadInt();
+                        // _SpecClasse = (SpecClasse)reader.ReadInt();
                         goto case 36;
                     }
                 case 36:
@@ -6923,9 +6970,9 @@ namespace Server
         }
 
         private static readonly string[] _AccessLevelNames = {
-		    "Player", "VIP Player", "Counselor", "Decorator", "Spawner", "Game Master", "Seer", "Administrator", "Developer",
-		    "Co-Owner", "Owner"
-		};
+            "Player", "VIP Player", "Counselor", "Decorator", "Spawner", "Game Master", "Seer", "Administrator", "Developer",
+            "Co-Owner", "Owner"
+        };
 
         public static string GetAccessLevelName(AccessLevel level)
         {
@@ -7058,7 +7105,7 @@ namespace Server
 
             if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
                 item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                item.NecroResistance != 0 || item.HolyResistance != 0)
+                item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0)
             {
                 UpdateResistances();
             }
@@ -7097,7 +7144,7 @@ namespace Server
 
                 if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
                     item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.FreeAction != 0 || item.PermaMagic != 0 || item.HealingMod != 0)
+                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0 || item.FreeActionResistance != 0 || item.HealingResistance != 0)
                 {
                     UpdateResistances();
                 }

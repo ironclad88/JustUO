@@ -1,15 +1,9 @@
 #region References
 using System;
 using System.Collections;
-
-using Server.Factions;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using Server.Spells;
-using Server.Spells.Fifth;
-using Server.Spells.Ninjitsu;
-using Server.Spells.Seventh;
 using Server.Targeting;
 #endregion
 
@@ -90,7 +84,7 @@ namespace Server.SkillHandlers
                     m_Thief.SendLocalizedMessage(1048147); // Your backpack can't hold anything else.
                 }
                 #region Sigils
-                else if (toSteal is Sigil)
+                /*else if (toSteal is Sigil)
                 {
                     PlayerState pl = PlayerState.Find(m_Thief);
                     Faction faction = (pl == null ? null : pl.Faction);
@@ -177,7 +171,7 @@ namespace Server.SkillHandlers
                     {
                         m_Thief.SendLocalizedMessage(1005588); //	You must join a faction to do that
                     }
-                }
+                }*/
                 #endregion
 
                 else if (si == null && (toSteal.Parent == null || !toSteal.Movable) && !ItemFlags.GetStealable(toSteal))
@@ -212,13 +206,14 @@ namespace Server.SkillHandlers
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else if (root is Mobile && !m_Thief.CanBeHarmful((Mobile)root))
-                { }
+                /* else if (root is Mobile && !m_Thief.CanBeHarmful((Mobile)root))*/ // removed this to steal from npc
+                //  { }
+                
                 else if (root is Corpse)
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else
+                else if(toSteal is Item)
                 {
                     double w = toSteal.Weight + toSteal.TotalWeight;
 

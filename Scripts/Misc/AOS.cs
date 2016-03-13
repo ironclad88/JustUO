@@ -381,8 +381,8 @@ namespace Server
                 case 12: return AosAttributes.GetValue(from, AosAttribute.CastRecovery);
                 case 13: return AosAttributes.GetValue(from, AosAttribute.CastSpeed);
                 case 14: return AosAttributes.GetValue(from, AosAttribute.LowerManaCost);
-                case 15: return from.GetMaxResistance(ResistanceType.FreeAction);
-                case 16: return from.GetMaxResistance(ResistanceType.PermaMagic);
+                case 15: return from.GetMaxResistance(ResistanceType.PermaMagicImmunity);
+                case 16: return from.GetMaxResistance(ResistanceType.FreeAction);
                 case 17: return from.GetMaxResistance(ResistanceType.Healing);
                 default: return 0;
             }
@@ -2296,9 +2296,10 @@ namespace Server
         Earth = 0x00000080,
         Necro = 0x00000100,
         Holy = 0x00000200,
-        FreeAction = 0x00000400,
-        PermaMagic = 0x00001600,
-        Healing = 0x0000800
+        PermaMagic = 0x00000400,
+        FreeAction = 0x0000800,
+        Healing = 0x00001000,
+        PermaReflect = 0x00002000
     }
 
     public sealed class AosElementAttributes : BaseAttributes
@@ -2387,6 +2388,31 @@ namespace Server
                 this[AosElementAttribute.Water] = value;
             }
         }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int PermaMagicImunity
+        {
+            get
+            {
+                return this[AosElementAttribute.PermaMagic];
+            }
+            set
+            {
+                this[AosElementAttribute.PermaMagic] = value;
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int PermaMagicReflect
+        {
+            get
+            {
+                return this[AosElementAttribute.PermaReflect];
+            }
+            set
+            {
+                this[AosElementAttribute.PermaReflect] = value;
+            }
+        }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int FreeAction
@@ -2402,20 +2428,7 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int PermaMagic
-        {
-            get
-            {
-                return this[AosElementAttribute.PermaMagic];
-            }
-            set
-            {
-                this[AosElementAttribute.PermaMagic] = value;
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int Healing
+        public int HealingMod
         {
             get
             {

@@ -87,7 +87,7 @@ namespace Server.Spells
             }
             return spellMastery;
         }
-#endregion 
+        #endregion
 
         private static readonly TimeSpan AosDamageDelay = TimeSpan.FromSeconds(1.0);
         private static readonly TimeSpan OldDamageDelay = TimeSpan.FromSeconds(0.5);
@@ -106,12 +106,12 @@ namespace Server.Spells
         {
             return CheckMulti(p, map, true, 0);
         }
-		
+
         public static bool CheckMulti(Point3D p, Map map, bool houses)
         {
             return CheckMulti(p, map, houses, 0);
         }
-		
+
         public static bool CheckMulti(Point3D p, Map map, bool houses, int housingrange)
         {
             if (map == null || map == Map.Internal)
@@ -135,7 +135,7 @@ namespace Server.Spells
                     return true;
                 }
             }
-			
+
             return false;
         }
 
@@ -207,17 +207,17 @@ namespace Server.Spells
 
             return false;
         }
-		
+
         public static bool CanRevealCaster(Mobile m)
         {
             if (m is BaseCreature)
             {
                 BaseCreature c = (BaseCreature)m;
-						
+
                 if (!c.Controlled)
                     return true;
             }
-			
+
             return false;
         }
 
@@ -339,21 +339,21 @@ namespace Server.Spells
 
             // JustZH Better buffs for specced Mages
             //if (caster.SpecClasse == SpecClasse.Mage) // better buffs made by mages
-               // percent *= caster.SpecBonus(SpecClasse.Mage);
+            // percent *= caster.SpecBonus(SpecClasse.Mage);
 
-                // JustZH Worse buffs for specced Warriors
+            // JustZH Worse buffs for specced Warriors
             //if (caster.SpecClasse == SpecClasse.Warrior) // worse buffs made by warriors // just tested, lol, it got -9 from cunning spell :D
-                //percent = (caster.Skills.Magery.Fixed / 130);
+            //percent = (caster.Skills.Magery.Fixed / 130);
 
-            
 
-           // Console.WriteLine("PERCENT: " + percent);
+
+            // Console.WriteLine("PERCENT: " + percent);
             return percent;
         }
 
         public static int GetOffset(Mobile caster, Mobile target, StatType type, bool curse)
         {
-            
+
             if (Core.AOS)
             {
                 if (!m_DisableSkillCheck)
@@ -366,7 +366,7 @@ namespace Server.Spells
 
                 double percent = GetOffsetScalar(caster, target, curse);
 
-                switch( type )
+                switch (type)
                 {
                     case StatType.Str:
                         return (int)(target.RawStr * percent);
@@ -645,13 +645,13 @@ namespace Server.Spells
         private static readonly bool[,] m_Rules = new bool[,]
         {
 					/*T2A(Fel),	Khaldun,	Ilshenar,	Wind(Tram),	Wind(Fel),	Dungeons(Fel),	Solen(Tram),	Solen(Fel),	CrystalCave(Malas),	Gauntlet(Malas),	Gauntlet(Ferry),	SafeZone,	Stronghold,	ChampionSpawn,	Dungeons(Tokuno[Malas]),	LampRoom(Doom),	GuardianRoom(Doom),	Heartwood,	MLDungeons */
-/* Recall From */	{ false,	false,		true,		true,		false,		false,			true,			false,		false,				false,				false,				true,		true,		false,			true,						false,			false,				false,		false },
-/* Recall To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,		false,			false,						false,			false,				false,		false },
-/* Gate From */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,		false,			false,						false,			false,				false,		false },
-/* Gate To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,		false,			false,						false,			false,				false,		false },
-/* Mark In */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,		false,			false,						false,			false,				false,		false },
-/* Tele From */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				true,				true,		false,		true,			true,						true,			true,				false,		true },
-/* Tele To */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				false,				false,		false, 		true,			true,						true,			true,				false,		false },
+/* Recall From */	{ false,    false,      true,       true,       false,      false,          true,           false,      false,              false,              false,              true,       true,       false,          true,                       false,          false,              false,      false },
+/* Recall To */		{ false,    false,      false,      false,      false,      false,          false,          false,      false,              false,              false,              false,      false,      false,          false,                      false,          false,              false,      false },
+/* Gate From */		{ false,    false,      false,      false,      false,      false,          false,          false,      false,              false,              false,              false,      false,      false,          false,                      false,          false,              false,      false },
+/* Gate To */		{ false,    false,      false,      false,      false,      false,          false,          false,      false,              false,              false,              false,      false,      false,          false,                      false,          false,              false,      false },
+/* Mark In */		{ false,    false,      false,      false,      false,      false,          false,          false,      false,              false,              false,              false,      false,      false,          false,                      false,          false,              false,      false },
+/* Tele From */		{ true,     true,       true,       true,       true,       true,           true,           true,       false,              true,               true,               true,       false,      true,           true,                       true,           true,               false,      true },
+/* Tele To */		{ true,     true,       true,       true,       true,       true,           true,           true,       false,              true,               false,              false,      false,      true,           true,                       true,           true,               false,      false },
         };
 
         public static void SendInvalidMessage(Mobile caster, TravelCheckType type)
@@ -972,15 +972,54 @@ namespace Server.Spells
             return true;
         }
 
+        public static bool checkPermaMagicReflect(Mobile target, int circle) // JustZH fix later
+        {
+            if (target.PermaMagicReflectResistance != 0)
+            {
+                switch (target.PermaMagicReflectResistance)
+                {
+                    case 1:
+                        if (circle <= 1) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                    case 2:
+                        if (circle <= 2) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                    case 3:
+                        if (circle <= 3) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                    case 4:
+                        if (circle <= 4) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                    case 5:
+                        if (circle <= 5) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                    case 6:
+                        if (circle <= 6) { target.FixedEffect(0x37B9, 10, 5); return true; }
+                        break;
+                }
+            }
+            return false;
+        }
+
         //magic reflection
         public static void CheckReflect(int circle, Mobile caster, ref Mobile target)
         {
             CheckReflect(circle, ref caster, ref target);
         }
 
+
+
         public static void CheckReflect(int circle, ref Mobile caster, ref Mobile target)
         {
-            if (target.MagicDamageAbsorb > 0)
+            if (checkPermaMagicReflect(target, circle))
+            {
+                target.FixedEffect(0x37B9, 10, 5);
+                caster.SendMessage("Target has perm magic reflect");
+                Mobile temp = caster;
+                caster = target;
+                target = temp;
+            }
+            else if (target.MagicDamageAbsorb > 0)
             {
                 ++circle;
 
@@ -1110,8 +1149,8 @@ namespace Server.Spells
         public static void Damage(Spell spell, TimeSpan delay, Mobile target, Mobile from, double damage, int phys, int fire, int cold, int pois, int nrgy, int earth, int necro, int holy, DFAlgorithm dfa)
         {
             // JustZH Warriors take more spell dmg
-           // if (target.SpecClasse == SpecClasse.Warrior)
-               // damage *= (int)target.SpecBonus(SpecClasse.Warrior);
+            // if (target.SpecClasse == SpecClasse.Warrior)
+            // damage *= (int)target.SpecBonus(SpecClasse.Warrior);
 
             int iDamage = (int)damage;
 
@@ -1133,7 +1172,7 @@ namespace Server.Spells
             if (from.SpecClasse == SpecClasse.Warrior)
                 spec_scalar_d -= spec_damage_bonus * from.SpecLevel;
             if (target.SpecClasse == SpecClasse.Warrior) spec_scalar_d += spec_damage_bonus * target.SpecLevel;
-            
+
 
             if (debug == true && from.IsStaff())
                 Console.WriteLine(from.Name + " SPEC MAGIC SCALAR: " + spec_scalar_d);

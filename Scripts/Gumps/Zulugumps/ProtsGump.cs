@@ -41,6 +41,7 @@ namespace Server.Gumps.Zulugumps
             AddLabel(startX, startY += 25, 0, @"Earth Protection");
             AddLabel(startX, startY += 25, 0, @"Necro Protection");
             AddLabel(startX, startY += 25, 0, @"Holy Protection");
+            // add healing, free action, blackrock, moonstone here later
 
             startX += 250;
             startY = 100;

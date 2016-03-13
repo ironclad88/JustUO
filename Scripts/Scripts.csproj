@@ -404,6 +404,8 @@
     <Compile Include="Accounting\IPLimiter.cs" />
     <Compile Include="Commands\Fame.cs" />
     <Compile Include="Commands\Heal.cs" />
+    <Compile Include="Commands\History.cs" />
+    <Compile Include="Commands\reags.cs" />
     <Compile Include="Custom Systems\Auction System\Auction Bot\AuctionBotController.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionComparer.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionItem.cs" />

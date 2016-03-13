@@ -72,6 +72,10 @@ namespace Server.Spells
 
             n /= 100.0;
 
+            var permMagicReturn = checkPermaMagic(target, this.Circle);
+            if (permMagicReturn)
+                return true;
+            
             if (n <= 0.0)
                 return false;
 
@@ -89,28 +93,27 @@ namespace Server.Spells
 
         public virtual bool checkPermaMagic(Mobile target, SpellCircle circle) // JustZH fix later
         {
-            string permaMagicResistString = "You feel yourself resisting magical energy!";
-            if (target.PermaMagic != 0)
+            if (target.PermaMagicResistance != 0)
             {
-                switch (target.PermaMagic)
+                switch (target.PermaMagicResistance)
                 {
                     case 1:
-                        if (circle == SpellCircle.First) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 1) { target.FixedEffect(0x37B9, 10, 5); return true; }
                         break;
                     case 2:
-                        if (circle == SpellCircle.Second) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 2) { target.FixedEffect(0x37B9, 10, 5);  return true; }
                         break;
                     case 3:
-                        if (circle == SpellCircle.Third) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 3) { target.FixedEffect(0x37B9, 10, 5);  return true; }
                         break;
                     case 4:
-                        if (circle == SpellCircle.Fourth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 4) { target.FixedEffect(0x37B9, 10, 5);  return true; }
                         break;
                     case 5:
-                        if (circle == SpellCircle.Fifth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 5) { target.FixedEffect(0x37B9, 10, 5);  return true; }
                         break;
                     case 6:
-                        if (circle == SpellCircle.Sixth) { target.FixedEffect(0x37B9, 10, 5); target.SendMessage(permaMagicResistString); return true; }
+                        if ((int)circle <= 6) { target.FixedEffect(0x37B9, 10, 5);  return true; }
                         break;
                 }
             }

@@ -1591,7 +1591,7 @@ namespace Server.Items
             var another = rnd.Next(1, 100);
             AosAttributes primary = weapon.Attributes;
             AosWeaponAttributes secondary = weapon.WeaponAttributes;
-            if (rnd.Next(1, 1000) <= 2)
+            if (rnd.Next(1, 1000) <= 3)
             {
                 weapon.Blackrock = true;
 

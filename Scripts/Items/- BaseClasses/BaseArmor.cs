@@ -64,7 +64,7 @@ namespace Server.Items
         private int m_dexpenalty;
         //private bool m_Identified;
         //private int m_IdHue;
-        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus;
+        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus, m_MagicResistBonus;
         private int m_TimesImbued;
 
         private AosAttributes m_AosAttributes;
@@ -1055,6 +1055,14 @@ namespace Server.Items
             }
         }
 
+        public override int PermaMagicResistance
+        {
+            get
+            {
+                return /*this.BaseHolyResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorMagicResist + this.m_MagicResistBonus + (this.m_SetEquipped ? this.m_SetMagicResistBonus : 0);
+            }
+        }
+
         public virtual int InitMinHits
         {
             get
@@ -1365,7 +1373,8 @@ namespace Server.Items
 
         private bool isNegative(int val)
         {
-            if (val > 0) { return true; } return false;
+            if (val > 0) { return true; }
+            return false;
         }
 
 
@@ -1391,7 +1400,7 @@ namespace Server.Items
                     from.AddStatMod(new StatMod(StatType.Int, modName + "Int", intBonus, TimeSpan.Zero));
             }
 
-            
+
             Server.Engines.XmlSpawner2.XmlAttach.CheckOnEquip(this, from);
 
             return base.OnEquip(from);
@@ -1525,6 +1534,7 @@ namespace Server.Items
             writer.Write(this.m_EarthBonus);
             writer.Write(this.m_NecroBonus);
             writer.Write(this.m_HolyBonus);
+            writer.Write(this.m_MagicResistBonus);
 
             // Version 9
             //writer.Write(m_IdHue); // Removed in version 13!
@@ -1711,6 +1721,7 @@ namespace Server.Items
                     m_EarthBonus = reader.ReadInt();
                     m_NecroBonus = reader.ReadInt();
                     m_HolyBonus = reader.ReadInt();
+                    m_MagicResistBonus = reader.ReadInt();
                     goto case 9;
                 case 9:
                     {
@@ -3022,7 +3033,7 @@ namespace Server.Items
             }
         }
 
-        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus, m_SetEarthBonus, m_SetNecroBonus, m_SetHolyBonus;
+        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus, m_SetEarthBonus, m_SetNecroBonus, m_SetHolyBonus, m_SetMagicResistBonus;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int SetPhysicalBonus
@@ -3132,6 +3143,20 @@ namespace Server.Items
             set
             {
                 this.m_SetHolyBonus = value;
+                this.InvalidateProperties();
+            }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int SetMagicResistBonus
+        {
+            get
+            {
+                return this.m_SetMagicResistBonus;
+            }
+            set
+            {
+                this.m_SetMagicResistBonus = value;
                 this.InvalidateProperties();
             }
         }
