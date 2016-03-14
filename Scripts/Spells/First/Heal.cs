@@ -60,29 +60,29 @@ namespace Server.Spells.First
             {
                 this.Caster.LocalOverheadMessage(MessageType.Regular, 0x3B2, 500951); // You cannot heal that.
             }
-            else if (m.Poisoned || Server.Items.MortalStrike.IsWounded(m))
+            /*else if (m.Poisoned || Server.Items.MortalStrike.IsWounded(m))
             {
-                this.Caster.LocalOverheadMessage(MessageType.Regular, 0x22, (this.Caster == m) ? 1005000 : 1010398);
-            }
+                this.Caster.LocalOverheadMessage(MessageType.Regular, 0x22, (this.Caster == m) ? 1005000 : 1010398); // 1010398 == "You cannot heal that target in their current state."
+            }*/
             else if (this.CheckBSequence(m))
             {
                 SpellHelper.Turn(this.Caster, m);
 
                 int toHeal;
 
-                if (Core.AOS)
-                {
+                //if (Core.AOS) // i don´t like if that is based on expansions
+                //{
                     toHeal = this.Caster.Skills.Magery.Fixed / 120;
                     toHeal += Utility.RandomMinMax(1, 4);
 
-                    if (Core.SE && this.Caster != m)
-                        toHeal = (int)(toHeal * 1.5);
-                }
-                else
-                {
-                    toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.1);
-                    toHeal += Utility.Random(1, 5);
-                }
+                    //if (Core.SE && this.Caster != m)
+                    //    toHeal = (int)(toHeal * 1.5);
+                //}
+                //else
+                //{
+                //    toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.1);
+                //    toHeal += Utility.Random(1, 5);
+                //}
 
                 //m.Heal( toHeal, Caster );
                 SpellHelper.Heal(toHeal, m, this.Caster);

@@ -12,7 +12,7 @@ namespace Server.Mobiles
         {
             this.Name = "an energy vortex";
 
-            if (0.010 > Utility.RandomDouble()) // Per OSI FoF, it's a 1/500 chance.
+            if (0.500 > Utility.RandomDouble()) // Per OSI FoF, it's a 1/500 chance.
             {
                 // Llama vortex!
                 this.Body = 0xDC;

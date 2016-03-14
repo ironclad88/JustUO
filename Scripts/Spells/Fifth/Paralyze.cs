@@ -49,36 +49,39 @@ namespace Server.Spells.Fifth
                 SpellHelper.CheckReflect((int)this.Circle, this.Caster, ref m);
 
                 double duration;
-				
-                if (Core.AOS)
-                {
-                    int secs = (int)((this.GetDamageSkill(this.Caster) / 10) - (this.GetResistSkill(m) / 10));
-					
-                    if (!Core.SE)
-                        secs += 2;
 
-                    if (!m.Player)
-                        secs *= 3;
+                //if (Core.AOS)
+                //{
+                //    int secs = (int)((this.GetDamageSkill(this.Caster) / 10) - (this.GetResistSkill(m) / 10));
 
-                    if (secs < 0)
-                        secs = 0;
+                //    if (!Core.SE)
+                //        secs += 2;
 
-                    duration = secs;
-                }
-                else
-                {
-                    // Algorithm: ((20% of magery) + 7) seconds [- 50% if resisted]
+                //    if (!m.Player)
+                //        secs *= 3;
+
+                //    if (secs < 0)
+                //        secs = 0;
+
+                //    duration = secs;
+                //}
+                //else
+                //{
+                    // Algorithm: ((20% of magery) + 7) seconds [- 33% if resisted]
                     duration = 7.0 + (this.Caster.Skills[SkillName.Magery].Value * 0.2);
 
-                    if (this.CheckResisted(m))
-                        duration *= 0.75;
-                }
+                    if (this.CheckResisted(m)) // buffed resist 
+                    {
+                        // duration *= 0.75;
+                        duration /= 3;
+                    }
+                //}
 
-                if (m is PlagueBeastLord)
-                {
-                    ((PlagueBeastLord)m).OnParalyzed(this.Caster);
-                    duration = 120;
-                }
+                //if (m is PlagueBeastLord)
+                //{
+                //    ((PlagueBeastLord)m).OnParalyzed(this.Caster);
+                //    duration = 120;
+                //}
 
                 m.Paralyze(TimeSpan.FromSeconds(duration));
 

@@ -50,7 +50,7 @@ namespace Server.Spells.Seventh
 
                 int toDrain = 0;
 
-                if (Core.AOS)
+                if (Core.AOS) // check wich implementation is best
                 {
                     toDrain = (int)(this.GetDamageSkill(this.Caster) - this.GetResistSkill(m));
 

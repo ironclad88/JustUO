@@ -103,7 +103,7 @@ namespace Server.Spells.Seventh
                         toDeal = damage;
                         Mobile m = targets[i];
 
-                        if (!Core.AOS && this.CheckResisted(m))
+                        if (this.CheckResisted(m))
                         {
                             toDeal *= 0.5;
 

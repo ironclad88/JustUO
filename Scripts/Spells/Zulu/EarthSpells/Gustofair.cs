@@ -70,12 +70,12 @@ namespace Server.Spells.Zulu.EarthSpells
 
                 double damage;
 
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(23, 1, 4, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(23, 1, 4, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(12, 9);
 
                     if (this.CheckResisted(m))
@@ -86,7 +86,7 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
 
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 var test = m.GetRandomPoint3D(5);
                 Console.WriteLine(Map.Felucca.CanSpawnMobile(test.X, test.Y, test.Z));

@@ -61,17 +61,17 @@ namespace Server.Spells.Third
             {
                 this.Caster.SendLocalizedMessage(1061632); // You can't do that while carrying the sigil.
             }
-            else if (Server.Misc.WeightOverloading.IsOverloaded(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
-            }
+            //else if (Server.Misc.WeightOverloading.IsOverloaded(this.Caster))
+            //{
+            //    this.Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
+            //}
             else if (!SpellHelper.CheckTravel(this.Caster, TravelCheckType.TeleportFrom))
             {
             }
             else if (!SpellHelper.CheckTravel(this.Caster, map, to, TravelCheckType.TeleportTo))
             {
             }
-            else if (map == null || !map.CanSpawnMobile(p.X, p.Y, p.Z))
+            else if (map == null || !map.CanSpawnMobile(p.X, p.Y, p.Z)) // maybe use for gust of air? JustZH
             {
                 this.Caster.SendLocalizedMessage(501942); // That location is blocked.
             }

@@ -56,11 +56,11 @@ namespace Server.Spells.Seventh
                 this.Caster.SendLocalizedMessage(1005561, "", 0x22); // Thou'rt a criminal and cannot escape so easily.
                 return false;
             }*/
-            else if (SpellHelper.CheckCombat(this.Caster))
-            {
-                this.Caster.SendLocalizedMessage(1005564, "", 0x22); // Wouldst thou flee during the heat of battle??
-                return false;
-            }
+            //else if (SpellHelper.CheckCombat(this.Caster))
+            //{
+            //    this.Caster.SendLocalizedMessage(1005564, "", 0x22); // Wouldst thou flee during the heat of battle??
+            //    return false;
+            //}
 
             return SpellHelper.CheckTravel(this.Caster, TravelCheckType.GateFrom);
         }

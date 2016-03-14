@@ -50,12 +50,12 @@ namespace Server.Spells.Fourth
 
                 double damage;
 
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(23, 1, 4, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(23, 1, 4, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(12, 9);
 
                     if (this.CheckResisted(m))
@@ -66,7 +66,7 @@ namespace Server.Spells.Fourth
                     }
 
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 m.BoltEffect(0);
 

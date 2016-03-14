@@ -58,23 +58,23 @@ namespace Server.Spells.First
 
                 double damage;
 				
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(10, 1, 4, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(10, 1, 4, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(4, 4);
 
                     if (this.CheckResisted(m))
                     {
-                        damage *= 0.75;
+                        damage = 0;
 
                         m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }
 
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 source.MovingParticles(m, 0x36E4, 5, 0, false, false, 3006, 0, 0);
                 source.PlaySound(0x1E5);

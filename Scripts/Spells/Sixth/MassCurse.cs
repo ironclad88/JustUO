@@ -39,7 +39,7 @@ namespace Server.Spells.Sixth
             {
                 this.Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }
-            else if (SpellHelper.CheckTown(p, this.Caster) && this.CheckSequence())
+            else if (SpellHelper.CheckTown(p, this.Caster) && this.CheckSequence()) // make another checkseq
             {
                 SpellHelper.Turn(this.Caster, p);
 

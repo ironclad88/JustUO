@@ -1014,7 +1014,7 @@ namespace Server.Spells
             if (checkPermaMagicReflect(target, circle))
             {
                 target.FixedEffect(0x37B9, 10, 5);
-                caster.SendMessage("Target has perm magic reflect");
+              //  caster.SendMessage("Target has perm magic reflect");
                 Mobile temp = caster;
                 caster = target;
                 target = temp;

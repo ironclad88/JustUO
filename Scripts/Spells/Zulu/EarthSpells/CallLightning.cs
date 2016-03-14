@@ -66,29 +66,29 @@ namespace Server.Spells.Zulu.EarthSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.CheckReflect(10, this.Caster, ref m);
+               // SpellHelper.CheckReflect(10, this.Caster, ref m); // can´t reflect earth spells
 
                 double damage;
 
-                if (Core.AOS)
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(23, 1, 4, m);
+                //}
+                //else
+                //{
+                damage = Utility.Random(12, 9);
+
+                if (this.CheckResisted(m))
                 {
-                    damage = this.GetNewAosDamage(23, 1, 4, m);
+                    damage *= 0.75;
+
+                    m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                 }
-                else
-                {
-                    damage = Utility.Random(12, 9);
 
-                    if (this.CheckResisted(m))
-                    {
-                        damage *= 0.75;
-
-                        m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                    }
-
-                    damage *= this.GetDamageScalar(m);
-                }
+                damage *= this.GetDamageScalar(m);
+                //}
                 int count = 0;
-                Timer timer = Timer.DelayCall(TimeSpan.FromMilliseconds(50), new TimerCallback(delegate() // this is awesome!
+                Timer timer = Timer.DelayCall(TimeSpan.FromMilliseconds(50), new TimerCallback(delegate () // this is awesome!
                    {
                        do
                        {

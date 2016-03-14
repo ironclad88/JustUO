@@ -79,12 +79,12 @@ namespace Server.Spells.Zulu.EarthSpells
 
                     foreach (Mobile m in eable)
                     {
-                        if (Core.AOS && m == this.Caster)
+                        if (m == this.Caster)
                             continue;
 
                         if (SpellHelper.ValidIndirectTarget(this.Caster, m) && this.Caster.CanBeHarmful(m, false))
                         {
-                            if (Core.AOS && !this.Caster.InLOS(m))
+                            if (!this.Caster.InLOS(m))
                                 continue;
 
                             targets.Add(m);
@@ -114,9 +114,9 @@ namespace Server.Spells.Zulu.EarthSpells
                         toDeal = damage;
                         Mobile m = targets[i];
 
-                        if (!Core.AOS && this.CheckResisted(m))
+                        if (this.CheckResisted(m))
                         {
-                            toDeal *= 0.5;
+                            toDeal *= 0.6;
 
                             m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                         }

@@ -77,7 +77,7 @@ namespace Server.Spells.Fourth
 
                 TimeSpan duration;
 
-                if (Core.AOS)
+                if (Core.AOS) // check alghoritm
                     duration = TimeSpan.FromSeconds((15 + (this.Caster.Skills.Magery.Fixed / 5)) / 4);
                 else
                     duration = TimeSpan.FromSeconds(4.0 + (this.Caster.Skills[SkillName.Magery].Value * 0.5));

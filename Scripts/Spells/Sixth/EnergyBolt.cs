@@ -52,12 +52,12 @@ namespace Server.Spells.Sixth
 
                 double damage;
 
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(40, 1, 5, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(40, 1, 5, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(24, 18);
 
                     if (this.CheckResisted(m))
@@ -69,7 +69,7 @@ namespace Server.Spells.Sixth
 
                     // Scale damage based on evalint and resist
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 // Do the effects
                 source.MovingParticles(m, 0x379F, 7, 0, false, true, 3043, 4043, 0x211);

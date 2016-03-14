@@ -73,9 +73,11 @@ namespace Server.Spells.First
                 * Reactive Armor, Protection, and Magic Reflection will stay on—even after logging out, even after dying—until you “turn them off” by casting them again. 
                 * (+20 physical -5 elemental at 100 Inscription)
                 */
-                if (this.CheckSequence())
+                Mobile targ = this.Caster;
+
+                if (this.CheckBSequence(targ))
                 {
-                    Mobile targ = this.Caster;
+                    
 
                     ResistanceMod[] mods = (ResistanceMod[])m_Table[targ];
 

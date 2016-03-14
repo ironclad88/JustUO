@@ -44,11 +44,11 @@ namespace Server.Spells.Sixth
 
         public override bool CheckCast()
         {
-            if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
-            {
-                this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
-                return false;
-            }
+            //if (Engines.ConPVP.DuelContext.CheckSuddenDeath(this.Caster))
+            //{
+            //    this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
+            //    return false;
+            //}
 
             return base.CheckCast();
         }
@@ -83,6 +83,11 @@ namespace Server.Spells.Sixth
                 RemoveTimer(m);
 
                 TimeSpan duration = TimeSpan.FromSeconds(((1.2 * this.Caster.Skills.Magery.Fixed) / 10));
+
+                if(this.Caster.SpecClasse == SpecClasse.Mage)
+                {
+                    duration += TimeSpan.FromSeconds(this.Caster.SpecBonus(SpecClasse.Mage)); // gotta check and balance
+                }
 
                 Timer t = new InternalTimer(m, duration);
 

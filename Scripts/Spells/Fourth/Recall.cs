@@ -59,7 +59,7 @@ namespace Server.Spells.Fourth
 
         public override bool CheckCast()
         {
-            if (Factions.Sigil.ExistsOn(this.Caster))
+            /*if (Factions.Sigil.ExistsOn(this.Caster)) // stupid ifs
             {
                 this.Caster.SendLocalizedMessage(1061632); // You can't do that while carrying the sigil.
                 return false;
@@ -78,7 +78,7 @@ namespace Server.Spells.Fourth
             {
                 this.Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
                 return false;
-            }
+            }*/
 
             return SpellHelper.CheckTravel(this.Caster, TravelCheckType.RecallFrom);
         }
@@ -103,7 +103,7 @@ namespace Server.Spells.Fourth
             {
                 this.Caster.SendLocalizedMessage(1049543); // You decide against traveling to Felucca while you are still young.
             }
-            else if (this.Caster.Kills >= 5 && map != Map.Felucca)
+            /*else if (this.Caster.Kills >= 5 && map != Map.Felucca)
             {
                 this.Caster.SendLocalizedMessage(1019004); // You are not allowed to travel there.
             }
@@ -118,7 +118,7 @@ namespace Server.Spells.Fourth
             else if (Server.Misc.WeightOverloading.IsOverloaded(this.Caster))
             {
                 this.Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
-            }
+            }*/
             else if (!map.CanSpawnMobile(loc.X, loc.Y, loc.Z))
             {
                 this.Caster.SendLocalizedMessage(501942); // That location is blocked.

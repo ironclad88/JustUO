@@ -44,7 +44,7 @@ namespace Server.Spells.Third
                 // Target must be an unlocked chest.
                 this.Caster.SendLocalizedMessage(501762);
             }
-            else if (this.CheckSequence())
+            else if (this.CheckSequence()) // pretty much an unused spell, dont need modified checkseq
             {
                 SpellHelper.Turn(this.Caster, targ);
 

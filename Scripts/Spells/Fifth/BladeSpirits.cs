@@ -63,7 +63,7 @@ namespace Server.Spells.Fifth
             {
                 this.Caster.SendLocalizedMessage(501942); // That location is blocked.
             }
-            else if (SpellHelper.CheckTown(p, this.Caster) && this.CheckSequence())
+            else if (SpellHelper.CheckTown(p, this.Caster) && this.CheckSequence()) // need to make another CheckSequence function for this and some AoE beneficial spells
             {
                 TimeSpan duration;
 

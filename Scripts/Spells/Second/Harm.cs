@@ -55,12 +55,12 @@ namespace Server.Spells.Second
 
                 double damage;
 				
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(17, 1, 5, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(17, 1, 5, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(1, 15);
 
                     if (this.CheckResisted(m))
@@ -71,23 +71,23 @@ namespace Server.Spells.Second
                     }
 
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 if (!m.InRange(this.Caster, 2))
                     damage *= 0.25; // 1/4 damage at > 2 tile range
                 else if (!m.InRange(this.Caster, 1))
                     damage *= 0.50; // 1/2 damage at 2 tile range
 
-                if (Core.AOS)
-                {
-                    m.FixedParticles(0x374A, 10, 30, 5013, 1153, 2, EffectLayer.Waist);
-                    m.PlaySound(0x0FC);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    m.FixedParticles(0x374A, 10, 30, 5013, 1153, 2, EffectLayer.Waist);
+                //    m.PlaySound(0x0FC);
+                //}
+                //else
+                //{
                     m.FixedParticles(0x374A, 10, 15, 5013, EffectLayer.Waist);
                     m.PlaySound(0x1F1);
-                }
+                //}
 
                 SpellHelper.Damage(this, m, damage, 0, 0, 100, 0, 0);
             }

@@ -50,6 +50,7 @@ namespace Server.Spells.Third
             {
                 SpellHelper.Turn(this.Caster, m);
 
+                
                 SpellHelper.AddStatBonus(this.Caster, m, StatType.Str);
                 SpellHelper.DisableSkillCheck = true;
                 SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);

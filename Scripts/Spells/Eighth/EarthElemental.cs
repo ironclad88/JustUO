@@ -50,10 +50,10 @@ namespace Server.Spells.Eighth
                     duration.Add(TimeSpan.FromMinutes(this.Caster.SpecBonus(SpecClasse.Mage)));
                 }
 
-                if (Core.AOS)
+                //if (Core.AOS)
                     SpellHelper.Summon(new SummonedEarthElemental(), this.Caster, 0x217, duration, false, false);
-                else
-                    SpellHelper.Summon(new EarthElemental(), this.Caster, 0x217, duration, false, false);
+                //else
+                //    SpellHelper.Summon(new EarthElemental(), this.Caster, 0x217, duration, false, false);
             }
 
             this.FinishSequence();

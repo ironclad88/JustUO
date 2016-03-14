@@ -50,23 +50,23 @@ namespace Server.Spells.Seventh
 
                 double damage;
 
-                if (Core.AOS)
-                {
-                    damage = this.GetNewAosDamage(48, 1, 5, m);
-                }
-                else
-                {
+                //if (Core.AOS)
+                //{
+                //    damage = this.GetNewAosDamage(48, 1, 5, m);
+                //}
+                //else
+                //{
                     damage = Utility.Random(27, 22);
 
                     if (this.CheckResisted(m))
                     {
-                        damage *= 0.6;
+                        damage *= 0.75;
 
                         m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }
 
                     damage *= this.GetDamageScalar(m);
-                }
+                //}
 
                 m.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.LeftFoot);
                 m.PlaySound(0x208);

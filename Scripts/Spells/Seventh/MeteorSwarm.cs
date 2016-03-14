@@ -103,9 +103,9 @@ namespace Server.Spells.Seventh
 
                         toDeal = damage;
 
-                        if (!Core.AOS && this.CheckResisted(m))
+                        if (this.CheckResisted(m)) // fixed resisting
                         {
-                            damage *= 0.5;
+                            damage *= 0.75;
 
                             m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                         }

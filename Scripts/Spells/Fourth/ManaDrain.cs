@@ -64,6 +64,12 @@ namespace Server.Spells.Fourth
                     m.FixedParticles(0x3789, 10, 25, 5032, EffectLayer.Head);
                     m.PlaySound(0x1F8);
 
+                    if (this.CheckResisted(m))
+                    {
+                        m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
+                        toDrain *= (int)0.75;
+                    }
+
                     if (toDrain > 0)
                     {
                         m.Mana -= toDrain;
