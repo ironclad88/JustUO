@@ -11,7 +11,7 @@ namespace Server.Spells.Necromancy
             203,
             9051,
             Reagent.BatWing,
-            Reagent.GraveDust);
+            Reagent.VolcanicAsh);
         private static readonly Hashtable m_Table = new Hashtable();
         public CorpseSkinSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)

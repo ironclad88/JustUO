@@ -1,22 +1,25 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Server.Items
+namespace Server.Items.Resources.Reagents.ZuluReags
 {
-    public class GraveDust : BaseReagent, ICommodity
+    public class Deadwood : BaseReagent, ICommodity
     {
         [Constructable]
-        public GraveDust()
+        public Deadwood()
             : this(1)
         {
         }
 
         [Constructable]
-        public GraveDust(int amount)
-            : base(0xF8F, amount)
+        public Deadwood(int amount)
+            : base(0xf8b, amount)
         {
         }
 
-        public GraveDust(Serial serial)
+        public Deadwood(Serial serial)
             : base(serial)
         {
         }

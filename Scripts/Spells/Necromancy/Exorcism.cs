@@ -16,7 +16,7 @@ namespace Server.Spells.Necromancy
             203,
             9031,
             Reagent.NoxCrystal,
-            Reagent.GraveDust);
+            Reagent.VolcanicAsh);
         private static readonly int Range = (Core.ML ? 48 : 18);
         private static readonly Point3D[] m_BritanniaLocs = new Point3D[]
         {

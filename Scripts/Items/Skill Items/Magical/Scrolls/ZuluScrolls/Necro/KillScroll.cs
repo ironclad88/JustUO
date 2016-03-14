@@ -15,7 +15,7 @@ namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Necro
 
         [Constructable]
         public KillScroll(int amount)
-            : base(71, 0x1f3c, amount)
+            : base(81, 0x1f3c, amount)
         {
             this.Hue = 0x66D;
             this.Name = "Kill scroll";

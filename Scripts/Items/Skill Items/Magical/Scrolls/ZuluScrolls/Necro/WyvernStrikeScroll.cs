@@ -15,7 +15,7 @@ namespace Server.Items.Skill_Items.Magical.Scrolls.ZuluScrolls.Necro
 
         [Constructable]
         public WyvernStrikeScroll(int amount)
-            : base(70, 0x1f3c, amount)
+            : base(80, 0x1f3c, amount)
         {
             this.Hue = 0x66D;
             this.Name = "Wyvern strike scroll";

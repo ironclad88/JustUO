@@ -728,7 +728,7 @@ namespace Arya.Auction
                         case 14:
                         {
                             int amount = Utility.Random(10000);
-                            Item ai = new GraveDust(amount);
+                            Item ai = new Server.Items.Resources.Reagents.ZuluReags.VolcanicAsh(amount);
                             ai.Amount = amount;
 
                             CommodityDeed com = new CommodityDeed();

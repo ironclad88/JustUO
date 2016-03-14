@@ -1,59 +1,69 @@
-﻿using Server.Targeting;
+﻿using Server.Items;
+using Server.Mobiles;
+using Server.Spells.Necromancy;
+using Server.Targeting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server.Spells.Zulu.EarthSpells
+namespace Server.Spells.Zulu.NecroSpells
 {
-    public class RisingFire : EarthSpell
+    public class PlagueSpell : NecroSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Rising Fire", "Batida Do Fogo",
-            239,
-            9021,
+            "Plague", "Fluctus Puter Se Aresceret",
+            203,
+            9051,
+            Reagent.VolcanicAsh,
             Reagent.BatWing,
-            Reagent.BrimStone,
-            Reagent.VialofBlood);
+            Reagent.DaemonBone,
+            Reagent.DragonBlood,
+            Reagent.BloodSpawn,
+            Reagent.Pumice,
+            Reagent.SerpentsScales);
 
-        public RisingFire(Mobile caster, Item scroll)
+
+
+        public PlagueSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
+        }
+
+        public override void OnCast()
+        {
+            setCords(Caster.Y, Caster.X);
+            this.Caster.Target = new InternalTarget(this);
         }
 
         public override TimeSpan CastDelayBase
         {
             get
             {
-                return TimeSpan.FromSeconds(1.0);
+                return TimeSpan.FromSeconds(2.4);
             }
         }
         public override double RequiredSkill
         {
             get
             {
-                return 100; // dunno about this, gotta check
+                return 130;
             }
         }
         public override int RequiredMana
         {
             get
             {
-                return 15;
+                return 50;
             }
         }
-
         public override bool DelayedDamage
         {
             get
             {
                 return false;
             }
-        }
-        public override void OnCast()
-        {
-            setCords(Caster.Y, Caster.X);
-            this.Caster.Target = new InternalTarget(this);
         }
 
         public void Target(IPoint3D p)
@@ -88,45 +98,32 @@ namespace Server.Spells.Zulu.EarthSpells
                                 continue;
 
                             targets.Add(m);
-
-                            
                         }
                     }
 
                     eable.Free();
                 }
-
-                double damage;
-
-               
-                    damage = Utility.Random(27, 22);
-
+                
                 if (targets.Count > 0)
                 {
-                    if (Core.AOS && targets.Count > 2)
-                        damage = (damage * 2) / targets.Count;
-                    else if (!Core.AOS)
-                        damage /= targets.Count;
-
-                    double toDeal;
                     for (int i = 0; i < targets.Count; ++i)
                     {
-                        toDeal = damage;
+                       
                         Mobile m = targets[i];
-
+                        int level = 4;
                         if (this.CheckResisted(m))
                         {
-                            toDeal *= 0.6;
+                            level = 3;
 
                             m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                         }
-                        toDeal *= this.GetDamageScalar(m);
-                        this.Caster.DoHarmful(m);
-                        SpellHelper.Damage(this, m, toDeal, 0, 80, 0, 0, 0, 20, 0, 0);
 
+                        m.ApplyPoison(this.Caster, Poison.GetPoison(3)); // lvl 4 psn, lvl 3 if resisted
+                        m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
+                        m.PlaySound(0x205);
 
-                        m.FixedParticles(0x3709, 10, 20, 5032, EffectLayer.Waist); 
-                       
+                        this.HarmfulSpell(m);
+
                     }
                 }
                 else
@@ -138,16 +135,12 @@ namespace Server.Spells.Zulu.EarthSpells
             this.FinishSequence();
         }
 
-        public static void playEffect(Mobile m)
-        {
-
-        }
-
         private class InternalTarget : Target
         {
-            private readonly RisingFire m_Owner;
-            public InternalTarget(RisingFire owner)
-                : base(Core.ML ? 10 : 12, true, TargetFlags.None)
+            private readonly PlagueSpell m_Owner;
+
+            public InternalTarget(PlagueSpell owner)
+                : base(Core.ML ? 10 : 12, false, TargetFlags.Harmful)
             {
                 this.m_Owner = owner;
             }

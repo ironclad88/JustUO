@@ -10,7 +10,7 @@ namespace Server.Spells.Necromancy
             "Pain Spike", "In Sar",
             203,
             9031,
-            Reagent.GraveDust,
+            Reagent.VolcanicAsh,
             Reagent.PigIron);
         private static readonly Hashtable m_Table = new Hashtable();
         public PainSpikeSpell(Mobile caster, Item scroll)

@@ -142,7 +142,7 @@ namespace Server.Engines.Quests.Necro
                                 cont.DropItem(new NoxCrystal(20));
                                 cont.DropItem(new BatWing(25));
                                 cont.DropItem(new DaemonBlood(20));
-                                cont.DropItem(new GraveDust(20));
+                                cont.DropItem(new Items.Resources.Reagents.ZuluReags.VolcanicAsh(20));
 
                                 BaseWeapon weapon = new BoneHarvester();
 

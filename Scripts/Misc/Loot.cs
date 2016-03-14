@@ -209,7 +209,7 @@ typeof(GargishTalwar),  typeof(GargishDagger),
 
         public static Type[] RegTypes { get { return m_RegTypes; } }
 
-        private static readonly Type[] m_NecroRegTypes = new[] { typeof(BatWing), typeof(BlackMoor), typeof(BloodSpawn), typeof(BrimStone), typeof(DragonBlood), typeof(EyeofNewt), typeof(Obsidian), typeof(Pumice), typeof(SerpentsScales), typeof(VialofBlood), typeof(VolcanicAsh), typeof(WyrmsHeart), typeof(GraveDust), typeof(DaemonBlood), typeof(NoxCrystal), typeof(PigIron) };
+        private static readonly Type[] m_NecroRegTypes = new[] { typeof(BatWing), typeof(BlackMoor), typeof(BloodSpawn), typeof(BrimStone), typeof(DragonBlood), typeof(EyeofNewt), typeof(Obsidian), typeof(Pumice), typeof(SerpentsScales), typeof(VialofBlood), typeof(VolcanicAsh), typeof(WyrmsHeart), typeof(Items.Resources.Reagents.ZuluReags.VolcanicAsh), typeof(DaemonBlood), typeof(NoxCrystal), typeof(PigIron) };
 
         public static Type[] NecroRegTypes { get { return m_NecroRegTypes; } }
 

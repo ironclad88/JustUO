@@ -11,7 +11,7 @@ namespace Server.Spells.Necromancy
             203,
             9031,
             Reagent.BatWing,
-            Reagent.GraveDust,
+            Reagent.VolcanicAsh,
             Reagent.PigIron);
         public VengefulSpiritSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)

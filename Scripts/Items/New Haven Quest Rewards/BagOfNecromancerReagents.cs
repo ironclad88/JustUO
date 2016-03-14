@@ -1,3 +1,4 @@
+using Server.Items.Resources.Reagents.ZuluReags;
 using System;
 
 namespace Server.Items
@@ -14,7 +15,7 @@ namespace Server.Items
         public BagOfNecromancerReagents(int amount)
         {
             this.DropItem(new BatWing(amount));
-            this.DropItem(new GraveDust(amount));
+            this.DropItem(new VolcanicAsh(amount));
             this.DropItem(new DaemonBlood(amount));
             this.DropItem(new NoxCrystal(amount));
             this.DropItem(new PigIron(amount));

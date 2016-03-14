@@ -461,7 +461,7 @@ namespace Server.Mobiles
                     this.Add(typeof(DaemonBlood), 3);
                     this.Add(typeof(PigIron), 2);
                     this.Add(typeof(NoxCrystal), 3);
-                    this.Add(typeof(GraveDust), 1);
+                    this.Add(typeof(Items.Resources.Reagents.ZuluReags.VolcanicAsh), 1);
                 }
 
                 this.Add(typeof(RecallRune), 13);
@@ -854,7 +854,7 @@ namespace Server.Mobiles
                 if (Core.AOS)
                 {
                     this.Add(typeof(BatWing), 2);
-                    this.Add(typeof(GraveDust), 2);
+                    this.Add(typeof(Items.Resources.Reagents.ZuluReags.VolcanicAsh), 2);
                     this.Add(typeof(DaemonBlood), 3);
                     this.Add(typeof(NoxCrystal), 3);
                     this.Add(typeof(PigIron), 3);

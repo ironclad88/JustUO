@@ -87,8 +87,21 @@ namespace Server.Spells
             Register(63, typeof(Eighth.WaterElementalSpell));
 
             // Necro
-            Register(70, typeof(Zulu.NecroSpells.WyvernStrikeSpell));
-            Register(71, typeof(Zulu.NecroSpells.KillSpell));
+            Register(70, typeof(Zulu.NecroSpells.ControlundeadSpell));
+            Register(71, typeof(Zulu.NecroSpells.DarknessSpell));
+            Register(72, typeof(Zulu.NecroSpells.DecayingraySpell));
+            Register(73, typeof(Zulu.NecroSpells.SpectrestouchSpell));
+            Register(74, typeof(Zulu.NecroSpells.AbyssalflameSpell));
+            Register(75, typeof(Zulu.NecroSpells.AnimatedeadSpell));
+            Register(76, typeof(Zulu.NecroSpells.SacrificeSpell));
+            Register(77, typeof(Zulu.NecroSpells.WraithsbreathSpell));
+            Register(78, typeof(Zulu.NecroSpells.SorceresbaneSpell));
+            Register(79, typeof(Zulu.NecroSpells.SummonspiritSpell));
+            Register(80, typeof(Zulu.NecroSpells.WyvernStrikeSpell));
+            Register(81, typeof(Zulu.NecroSpells.KillSpell));
+            Register(82, typeof(Zulu.NecroSpells.LicheSpell));
+            Register(83, typeof(Zulu.NecroSpells.PlagueSpell));
+            Register(84, typeof(Zulu.NecroSpells.SpellbindSpell));
 
             // Earth
             Register(85, typeof(Zulu.EarthSpells.Antidote));

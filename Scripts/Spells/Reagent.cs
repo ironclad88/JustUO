@@ -17,7 +17,6 @@ namespace Server.Spells
             typeof(SulfurousAsh),
             typeof(SpidersSilk),
             typeof(BatWing),
-            typeof(GraveDust),
             typeof(DaemonBlood),
             typeof(NoxCrystal),
             typeof(PigIron),
@@ -38,9 +37,10 @@ namespace Server.Spells
             typeof(Obsidian),
             typeof(BloodSpawn),
             typeof(EyeofNewt),
-            typeof(Pumice)
+            typeof(Pumice),
+            typeof(Deadwood)
 
-            
+
         };
         public static Type BlackPearl
         {
@@ -141,7 +141,7 @@ namespace Server.Spells
                 m_Types[8] = value;
             }
         }
-        public static Type GraveDust
+        public static Type DaemonBlood
         {
             get
             {
@@ -152,7 +152,7 @@ namespace Server.Spells
                 m_Types[9] = value;
             }
         }
-        public static Type DaemonBlood
+        public static Type NoxCrystal
         {
             get
             {
@@ -163,7 +163,7 @@ namespace Server.Spells
                 m_Types[10] = value;
             }
         }
-        public static Type NoxCrystal
+        public static Type PigIron
         {
             get
             {
@@ -174,7 +174,7 @@ namespace Server.Spells
                 m_Types[11] = value;
             }
         }
-        public static Type PigIron
+        public static Type Bone
         {
             get
             {
@@ -185,7 +185,7 @@ namespace Server.Spells
                 m_Types[12] = value;
             }
         }
-        public static Type Bone
+        public static Type DragonBlood
         {
             get
             {
@@ -196,7 +196,7 @@ namespace Server.Spells
                 m_Types[13] = value;
             }
         }
-        public static Type DragonBlood
+        public static Type FertileDirt
         {
             get
             {
@@ -207,7 +207,7 @@ namespace Server.Spells
                 m_Types[14] = value;
             }
         }
-        public static Type FertileDirt
+        public static Type DaemonBone
         {
             get
             {
@@ -218,7 +218,7 @@ namespace Server.Spells
                 m_Types[15] = value;
             }
         }
-        public static Type DaemonBone
+        public static Type BlackMoor
         {
             get
             {
@@ -229,7 +229,7 @@ namespace Server.Spells
                 m_Types[16] = value;
             }
         }
-        public static Type BlackMoor
+        public static Type ExecutionersCap
         {
             get
             {
@@ -240,7 +240,7 @@ namespace Server.Spells
                 m_Types[17] = value;
             }
         }
-        public static Type ExecutionersCap
+        public static Type VolcanicAsh
         {
             get
             {
@@ -251,7 +251,7 @@ namespace Server.Spells
                 m_Types[18] = value;
             }
         }
-        public static Type VolcanicAsh
+        public static Type BrimStone
         {
             get
             {
@@ -262,7 +262,7 @@ namespace Server.Spells
                 m_Types[19] = value;
             }
         }
-        public static Type BrimStone
+        public static Type WyrmsHeart
         {
             get
             {
@@ -273,7 +273,7 @@ namespace Server.Spells
                 m_Types[20] = value;
             }
         }
-        public static Type WyrmsHeart
+        public static Type VialofBlood
         {
             get
             {
@@ -284,7 +284,7 @@ namespace Server.Spells
                 m_Types[21] = value;
             }
         }
-        public static Type VialofBlood
+        public static Type SerpentsScales
         {
             get
             {
@@ -295,7 +295,7 @@ namespace Server.Spells
                 m_Types[22] = value;
             }
         }
-        public static Type SerpentsScales
+        public static Type Obsidian
         {
             get
             {
@@ -306,7 +306,7 @@ namespace Server.Spells
                 m_Types[23] = value;
             }
         }
-        public static Type Obsidian
+        public static Type BloodSpawn
         {
             get
             {
@@ -317,7 +317,7 @@ namespace Server.Spells
                 m_Types[24] = value;
             }
         }
-        public static Type BloodSpawn
+        public static Type EyeofNewt
         {
             get
             {
@@ -328,30 +328,30 @@ namespace Server.Spells
                 m_Types[25] = value;
             }
         }
-        public static Type EyeofNewt
-        {
-            get
-            {
-                return m_Types[26];
-            }
-            set
-            {
-                m_Types[26] = value;
-            }
-        }
             public static Type Pumice
         {
             get
             {
-            return m_Types[27];
+            return m_Types[26];
             }
             set
             {   
-            m_Types[27] = value;
+            m_Types[26] = value;
+            }
+        }
+        public static Type Deadwood
+        {
+            get
+            {
+                return m_Types[27];
+            }
+            set
+            {
+                m_Types[27] = value;
             }
         }
 
-   
+
         public Type[] Types
         {
             get

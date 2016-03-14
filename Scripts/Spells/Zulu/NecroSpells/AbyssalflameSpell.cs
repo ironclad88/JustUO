@@ -1,59 +1,67 @@
-﻿using Server.Targeting;
+﻿using Server.Items;
+using Server.Mobiles;
+using Server.Spells.Necromancy;
+using Server.Targeting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server.Spells.Zulu.EarthSpells
+namespace Server.Spells.Zulu.NecroSpells
 {
-    public class RisingFire : EarthSpell
+    public class AbyssalflameSpell : NecroSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Rising Fire", "Batida Do Fogo",
-            239,
-            9021,
-            Reagent.BatWing,
+            "Abyssal Flame", "Orinundus Barathrum Erado Hostes Hostium",
+            203,
+            9051,
             Reagent.BrimStone,
-            Reagent.VialofBlood);
+            Reagent.Obsidian,
+            Reagent.VolcanicAsh,
+            Reagent.DaemonBone,
+            Reagent.DragonBlood);
 
-        public RisingFire(Mobile caster, Item scroll)
+
+
+        public AbyssalflameSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
+        }
+
+        public override void OnCast()
+        {
+            setCords(Caster.Y, Caster.X);
+            this.Caster.Target = new InternalTarget(this);
         }
 
         public override TimeSpan CastDelayBase
         {
             get
             {
-                return TimeSpan.FromSeconds(1.0);
+                return TimeSpan.FromSeconds(2.4);
             }
         }
         public override double RequiredSkill
         {
             get
             {
-                return 100; // dunno about this, gotta check
+                return 130;
             }
         }
         public override int RequiredMana
         {
             get
             {
-                return 15;
+                return 50;
             }
         }
-
         public override bool DelayedDamage
         {
             get
             {
                 return false;
             }
-        }
-        public override void OnCast()
-        {
-            setCords(Caster.Y, Caster.X);
-            this.Caster.Target = new InternalTarget(this);
         }
 
         public void Target(IPoint3D p)
@@ -89,7 +97,7 @@ namespace Server.Spells.Zulu.EarthSpells
 
                             targets.Add(m);
 
-                            
+
                         }
                     }
 
@@ -98,15 +106,13 @@ namespace Server.Spells.Zulu.EarthSpells
 
                 double damage;
 
-               
-                    damage = Utility.Random(27, 22);
+
+                damage = Utility.Random(35, 22);
 
                 if (targets.Count > 0)
                 {
-                    if (Core.AOS && targets.Count > 2)
-                        damage = (damage * 2) / targets.Count;
-                    else if (!Core.AOS)
-                        damage /= targets.Count;
+                    damage = (damage * 2) / targets.Count;
+
 
                     double toDeal;
                     for (int i = 0; i < targets.Count; ++i)
@@ -116,17 +122,18 @@ namespace Server.Spells.Zulu.EarthSpells
 
                         if (this.CheckResisted(m))
                         {
-                            toDeal *= 0.6;
+                            toDeal *= 0.75;
 
                             m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                         }
                         toDeal *= this.GetDamageScalar(m);
                         this.Caster.DoHarmful(m);
-                        SpellHelper.Damage(this, m, toDeal, 0, 80, 0, 0, 0, 20, 0, 0);
+                        SpellHelper.Damage(this, m, toDeal, 0, 80, 0, 0, 0, 0, 30, 0);
+                        
+                        m.MovingParticles(m, 0x36D4, 5, 1, false, true, 9502, 4019, 0x160); // effect not working atm (fireball exploding effect)
+                        m.PlaySound(Core.AOS ? 0x15E : 0x44B);
 
 
-                        m.FixedParticles(0x3709, 10, 20, 5032, EffectLayer.Waist); 
-                       
                     }
                 }
                 else
@@ -138,16 +145,12 @@ namespace Server.Spells.Zulu.EarthSpells
             this.FinishSequence();
         }
 
-        public static void playEffect(Mobile m)
-        {
-
-        }
-
         private class InternalTarget : Target
         {
-            private readonly RisingFire m_Owner;
-            public InternalTarget(RisingFire owner)
-                : base(Core.ML ? 10 : 12, true, TargetFlags.None)
+            private readonly AbyssalflameSpell m_Owner;
+
+            public InternalTarget(AbyssalflameSpell owner)
+                : base(Core.ML ? 10 : 12, false, TargetFlags.Harmful)
             {
                 this.m_Owner = owner;
             }

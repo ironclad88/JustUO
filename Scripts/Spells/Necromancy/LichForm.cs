@@ -8,7 +8,7 @@ namespace Server.Spells.Necromancy
             "Lich Form", "Rel Xen Corp Ort",
             203,
             9031,
-            Reagent.GraveDust,
+            Reagent.VolcanicAsh,
             Reagent.DaemonBlood,
             Reagent.NoxCrystal);
         public LichFormSpell(Mobile caster, Item scroll)

@@ -166,6 +166,7 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 5:
                     Console.WriteLine("Casting Abyssal Flame");
+                    new AbyssalflameSpell(caster, null).Cast();
                     break;
                 case 6:
                     Console.WriteLine("Casting Animate Dead");
@@ -181,6 +182,7 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 10:
                     Console.WriteLine("Casting Summon Spirit");
+                    new SummonspiritSpell(caster, null).Cast();
                     break;
                 case 11:
                     Console.WriteLine("Casting Wraithform");
@@ -199,6 +201,7 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 15:
                     Console.WriteLine("Casting Plague");
+                    new PlagueSpell(caster, null).Cast();
                     break;
                 case 16:
                     Console.WriteLine("Casting Spellbind");

@@ -138,7 +138,7 @@ namespace Server.Items
                     list.Add(c);
                     break;
                 case 2:					
-                    c = new GraveDust();
+                    c = new Items.Resources.Reagents.ZuluReags.VolcanicAsh();
                     c.MoveToWorld(new Point3D(2921, 972, -17), this.Map);
                     c.Movable = false;
                     list.Add(c);	

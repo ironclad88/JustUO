@@ -13,7 +13,7 @@ namespace Server.Spells.Necromancy
             203,
             9031,
             Reagent.BatWing,
-            Reagent.GraveDust,
+            Reagent.VolcanicAsh,
             Reagent.DaemonBlood);
 
         public override TimeSpan CastDelayBase

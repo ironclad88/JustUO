@@ -63,7 +63,7 @@ namespace Server.Items
             this.Donations.Add(new CollectionItem(typeof(Gold), 0xEEF, 1073116, 0x0, 0.06666));
             this.Donations.Add(new CollectionItem(typeof(BankCheck), 0x14F0, 1075013, 0x34, 0.06666));					
             this.Donations.Add(new CollectionItem(typeof(PigIron), 0xF8A, 1023978, 0x0, 1));	
-            this.Donations.Add(new CollectionItem(typeof(GraveDust), 0xF8F, 1023983, 0x0, 1));	
+            this.Donations.Add(new CollectionItem(typeof(Items.Resources.Reagents.ZuluReags.VolcanicAsh), 0xF8F, 1023983, 0x0, 1));	
             this.Donations.Add(new CollectionItem(typeof(NoxCrystal), 0xF8E, 1023982, 0x0, 1));	
             this.Donations.Add(new CollectionItem(typeof(DaemonBlood), 0xF7D, 1023965, 0x0, 1));	
             this.Donations.Add(new CollectionItem(typeof(BatWing), 0xF78, 1023960, 0x0, 1));	

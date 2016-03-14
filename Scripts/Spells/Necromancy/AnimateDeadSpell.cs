@@ -14,7 +14,7 @@ namespace Server.Spells.Necromancy
             "Animate Dead", "Uus Corp",
             203,
             9031,
-            Reagent.GraveDust,
+            Reagent.VolcanicAsh,
             Reagent.DaemonBlood);
 
         public override TimeSpan CastDelayBase
