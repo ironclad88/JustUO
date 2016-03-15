@@ -2,15 +2,10 @@
    Please do not redistribute this file without permission
    Feel free to modify the file for your own use as you please */
 using System;
-using Server;
 using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
-using Server.Spells;
 using Server.Misc;
-using Server.Engines.CannedEvil;
-using Server.Targeting;
-
 
 namespace Server.Mobiles
 {
@@ -36,13 +31,15 @@ namespace Server.Mobiles
 
 			SetDamage( 13, 23 );
 
+            this.MagicLevel = 99; // change later ^^
+
 			SetSkill( SkillName.EvalInt, 140.1, 150.0 );
 			SetSkill( SkillName.Magery, 110.1, 120.0 );
 			SetSkill( SkillName.MagicResist, 175.1, 185.0 );
 			SetSkill( SkillName.Tactics, 180.1, 190.0 );
 			SetSkill( SkillName.Wrestling, 100.1, 120.0 );
 
-            SetDamageType(ResistanceType.Physical, 0);
+            SetDamageType(ResistanceType.Physical, 10);
             SetDamageType(ResistanceType.Cold, 100);
 
 			SetResistance( ResistanceType.Physical, 55, 65 );
@@ -50,8 +47,9 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Cold, 60, 70 );
 			SetResistance( ResistanceType.Poison, 20, 30 );
 			SetResistance( ResistanceType.Energy, 30, 40 );
+            SetResistance(ResistanceType.Necro, 30, 40);
 
-			Fame = 18000;
+            Fame = 18000;
 			Karma = -18000;
 
 			VirtualArmor = 60;
@@ -542,7 +540,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
 		{
-			AddLoot( LootPack.AosSuperBoss, 4);
+			AddLoot( LootPack.AosSuperBoss, 15);
 		}
 
         public override bool AlwaysMurderer { get { return true; } }
