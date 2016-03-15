@@ -63,35 +63,20 @@ namespace Server.Spells.Zulu.NecroSpells
 
         public void Target(Mobile m)
         {
-            if (!this.Caster.CanSee(m))
+            if (m is Mobile)
             {
-                this.Caster.SendLocalizedMessage(500237); // Target can not be seen.
+                Mobile targ = m;
+                
+                if (targ.BeginAction(typeof(LightCycle)))
+                {
+                    new LightCycle.NightSightTimer(targ).Start();
+                    
+                    targ.LightLevel = 12;
+                    
+                    targ.FixedParticles(0x376A, 9, 32, 5007, EffectLayer.Waist);
+                    targ.PlaySound(0x1E3);
+                }
             }
-            else if (this.CheckHSequence(m))
-            {
-                SpellHelper.Turn(this.Caster, m);
-
-                if (m.Spell != null)
-                    m.Spell.OnCasterHurt();
-
-                m.Paralyzed = false;
-
-                double damage = Utility.Random(70, 90); // balance this plix
-
-                double resistChance = GetResistSkill(m); // balance this plix
-                double finalDmg = damage - resistChance * 0.2; // balance this plix
-                Console.WriteLine("Kill spell DMG: " + finalDmg); // balance this plix
-
-                damage *= this.GetDamageScalar(m); // balance this plix
-                SpellHelper.Damage(this, m, finalDmg, 0, 0, 0, 0, 0, 0, 100, 0);
-
-                m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
-                m.PlaySound(0x205);
-
-                this.HarmfulSpell(m);
-            }
-
-            this.FinishSequence();
         }
 
         private class InternalTarget : Target

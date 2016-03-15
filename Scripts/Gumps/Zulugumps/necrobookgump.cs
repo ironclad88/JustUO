@@ -154,15 +154,19 @@ namespace Server.Gumps.Zulugumps
             {
                 case 1:
                     Console.WriteLine("Casting Control Undead");
+             //       new ControlundeadSpell(caster, null).Cast();
                     break;
                 case 2:
                     Console.WriteLine("Casting Darkness");
+                    new DarknessSpell(caster, null).Cast();
                     break;
                 case 3:
                     Console.WriteLine("Casting Decaying Ray");
+              //      new DecayingraySpell(caster, null).Cast();
                     break;
                 case 4:
                     Console.WriteLine("Casting Spectre´s Touch");
+              //      new SpectrestouchSpell(caster, null).Cast();
                     break;
                 case 5:
                     Console.WriteLine("Casting Abyssal Flame");
@@ -170,15 +174,19 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 6:
                     Console.WriteLine("Casting Animate Dead");
+               //     new AnimatedeadSpell(caster, null).Cast();
                     break;
                 case 7:
                     Console.WriteLine("Casting Sacrifice");
+               //     new SacrificeSpell(caster, null).Cast();
                     break;
                 case 8:
                     Console.WriteLine("Casting Wraith Breath");
+              //      new WraithsbreathSpell(caster, null).Cast();
                     break;
                 case 9:
                     Console.WriteLine("Casting Sorcerer´s Bane");
+                //    new SorceresbaneSpell(caster, null).Cast();
                     break;
                 case 10:
                     Console.WriteLine("Casting Summon Spirit");
@@ -186,6 +194,7 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 11:
                     Console.WriteLine("Casting Wraithform");
+                //    new WraithformSpell(caster, null).Cast();
                     break;
                 case 12:
                    // Console.WriteLine("Casting Wyvern Strike");
@@ -205,6 +214,7 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 16:
                     Console.WriteLine("Casting Spellbind");
+               //     new SpellbindSpell(caster, null).Cast();
                     break;
 
             }

@@ -118,7 +118,7 @@ namespace Server.Spells.Zulu.NecroSpells
                             m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                         }
 
-                        m.ApplyPoison(this.Caster, Poison.GetPoison(3)); // lvl 4 psn, lvl 3 if resisted
+                        m.ApplyPoison(this.Caster, Poison.GetPoison(level)); // lvl 4 psn, lvl 3 if resisted
                         m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
                         m.PlaySound(0x205);
 

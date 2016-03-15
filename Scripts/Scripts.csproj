@@ -3393,6 +3393,8 @@
     <Compile Include="Mobiles\ZuluSpecial\CrazyHermit.cs" />
     <Compile Include="Mobiles\ZuluSpecial\EarthElementalShrineLord.cs" />
     <Compile Include="Mobiles\ZuluSpecial\FireElementalShrineLord.cs" />
+    <Compile Include="Mobiles\ZuluSpecial\NewBosses\AbilityCollection.cs" />
+    <Compile Include="Mobiles\ZuluSpecial\NewBosses\Agho%27r the cold-hearted.cs" />
     <Compile Include="Mobiles\ZuluSpecial\PoisonElementalShrineLord.cs" />
     <Compile Include="Mobiles\ZuluSpecial\ShadowElementalShrineLord.cs" />
     <Compile Include="Mobiles\ZuluSpecial\WaterElementalShrineLord.cs" />
