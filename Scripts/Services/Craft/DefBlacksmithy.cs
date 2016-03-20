@@ -806,8 +806,7 @@ namespace Server.Engines.Craft
              */
             #endregion
 
-            //Not craftable (is this an AOS change ??) // inte rörd av mig // Oscar
-            //AddCraft( typeof( Pitchfork ), 1011083, 1023720, 36.1, 86.1, typeof( IronIngot ), 1044036, 12, 1044037 );
+            AddCraft( typeof( Pitchfork ), 1011083, 1023720, 36.1, 86.1, typeof( IronIngot ), 1044036, 12, 1044037 );
             #endregion
 
             #region Bashing

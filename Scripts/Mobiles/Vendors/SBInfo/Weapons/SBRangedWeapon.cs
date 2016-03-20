@@ -52,6 +52,9 @@ namespace Server.Mobiles
 
                 this.Add(new GenericBuyInfo(typeof(Feather), 2, GlobalSettings.ArrowAmount, 0x1BD1, 0));
                 this.Add(new GenericBuyInfo(typeof(Shaft), 3, GlobalSettings.ArrowAmount, 0x1BD4, 0));
+
+                this.Add(new GenericBuyInfo(typeof(ThunderHeavyCrossbow), 500, 20, 0x13FD, 0x502));
+                this.Add(new GenericBuyInfo(typeof(ThunderBolt), 50, GlobalSettings.ArrowAmount, 0x1BFB, 0x502));
             }
         }
 

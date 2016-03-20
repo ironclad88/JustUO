@@ -3316,6 +3316,8 @@
     <Compile Include="Items\ZuluIems\SOS\SOS6.cs" />
     <Compile Include="Items\ZuluIems\Weapons\Ranged\Firearrow.cs" />
     <Compile Include="Items\ZuluIems\Weapons\Ranged\Firebow.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\ThunderHeavyCrossbow.cs" />
+    <Compile Include="Items\ZuluIems\Weapons\Ranged\ThunderBolt.cs" />
     <Compile Include="Items\ZuluIems\Weapons\Ranged\Icearrow.cs" />
     <Compile Include="Items\ZuluIems\Weapons\Ranged\Icebow.cs" />
     <Compile Include="Items\ZuluIems\YuccaTree.cs" />

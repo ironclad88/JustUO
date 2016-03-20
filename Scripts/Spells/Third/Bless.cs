@@ -50,15 +50,18 @@ namespace Server.Spells.Third
             {
                 SpellHelper.Turn(this.Caster, m);
 
+                // JustZH: fix to make bless add the same bonus to all stats
+                int buff_amount = SpellHelper.GetOffset(this.Caster, m, StatType.Str, false);
+                TimeSpan duration = SpellHelper.GetDuration(this.Caster, m);
 
-                if (false == SpellHelper.AddStatBonus(this.Caster, m, StatType.Str))
+                if (false == SpellHelper.AddStatBonus(this.Caster, m, StatType.Str, buff_amount, duration))
                 {
                     this.Caster.SendMessage("Already under the influence.");
                 }
                 else {
                     SpellHelper.DisableSkillCheck = true;
-                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
-                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Int);
+                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex, buff_amount, duration);
+                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Int, buff_amount, duration);
                     SpellHelper.DisableSkillCheck = false;
 
                     int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 120 * this.Caster.SpecBonus(SpecClasse.Mage));

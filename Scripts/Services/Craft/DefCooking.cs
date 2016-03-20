@@ -274,9 +274,17 @@ namespace Server.Engines.Craft
             this.SetNeedHeat(index, true);
             this.SetUseAllRes(index, true);
 
-            index = this.AddCraft(typeof(FishSteak), 1044498, 1022427, 0.0, 100.0, typeof(RawFishSteak), 1044476, 1, 1044253);
-            this.SetNeedHeat(index, true);
-            this.SetUseAllRes(index, true);
+            for(int i = 0; i < 12; i++)
+            {
+                int min_skill = 10 + 10 * i;
+                int max_skill = min_skill + 30;
+                int amount = i + 1;
+                index = this.AddCraft(typeof(FishSteak), 1044498, amount.ToString() + " Fish Steak", min_skill, max_skill, typeof(RawFishSteak), 1044476, amount, 1044253);
+                this.SetNeedHeat(index, true);
+            }
+            //index = this.AddCraft(typeof(FishSteak), 1044498, 1022427, 0.0, 100.0, typeof(RawFishSteak), 1044476, 1, 1044253);
+            //this.SetNeedHeat(index, true);
+            //this.SetUseAllRes(index, true);
 
             index = this.AddCraft(typeof(FriedEggs), 1044498, 1022486, 0.0, 100.0, typeof(Eggs), 1044477, 1, 1044253);
             this.SetNeedHeat(index, true);

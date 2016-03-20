@@ -1719,7 +1719,7 @@ namespace Server.Mobiles
                 {
                     //corpse.AddCarvedItem(new Feather(feathers), from);
                     from.AddToBackpack(new Feather(feathers));
-                    from.SendLocalizedMessage(500479); // You pluck the bird. The feathers are now on the corpse.
+                    //from.SendLocalizedMessage(500479); // You pluck the bird. The feathers are now on the corpse.
                 }
 
                 if (wool != 0)
@@ -1727,7 +1727,7 @@ namespace Server.Mobiles
                     //corpse.AddCarvedItem(new TaintedWool(wool), from);
                     //from.AddToBackpack(new Wool(wool));
                     from.AddToBackpack(new TaintedWool(wool));
-                    from.SendLocalizedMessage(500483); // You shear it, and the wool is now on the corpse.
+                    //from.SendLocalizedMessage(500483); // You shear it, and the wool is now on the corpse.
                 }
 
                 if (meat != 0)
@@ -1749,7 +1749,7 @@ namespace Server.Mobiles
                         //corpse.AddCarvedItem(new RawLambLeg(meat), from);
                     }
 
-                    from.SendLocalizedMessage(500467); // You carve some meat, which remains on the corpse.
+                    //from.SendLocalizedMessage(500467); // You carve some meat, which remains on the corpse.
                 }
 
                 if (hides != 0)
@@ -1932,7 +1932,7 @@ namespace Server.Mobiles
                 if (dragonblood != 0)
                 {
                     corpse.AddCarvedItem(new DragonBlood(dragonblood), from);
-                    from.SendLocalizedMessage(500467); // You carve some meat, which remains on the corpse.
+                    //from.SendLocalizedMessage(500467); // You carve some meat, which remains on the corpse.
                 }
 
                 corpse.Carved = true;

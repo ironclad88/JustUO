@@ -226,11 +226,15 @@ namespace Server.Items
             } 
             if (AmmoType == typeof(FireArrow))
             {
-                attacker.MovingEffect(defender, 0x1BFE, 18, 1, false, false, 0x0494, 1);
+                attacker.MovingEffect(defender, 0x36D4, 9, 0, false, false, 0, 1);
             }
             else if (AmmoType == typeof(IceArrow))
             {
                 attacker.MovingEffect(defender, 0x1BFE, 18, 1, false, false, 0x0492, 0);
+            }
+            else if (AmmoType == typeof(ThunderBolt))
+            {
+                attacker.MovingEffect(defender, 0x379F, 9, 0, false, false, 0x502, 0);
             }
             else
             {

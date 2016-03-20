@@ -4726,14 +4726,14 @@ namespace Server
                 {
                     if (info != null && info.m_Name != null)
                     {
-                        return "A glimmering " + ItemData.Name;
+                        return "Glimmering " + ItemData.Name;
                     }
 
-                    return "A magic " + ItemData.Name;
+                    return "Magic " + ItemData.Name;
                 }
                 else
                 {
-                    if (ItemData.Name.IndexOf("%s") != -1)
+                    if (ItemData.Name.IndexOf("%") != -1)
                     {
                         // For stackable items with names from client files.
                         return null;

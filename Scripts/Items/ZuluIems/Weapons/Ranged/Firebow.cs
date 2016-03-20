@@ -16,6 +16,9 @@ namespace Server.Items.ZuluIems.Weapons.Ranged
             this.Weight = 3.0;
             this.Hue = 0x0494;
             this.Layer = Layer.TwoHanded;
+            Dice_Num = 5;
+            Dice_Sides = 6;
+            Dice_Offset = 5;
         }
 
         public Firebow(Serial serial)

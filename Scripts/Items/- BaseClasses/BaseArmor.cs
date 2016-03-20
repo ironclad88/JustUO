@@ -2454,7 +2454,8 @@ namespace Server.Items
             }
             else
             {
-                if (this.Resource != CraftResource.Iron)
+                if (this.Resource != CraftResource.Iron && Resource != CraftResource.RegularLeather
+                    && Resource != CraftResource.RegularWood)
                     list.Add(CraftResources.GetInfo(this.Resource).Name + " " + name);
                 //list.Add(1053099, "#{0}\t{1}", oreType, name); // ~1_oretype~ ~2_armortype~
                 else if (this.Name == null)
