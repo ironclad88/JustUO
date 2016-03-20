@@ -473,7 +473,8 @@ namespace Server
         PermaMagicImmunity,
         FreeAction,
         Healing,
-        PermaMagicReflect
+        PermaMagicReflect,
+        MagicEfficency
     }
 
     public enum ApplyPoisonResult
@@ -909,6 +910,7 @@ namespace Server
         public virtual int BaseFreeActionResistance { get { return 0; } }
         public virtual int BaseHealingResistance { get { return 0; } }
         public virtual int BaseMagicReflectResistance { get { return 0; } }
+        public virtual int BaseMagicEfficency { get { return 0; } }
 
         public virtual void ComputeLightLevels(out int global, out int personal)
         {
@@ -965,11 +967,14 @@ namespace Server
         [CommandProperty(AccessLevel.Counselor)]
         public virtual int PermaMagicReflectResistance { get { return GetResistance(ResistanceType.PermaMagicReflect); } }
 
+        [CommandProperty(AccessLevel.Counselor)]
+        public virtual int MagicEfficency { get { return GetResistance(ResistanceType.MagicEfficency); } }
+
         public virtual void UpdateResistances()
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             bool delta = false;
@@ -993,7 +998,7 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
             }
 
             var v = (int)type;
@@ -1053,10 +1058,22 @@ namespace Server
         {
             if (_Resistances == null)
             {
-                _Resistances = new int[] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
+                _Resistances = new int[] {
+                    int.MinValue, int.MinValue, int.MinValue,
+                    int.MinValue, int.MinValue, int.MinValue,
+                    int.MinValue, int.MinValue, int.MinValue,
+                    int.MinValue, int.MinValue, int.MinValue,
+                    int.MinValue
+                };
             }
 
-            int[] MaxResBonus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] MaxResBonus = new int[] {
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                0
+            };
 
             for (int i = 0; i < _Resistances.Length; ++i)
             {
@@ -1075,6 +1092,7 @@ namespace Server
             _Resistances[9] += BaseFreeActionResistance;
             _Resistances[10] += BaseHealingResistance;
             _Resistances[11] += BaseMagicReflectResistance;
+            _Resistances[12] += BaseMagicEfficency;
             // BaseFreeActionResistance
 
             for (int i = 0; _ResistMods != null && i < _ResistMods.Count; ++i)
@@ -1108,35 +1126,6 @@ namespace Server
                     MaxResBonus[5] = Math.Max(MaxResBonus[5], item.EarthResistance);
                     MaxResBonus[6] = Math.Max(MaxResBonus[6], item.NecroResistance);
                     MaxResBonus[7] = Math.Max(MaxResBonus[7], item.HolyResistance);
-                    if (this.PermaMagicResistance <= item.PermaMagicResistance)
-                    {
-                        MaxResBonus[8] = Math.Max(MaxResBonus[8], item.PermaMagicResistance);
-                    }
-                    else {
-                        MaxResBonus[8] = Math.Max(MaxResBonus[8], this.PermaMagicResistance);
-                    }
-                    if(this.FreeActionResistance != 0)
-                    {
-                        MaxResBonus[9] = Math.Max(MaxResBonus[9], item.FreeActionResistance);
-                    }
-                    else
-                    {
-                        MaxResBonus[9] = Math.Max(MaxResBonus[9], this.FreeActionResistance);
-                    }
-                    if (this.HealingResistance <= item.HealingResistance)
-                    {
-                        MaxResBonus[10] = Math.Max(MaxResBonus[10], item.HealingResistance);
-                    }
-                    else {
-                        MaxResBonus[10] = Math.Max(MaxResBonus[10], this.HealingResistance);
-                    }
-                    if (this.PermaMagicReflectResistance <= item.PermaMagicReflectResistance)
-                    {
-                        MaxResBonus[11] = Math.Max(MaxResBonus[8], item.PermaMagicReflectResistance);
-                    }
-                    else {
-                        MaxResBonus[11] = Math.Max(MaxResBonus[8], this.PermaMagicReflectResistance);
-                    }
                 }
 
                 _Resistances[0] += item.PhysicalResistance;
@@ -1176,9 +1165,12 @@ namespace Server
                 else {
                     _Resistances[11] = this.PermaMagicReflectResistance;
                 }
+                // Magic effeciency is just additive without restrictions.
+                _Resistances[12] += item.MagicEfficiency;
             }
 
-            for (int i = 0; i < _Resistances.Length; ++i)
+            // Loop through the regular resistances, skip healing mods, free action etc.
+            for (int i = 0; i < /*_Resistances.Length*/(int)ResistanceType.PermaMagicImmunity; ++i)
             {
                 int min = GetMinResistance((ResistanceType)i);
                 int max = GetMaxResistance((ResistanceType)i) + MaxResBonus[i];
@@ -7105,7 +7097,9 @@ namespace Server
 
             if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
                 item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0)
+                item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0 ||
+                item.PermaMagicReflectResistance != 0 || item.MagicEfficiency != 0 || item.FreeActionResistance != 0 ||
+                item.HealingResistance != 0)
             {
                 UpdateResistances();
             }
@@ -7143,8 +7137,10 @@ namespace Server
                 OnItemRemoved(item);
 
                 if (item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
-                    item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
-                    item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0 || item.FreeActionResistance != 0 || item.HealingResistance != 0)
+                item.PoisonResistance != 0 || item.EnergyResistance != 0 || item.EarthResistance != 0 ||
+                item.NecroResistance != 0 || item.HolyResistance != 0 || item.PermaMagicResistance != 0 ||
+                item.PermaMagicReflectResistance != 0 || item.MagicEfficiency != 0 || item.FreeActionResistance != 0 ||
+                item.HealingResistance != 0)
                 {
                     UpdateResistances();
                 }

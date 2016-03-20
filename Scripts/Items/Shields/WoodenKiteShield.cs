@@ -76,7 +76,10 @@ namespace Server.Items
         {
             get
             {
-                return 12;
+                // JustZH: to make this the best crafted shield, we increase the base armor.
+                // However, this will also affect dropped shields, so keep an eye on this.
+                //return 12;
+                return 25;
             }
         }
         public override void Deserialize(GenericReader reader)

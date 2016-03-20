@@ -25,6 +25,7 @@ namespace Server.Gumps.Zulugumps
             int earth = owner.EarthResistance;
             int necro = owner.NecroResistance;
             int holy = owner.HolyResistance;
+            int magic_eff = owner.MagicEfficency;
 
             AddPage(0);
             AddBackground(90, 30, 400, 325, 9200);
@@ -41,6 +42,7 @@ namespace Server.Gumps.Zulugumps
             AddLabel(startX, startY += 25, 0, @"Earth Protection");
             AddLabel(startX, startY += 25, 0, @"Necro Protection");
             AddLabel(startX, startY += 25, 0, @"Holy Protection");
+            AddLabel(startX, startY += 25, 0, @"Magic Efficency");
             // add healing, free action, blackrock, moonstone here later
 
             startX += 250;
@@ -54,6 +56,7 @@ namespace Server.Gumps.Zulugumps
             AddLabel(startX, startY += 25, 0, earth.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, necro.ToString() + @"%");
             AddLabel(startX, startY += 25, 0, holy.ToString() + @"%");
+            AddLabel(startX, startY += 25, 0, magic_eff.ToString() + @"%");
 
         }
     }

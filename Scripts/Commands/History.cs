@@ -22,7 +22,7 @@ namespace Felladrin.Commands
             public static bool Enabled = true;               // Is this command enabled?
             public static bool AutoRefreshEnabled = true;    // Is the auto refresh enabled?
             public static bool AutoColoredNames = true;      // Should we auto color the players names?
-            public static bool OpenGumpOnLogin = true;       // Should we display the gump when player logs in? // Not sure about this one JustZH
+            public static bool OpenGumpOnLogin = false;       // Should we display the gump when player logs in? // Not sure about this one JustZH
             public static int MaxMessagesPerPage = 19;       // How many messages should we display per page?
         }
 

@@ -540,14 +540,16 @@ namespace Server.Items
 
         public override bool CanEquip(Mobile from)
         {
-            if (from.SpecClasse == SpecClasse.Thief) { if (TheifSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Warrior) { if (WarriorSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Crafter) { if (CrafterSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Ranger) { if (RangerSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Bard) { if (BardSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Cleric) { if (ClericSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-            else if (from.SpecClasse == SpecClasse.Mage) { if (MageSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false || this.BaseArmorRating > 0) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
-
+            if (this.SkillBonuses.Skill_1_Value != 0)
+            {
+                if (from.SpecClasse == SpecClasse.Thief) { if (TheifSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Warrior) { if (WarriorSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Crafter) { if (CrafterSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Ranger) { if (RangerSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Bard) { if (BardSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Cleric) { if (ClericSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+                else if (from.SpecClasse == SpecClasse.Mage) { if (MageSkills(from, this.SkillBonuses.Skill_1_Name, this.SkillBonuses.Skill_1_Value) == false || this.BaseArmorRating > 0) { from.SendMessage("Your class prevents you from equipping this"); return false; } }
+            }
             if (!Ethics.Ethic.CheckEquip(from, this))
                 return false;
 

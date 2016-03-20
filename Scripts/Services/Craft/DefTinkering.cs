@@ -341,7 +341,7 @@ namespace Server.Engines.Craft
             this.AddRes(index, typeof(Bottle), 1044250, 10, 1044253);
             this.AddRes(index, typeof(BarrelLid), 1044251, 1, 1044253);
             this.AddRes(index, typeof(BarrelTap), 1044252, 1, 1044253);
-            
+
             /*if (Core.SA)
             {
                 index = this.AddCraft(typeof(ModifiedClockworkAssembly), 1044051, 1113031, 65.0, 115.0, typeof(ClockworkAssembly), 1073426, 1, 502910);
@@ -364,58 +364,58 @@ namespace Server.Engines.Craft
             }*/
 
             #region Hitching Post
-           /* if (Core.ML)
-            {
-                index = this.AddCraft(typeof(HitchingRope), 1044051, 1071124, 60.0, 120.0, typeof(Rope), 1020934, 1, 1044253);
-                this.AddSkill(index, SkillName.AnimalLore, 15.0, 100.0);
-                this.AddRes(index, typeof(ResolvesBridle), 1074761, 1, 1044253);
+            /* if (Core.ML)
+             {
+                 index = this.AddCraft(typeof(HitchingRope), 1044051, 1071124, 60.0, 120.0, typeof(Rope), 1020934, 1, 1044253);
+                 this.AddSkill(index, SkillName.AnimalLore, 15.0, 100.0);
+                 this.AddRes(index, typeof(ResolvesBridle), 1074761, 1, 1044253);
 
-                index = this.AddCraft(typeof(HitchingPost), 1044051, 1071127, 90.0, 160.0, typeof(IronIngot), 1044036, 50, 1044253);
-                this.AddRes(index, typeof(AnimalPheromone), 1071200, 1, 1044253);
-                this.AddRes(index, typeof(HitchingRope), 1071124, 2, 1044253);
-                this.AddRes(index, typeof(PhillipsWoodenSteed), 1063488, 1, 1044253);
-            }*/
+                 index = this.AddCraft(typeof(HitchingPost), 1044051, 1071127, 90.0, 160.0, typeof(IronIngot), 1044036, 50, 1044253);
+                 this.AddRes(index, typeof(AnimalPheromone), 1071200, 1, 1044253);
+                 this.AddRes(index, typeof(HitchingRope), 1071124, 2, 1044253);
+                 this.AddRes(index, typeof(PhillipsWoodenSteed), 1063488, 1, 1044253);
+             }*/
             #endregion
 
             #endregion
 
             #region Traps
             // Dart Trap
-           /* index = this.AddCraft(typeof(DartTrapCraft), 1044052, 1024396, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
-            this.AddRes(index, typeof(Bolt), 1044570, 1, 1044253);
+            /* index = this.AddCraft(typeof(DartTrapCraft), 1044052, 1024396, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
+             this.AddRes(index, typeof(Bolt), 1044570, 1, 1044253);
 
-            // Poison Trap
-            index = this.AddCraft(typeof(PoisonTrapCraft), 1044052, 1044593, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
-            this.AddRes(index, typeof(BasePoisonPotion), 1044571, 1, 1044253);
+             // Poison Trap
+             index = this.AddCraft(typeof(PoisonTrapCraft), 1044052, 1044593, 30.0, 80.0, typeof(IronIngot), 1044036, 1, 1044037);
+             this.AddRes(index, typeof(BasePoisonPotion), 1044571, 1, 1044253);
 
-            // Explosion Trap
-            index = this.AddCraft(typeof(ExplosionTrapCraft), 1044052, 1044597, 55.0, 105.0, typeof(IronIngot), 1044036, 1, 1044037);
-            this.AddRes(index, typeof(BaseExplosionPotion), 1044569, 1, 1044253);
+             // Explosion Trap
+             index = this.AddCraft(typeof(ExplosionTrapCraft), 1044052, 1044597, 55.0, 105.0, typeof(IronIngot), 1044036, 1, 1044037);
+             this.AddRes(index, typeof(BaseExplosionPotion), 1044569, 1, 1044253);
 
-            // Faction Gas Trap
-            index = this.AddCraft(typeof(FactionGasTrapDeed), 1044052, 1044598, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
-            this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
-            this.AddRes(index, typeof(BasePoisonPotion), 1044571, 1, 1044253);
+             // Faction Gas Trap
+             index = this.AddCraft(typeof(FactionGasTrapDeed), 1044052, 1044598, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
+             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+             this.AddRes(index, typeof(BasePoisonPotion), 1044571, 1, 1044253);
 
-            // Faction explosion Trap
-            index = this.AddCraft(typeof(FactionExplosionTrapDeed), 1044052, 1044599, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
-            this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
-            this.AddRes(index, typeof(BaseExplosionPotion), 1044569, 1, 1044253);
+             // Faction explosion Trap
+             index = this.AddCraft(typeof(FactionExplosionTrapDeed), 1044052, 1044599, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
+             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+             this.AddRes(index, typeof(BaseExplosionPotion), 1044569, 1, 1044253);
 
-            // Faction Saw Trap
-            index = this.AddCraft(typeof(FactionSawTrapDeed), 1044052, 1044600, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
-            this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
-            this.AddRes(index, typeof(Gears), 1044254, 1, 1044253);
+             // Faction Saw Trap
+             index = this.AddCraft(typeof(FactionSawTrapDeed), 1044052, 1044600, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
+             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+             this.AddRes(index, typeof(Gears), 1044254, 1, 1044253);
 
-            // Faction Spike Trap           
-            index = this.AddCraft(typeof(FactionSpikeTrapDeed), 1044052, 1044601, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
-            this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
-            this.AddRes(index, typeof(Springs), 1044171, 1, 1044253);
+             // Faction Spike Trap           
+             index = this.AddCraft(typeof(FactionSpikeTrapDeed), 1044052, 1044601, 65.0, 115.0, typeof(Silver), 1044572, Core.AOS ? 250 : 1000, 1044253);
+             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+             this.AddRes(index, typeof(Springs), 1044171, 1, 1044253);
 
-            // Faction trap removal kit
-            index = this.AddCraft(typeof(FactionTrapRemovalKit), 1044052, 1046445, 90.0, 115.0, typeof(Silver), 1044572, 500, 1044253);
-            this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
-            */
+             // Faction trap removal kit
+             index = this.AddCraft(typeof(FactionTrapRemovalKit), 1044052, 1046445, 90.0, 115.0, typeof(Silver), 1044572, 500, 1044253);
+             this.AddRes(index, typeof(IronIngot), 1044036, 10, 1044037);
+             */
             #endregion
 
             #region Mondain's Legacy Magic Jewlery
@@ -502,9 +502,15 @@ namespace Server.Engines.Craft
                 index = this.AddCraft(typeof(GargishEarrings), 1044049, 1095787, 65.0, 115.0, typeof(IronIngot), 1044036, 4, 1044037);
                 this.AddRes(index, typeof(BlueDiamond), 1032696, 1, 1044253);
                 this.SetNeededExpansion(index, Expansion.SA);  
-            }   */            
+            }   */
             #endregion
 
+            this.MarkOption = true;
+            this.Repair = true;
+            this.CanEnhance = false;
+
+            #region Old Ingots
+#if false
             // Set the overridable material
             this.SetSubRes(typeof(IronIngot), 1044022);
 
@@ -519,10 +525,50 @@ namespace Server.Engines.Craft
             this.AddSubRes(typeof(AgapiteIngot), 1044028, 90.0, 1044036, 1044268);
             this.AddSubRes(typeof(VeriteIngot), 1044029, 95.0, 1044036, 1044268);
             this.AddSubRes(typeof(ValoriteIngot), 1044030, 99.0, 1044036, 1044268);
+#endif
+#endregion
 
-            this.MarkOption = true;
-            this.Repair = true;
-            this.CanEnhance = false;
+            // Set the overridable material
+            SetSubRes(typeof(IronIngot), 1044022);
+
+            // Add every material you want the player to be able to choose from
+            // This will override the overridable material
+            //int zulu_names = 1044119;
+            AddSubRes(typeof(IronIngot), CraftResources.GetInfo(CraftResource.Iron).Name, CraftResources.GetInfo(CraftResource.Iron).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(GoldIngot), CraftResources.GetInfo(CraftResource.Gold).Name, CraftResources.GetInfo(CraftResource.Gold).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(SpikeIngot), CraftResources.GetInfo(CraftResource.Spike).Name, CraftResources.GetInfo(CraftResource.Spike).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(FruityIngot), CraftResources.GetInfo(CraftResource.Fruity).Name, CraftResources.GetInfo(CraftResource.Fruity).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(BronzeIngot), CraftResources.GetInfo(CraftResource.Bronze).Name, CraftResources.GetInfo(CraftResource.Bronze).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(IceRockIngot), CraftResources.GetInfo(CraftResource.IceRock).Name, CraftResources.GetInfo(CraftResource.IceRock).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(BlackDwarfIngot), CraftResources.GetInfo(CraftResource.BlackDwarf).Name, CraftResources.GetInfo(CraftResource.BlackDwarf).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DullCopperIngot), CraftResources.GetInfo(CraftResource.DullCopper).Name, CraftResources.GetInfo(CraftResource.DullCopper).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(PlatinumIngot), CraftResources.GetInfo(CraftResource.Platinum).Name, CraftResources.GetInfo(CraftResource.Platinum).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(SilverRockIngot), CraftResources.GetInfo(CraftResource.SilverRock).Name, CraftResources.GetInfo(CraftResource.SilverRock).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DarkPaganIngot), CraftResources.GetInfo(CraftResource.DarkPagan).Name, CraftResources.GetInfo(CraftResource.DarkPagan).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(CopperIngot), CraftResources.GetInfo(CraftResource.Copper).Name, CraftResources.GetInfo(CraftResource.Copper).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(MysticIngot), CraftResources.GetInfo(CraftResource.Mystic).Name, CraftResources.GetInfo(CraftResource.Mystic).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(SpectralIngot), CraftResources.GetInfo(CraftResource.Spectral).Name, CraftResources.GetInfo(CraftResource.Spectral).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(OldBritainIngot), CraftResources.GetInfo(CraftResource.OldBritain).Name, CraftResources.GetInfo(CraftResource.OldBritain).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(OnyxIngot), CraftResources.GetInfo(CraftResource.Onyx).Name, CraftResources.GetInfo(CraftResource.Onyx).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(RedElvenIngot), CraftResources.GetInfo(CraftResource.RedElven).Name, CraftResources.GetInfo(CraftResource.RedElven).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(UndeadIngot), CraftResources.GetInfo(CraftResource.Undead).Name, CraftResources.GetInfo(CraftResource.Undead).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(PyriteIngot), CraftResources.GetInfo(CraftResource.Pyrite).Name, CraftResources.GetInfo(CraftResource.Pyrite).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(VirginityIngot), CraftResources.GetInfo(CraftResource.Virginity).Name, CraftResources.GetInfo(CraftResource.Virginity).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(MalachiteIngot), CraftResources.GetInfo(CraftResource.Malachite).Name, CraftResources.GetInfo(CraftResource.Malachite).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(LavarockIngot), CraftResources.GetInfo(CraftResource.Lavarock).Name, CraftResources.GetInfo(CraftResource.Lavarock).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(AzuriteIngot), CraftResources.GetInfo(CraftResource.Azurite).Name, CraftResources.GetInfo(CraftResource.Azurite).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DripstoneIngot), CraftResources.GetInfo(CraftResource.Dripstone).Name, CraftResources.GetInfo(CraftResource.Dripstone).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(ExecutorIngot), CraftResources.GetInfo(CraftResource.Executor).Name, CraftResources.GetInfo(CraftResource.Executor).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(PeachblueIngot), CraftResources.GetInfo(CraftResource.Peachblue).Name, CraftResources.GetInfo(CraftResource.Peachblue).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DestructionIngot), CraftResources.GetInfo(CraftResource.Destruction).Name, CraftResources.GetInfo(CraftResource.Destruction).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(AnraIngot), CraftResources.GetInfo(CraftResource.Anra).Name, CraftResources.GetInfo(CraftResource.Anra).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(CrystalIngot), CraftResources.GetInfo(CraftResource.CrystalMetal).Name, CraftResources.GetInfo(CraftResource.CrystalMetal).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DoomIngot), CraftResources.GetInfo(CraftResource.DoomMetal).Name, CraftResources.GetInfo(CraftResource.DoomMetal).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(GoddessIngot), CraftResources.GetInfo(CraftResource.GoddessMetal).Name, CraftResources.GetInfo(CraftResource.GoddessMetal).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(ZuluIngot), CraftResources.GetInfo(CraftResource.ZuluMetal).Name, CraftResources.GetInfo(CraftResource.ZuluMetal).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(ETSIngot), CraftResources.GetInfo(CraftResource.ETS).Name, CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(DSRIngot), CraftResources.GetInfo(CraftResource.DSR).Name, CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty, 1044268);
+            AddSubRes(typeof(RNDIngot), CraftResources.GetInfo(CraftResource.RND).Name, CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty, 1044268);
         }
     }
 

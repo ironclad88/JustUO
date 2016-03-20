@@ -597,8 +597,8 @@ namespace Server.Items
                     CraftResourceInfo resourceInfo = CraftResources.GetInfo(this.m_Ore.Resource);
                     difficulty = resourceInfo.AttributeInfo.Difficulty;
 
-                    // JustZH: Adjust smelting difficulty here.
-                    double minSkill = difficulty;
+                    // JustZH: Adjust smelting difficulty here. This will not affect the "You have no idea.." message skill req.
+                    double minSkill = Math.Max((difficulty - 15), 0);
                     double maxSkill = difficulty + 15;
 
                     if (difficulty > 50.0 && difficulty > from.Skills[SkillName.Mining].Value)
@@ -623,8 +623,8 @@ namespace Server.Items
                         }
                         else
                         {
-                            if (toConsume > 30000)
-                                toConsume = 30000;
+                            if (toConsume > 60000)
+                                toConsume = 60000;
 
                             int ingotAmount;
 
@@ -635,10 +635,11 @@ namespace Server.Items
                                 if (toConsume % 2 != 0)
                                     --toConsume;
                             }
-                            else if (this.m_Ore.ItemID == 0x19B9)
-                            {
-                                ingotAmount = toConsume * 2;
-                            }
+                            // JustZH: double ingots? no wai!
+                            //else if (this.m_Ore.ItemID == 0x19B9)
+                            //{
+                            //    ingotAmount = toConsume * 2;
+                            //}
                             else
                             {
                                 ingotAmount = toConsume;

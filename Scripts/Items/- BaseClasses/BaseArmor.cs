@@ -62,9 +62,12 @@ namespace Server.Items
         private CraftResource m_Resource;
         private bool m_PlayerConstructed;
         private int m_dexpenalty;
+        private int m_MagicEffeciency;
         //private bool m_Identified;
         //private int m_IdHue;
-        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus, m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus, m_MagicResistBonus;
+        private int m_PhysicalBonus, m_FireBonus, m_ColdBonus, m_PoisonBonus;
+        private int m_EnergyBonus, m_EarthBonus, m_NecroBonus, m_HolyBonus;
+        private int m_MagicResistBonus, m_MagicEfficencyBonus;
         private int m_TimesImbued;
 
         private AosAttributes m_AosAttributes;
@@ -204,7 +207,7 @@ namespace Server.Items
             }
         }
         [CommandProperty(AccessLevel.GameMaster)]
-        public virtual int Dexpenalty
+        public override int Dexpenalty
         {
             get
             {
@@ -995,7 +998,7 @@ namespace Server.Items
             get
             {
                 return /*this.BasePhysicalResistance + */
-                this.GetProtOffset() + this.GetResourceAttrs().ArmorPhysicalResist + this.m_PhysicalBonus + (this.m_SetEquipped ? this.m_SetPhysicalBonus : 0);
+                this.GetResourceAttrs().ArmorPhysicalResist + this.m_PhysicalBonus + (this.m_SetEquipped ? this.m_SetPhysicalBonus : 0);
             }
         }
 
@@ -1003,7 +1006,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseFireResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorFireResist + this.m_FireBonus + (this.m_SetEquipped ? this.m_SetFireBonus : 0);
+                return /*this.BaseFireResistance + */ this.GetResourceAttrs().ArmorFireResist + this.m_FireBonus + (this.m_SetEquipped ? this.m_SetFireBonus : 0);
             }
         }
 
@@ -1011,7 +1014,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseColdResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorColdResist + this.m_ColdBonus + (this.m_SetEquipped ? this.m_SetColdBonus : 0);
+                return /*this.BaseColdResistance + */ this.GetResourceAttrs().ArmorColdResist + this.m_ColdBonus + (this.m_SetEquipped ? this.m_SetColdBonus : 0);
             }
         }
 
@@ -1019,7 +1022,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BasePoisonResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorPoisonResist + this.m_PoisonBonus + (this.m_SetEquipped ? this.m_SetPoisonBonus : 0);
+                return /*this.BasePoisonResistance + */ this.GetResourceAttrs().ArmorPoisonResist + this.m_PoisonBonus + (this.m_SetEquipped ? this.m_SetPoisonBonus : 0);
             }
         }
 
@@ -1027,7 +1030,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseEnergyResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorEnergyResist + this.m_EnergyBonus + (this.m_SetEquipped ? this.m_SetEnergyBonus : 0);
+                return /*this.BaseEnergyResistance + */ this.GetResourceAttrs().ArmorEnergyResist + this.m_EnergyBonus + (this.m_SetEquipped ? this.m_SetEnergyBonus : 0);
             }
         }
 
@@ -1035,7 +1038,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseEarthResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorEarthResist + this.m_EarthBonus + (this.m_SetEquipped ? this.m_SetEarthBonus : 0);
+                return /*this.BaseEarthResistance + */ this.GetResourceAttrs().ArmorEarthResist + this.m_EarthBonus + (this.m_SetEquipped ? this.m_SetEarthBonus : 0);
             }
         }
 
@@ -1043,7 +1046,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseNecroResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorNecroResist + this.m_NecroBonus + (this.m_SetEquipped ? this.m_SetNecroBonus : 0);
+                return /*this.BaseNecroResistance + */ this.GetResourceAttrs().ArmorNecroResist + this.m_NecroBonus + (this.m_SetEquipped ? this.m_SetNecroBonus : 0);
             }
         }
 
@@ -1051,7 +1054,7 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseHolyResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorHolyResist + this.m_HolyBonus + (this.m_SetEquipped ? this.m_SetHolyBonus : 0);
+                return /*this.BaseHolyResistance + */ this.GetResourceAttrs().ArmorHolyResist + this.m_HolyBonus + (this.m_SetEquipped ? this.m_SetHolyBonus : 0);
             }
         }
 
@@ -1059,7 +1062,15 @@ namespace Server.Items
         {
             get
             {
-                return /*this.BaseHolyResistance + */this.GetProtOffset() + this.GetResourceAttrs().ArmorMagicResist + this.m_MagicResistBonus + (this.m_SetEquipped ? this.m_SetMagicResistBonus : 0);
+                return /*this.BaseHolyResistance + */ this.GetResourceAttrs().ArmorMagicResist + this.m_MagicResistBonus + (this.m_SetEquipped ? this.m_SetMagicResistBonus : 0);
+            }
+        }
+
+        public override int MagicEfficiency
+        {
+            get
+            {
+                return this.GetResourceAttrs().MagicEfficiency + this.m_MagicEfficencyBonus + (this.m_SetEquipped ? this.m_SetMagicEfficiencyBonus : 0);
             }
         }
 
@@ -3033,7 +3044,7 @@ namespace Server.Items
             }
         }
 
-        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus, m_SetEarthBonus, m_SetNecroBonus, m_SetHolyBonus, m_SetMagicResistBonus;
+        private int m_SetPhysicalBonus, m_SetFireBonus, m_SetColdBonus, m_SetPoisonBonus, m_SetEnergyBonus, m_SetEarthBonus, m_SetNecroBonus, m_SetHolyBonus, m_SetMagicResistBonus, m_SetMagicEfficiencyBonus;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int SetPhysicalBonus

@@ -51,15 +51,19 @@ namespace Server.Spells.Second
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.StrStrength);
+                if (false == SpellHelper.AddStatBonus(this.Caster, m, StatType.StrStrength))
+                {
+                    this.Caster.SendMessage("Already under the influence.");
+                }
+                else {
+                    int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 100);
+                    TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
 
+                    BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Strength, 1075845, length, m, percentage.ToString()));
+                }
                 m.FixedParticles(0x375A, 10, 15, 5017, EffectLayer.Waist);
                 m.PlaySound(0x1EE);
 
-                int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 100);
-                TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
-
-                BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Strength, 1075845, length, m, percentage.ToString()));
             }
 
             this.FinishSequence();

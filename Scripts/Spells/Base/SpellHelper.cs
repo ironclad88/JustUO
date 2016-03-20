@@ -261,10 +261,11 @@ namespace Server.Spells
 
             StatMod mod = target.GetStatMod(name);
 
-            if (mod != null && mod.Offset < 0)
+            if (mod != null /* && mod.Offset < 0 */) //JustZH: don't renew already existing mods...
             {
-                target.AddStatMod(new StatMod(type, name, mod.Offset + offset, duration));
-                return true;
+                return false;
+                //target.AddStatMod(new StatMod(type, name, mod.Offset + offset, duration));
+                //return true;
             }
             else if (mod == null || mod.Offset < offset)
             {
@@ -327,25 +328,24 @@ namespace Server.Spells
         {
             double percent;
 
-            if (curse)
-                percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // this is used for curses
-            else
-                percent = 5 + (caster.Skills.Magery.Fixed / 50); // boosted ALOT, still needs to be tested against POL zulu
+            //if (curse)
+            //    percent = 8 + (caster.Skills.Magery.Fixed / 100) - (target.Skills.MagicResist.Fixed / 100); // this is used for curses
+            //else
+            percent = 7 + (caster.Skills.Magery.Fixed / 100); //JustZH: 7 + (1 for every 10 magery skill)
+
+            // One percent per magic efficiency
+            percent += caster.MagicEfficency;
+
+            // JustZH Better buffs for specced Mages
+            if (caster.SpecClasse == SpecClasse.Mage) // better buffs made by mages
+                percent += 10*caster.SpecLevel;
 
             percent *= 0.01;
 
+            percent *= (1 - Utility.RandomDouble() * 0.20); // JustZH: added randomization, this will subtract up to 20%
+
             if (percent < 0)
                 percent = 0;
-
-            // JustZH Better buffs for specced Mages
-            //if (caster.SpecClasse == SpecClasse.Mage) // better buffs made by mages
-            // percent *= caster.SpecBonus(SpecClasse.Mage);
-
-            // JustZH Worse buffs for specced Warriors
-            //if (caster.SpecClasse == SpecClasse.Warrior) // worse buffs made by warriors // just tested, lol, it got -9 from cunning spell :D
-            //percent = (caster.Skills.Magery.Fixed / 130);
-
-
 
             // Console.WriteLine("PERCENT: " + percent);
             return percent;
@@ -358,29 +358,32 @@ namespace Server.Spells
             {
                 if (!m_DisableSkillCheck)
                 {
+                    // JustZH: Skill gain check, it really feels like this should be done in the spell class and not here...
                     caster.CheckSkill(SkillName.Magery, 0.0, 130.0);
 
                     //if (curse)
                     //     target.CheckSkill(SkillName.MagicResist, 0.0, 130.0);  // dunno what this does, so i removed it ^^
                 }
 
+                // JustZH: quick revamp of this based off of the same base stat every time. Chose 100 for convinience.
                 double percent = GetOffsetScalar(caster, target, curse);
+                return (int)(percent * 100);
 
-                switch (type)
-                {
-                    case StatType.Str:
-                        return (int)(target.RawStr * percent);
-                    case StatType.Dex:
-                        return (int)(target.RawDex * percent);
-                    case StatType.Int:
-                        return (int)(target.RawInt * percent);
-                    case StatType.StrStrength:
-                        return (int)(target.RawStr * percent);
-                    case StatType.DexAgility:
-                        return (int)(target.RawDex * percent);
-                    case StatType.IntCunning:
-                        return (int)(target.RawInt * percent);
-                }
+                //switch (type)
+                //{
+                //    case StatType.Str:
+                //        return (int)(target.RawStr * percent);
+                //    case StatType.Dex:
+                //        return (int)(target.RawDex * percent);
+                //    case StatType.Int:
+                //        return (int)(target.RawInt * percent);
+                //    case StatType.StrStrength:
+                //        return (int)(target.RawStr * percent);
+                //    case StatType.DexAgility:
+                //        return (int)(target.RawDex * percent);
+                //    case StatType.IntCunning:
+                //        return (int)(target.RawInt * percent);
+                //}
             }
 
             return 1 + (int)(caster.Skills[SkillName.Magery].Value * 0.1);
@@ -1159,7 +1162,7 @@ namespace Server.Spells
             // multipliers added in the Damage Multipliers region below, this means spec bonus will be more powerful
             // than if it was added with the other multipliers.
 
-            //JustZH: add spec damage bonus an vulnerabilities
+            //JustZH: add spec damage bonus and vulnerabilities
             double spec_scalar_d = 1.0;
             double spec_damage_bonus = 0.15;
             double spec_damage_reduction = 0.05;
@@ -1172,6 +1175,9 @@ namespace Server.Spells
             if (from.SpecClasse == SpecClasse.Warrior)
                 spec_scalar_d -= spec_damage_bonus * from.SpecLevel;
             if (target.SpecClasse == SpecClasse.Warrior) spec_scalar_d += spec_damage_bonus * target.SpecLevel;
+
+            // magic effiency 
+            spec_scalar_d += from.MagicEfficency / 100;
 
 
             if (debug == true && from.IsStaff())

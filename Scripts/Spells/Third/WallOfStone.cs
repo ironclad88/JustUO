@@ -114,11 +114,18 @@ namespace Server.Spells.Third
                 if (this.Deleted)
                     return;
 
-                this.m_Timer = new InternalTimer(this, TimeSpan.FromSeconds(10.0));
+                
 
                 if (caster.SpecClasse == SpecClasse.Mage) // buffed specced mage duration
                 {
-                    m_Timer.Interval = TimeSpan.FromSeconds(20.0); // double duration
+                    double base_duration = 10.0;
+                    double scalar = 1; // amount of bonus duration for spec, 0.5 == 50% per level.
+                    double bonus_duration = base_duration * scalar * caster.SpecLevel;
+                    this.m_Timer = new InternalTimer(this, TimeSpan.FromSeconds(base_duration+bonus_duration));
+                }
+                else
+                {
+                    this.m_Timer = new InternalTimer(this, TimeSpan.FromSeconds(10.0));
                 }
 
                 this.m_Timer.Start();

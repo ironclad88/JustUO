@@ -51,7 +51,7 @@ namespace Server.Spells.Seventh
                 this.Caster.SendLocalizedMessage(1061632); // You can't do that while carrying the sigil.
                 return false;
             }
-            /*else if (this.Caster.Criminal) // criminals can now use GateTravel
+            /*else if (this.Caster.Criminal) // JustZH: criminals can now use GateTravel
             {
                 this.Caster.SendLocalizedMessage(1005561, "", 0x22); // Thou'rt a criminal and cannot escape so easily.
                 return false;

@@ -50,22 +50,26 @@ namespace Server.Spells.Third
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Str);
-                SpellHelper.DisableSkillCheck = true;
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
-                SpellHelper.AddStatBonus(this.Caster, m, StatType.Int);
-                SpellHelper.DisableSkillCheck = false;
 
+                if (false == SpellHelper.AddStatBonus(this.Caster, m, StatType.Str))
+                {
+                    this.Caster.SendMessage("Already under the influence.");
+                }
+                else {
+                    SpellHelper.DisableSkillCheck = true;
+                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Dex);
+                    SpellHelper.AddStatBonus(this.Caster, m, StatType.Int);
+                    SpellHelper.DisableSkillCheck = false;
+
+                    int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 120 * this.Caster.SpecBonus(SpecClasse.Mage));
+                    TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
+
+                    string args = String.Format("{0}\t{1}\t{2}", percentage, percentage, percentage);
+
+                    BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Bless, 1075847, 1075848, length, m, args.ToString()));
+                }
                 m.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
                 m.PlaySound(0x1EA);
-
-                int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 120 * this.Caster.SpecBonus(SpecClasse.Mage));
-                TimeSpan length = SpellHelper.GetDuration(this.Caster, m);
-
-                string args = String.Format("{0}\t{1}\t{2}", percentage, percentage, percentage);
-
-                BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Bless, 1075847, 1075848, length, m, args.ToString()));
             }
 
             this.FinishSequence();

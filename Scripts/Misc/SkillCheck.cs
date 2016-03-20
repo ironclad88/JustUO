@@ -182,6 +182,24 @@ namespace Server.Misc
             return CheckSkill(from, skill, target, chance);
         }
 
+        private static bool IsForge(object obj)
+        {
+            if (Core.ML && obj is Mobile && ((Mobile)obj).IsDeadBondedPet)
+                return false;
+
+            if (obj.GetType().IsDefined(typeof(Server.Engines.Craft.ForgeAttribute), false))
+                return true;
+
+            int itemID = 0;
+
+            if (obj is Item)
+                itemID = ((Item)obj).ItemID;
+            else if (obj is Server.Targeting.StaticTarget)
+                itemID = ((Server.Targeting.StaticTarget)obj).ItemID;
+
+            return (itemID == 4017 || (itemID >= 6522 && itemID <= 6569));
+        }
+
         private static bool AllowGain(Mobile from, Skill skill, object obj)
         {
             if (Core.AOS && Faction.InSkillLoss(from))	//Changed some time between the introduction of AoS and SE.
@@ -192,6 +210,14 @@ namespace Server.Misc
                 return false;
             else if (from is PlayerMobile && from.Race != Race.Gargoyle && skill.Info.SkillID == (int)SkillName.Throwing)
                 return false;
+            #endregion
+
+            #region JustZH special no-gains
+             if(skill.SkillName == SkillName.Mining && IsForge(obj))
+            {
+                // No gaining from smelting...
+                return false;
+            }
             #endregion
 
             if (AntiMacroCode && from is PlayerMobile && UseAntiMacro[skill.Info.SkillID])

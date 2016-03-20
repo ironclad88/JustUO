@@ -250,8 +250,16 @@ namespace Server.Engines.Craft
                 this.SetNeededExpansion(index, Expansion.ML);
             }*/
 
-            this.SetSubRes(typeof(Board), 1072643);
+            #endregion
 
+            this.MarkOption = true;
+            this.Repair = Core.AOS;
+			this.CanEnhance = false;
+
+            #region Old Logs
+#if false
+            
+            this.SetSubRes(typeof(Board), 1072643);
 
             // Add every material you want the player to be able to choose from
             // This will override the overridable material	TODO: Verify the required skill amount
@@ -262,11 +270,42 @@ namespace Server.Engines.Craft
             this.AddSubRes(typeof(HeartwoodBoard), 1072647, 100.0, 1044041, 1072652);
             this.AddSubRes(typeof(BloodwoodBoard), 1072648, 100.0, 1044041, 1072652);
             this.AddSubRes(typeof(FrostwoodBoard), 1072649, 100.0, 1044041, 1072652);
+#endif
             #endregion
 
-            this.MarkOption = true;
-            this.Repair = Core.AOS;
-			this.CanEnhance = false;
+
+            SetSubRes(typeof(Log), 1072643);
+
+            AddSubRes(typeof(Log), CraftResources.GetInfo(CraftResource.RegularWood).Name, CraftResources.GetInfo(CraftResource.RegularWood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(AshLog), CraftResources.GetInfo(CraftResource.AshWood).Name, CraftResources.GetInfo(CraftResource.AshWood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(YewLog), CraftResources.GetInfo(CraftResource.YewWood).Name, CraftResources.GetInfo(CraftResource.YewWood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(HeartwoodLog), CraftResources.GetInfo(CraftResource.Heartwood).Name, CraftResources.GetInfo(CraftResource.Heartwood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(BloodwoodLog), CraftResources.GetInfo(CraftResource.Bloodwood).Name, CraftResources.GetInfo(CraftResource.Bloodwood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(FrostwoodLog), CraftResources.GetInfo(CraftResource.Frostwood).Name, CraftResources.GetInfo(CraftResource.Frostwood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(PinetreeLog), CraftResources.GetInfo(CraftResource.Pinetree).Name, CraftResources.GetInfo(CraftResource.Pinetree).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(CherryLog), CraftResources.GetInfo(CraftResource.Cherry).Name, CraftResources.GetInfo(CraftResource.Cherry).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(OakLog), CraftResources.GetInfo(CraftResource.OakWood).Name, CraftResources.GetInfo(CraftResource.OakWood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(PurplePassionLog), CraftResources.GetInfo(CraftResource.PurplePassion).Name, CraftResources.GetInfo(CraftResource.PurplePassion).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(GoldenReflectionLog), CraftResources.GetInfo(CraftResource.GoldenReflection).Name, CraftResources.GetInfo(CraftResource.GoldenReflection).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(HardrangerLog), CraftResources.GetInfo(CraftResource.Hardranger).Name, CraftResources.GetInfo(CraftResource.Hardranger).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(JadeLog), CraftResources.GetInfo(CraftResource.Jade).Name, CraftResources.GetInfo(CraftResource.Jade).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(DarkwoodLog), CraftResources.GetInfo(CraftResource.Darkwood).Name, CraftResources.GetInfo(CraftResource.Darkwood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(StonewoodLog), CraftResources.GetInfo(CraftResource.Stonewood).Name, CraftResources.GetInfo(CraftResource.Stonewood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(SunLog), CraftResources.GetInfo(CraftResource.Sun).Name, CraftResources.GetInfo(CraftResource.Sun).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(GauntletLog), CraftResources.GetInfo(CraftResource.Gauntlet).Name, CraftResources.GetInfo(CraftResource.Gauntlet).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(SwampLog), CraftResources.GetInfo(CraftResource.Swamp).Name, CraftResources.GetInfo(CraftResource.Swamp).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(StardustLog), CraftResources.GetInfo(CraftResource.Stardust).Name, CraftResources.GetInfo(CraftResource.Stardust).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(SilverLeafLog), CraftResources.GetInfo(CraftResource.SilverLeaf).Name, CraftResources.GetInfo(CraftResource.SilverLeaf).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(StormtealLog), CraftResources.GetInfo(CraftResource.Stormteal).Name, CraftResources.GetInfo(CraftResource.Stormteal).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(EmeraldLog), CraftResources.GetInfo(CraftResource.Emerald).Name, CraftResources.GetInfo(CraftResource.Emerald).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(BloodLog), CraftResources.GetInfo(CraftResource.Blood).Name, CraftResources.GetInfo(CraftResource.Blood).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(CrystalLog), CraftResources.GetInfo(CraftResource.CrystalLog).Name, CraftResources.GetInfo(CraftResource.CrystalLog).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(BloodhorseLog), CraftResources.GetInfo(CraftResource.Bloodhorse).Name, CraftResources.GetInfo(CraftResource.Bloodhorse).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(DoomLog), CraftResources.GetInfo(CraftResource.DoomLog).Name, CraftResources.GetInfo(CraftResource.DoomLog).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(GoddessLog), CraftResources.GetInfo(CraftResource.GoddessLog).Name, CraftResources.GetInfo(CraftResource.GoddessLog).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(ZuluLog), CraftResources.GetInfo(CraftResource.ZuluLog).Name, CraftResources.GetInfo(CraftResource.ZuluLog).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(DarknessLog), CraftResources.GetInfo(CraftResource.Darkness).Name, CraftResources.GetInfo(CraftResource.Darkness).AttributeInfo.Difficulty, 1072652);
+            AddSubRes(typeof(ElvenLog), CraftResources.GetInfo(CraftResource.Elven).Name, CraftResources.GetInfo(CraftResource.Elven).AttributeInfo.Difficulty, 1072652);
         }
     }
 }

@@ -1356,19 +1356,31 @@ namespace Server
             v = PermaMagicResistance; 
             if (v != 0)
             {
-                list.Add("Magic Immunity level: " + v.ToString());
+                list.Add("Magic Immunity level " + v.ToString());
             }
 
             v = HealingResistance;
             if (v != 0)
             {
-                list.Add("Healing modification level: " + v.ToString()); // dunno a good name atm // JustZH
+                list.Add("Healing modification level " + v.ToString());
             }
 
             v = PermaMagicReflectResistance;
             if (v != 0)
             {
-                list.Add("Magic Reflect level: " + v.ToString()); // dunno a good name atm // JustZH
+                list.Add("Magic Reflection level " + v.ToString());
+            }
+
+            v = Dexpenalty;
+            if (v != 0)
+            {
+                list.Add("Dexterity penalty " + v.ToString());
+            }
+
+            v = MagicEfficiency;
+            if (v != 0)
+            {
+                list.Add("Magic efficiency " + v.ToString());
             }
         }
 
@@ -4572,6 +4584,8 @@ namespace Server
         public virtual int HealingResistance { get { return 0; } }
         public virtual int HolyResistance { get { return 0; } }
         public virtual int PermaMagicReflectResistance { get { return 0; } }
+        public virtual int Dexpenalty { get { return 0; } set { return; } }
+        public virtual int MagicEfficiency { get { return 0; } set { return; } }
 
         [CommandProperty(AccessLevel.Counselor)]
         public Serial Serial { get { return m_Serial; } }

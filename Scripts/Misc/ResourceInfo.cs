@@ -126,7 +126,7 @@ namespace Server.Items
     {
         private int m_CraftDifficulty;
         private double m_Quality = 1.0;
-        private int m_Dexpen;
+        private int m_Dexpen, m_MagicEfficiency;
 
         private int m_WeaponFireDamage;
         private int m_WeaponColdDamage;
@@ -191,6 +191,18 @@ namespace Server.Items
             set
             {
                 this.m_Dexpen = value;
+            }
+        }
+
+        public int MagicEfficiency
+        {
+            get
+            {
+                return this.m_MagicEfficiency;
+            }
+            set
+            {
+                this.m_MagicEfficiency = value;
             }
         }
 
@@ -693,7 +705,7 @@ namespace Server.Items
 
             dullCopper.Difficulty = 30;
             dullCopper.Quality = 1.15;
-         //   dullCopper.
+            //   dullCopper.
             //dullCopper.ArmorPhysicalResist = 6;
             //dullCopper.ArmorDurability = 50;
             //dullCopper.ArmorLowerRequirements = 20;
@@ -887,13 +899,13 @@ namespace Server.Items
             onyx.DexPenReduction = 1;
             onyx.Difficulty = 70;
             onyx.Quality = 1.25;
-            
+
             CraftAttributeInfo pyrite = Pyrite = new CraftAttributeInfo();
 
             pyrite.DexPenReduction = 1;
             pyrite.Difficulty = 85;
             pyrite.Quality = 1.3;
-            
+
             CraftAttributeInfo malachite = Malachite = new CraftAttributeInfo();
 
             malachite.Difficulty = 95;
@@ -940,30 +952,30 @@ namespace Server.Items
             icerock.ArmorColdResist = level1_prot;
             icerock.Difficulty = 20;
             icerock.Quality = 1.05;
-            
+
             CraftAttributeInfo silverrock = SilverRock = new CraftAttributeInfo();
 
             silverrock.ArmorNecroResist = level1_prot;
             silverrock.Difficulty = 40;
             silverrock.Quality = 1.1;
-            
+
             CraftAttributeInfo spectral = Spectral = new CraftAttributeInfo();
 
             spectral.DexPenReduction = 3;
             spectral.Difficulty = 60;
             spectral.Quality = 1.1;
-            
+
             CraftAttributeInfo undead = Undead = new CraftAttributeInfo();
 
             undead.ArmorNecroResist = level2_prot;
             undead.Difficulty = 80;
             undead.Quality = 1.2;
-            
+
             CraftAttributeInfo darkpagan = DarkPagan = new CraftAttributeInfo();
 
             darkpagan.Difficulty = 45;
             darkpagan.Quality = 1.15;
-            
+
             CraftAttributeInfo oldbritain = OldBritain = new CraftAttributeInfo();
 
             oldbritain.Difficulty = 65;
@@ -975,12 +987,12 @@ namespace Server.Items
             virginity.ArmorNecroResist = level2_prot;
             virginity.Difficulty = 90;
             virginity.Quality = 1.25;
-            
+
             CraftAttributeInfo blackdwarf = BlackDwarf = new CraftAttributeInfo();
 
             blackdwarf.Difficulty = 25;
             blackdwarf.Quality = 1.1;
-            
+
             CraftAttributeInfo redelven = RedElven = new CraftAttributeInfo();
 
             //JustZH : reduce spell damage to wearer
@@ -1000,13 +1012,13 @@ namespace Server.Items
             //JustZH : reduce spell damage to wearer
             executor.Difficulty = 104;
             executor.Quality = 1.6;
-            
+
             CraftAttributeInfo peachblue = Peachblue = new CraftAttributeInfo();
 
             peachblue.DexPenReduction = 2;
             peachblue.Difficulty = 108;
             peachblue.Quality = 1.7;
-            
+
             CraftAttributeInfo destruction = Destruction = new CraftAttributeInfo();
 
             destruction.DexPenReduction = 1;
@@ -1042,7 +1054,8 @@ namespace Server.Items
             CraftAttributeInfo ets = ETS = new CraftAttributeInfo();
 
             //JustZH : reduce spell damage to wearer
-            //JustZH : blackrock to circle 2
+            ets.ArmorMagicResist = 2;
+            ets.ArmorMagicResist = 2;
             ets.DexPenReduction = 3;
             ets.ArmorColdResist = level3_prot;
             ets.Difficulty = 130;
@@ -1051,7 +1064,7 @@ namespace Server.Items
             CraftAttributeInfo dsr = DSR = new CraftAttributeInfo();
 
             //JustZH : reduce damage to wearer
-            //JustZH : blackrock to circle 2
+            dsr.ArmorMagicResist = 2;
             dsr.DexPenReduction = 3;
             dsr.ArmorFireResist = level3_prot;
             dsr.Difficulty = 130;
@@ -1059,7 +1072,7 @@ namespace Server.Items
 
             CraftAttributeInfo rnd = RND = new CraftAttributeInfo();
 
-            //JustZH : blackrock to circle 4
+            rnd.ArmorMagicResist = 4;
             rnd.DexPenReduction = 3;
             rnd.ArmorEnergyResist = level3_prot;
             rnd.ArmorEarthResist = level3_prot;
@@ -1157,7 +1170,11 @@ namespace Server.Items
             currentHide = Lizard = new CraftAttributeInfo();
             currentHide.Difficulty = 50;
             currentHide.Quality = 1.5;
-            
+
+            currentHide = Troll = new CraftAttributeInfo();
+            currentHide.Difficulty = 60;
+            currentHide.Quality = 1.6;
+
             currentHide = Ostard = new CraftAttributeInfo();
             currentHide.Difficulty = 70;
             currentHide.Quality = 1.7;
@@ -1166,7 +1183,7 @@ namespace Server.Items
             currentHide.Difficulty = 80;
             currentHide.Quality = 1.8;
             currentHide.ArmorNecroResist = level1_prot;
-            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+            currentHide.MagicEfficiency = 1;
 
             currentHide = Terathan = new CraftAttributeInfo();
             currentHide.Difficulty = 65;
@@ -1181,7 +1198,7 @@ namespace Server.Items
             currentHide.Difficulty = 100;
             currentHide.Quality = 2.0;
             currentHide.ArmorNecroResist = level1_prot;
-            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.MagicEfficiency = 2;
 
             currentHide = Daemon = new CraftAttributeInfo();
             currentHide.Difficulty = 70; // set later, not in script
@@ -1198,15 +1215,14 @@ namespace Server.Items
             currentHide.Quality = 2.5;
             currentHide.ArmorFireResist = level2_prot;
             currentHide.ArmorEarthResist = level1_prot;
-            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+            currentHide.MagicEfficiency = 1;
 
             currentHide = Balron = new CraftAttributeInfo();
             currentHide.Difficulty = 125;
             currentHide.Quality = 2.9;
             currentHide.ArmorNecroResist = level1_prot;
-            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.MagicEfficiency = 2;
             currentHide.ArmorMagicResist = 1;
-            //level 1 blackrock prot
 
             currentHide = GoldenDragon = new CraftAttributeInfo();
             currentHide.Difficulty = 130;
@@ -1214,14 +1230,14 @@ namespace Server.Items
             currentHide.ArmorFireResist = level3_prot;
             currentHide.ArmorEnergyResist = level1_prot;
             currentHide.ArmorEarthResist = level1_prot;
-            //currentHide.armormagicpenaltyreduction 1 //JustZH for later
+            currentHide.MagicEfficiency = 1;
 
             currentHide = SilverDragon = new CraftAttributeInfo();
             currentHide.Difficulty = 140;
             currentHide.Quality = 3.5;
             currentHide.ArmorEnergyResist = level2_prot;
             currentHide.ArmorColdResist = level2_prot;
-            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.MagicEfficiency = 2;
 
             currentHide = Balrog = new CraftAttributeInfo();
             currentHide.Difficulty = 135;
@@ -1229,9 +1245,8 @@ namespace Server.Items
             currentHide.ArmorEnergyResist = level2_prot;
             currentHide.ArmorNecroResist = level2_prot;
             currentHide.ArmorEarthResist = level2_prot;
-            //currentHide.armormagicpenaltyreduction 2 //JustZH for later
+            currentHide.MagicEfficiency = 2;
             currentHide.ArmorMagicResist = 2;
-            //level 2 blackrock prot
 
             currentHide = Angel = new CraftAttributeInfo();
             // not in script, adding our own values, same as Balrog but with holy instead of necro
@@ -1240,9 +1255,8 @@ namespace Server.Items
             currentHide.ArmorEnergyResist = level2_prot;
             currentHide.ArmorHolyResist = level3_prot;
             currentHide.ArmorEarthResist = level2_prot;
-
-            currentHide.ArmorMagicResist = 2; //JustZH for later
-            //level 2 blackrock prot
+            currentHide.MagicEfficiency = 2;
+            currentHide.ArmorMagicResist = 2;
 
             #endregion
 
@@ -1559,68 +1573,68 @@ namespace Server.Items
         private static readonly CraftResourceInfo[] m_MetalInfo = new CraftResourceInfo[]
         {
             new CraftResourceInfo(0x000, 1053109, "Iron", CraftAttributeInfo.Blank, CraftResource.Iron, typeof(IronIngot), typeof(IronOre), typeof(Granite)),
-            new CraftResourceInfo(0x3ea, 1053108, "Dull Copper",	CraftAttributeInfo.DullCopper,	CraftResource.DullCopper, typeof(DullCopperIngot),	typeof(DullCopperOre),	typeof(DullCopperGranite)),
-            new CraftResourceInfo(0x966, 1053107, "Shadow Iron",	CraftAttributeInfo.ShadowIron,	CraftResource.ShadowIron, typeof(ShadowIronIngot),	typeof(ShadowIronOre),	typeof(ShadowIronGranite)),  // remove later
+            new CraftResourceInfo(0x3ea, 1053108, "Dull Copper",    CraftAttributeInfo.DullCopper,  CraftResource.DullCopper, typeof(DullCopperIngot),  typeof(DullCopperOre),  typeof(DullCopperGranite)),
+            new CraftResourceInfo(0x966, 1053107, "Shadow Iron",    CraftAttributeInfo.ShadowIron,  CraftResource.ShadowIron, typeof(ShadowIronIngot),  typeof(ShadowIronOre),  typeof(ShadowIronGranite)),  // remove later
             new CraftResourceInfo(0x602, 1053106, "Copper", CraftAttributeInfo.Copper, CraftResource.Copper, typeof(CopperIngot), typeof(CopperOre), typeof(CopperGranite)),
-            new CraftResourceInfo(0x45e, 1053105, "Bronze", CraftAttributeInfo.Bronze, CraftResource.Bronze, typeof(BronzeIngot), typeof(BronzeOre), typeof(BronzeGranite)), 
+            new CraftResourceInfo(0x45e, 1053105, "Bronze", CraftAttributeInfo.Bronze, CraftResource.Bronze, typeof(BronzeIngot), typeof(BronzeOre), typeof(BronzeGranite)),
             new CraftResourceInfo(0x8A5, 1053104, "Gold", CraftAttributeInfo.Golden, CraftResource.Gold, typeof(GoldIngot), typeof(GoldOre), typeof(GoldGranite)),  // remove later
             new CraftResourceInfo(0x979, 1053103, "Agapite", CraftAttributeInfo.Agapite, CraftResource.Agapite, typeof(AgapiteIngot), typeof(AgapiteOre), typeof(AgapiteGranite)),  // remove later
             new CraftResourceInfo(0x89F, 1053102, "Verite", CraftAttributeInfo.Verite, CraftResource.Verite, typeof(VeriteIngot), typeof(VeriteOre), typeof(VeriteGranite)),  // remove later
-            new CraftResourceInfo(0x8AB, 1053101, "Valorite", CraftAttributeInfo.Valorite,	CraftResource.Valorite, typeof(ValoriteIngot),	typeof(ValoriteOre), typeof(ValoriteGranite)), // remove later
-            new CraftResourceInfo(1160, 1063269, "New Zulu", CraftAttributeInfo.ZuluMetal,	CraftResource.ZuluMetal, typeof(ZuluIngot),	typeof(ZuluOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x455, 1098656, "Onyx", CraftAttributeInfo.Onyx,	CraftResource.Onyx, typeof(OnyxIngot),	typeof(OnyxOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x6b8, 1098657, "Pyrite", CraftAttributeInfo.Pyrite,	CraftResource.Pyrite, typeof(PyriteIngot),	typeof(PyriteOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1159, 1098658, "Malachite", CraftAttributeInfo.Malachite,	CraftResource.Malachite, typeof(MalachiteIngot),	typeof(MalachiteOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x4df, 1098659, "Azurite", CraftAttributeInfo.Azurite,	CraftResource.Azurite, typeof(AzuriteIngot),	typeof(AzuriteOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1111, 1098660, "Platinum", CraftAttributeInfo.Platinum,	CraftResource.Platinum, typeof(PlatinumIngot),	typeof(PlatinumOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1158, 1098661, "Lavarock", CraftAttributeInfo.Lavarock,	CraftResource.Lavarock, typeof(LavarockIngot),	typeof(LavarockOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(383, 1098662, "Mystic", CraftAttributeInfo.Mystic,	CraftResource.Mystic, typeof(MysticIngot),	typeof(MysticOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1223, 1098663, "Spike", CraftAttributeInfo.Spike,	CraftResource.Spike, typeof(SpikeIngot),	typeof(SpikeOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1134, 1098664, "Fruity", CraftAttributeInfo.Fruity,	CraftResource.Fruity, typeof(FruityIngot),	typeof(FruityOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1152, 1098665, "Icerock", CraftAttributeInfo.IceRock,	CraftResource.IceRock, typeof(IceRockIngot),	typeof(IceRockOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1001, 1098666, "Silver Rock", CraftAttributeInfo.SilverRock,	CraftResource.SilverRock, typeof(SilverRockIngot),	typeof(SilverRockOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1155, 1098667, "Spectral", CraftAttributeInfo.Spectral,	CraftResource.Spectral, typeof(SpectralIngot),	typeof(SpectralOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(633, 1098668, "Undead", CraftAttributeInfo.Undead,	CraftResource.Undead, typeof(UndeadIngot),	typeof(UndeadOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1131, 1098669, "Dark Pagan", CraftAttributeInfo.DarkPagan,	CraftResource.DarkPagan, typeof(DarkPaganIngot),	typeof(DarkPaganOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x852, 1098670, "Old Britain", CraftAttributeInfo.OldBritain,	CraftResource.OldBritain, typeof(OldBritainIngot),	typeof(OldBritainOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1154, 1098671, "Virginity", CraftAttributeInfo.Virginity,	CraftResource.Virginity, typeof(VirginityIngot),	typeof(VirginityOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1105, 1098672, "Black Dwarf", CraftAttributeInfo.BlackDwarf,	CraftResource.BlackDwarf, typeof(BlackDwarfIngot),	typeof(BlackDwarfOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1209, 1098673, "Red Elven", CraftAttributeInfo.RedElven,	CraftResource.RedElven, typeof(RedElvenIngot),	typeof(RedElvenOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049e, 1098674, "Dripstone", CraftAttributeInfo.DripStone,	CraftResource.Dripstone, typeof(DripstoneIngot),	typeof(DripstoneOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0499, 1098675, "Executor", CraftAttributeInfo.Executor,	CraftResource.Executor, typeof(ExecutorIngot),	typeof(ExecutorOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049c, 1098676, "Peachblue", CraftAttributeInfo.Peachblue,	CraftResource.Peachblue, typeof(PeachblueIngot),	typeof(PeachblueOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0500, 1098677, "Destruction", CraftAttributeInfo.Destruction,	CraftResource.Destruction, typeof(DestructionIngot),	typeof(DestructionOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x048b, 1098678, "Anra", CraftAttributeInfo.Anra,	CraftResource.Anra, typeof(AnraIngot),	typeof(AnraOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0501, 1098679, "Goddess", CraftAttributeInfo.GoddessMetal,	CraftResource.GoddessMetal, typeof(GoddessIngot),	typeof(GoddessOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x0492, 1098680, "Crystal", CraftAttributeInfo.CrystalMetal,	CraftResource.CrystalMetal, typeof(CrystalIngot),	typeof(CrystalOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(0x049f, 1063281, "Doom", CraftAttributeInfo.DoomMetal,	CraftResource.DoomMetal, typeof(DoomIngot),	typeof(DoomOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1171, 1063285, "Ebon Twilight Saphire", CraftAttributeInfo.ETS,	CraftResource.ETS, typeof(ETSIngot),	typeof(ETSOre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1172, 1063283, "Dark Sable Ruby", CraftAttributeInfo.DSR,	CraftResource.DSR, typeof(DSRIngot),	typeof(DSROre), typeof(ZuluGranite)),
-            new CraftResourceInfo(1176, 1063284, "Radiant Nimbus Diamond", CraftAttributeInfo.RND,	CraftResource.RND, typeof(RNDIngot),	typeof(RNDOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x8AB, 1053101, "Valorite", CraftAttributeInfo.Valorite,  CraftResource.Valorite, typeof(ValoriteIngot),  typeof(ValoriteOre), typeof(ValoriteGranite)), // remove later
+            new CraftResourceInfo(1160, 1063269, "New Zulu", CraftAttributeInfo.ZuluMetal,  CraftResource.ZuluMetal, typeof(ZuluIngot), typeof(ZuluOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x455, 1098656, "Onyx", CraftAttributeInfo.Onyx,  CraftResource.Onyx, typeof(OnyxIngot),  typeof(OnyxOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x6b8, 1098657, "Pyrite", CraftAttributeInfo.Pyrite,  CraftResource.Pyrite, typeof(PyriteIngot),  typeof(PyriteOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1159, 1098658, "Malachite", CraftAttributeInfo.Malachite, CraftResource.Malachite, typeof(MalachiteIngot),    typeof(MalachiteOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x4df, 1098659, "Azurite", CraftAttributeInfo.Azurite,    CraftResource.Azurite, typeof(AzuriteIngot),    typeof(AzuriteOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1111, 1098660, "Platinum", CraftAttributeInfo.Platinum,   CraftResource.Platinum, typeof(PlatinumIngot),  typeof(PlatinumOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1158, 1098661, "Lavarock", CraftAttributeInfo.Lavarock,   CraftResource.Lavarock, typeof(LavarockIngot),  typeof(LavarockOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(383, 1098662, "Mystic", CraftAttributeInfo.Mystic,    CraftResource.Mystic, typeof(MysticIngot),  typeof(MysticOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1223, 1098663, "Spike", CraftAttributeInfo.Spike, CraftResource.Spike, typeof(SpikeIngot),    typeof(SpikeOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1134, 1098664, "Fruity", CraftAttributeInfo.Fruity,   CraftResource.Fruity, typeof(FruityIngot),  typeof(FruityOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1152, 1098665, "Icerock", CraftAttributeInfo.IceRock, CraftResource.IceRock, typeof(IceRockIngot),    typeof(IceRockOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1001, 1098666, "Silver Rock", CraftAttributeInfo.SilverRock,  CraftResource.SilverRock, typeof(SilverRockIngot),  typeof(SilverRockOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1155, 1098667, "Spectral", CraftAttributeInfo.Spectral,   CraftResource.Spectral, typeof(SpectralIngot),  typeof(SpectralOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(633, 1098668, "Undead", CraftAttributeInfo.Undead,    CraftResource.Undead, typeof(UndeadIngot),  typeof(UndeadOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1131, 1098669, "Dark Pagan", CraftAttributeInfo.DarkPagan,    CraftResource.DarkPagan, typeof(DarkPaganIngot),    typeof(DarkPaganOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x852, 1098670, "Old Britain", CraftAttributeInfo.OldBritain, CraftResource.OldBritain, typeof(OldBritainIngot),  typeof(OldBritainOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1154, 1098671, "Virginity", CraftAttributeInfo.Virginity, CraftResource.Virginity, typeof(VirginityIngot),    typeof(VirginityOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1105, 1098672, "Black Dwarf", CraftAttributeInfo.BlackDwarf,  CraftResource.BlackDwarf, typeof(BlackDwarfIngot),  typeof(BlackDwarfOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1209, 1098673, "Red Elven", CraftAttributeInfo.RedElven,  CraftResource.RedElven, typeof(RedElvenIngot),  typeof(RedElvenOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049e, 1098674, "Dripstone", CraftAttributeInfo.DripStone,   CraftResource.Dripstone, typeof(DripstoneIngot),    typeof(DripstoneOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0499, 1098675, "Executor", CraftAttributeInfo.Executor, CraftResource.Executor, typeof(ExecutorIngot),  typeof(ExecutorOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049c, 1098676, "Peachblue", CraftAttributeInfo.Peachblue,   CraftResource.Peachblue, typeof(PeachblueIngot),    typeof(PeachblueOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0500, 1098677, "Destruction", CraftAttributeInfo.Destruction,   CraftResource.Destruction, typeof(DestructionIngot),    typeof(DestructionOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x048b, 1098678, "Anra", CraftAttributeInfo.Anra, CraftResource.Anra, typeof(AnraIngot),  typeof(AnraOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0501, 1098679, "Goddess", CraftAttributeInfo.GoddessMetal,  CraftResource.GoddessMetal, typeof(GoddessIngot),   typeof(GoddessOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x0492, 1098680, "Crystal", CraftAttributeInfo.CrystalMetal,  CraftResource.CrystalMetal, typeof(CrystalIngot),   typeof(CrystalOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(0x049f, 1063281, "Doom", CraftAttributeInfo.DoomMetal,    CraftResource.DoomMetal, typeof(DoomIngot), typeof(DoomOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1171, 1063285, "Ebon Twilight Saphire", CraftAttributeInfo.ETS,   CraftResource.ETS, typeof(ETSIngot),    typeof(ETSOre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1172, 1063283, "Dark Sable Ruby", CraftAttributeInfo.DSR, CraftResource.DSR, typeof(DSRIngot),    typeof(DSROre), typeof(ZuluGranite)),
+            new CraftResourceInfo(1176, 1063284, "Radiant Nimbus Diamond", CraftAttributeInfo.RND,  CraftResource.RND, typeof(RNDIngot),    typeof(RNDOre), typeof(ZuluGranite)),
         };
 
         private static readonly CraftResourceInfo[] m_ScaleInfo = new CraftResourceInfo[]
         {
-            new CraftResourceInfo(0x66D, 1053129, "Red Scales",	CraftAttributeInfo.RedScales, CraftResource.RedScales, typeof(RedScales)),
-            new CraftResourceInfo(0x8A8, 1053130, "Yellow Scales",	CraftAttributeInfo.YellowScales,	CraftResource.YellowScales, typeof(YellowScales)),
-            new CraftResourceInfo(0x455, 1053131, "Black Scales",	CraftAttributeInfo.BlackScales, CraftResource.BlackScales, typeof(BlackScales)),
-            new CraftResourceInfo(0x851, 1053132, "Green Scales",	CraftAttributeInfo.GreenScales, CraftResource.GreenScales, typeof(GreenScales)),
-            new CraftResourceInfo(0x8FD, 1053133, "White Scales",	CraftAttributeInfo.WhiteScales, CraftResource.WhiteScales, typeof(WhiteScales)),
-            new CraftResourceInfo(0x8B0, 1053134, "Blue Scales",	CraftAttributeInfo.BlueScales, CraftResource.BlueScales, typeof(BlueScales))
+            new CraftResourceInfo(0x66D, 1053129, "Red Scales", CraftAttributeInfo.RedScales, CraftResource.RedScales, typeof(RedScales)),
+            new CraftResourceInfo(0x8A8, 1053130, "Yellow Scales",  CraftAttributeInfo.YellowScales,    CraftResource.YellowScales, typeof(YellowScales)),
+            new CraftResourceInfo(0x455, 1053131, "Black Scales",   CraftAttributeInfo.BlackScales, CraftResource.BlackScales, typeof(BlackScales)),
+            new CraftResourceInfo(0x851, 1053132, "Green Scales",   CraftAttributeInfo.GreenScales, CraftResource.GreenScales, typeof(GreenScales)),
+            new CraftResourceInfo(0x8FD, 1053133, "White Scales",   CraftAttributeInfo.WhiteScales, CraftResource.WhiteScales, typeof(WhiteScales)),
+            new CraftResourceInfo(0x8B0, 1053134, "Blue Scales",    CraftAttributeInfo.BlueScales, CraftResource.BlueScales, typeof(BlueScales))
         };
 
         private static readonly CraftResourceInfo[] m_LeatherInfo = new CraftResourceInfo[]
         {
-            new CraftResourceInfo(0x000, 1049353, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularLeather,	typeof(Leather), typeof(Hides)),
-            new CraftResourceInfo(0x283, 1049354, "Spined", CraftAttributeInfo.Spined, CraftResource.SpinedLeather,	typeof(SpinedLeather),	typeof(SpinedHides)),
-            new CraftResourceInfo(0x227, 1049355, "Horned", CraftAttributeInfo.Horned, CraftResource.HornedLeather,	typeof(HornedLeather),	typeof(HornedHides)),
-            new CraftResourceInfo(0x1C1, 1049356, "Barbed", CraftAttributeInfo.Barbed, CraftResource.BarbedLeather,	typeof(BarbedLeather),	typeof(BarbedHides)),
-            new CraftResourceInfo(0x0494, 1063505, "Dragon", CraftAttributeInfo.Dragon, CraftResource.DragonLeather,	typeof(DragonLeather),	typeof(DragonHides)),
+            new CraftResourceInfo(0x000, 1049353, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularLeather, typeof(Leather), typeof(Hides)),
+            new CraftResourceInfo(0x283, 1049354, "Spined", CraftAttributeInfo.Spined, CraftResource.SpinedLeather, typeof(SpinedLeather),  typeof(SpinedHides)),
+            new CraftResourceInfo(0x227, 1049355, "Horned", CraftAttributeInfo.Horned, CraftResource.HornedLeather, typeof(HornedLeather),  typeof(HornedHides)),
+            new CraftResourceInfo(0x1C1, 1049356, "Barbed", CraftAttributeInfo.Barbed, CraftResource.BarbedLeather, typeof(BarbedLeather),  typeof(BarbedHides)),
+            new CraftResourceInfo(0x0494, 1063505, "Dragon", CraftAttributeInfo.Dragon, CraftResource.DragonLeather,    typeof(DragonLeather),  typeof(DragonHides)),
             new CraftResourceInfo(0x07e2, 1063505, "Rat", CraftAttributeInfo.Rat, CraftResource.RatLeather,    typeof(RatLeather),  typeof(RatHides)),
             new CraftResourceInfo(1102, 1063505, "Wolf", CraftAttributeInfo.Wolf, CraftResource.WolfLeather,    typeof(WolfLeather),  typeof(WolfHides)),
             new CraftResourceInfo(44, 1063505, "Bear", CraftAttributeInfo.Bear, CraftResource.BearLeather,    typeof(BearLeather),  typeof(BearHides)),
             new CraftResourceInfo(1054, 1063505, "Orc", CraftAttributeInfo.Orc, CraftResource.OrcLeather,    typeof(OrcLeather),  typeof(OrcHides)),
-            new CraftResourceInfo(0x08fd, 1063505, "Serpent", CraftAttributeInfo.Serpent, CraftResource.SerpentLeather,	typeof(SerpentLeather),	typeof(SerpentHides)),
+            new CraftResourceInfo(0x08fd, 1063505, "Serpent", CraftAttributeInfo.Serpent, CraftResource.SerpentLeather, typeof(SerpentLeather), typeof(SerpentHides)),
             new CraftResourceInfo(0x0852, 1063505, "Lizard", CraftAttributeInfo.Lizard, CraftResource.LizardLeather,    typeof(LizardLeather),  typeof(LizardHides)),
             new CraftResourceInfo(0x054a, 1063505, "Troll", CraftAttributeInfo.Troll, CraftResource.TrollLeather,    typeof(TrollLeather),  typeof(TrollHides)),
             new CraftResourceInfo(0x415, 1063505, "Ostard", CraftAttributeInfo.Ostard, CraftResource.OstardLeather,    typeof(OstardLeather),  typeof(OstardHides)),
@@ -1652,7 +1666,7 @@ namespace Server.Items
         private static readonly CraftResourceInfo[] m_WoodInfo = new CraftResourceInfo[]
         {
 
-            new CraftResourceInfo(0x000, 1011542, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularWood,	typeof(Log), typeof(Board)),
+            new CraftResourceInfo(0x000, 1011542, "Normal", CraftAttributeInfo.Blank, CraftResource.RegularWood,    typeof(Log), typeof(Board)),
             new CraftResourceInfo(0x7DA, 1072533, "Oak", CraftAttributeInfo.OakWood, CraftResource.OakWood, typeof(OakLog), typeof(OakBoard)),
             new CraftResourceInfo(0x4A7, 1072534, "Ash", CraftAttributeInfo.AshWood, CraftResource.AshWood, typeof(AshLog), typeof(AshBoard)),
             new CraftResourceInfo(0x4A8, 1072535, "Yew", CraftAttributeInfo.YewWood, CraftResource.YewWood, typeof(YewLog), typeof(YewBoard)),
