@@ -747,6 +747,7 @@ namespace Server
         private bool WP8 = false;
         private bool WP9 = false;
 
+        private bool _channelingInterrupt = false;
         private SpecClasse _SpecClasse = SpecClasse.None;
         private int _specLevel = 0;
         private bool _boostedStat = false;
@@ -1911,6 +1912,13 @@ namespace Server
             get { return _boostedSkills; }
             set { _boostedSkills = value; }
         }
+
+        public bool ChannelingInterrupt
+        {
+            get { return _channelingInterrupt; }
+            set { _channelingInterrupt = value; }
+        }
+        
 
         public virtual void GetSpec()
         {
@@ -12641,6 +12649,10 @@ namespace Server
             {
                 Meditating = false;
                 SendLocalizedMessage(500134); // You stop meditating.
+            }
+            if(ChannelingInterrupt == false)
+            {
+                ChannelingInterrupt = true;
             }
         }
 

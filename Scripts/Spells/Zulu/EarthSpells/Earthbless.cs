@@ -46,7 +46,6 @@ namespace Server.Spells.Zulu.EarthSpells
 
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             Mobile m = this.Caster;
             if (!this.Caster.CanSee(m))
             {

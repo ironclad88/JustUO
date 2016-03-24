@@ -58,7 +58,6 @@ namespace Server.Spells.Zulu.NecroSpells
 
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             if (this.CheckSequence())
             {
                 int count = Utility.Random(2, 2); // from pol

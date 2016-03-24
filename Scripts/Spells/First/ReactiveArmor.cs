@@ -63,7 +63,6 @@ namespace Server.Spells.First
 
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             if (Core.AOS)
             {
                 /* The reactive armor spell increases the caster's physical resistance, while lowering the caster's elemental resistances.

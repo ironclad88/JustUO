@@ -159,7 +159,6 @@ namespace Server.Engines.Harvest
             {
                 oreAndStone.BonusResources = new BonusHarvestResource[]
                 {
-                    //JustZH : fucked up chances right now for debugging purposes.
                     new BonusHarvestResource(50, 1.0, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
                     new BonusHarvestResource(CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty-30, 0.01, "You found a rare Ebon Twiligh Saphire!", typeof(ETSOre)),
                     new BonusHarvestResource(CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty-30, 0.01, "You found a rare Dark Sable Ruby!", typeof(DSROre)),

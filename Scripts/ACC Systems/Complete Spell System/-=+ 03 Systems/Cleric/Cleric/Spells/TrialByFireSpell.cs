@@ -50,7 +50,6 @@ namespace Server.ACC.CSS.Systems.Cleric
 
 		public override void OnCast()
 		{
-            setCords(Caster.Y, Caster.X);
 			if ( CheckSequence() )
 			{
 				Caster.SendMessage( "Your body is covered by holy flames." );

@@ -28,9 +28,6 @@ namespace Server.Spells
         int endX;
         int endY;
 
-        int startY;
-        int startX;
-
         public SpellState State { get { return m_State; } set { m_State = value; } }
         public Mobile Caster { get { return m_Caster; } }
         public SpellInfo Info { get { return m_Info; } }
@@ -774,12 +771,6 @@ namespace Server.Spells
 
         public abstract void OnCast();
 
-        public virtual void setCords(int Y, int X)
-        {
-            startY = Y;
-            startX = X;
-        }
-
         public virtual void OnBeginCast()
         { }
 
@@ -1104,14 +1095,9 @@ namespace Server.Spells
                     Caster.DoBeneficial(target);
                     return true;
                 }
-                endX = m_Caster.X;
-                endY = m_Caster.Y;
-                //Console.WriteLine("start coords: " + startX + " : " + startY);
-                //Console.WriteLine("end coords: " + endX + " : " + endY);
-                if (startX != endX || startY != endY)
+                if(true == m_Caster.ChannelingInterrupt)
                 {
-                    //Console.WriteLine("You Moved after spellcast is done!");
-                    DoFizzle();
+                    m_Caster.LocalOverheadMessage(MessageType.Regular, 0x3B2, true, "The spell was interrupted.");
                     return false;
                 }
                 else
@@ -1140,14 +1126,10 @@ namespace Server.Spells
                     Caster.DoBeneficial(target);
                     return true;
                 }
-                endX = m_Caster.X;
-                endY = m_Caster.Y;
-                //Console.WriteLine("start coords: " + startX + " : " + startY);
-                //Console.WriteLine("end coords: " + endX + " : " + endY);
-                if (startX != endX || startY != endY)
+
+                if (true == m_Caster.ChannelingInterrupt)
                 {
-                    //Console.WriteLine("You Moved after spellcast is done!");
-                    DoFizzle();
+                    m_Caster.LocalOverheadMessage(MessageType.Regular, 0x3B2, true, "The spell was interrupted.");
                     return false;
                 }
                 else
@@ -1232,6 +1214,7 @@ namespace Server.Spells
                     // Spell.NextSpellDelay;
 
                     Target originalTarget = m_Spell.m_Caster.Target;
+                    m_Spell.m_Caster.ChannelingInterrupt = false;
 
                     m_Spell.OnCast();
 

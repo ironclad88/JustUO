@@ -1155,8 +1155,6 @@ namespace Server.Spells
             // if (target.SpecClasse == SpecClasse.Warrior)
             // damage *= (int)target.SpecBonus(SpecClasse.Warrior);
 
-            int iDamage = (int)damage;
-
             //JustZH: apply spec scalars
             // scale this bonus directly, this means spec bonus will be applied to "base" damage BEFORE all the
             // multipliers added in the Damage Multipliers region below, this means spec bonus will be more powerful
@@ -1186,12 +1184,12 @@ namespace Server.Spells
             if (debug == true && from.IsStaff())
                 Console.WriteLine(from.Name + " BEFORE MAGIC SPEC Damage: " + damage);
 
-            iDamage = AOS.Scale(iDamage, (int)(spec_scalar_d * 100));
+            damage = (int)(damage*spec_scalar_d);
 
             if (debug == true && from.IsStaff())
                 Console.WriteLine(from.Name + " AFTER MAGIC SPEC Damage: " + damage);
 
-
+            int iDamage = (int)damage;
 
             if (delay == TimeSpan.Zero)
             {

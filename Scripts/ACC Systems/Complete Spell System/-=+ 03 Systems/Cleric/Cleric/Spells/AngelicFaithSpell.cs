@@ -66,7 +66,6 @@ namespace Server.ACC.CSS.Systems.Cleric
 
 		public override void OnCast()
 		{
-            setCords(Caster.Y, Caster.X);
             TransformationSpellHelper.OnCast(Caster, this);
 
             if ( CheckSequence() )

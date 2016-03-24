@@ -31,7 +31,6 @@ namespace Server.ACC.CSS.Systems.Cleric
 
 		public override void OnCast()
 		{
-            setCords(Caster.Y, Caster.X);
 			if ( CheckSequence() )
 			{
 				Item weap = new HammerOfFaith( Caster );

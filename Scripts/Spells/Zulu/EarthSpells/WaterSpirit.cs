@@ -60,7 +60,6 @@ namespace Server.Spells.Zulu.EarthSpells
 
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             if (this.CheckSequence())
             {
                 BaseCreature creature = (BaseCreature)Activator.CreateInstance(typeof(WaterElemental)); // make water elemental lord

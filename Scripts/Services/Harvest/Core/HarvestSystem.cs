@@ -175,12 +175,15 @@ namespace Server.Engines.Harvest
                                 amount += (amount / 2);
                             }
                             // JustZH Gain more resources if specced
-                            if ((from.SpecClasse == SpecClasse.Crafter && (item is BaseLog || item is BaseOre || item is Sand)) ||
-                                (from.SpecClasse == SpecClasse.Ranger && item is Fish))
+                            if (item is BaseLog || item is BaseOre || item is Sand)
                             {
-                                // Increase the amount of resources for appropriate spec.
-                                amount += amount * from.SpecLevel;
+                                amount = (int)(amount * from.SpecBonus(SpecClasse.Crafter));
                             }
+                            else if (item is Fish)
+                            {
+                                amount = (int)(amount * from.SpecBonus(SpecClasse.Ranger));
+                            }
+
                             item.Amount = GMToolChecker(amount, tool);
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
 
@@ -269,12 +272,12 @@ namespace Server.Engines.Harvest
                 amount = amount * 2;
                // Console.WriteLine("Omeros");
             }
-            if (tool is XarafaxAxe)
+            else if (tool is XarafaxAxe)
             {
                 amount = amount * 2;
                // Console.WriteLine("XarafaxAxe");
             }
-            if (tool is PoseidonFishingpole)
+            else if (tool is PoseidonFishingpole)
             {
                 amount = amount * 2;
                // Console.WriteLine("PoseidonFishingpole");
@@ -378,6 +381,13 @@ namespace Server.Engines.Harvest
 
         public virtual bool OnHarvesting(Mobile from, Item tool, HarvestDefinition def, object toHarvest, object locked, bool last)
         {
+            bool dummy;
+            return OnHarvesting( from,  tool,  def,  toHarvest,  locked,  last, out dummy);
+        }
+
+        public virtual bool OnHarvesting(Mobile from, Item tool, HarvestDefinition def, object toHarvest, object locked, bool last, out bool noResources)
+        {
+            noResources = false;
             if (!this.CheckHarvest(from, tool))
             {
                 from.EndAction(locked);
@@ -407,6 +417,7 @@ namespace Server.Engines.Harvest
             }
             else if (!this.CheckResources(from, tool, def, map, loc, true))
             {
+                noResources = true;
                 from.EndAction(locked);
                 return false;
             }

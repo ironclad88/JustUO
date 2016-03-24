@@ -76,7 +76,6 @@ namespace Server.Spells.Zulu.EarthSpells
 
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             if (this.CheckSequence())
             {
                 int count = 0;

@@ -216,6 +216,7 @@ namespace Server.Mobiles
 
         private DesignContext m_DesignContext;
 
+        private int m_AutoLoop = 1; // Should always be 1-10,000
         private NpcGuild m_NpcGuild;
         private DateTime m_NpcGuildJoinTime;
         private TimeSpan m_NpcGuildGameTime;
@@ -330,6 +331,20 @@ namespace Server.Mobiles
         public int Profession { get { return m_Profession; } set { m_Profession = value; } }
 
         public int StepsTaken { get; set; }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int AutoLoop { get { return m_AutoLoop; }
+            set
+            {
+                // Only allow 1-10,000
+                if(value < 1)
+                    m_AutoLoop = 1;
+                else if(value > 10000)
+                    m_AutoLoop = 10000;
+                else
+                    m_AutoLoop = value;
+            }
+        }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public NpcGuild NpcGuild { get { return m_NpcGuild; } set { m_NpcGuild = value; } }

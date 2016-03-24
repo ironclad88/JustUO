@@ -37,7 +37,6 @@ namespace Server.ACC.CSS.Systems.Cleric
 
 		public override void OnCast()
 		{
-            setCords(Caster.Y, Caster.X);
 			if ( CheckSequence() )
 			{
 				if ( !Caster.CanBeginAction( typeof( ClericSacrificeSpell ) ) )

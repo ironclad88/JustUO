@@ -33,7 +33,6 @@ namespace Server.Spells.First
                 this.Caster.SendMessage(0x22, "You cannot cast this spell when in sudden death.");
                 return false;
             }*/
-            setCords(Caster.Y, Caster.X);
             return base.CheckCast();
         }
 

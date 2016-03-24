@@ -406,6 +406,7 @@
     <Compile Include="Commands\Heal.cs" />
     <Compile Include="Commands\History.cs" />
     <Compile Include="Commands\reags.cs" />
+    <Compile Include="Commands\Autoloop.cs" />
     <Compile Include="Custom Systems\Auction System\Auction Bot\AuctionBotController.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionComparer.cs" />
     <Compile Include="Custom Systems\Auction System\AuctionItem.cs" />

@@ -27,7 +27,6 @@ namespace Server.ACC.CSS.Systems.Cleric
 
 		public override void OnCast()
 		{
-            setCords(Caster.Y, Caster.X);
 			Caster.Target = new InternalTarget( this );
 		}
 

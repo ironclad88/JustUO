@@ -55,7 +55,6 @@ namespace Server.Spells.Zulu.ClericSpells
         }
         public override void OnCast()
         {
-            setCords(Caster.Y, Caster.X);
             Caster.Target = new InternalTarget(this);
         }
 
