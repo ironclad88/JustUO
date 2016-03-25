@@ -3,14 +3,14 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-    [CorpseName("a golden dragon corpse")]
+    [CorpseName("a Golden Dragon corpse")]
     public class GoldenDragon : BaseCreature
     {
         [Constructable]
         public GoldenDragon()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a golden dragon";
+            this.Name = "a Golden Dragon";
             this.Hue = 48;
            // this.Body = Utility.RandomList(12, 59);
             this.Body = 59;
@@ -56,6 +56,15 @@ namespace Server.Mobiles
         public GoldenDragon(Serial serial)
             : base(serial)
         {
+        }
+
+        // Make its name appear in red.
+        public override bool AlwaysMurderer
+        {
+            get
+            {
+                return true;
+            }
         }
 
         public override bool ReacquireOnMovement

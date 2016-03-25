@@ -45,7 +45,7 @@ namespace Server.Items
         }
 
         //DICE-DAMAGE Mod
-        private static int m_DiceNum, m_DiceSides, m_DiceOffset;
+        private int m_DiceNum, m_DiceSides, m_DiceOffset;
         //DICE-DAMAGE Mod
 
         bool debug = true;
@@ -629,6 +629,45 @@ namespace Server.Items
         #region Dice Dmg
         //DICE-DAMAGE Mod
 
+        private void SetDamage(int min, int max)
+        {
+            BaseWeapon wep = this;
+            if (wep != null)
+            {
+                const int max_sides = 6;
+                const int min_sides = 3;
+                int dmg_diff = max - min + 1;
+                if (dmg_diff > max_sides)
+                {
+                    int best_sides = max_sides;
+                    for (int i = max_sides; i >= min_sides; i--)
+                    {
+                        best_sides = i;
+                        if (dmg_diff % i == 0) break;
+                    }
+                    m_DiceSides = best_sides;
+                    m_DiceNum = Math.Max(1, (dmg_diff / best_sides));
+                }
+                else
+                {
+                    m_DiceSides = dmg_diff;
+                    m_DiceNum = 1;
+                }
+
+                m_DiceOffset = min - m_DiceNum;
+                int max_dmg = (m_DiceSides * m_DiceNum + m_DiceOffset);
+                if (max - max_dmg > m_DiceSides) m_DiceNum += (max - max_dmg) / m_DiceSides;
+#if true
+                Console.WriteLine("Old damage set for " + this.Name + " converted " + min + " to " + max + " damage to " + m_DiceNum + "d" + m_DiceSides + "+" + m_DiceOffset);
+                if ((Math.Abs(min - (m_DiceNum + m_DiceOffset)) > 3) ||
+                    (Math.Abs(max - (m_DiceNum * m_DiceSides + m_DiceOffset)) > 3))
+                {
+                    Console.WriteLine("Old damage set for " + this.Name + " high variance! From: " + min + " to " + max + " damage to " + m_DiceNum + "d" + m_DiceSides + "+" + m_DiceOffset);
+                }
+#endif
+            }
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int Dice_Num
         {
@@ -642,22 +681,29 @@ namespace Server.Items
                 {
                     try
                     {
-                        return WeaponDiceDefaults.GetDice(this.GetType()).getNum;
+                        int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getNum;
+                        m_DiceNum = xml_data;
+                        InvalidateProperties();
+                        return m_DiceNum;
                     }
                     catch
                     {
                         try
                         {
-                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getNum;
+                            int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getNum;
+                            m_DiceNum = xml_data;
+                            InvalidateProperties();
+                            return m_DiceNum;
                         }
                         catch
                         {
-                            Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! " + this.Name + " will roll 0 dice");
-                            return (0);
+                            Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
+                            SetDamage(AosMinDamage, AosMaxDamage);
+                            InvalidateProperties();
+                            return m_DiceNum;
                         }
                     }
                 }
-                
             }
             set
             {
@@ -679,22 +725,29 @@ namespace Server.Items
                 {
                     try
                     {
-                        return WeaponDiceDefaults.GetDice(this.GetType()).getSides;
+                        int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getSides;
+                        m_DiceSides = xml_data;
+                        InvalidateProperties();
+                        return m_DiceSides;
                     }
                     catch
                     {
                         try
                         {
-                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getSides;
+                            int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getSides;
+                            m_DiceSides = xml_data;
+                            InvalidateProperties();
+                            return m_DiceSides;
                         }
                         catch
                         {
-                            Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! " + this.Name + " will roll 0 side dice");
-                            return (0);
+                            Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
+                            SetDamage(AosMinDamage, AosMaxDamage);
+                            InvalidateProperties();
+                            return m_DiceSides;
                         }
                     }
                 }
-
             }
             set
             {
@@ -716,18 +769,26 @@ namespace Server.Items
                 {
                     try
                     {
-                        return WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
+                        int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
+                        m_DiceOffset = xml_data;
+                        InvalidateProperties();
+                        return m_DiceOffset;
                     }
                     catch
                     {
                         try
                         {
-                            return WeaponDiceDefaults.GetDice(this.GetType().BaseType).getOffset;
+                            int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getOffset;
+                            m_DiceOffset = xml_data;
+                            InvalidateProperties();
+                            return m_DiceOffset;
                         }
                         catch
                         {
-                            Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! " + this.Name + " will roll with 0 offset");
-                            return (0);
+                            Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
+                            SetDamage(AosMinDamage, AosMaxDamage);
+                            InvalidateProperties();
+                            return m_DiceOffset;
                         }
                     }
                 }

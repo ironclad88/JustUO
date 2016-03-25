@@ -10,6 +10,10 @@ namespace Server.Items
             : base(0x26C0)
         {
             this.Weight = 12.0;
+            // Numbers copied from pol halberd
+            Dice_Num = 5;
+            Dice_Sides = 6;
+            Dice_Offset = 5;
         }
 
         public Lance(Serial serial)

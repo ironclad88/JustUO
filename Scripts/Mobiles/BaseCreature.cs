@@ -4150,7 +4150,7 @@ namespace Server.Mobiles
                 wep.Dice_Offset = min - wep.Dice_Num;
                 int max_dmg = (wep.Dice_Sides * wep.Dice_Num + wep.Dice_Offset);
                 if (max - max_dmg > wep.Dice_Sides) wep.Dice_Num += (max - max_dmg) / wep.Dice_Sides;
-#if DEBUG
+#if true
                 //Console.WriteLine("Old damage set for " + this.Name + " converted " + min + " to " + max + " damage to " + wep.Dice_Num + "d" + wep.Dice_Sides + "+" + wep.Dice_Offset);
                 if ((Math.Abs(min - (wep.Dice_Num + wep.Dice_Offset)) > 3) ||
                     (Math.Abs(max - (wep.Dice_Num * wep.Dice_Sides + wep.Dice_Offset)) > 3))
