@@ -132,6 +132,12 @@ namespace Server.Items
             if (this.HarvestSystem == null || this.Deleted)
                 return;
 
+            if((from as Mobiles.PlayerMobile).IsBusy == true)
+            {
+                from.LocalOverheadMessage(Server.Network.MessageType.Regular, 0x3E9,true, "You are already doing something else.");
+                return;
+            }
+
             Point3D loc = this.GetWorldLocation();
 
             if (!from.InLOS(loc) || !from.InRange(loc, 2))

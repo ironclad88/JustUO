@@ -47,8 +47,8 @@ namespace Server.Engines.Harvest
             fish.BankHeight = 1;
 
             // Every bank holds from 5 to 15 fish
-            fish.MinTotal = 10;
-            fish.MaxTotal = 25;
+            fish.MinTotal = 7;
+            fish.MaxTotal = 12;
 
             // A resource bank will respawn its content every 10 to 20 minutes
             fish.MinRespawn = TimeSpan.FromMinutes(3.0);

@@ -42,8 +42,8 @@ namespace Server.Engines.Harvest
             lumber.BankHeight = 3;
 
             // Every bank holds from 20 to 35 logs
-            lumber.MinTotal = 2;
-            lumber.MaxTotal = 7; // from 45
+            lumber.MinTotal = 8;
+            lumber.MaxTotal = 12; // from 45
 
             // A resource bank will respawn its content every 3 to 5 minutes
             lumber.MinRespawn = TimeSpan.FromMinutes(3.0);
@@ -133,9 +133,11 @@ namespace Server.Engines.Harvest
                 // JustZH: add HarvestVeins for all logs, all with same chance to appear.
                 veins = new HarvestVein[res.Length];
 
-                for (int i = 0; i < res.Length; i++)
+                double mean_chance = (100.0 / res.Length);
+                veins[0] = new HarvestVein(mean_chance, 0.0, res[0], null);
+                for (int i = 1; i < res.Length; i++)
                 {
-                    veins[i] = new HarvestVein((100 / res.Length), 0.0, res[i], (i == 0) ? null : res[0]);
+                    veins[i] = new HarvestVein(mean_chance, 0.10, res[i], res[0]);
                 }
 
                 lumber.BonusResources = new BonusHarvestResource[]

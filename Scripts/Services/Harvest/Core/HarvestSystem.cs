@@ -140,17 +140,22 @@ namespace Server.Engines.Harvest
 
             if (vein == null)
                 return;
-
+            
             HarvestResource primary = vein.PrimaryResource;
             HarvestResource fallback = vein.FallbackResource;
             HarvestResource resource = this.MutateResource(from, tool, def, map, loc, vein, primary, fallback);
+            //CraftResourceInfo info;
+            //if (primary.Types[0] is typeof(BaseLog))
+            //{
+            //    info = CraftResources.GetInfo(CraftResource.Iron);
+            //}
 
             double skillBase = from.Skills[def.Skill].Base;
             double skillValue = from.Skills[def.Skill].Value;
 
             Type type = null;
 
-            if (skillValue >= resource.ReqSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
+            if (skillValue >= resource.MinSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
             {
                 type = this.GetResourceType(from, tool, def, map, loc, resource);
                 if (type != null)
@@ -220,9 +225,9 @@ namespace Server.Engines.Harvest
 
                         if (bonus != null && bonus.Type != null && skillBase >= bonus.ReqSkill)
                         {
-                            if (bonus.Type != typeof(ETSOre) ||
-                                bonus.Type != typeof(RNDOre) ||
-                                bonus.Type != typeof(DSROre) ||
+                            if ((bonus.Type != typeof(ETSOre) &&
+                                bonus.Type != typeof(RNDOre) &&
+                                bonus.Type != typeof(DSROre)) ||
                                 from.SpecClasse == SpecClasse.Crafter)
                             {
                                 // JustZH: only get dsr/ets/rnd if spec crafter.
@@ -308,6 +313,30 @@ namespace Server.Engines.Harvest
 
         public virtual HarvestVein MutateVein(Mobile from, Item tool, HarvestDefinition def, HarvestBank bank, object toHarvest, HarvestVein vein)
         {
+            //JustZH: mutate some other way here, we need more chance to get somethign uselful
+            // Hopefully this isn't too hard on the server, but we override the vein's resources here, so we're kinda doing double work...
+
+            double skillValue = from.Skills[def.Skill].Value;
+            HarvestResource new_resource;
+            // Find all resources that the miner is skilled enough for
+            List<int> valid_indexes = new List<int>();
+            for (int i = 0; i < def.Veins.Length; i++)
+            {
+                if (skillValue >= def.Veins[i].PrimaryResource.MinSkill)
+                {
+                    valid_indexes.Add(i);
+                }
+            }
+            int rand_list_idx = Utility.RandomMinMax(0, valid_indexes.Count - 1);
+            int rand_index = valid_indexes[rand_list_idx];
+            if (null != def.Veins[rand_index].PrimaryResource)
+            {
+                new_resource = def.Veins[rand_index].PrimaryResource;
+                Console.WriteLine("Switched resource: " + vein.PrimaryResource.Types[0].Name.ToString()
+                + "to: " + new_resource.Types[0].Name.ToString());
+                vein.PrimaryResource = new_resource;
+            }
+
             return vein;
         }
 
@@ -373,8 +402,11 @@ namespace Server.Engines.Harvest
 
             double skillValue = from.Skills[def.Skill].Value;
 
-            if (fallback != null && (skillValue < primary.ReqSkill || skillValue < primary.MinSkill))
+            // JustZH: we only look at min skill here, not req skill...
+            if (fallback != null && (skillValue < primary.MinSkill))
+            {
                 return fallback;
+            }
 
             return primary;
         }

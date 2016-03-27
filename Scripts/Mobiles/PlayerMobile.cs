@@ -222,6 +222,7 @@ namespace Server.Mobiles
         private TimeSpan m_NpcGuildGameTime;
         private PlayerFlag m_Flags;
         private int m_Profession;
+        private bool m_IsBusy = false;
 
         private int m_NonAutoreinsuredItems;
         // number of items that could not be automaitically reinsured because gold in bank was not enough
@@ -344,6 +345,13 @@ namespace Server.Mobiles
                 else
                     m_AutoLoop = value;
             }
+        }
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool IsBusy
+        {
+            get { return m_IsBusy; }
+            set { m_IsBusy = value; }
         }
 
         [CommandProperty(AccessLevel.GameMaster)]

@@ -53,8 +53,8 @@ namespace Server.Engines.Harvest
             oreAndStone.BankHeight = 1;
 
             // Every bank holds from 5 to 15 loops
-            oreAndStone.MinTotal = 2;
-            oreAndStone.MaxTotal = 7;
+            oreAndStone.MinTotal = 8;
+            oreAndStone.MaxTotal = 12;
 
             // A resource bank will respawn its content every 10 to 15 minutes
             oreAndStone.MinRespawn = TimeSpan.FromMinutes(3.0);
@@ -92,7 +92,7 @@ namespace Server.Engines.Harvest
             int max_skill_offset = 50;
             res = new HarvestResource[]
             {
-                new HarvestResource(00.0, 00.0, difficulty+max_skill_offset, 1007072, typeof(IronOre)),
+                //new HarvestResource(00.0, 00.0, difficulty+max_skill_offset, 1007072, typeof(IronOre)),
                 
                 new HarvestResource((difficulty = CraftResources.GetInfo(CraftResource.Iron).AttributeInfo.Difficulty), Math.Max(0,(difficulty-15)), difficulty+max_skill_offset, "You dig up some Iron ore and put it in your backpack.", typeof(IronOre)),
                 //new HarvestResource(70.0, 30.0, 110.0, 1007074, typeof(ShadowIronOre),	typeof(ShadowIronGranite), typeof(ShadowIronElemental)),
@@ -146,10 +146,11 @@ namespace Server.Engines.Harvest
             //    new HarvestVein(10.0, 0.0, res[8], res[0]),// Valorite
             //    new HarvestVein(10.0, 0.0, res[9], res[0])// Zulu
             //};
-
-            for(int i = 0; i < res.Length; i++)
+            double mean_chance = (100.0 / res.Length);
+            veins[0] = new HarvestVein(mean_chance, 0.0, res[0],  null);
+            for (int i = 1; i < res.Length; i++)
             {
-                veins[i] = new HarvestVein((100/ res.Length), 0.0, res[i], (i == 0) ? null : res[0]);
+                veins[i] = new HarvestVein(mean_chance, 0.10, res[i], res[0]);
             }
 
             oreAndStone.Resources = res;
@@ -315,14 +316,13 @@ namespace Server.Engines.Harvest
 
         public override HarvestVein MutateVein(Mobile from, Item tool, HarvestDefinition def, HarvestBank bank, object toHarvest, HarvestVein vein)
         {
-            if (tool is GargoylesPickaxe && def == this.m_OreAndStone)
-            {
-                int veinIndex = Array.IndexOf(def.Veins, vein);
+            //if (tool is GargoylesPickaxe && def == this.m_OreAndStone)
+            //{
+            //    int veinIndex = Array.IndexOf(def.Veins, vein);
 
-                if (veinIndex >= 0 && veinIndex < (def.Veins.Length - 1))
-                    return def.Veins[veinIndex + 1];
-            }
-
+            //    if (veinIndex >= 0 && veinIndex < (def.Veins.Length - 1))
+            //        return def.Veins[veinIndex + 1];
+            //}
             return base.MutateVein(from, tool, def, bank, toHarvest, vein);
         }
 
