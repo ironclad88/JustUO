@@ -19,7 +19,7 @@ namespace Server.Mobiles
             this.Skills[SkillName.MagicResist].Base = 25.0 + (Utility.RandomDouble() * 5.0);
             this.Skills[SkillName.Wrestling].Base = 35.0 + (Utility.RandomDouble() * 10.0);
             this.Skills[SkillName.Tactics].Base = 30.0 + (Utility.RandomDouble() * 15.0);
-
+            this.stableName = "a silver steed";
             this.ControlSlots = 1;
             this.Tamable = true;
             this.MinTameSkill = 103.1;

@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "an ice hound";
+            this.stableName = "an ice hound";
             this.Body = 98;
             this.BaseSoundID = 229;
             this.Hue = 1153;

@@ -15,6 +15,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "Clan Scratch Savage Wolf";
+            this.stableName = "Clan Scratch Savage Wolf";
             this.Body = 98;
             this.Hue = 0x2C;
             this.BaseSoundID = 229;

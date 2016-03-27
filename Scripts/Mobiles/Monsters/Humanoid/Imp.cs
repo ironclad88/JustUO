@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "an imp";
+            this.stableName = "an imp";
             this.Body = 74;
             this.BaseSoundID = 422;
 

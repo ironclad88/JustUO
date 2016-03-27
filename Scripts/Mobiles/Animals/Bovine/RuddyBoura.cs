@@ -13,6 +13,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a ruddy boura";
+            this.stableName = "a ruddy boura";
             this.Body = 715;
 
             this.SetStr(329, 435);

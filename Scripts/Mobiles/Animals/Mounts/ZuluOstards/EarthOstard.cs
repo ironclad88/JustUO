@@ -10,7 +10,7 @@ namespace Server.Mobiles.Animals.Mounts.ZuluOstards
     {
         [Constructable]
         public EarthOstard()
-            : this("a earth ostardd")
+            : this("a earth ostard")
         {
         }
 
@@ -19,7 +19,7 @@ namespace Server.Mobiles.Animals.Mounts.ZuluOstards
             : base(name, 0xDB, 0x3EA5, AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Hue = 1183;
-
+            this.stableName = "a earth ostard";
             this.BaseSoundID = 0x270;
 
             this.SetStr(200, 250);

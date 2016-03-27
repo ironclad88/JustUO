@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a giant toad";
+            this.stableName = "a giant toad";
             this.Body = 80;
             this.BaseSoundID = 0x26B;
 

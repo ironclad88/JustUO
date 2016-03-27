@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Mage, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a phoenix";
+            this.stableName = "a phoenix";
             this.Body = 5;
             this.Hue = 0x674;
             this.BaseSoundID = 0x8F;

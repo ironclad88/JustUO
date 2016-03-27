@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base()
         {
             this.Name = "a saliva";
+            this.stableName = "a saliva";
             this.Hue = 0x11E;
 
             this.SetStr(136, 206);

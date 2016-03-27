@@ -10,7 +10,7 @@ namespace Server.Mobiles.Animals.Mounts.ZuluOstards
     {
         [Constructable]
         public AmethystOstard()
-            : this("a amethyst ostardd")
+            : this("a amethyst ostard")
         {
         }
 
@@ -19,7 +19,7 @@ namespace Server.Mobiles.Animals.Mounts.ZuluOstards
             : base(name, 0xDB, 0x3EA5, AIType.AI_Animal, FightMode.None, 10, 1, 0.2, 0.4)
         {
             this.Hue = 1174;
-
+            this.stableName = "a amethyst ostard";
             this.BaseSoundID = 0x270;
 
             this.SetStr(75, 95);

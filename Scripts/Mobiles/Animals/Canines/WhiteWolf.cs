@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a white wolf";
+            this.stableName = "a white wolf";
             this.Body = Utility.RandomList(34, 37);
             this.BaseSoundID = 0xE5;
 

@@ -16,7 +16,7 @@ namespace Server.Mobiles
             : base(name, 0xDB, 0x3EA5, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Hue = Utility.RandomSlimeHue() | 0x8000;
-
+            this.stableName = "a forest ostard";
             this.BaseSoundID = 0x270;
 
             this.SetStr(94, 170);

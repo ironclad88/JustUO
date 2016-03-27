@@ -11,6 +11,7 @@ namespace Server.Mobiles
         {
             this.Body = Utility.RandomBool() ? 180 : 49;
             this.Name = "a white wyrm";
+            this.stableName = "a white wyrm";
             this.BaseSoundID = 362;
 
             this.SetStr(721, 760);

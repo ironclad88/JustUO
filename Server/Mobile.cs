@@ -838,7 +838,11 @@ namespace Server
         private DateTime _LastIntGain;
         private DateTime _LastDexGain;
         private Race _Race;
+        private string _stableName;
         #endregion
+
+        [CommandProperty(AccessLevel.GameMaster, AccessLevel.Administrator)]
+        public string stableName { get { return _stableName; } set { _stableName = value; } }
 
         private static readonly TimeSpan _WarmodeSpamCatch = TimeSpan.FromSeconds((Core.SE ? 1.0 : 0.5));
         private static readonly TimeSpan _WarmodeSpamDelay = TimeSpan.FromSeconds((Core.SE ? 4.0 : 2.0));
@@ -6188,6 +6192,11 @@ namespace Server
 
             switch (version)
             {
+                case 39:
+                    {
+                        _stableName = reader.ReadString();
+                        goto case 38;
+                    }
                 case 38:
                     {
                         AP1 = reader.ReadBool();
@@ -6713,7 +6722,9 @@ namespace Server
 
         public virtual void Serialize(GenericWriter writer)
         {
-            writer.Write(38); // version
+            writer.Write(39); // version
+
+            writer.Write(_stableName);
 
             writer.Write(AP1);
             writer.Write(AP2);

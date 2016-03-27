@@ -9,6 +9,7 @@ namespace Server.Mobiles
         public BattleChickenLizard()
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
+            this.stableName = "a battle chicken lizard";
             this.Name = "a battle chicken lizard";
             this.Body = 716;
 

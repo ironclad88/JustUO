@@ -12,6 +12,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a hell cat";
+            this.stableName = "a hell cat";
             this.Body = 0xC9;
             this.Hue = Utility.RandomList(0x647, 0x650, 0x659, 0x662, 0x66B, 0x674);
             this.BaseSoundID = 0x69;

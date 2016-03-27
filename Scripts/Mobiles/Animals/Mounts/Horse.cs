@@ -33,6 +33,8 @@ namespace Server.Mobiles
             this.SetDex(56, 75);
             this.SetInt(6, 10);
 
+            this.stableName = "Horse";
+
             this.SetHits(28, 45);
             this.SetMana(0);
 

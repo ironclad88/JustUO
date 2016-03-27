@@ -16,7 +16,7 @@ namespace Server.Mobiles
             : base(name, 188, 0x3EB8, AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0x3F3;
-
+            this.stableName = "a savage ridgeback";
             this.SetStr(58, 100);
             this.SetDex(56, 75);
             this.SetInt(16, 30);

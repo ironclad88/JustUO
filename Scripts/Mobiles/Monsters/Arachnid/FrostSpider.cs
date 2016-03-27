@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a frost spider";
+            this.stableName = "a frost spider";
             this.Body = 20;
             this.BaseSoundID = 0x388;
 

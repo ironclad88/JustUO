@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             Name = "a slith";
+            stableName = "a slith";
             Body = 734; 
 
             SetStr(133, 146);

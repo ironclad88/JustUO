@@ -42,10 +42,10 @@ namespace Server.Mobiles
             this.Fame = 22000;
             this.Karma = -22000;
 
-            if (Utility.RandomDouble() < .50)
-                this.PackItem(Engines.Plants.Seed.RandomBonsaiSeed());
+            //if (Utility.RandomDouble() < .50)
+            //    this.PackItem(Engines.Plants.Seed.RandomBonsaiSeed());
 
-            this.PackItem(new Eggs(2));
+            //this.PackItem(new Eggs(2));
         }
 
         public Yamandon(Serial serial)

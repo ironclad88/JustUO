@@ -13,7 +13,7 @@ namespace Server.Mobiles
             : base("a hiryu", 243, 0x3E94, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Hue = GetHue();
-
+            this.stableName = "a hiryu";
             this.SetStr(1201, 1410);
             this.SetDex(171, 270);
             this.SetInt(301, 325);

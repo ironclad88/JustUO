@@ -22,7 +22,7 @@ namespace Server.Mobiles
             : base(name, 0x31A, 0x3EBD, AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0x16A;
-
+            this.stableName = "a swamp dragon";
             this.SetStr(201, 300);
             this.SetDex(66, 85);
             this.SetInt(61, 100);
