@@ -18,7 +18,7 @@ namespace Server.Mobiles
             this.SetStr(91, 100);
             this.SetDex(46, 55);
             this.SetInt(46, 60);
-
+            this.stableName = "a skeletal steed";
             this.SetHits(41, 50);
 
             this.SetDamage(5, 12);
@@ -35,6 +35,10 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 50.0);
             this.SetSkill(SkillName.Wrestling, 70.1, 80.0);
 
+            this.Tamable = true;
+            this.ControlSlots = 2;
+
+            this.MinTameSkill = 135;
             this.Fame = 0;
             this.Karma = 0;
         }

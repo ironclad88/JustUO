@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a drake";
+            this.stableName = "a drake";
             this.Body = Utility.RandomList(60, 61);
             this.BaseSoundID = 362;
 

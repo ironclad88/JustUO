@@ -18,7 +18,7 @@ namespace Server.Mobiles
             : base(name, 132, 0x3EAD, AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0x3C5;
-
+            this.stableName = "a ki-rin";
             this.SetStr(296, 325);
             this.SetDex(86, 105);
             this.SetInt(186, 225);

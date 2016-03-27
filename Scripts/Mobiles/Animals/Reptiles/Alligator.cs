@@ -9,6 +9,7 @@ namespace Server.Mobiles
         public Alligator()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
+            this.stableName = "an alligator";
             this.Name = "an alligator";
             this.Body = 0xCA;
             this.BaseSoundID = 660;

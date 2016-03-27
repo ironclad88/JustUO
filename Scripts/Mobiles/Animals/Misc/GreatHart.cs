@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a great hart";
+            this.stableName = "a great hart";
             this.Body = 0xEA;
 
             this.SetStr(41, 71);

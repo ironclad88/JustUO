@@ -17,12 +17,15 @@ namespace Server.Mobiles
                 {
                     case 0:
                         this.Name = "a crow";
+                        this.stableName = "a crow";
                         break;
                     case 2:
                         this.Name = "a raven";
+                        this.stableName = "a raven";
                         break;
                     case 1:
                         this.Name = "a magpie";
+                        this.stableName = "a magpie";
                         break;
                 }
             }

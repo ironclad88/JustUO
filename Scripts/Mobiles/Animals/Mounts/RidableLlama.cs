@@ -16,7 +16,7 @@ namespace Server.Mobiles
             : base(name, 0xDC, 0x3EA6, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0x3F3;
-
+            this.stableName = "a ridable llama";
             this.SetStr(21, 49);
             this.SetDex(56, 75);
             this.SetInt(16, 30);

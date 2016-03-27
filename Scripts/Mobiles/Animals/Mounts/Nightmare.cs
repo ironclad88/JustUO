@@ -17,7 +17,7 @@ namespace Server.Mobiles
             : base(name, 0x74, 0x3EA7, AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = Core.AOS ? 0xA8 : 0x16A;
-
+            this.stableName = "a nightmare";
             this.SetStr(496, 525);
             this.SetDex(86, 105);
             this.SetInt(86, 125);
@@ -49,15 +49,15 @@ namespace Server.Mobiles
 
             this.Tamable = true;
             this.ControlSlots = 2;
-            this.MinTameSkill = 95.1;
+            this.MinTameSkill = 110;
 
-			switch (Utility.Random(12))
-            {
-                case 0: PackItem(new BloodOathScroll()); break;
-                case 1: PackItem(new HorrificBeastScroll()); break;
-                case 2: PackItem(new StrangleScroll()); break;
-                case 3: PackItem(new VengefulSpiritScroll()); break;
-			}
+			//switch (Utility.Random(12))
+   //         {
+   //             case 0: PackItem(new BloodOathScroll()); break;
+   //             case 1: PackItem(new HorrificBeastScroll()); break;
+   //             case 2: PackItem(new StrangleScroll()); break;
+   //             case 3: PackItem(new VengefulSpiritScroll()); break;
+			//}
 
             switch ( Utility.Random(3) )
             {

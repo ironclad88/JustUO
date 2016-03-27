@@ -3233,6 +3233,7 @@
     <Compile Include="Items\Weapons\Wooden\ArcanistsWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\HardenedWildStaff.cs" />
     <Compile Include="Items\Weapons\Wooden\ThornedWildStaff.cs" />
+    <Compile Include="Items\ZuluIems\StableDeed\StableDeed.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorArms.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorChest.cs" />
     <Compile Include="Items\ZuluIems\GMItems\Armor\Terror\TerrorGloves.cs" />
@@ -3384,6 +3385,7 @@
     <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
     <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
     <Compile Include="Mobiles\ZuluMonsters\Dracoliche.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\giantRockScorpion.cs" />
     <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
     <Compile Include="Mobiles\Vendors\NPC\Botanist.cs" />
     <Compile Include="Mobiles\Vendors\SBInfo\SBBotanist.cs" />

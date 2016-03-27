@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a gorilla";
+            this.stableName = "a gorilla";
             this.Body = 0x1D;
             this.BaseSoundID = 0x9E;
 

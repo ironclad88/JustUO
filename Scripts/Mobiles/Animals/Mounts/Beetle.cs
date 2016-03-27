@@ -41,6 +41,7 @@ namespace Server.Mobiles
         public Beetle(string name)
             : base(name, 0x317, 0x3EBC, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.25, 0.5)
         {
+            this.stableName = "a giant beetle";
             this.SetStr(300);
             this.SetDex(100);
             this.SetInt(500);

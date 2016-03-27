@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee,FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a dire wolf";
+            this.stableName = "a dire wolf";
             this.Body = 23;
             this.BaseSoundID = 0xE5;
 

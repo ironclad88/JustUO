@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a sewer rat";
+            this.stableName = "a sewer rat";
             this.Body = 238;
             this.BaseSoundID = 0xCC;
 

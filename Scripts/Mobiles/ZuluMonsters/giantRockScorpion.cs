@@ -1,28 +1,28 @@
-using System;
+﻿using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-    [CorpseName("a scorpion corpse")]
-    public class Scorpion : BaseCreature
+    [CorpseName("a giant rock scorpion corpse")]
+    public class GiantRockScorpion : BaseCreature
     {
         [Constructable]
-        public Scorpion()
+        public GiantRockScorpion()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a scorpion";
-            this.stableName = "a scorpion";
+            this.Name = "a giant rock scorpion";
+            this.stableName = "a giant rock scorpion";
             this.Body = 48;
             this.BaseSoundID = 397;
 
-            this.SetStr(73, 115);
-            this.SetDex(76, 95);
-            this.SetInt(16, 30);
+            this.SetStr(150, 250);
+            this.SetDex(120, 150);
+            this.SetInt(50, 60);
 
-            this.SetHits(50, 63);
+            this.SetHits(210, 260);
             this.SetMana(0);
 
-            this.SetDamage(5, 10);
+            this.SetDamage(15, 25);
 
             this.SetDamageType(ResistanceType.Physical, 60);
             this.SetDamageType(ResistanceType.Poison, 40);
@@ -45,12 +45,12 @@ namespace Server.Mobiles
 
             this.Tamable = true;
             this.ControlSlots = 1;
-            this.MinTameSkill = 47.1;
+            this.MinTameSkill = 100;
 
             this.PackItem(new LesserPoisonPotion());
         }
 
-        public Scorpion(Serial serial)
+        public GiantRockScorpion(Serial serial)
             : base(serial)
         {
         }
@@ -80,14 +80,14 @@ namespace Server.Mobiles
         {
             get
             {
-                return Poison.Greater;
+                return Poison.Deadly;
             }
         }
         public override Poison HitPoison
         {
             get
             {
-                return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly);
+                return (0.8 >= Utility.RandomDouble() ? Poison.Deadly : Poison.Deadly); // blah
             }
         }
         public override void GenerateLoot()

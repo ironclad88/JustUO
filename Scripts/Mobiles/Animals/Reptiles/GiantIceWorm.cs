@@ -11,6 +11,7 @@ namespace Server.Mobiles
         {
             this.Body = 89;
             this.Name = "a giant ice worm";
+            this.stableName = "a giant ice worm";
             this.BaseSoundID = 0xDC;
 
             this.SetStr(216, 245);

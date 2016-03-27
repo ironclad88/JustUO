@@ -9,7 +9,7 @@ namespace Server.Mobiles
             : base("a war horse", bodyID, itemID, aiType, fightMode, rangePerception, rangeFight, activeSpeed, passiveSpeed)
         {
             this.BaseSoundID = 0xA8;
-
+            this.stableName = "a war horse";
             this.InitStats(Utility.Random(300, 100), 125, 60);
 
             this.SetStr(400);

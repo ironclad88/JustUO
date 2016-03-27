@@ -19,7 +19,7 @@ namespace Server.SkillHandlers
 
             m.SendLocalizedMessage(500349); // What item do you wish to get information about?
 
-            if(m.SpecClasse == SpecClasse.Crafter) // reduced cooldown for specced crafters
+            if (m.SpecClasse == SpecClasse.Crafter) // reduced cooldown for specced crafters
             {
                 return TimeSpan.FromSeconds(3.0);
             }
@@ -94,7 +94,7 @@ namespace Server.SkillHandlers
                         {
                             from.SendMessage("Poison level: {0}", weap.Poison.Level); // you can now check the poison level with arms lore
                         }
-                           
+
                     }
                     else
                     {
@@ -138,6 +138,54 @@ namespace Server.SkillHandlers
                         else
                         from.SendLocalizedMessage( 1038302 ); // This armor is superbly crafted to provide maximum protection.
                         * */
+                    }
+                    else
+                    {
+                        from.SendLocalizedMessage(500353); // You are not certain...
+                    }
+                }
+                else if (targeted is BaseTool)
+                {
+                    if (from.CheckTargetSkill(SkillName.ArmsLore, targeted, 0, 100))
+                    {
+                        if (((BaseTool)targeted).UsesRemaining < 10)
+                        {
+                            from.SendMessage("This tool is close to breaking");
+                        }
+                        else if (((BaseTool)targeted).UsesRemaining < 20)
+                        {
+                            from.SendMessage("This tool is pretty worn out");
+                        }
+                        else if (((BaseTool)targeted).UsesRemaining < 50)
+                        {
+                            from.SendMessage("This tool is getting pretty used up");
+                        }
+                        else
+                        {
+                            from.SendMessage("This tool is in pristine condition");
+                        }
+                    }
+                    else
+                    {
+                        from.SendLocalizedMessage(500353); // You are not certain...
+                    }
+                }
+                else if (targeted is BaseHarvestTool)
+                {
+                    if (from.CheckTargetSkill(SkillName.ArmsLore, targeted, 0, 100))
+                    {
+                        if (((BaseHarvestTool)targeted).UsesRemaining < 10)
+                        {
+                            from.SendMessage("This tool is close to breaking");
+                        }
+                        else if (((BaseHarvestTool)targeted).UsesRemaining < 20)
+                        {
+                            from.SendMessage("This tool is pretty worn out");
+                        }
+                        else
+                        {
+                            from.SendMessage("This tool is in pristine condition");
+                        }
                     }
                     else
                     {

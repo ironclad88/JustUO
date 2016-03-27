@@ -16,7 +16,7 @@ namespace Server.Mobiles
             : base(name, 0xDA, 0x3EA4, AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Hue = 1282;
-
+            this.stableName = "a necro frenzied ostard";
             this.BaseSoundID = 0x275;
 
             this.SetStr(300, 335);

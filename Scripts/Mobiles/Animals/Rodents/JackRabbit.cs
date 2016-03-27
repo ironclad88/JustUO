@@ -11,6 +11,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a jack rabbit";
+            this.stableName = "a jack rabbit";
             this.Body = 0xCD;
             this.Hue = 0x1BB;
 

@@ -17,7 +17,7 @@ namespace Server.Mobiles
             : base(name, 0xBE, 0x3E9E, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0xA8;
-
+            this.Name = "a fire steed";
             this.SetStr(376, 400);
             this.SetDex(91, 120);
             this.SetInt(291, 300);

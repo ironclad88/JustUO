@@ -17,6 +17,7 @@ namespace Server.Mobiles
             : base(name, 0xDC, 0x3EA6, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.Name = "a ghost llama";
+            this.stableName = "a ghost llama";
             this.BaseSoundID = 0x3F3;
 
             this.Hue = 16385;

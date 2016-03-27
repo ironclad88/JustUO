@@ -10,6 +10,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             this.Name = "a snake";
+            this.stableName = "a snake";
             this.Body = 52;
             this.Hue = Utility.RandomSnakeHue();
             this.BaseSoundID = 0xDB;

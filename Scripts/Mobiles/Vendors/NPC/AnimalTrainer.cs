@@ -5,6 +5,8 @@ using Server.Gumps;
 using Server.Items;
 using Server.Network;
 using Server.Targeting;
+using Server.Items.ZuluIems.AnimalTicket;
+using Server.Spells;
 
 namespace Server.Mobiles
 {
@@ -128,7 +130,7 @@ namespace Server.Mobiles
 
             public override void OnClick()
             {
-                this.m_Trainer.Claim(this.m_From);
+                //   this.m_Trainer.Claim(this.m_From);
             }
         }
 
@@ -265,23 +267,9 @@ namespace Server.Mobiles
         {
             if (this.Deleted || !from.CheckAlive())
                 return;
-
-            Container bank = from.FindBankNoCreate();
-
-            if ((from.Backpack == null || from.Backpack.GetAmount(typeof(Gold)) < 30) && (bank == null || bank.GetAmount(typeof(Gold)) < 30))
-            {
-                this.SayTo(from, 1042556); // Thou dost not have enough gold, not even in thy bank account.
-            }
-            else
-            {
-                /* I charge 30 gold per pet for a real week's stable time.
-                * I will withdraw it from thy bank account.
-                * Which animal wouldst thou like to stable here?
-                */
-                from.SendLocalizedMessage(1042558);
-
-                from.Target = new StableTarget(this);
-            }
+            
+            from.SendMessage("Which animal would you like to stable?");
+            from.Target = new StableTarget(this);
         }
 
         public void EndStable(Mobile from, BaseCreature pet)
@@ -291,7 +279,8 @@ namespace Server.Mobiles
 
             if (pet.Body.IsHuman)
             {
-                this.SayTo(from, 502672); // HA HA HA! Sorry, I am not an inn.
+                this.SayTo(from, "You can´t stable that!");
+                //  this.SayTo(from, 502672); // HA HA HA! Sorry, I am not an inn.
             }
             else if (!pet.Controlled)
             {
@@ -329,37 +318,49 @@ namespace Server.Mobiles
             }
             else
             {
-                Container bank = from.FindBankNoCreate();
+                StableDeed AT = new StableDeed(pet);
+                from.AddToBackpack(AT);
 
-                if ((from.Backpack != null && from.Backpack.ConsumeTotal(typeof(Gold), 30)) || (bank != null && bank.ConsumeTotal(typeof(Gold), 30)))
-                {
-                    pet.ControlTarget = null;
-                    pet.ControlOrder = OrderType.Stay;
-                    pet.Internalize();
-
-                    pet.SetControlMaster(null);
-                    pet.SummonMaster = null;
-
-                    pet.IsStabled = true;
-                    pet.StabledBy = from;
-
-                    if (Core.SE)
-                        pet.Loyalty = BaseCreature.MaxLoyalty; // Wonderfully happy
-
-                    from.Stabled.Add(pet);
-
-                    this.SayTo(from, Core.AOS ? 1049677 : 502679); // [AOS: Your pet has been stabled.] Very well, thy pet is stabled. Thou mayst recover it by saying 'claim' to me. In one real world week, I shall sell it off if it is not claimed!
-                }
-                else
-                {
-                    this.SayTo(from, 502677); // But thou hast not the funds in thy bank account!
-                }
+                this.SayTo(from, "Here you go");
             }
         }
 
+        public override bool OnDragDrop(Mobile from, Item dropped)
+        {
+            if (dropped is StableDeed)
+            {
+                if (from.Followers + 1 > from.FollowersMax)
+                {
+                    from.SendMessage("You control too many creatures"); // not sure, stole from summon basecreature
+                    return false;
+                }
+                else
+                {
+                    if ((from.Backpack == null || from.Backpack.GetAmount(typeof(Gold)) < ((StableDeed)dropped).pet.Str * 3))
+                    {
+                        this.SayTo(from, "You don´t have enough gold. You need " + ((StableDeed)dropped).pet.Str * 3 + " gold pieces"); // maybe buff this?
+                    }
+                    else
+                    {
+                        var cost = ((StableDeed)dropped).pet.Str * 3;
+                        from.Backpack.ConsumeTotal(typeof(Gold), cost);
+                        ((StableDeed)dropped).redeed(from);
+                        
+                        this.SayTo(from, "Here you go, that will cost " + cost + " gold pieces");
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            this.SayTo(from, "That isn´t a Pet claim ticket");
+            return false;
+        }
+
+
         public void Claim(Mobile from)
         {
-            this.Claim(from, null);
+            //  this.Claim(from, null);
         }
 
         public void Claim(Mobile from, string petName)
@@ -454,24 +455,6 @@ namespace Server.Mobiles
 
                 this.CloseClaimList(e.Mobile);
                 this.BeginStable(e.Mobile);
-            }
-            else if (!e.Handled && e.HasKeyword(0x0009)) // *claim*
-            {
-                e.Handled = true;
-
-                this.CloseClaimList(e.Mobile);
-
-                int index = e.Speech.IndexOf(' ');
-
-                if (index != -1)
-                    this.Claim(e.Mobile, e.Speech.Substring(index).Trim());
-                else
-                    this.Claim(e.Mobile);
-            }
-            else if (!e.Handled && e.Speech.Contains("stablecount") == true)
-            {
-                e.Handled = true;
-                e.Mobile.SendMessage("Your current stable count is: {0} / {1}", e.Mobile.Stabled.Count, GetMaxStabled(e.Mobile));
             }
             else
             {
