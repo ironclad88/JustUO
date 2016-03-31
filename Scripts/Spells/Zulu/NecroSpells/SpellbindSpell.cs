@@ -1,4 +1,6 @@
-﻿using Server.Spells.Seventh;
+﻿using Server.Mobiles;
+using Server.Spells.Seventh;
+using Server.Targeting;
 using System;
 
 namespace Server.Spells.Zulu.NecroSpells
@@ -25,7 +27,46 @@ namespace Server.Spells.Zulu.NecroSpells
 
         public override void OnCast()
         {
-            Caster.SendMessage("Not yet implemented");
+            this.Caster.Target = new InternalTarget(this);
+        }
+
+        public void Target(BaseCreature m)
+        {
+            if (m is BaseCreature) // gotta test alot of cases, should not be able to tame players, vendors and so on
+            {
+                    m.Owners.Add(this.Caster);
+                    m.SetControlMaster(this.Caster);
+                    m.BardPacified = true;
+                    m.IsBonded = false;
+            }
+            else
+            {
+                this.Caster.SendMessage("You can´t control that!");
+            }
+        }
+
+        private class InternalTarget : Target
+        {
+            private readonly SpellbindSpell m_Owner;
+
+            public InternalTarget(SpellbindSpell owner)
+                : base(Core.ML ? 10 : 12, false, TargetFlags.Harmful)
+            {
+                this.m_Owner = owner;
+            }
+
+            protected override void OnTarget(Mobile from, object o)
+            {
+                if (o is BaseCreature)
+                {
+                    this.m_Owner.Target((BaseCreature)o);
+                }
+            }
+
+            protected override void OnTargetFinish(Mobile from)
+            {
+                this.m_Owner.FinishSequence();
+            }
         }
 
         public override TimeSpan CastDelayBase

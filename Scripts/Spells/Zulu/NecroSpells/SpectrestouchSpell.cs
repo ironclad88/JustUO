@@ -12,15 +12,11 @@ namespace Server.Spells.Zulu.NecroSpells
             Reagent.ExecutionersCap,
             Reagent.BrimStone,
             Reagent.DaemonBone);
-
-
-
+        
         public SpectrestouchSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
-
-
 
         public override void OnCast()
         {

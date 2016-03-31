@@ -1,53 +1,27 @@
+ï»¿using Server.Items;
+using Server.Mobiles;
+using Server.Spells.Seventh;
 using System;
 using System.Collections.Generic;
-using Server.Items;
-using Server.Mobiles;
-using Server.Spells.Zulu.NecroSpells;
 
-namespace Server.Spells.Necromancy
+namespace Server.Spells.Zulu.NecroSpells
 {
-    public class WitherSpell : NecroSpell
+    public class FrostVeilSpell : NecroSpell
     {
         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Wither", "Kal Vas An Flam",
+            "Veil of Frost", "Frontinus velum", // Corpus Sine Nomine Expergefaceret
             203,
-            9031,
-            Reagent.NoxCrystal,
-            Reagent.VolcanicAsh,
-            Reagent.PigIron);
-        public WitherSpell(Mobile caster, Item scroll)
+            9051,
+            Reagent.Bone,
+            Reagent.FertileDirt,
+            Reagent.VialofBlood,
+            Reagent.Obsidian);
+        
+        public FrostVeilSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
         }
 
-        public override TimeSpan CastDelayBase
-        {
-            get
-            {
-                return TimeSpan.FromSeconds(1.5);
-            }
-        }
-        public override double RequiredSkill
-        {
-            get
-            {
-                return 60.0;
-            }
-        }
-        public override int RequiredMana
-        {
-            get
-            {
-                return 23;
-            }
-        }
-        public override bool DelayedDamage
-        {
-            get
-            {
-                return false;
-            }
-        }
         public override void OnCast()
         {
             if (this.CheckSequence())
@@ -64,7 +38,7 @@ namespace Server.Spells.Necromancy
                     BaseCreature cbc = this.Caster as BaseCreature;
                     bool isMonster = (cbc != null && !cbc.Controlled && !cbc.Summoned);
 
-                    foreach (Mobile m in this.Caster.GetMobilesInRange(Core.ML ? 4 : 5))
+                    foreach (Mobile m in this.Caster.GetMobilesInRange(7))
                     {
                         if (this.Caster != m && this.Caster.InLOS(m) && (isMonster || SpellHelper.ValidIndirectTarget(this.Caster, m)) && this.Caster.CanBeHarmful(m, false))
                         {
@@ -105,9 +79,6 @@ namespace Server.Spells.Necromancy
 
                         int sdiBonus = AosAttributes.GetValue(this.Caster, AosAttribute.SpellDamage);
 
-                        // PvP spell damage increase cap of 15% from an item’s magic property in Publish 33(SE)
-                        if (Core.SE && m.Player && this.Caster.Player && sdiBonus > 15)
-                            sdiBonus = 15;
 
                         damage *= (100 + sdiBonus);
                         damage /= 100;
@@ -123,5 +94,35 @@ namespace Server.Spells.Necromancy
 
             this.FinishSequence();
         }
+
+        public override TimeSpan CastDelayBase
+        {
+            get
+            {
+                return TimeSpan.FromSeconds(1.5);
+            }
+        }
+        public override double RequiredSkill
+        {
+            get
+            {
+                return 130;
+            }
+        }
+        public override int RequiredMana
+        {
+            get
+            {
+                return 40;
+            }
+        }
+        public override bool DelayedDamage
+        {
+            get
+            {
+                return false;
+            }
+        }
+
     }
 }

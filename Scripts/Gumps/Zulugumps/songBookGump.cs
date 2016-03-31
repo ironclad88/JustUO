@@ -9,10 +9,10 @@ using Server.Spells.Zulu.NecroSpells;
 namespace Server.Gumps.Zulugumps
 {
 
-    public class necrobookgump : Gump
+    public class songBookGump : Gump
     {
         Mobile test;
-        public necrobookgump(Mobile owner, bool[] array)
+        public songBookGump(Mobile owner, bool[] array)
             : base(100, 0)
         {
             try
@@ -35,102 +35,102 @@ namespace Server.Gumps.Zulugumps
                 this.AddPage(0);
                 this.AddImage(30, 30, 2200);
 
-                this.AddLabel(80, 40, 28, @"Lesser Chants");
-                this.AddLabel(240, 40, 28, @"Greater Chants");
+                this.AddLabel(80, 40, 28, @"Lesser Songs");
+                this.AddLabel(240, 40, 28, @"Greater Songs");
 
                 if (array[1])
                 { // starts with 1 instead of 0, 0 is the event for book close, if you start with 0 you cast antidote when you close the damn book
-                    this.AddLabel(xName1, yName1, 66, @"Control Undead");
+                    this.AddLabel(xName1, yName1, 66, @"Song of light");
                     this.AddButton(btnX1, btnY1, 2104, 2103, 1, GumpButtonType.Reply, 0);
                 }
 
                 if (array[2])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Volcanic Eruiption");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of cloaking");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 2, GumpButtonType.Reply, 0);
                 }
 
                 if (array[3])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Summon Blood Stone");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of glory");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 3, GumpButtonType.Reply, 0);
                 }
 
                 if (array[4])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Spectre´s Touch");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of defense");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 4, GumpButtonType.Reply, 0);
                 }
 
                 if (array[5])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Abyssal Flame");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of haste");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 5, GumpButtonType.Reply, 0);
                 }
 
                 if (array[6])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Wither"); // Animate Dead
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of remedy"); // Animate Dead
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 6, GumpButtonType.Reply, 0);
                 }
 
                 if (array[7])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Vengeful Spirit");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of life");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 7, GumpButtonType.Reply, 0);
                 }
 
                 if (array[8])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Wraith Breath");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Song of dismissal");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 8, GumpButtonType.Reply, 0);
                 }
 
                 if (array[9])
                 {
-                    this.AddLabel(xName2, yName2, 66, @"Sorcerer´s Bane");
+                    this.AddLabel(xName2, yName2, 66, @"Song of beckon");
                     this.AddButton(btnX2, btnY2, 2104, 2103, 9, GumpButtonType.Reply, 0);
                 }
 
                 if (array[10])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Summon Spirit");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of fright");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 10, GumpButtonType.Reply, 0);
                 }
 
                 if (array[11])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Animate Dead");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of salvation");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 11, GumpButtonType.Reply, 0);
                 }
 
                 if (array[12])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Wyvern Strike");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of earth");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 12, GumpButtonType.Reply, 0);
                 }
 
                 if (array[13])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Kill");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of air");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 13, GumpButtonType.Reply, 0);
                 }
 
                 if (array[14])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Liche");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of fire");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 14, GumpButtonType.Reply, 0);
                 }
 
                 if (array[15])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Plague");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of water");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 15, GumpButtonType.Reply, 0);
                 }
 
                 if (array[16])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Spellbind");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Song of death");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 16, GumpButtonType.Reply, 0);
                 }
 

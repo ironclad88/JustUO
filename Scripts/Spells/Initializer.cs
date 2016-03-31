@@ -88,12 +88,12 @@ namespace Server.Spells
 
             // Necro
             Register(70, typeof(Zulu.NecroSpells.ControlundeadSpell));
-            Register(71, typeof(Zulu.NecroSpells.DarknessSpell));
-            Register(72, typeof(Zulu.NecroSpells.DecayingraySpell));
+            Register(71, typeof(Zulu.NecroSpells.VolcanicEruiptionSpell));
+            Register(72, typeof(Zulu.NecroSpells.BloodStoneSpell));
             Register(73, typeof(Zulu.NecroSpells.SpectrestouchSpell));
             Register(74, typeof(Zulu.NecroSpells.AbyssalflameSpell));
-            Register(75, typeof(Zulu.NecroSpells.AnimatedeadSpell));
-            Register(76, typeof(Zulu.NecroSpells.SacrificeSpell));
+            Register(75, typeof(Zulu.NecroSpells.FrostVeilSpell));
+            Register(76, typeof(Zulu.NecroSpells.VengefulSpiritSpell));
             Register(77, typeof(Zulu.NecroSpells.WraithsbreathSpell));
             Register(78, typeof(Zulu.NecroSpells.SorceresbaneSpell));
             Register(79, typeof(Zulu.NecroSpells.SummonspiritSpell));
