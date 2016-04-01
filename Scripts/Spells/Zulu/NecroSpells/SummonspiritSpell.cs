@@ -81,7 +81,7 @@ namespace Server.Spells.Zulu.NecroSpells
 
                     } while (count < 3);
                 }));
-
+                Caster.PlaySound(0x22B);
             }
 
             this.FinishSequence();

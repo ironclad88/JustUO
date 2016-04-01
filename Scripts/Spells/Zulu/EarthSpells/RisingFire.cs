@@ -130,7 +130,7 @@ namespace Server.Spells.Zulu.EarthSpells
                 }
                 else
                 {
-                    this.Caster.PlaySound(0x29);
+                    this.Caster.PlaySound(0x209);
                 }
             }
 

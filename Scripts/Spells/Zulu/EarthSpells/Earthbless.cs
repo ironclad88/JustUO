@@ -63,7 +63,7 @@ namespace Server.Spells.Zulu.EarthSpells
                 SpellHelper.DisableSkillCheck = false;
 
                 m.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
-                m.PlaySound(0x1EA);
+                m.PlaySound(0x1EB);
                 
                 Random rnd = new Random();
                 int percentageRandomness = rnd.Next(15); 

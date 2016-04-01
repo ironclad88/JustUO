@@ -73,31 +73,25 @@ namespace Server.Spells.Zulu.NecroSpells
                     m.Spell.OnCasterHurt();
 
                 m.Paralyzed = false;
-
-              //  if (this.CheckResisted(m))
-              //  {
-              //      m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-              //  }
-               // else
-              //  {
+                
                     double damage = Utility.Random(65, 80);
 
                     Console.WriteLine("Wyvern Strike DMG: " + damage);
                     Console.WriteLine("Applying PSN: Lethal");
                     m.ApplyPoison(this.Caster, Poison.GetPoison("Lethal"));
-                    /*if (this.CheckResisted(m)) // had to remove this if inherit from NecromancerSpell
+                    if (this.CheckResisted(m)) // had to remove this if inherit from NecromancerSpell
                     {
                         damage *= 0.75;
 
                         m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                    }*/
+                    }
                     damage *= this.GetDamageScalar(m);
                     SpellHelper.Damage(this, m, damage, 0, 20, 0, 0, 0, 0, 80, 0);
                     
              //   }
 
-                m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
-                m.PlaySound(0x205);
+                m.FixedParticles(0x3709, 10, 15, 5021, EffectLayer.Waist);
+                m.PlaySound(0x1E2);
 
                 this.HarmfulSpell(m);
             }

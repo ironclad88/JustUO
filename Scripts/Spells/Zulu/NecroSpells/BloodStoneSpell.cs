@@ -31,6 +31,7 @@ namespace Server.Spells.Zulu.NecroSpells
 
                 int amount = (int)(Caster.Skills.Magery.Value / 5);
                 this.Caster.PlaySound(0x651);
+                this.Caster.FixedParticles(0x374A, 9, 32, 5007, EffectLayer.Waist);
                 this.Caster.Backpack.DropItem(new bloodStone(this.Caster, amount));
                 this.Caster.SendLocalizedMessage(1080115); // A Healing Stone appears in your backpack.
             }

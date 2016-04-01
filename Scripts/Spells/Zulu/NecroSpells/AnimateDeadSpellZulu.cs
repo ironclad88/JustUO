@@ -240,8 +240,8 @@ namespace Server.Spells.Zulu.NecroSpells
 
                             if (map != null)
                             {
-                                Effects.PlaySound(p, map, 0x1FB);
-                                Effects.SendLocationParticles(EffectItem.Create(p, map, EffectItem.DefaultDuration), 0x3789, 1, 40, 0x3F, 3, 9907, 0);
+                                Effects.PlaySound(p, map, 0x22B);
+                                Effects.SendLocationParticles(EffectItem.Create(p, map, EffectItem.DefaultDuration), 0x37B9, 1, 40, 0x3F, 3, 9907, 0);
 
                                 Timer.DelayCall(TimeSpan.FromSeconds(2.0), new TimerStateCallback(SummonDelay_Callback), new object[] { this.Caster, c, p, map, group });
                             }

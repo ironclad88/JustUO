@@ -65,16 +65,8 @@ namespace Server.Spells.Zulu.EarthSpells
             {
                 SpellHelper.Turn(this.Caster, m);
 
-                SpellHelper.CheckReflect(10, this.Caster, ref m);
-
                 double damage;
 
-                //if (Core.AOS)
-                //{
-                //    damage = this.GetNewAosDamage(23, 1, 4, m);
-                //}
-                //else
-                //{
                     damage = Utility.Random(12, 9);
 
                     if (this.CheckResisted(m))
@@ -85,14 +77,10 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
 
                     damage *= this.GetDamageScalar(m);
-                //}
-
                 var test = m.GetRandomPoint3D(5);
-                Console.WriteLine(Map.Felucca.CanSpawnMobile(test.X, test.Y, test.Z));
 
                 for (int i = 0; i <= 4; i++ ) // check this one out later, havent tried it, its late, its probably ineffective on the server
                 {
-                    Console.WriteLine(i);
                     if (Map.Felucca.CanSpawnMobile(test.X, test.Y, test.Z) == true) // if this dont work, dont move the mob
                     {
                         m.MoveToWorld(test, Map.Felucca);
@@ -100,7 +88,10 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
                     test = m.GetRandomPoint3D(5); // get new cord
                 }
-                m.FixedEffect(0x3789, 30, 30); // gotta fix
+
+                m.PlaySound(0x108);
+                m.PlaySound(0x109);
+                
                 m.FixedEffect(0x37CC, 30, 30); // gotta fix
                 
                 SpellHelper.Damage(this, m, damage, 0, 0, 100, 0, 0, 0, 0, 0);

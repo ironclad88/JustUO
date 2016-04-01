@@ -3,35 +3,35 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-    [CorpseName("an air elemental lord corpse")]
-    public class AirLordElemental : BaseCreature
+    [CorpseName("an earth elemental lord corpse")]
+    public class EarthlordElemental : BaseCreature
     {
         [Constructable]
-        public AirLordElemental()   // using this mob as an template right now (All stats/skills and everything is taken from Fantasia scripts)
-            : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4) // 0.2 is standard apparently
+        public EarthlordElemental()   // using this mob as an template right now (All stats/skills and everything is taken from Fantasia scripts)
+            : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4) // 0.2 is standard apparently
         //  : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.4) // not sure about 0.4 or 02, havent had time to test
         {
-            this.Name = "an Air elemental lord";
-            this.Body = 0x0d;
+            this.Name = "an earth elemental lord";
+            this.Body = 0x0e;
             this.BaseSoundID = 268;
 
-            this.Hue = 1050;
+            this.Hue = 1538;
 
-            this.SetStr(210);
-            this.SetDex(600);
-            this.SetInt(500);
+            this.SetStr(450);
+            this.SetDex(150);
+            this.SetInt(55);
 
-            this.SetHits(200);
-            this.SetMana(900);
+            this.SetHits(210);
+            this.SetMana(0);
             this.SetStam(200);
 
             //  this.SetDamage(50);
             this.SetDiceDmg(5, 6);
 
-            this.SetResistanceLevel(ResistanceType.Physical, 2);
-            this.SetResistanceLevel(ResistanceType.Earth, 0);
+            this.SetResistanceLevel(ResistanceType.Physical, 3);
+            this.SetResistanceLevel(ResistanceType.Earth, 8);
             this.SetResistanceLevel(ResistanceType.Fire, 0);
-            this.SetResistanceLevel(ResistanceType.Energy, 8); // Cold == Water
+            this.SetResistanceLevel(ResistanceType.Cold, 0); // Cold == Water
             this.SetResistanceLevel(ResistanceType.Necro, 0);
 
             //this.SetResistanceImmunity(ResistanceType.Poison); // just found out this existed: public override Poison PoisonImmune
@@ -50,9 +50,9 @@ namespace Server.Mobiles
             this.MagicLevel = 4;
             this.LootIndex = 4;
 
-            this.SetSkill(SkillName.Magery, 100);
+            this.SetSkill(SkillName.MagicResist, 75);
             this.SetSkill(SkillName.Tactics, 150);
-            this.SetSkill(SkillName.Wrestling, 170);
+            this.SetSkill(SkillName.Wrestling, 175);
 
             this.Fame = 3500; // Fame and Karma are not defined in npcdesc.cfg (the cfg file which contains all mobs), gotta find the script for this somewhere.
             this.Karma = -3500;
@@ -63,7 +63,7 @@ namespace Server.Mobiles
             //  this.ControlSlots = 2;
         }
 
-        public AirLordElemental(Serial serial)
+        public EarthlordElemental(Serial serial)
             : base(serial)
         {
         }

@@ -129,15 +129,9 @@ namespace Server.Spells.Zulu.NecroSpells
                         this.Caster.DoHarmful(m);
                         SpellHelper.Damage(this, m, toDeal, 0, 80, 0, 0, 0, 0, 30, 0);
                         
-                        m.MovingParticles(m, 0x36D4, 5, 1, false, true, 9502, 4019, 0x160); // effect not working atm (fireball exploding effect)
-                        m.PlaySound(Core.AOS ? 0x15E : 0x44B);
-
-
+                        m.MovingParticles(m, 0x36d4, 5, 1, false, true, 9502, 4019, 0x160); // effect not working atm (fireball exploding effect)
+                        m.PlaySound(0x160);
                     }
-                }
-                else
-                {
-                    this.Caster.PlaySound(0x29);
                 }
             }
 

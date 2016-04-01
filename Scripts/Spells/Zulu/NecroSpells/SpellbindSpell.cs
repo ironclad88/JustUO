@@ -34,10 +34,13 @@ namespace Server.Spells.Zulu.NecroSpells
         {
             if (m is BaseCreature) // gotta test alot of cases, should not be able to tame players, vendors and so on
             {
-                    m.Owners.Add(this.Caster);
-                    m.SetControlMaster(this.Caster);
-                    m.BardPacified = true;
-                    m.IsBonded = false;
+                m.Owners.Add(this.Caster);
+                m.SetControlMaster(this.Caster);
+                m.BardPacified = true;
+                m.IsBonded = false;
+
+                m.FixedParticles(0x37B9, 10, 15, 5021, EffectLayer.Waist);
+                m.PlaySound(0x20D);
             }
             else
             {

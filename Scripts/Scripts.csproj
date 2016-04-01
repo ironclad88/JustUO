@@ -3387,6 +3387,8 @@
     <Compile Include="Mobiles\ZuluMonsters\Behemoth.cs" />
     <Compile Include="Mobiles\ZuluMonsters\BlackWisp.cs" />
     <Compile Include="Mobiles\ZuluMonsters\Dracoliche.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\EarthlordElemental.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\FireelementalLord.cs" />
     <Compile Include="Mobiles\ZuluMonsters\giantRockScorpion.cs" />
     <Compile Include="Mobiles\ZuluMonsters\NecroTestMob.cs" />
     <Compile Include="Mobiles\Vendors\NPC\Botanist.cs" />
@@ -3394,6 +3396,7 @@
     <Compile Include="Mobiles\ZuluMonsters\OrcMage.cs" />
     <Compile Include="Mobiles\ZuluMonsters\OrcTheifTest.cs" />
     <Compile Include="Mobiles\ZuluMonsters\SkeletonArcher.cs" />
+    <Compile Include="Mobiles\ZuluMonsters\WaterElementalLord.cs" />
     <Compile Include="Mobiles\ZuluSpecial\AirElementalShrineLord.cs" />
     <Compile Include="Mobiles\ZuluSpecial\BlackLich.cs" />
     <Compile Include="Mobiles\ZuluSpecial\BlackLichStaff.cs" />

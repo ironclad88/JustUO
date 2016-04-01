@@ -53,6 +53,8 @@ namespace Server.Spells.Zulu.NecroSpells
 
                 if (BaseCreature.Summon(rev, false, this.Caster, m.Location, 0x81, TimeSpan.FromSeconds(duration.TotalSeconds + 2.0)))
                     rev.FixedParticles(0x373A, 1, 15, 9909, EffectLayer.Waist);
+
+                Caster.PlaySound(0x22B);
             }
 
             this.FinishSequence();

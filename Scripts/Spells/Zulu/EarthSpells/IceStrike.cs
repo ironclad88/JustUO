@@ -65,12 +65,9 @@ namespace Server.Spells.Zulu.EarthSpells
             else if (this.CheckHSequence(m))
             {
                 SpellHelper.Turn(this.Caster, m);
-
-                // SpellHelper.CheckReflect(10, this.Caster, ref m); // shouldnt be able to reflect earth spells, i think...
-
+                
                 double damage;
-
-               // damage = Utility.Random(12, 9);
+                
                 damage = getSpellDmg(this.Caster);
 
                 if (this.CheckResisted(m)) // resist sure
@@ -79,12 +76,11 @@ namespace Server.Spells.Zulu.EarthSpells
 
                     m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                 }
-
-              //  damage *= this.GetDamageScalar(m);
-
+                
                 SpellHelper.Damage(this, m, damage, 0, 0, 100, 0, 0);
-                m.FixedParticles(0x3789, 10, 20, 5032, EffectLayer.Waist);
+                m.FixedParticles(0x3789, 30, 30, 5032, EffectLayer.Waist);
                 m.PlaySound(0x117);
+                m.PlaySound(0x118);
                 Console.WriteLine("Ice Strike DMG: " + damage);
             }
             

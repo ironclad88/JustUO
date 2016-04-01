@@ -70,7 +70,7 @@ namespace Server.Spells.Zulu.NecroSpells
                         Mobile m = targets[i];
 
                         this.Caster.DoHarmful(m);
-                        m.FixedParticles(0x374A, 1, 15, 9502, 97, 3, (EffectLayer)255);
+                        m.FixedParticles(0x37B9, 1, 15, 9502, 97, 3, (EffectLayer)255);
 
                         double damage = Utility.RandomMinMax(30, 35);
 

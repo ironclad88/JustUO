@@ -68,13 +68,7 @@ namespace Server.Spells.Zulu.EarthSpells
                 SpellHelper.CheckReflect(10, this.Caster, ref m);
 
                 double damage;
-
-                //if (Core.AOS)
-                //{
-                //    damage = this.GetNewAosDamage(23, 1, 4, m);
-                //}
-                //else
-                //{
+                
                     damage = Utility.Random(12, 9);
 
                     if (this.CheckResisted(m))
@@ -85,9 +79,10 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
 
                     damage *= this.GetDamageScalar(m);
-                //}
+                
 
-                m.FixedEffect(0x020e, 10, 40);
+                m.FixedParticles(0x3789, 10, 20, 5032, EffectLayer.Waist);
+                m.FixedEffect(0x20E, 10, 40);
 
                 SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 0, 100, 0, 0);
             }

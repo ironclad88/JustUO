@@ -88,8 +88,8 @@ namespace Server.Spells.Zulu.NecroSpells
                 damage *= this.GetDamageScalar(m); // balance this plix
                 SpellHelper.Damage(this, m, finalDmg, 0, 0, 0, 0, 0, 0, 100, 0);
 
-                m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
-                m.PlaySound(0x205);
+                m.FixedParticles(0x3709, 10, 15, 5021, EffectLayer.Waist);
+                m.PlaySound(0x209);
 
                 this.HarmfulSpell(m);
             }

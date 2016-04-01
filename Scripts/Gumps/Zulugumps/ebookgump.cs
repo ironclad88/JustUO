@@ -190,20 +190,18 @@ namespace Server.Gumps.Zulugumps
                     break;
                 case 12:
                     new IceStrike(caster, null).Cast();
-                    //    Console.WriteLine("Casting Ice Strike");
                     break;
                 case 13:
-                    Console.WriteLine("Casting Earth Spirit");
+                    new EarthSpirit(caster, null).Cast();
                     break;
                 case 14:
-                    Console.WriteLine("Casting Fire Spirit");
+                    new FireSpirit(caster, null).Cast();
                     break;
                 case 15:
                     new StormSpirit(caster, null).Cast();
-                    // Console.WriteLine("Casting Storm Spirit");
                     break;
                 case 16:
-                    Console.WriteLine("Casting Water Spirit");
+                    new WaterSpirit(caster, null).Cast();
                     break;
 
             }

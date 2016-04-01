@@ -91,10 +91,11 @@ namespace Server.Spells.Zulu.EarthSpells
                    {
                        do
                        {
-                           m.BoltEffect(0x4f4);
+                           m.BoltEffect(0x4F4);
                            count++;
+                           m.PlaySound(0x207);
 
-                       } while (count < 5);
+                       } while (count < 4);
                    }));
                 SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
             }

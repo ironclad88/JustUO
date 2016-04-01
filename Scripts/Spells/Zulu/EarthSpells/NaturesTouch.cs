@@ -78,17 +78,14 @@ namespace Server.Spells.Zulu.EarthSpells
             else if (this.CheckBSequence(m))
             {
                 SpellHelper.Turn(this.Caster, m);
-
-                // Algorithm: (40% of magery) + (1-10)
-
+                
                 int toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.4 * this.Caster.SpecBonus(SpecClasse.Mage));
                 toHeal += Utility.Random(20, 40);
-
-                //m.Heal( toHeal, Caster );
+                
                 SpellHelper.Heal(toHeal, m, this.Caster);
 
-                m.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
-                m.PlaySound(0x202);
+                m.FixedParticles(0x375A, 9, 32, 5030, EffectLayer.Waist);
+                m.PlaySound(0x203);
             }
 
             this.FinishSequence();

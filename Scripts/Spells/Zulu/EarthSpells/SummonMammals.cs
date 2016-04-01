@@ -20,18 +20,12 @@ namespace Server.Spells.Zulu.EarthSpells
         // JustZH fix this list
         private static readonly Type[] m_Types = new Type[] // fix this list
         {
-            typeof(PolarBear),
-            typeof(GrizzlyBear),
-            typeof(BlackBear),
-            typeof(Walrus),
-            typeof(Scorpion),
-            typeof(GiantSerpent),
-            typeof(Llama),
-            typeof(Alligator),
             typeof(GreyWolf),
-            typeof(Slime),
-            typeof(Gorilla),
-            typeof(SnowLeopard)
+            typeof(Horse),
+            typeof(Panther),
+            typeof(BlackBear),
+            typeof(GrizzlyBear),
+            typeof(ForestOstard)
         };
         public SummonMammal(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
@@ -78,8 +72,13 @@ namespace Server.Spells.Zulu.EarthSpells
         {
             if (this.CheckSequence())
             {
-                int count = 0;
-                Timer timer = Timer.DelayCall(TimeSpan.FromMilliseconds(50), new TimerCallback(delegate() // this is awesome!
+                int count = Utility.Random(1, 2);
+                if (Caster.SpecClasse == SpecClasse.Mage)
+                {
+                    count = +Caster.SpecLevel;
+                }
+
+                Timer timer = Timer.DelayCall(TimeSpan.FromMilliseconds(50), new TimerCallback(delegate () // this is awesome!
                 {
                     do
                     {
@@ -89,19 +88,19 @@ namespace Server.Spells.Zulu.EarthSpells
                         duration = TimeSpan.FromSeconds(4.0 * this.Caster.Skills[SkillName.Magery].Value * this.Caster.SpecBonus(SpecClasse.Mage));
 
                         SpellHelper.Summon(creature, this.Caster, 0x215, duration, false, false);
-                        count++;
+                        count--;
 
-                    } while (count < 3);
+                    } while (count <= 0);
                 }));
 
             }
 
             this.FinishSequence();
         }
-        
+
         public override TimeSpan GetCastDelay()
         {
-            
+
             return base.GetCastDelay() + TimeSpan.FromSeconds(2.0);
         }
     }

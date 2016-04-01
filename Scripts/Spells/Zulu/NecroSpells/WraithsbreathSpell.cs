@@ -116,8 +116,8 @@ namespace Server.Spells.Zulu.NecroSpells
                         if(m.NecroResistance < 3) { // if necro resist is lesser than 3, you get paralyzed, else you resist dat paralyze!
                         m.Paralyze(TimeSpan.FromSeconds(duration));
 
-                            m.PlaySound(0x204);
-                            m.FixedEffect(0x376A, 6, 1);
+                            m.PlaySound(0x1FA);
+                            m.FixedEffect(0x374A, 6, 1);
 
                             this.HarmfulSpell(m);
                         }
@@ -129,6 +129,7 @@ namespace Server.Spells.Zulu.NecroSpells
 
                        
                     }
+                    
 
                 }
                 else

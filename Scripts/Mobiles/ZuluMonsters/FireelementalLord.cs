@@ -3,67 +3,53 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-    [CorpseName("an air elemental lord corpse")]
-    public class AirLordElemental : BaseCreature
+    [CorpseName("an fire elemental lord corpse")]
+    public class FireelementalLord : BaseCreature
     {
         [Constructable]
-        public AirLordElemental()   // using this mob as an template right now (All stats/skills and everything is taken from Fantasia scripts)
+        public FireelementalLord()   // using this mob as an template right now (All stats/skills and everything is taken from Fantasia scripts)
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4) // 0.2 is standard apparently
         //  : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.4) // not sure about 0.4 or 02, havent had time to test
         {
-            this.Name = "an Air elemental lord";
-            this.Body = 0x0d;
+            this.Name = "an fire elemental lord";
+            this.Body = 0x0f;
             this.BaseSoundID = 268;
 
-            this.Hue = 1050;
+            this.Hue = 137;
 
-            this.SetStr(210);
-            this.SetDex(600);
-            this.SetInt(500);
+            this.SetStr(300);
+            this.SetDex(300);
+            this.SetInt(400);
 
             this.SetHits(200);
             this.SetMana(900);
             this.SetStam(200);
 
-            //  this.SetDamage(50);
             this.SetDiceDmg(5, 6);
 
-            this.SetResistanceLevel(ResistanceType.Physical, 2);
+            this.SetResistanceLevel(ResistanceType.Physical, 3);
             this.SetResistanceLevel(ResistanceType.Earth, 0);
-            this.SetResistanceLevel(ResistanceType.Fire, 0);
-            this.SetResistanceLevel(ResistanceType.Energy, 8); // Cold == Water
+            this.SetResistanceLevel(ResistanceType.Fire, 8);
+            this.SetResistanceLevel(ResistanceType.Cold, 0); // Cold == Water
             this.SetResistanceLevel(ResistanceType.Necro, 0);
 
-            //this.SetResistanceImmunity(ResistanceType.Poison); // just found out this existed: public override Poison PoisonImmune
-
-            // this.SetResistanceLevel(ResistanceType.Magic, 3); // JustZH not done yet, Behemoth in fantasia scripts have (PermMagicProtection i6)
-
-            /*
-            this.SetDamageType(ResistanceType.Physical, 100);
-
-            this.SetResistance(ResistanceType.Physical, 50, 60);
-            this.SetResistance(ResistanceType.Fire, 50, 60);
-            this.SetResistance(ResistanceType.Cold, 50, 60);
-            this.SetResistance(ResistanceType.Poison, 50, 60);
-            this.SetResistance(ResistanceType.Energy, 50, 60);
-             */
+            
             this.MagicLevel = 4;
             this.LootIndex = 4;
 
             this.SetSkill(SkillName.Magery, 100);
-            this.SetSkill(SkillName.Tactics, 150);
-            this.SetSkill(SkillName.Wrestling, 170);
+            this.SetSkill(SkillName.MagicResist, 75);
+            this.SetSkill(SkillName.Tactics, 130);
+            this.SetSkill(SkillName.Wrestling, 175);
 
             this.Fame = 3500; // Fame and Karma are not defined in npcdesc.cfg (the cfg file which contains all mobs), gotta find the script for this somewhere.
             this.Karma = -3500;
-
-            // saw an awesome "AI Setting" in the scripts for behemoth (	AISetting	OpenDoors	i1 ), awesoooome, i guess the bastard can open doors
 
             this.VirtualArmor = 50;
             //  this.ControlSlots = 2;
         }
 
-        public AirLordElemental(Serial serial)
+        public FireelementalLord(Serial serial)
             : base(serial)
         {
         }
