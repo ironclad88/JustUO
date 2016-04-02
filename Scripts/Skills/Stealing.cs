@@ -278,7 +278,8 @@ namespace Server.SkillHandlers
                         if (stolen != null)
                         {
                             m_Thief.SendLocalizedMessage(502724); // You succesfully steal the item.
-
+                            var temp = (BaseVendor)root;
+                            temp.stealFrom();
                             ItemFlags.SetTaken(stolen, true);
                             ItemFlags.SetStealable(stolen, false);
                             stolen.Movable = true;
@@ -304,7 +305,7 @@ namespace Server.SkillHandlers
             protected override void OnTarget(Mobile from, object target)
             {
                 from.RevealingAction();
-
+                
                 Item stolen = null;
                 object root = null;
                 bool caught = false;
