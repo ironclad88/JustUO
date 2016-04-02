@@ -28,7 +28,7 @@ namespace Server.Commands
                 (e.Mobile as Server.Mobiles.PlayerMobile).AutoLoop = loops;
                 e.Mobile.SendMessage(194, "[Autoloop] Autoloops set to " + loops + ".");
             }
-            catch (Exception z)
+            catch
             {
                 e.Mobile.SendMessage(194, "Autoloop <number of loops>");
             }

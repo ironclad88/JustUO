@@ -512,7 +512,7 @@ namespace Server
     public delegate bool SkillCheckTargetHandler(
         Mobile from, SkillName skill, object target, double minSkill, double maxSkill);
 
-    public delegate bool SkillCheckLocationHandler(Mobile from, SkillName skill, double minSkill, double maxSkill);
+    public delegate bool SkillCheckLocationHandler(Mobile from, SkillName skill, double difficulty, bool doPrint); //double minSkill, double maxSkill);
 
     public delegate bool SkillCheckDirectTargetHandler(Mobile from, SkillName skill, object target, double chance);
 
@@ -12618,13 +12618,20 @@ namespace Server
             PrivateOverheadMessage(MessageType.Label, hue, _AsciiClickMessage, val, from.NetState);
         }
 
-        public bool CheckSkill(SkillName skill, double minSkill, double maxSkill)
+        public bool CheckSkill(SkillName skill, double difficulty, bool doPrint)
         {
             if (_SkillCheckLocationHandler == null)
             {
                 return false;
             }
-            return _SkillCheckLocationHandler(this, skill, minSkill, maxSkill);
+            return _SkillCheckLocationHandler(this, skill, difficulty, doPrint);
+        }
+
+        public bool CheckSkill(SkillName skill, double minSkill, double maxSkill, bool doPrint = false)
+        {
+            double difficulty = (minSkill + maxSkill) / 2;
+            Console.WriteLine("Using old CheckSkill, converting to new one, skill: min: " + minSkill + " and max: " + maxSkill + " to difficulty: " + difficulty);
+            return CheckSkill(skill, difficulty, doPrint);
         }
 
         public bool CheckSkill(SkillName skill, double chance)

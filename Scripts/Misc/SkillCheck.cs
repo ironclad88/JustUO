@@ -85,24 +85,53 @@ namespace Server.Misc
             Mobile.SkillCheckDirectTargetHandler = new SkillCheckDirectTargetHandler(XmlSpawnerSkillCheck.Mobile_SkillCheckDirectTarget);
         }
 
-        public static bool Mobile_SkillCheckLocation(Mobile from, SkillName skillName, double minSkill, double maxSkill)
+        public static double SuccessChance(Mobile from, SkillName skillName, double difficulty, bool doPrint = false)
         {
             Skill skill = from.Skills[skillName];
 
             if (skill == null)
-                return false;
+                return 0;
 
             double value = skill.Value;
 
-            if (value < minSkill)
-                return false; // Too difficult
-            else if (value >= maxSkill)
-                return true; // No challenge
+            if (true == doPrint)
+            {
+                // JustZH: Print difficulty without decimal.
+                from.SendMessage("Difficulty: " + (int)difficulty);
+            }
 
-            double chance = (value - minSkill) / ((maxSkill - minSkill)/2); // JustUO: gains too infrequent with high max skill, adjust
+            double chance = 0.85; // JustZH: This is the base chance, if skill.Value == difficulty this applies.
+
+            // JustZH: if skill is 15 above or below difficulty, no fail chance
+            if (value >= (difficulty + 15))
+                return 1; // No challenge
+
+            if (value > difficulty)
+            {
+                // Skill is above difficulty, increase chance. Linear increase up to 100% at 15 skill over difficulty.
+                chance += (value - difficulty) / 100;
+            }
+            else if ( value < difficulty)
+            {
+                // Skill is below difficulty, decrease chance. This should go very close to 0 but never reach it.
+                double missing_skill = difficulty - value;
+                chance *= Math.Pow(0.95, missing_skill);
+            }
+
+            // Only 0-100%
+            if (chance < 0) chance = 0;
+            if (chance > 1) chance = 1;
+
+            return chance;
+        }
+
+        public static bool Mobile_SkillCheckLocation(Mobile from, SkillName skillName, double difficulty, bool doPrint )//double minSkill, double maxSkill)
+        {
+            Skill skill = from.Skills[skillName];
+            double chance = SuccessChance(from, skillName, difficulty, doPrint);
 
             Point2D loc = new Point2D(from.Location.X / LocationSize, from.Location.Y / LocationSize);
-            return CheckSkill(from, skill, loc, chance);
+            return CheckSkill(from, skill, loc, chance, true);
         }
 
         public static bool Mobile_SkillCheckDirectLocation(Mobile from, SkillName skillName, double chance)
@@ -121,22 +150,40 @@ namespace Server.Misc
             return CheckSkill(from, skill, loc, chance);
         }
 
-        public static bool CheckSkill(Mobile from, Skill skill, object amObj, double chance)
+        public static bool CheckSkill(Mobile from, Skill skill, object amObj, double chance, bool isActive = false)
         {
             if (from.Skills.Cap == 0)
                 return false;
 
             bool success = (chance >= Utility.RandomDouble());
+            // JustZH: redo gains chance. Some kind of distribution that is high at low skill and decreases towards the end.
+            double gc = -Math.Log(skill.Base / skill.Cap) * 0.2;
+            #region old
+#if false
             double gc = 1.0; // JustZH: was (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
             gc += (skill.Cap - skill.Base) / skill.Cap;
             gc /= 3; // was 2
 
             gc += (1.0 - chance) * (success ? 0.5 : (Core.AOS ? 0.0 : 0.2));
             gc /= 3; // was 2
+#endif
+#endregion
 
             gc *= skill.Info.GainFactor;
 
-            if (gc < 0.01)
+            if(true == isActive)
+            {
+                // This is an active skill, and the success chance should affect the gains chance
+                gc /= chance; // Evens out success chance and gains chance so that everything yeils about the same net gains.
+                // <40% success chance:  halven gains chance
+                // >95%  success chance: halven gains chance
+                if (chance < 0.4 || chance > 0.95)
+                {
+                    gc /= 2;
+                }
+            }
+
+            if (gc < 0.01 || (skill.Value > 50 && !success)) // JustZH: almost no chance to gain on fail past 50 skill
                 gc = 0.01;
 
             if (from is BaseCreature && ((BaseCreature)from).Controlled)
@@ -205,20 +252,20 @@ namespace Server.Misc
             if (Core.AOS && Faction.InSkillLoss(from))	//Changed some time between the introduction of AoS and SE.
                 return false;
 
-            #region SA
+#region SA
             if (from is PlayerMobile && from.Race == Race.Gargoyle && skill.Info.SkillID == (int)SkillName.Archery)
                 return false;
             else if (from is PlayerMobile && from.Race != Race.Gargoyle && skill.Info.SkillID == (int)SkillName.Throwing)
                 return false;
-            #endregion
+#endregion
 
-            #region JustZH special no-gains
+#region JustZH special no-gains
              if(skill.SkillName == SkillName.Mining && IsForge(obj))
             {
                 // No gaining from smelting...
                 return false;
             }
-            #endregion
+#endregion
 
             if (AntiMacroCode && from is PlayerMobile && UseAntiMacro[skill.Info.SkillID])
                 return ((PlayerMobile)from).AntiMacroCheck(skill, obj);
@@ -267,13 +314,13 @@ namespace Server.Misc
                     }
                 }
 
-                #region Mondain's Legacy
+#region Mondain's Legacy
                 if (from is PlayerMobile)
                     if (Server.Engines.Quests.QuestHelper.EnhancedSkill((PlayerMobile)from, skill))
                         toGain *= Utility.RandomMinMax(2, 4);
-                #endregion
+#endregion
 
-                #region Scroll of Alacrity
+#region Scroll of Alacrity
                 PlayerMobile pm = from as PlayerMobile;
 
                 if (from is PlayerMobile)
@@ -284,7 +331,7 @@ namespace Server.Misc
                         toGain = Utility.RandomMinMax(2, 5);
                     }
                 }
-                #endregion
+#endregion
 
                 if (!from.Player || (skills.Total + toGain) <= skills.Cap)
                 {
@@ -292,10 +339,10 @@ namespace Server.Misc
                 }
             }
 
-            #region Mondain's Legacy
+#region Mondain's Legacy
             if (from is PlayerMobile)
                 Server.Engines.Quests.QuestHelper.CheckSkill((PlayerMobile)from, skill);
-            #endregion
+#endregion
 
             if (skill.Lock == SkillLock.Up)
             {

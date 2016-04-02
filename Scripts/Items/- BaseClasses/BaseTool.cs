@@ -48,7 +48,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int UsesRemaining
+        public virtual int UsesRemaining
         {
             get
             {

@@ -23,15 +23,15 @@ namespace Server.Mobiles
     public class XmlSpawnerSkillCheck
     {
         // alternate skillcheck hooks to replace those in SkillCheck.cs
-        public static bool Mobile_SkillCheckLocation( Mobile from, SkillName skillName, double minSkill, double maxSkill )
+        public static bool Mobile_SkillCheckLocation(Mobile from, SkillName skillName, double difficulty, bool doPrint) // double minSkill, double maxSkill )
 		{
 			Skill skill = from.Skills[skillName];
 
 			if ( skill == null )
 				return false;
 
-			// call the default skillcheck handler
-            bool success = SkillCheck.Mobile_SkillCheckLocation(  from,  skillName,  minSkill,  maxSkill );
+            // call the default skillcheck handler
+            bool success = SkillCheck.Mobile_SkillCheckLocation(from, skillName, difficulty, doPrint);// minSkill,  maxSkill );
 
             // call the xmlspawner skillcheck handler
 			CheckSkillUse(from, skill, success);

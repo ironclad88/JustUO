@@ -155,7 +155,7 @@ namespace Server.Engines.Harvest
 
             Type type = null;
 
-            if (skillValue >= resource.MinSkill && from.CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill))
+            if (skillValue >= resource.MinSkill && from.CheckSkill(def.Skill, 0.95)) //resource.MinSkill, resource.MaxSkill))
             {
                 type = this.GetResourceType(from, tool, def, map, loc, resource);
                 if (type != null)
@@ -171,9 +171,11 @@ namespace Server.Engines.Harvest
                     else
                     {
                         //The whole harvest system is kludgy and I'm sure this is just adding to it.
+                        double spec_bonus = 1.0;
                         if (item.Stackable)
                         {
-                            int amount = Math.Min((1 + ((int)(skillValue - resource.ReqSkill) / 5)), 4);
+                            // JustZH: amount: 1 plus 1 for every 20 harvesting skill
+                            int amount = 1 + (int)(skillValue / 20);
                             if (item is IronOre || item is Log)
                             {
                                 // Increase amount by 50% for regular logs or iron ore.
@@ -182,12 +184,13 @@ namespace Server.Engines.Harvest
                             // JustZH Gain more resources if specced
                             if (item is BaseLog || item is BaseOre || item is Sand)
                             {
-                                amount = (int)(amount * from.SpecBonus(SpecClasse.Crafter));
+                                spec_bonus = from.SpecBonus(SpecClasse.Crafter);
                             }
                             else if (item is Fish)
                             {
-                                amount = (int)(amount * from.SpecBonus(SpecClasse.Ranger));
+                                spec_bonus = from.SpecBonus(SpecClasse.Ranger);
                             }
+                            amount = (int)(amount* spec_bonus);
 
                             item.Amount = GMToolChecker(amount, tool);
                             //int feluccaAmount = def.ConsumedPerFeluccaHarvest;
@@ -221,7 +224,7 @@ namespace Server.Engines.Harvest
                         }
 
                         // JustZH : add bonus resource bonus here, spec crafter, omero's/xarafax's?
-                        BonusHarvestResource bonus = def.GetBonusResource((from.SpecClasse == SpecClasse.Crafter) ? 2.0 : 1.0); 
+                        BonusHarvestResource bonus = def.GetBonusResource(1.0 * spec_bonus); 
 
                         if (bonus != null && bonus.Type != null && skillBase >= bonus.ReqSkill)
                         {
@@ -248,9 +251,9 @@ namespace Server.Engines.Harvest
                         {
                             IUsesRemaining toolWithUses = (IUsesRemaining)tool;
 
-                            toolWithUses.ShowUsesRemaining = true;
-                            // JustZH Better tool decay with specced crafter
-                            int rand = (int)(10 * from.SpecBonus(SpecClasse.Crafter));
+                            //toolWithUses.ShowUsesRemaining = true;
+                            // JustZH Better tool decay with spec
+                            int rand = (int)(10 * spec_bonus);
                             if (toolWithUses.UsesRemaining > 0 && Utility.Random(rand) == 0)
                                 --toolWithUses.UsesRemaining;
 
@@ -332,9 +335,12 @@ namespace Server.Engines.Harvest
             if (null != def.Veins[rand_index].PrimaryResource)
             {
                 new_resource = def.Veins[rand_index].PrimaryResource;
+                Console.WriteLine("");
                 Console.WriteLine("Switched resource: " + vein.PrimaryResource.Types[0].Name.ToString()
                 + "to: " + new_resource.Types[0].Name.ToString());
+                Console.WriteLine("Rolled " + rand_list_idx + " between 0 and " + (valid_indexes.Count - 1) + " and got veins idx: " + rand_index);
                 vein.PrimaryResource = new_resource;
+                Console.WriteLine("Total veins in HarvestSystem: " + def.Veins.Length);
             }
 
             return vein;

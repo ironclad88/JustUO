@@ -60,8 +60,6 @@ namespace Server.Engines.Craft
         private readonly CraftSkillCol m_arCraftSkill;
         private readonly Type m_Type;
 
-        public bool excep;
-
         private double[] OreInfo;
 
         private readonly string m_GroupNameString;
@@ -974,28 +972,30 @@ namespace Server.Engines.Craft
             return b.Hue.CompareTo(a.Hue);
         }
 
-        public double GetExceptionalChance2(CraftSystem system, double chance, Mobile from, double[] OreName)
+        public double GetExceptionalChance2(CraftSystem system, Mobile from, double difficulty, out double exce_difficulty)
         {
-            Qual = OreName[1];
-            double quality = OreName[0];
-            double excepChance = chance;
-            double bsSkill = from.Skills.Blacksmith.Value * 4;
-            double armsSkill = from.Skills.ArmsLore.Value * 4;
+            double exce_chance = 0.1;
+            double exce_skill = difficulty;
 
-            excepChance += bsSkill;
-            excepChance += armsSkill;
-
-            if (from.SpecClasse == SpecClasse.Crafter)
+            
+            if (system is DefBlacksmithy || system is DefBowFletching || system is DefTailoring || system is DefCarpentry || system is DefTinkering)
             {
-                excepChance *= from.SpecBonus(SpecClasse.Crafter);
+                exce_chance *= from.SpecBonus(SpecClasse.Crafter);
+                if (from.SpecClasse == SpecClasse.Crafter)
+                    exce_skill += 20;
+                else
+                    exce_skill += 40;
             }
-            
-            excepChance /= OreName[0];
-
-            excepChance /= 110;
-
-            return excepChance;
-            
+            else if (system is DefAlchemy || system is DefInscription)
+            {
+                exce_chance *= from.SpecBonus(SpecClasse.Mage);
+                if (from.SpecClasse == SpecClasse.Mage)
+                    exce_skill += 20;
+                else
+                    exce_skill += 40;
+            }
+            exce_difficulty = exce_skill;
+            return exce_chance;            
         }
 
         public double GetExceptionalChance(CraftSystem system, double chance, Mobile from)
@@ -1085,34 +1085,119 @@ namespace Server.Engines.Craft
         }
 
         public bool CheckSkills(
-            Mobile from, Type typeRes, CraftSystem craftSystem, ref int quality, ref bool allRequiredSkills, bool gainSkills)
+    Mobile from, Type typeRes, CraftSystem craftSystem, ref int quality, ref bool allRequiredSkills, bool gainSkills)
         {
 
-            double chance = GetSuccessChance2(from, typeRes, craftSystem, gainSkills, ref allRequiredSkills, OreInfo);
+            double minMainSkill = 0.0;
+            double maxMainSkill = 0.0;
+            double valMainSkill = 0.0;
 
-            if (GetExceptionalChance2(craftSystem, chance, from, OreInfo) > Utility.RandomDouble())
+            allRequiredSkills = true;
+
+            bool success = true;
+
+
+            Type resourceType = typeRes;
+
+            if (resourceType == null)
             {
-                quality = (int)OreInfo[1];
-                excep = true;
-                //quality = 2;
+                resourceType = Resources.GetAt(0).ItemType;
             }
 
-            return (chance > Utility.RandomDouble());
+            CraftResource thisResource = CraftResources.GetFromType(resourceType);
+            CraftResourceInfo resourceInfo = CraftResources.GetInfo(thisResource);
+            int res_diff = resourceInfo.AttributeInfo.Difficulty;
+            double difficulty;
+
+            for (int i = 0; i < m_arCraftSkill.Count; i++)
+            {
+                CraftSkill craftSkill = m_arCraftSkill.GetAt(i);
+
+                double minSkill = craftSkill.MinSkill;
+                double maxSkill = craftSkill.MaxSkill;
+                double valSkill = from.Skills[craftSkill.SkillToMake].Value;
+
+                if (valSkill < minSkill)
+                {
+                    allRequiredSkills = false;
+                }
+
+                if (craftSkill.SkillToMake == craftSystem.MainSkill)
+                {
+                    minMainSkill = minSkill;
+                    maxMainSkill = maxSkill;
+                    valMainSkill = valSkill;
+                }
+
+                if (gainSkills) // This is a passive check. Success chance is entirely dependant on the main skill
+                {
+                    // JustZH: add resource difficulty...
+                    difficulty = (minSkill + maxSkill) / 2;
+
+                    success &= from.CheckSkill(craftSkill.SkillToMake, difficulty, true);
+                }
+            }
+            // JustZH: add resource difficulty to main skill req
+            difficulty = (minMainSkill + maxMainSkill) / 2;
+            difficulty += res_diff / 3; // JustZH: stolen from pol scripts
+            if (difficulty < 1)
+            {
+                difficulty = 1;
+            }
+            if (difficulty > 150)
+            {
+                Console.WriteLine("Warning, CraftItem got over 150 difficulty for: " + resourceInfo.Name + " " + this.NameString);
+            }
+
+            double exce_difficulty;
+            if (GetExceptionalChance2(craftSystem, from, difficulty, out exce_difficulty) > Utility.RandomDouble())
+            {
+                if(Misc.SkillCheck.SuccessChance(from, craftSystem.MainSkill, difficulty) >= Utility.RandomDouble())
+                {
+                    // JustZH: exceptional item!
+                    quality = (int)ArmorQuality.Exceptional;
+                }
+            }
+
+            return success;
         }
 
-        public bool CheckSkills2(
-    Mobile from, Type typeRes, CraftSystem craftSystem, ref int quality, ref bool allRequiredSkills, bool gainSkills, ref bool excep)
+        public double GetDifficulty(CraftSystem craftSystem, Type typeRes)
         {
+            double minMainSkill = 0.0;
+            double maxMainSkill = 0.0;
 
-            double chance = GetSuccessChance2(from, typeRes, craftSystem, gainSkills, ref allRequiredSkills, OreInfo);
-
-            if (GetExceptionalChance2(craftSystem, chance, from, OreInfo) > Utility.RandomDouble())
+            for (int i = 0; i < m_arCraftSkill.Count; i++)
             {
-                excep = true;
-                quality = 2;
+                CraftSkill craftSkill = m_arCraftSkill.GetAt(i);
+                if (craftSkill.SkillToMake == craftSystem.MainSkill)
+                {
+                    minMainSkill = craftSkill.MinSkill;
+                    maxMainSkill = craftSkill.MaxSkill;
+                }
+            }
+            // JustZH: add resource difficulty to main skill req
+            Type resourceType = typeRes;
+
+            if (resourceType == null)
+            {
+                // No resource supplied, use default resource.
+                resourceType = Resources.GetAt(0).ItemType;
             }
 
-            return (chance > Utility.RandomDouble());
+            CraftResourceInfo resourceInfo = CraftResources.GetInfo(CraftResources.GetFromType(resourceType));
+            int res_diff = resourceInfo.AttributeInfo.Difficulty;
+            double difficulty = (minMainSkill + maxMainSkill) / 2;
+            difficulty += res_diff / 3; // JustZH: stolen from pol scripts
+            if (difficulty < 1)
+            {
+                difficulty = 1;
+            }
+            if (difficulty > 140)
+            {
+                Console.WriteLine("Warning, CraftItem got over 140 difficulty for: " + resourceInfo.Name + " " + this.NameString);
+            }
+            return difficulty;
         }
 
         public double GetSuccessChance(
@@ -1149,86 +1234,13 @@ namespace Server.Engines.Craft
                     from.CheckSkill(craftSkill.SkillToMake, minSkill, maxSkill);
                 }
             }
+            double difficulty = GetDifficulty(craftSystem, typeRes);
 
             double chance;
 
             if (allRequiredSkills)
             {
-                chance = craftSystem.GetChanceAtMin(this) +
-                         ((valMainSkill - minMainSkill) / (maxMainSkill - minMainSkill) * (1.0 - craftSystem.GetChanceAtMin(this)));
-            }
-            else
-            {
-                chance = 0.0;
-            }
-
-            /*if (allRequiredSkills && from.Talisman is BaseTalisman)
-            {
-                BaseTalisman talisman = (BaseTalisman)from.Talisman;
-
-                if (talisman.Skill == craftSystem.MainSkill)
-                {
-                    chance += talisman.SuccessBonus / 100.0;
-                }
-            }*/
-
-            if (allRequiredSkills && valMainSkill == maxMainSkill)
-            {
-                chance = 1.0;
-            }
-            // JustZH Even moar crafting stuffz
-            if (craftSystem is DefBlacksmithy || craftSystem is DefBowFletching || craftSystem is DefTailoring || craftSystem is DefCarpentry || craftSystem is DefTinkering)
-            {
-                chance *= from.SpecBonus(SpecClasse.Crafter);
-            }
-            else if (craftSystem is DefAlchemy || craftSystem is DefInscription)
-            {
-                chance *= from.SpecBonus(SpecClasse.Mage);
-            }
-            return chance;
-        }
-
-        public double GetSuccessChance2(
-            Mobile from, Type typeRes, CraftSystem craftSystem, bool gainSkills, ref bool allRequiredSkills, double[] OreName)
-        {
-            double minMainSkill = 0.0;
-            double maxMainSkill = 0.0;
-            double valMainSkill = 0.0;
-
-            allRequiredSkills = true;
-
-            for (int i = 0; i < m_arCraftSkill.Count; i++)
-            {
-                CraftSkill craftSkill = m_arCraftSkill.GetAt(i);
-
-                double minSkill = craftSkill.MinSkill;
-                double maxSkill = craftSkill.MaxSkill;
-                double valSkill = from.Skills[craftSkill.SkillToMake].Value;
-
-                if (valSkill < minSkill)
-                {
-                    allRequiredSkills = false;
-                }
-
-                if (craftSkill.SkillToMake == craftSystem.MainSkill)
-                {
-                    minMainSkill = minSkill;
-                    maxMainSkill = maxSkill;
-                    valMainSkill = valSkill;
-                }
-
-                if (gainSkills) // This is a passive check. Success chance is entirely dependant on the main skill
-                {
-                    from.CheckSkill(craftSkill.SkillToMake, minSkill, maxSkill);
-                }
-            }
-
-            double chance;
-
-            if (allRequiredSkills)
-            {
-                chance = craftSystem.GetChanceAtMin(this) +
-                         ((valMainSkill - minMainSkill) / (maxMainSkill - minMainSkill) * (1.0 - craftSystem.GetChanceAtMin(this)));
+                chance = Misc.SkillCheck.SuccessChance(from, craftSystem.MainSkill, difficulty);
             }
             else
             {
@@ -1236,31 +1248,10 @@ namespace Server.Engines.Craft
             }
 
 
-            /*if (allRequiredSkills && from.Talisman is BaseTalisman)
-            {
-                BaseTalisman talisman = (BaseTalisman)from.Talisman;
+            // Only 0-100%
+            if (chance < 0) chance = 0;
+            if (chance > 1) chance = 1;
 
-                if (talisman.Skill == craftSystem.MainSkill)
-                {
-                    chance += talisman.SuccessBonus / 100.0;
-                }
-            }*/
-            chance += (from.Skills.Blacksmith.Value / 3);
-            chance /= OreName[0];
-            if (allRequiredSkills && valMainSkill == maxMainSkill)
-            {
-                chance = 1.0;
-            }
-            // JustZH Even moar crafting stuffz
-            if (craftSystem is DefBlacksmithy || craftSystem is DefBowFletching || craftSystem is DefTailoring || craftSystem is DefCarpentry || craftSystem is DefTinkering)
-            {
-                chance *= from.SpecBonus(SpecClasse.Crafter);
-            }
-            else if (craftSystem is DefAlchemy || craftSystem is DefInscription)
-            {
-                chance *= from.SpecBonus(SpecClasse.Mage);
-            }
-            
             return chance;
         }
 
@@ -1273,10 +1264,8 @@ namespace Server.Engines.Craft
                 {
 
                     var ResourceName = CraftGump.ResourceSelected;
-                    double[] OreNfo = CraftGumpItem.getIngotInfo(ResourceName);
-                    OreInfo = OreNfo;
                     bool allRequiredSkills = true; // here
-                    double chance = GetSuccessChance2(from, typeRes, craftSystem, false, ref allRequiredSkills, OreNfo);
+                    double chance = GetSuccessChance(from, typeRes, craftSystem, false, ref allRequiredSkills);
 
                     if (allRequiredSkills && chance >= 0.0)
                     {
@@ -1849,9 +1838,8 @@ namespace Server.Engines.Craft
                     int quality = 1;
                     bool allRequiredSkills = true;
 
-                    bool MakeExcep = false;
-
-                    m_CraftItem.CheckSkills2(m_From, m_TypeRes, m_CraftSystem, ref quality, ref allRequiredSkills, false, ref MakeExcep);
+                    // This check is only for quality and to check skills, success chance is not affected.
+                    m_CraftItem.CheckSkills(m_From, m_TypeRes, m_CraftSystem, ref quality, ref allRequiredSkills, false);
 
                     CraftContext context = m_CraftSystem.GetContext(m_From);
 
@@ -1884,9 +1872,8 @@ namespace Server.Engines.Craft
 
                     bool makersMark = false;
 
-                    if (MakeExcep == true) //  if (MakeExcep == true)
+                    if ((quality == (int)ArmorQuality.Exceptional) && m_From.Skills[m_CraftSystem.MainSkill].Base >= 100.0) 
                     {
-                        
                         makersMark = m_CraftItem.IsMarkable(m_CraftItem.ItemType);
                     }
 

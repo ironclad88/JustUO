@@ -8,11 +8,16 @@ namespace Server.Items
     {
         private SmithHammerTool m_Tool;
 
+        // This class is needed to be able to craft with the hammer, 
+        // unfortunately it also needs knowledge of its parent for uses remaining...
         private class SmithHammerTool : BaseTool
         {
-            public SmithHammerTool()
+            private int m_UsesRemaining;
+            SmithHammer m_Parent;
+            public SmithHammerTool(SmithHammer parent)
             : base(0x13E3)
             {
+                m_Parent = parent;
             }
             public SmithHammerTool( Serial serial)
                 : base(serial)
@@ -23,6 +28,24 @@ namespace Server.Items
                 get
                 {
                     return DefBlacksmithy.CraftSystem;
+                }
+            }
+            [CommandProperty(AccessLevel.GameMaster)]
+            public override int UsesRemaining
+            {
+                get
+                {
+                    return this.m_UsesRemaining;
+                }
+                set
+                {
+                    if (this.m_UsesRemaining == value + 1)
+                    {
+                        m_Parent.FindOwner().SendLocalizedMessage(1044118); // Your tool suffers some damage.
+                    }
+                    this.m_UsesRemaining = value;
+                    this.InvalidateProperties();
+                    m_Parent.InvalidateProperties();
                 }
             }
             public override void Serialize(GenericWriter writer)
@@ -46,14 +69,16 @@ namespace Server.Items
         {
             this.Weight = 8.0;
             this.Layer = Layer.OneHanded;
-            this.m_Tool = new SmithHammerTool();
+            this.m_Tool = new SmithHammerTool(this);
             this.m_Tool.UsesRemaining = 100;
         }
 
         public SmithHammer(Serial serial)
             : base(serial)
         {
-            this.m_Tool = new SmithHammerTool();
+            this.Weight = 8.0;
+            this.Layer = Layer.OneHanded;
+            this.m_Tool = new SmithHammerTool(this);
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -203,7 +228,7 @@ namespace Server.Items
             base.Serialize(writer);
 
             writer.Write((int)1); // version
-            writer.Write(m_Tool.UsesRemaining);
+            writer.Write(UsesRemaining);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -213,7 +238,7 @@ namespace Server.Items
             int version = reader.ReadInt();
             if(version >= 1)
             {
-                m_Tool.UsesRemaining = reader.ReadInt();
+                UsesRemaining = reader.ReadInt();
             }
         }
     }

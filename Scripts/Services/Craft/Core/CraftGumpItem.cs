@@ -160,16 +160,15 @@ namespace Server.Engines.Craft
             if (context != null)
                 resIndex = (this.m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex);
             var ResourceName = CraftGump.ResourceSelected;
-            double[] OreNfo = getIngotInfo(ResourceName);
             bool allRequiredSkills = true;
-            double chance = this.m_CraftItem.GetSuccessChance2(this.m_From, resIndex > -1 ? res.GetAt(resIndex).ItemType : null, this.m_CraftSystem, false, ref allRequiredSkills, OreNfo);
-            double excepChance = this.m_CraftItem.GetExceptionalChance2(this.m_CraftSystem, chance, this.m_From, OreNfo);
+            double chance = this.m_CraftItem.GetSuccessChance(this.m_From, resIndex > -1 ? res.GetAt(resIndex).ItemType : null, this.m_CraftSystem, false, ref allRequiredSkills);
+            double difficulty = this.m_CraftItem.GetDifficulty(this.m_CraftSystem, resIndex > -1 ? res.GetAt(resIndex).ItemType : null);
+            double exce_diff;
+            double excepChance = this.m_CraftItem.GetExceptionalChance2(this.m_CraftSystem, this.m_From, difficulty, out exce_diff);
 
-
-            if (chance < 0.0)
-                chance = 0.0;
-            else if (chance > 1.0)
-                chance = 1.0;
+            // JustZH: To get exceptional we also need to pass a skill check, add the chance to succeed this.
+            double exce_success_chance = Misc.SkillCheck.SuccessChance(m_From, this.m_CraftSystem.MainSkill, exce_diff);
+            excepChance *= exce_success_chance;
 
             this.AddHtmlLocalized(170, 80, 250, 18, 1044057, LabelColor, false, false); // Success Chance:
             this.AddLabel(430, 80, LabelHue, String.Format("{0:F1}%", chance * 100));
@@ -184,159 +183,6 @@ namespace Server.Engines.Craft
                 this.AddHtmlLocalized(170, 100, 250, 18, 1044058, 32767, false, false); // Exceptional Chance:
                 this.AddLabel(430, 100, LabelHue, String.Format("{0:F1}%", excepChance * 100));
             }
-        }
-
-        public static double[] getIngotInfo(string IngotName)
-        {
-            double[] OreNfo = new double[2];
-            switch (IngotName)
-            {
-                case "DullCopperIngot":
-                    OreNfo[0] = CraftAttributeInfo.DullCopper.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.DullCopper.Quality;
-                    break;
-                case "CopperIngot":
-                    OreNfo[0] = CraftAttributeInfo.Copper.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Copper.Quality;
-                    break;
-                case "BronzeIngot":
-                    OreNfo[0] = CraftAttributeInfo.Bronze.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Bronze.Quality;
-                    break;
-                case "GoldIngot":
-                    OreNfo[0] = CraftAttributeInfo.Golden.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Golden.Quality;
-                    break;
-                case "AgapiteIngot": // does this one exist?
-                    OreNfo[0] = CraftAttributeInfo.Agapite.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Agapite.Quality;
-                    break;
-                case "ZuluIngot":
-                    OreNfo[0] = CraftAttributeInfo.ZuluMetal.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.ZuluMetal.Quality;
-                    break;
-                case "OnyxIngot":
-                    OreNfo[0] = CraftAttributeInfo.Onyx.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Onyx.Quality;
-                    break;
-                case "RedElvenIngot":
-                    OreNfo[0] = CraftAttributeInfo.RedElven.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.RedElven.Quality;
-                    break;
-                case "PyriteIngot":
-                    OreNfo[0] = CraftAttributeInfo.Pyrite.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Pyrite.Quality;
-                    break;
-                case "MalachiteIngot":
-                    OreNfo[0] = CraftAttributeInfo.Malachite.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Malachite.Quality;
-                    break;
-                case "AzuriteIngot":
-                    OreNfo[0] = CraftAttributeInfo.Azurite.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Azurite.Quality;
-                    break;
-                case "PlatinumIngot":
-                    OreNfo[0] = CraftAttributeInfo.Platinum.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Platinum.Quality;
-                    break;
-                case "LavarockIngot":
-                    OreNfo[0] = CraftAttributeInfo.Lavarock.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Lavarock.Quality;
-                    break;
-                case "MysticIngot":
-                    OreNfo[0] = CraftAttributeInfo.Mystic.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Mystic.Quality;
-                    break;
-                case "SpikeIngot":
-                    OreNfo[0] = CraftAttributeInfo.Spike.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Spike.Quality;
-                    break;
-                case "FruityIngot":
-                    OreNfo[0] = CraftAttributeInfo.Fruity.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Fruity.Quality;
-                    break;
-                case "IceRockIngot":
-                    OreNfo[0] = CraftAttributeInfo.IceRock.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.IceRock.Quality;
-                    break;
-                case "SilverRockIngot":
-                    OreNfo[0] = CraftAttributeInfo.SilverRock.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.SilverRock.Quality;
-                    break;
-                case "SpectralIngot":
-                    OreNfo[0] = CraftAttributeInfo.Spectral.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Spectral.Quality;
-                    break;
-                case "UndeadIngot":
-                    OreNfo[0] = CraftAttributeInfo.Undead.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Undead.Quality;
-                    break;
-                case "DarkPaganIngot":
-                    OreNfo[0] = CraftAttributeInfo.DarkPagan.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.DarkPagan.Quality;
-                    break;
-                case "OldBritainIngot":
-                    OreNfo[0] = CraftAttributeInfo.OldBritain.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.OldBritain.Quality;
-                    break;
-                case "VirginityIngot":
-                    OreNfo[0] = CraftAttributeInfo.Virginity.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Virginity.Quality;
-                    break;
-                case "BlackDwarfIngot":
-                    OreNfo[0] = CraftAttributeInfo.BlackDwarf.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.BlackDwarf.Quality;
-                    break;
-                case "DripstoneIngot":
-                    OreNfo[0] = CraftAttributeInfo.DripStone.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.DripStone.Quality;
-                    break;
-                case "ExecutorIngot":
-                    OreNfo[0] = CraftAttributeInfo.Executor.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Executor.Quality;
-                    break;
-                case "PeachblueIngot":
-                    OreNfo[0] = CraftAttributeInfo.Peachblue.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Peachblue.Quality;
-                    break;
-                case "DestructionIngot":
-                    OreNfo[0] = CraftAttributeInfo.Destruction.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Destruction.Quality;
-                    break;
-                case "AnraIngot":
-                    OreNfo[0] = CraftAttributeInfo.Anra.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.Anra.Quality;
-                    break;
-                case "CrystalIngot":
-                    OreNfo[0] = CraftAttributeInfo.CrystalMetal.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.CrystalMetal.Quality;
-                    break;
-                case "DoomIngot":
-                    OreNfo[0] = CraftAttributeInfo.DoomMetal.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.DoomMetal.Quality;
-                    break;
-                case "ETSIngot":
-                    OreNfo[0] = CraftAttributeInfo.ETS.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.ETS.Quality;
-                    break;
-                case "DSRIngot":
-                    OreNfo[0] = CraftAttributeInfo.DSR.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.DSR.Quality;
-                    break;
-                case "RNDIngot":
-                    OreNfo[0] = CraftAttributeInfo.RND.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.RND.Quality;
-                    break;
-                case "GoddessIngot":
-                    OreNfo[0] = CraftAttributeInfo.GoddessMetal.Difficulty;
-                    OreNfo[1] = CraftAttributeInfo.GoddessMetal.Quality;
-                    break;
-                case "IronIngot":
-                    OreNfo[0] = CraftAttributeInfo.Golden.Difficulty; // Golden is the same as Iron
-                    OreNfo[1] = CraftAttributeInfo.Golden.Quality; // Golden is the same as Iron
-                    break;
-            }
-            return OreNfo;
         }
 
         private static readonly Type typeofBlankScroll = typeof(BlankScroll);
