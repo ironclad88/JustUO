@@ -154,11 +154,6 @@ namespace Server.SkillHandlers
 					if (targeted is BaseCreature)
 					{
 						BaseCreature creature = (BaseCreature)targeted;
-                        // JustZH Taming bonus from specced ranger (NOT DONE)
-                        if (from.SpecClasse == SpecClasse.Ranger)
-                        {
-                            creature.MinTameSkill -= from.SpecBonus(SpecClasse.Ranger) * creature.MinTameSkill; // this needs balancing.
-                        }
 						if (!creature.Tamable)
 						{
 							creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 1049655, from.NetState);
@@ -213,49 +208,14 @@ namespace Server.SkillHandlers
 								}
 							}
 
-							if (m_BeingTamed.Contains(targeted))
+                            if (m_BeingTamed.Contains(targeted))
+                            {
+                                creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502802, from.NetState);
+                                // Someone else is already taming this.
+                            }
+                            // JustZH: wth was this shit? 95% chance to anger... lowered to 30% and applied ranger spec bonus, 3% less chance per level
+                            else if (creature.CanAngerOnTame && (0.3 - (from.SpecClasse == SpecClasse.Ranger ? 0.03 * from.SpecLevel : 0))  >= Utility.RandomDouble())
 							{
-								creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502802, from.NetState);
-									// Someone else is already taming this.
-							}
-							else if (creature.CanAngerOnTame && 0.95 >= Utility.RandomDouble())
-							{
-                                // JustZH Anger chanse decrease with specced Ranger
-                                if (from.SpecClasse == SpecClasse.Ranger)
-                                {
-                                    if (creature.CanAngerOnTame && 0.95 + from.SpecBonus(SpecClasse.Ranger) >= Utility.RandomDouble()) // needs checkup
-                                    {
-                                        creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
-                                        // You seem to anger the beast!
-                                        creature.PlaySound(creature.GetAngerSound());
-                                        creature.Direction = creature.GetDirectionTo(from);
-
-                                        if (creature.BardPacified && Utility.RandomDouble() > .24)
-                                        {
-                                            Timer.DelayCall(TimeSpan.FromSeconds(2.0), new TimerStateCallback(ResetPacify), creature);
-                                        }
-                                        else
-                                        {
-                                            creature.BardEndTime = DateTime.UtcNow;
-                                        }
-
-                                        creature.BardPacified = false;
-
-                                        if (creature.AIObject != null)
-                                        {
-                                            creature.AIObject.DoMove(creature.Direction);
-                                        }
-
-                                        if (from is PlayerMobile &&
-                                            !(((PlayerMobile)from).HonorActive ||
-                                              TransformationSpellHelper.UnderTransformation(from, typeof(EtherealVoyageSpell))))
-                                        {
-                                            creature.Combatant = from;
-                                        }
-                                    }
-                                }
-                                else
-                                {
                                     creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502805, from.NetState);
                                     // You seem to anger the beast!
                                     creature.PlaySound(creature.GetAngerSound());
@@ -283,10 +243,6 @@ namespace Server.SkillHandlers
                                     {
                                         creature.Combatant = from;
                                     }
-                                }
-                                
-                               
-								
 							}
 							else
 							{
@@ -454,20 +410,24 @@ namespace Server.SkillHandlers
 							m_Tamer.CheckTargetSkill(SkillName.AnimalLore, m_Creature, 0.0, 130.0);
 						}*/
 
-						double minSkill = m_Creature.MinTameSkill + (m_Creature.Owners.Count * 6.0);
+						double minSkill = m_Creature.MinTameSkill;
 
 						if (minSkill > -24.9 && CheckMastery(m_Tamer, m_Creature))
 						{
 							minSkill = -24.9; // 50% at 0.0?
 						}
 
-						minSkill += 24.9;
+                        if (m_Tamer.SpecClasse == SpecClasse.Ranger)
+                        {
+                            // Reduce min skill by 2% per ranger spec level
+                            minSkill *= (1.0 - (0.02 * m_Tamer.SpecLevel));
+                        }
 
                         if (XmlConfig.XmlMobFactionsEnabled)
                             minSkill += XmlMobFactions.GetScaledFaction(m_Tamer, m_Creature, -25, 25, -0.001);
 
 						if (CheckMastery(m_Tamer, m_Creature) || alreadyOwned ||
-							m_Tamer.CheckTargetSkill(SkillName.AnimalTaming, m_Creature, minSkill - 25.0, minSkill + 25.0))
+							m_Tamer.CheckTargetSkill(SkillName.AnimalTaming, m_Creature, minSkill - 25.0, minSkill + 25.0, true))
 						{
 							if (m_Creature.Owners.Count == 0) // First tame
 							{

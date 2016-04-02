@@ -227,7 +227,7 @@ namespace Server.Items
                         if (max <= from.Skills[SkillName.Herding].Value)
                             this.m_Creature.PrivateOverheadMessage(MessageType.Regular, 0x3B2, 502471, from.NetState); // That wasn't even challenging.
 
-                        if (from.CheckTargetSkill(SkillName.Herding, this.m_Creature, min, max))
+                        if (from.CheckTargetSkill(SkillName.Herding, this.m_Creature, min, max, true))
                         {
                             IPoint2D p = (IPoint2D)targ;
 

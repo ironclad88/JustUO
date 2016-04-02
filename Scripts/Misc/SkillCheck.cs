@@ -195,21 +195,37 @@ namespace Server.Misc
             return success;
         }
 
-        public static bool Mobile_SkillCheckTarget(Mobile from, SkillName skillName, object target, double minSkill, double maxSkill)
+        private static bool IsLoreSkill(SkillName skillName)
+        {
+            if (SkillName.Anatomy == skillName ||
+                SkillName.EvalInt == skillName ||
+                SkillName.ItemID == skillName ||
+                SkillName.ArmsLore == skillName ||
+                SkillName.AnimalLore == skillName ||
+                SkillName.TasteID == skillName ||
+                SkillName.Forensics == skillName )
+                return true;
+            return false;
+        }
+
+        public static bool Mobile_SkillCheckTarget(Mobile from, SkillName skillName, object target, double difficulty, bool doPrint)// double minSkill, double maxSkill)
         {
             Skill skill = from.Skills[skillName];
+            double chance;
+            if (true == IsLoreSkill(skillName))
+            {
+                // Special handling of lore skills, since their difficulty is not adjustable by choosing a different target..
+                double value;
+                if (skill == null)
+                    value = 0;
+                value = skill.Value;
 
-            if (skill == null)
-                return false;
-
-            double value = skill.Value;
-
-            if (value < minSkill)
-                return false; // Too difficult
-            else if (value >= maxSkill)
-                return true; // No challenge
-
-            double chance = (value - minSkill) / (maxSkill - minSkill);
+                chance = 0.2 + (value / 100);
+            }
+            else
+            {
+                chance = SuccessChance(from, skillName, difficulty, doPrint);
+            }
 
             return CheckSkill(from, skill, target, chance);
         }

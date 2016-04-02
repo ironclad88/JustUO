@@ -15,6 +15,8 @@ namespace Server.Mobiles
            // this.Body = Utility.RandomList(12, 59);
             this.Body = 59;
             this.BaseSoundID = 362;
+            Tamable = true;
+            MinTameSkill = 150;
 
             this.SetStr(1450);
             this.SetDex(650);

@@ -510,7 +510,7 @@ namespace Server
 
     #region Delegates
     public delegate bool SkillCheckTargetHandler(
-        Mobile from, SkillName skill, object target, double minSkill, double maxSkill);
+        Mobile from, SkillName skill, object target, double difficulty, bool doPrint);// double minSkill, double maxSkill);
 
     public delegate bool SkillCheckLocationHandler(Mobile from, SkillName skill, double difficulty, bool doPrint); //double minSkill, double maxSkill);
 
@@ -12629,8 +12629,10 @@ namespace Server
 
         public bool CheckSkill(SkillName skill, double minSkill, double maxSkill, bool doPrint = false)
         {
-            double difficulty = (minSkill + maxSkill) / 2;
-            Console.WriteLine("Using old CheckSkill, converting to new one, skill: min: " + minSkill + " and max: " + maxSkill + " to difficulty: " + difficulty);
+            double floored_minSkill = Math.Max(0, minSkill);
+            double floored_maxSkill = Math.Max(0, maxSkill);
+            double difficulty = (floored_minSkill + floored_maxSkill) / 2;
+            Console.WriteLine("Using old CheckSkill, converting to new one, skill: min: " + floored_minSkill + " and max: " + floored_maxSkill + " to difficulty: " + difficulty);
             return CheckSkill(skill, difficulty, doPrint);
         }
 
@@ -12643,13 +12645,22 @@ namespace Server
             return _SkillCheckDirectLocationHandler(this, skill, chance);
         }
 
-        public bool CheckTargetSkill(SkillName skill, object target, double minSkill, double maxSkill)
+        public bool CheckTargetSkill(SkillName skill, object target, double difficulty, bool doPrint)// double minSkill, double maxSkill)
         {
             if (_SkillCheckTargetHandler == null)
             {
                 return false;
             }
-            return _SkillCheckTargetHandler(this, skill, target, minSkill, maxSkill);
+            return _SkillCheckTargetHandler(this, skill, target, difficulty, doPrint);
+        }
+
+        public bool CheckTargetSkill(SkillName skill, object target, double minSkill, double maxSkill, bool doPrint = false)
+        {
+            double floored_minSkill = Math.Max(0, minSkill);
+            double floored_maxSkill = Math.Max(0, maxSkill);
+            double difficulty = (floored_minSkill + floored_maxSkill) / 2;
+            Console.WriteLine("Using old CheckTargetSkill, converting to new one, skill: min: " + floored_minSkill + " and max: " + floored_maxSkill + " to difficulty: " + difficulty);
+            return CheckTargetSkill( skill,  target,  difficulty,  doPrint);
         }
 
         public bool CheckTargetSkill(SkillName skill, object target, double chance)
