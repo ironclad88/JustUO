@@ -75,7 +75,13 @@ namespace Server.Spells.Zulu.EarthSpells
                 //}
                 //else
                 //{
-                damage = Utility.Random(12, 9);
+                
+                damage = Utility.RandomMinMax(50, 75);
+
+                if(Caster.SpecClasse == SpecClasse.Mage)
+                {
+                    damage *= Caster.SpecBonus(SpecClasse.Mage); 
+                }
 
                 if (this.CheckResisted(m))
                 {

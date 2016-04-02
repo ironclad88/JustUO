@@ -12,13 +12,13 @@ namespace Server.Spells.Zulu.EarthSpells
 {
     class Earthportal : EarthSpell
     {
-         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Earth Portal", "Destraves Limites Da Natureza",
-            263,
-            9032,
-            Reagent.BrimStone,
-            Reagent.ExecutionersCap,
-            Reagent.EyeofNewt);
+        private static readonly SpellInfo m_Info = new SpellInfo(
+           "Earth Portal", "Destraves Limites Da Natureza",
+           263,
+           9032,
+           Reagent.BrimStone,
+           Reagent.ExecutionersCap,
+           Reagent.EyeofNewt);
         private readonly RunebookEntry m_Entry;
         public Earthportal(Mobile caster, Item scroll)
             : this(caster, scroll, null)
@@ -96,15 +96,15 @@ namespace Server.Spells.Zulu.EarthSpells
                 InternalItem firstGate = new InternalItem(loc, map);
                 firstGate.MoveToWorld(this.Caster.Location, this.Caster.Map);
 
-                firstGate.Hue = 1160;
+               // firstGate.Hue = 1160;
 
-               
+
 
                 Effects.PlaySound(loc, map, 0x20F);
 
                 InternalItem secondGate = new InternalItem(this.Caster.Location, this.Caster.Map);
                 secondGate.MoveToWorld(loc, map);
-                secondGate.Hue = 1160;
+              //  secondGate.Hue = 1160;
             }
 
             this.FinishSequence();
@@ -135,9 +135,8 @@ namespace Server.Spells.Zulu.EarthSpells
                 : base(target, map)
             {
                 this.Map = map;
-
-                if (this.ShowFeluccaWarning && map == Map.Felucca)
-                    this.ItemID = 0xDDA;
+                this.ItemID = 0xF6C;
+                this.Hue = 1160;
 
                 this.Dispellable = true;
 
