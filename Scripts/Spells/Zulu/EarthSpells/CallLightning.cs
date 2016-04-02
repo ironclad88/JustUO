@@ -75,7 +75,13 @@ namespace Server.Spells.Zulu.EarthSpells
                 //}
                 //else
                 //{
-                damage = Utility.Random(12, 9);
+                
+                damage = Utility.RandomMinMax(50, 75);
+
+                if(Caster.SpecClasse == SpecClasse.Mage)
+                {
+                    damage *= Caster.SpecBonus(SpecClasse.Mage); 
+                }
 
                 if (this.CheckResisted(m))
                 {
@@ -91,10 +97,11 @@ namespace Server.Spells.Zulu.EarthSpells
                    {
                        do
                        {
-                           m.BoltEffect(0x4f4);
+                           m.BoltEffect(0x4F4);
                            count++;
+                           m.PlaySound(0x207);
 
-                       } while (count < 5);
+                       } while (count < 4);
                    }));
                 SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
             }

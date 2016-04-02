@@ -12,13 +12,13 @@ namespace Server.Spells.Zulu.EarthSpells
 {
     class Earthportal : EarthSpell
     {
-         private static readonly SpellInfo m_Info = new SpellInfo(
-            "Earth Portal", "Destraves Limites Da Natureza",
-            263,
-            9032,
-            Reagent.BrimStone,
-            Reagent.ExecutionersCap,
-            Reagent.EyeofNewt);
+        private static readonly SpellInfo m_Info = new SpellInfo(
+           "Earth Portal", "Destraves Limites Da Natureza",
+           263,
+           9032,
+           Reagent.BrimStone,
+           Reagent.ExecutionersCap,
+           Reagent.EyeofNewt);
         private readonly RunebookEntry m_Entry;
         public Earthportal(Mobile caster, Item scroll)
             : this(caster, scroll, null)
@@ -91,19 +91,20 @@ namespace Server.Spells.Zulu.EarthSpells
             {
                 this.Caster.SendLocalizedMessage(501024); // You open a magical gate to another location
 
-                Effects.PlaySound(this.Caster.Location, this.Caster.Map, 0x20E);
+                Effects.PlaySound(this.Caster.Location, this.Caster.Map, 0x20F);
 
                 InternalItem firstGate = new InternalItem(loc, map);
                 firstGate.MoveToWorld(this.Caster.Location, this.Caster.Map);
 
-                firstGate.Hue = 1160;
+               // firstGate.Hue = 1160;
 
-               
 
-                Effects.PlaySound(loc, map, 0x20E);
+
+                Effects.PlaySound(loc, map, 0x20F);
 
                 InternalItem secondGate = new InternalItem(this.Caster.Location, this.Caster.Map);
                 secondGate.MoveToWorld(loc, map);
+              //  secondGate.Hue = 1160;
             }
 
             this.FinishSequence();
@@ -134,9 +135,8 @@ namespace Server.Spells.Zulu.EarthSpells
                 : base(target, map)
             {
                 this.Map = map;
-
-                if (this.ShowFeluccaWarning && map == Map.Felucca)
-                    this.ItemID = 0xDDA;
+                this.ItemID = 0xF6C;
+                this.Hue = 1160;
 
                 this.Dispellable = true;
 
@@ -216,14 +216,6 @@ namespace Server.Spells.Zulu.EarthSpells
                     else
                         from.SendLocalizedMessage(502354); // Target is not marked.
                 }
-                /*else if ( o is Key && ((Key)o).KeyValue != 0 && ((Key)o).Link is BaseBoat )
-                {
-                BaseBoat boat = ((Key)o).Link as BaseBoat;
-                if ( !boat.Deleted && boat.CheckKey( ((Key)o).KeyValue ) )
-                m_Owner.Effect( boat.GetMarkedLocation(), boat.Map, false );
-                else
-                from.Send( new MessageLocalized( from.Serial, from.Body, MessageType.Regular, 0x3B2, 3, 501030, from.Name, "" ) ); // I can not gate travel from that object.
-                }*/
                 else if (o is HouseRaffleDeed && ((HouseRaffleDeed)o).ValidLocation())
                 {
                     HouseRaffleDeed deed = (HouseRaffleDeed)o;

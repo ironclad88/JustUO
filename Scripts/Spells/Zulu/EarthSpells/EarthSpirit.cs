@@ -62,7 +62,7 @@ namespace Server.Spells.Zulu.EarthSpells
         {
             if (this.CheckSequence())
             {
-                BaseCreature creature = (BaseCreature)Activator.CreateInstance(typeof(EarthElemental)); // make earth elemental lord
+                BaseCreature creature = (BaseCreature)Activator.CreateInstance(typeof(EarthlordElemental)); // make earth elemental lord
 
                 TimeSpan duration;
 

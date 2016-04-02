@@ -25,11 +25,11 @@ namespace Server.Mobiles
 			m_Target = target;
 			m_ExpireTime = DateTime.UtcNow + duration;
 
-			SetStr(200);
-			SetDex(150);
-			SetInt(150);
+			SetStr(350);
+			SetDex(200);
+			SetInt(200);
 
-			SetDamage(16, 17);
+			SetDamage(25, 40);
 
 			// Bestiary says 50 phys 50 cold, animal lore says differently
 			SetDamageType(ResistanceType.Physical, 100);

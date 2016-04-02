@@ -35,7 +35,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Darkness
+        public bool VolcanicEruption
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool DecayingRay
+        public bool SummonBloodStone
         {
             get
             {
@@ -87,7 +87,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool AnimateDead
+        public bool Wither // Animate Dead
         {
             get
             {
@@ -100,7 +100,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Sacrifice
+        public bool VengefulSpirit
         {
             get
             {
@@ -152,7 +152,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Wraithform
+        public bool AnimateDead
         {
             get
             {

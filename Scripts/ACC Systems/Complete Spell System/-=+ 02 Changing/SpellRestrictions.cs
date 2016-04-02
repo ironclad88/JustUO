@@ -21,6 +21,8 @@ namespace Server.ACC.CSS
 		/* This method should be left alone */
 		public static bool CheckRestrictions( Mobile caster, Type type )
 		{
+            return true;
+            /*
 			Item item = caster.FindItemOnLayer( Layer.OneHanded );
 			if( item is CSpellbook && CheckRestrictions( caster, ((CSpellbook)item).School ) )
 				return true;
@@ -36,7 +38,7 @@ namespace Server.ACC.CSS
 					return true;
 			}
 
-			return false;
+			return false;*/
 		}
 	}
 }

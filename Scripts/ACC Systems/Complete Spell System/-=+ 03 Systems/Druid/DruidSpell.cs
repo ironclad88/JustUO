@@ -14,8 +14,8 @@ namespace Server.ACC.CSS.Systems.Druid
         public abstract SpellCircle Circle { get; }
 
         public override bool ClearHandsOnCast { get { return false; } }
-        public override SkillName CastSkill { get { return SkillName.AnimalLore; } }
-        public override SkillName DamageSkill { get { return SkillName.AnimalTaming; } }
+        public override SkillName CastSkill { get { return SkillName.Magery; } } // changed to magery from animal lore
+        public override SkillName DamageSkill { get { return SkillName.Magery; } } // changed to magery from animal taming
         public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(3 * CastDelaySecondsPerTick); } }
 
         public override void GetCastSkills(out double min, out double max)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Server.Items;
-using Server.Mobiles;
 using Server.Network;
 using Server.Spells.Zulu.NecroSpells;
 
@@ -49,13 +46,13 @@ namespace Server.Gumps.Zulugumps
 
                 if (array[2])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Darkness");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Volcanic Eruiption");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 2, GumpButtonType.Reply, 0);
                 }
 
                 if (array[3])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Decaying Ray");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Summon Blood Stone");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 3, GumpButtonType.Reply, 0);
                 }
 
@@ -73,13 +70,13 @@ namespace Server.Gumps.Zulugumps
 
                 if (array[6])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Animate Dead");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Wither"); // Animate Dead
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 6, GumpButtonType.Reply, 0);
                 }
 
                 if (array[7])
                 {
-                    this.AddLabel(xName1, yName1 += 20, 66, @"Sacrifice");
+                    this.AddLabel(xName1, yName1 += 20, 66, @"Vengeful Spirit");
                     this.AddButton(btnX1, btnY1 += 20, 2104, 2103, 7, GumpButtonType.Reply, 0);
                 }
 
@@ -103,7 +100,7 @@ namespace Server.Gumps.Zulugumps
 
                 if (array[11])
                 {
-                    this.AddLabel(xName2, yName2 += 20, 66, @"Wraithform");
+                    this.AddLabel(xName2, yName2 += 20, 66, @"Animate Dead");
                     this.AddButton(btnX2, btnY2 += 20, 2104, 2103, 11, GumpButtonType.Reply, 0);
                 }
 
@@ -156,10 +153,10 @@ namespace Server.Gumps.Zulugumps
                     new ControlundeadSpell(caster, null).Cast();
                     break;
                 case 2:
-                    new DarknessSpell(caster, null).Cast();
+                    new VolcanicEruiptionSpell(caster, null).Cast();
                     break;
                 case 3:
-                    new DecayingraySpell(caster, null).Cast();
+                    new BloodStoneSpell(caster, null).Cast();
                     break;
                 case 4:
                     new SpectrestouchSpell(caster, null).Cast();
@@ -168,10 +165,10 @@ namespace Server.Gumps.Zulugumps
                     new AbyssalflameSpell(caster, null).Cast();
                     break;
                 case 6:
-                    new AnimatedeadSpell(caster, null).Cast();
+                    new FrostVeilSpell(caster, null).Cast();
                     break;
                 case 7:
-                    new SacrificeSpell(caster, null).Cast();
+                    new VengefulSpiritSpell(caster, null).Cast();
                     break;
                 case 8:
                     new WraithsbreathSpell(caster, null).Cast();
@@ -183,7 +180,7 @@ namespace Server.Gumps.Zulugumps
                     new SummonspiritSpell(caster, null).Cast();
                     break;
                 case 11:
-                    new WraithformSpell(caster, null).Cast();
+                    new AnimateDeadSpellZulu(caster, null).Cast();
                     break;
                 case 12:
                     new WyvernStrikeSpell(caster, null).Cast();

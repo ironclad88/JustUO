@@ -118,17 +118,14 @@ namespace Server.Spells.Zulu.NecroSpells
                         }
 
                         m.ApplyPoison(this.Caster, Poison.GetPoison(level)); // lvl 4 psn, lvl 3 if resisted
-                        m.FixedParticles(0x374A, 10, 15, 5021, EffectLayer.Waist);
-                        m.PlaySound(0x205);
+                        m.FixedParticles(0x3709, 10, 15, 5021, EffectLayer.Waist);
+                        
 
                         this.HarmfulSpell(m);
 
                     }
                 }
-                else
-                {
-                    this.Caster.PlaySound(0x29);
-                }
+                Caster.PlaySound(0x1E2);
             }
 
             this.FinishSequence();

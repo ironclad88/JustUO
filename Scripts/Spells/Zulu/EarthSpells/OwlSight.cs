@@ -70,8 +70,8 @@ namespace Server.Spells.Zulu.EarthSpells
 
                         targ.LightLevel = 0; // i think 0 is good, gotta test
 
-                        targ.FixedParticles(0x376A, 9, 32, 5007, EffectLayer.Waist);
-                        targ.PlaySound(0x1E3);
+                        targ.FixedParticles(0x373A, 9, 32, 5007, EffectLayer.Waist);
+                        targ.PlaySound(0x1E4);
 
                        // BuffInfo.AddBuff(targ, new BuffInfo(BuffIcon.NightSight, 1075643));	//Night Sight/You ignore lighting effects
                     }
