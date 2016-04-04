@@ -141,9 +141,7 @@ namespace Server.Engines.Harvest
             if (vein == null)
                 return;
             
-            HarvestResource primary = vein.PrimaryResource;
-            HarvestResource fallback = vein.FallbackResource;
-            HarvestResource resource = this.MutateResource(from, tool, def, map, loc, vein, primary, fallback);
+            HarvestResource resource = this.MutateResource(from, tool, def, map, loc, vein);
             //CraftResourceInfo info;
             //if (primary.Types[0] is typeof(BaseLog))
             //{
@@ -316,33 +314,6 @@ namespace Server.Engines.Harvest
 
         public virtual HarvestVein MutateVein(Mobile from, Item tool, HarvestDefinition def, HarvestBank bank, object toHarvest, HarvestVein vein)
         {
-            //JustZH: mutate some other way here, we need more chance to get somethign uselful
-            // Hopefully this isn't too hard on the server, but we override the vein's resources here, so we're kinda doing double work...
-
-            double skillValue = from.Skills[def.Skill].Value;
-            HarvestResource new_resource;
-            // Find all resources that the miner is skilled enough for
-            List<int> valid_indexes = new List<int>();
-            for (int i = 0; i < def.Veins.Length; i++)
-            {
-                if (skillValue >= def.Veins[i].PrimaryResource.MinSkill)
-                {
-                    valid_indexes.Add(i);
-                }
-            }
-            int rand_list_idx = Utility.RandomMinMax(0, valid_indexes.Count - 1);
-            int rand_index = valid_indexes[rand_list_idx];
-            if (null != def.Veins[rand_index].PrimaryResource)
-            {
-                new_resource = def.Veins[rand_index].PrimaryResource;
-                Console.WriteLine("");
-                Console.WriteLine("Switched resource: " + vein.PrimaryResource.Types[0].Name.ToString()
-                + "to: " + new_resource.Types[0].Name.ToString());
-                Console.WriteLine("Rolled " + rand_list_idx + " between 0 and " + (valid_indexes.Count - 1) + " and got veins idx: " + rand_index);
-                vein.PrimaryResource = new_resource;
-                Console.WriteLine("Total veins in HarvestSystem: " + def.Veins.Length);
-            }
-
             return vein;
         }
 
@@ -399,22 +370,44 @@ namespace Server.Engines.Harvest
             return null;
         }
 
-        public virtual HarvestResource MutateResource(Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestVein vein, HarvestResource primary, HarvestResource fallback)
+        public virtual HarvestResource MutateResource(Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestVein vein)//, HarvestResource primary, HarvestResource fallback)
         {
-            bool racialBonus = (def.RaceBonus && from.Race == Race.Elf);
+            double skillValue = from.Skills[def.Skill].Value;
+            HarvestResource new_resource = vein.PrimaryResource;
+            HarvestResource fallback = vein.FallbackResource;
+            // Find all resources that the miner is skilled enough for
+            List<int> valid_indexes = new List<int>();
+            for (int i = 0; i < def.Veins.Length; i++)
+            {
+                if (skillValue >= def.Veins[i].PrimaryResource.MinSkill)
+                {
+                    valid_indexes.Add(i);
+                }
+            }
+            int rand_list_idx = Utility.RandomMinMax(0, valid_indexes.Count - 1);
+            int rand_index = valid_indexes[rand_list_idx];
+            if (null != def.Veins[rand_index].PrimaryResource)
+            {
+                new_resource = def.Veins[rand_index].PrimaryResource;
+                fallback = def.Veins[rand_index].FallbackResource;
+                //Console.WriteLine("");
+                //Console.WriteLine("Switched resource: " + vein.PrimaryResource.Types[0].Name.ToString()
+                //+ "to: " + new_resource.Types[0].Name.ToString());
+                //Console.WriteLine("Rolled " + rand_list_idx + " between 0 and " + (valid_indexes.Count - 1) + " and got veins idx: " + rand_index);
+                //Console.WriteLine("Total veins in HarvestSystem: " + def.Veins.Length);
+            }
 
-            if (vein.ChanceToFallback > (Utility.RandomDouble() + (racialBonus ? .20 : 0)))
+            if (def.Veins[rand_index].ChanceToFallback > (Utility.RandomDouble()))
                 return fallback;
 
-            double skillValue = from.Skills[def.Skill].Value;
 
             // JustZH: we only look at min skill here, not req skill...
-            if (fallback != null && (skillValue < primary.MinSkill))
+            if (fallback != null && (skillValue < new_resource.MinSkill))
             {
                 return fallback;
             }
 
-            return primary;
+            return new_resource;
         }
 
         public virtual bool OnHarvesting(Mobile from, Item tool, HarvestDefinition def, object toHarvest, object locked, bool last)
