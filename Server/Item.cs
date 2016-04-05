@@ -4733,14 +4733,19 @@ namespace Server
                 }
                 else
                 {
-                    if (ItemData.Name.IndexOf("%") != -1)
-                    {
-                        // For stackable items with names from client files.
-                        return null;
-                    }
+                   
                     if (info != null && info.m_Name != null)
                     {
                         return info.m_Name;
+                    }
+                    else if (DefaultName != null)
+                    {
+                        return DefaultName;
+                    }
+                    else if (ItemData.Name.IndexOf("%") != -1)
+                    {
+                        // For stackable items with names from client files.
+                        return null;
                     }
 
                     return m_IdPrefix + ItemData.Name + m_IdSuffix;

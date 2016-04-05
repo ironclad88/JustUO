@@ -453,13 +453,21 @@ namespace Server.Engines.Harvest
                 return null;
 
             double randomValue = Utility.RandomDouble() * 100;
-
+            double total_chance = 0;
+            double curr_chance = 0;
             for (int i = 0; i < this.m_BonusResources.Length; ++i)
             {
-                if (randomValue <= this.m_BonusResources[i].Chance * multiplier)
+                curr_chance = this.m_BonusResources[i].Chance * multiplier;
+                if (randomValue <= curr_chance)
                     return this.m_BonusResources[i];
 
-                randomValue -= this.m_BonusResources[i].Chance;
+                randomValue -= curr_chance;
+                total_chance += curr_chance;
+                if(total_chance > 100.0)
+                {
+                    Console.WriteLine("Warning: GetBonusResource got over 100% chance for combined possible resources for " 
+                        + this.Skill.ToString() + " with multiplier " + multiplier);
+                }
             }
 
             return null;

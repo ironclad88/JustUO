@@ -683,7 +683,6 @@ namespace Server.Items
                     {
                         int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getNum;
                         m_DiceNum = xml_data;
-                        InvalidateProperties();
                         return m_DiceNum;
                     }
                     catch
@@ -692,14 +691,12 @@ namespace Server.Items
                         {
                             int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getNum;
                             m_DiceNum = xml_data;
-                            InvalidateProperties();
                             return m_DiceNum;
                         }
                         catch
                         {
                             Console.WriteLine("Warning! Dice_Num:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
                             SetDamage(AosMinDamage, AosMaxDamage);
-                            InvalidateProperties();
                             return m_DiceNum;
                         }
                     }
@@ -727,7 +724,6 @@ namespace Server.Items
                     {
                         int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getSides;
                         m_DiceSides = xml_data;
-                        InvalidateProperties();
                         return m_DiceSides;
                     }
                     catch
@@ -736,14 +732,12 @@ namespace Server.Items
                         {
                             int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getSides;
                             m_DiceSides = xml_data;
-                            InvalidateProperties();
                             return m_DiceSides;
                         }
                         catch
                         {
                             Console.WriteLine("Warning! Dice_Sides:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
                             SetDamage(AosMinDamage, AosMaxDamage);
-                            InvalidateProperties();
                             return m_DiceSides;
                         }
                     }
@@ -771,7 +765,6 @@ namespace Server.Items
                     {
                         int xml_data = WeaponDiceDefaults.GetDice(this.GetType()).getOffset;
                         m_DiceOffset = xml_data;
-                        InvalidateProperties();
                         return m_DiceOffset;
                     }
                     catch
@@ -780,14 +773,12 @@ namespace Server.Items
                         {
                             int xml_data = WeaponDiceDefaults.GetDice(this.GetType().BaseType).getOffset;
                             m_DiceOffset = xml_data;
-                            InvalidateProperties();
                             return m_DiceOffset;
                         }
                         catch
                         {
                             Console.WriteLine("Warning! Dice_Offset:get() could not get value from xml! Setting from AosMinDamage and AosMaxDamage");
                             SetDamage(AosMinDamage, AosMaxDamage);
-                            InvalidateProperties();
                             return m_DiceOffset;
                         }
                     }

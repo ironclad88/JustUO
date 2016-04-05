@@ -130,6 +130,13 @@ namespace Server.Misc
             Skill skill = from.Skills[skillName];
             double chance = SuccessChance(from, skillName, difficulty, doPrint);
 
+            if(skill == null)
+                return false;
+            if (chance < 0.0)
+                return false; // Too difficult
+            else if (chance >= 1.0)
+                return true; // No challenge
+
             Point2D loc = new Point2D(from.Location.X / LocationSize, from.Location.Y / LocationSize);
             return CheckSkill(from, skill, loc, chance, true);
         }
@@ -211,7 +218,10 @@ namespace Server.Misc
         public static bool Mobile_SkillCheckTarget(Mobile from, SkillName skillName, object target, double difficulty, bool doPrint)// double minSkill, double maxSkill)
         {
             Skill skill = from.Skills[skillName];
+            if (skill == null)
+                return false;
             double chance;
+            bool is_active = true;
             if (true == IsLoreSkill(skillName))
             {
                 // Special handling of lore skills, since their difficulty is not adjustable by choosing a different target..
@@ -221,13 +231,18 @@ namespace Server.Misc
                 value = skill.Value;
 
                 chance = 0.2 + (value / 100);
+                is_active = false; // don't count these as active
             }
             else
             {
                 chance = SuccessChance(from, skillName, difficulty, doPrint);
+                if (chance < 0.0)
+                    return false; // Too difficult
+                else if (chance >= 1.0)
+                    return true; // No challenge
             }
 
-            return CheckSkill(from, skill, target, chance);
+            return CheckSkill(from, skill, target, chance, is_active);
         }
 
         public static bool Mobile_SkillCheckDirectTarget(Mobile from, SkillName skillName, object target, double chance)
