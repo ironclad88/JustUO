@@ -146,7 +146,7 @@ namespace Server.Gumps
 
             from.CloseGump(typeof(ResurrectGump));
 
-            if (ResurrectMessage.SilverSapling == this.m_Msg && 1 == info.ButtonID)
+            /*if (ResurrectMessage.SilverSapling == this.m_Msg && 1 == info.ButtonID)
             {
                 PlayerMobile pm = from as PlayerMobile;
                 if (null != pm && pm.Region.IsPartOf("Abyss"))
@@ -162,7 +162,7 @@ namespace Server.Gumps
                     pm.Resurrect();
                 }
                 return;
-            }
+            } */
 
             if (info.ButtonID == 1 || info.ButtonID == 2)
             {

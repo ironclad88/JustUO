@@ -88,7 +88,7 @@ namespace Server.Items
 
                 this.InvalidateProperties();
 
-                Timer.DelayCall(TimeSpan.FromSeconds(8.0), new TimerStateCallback(ReleaseHealLock), from);
+                Timer.DelayCall(TimeSpan.FromSeconds(10.0), new TimerStateCallback(ReleaseHealLock), from); // 10 sec cooldown to use bloodstone again
 
 
             }

@@ -19,7 +19,7 @@ namespace Server.Items.ZuluIems.AnimalTicket
             pet.IsStabled = true;
 
             pet.Internalize();
-            pet.SetControlMaster(null); // glöm inte att sätt mastern sen
+            pet.SetControlMaster(null);
             pet.ControlOrder = OrderType.Stay;
             pet.SummonMaster = null;
             pet.IsStabled = true;

@@ -31,6 +31,29 @@ namespace Server.Items.ZuluIems.SOS
             }
         }
 
+        private static int randomLevel()
+        {
+            int chance = Utility.Random(1, 100);
+
+            if (chance <= 3)
+            {
+                return 5;
+            }
+            else if (chance <= 10)
+            {
+                return 4;
+            }
+            else if (chance <= 40)
+            {
+                return 3;
+            }
+            else if (chance <= 60)
+            {
+                return 2;
+            }
+            return 1;
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int Level
         {
@@ -40,7 +63,7 @@ namespace Server.Items.ZuluIems.SOS
             }
             set
             {
-                this.m_Level = Math.Max(1, Math.Min(value, 4));
+                this.m_Level = randomLevel();
                 this.InvalidateProperties();
             }
         }

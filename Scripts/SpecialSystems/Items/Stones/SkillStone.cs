@@ -46,11 +46,11 @@ namespace Server.Items
             }
             else if (from.skillBoost == NUMBER_OF_BOOSTS)
             {
-                from.SendMessage("You have already boosted your skills!");
+                from.SendMessage("You have already boosted!");
             }
             else if (from.statBoost == true)
             {
-                from.SendMessage("You have already boosted your stat!");
+                from.SendMessage("You have already boosted!");
             }
         }
 

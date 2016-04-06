@@ -14,8 +14,8 @@ namespace Server.Items.ZuluIems.GMItems.Clothing
             this.Name = "Robe of the Cleric";
             this.Weight = 10.0;
 
-            this.SkillBonuses.SetValues(0, SkillName.SpiritSpeak, 5.0);
-            this.SkillBonuses.SetValues(1, SkillName.Healing, 5.0);
+            this.SkillBonuses.SetValues(0, SkillName.SpiritSpeak, 6.0);
+            this.SkillBonuses.SetValues(1, SkillName.Healing, 6.0);
         }
 
         public RobeoftheCleric(Serial serial)

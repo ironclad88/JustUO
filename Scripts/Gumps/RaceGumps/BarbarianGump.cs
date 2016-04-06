@@ -60,7 +60,7 @@ namespace Server.Gumps.RaceGumps
             from.Frozen = false;
             if (info.ButtonID == 1 || info.ButtonID == 2)
             {
-                from.MoveToWorld(new Point3D(1475, 1645, 20), Map.Trammel); // move player to Britain center
+                from.MoveToWorld(new Point3D(1475, 1645, 20), Map.Felucca); // move player to Britain center
                 from.Hue = 33804;
 
                 //from.Name = from.Name + " [Dark-Elf]";  // not sure about this one, its kinda ugly
