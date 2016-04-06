@@ -146,7 +146,8 @@ namespace Server.Mobiles
             {
                 for (int i = this.Backpack.Items.Count - 1; i >= 0; i--)
                 {
-                    this.Backpack.Items[i].Delete();
+                    if (!ItemFlags.GetTaken(this.Backpack.Items[i]))
+                        this.Backpack.Items[i].Delete();
                 }
                 this.FillBackPack();
             }

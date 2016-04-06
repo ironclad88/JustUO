@@ -34,7 +34,7 @@ namespace Server.SkillHandlers
             private readonly Mobile m_Thief;
 
             public StealingTarget(Mobile thief)
-                : base(1, false, TargetFlags.None)
+                : base(4, false, TargetFlags.None)
             {
                 m_Thief = thief;
 
@@ -60,7 +60,7 @@ namespace Server.SkillHandlers
                 else if (root is Mobile && ((Mobile)root).Player) // shouldnt be able to steal from players
                 {
                     m_Thief.SendMessage("You cannot steal from other players");
-                  //  m_Thief.SendLocalizedMessage(1005596); // You must be in the thieves guild to steal from other players.
+                    //  m_Thief.SendLocalizedMessage(1005596); // You must be in the thieves guild to steal from other players.
                 }
                 /*else if (SuspendOnMurder && root is Mobile && ((Mobile)root).Player && IsInGuild(m_Thief) && m_Thief.Kills > 0)
                 {
@@ -186,7 +186,7 @@ namespace Server.SkillHandlers
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else if (!m_Thief.InRange(toSteal.GetWorldLocation(), 1))
+                else if (!m_Thief.InRange(toSteal.GetWorldLocation(), 4))
                 {
                     m_Thief.SendLocalizedMessage(502703); // You must be standing next to an item to steal it.
                 }
@@ -207,96 +207,100 @@ namespace Server.SkillHandlers
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
                 /* else if (root is Mobile && !m_Thief.CanBeHarmful((Mobile)root))*/ // removed this to steal from npc
-                //  { }
-                
+                                                                                     //  { }
+
                 else if (root is Corpse)
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else if(toSteal is Item)
+                else if (toSteal.Deleted)
                 {
-                    double w = toSteal.Weight + toSteal.TotalWeight;
+                    m_Thief.SendLocalizedMessage(502723); // You fail to steal the item.
+                }
+                else if (toSteal is Item)
+                {
+                    // 
+                    if (toSteal.Stackable && toSteal.Amount > 1)
+                    {
+                        int maxAmount = (int)((m_Thief.Skills[SkillName.Stealing].Value / 10.0) / toSteal.Weight);
 
-                    if (w > 10)
-                    {
-                        m_Thief.SendMessage("That is too heavy to steal.");
-                    }
-                    else
-                    {
-                        if (toSteal.Stackable && toSteal.Amount > 1)
+                        if (maxAmount < 1)
                         {
-                            int maxAmount = (int)((m_Thief.Skills[SkillName.Stealing].Value / 10.0) / toSteal.Weight);
+                            maxAmount = 1;
+                        }
+                        else if (maxAmount > toSteal.Amount)
+                        {
+                            maxAmount = toSteal.Amount;
+                        }
 
-                            if (maxAmount < 1)
+                        int amount = Utility.RandomMinMax(1, maxAmount);
+
+                        if (amount >= toSteal.Amount)
+                        {
+                            if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, 0, 100))
                             {
-                                maxAmount = 1;
-                            }
-                            else if (maxAmount > toSteal.Amount)
-                            {
-                                maxAmount = toSteal.Amount;
-                            }
-
-                            int amount = Utility.RandomMinMax(1, maxAmount);
-
-                            if (amount >= toSteal.Amount)
-                            {
-                                int pileWeight = (int)Math.Ceiling(toSteal.Weight * toSteal.Amount);
-                                pileWeight *= 10;
-
-                                if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, pileWeight - 22.5, pileWeight + 27.5))
+                                if (!toSteal.Deleted)
                                 {
                                     stolen = toSteal;
+                                    ItemFlags.SetTaken(stolen, true);
+                                    ItemFlags.SetStealable(stolen, false);
                                 }
                             }
-                            else
+                        }
+                        else
+                        {
+                            if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, 0, 100))
                             {
-                                int pileWeight = (int)Math.Ceiling(toSteal.Weight * amount);
-                                pileWeight *= 10;
+                                stolen = Mobile.LiftItemDupe(toSteal, toSteal.Amount - amount);
+                                
 
-                                if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, pileWeight - 22.5, pileWeight + 27.5))
+                                if (stolen == null)
                                 {
-                                    stolen = Mobile.LiftItemDupe(toSteal, toSteal.Amount - amount);
-
-                                    if (stolen == null)
+                                    if (!toSteal.Deleted)
                                     {
+                                        ItemFlags.SetTaken(stolen, true);
+                                        ItemFlags.SetStealable(stolen, false);
                                         stolen = toSteal;
                                     }
                                 }
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, 0, 100))
                         {
-                            int iw = (int)Math.Ceiling(w);
-                            iw *= 10;
-
-                            if (m_Thief.CheckTargetSkill(SkillName.Stealing, toSteal, iw - 22.5, iw + 27.5))
+                            if (!toSteal.Deleted)
                             {
+                                ItemFlags.SetTaken(stolen, true);
+                                ItemFlags.SetStealable(stolen, false);
                                 stolen = toSteal;
                             }
                         }
-
-                        if (stolen != null)
-                        {
-                            m_Thief.SendLocalizedMessage(502724); // You succesfully steal the item.
-                            var temp = (BaseVendor)root;
-                            temp.stealFrom();
-                            ItemFlags.SetTaken(stolen, true);
-                            ItemFlags.SetStealable(stolen, false);
-                            stolen.Movable = true;
-
-                            if (si != null)
-                            {
-                                toSteal.Movable = true;
-                                si.Item = null;
-                            }
-                        }
-                        else
-                        {
-                            m_Thief.SendLocalizedMessage(502723); // You fail to steal the item.
-                        }
-
-                        caught = (m_Thief.Skills[SkillName.Stealing].Value < Utility.Random(150));
                     }
+
+                    if (stolen != null)
+                    {
+                        m_Thief.SendLocalizedMessage(502724); // You succesfully steal the item.
+                        var temp = (BaseVendor)root;
+                        temp.stealFrom();
+                        ItemFlags.SetTaken(stolen, true);
+                        ItemFlags.SetStealable(stolen, false);
+                        stolen.Movable = true;
+
+                        if (si != null)
+                        {
+                            toSteal.Movable = true;
+                            si.Item = null;
+                        }
+                    }
+                    else
+                    {
+                        m_Thief.SendLocalizedMessage(502723); // You fail to steal the item.
+                    }
+
+                    caught = (m_Thief.Skills[SkillName.Stealing].Value < Utility.Random(150));
+
                 }
 
                 return stolen;
@@ -305,7 +309,7 @@ namespace Server.SkillHandlers
             protected override void OnTarget(Mobile from, object target)
             {
                 from.RevealingAction();
-                
+
                 Item stolen = null;
                 object root = null;
                 bool caught = false;
@@ -378,14 +382,14 @@ namespace Server.SkillHandlers
                     m_Thief.CriminalAction(false);
                 }
 
-                if (root is Mobile && ((Mobile)root).Player && m_Thief is PlayerMobile && IsInnocentTo(m_Thief, (Mobile)root) &&
+                /*if (root is Mobile && ((Mobile)root).Player && m_Thief is PlayerMobile && IsInnocentTo(m_Thief, (Mobile)root) &&
                     !IsInGuild((Mobile)root))
                 {
                     PlayerMobile pm = (PlayerMobile)m_Thief;
 
                     pm.PermaFlags.Add((Mobile)root);
                     pm.Delta(MobileDelta.Noto);
-                }
+                }*/
             }
         }
 
@@ -418,7 +422,7 @@ namespace Server.SkillHandlers
                 m.SendLocalizedMessage(502698); // Which item do you want to steal?
             }
 
-            return TimeSpan.FromSeconds(10.0);
+            return TimeSpan.FromSeconds(1);
         }
     }
 

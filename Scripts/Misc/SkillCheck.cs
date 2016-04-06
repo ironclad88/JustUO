@@ -209,6 +209,7 @@ namespace Server.Misc
                 SkillName.ItemID == skillName ||
                 SkillName.ArmsLore == skillName ||
                 SkillName.AnimalLore == skillName ||
+                SkillName.Stealing == skillName ||  // TEMPORARY REMOVE LATER WHEN REMAKE STEALING
                 SkillName.TasteID == skillName ||
                 SkillName.Forensics == skillName )
                 return true;
