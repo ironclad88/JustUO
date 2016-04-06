@@ -3447,6 +3447,11 @@ namespace Server.Mobiles
 
             switch (version)
             {
+                case 31:
+                    {
+                        m_AutoLoop = reader.ReadInt();
+                        goto case 30;
+                    }
                 case 30:
                     {
                       Onshow = reader.ReadBool();
@@ -3859,7 +3864,8 @@ namespace Server.Mobiles
             
             base.Serialize(writer);
             
-            writer.Write(30); // version old 29
+            writer.Write(31); // version old 29
+            writer.Write(m_AutoLoop);
             writer.Write((bool)Onshow);
             // Version 29
             writer.Write(m_GauntletPoints);

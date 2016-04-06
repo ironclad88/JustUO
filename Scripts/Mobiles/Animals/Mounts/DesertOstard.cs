@@ -16,7 +16,7 @@ namespace Server.Mobiles
             : base(name, 0xD2, 0x3EA3, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4)
         {
             this.BaseSoundID = 0x270;
-            this.Name = "";
+            this.Name = "a desert ostard";
             this.SetStr(94, 170);
             this.SetDex(56, 75);
             this.SetInt(6, 10);

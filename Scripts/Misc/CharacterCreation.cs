@@ -1123,188 +1123,68 @@ namespace Server.Misc
             {
                 case 1: // Warrior
                     {
-                        EquipItem(new Robe());
+                        EquipItem(new LeatherChest());
+                        EquipItem(new LongPants());
+                        EquipItem(new Longsword());
+                        EquipItem(new HeaterShield());
+                        EquipItem(new Shoes());
+                        addSkillItems = false;
                         break;
                     }
-                case 2:
+                case 2: // Mage
                     {
                         EquipItem(new Robe());
+                        EquipItem(new WizardsHat());
+                        EquipItem(new QuarterStaff());
+                        EquipItem(new Shoes());
+                        addSkillItems = false;
                         break;
                     }
-                case 3:
+                case 3: // Crafter
                     {
-                        EquipItem(new Robe());
+                        EquipItem(new Shirt());
+                        EquipItem(new LongPants());
+                        EquipItem(new SmithHammer());
+                        EquipItem(new FullApron());
+                        EquipItem(new Shoes());
+                        addSkillItems = false;
                         break;
                     }
                 case 4: // Necromancer
                     {
                         EquipItem(new Robe());
-                        /*Container regs = new BagOfNecroReagents(50);
-
-                        if (!Core.AOS)
-                        {
-                            foreach (Item item in regs.Items)
-                                item.LootType = LootType.Newbied;
-                        }
-
-                        PackItem(regs);
-                        
-                        regs.LootType = LootType.Regular;
-                        */
-                        if (elf || human)
-                            //  EquipItem(new BoneHelm());
-
-                            if (elf)
-                            {
-                                /*  EquipItem(new ElvenMachete());
-                                  EquipItem(NecroHue(new LeafChest()));
-                                  EquipItem(NecroHue(new LeafArms()));
-                                  EquipItem(NecroHue(new LeafGloves()));
-                                  EquipItem(NecroHue(new LeafGorget()));
-                                  EquipItem(NecroHue(new LeafGorget()));
-                                  EquipItem(NecroHue(new ElvenPants()));	//TODO: Verify the pants
-                                  EquipItem(new ElvenBoots());*/
-                            }
-                            else if (human)
-                            {
-                                  //EquipItem(new BoneHarvester());
-                                 /* EquipItem(NecroHue(new LeatherChest()));
-                                  EquipItem(NecroHue(new LeatherArms()));
-                                  EquipItem(NecroHue(new LeatherGloves()));
-                                  EquipItem(NecroHue(new LeatherGorget()));
-                                  EquipItem(NecroHue(new LeatherLegs()));
-                                  EquipItem(NecroHue(new Skirt()));
-                                  EquipItem(new Sandals(0x8FD)); */
-                            }
-                            else if (gargoyle)
-                            {
-                                /*  EquipItem(new GlassSword());
-                                  EquipItem(NecroHue(new GargishLeatherChest()));
-                                  EquipItem(NecroHue(new GargishLeatherArms()));
-                                  EquipItem(NecroHue(new GargishLeatherLegs()));
-                                  EquipItem(NecroHue(new GargishLeatherKilt()));*/
-                            }
-
-                        //    Spellbook book = new NecromancerSpellbook((ulong)0x8981); // animate dead, evil omen, pain spike, summon familiar, wraith form
-
-                        //     PackItem(book);
-
-                        //      book.LootType = LootType.Blessed;
-
+                        EquipItem(new WizardsHat());
+                        EquipItem(new QuarterStaff());
+                        EquipItem(new Shoes());
                         addSkillItems = false;
                         break;
                     }
                 case 5: // Paladin
                     {
-                        EquipItem(new Robe());
-                        if (elf)
-                        {
-                            /*  EquipItem(new ElvenMachete());
-                              EquipItem(new WingedHelm());
-                              EquipItem(new LeafGorget());
-                              EquipItem(new LeafArms());
-                              EquipItem(new LeafChest());
-                              EquipItem(new LeafLegs());
-                              EquipItem(new ElvenBoots());	//Verify hue*/
-                        }
-                        else if (human)
-                        {
-                               /*EquipItem(new Broadsword());
-                               EquipItem(new Helmet());
-                               EquipItem(new PlateGorget());
-                               EquipItem(new RingmailArms());
-                               EquipItem(new RingmailChest());
-                               EquipItem(new RingmailLegs());
-                               EquipItem(new ThighBoots(0x748));
-                               EquipItem(new Cloak(0xCF));
-                               EquipItem(new BodySash(0xCF)); */
-                        }
-                        else if (gargoyle)
-                        {
-                            /*  EquipItem(new DreadSword());
-                              EquipItem(new GargishPlateChest());
-                              EquipItem(new GargishPlateArms());
-                              EquipItem(new GargishPlateLegs());
-                              EquipItem(new GargishPlateKilt());*/
-                        }
-
-                        //    Spellbook book = new BookOfChivalry((ulong)0x3FF);
-                        //    book.LootType = LootType.Blessed;
-                        //    PackItem(book);
-
+                        EquipItem(new LeatherChest());
+                        EquipItem(new LongPants());
+                        EquipItem(new Longsword());
+                        EquipItem(new HeaterShield());
+                        EquipItem(new Shoes());
                         addSkillItems = false;
                         break;
                     }
 
                 case 6: // Samurai
                     {
-                        EquipItem(new Robe());
-                        if (elf || human)
-                        {
-                              /*EquipItem(new HakamaShita(0x2C3));
-                              EquipItem(new Hakama(0x2C3));
-                              EquipItem(new SamuraiTabi(0x2C3));
-                              EquipItem(new TattsukeHakama(0x22D));
-                              EquipItem(new Bokuto());
-
-                            //if (elf)
-                            //  EquipItem(new RavenHelm());
-                            // else
-                               EquipItem(new LeatherJingasa()); */
-                        }
-                        else if (gargoyle)
-                        {
-                            /*  EquipItem(new GlassSword());
-                              EquipItem(new GargishPlateChest());
-                              EquipItem(new GargishPlateArms());
-                              EquipItem(new GargishPlateLegs());
-                              EquipItem(new GargishPlateKilt());*/
-                        }
-
-                        //  PackItem(new Scissors());
-                        //   PackItem(new Bandage(50));
-
-                        //    Spellbook book = new BookOfBushido();
-                        //    PackItem(book);
-
+                        EquipItem(new LeatherChest());
+                        EquipItem(new LongPants());
+                        EquipItem(new Longsword());
+                        EquipItem(new HeaterShield());
+                        EquipItem(new Shoes());
                         addSkillItems = false;
                         break;
                     }
                 case 7: // Ninja
                     {
                         EquipItem(new Robe());
-                       // int[] hues = new int[] { 0x1A8, 0xEC, 0x99, 0x90, 0xB5, 0x336, 0x89 };
-                        //TODO: Verify that's ALL the hues for that above.
-
-                        if (elf || human)
-                        {
-                              /*EquipItem(new Kasa());
-                              EquipItem(new TattsukeHakama(hues[Utility.Random(hues.Length)]));
-                              EquipItem(new HakamaShita(0x2C3));
-                              EquipItem(new NinjaTabi(0x2C3));
-
-                             // if (elf)
-                            //      EquipItem(new AssassinSpike());
-                             // else
-                                  EquipItem(new Tekagi()); */
-                        }
-                        else if (gargoyle)
-                        {
-                            /* EquipItem(new GargishDagger());
-
-                             int hue = hues[Utility.Random(hues.Length)];
-
-                             EquipItem(new GargishClothChest(hue));
-                             EquipItem(new GargishClothArms(hue));
-                             EquipItem(new GargishClothLegs(hue));
-                             EquipItem(new GargishClothKilt(hue));*/
-                        }
-
-                        //   PackItem(new SmokeBomb());
-
-                        //     Spellbook book = new BookOfNinjitsu();
-                        //      PackItem(book);
-
+                        EquipItem(new Banana());
+                        EquipItem(new Dagger());
                         addSkillItems = false;
                         break;
                     }

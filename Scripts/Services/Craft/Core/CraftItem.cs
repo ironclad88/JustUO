@@ -60,7 +60,7 @@ namespace Server.Engines.Craft
         private readonly CraftSkillCol m_arCraftSkill;
         private readonly Type m_Type;
 
-        private double[] OreInfo;
+      //  private double[] OreInfo;
 
         private readonly string m_GroupNameString;
         private readonly int m_GroupNameNumber;
@@ -70,7 +70,7 @@ namespace Server.Engines.Craft
 
         private BeverageType m_RequiredBeverage;
 
-        private double Qual;
+      //  private double Qual;
 
         private bool m_NeedHeat;
         private bool m_NeedOven;

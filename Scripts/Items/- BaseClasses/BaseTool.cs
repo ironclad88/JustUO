@@ -118,12 +118,6 @@ namespace Server.Items
             this.m_Quality = ToolQuality.Regular;
         }
 
-        public BaseTool(string crap, int itemID)
-            : base(itemID)
-        {
-            this.m_Quality = ToolQuality.Regular;
-        }
-
         public BaseTool(Serial serial)
             : base(serial)
         {

@@ -21,7 +21,21 @@ namespace Server.SkillHandlers
 
             if (m.SpecClasse == SpecClasse.Crafter) // reduced cooldown for specced crafters
             {
-                return TimeSpan.FromSeconds(3.0);
+                switch (m.SpecLevel)
+                {
+                    case 1:
+                        return TimeSpan.FromSeconds(3.5);
+                    case 2:
+                        return TimeSpan.FromSeconds(3.0);
+                    case 3:
+                        return TimeSpan.FromSeconds(2.5);
+                    case 4:
+                        return TimeSpan.FromSeconds(2.0);
+                    case 5:
+                        return TimeSpan.FromSeconds(1.5);
+                    case 6:
+                        return TimeSpan.FromSeconds(1.0);
+                }
             }
             return TimeSpan.FromSeconds(4.0);
         }

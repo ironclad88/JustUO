@@ -13,13 +13,7 @@ namespace Server.Items
             this.Weight = 1.0;
         }
 
-        [Constructable]
-        public TinkerTools(int uses)
-            : base("lol", 0x1EB8)
-        {
-            this.Weight = 1.0;
-        }
-
+       
         public TinkerTools(Serial serial)
             : base(serial)
         {

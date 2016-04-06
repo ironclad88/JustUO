@@ -32,7 +32,8 @@ namespace Server.SkillHandlers
             {
                 if (!from.Alive)
                 {
-                    from.SendLocalizedMessage(500331); // The spirits of the dead are not the province of animal lore.
+                    from.SendMessage("You can´t use this on something that is dead");
+                 //   from.SendLocalizedMessage(500331); // The spirits of the dead are not the province of animal lore.
                 }
                 else if (targeted is BaseCreature)
                 {

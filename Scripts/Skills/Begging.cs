@@ -31,7 +31,7 @@ namespace Server.SkillHandlers
 
             m.SendLocalizedMessage(500397); // To whom do you wish to grovel?
 
-            return TimeSpan.FromHours(6.0); // 6 hour timespan, wat?
+            return TimeSpan.FromHours(6.0);
         }
 
         private class InternalTarget : Target
@@ -134,7 +134,7 @@ namespace Server.SkillHandlers
                         m_From.SendLocalizedMessage(500404); // They seem unwilling to give you any money.
                     }
 
-                    else if (m_From.CheckTargetSkill(SkillName.Begging, m_Target, 0.0, 100.0))
+                    else if (m_From.CheckTargetSkill(SkillName.Begging, m_Target, 0.0, 100.0)) // remake this, now that vendors respawn inventory we can use this the right way and decrease vendor gold.
                     {
                         int toConsume = theirPack.GetAmount(typeof(Gold)) / 10;
                         Random rnd = new Random();

@@ -34,7 +34,7 @@ namespace Server.SkillHandlers
             private readonly Mobile m_Thief;
 
             public StealingTarget(Mobile thief)
-                : base(4, false, TargetFlags.None)
+                : base(1, false, TargetFlags.None)
             {
                 m_Thief = thief;
 
@@ -186,7 +186,7 @@ namespace Server.SkillHandlers
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else if (!m_Thief.InRange(toSteal.GetWorldLocation(), 4))
+                else if (!m_Thief.InRange(toSteal.GetWorldLocation(), 1))
                 {
                     m_Thief.SendLocalizedMessage(502703); // You must be standing next to an item to steal it.
                 }
@@ -206,23 +206,19 @@ namespace Server.SkillHandlers
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                /* else if (root is Mobile && !m_Thief.CanBeHarmful((Mobile)root))*/ // removed this to steal from npc
-                                                                                     //  { }
-
                 else if (root is Corpse)
                 {
                     m_Thief.SendLocalizedMessage(502710); // You can't steal that!
                 }
-                else if (toSteal.Deleted)
+                else if (toSteal.Deleted) // if the item is deleted, you just fail
                 {
                     m_Thief.SendLocalizedMessage(502723); // You fail to steal the item.
                 }
                 else if (toSteal is Item)
                 {
-                    // 
                     if (toSteal.Stackable && toSteal.Amount > 1)
                     {
-                        int maxAmount = (int)((m_Thief.Skills[SkillName.Stealing].Value / 10.0) / toSteal.Weight);
+                        int maxAmount = (int)((m_Thief.Skills[SkillName.Stealing].Value / 10.0) / toSteal.Weight); // gotta remake this, weight should not be used. its stupid and i say so
 
                         if (maxAmount < 1)
                         {
@@ -253,13 +249,12 @@ namespace Server.SkillHandlers
                             {
                                 stolen = Mobile.LiftItemDupe(toSteal, toSteal.Amount - amount);
                                 
-
                                 if (stolen == null)
                                 {
                                     if (!toSteal.Deleted)
                                     {
                                         ItemFlags.SetTaken(stolen, true);
-                                        ItemFlags.SetStealable(stolen, false);
+                                        ItemFlags.SetStealable(stolen, false); // not sure...
                                         stolen = toSteal;
                                     }
                                 }
@@ -273,7 +268,7 @@ namespace Server.SkillHandlers
                             if (!toSteal.Deleted)
                             {
                                 ItemFlags.SetTaken(stolen, true);
-                                ItemFlags.SetStealable(stolen, false);
+                                ItemFlags.SetStealable(stolen, false); // not sure...
                                 stolen = toSteal;
                             }
                         }
@@ -285,7 +280,7 @@ namespace Server.SkillHandlers
                         var temp = (BaseVendor)root;
                         temp.stealFrom();
                         ItemFlags.SetTaken(stolen, true);
-                        ItemFlags.SetStealable(stolen, false);
+                        ItemFlags.SetStealable(stolen, false); // not sure...
                         stolen.Movable = true;
 
                         if (si != null)
@@ -381,15 +376,7 @@ namespace Server.SkillHandlers
                 {
                     m_Thief.CriminalAction(false);
                 }
-
-                /*if (root is Mobile && ((Mobile)root).Player && m_Thief is PlayerMobile && IsInnocentTo(m_Thief, (Mobile)root) &&
-                    !IsInGuild((Mobile)root))
-                {
-                    PlayerMobile pm = (PlayerMobile)m_Thief;
-
-                    pm.PermaFlags.Add((Mobile)root);
-                    pm.Delta(MobileDelta.Noto);
-                }*/
+                
             }
         }
 
@@ -422,7 +409,25 @@ namespace Server.SkillHandlers
                 m.SendLocalizedMessage(502698); // Which item do you want to steal?
             }
 
-            return TimeSpan.FromSeconds(1);
+            if(m.SpecClasse == SpecClasse.Thief)
+            {
+                switch (m.SpecLevel)
+                {
+                    case 1:
+                        return TimeSpan.FromSeconds(8);
+                    case 2:
+                        return TimeSpan.FromSeconds(7); 
+                    case 3:
+                        return TimeSpan.FromSeconds(6);
+                    case 4:
+                        return TimeSpan.FromSeconds(5);
+                    case 5:
+                        return TimeSpan.FromSeconds(5);
+                    case 6:
+                        return TimeSpan.FromSeconds(5);
+                }
+            }
+            return TimeSpan.FromSeconds(9); // 9 sec cooldown for stealing
         }
     }
 

@@ -8,7 +8,7 @@ namespace Server.Items
     {
         [Constructable]
         public ScribesPen()
-            : base("lol", 0x0FBF)
+            : base(0x0FBF)
         {
             this.Weight = 1.0;
         }
