@@ -404,6 +404,47 @@ namespace Server.Mobiles
                         this.AddToBackpack(new AngelHides(Utility.Random(1, 2)));
                     }
                     break;
+                case "the furtrader":
+                    this.AddToBackpack(new Gold(Utility.Random(50, 150)));
+                    this.AddToBackpack(new Hides(Utility.Random(1, 5)));
+                    switch (Utility.Random(1, 4))
+                    {
+                        case 1:
+                            this.AddToBackpack(new LeatherChest());
+                            break;
+                        case 2:
+                            this.AddToBackpack(new LeatherLegs());
+                            break;
+                        case 3:
+                            this.AddToBackpack(new LeatherGloves());
+                            break;
+                        case 4:
+                            this.AddToBackpack(new LeatherArms());
+                            break;
+                    }
+
+                    if (hundred <= 30)
+                    {
+                        this.AddToBackpack(new OstardHides(Utility.Random(1, 3)));
+                    }
+                    else if (hundred <= 10)
+                    {
+                        this.AddToBackpack(new NecromancerHides(Utility.Random(1, 3)));
+                    }
+                    else if (hundred <= 2)
+                    {
+                        this.AddToBackpack(new LicheHides(Utility.Random(1, 3)));
+                    }
+
+                    if (thousand <= 5)
+                    {
+                        this.AddToBackpack(new BalrogHides(Utility.Random(1, 3)));
+                    }
+                    else if (thousand <= 3)
+                    {
+                        this.AddToBackpack(new AngelHides(Utility.Random(1, 2)));
+                    }
+                    break;
                 case "the leather worker":
                     this.AddToBackpack(new Gold(Utility.Random(50, 150)));
                     this.AddToBackpack(new Hides(Utility.Random(1, 5)));
@@ -447,84 +488,134 @@ namespace Server.Mobiles
                     break;
                 case "the miner":
                     this.AddToBackpack(new Gold(Utility.Random(50, 150)));
-                    this.AddToBackpack(new Hammer(Utility.Random(1, 5)));
-                    this.AddToBackpack(new StrawHat());
+                    this.AddToBackpack(new IronIngot(Utility.Random(1, 4)));
+                    this.AddToBackpack(new DullCopperIngot(Utility.Random(1, 5)));
                     switch (Utility.Random(1, 4))
                     {
                         case 1:
-                            this.AddToBackpack(new IronIngot(Utility.Random(1, 3)));
+                            this.AddToBackpack(new CopperOre(Utility.Random(1, 6)));
                             break;
                         case 2:
-                            this.AddToBackpack(new DullCopperOre(Utility.Random(1, 3)));
+                            this.AddToBackpack(new SpectralIngot(Utility.Random(1, 5)));
                             break;
                         case 3:
-                            this.AddToBackpack(new BronzeOre(Utility.Random(1, 3)));
+                            this.AddToBackpack(new BronzeOre(Utility.Random(1, 4)));
                             break;
                         case 4:
-                            this.AddToBackpack(new OnyxIngot(Utility.Random(1, 3)));
+                            this.AddToBackpack(new OnyxIngot(Utility.Random(1, 5)));
+                            break;
+                        case 5:
+                            this.AddToBackpack(new SpectralOre(Utility.Random(1, 5)));
                             break;
                     }
                     if (hundred <= 30)
                     {
-                        this.AddToBackpack(new IceRockIngot(Utility.Random(1, 3)));
+                        this.AddToBackpack(new IceRockIngot(Utility.Random(1, 6)));
                     }
                     else if (hundred <= 10)
                     {
-                        this.AddToBackpack(new RedElvenOre(Utility.Random(1, 3)));
+                        this.AddToBackpack(new RedElvenOre(Utility.Random(1, 6)));
                     }
                     else if (hundred <= 2)
                     {
-                        this.AddToBackpack(new GoddessIngot(Utility.Random(1, 3)));
+                        this.AddToBackpack(new ExecutorOre(Utility.Random(1, 6)));
                     }
 
                     if (thousand <= 5)
                     {
-                        this.AddToBackpack(new DSROre(Utility.Random(1, 2)));
+                        this.AddToBackpack(new DSROre());
                     }
                     else if (thousand <= 3)
                     {
-                        this.AddToBackpack(new RNDOre(Utility.Random(1, 2)));
+                        this.AddToBackpack(new RNDOre());
                     }
                     break;
-                case "the blacksmith":
+                case "the iron worker":
                     this.AddToBackpack(new Gold(Utility.Random(50, 150)));
-                    this.AddToBackpack(new Hammer());
-                    this.AddToBackpack(new TinkersTools());
+                    this.AddToBackpack(new IronIngot(Utility.Random(1, 4)));
+                    this.AddToBackpack(new DullCopperIngot(Utility.Random(1, 5)));
                     switch (Utility.Random(1, 4))
                     {
                         case 1:
-                            this.AddToBackpack(new IronIngot(Utility.Random(1, 3)));
+                            this.AddToBackpack(new CopperOre(Utility.Random(1, 6)));
                             break;
                         case 2:
-                            this.AddToBackpack(new DullCopperOre(Utility.Random(1, 3)));
+                            this.AddToBackpack(new SpectralIngot(Utility.Random(1, 5)));
                             break;
                         case 3:
-                            this.AddToBackpack(new BronzeOre(Utility.Random(1, 3)));
+                            this.AddToBackpack(new BronzeOre(Utility.Random(1, 4)));
                             break;
                         case 4:
-                            this.AddToBackpack(new OnyxIngot(Utility.Random(1, 3)));
+                            this.AddToBackpack(new OnyxIngot(Utility.Random(1, 5)));
+                            break;
+                        case 5:
+                            this.AddToBackpack(new SpectralOre(Utility.Random(1, 5)));
                             break;
                     }
                     if (hundred <= 30)
                     {
-                        this.AddToBackpack(new IceRockIngot(Utility.Random(1, 3)));
+                        this.AddToBackpack(new IceRockIngot(Utility.Random(1, 6)));
                     }
                     else if (hundred <= 10)
                     {
-                        this.AddToBackpack(new RedElvenOre(Utility.Random(1, 3)));
+                        this.AddToBackpack(new RedElvenOre(Utility.Random(1, 6)));
                     }
                     else if (hundred <= 2)
                     {
-                        this.AddToBackpack(new GoddessIngot(Utility.Random(1, 3)));
+                        this.AddToBackpack(new ExecutorOre(Utility.Random(1, 6)));
                     }
 
-                    else if (thousand <= 5)
+                    if (thousand <= 5)
                     {
-                        this.AddToBackpack(new DSROre(Utility.Random(1, 2)));
+                        this.AddToBackpack(new DSROre());
                     }
                     else if (thousand <= 3)
                     {
-                        this.AddToBackpack(new RNDOre(Utility.Random(1, 2)));
+                        this.AddToBackpack(new RNDOre());
+                    }
+                    break;
+                case "the blacksmith":
+                    this.AddToBackpack(new Gold(Utility.Random(50, 150)));
+                    this.AddToBackpack(new IronIngot(Utility.Random(1, 4)));
+                    this.AddToBackpack(new DullCopperIngot(Utility.Random(1, 5)));
+                    switch (Utility.Random(1, 4))
+                    {
+                        case 1:
+                            this.AddToBackpack(new CopperOre(Utility.Random(1, 6)));
+                            break;
+                        case 2:
+                            this.AddToBackpack(new SpectralIngot(Utility.Random(1, 5)));
+                            break;
+                        case 3:
+                            this.AddToBackpack(new BronzeOre(Utility.Random(1, 4)));
+                            break;
+                        case 4:
+                            this.AddToBackpack(new OnyxIngot(Utility.Random(1, 5)));
+                            break;
+                        case 5:
+                            this.AddToBackpack(new SpectralOre(Utility.Random(1, 5)));
+                            break;
+                    }
+                    if (hundred <= 30)
+                    {
+                        this.AddToBackpack(new IceRockIngot(Utility.Random(1, 6)));
+                    }
+                    else if (hundred <= 10)
+                    {
+                        this.AddToBackpack(new RedElvenOre(Utility.Random(1, 6)));
+                    }
+                    else if (hundred <= 2)
+                    {
+                        this.AddToBackpack(new ExecutorOre(Utility.Random(1, 6)));
+                    }
+
+                    if (thousand <= 5)
+                    {
+                        this.AddToBackpack(new DSROre());
+                    }
+                    else if (thousand <= 3)
+                    {
+                        this.AddToBackpack(new RNDOre());
                     }
                     break;
                 case "the carpenter":
@@ -733,10 +824,9 @@ namespace Server.Mobiles
                     break;
                 case "the provisioner":
                     this.AddToBackpack(new Gold(Utility.Random(50, 150)));
-                    this.AddToBackpack(new Log(Utility.Random(1, 3)));
-                    this.AddToBackpack(new IronIngot(Utility.Random(1, 3)));
-                    this.AddToBackpack(new Bag());
-                    switch (Utility.Random(1, 4))
+                    this.AddToBackpack(new Log(Utility.Random(1, 5)));
+                    this.AddToBackpack(new IronIngot(Utility.Random(1, 5)));
+                    switch (Utility.Random(1, 8))
                     {
                         case 1:
                             this.AddToBackpack(new CheeseWedge(Utility.Random(1, 3)));
@@ -750,32 +840,46 @@ namespace Server.Mobiles
                         case 4:
                             this.AddToBackpack(new Longsword());
                             break;
+                        case 5:
+                            this.AddToBackpack(new Bag());
+                            break;
+                        case 6:
+                            this.AddToBackpack(new BlankMap(Utility.Random(1, 8)));
+                            break;
+                        case 7:
+                            this.AddToBackpack(new Log(Utility.Random(1, 6)));
+                            break;
+                        case 8:
+                            this.AddToBackpack(new CheeseWedge(Utility.Random(1, 3)));
+                            break;
                     }
                     break;
                 default:
                     this.AddToBackpack(new Gold(Utility.Random(50, 150)));
-                    this.AddToBackpack(new ThighBoots());
-                    this.AddToBackpack(new Garlic(Utility.Random(1, 5)));
-                    this.AddToBackpack(new Ham(Utility.Random(1, 5)));
-                    this.AddToBackpack(new Bottle(Utility.Random(1, 5)));
+                    this.AddToBackpack(new Garlic(Utility.Random(1, 7)));
+                    this.AddToBackpack(new Ham(Utility.Random(1, 8)));
+                    this.AddToBackpack(new Bottle(Utility.Random(1, 9)));
                     this.AddToBackpack(new Arrow(Utility.Random(3, 10)));
-                    this.AddToBackpack(new Amber(Utility.Random(1, 2)));
-                    switch (Utility.Random(1, 5))
+                    this.AddToBackpack(new Amber(Utility.Random(1, 3)));
+                    switch (Utility.Random(1, 6))
                     {
                         case 1:
                             this.AddToBackpack(new CheeseWedge(Utility.Random(1, 3)));
                             break;
                         case 2:
-                            this.AddToBackpack(new BlankScroll());
+                            this.AddToBackpack(new BlankScroll(Utility.Random(1, 7)));
                             break;
                         case 3:
-                            this.AddToBackpack(new Amber());
+                            this.AddToBackpack(new Diamond());
                             break;
                         case 4:
-                            this.AddToBackpack(new BlankMap());
+                            this.AddToBackpack(new BlankMap(Utility.Random(1, 8)));
                             break;
                         case 5:
-                            this.AddToBackpack(new Log());
+                            this.AddToBackpack(new Log(Utility.Random(1, 6)));
+                            break;
+                        case 6:
+                            this.AddToBackpack(new ThighBoots());
                             break;
                     }
                     break;
