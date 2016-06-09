@@ -25,6 +25,29 @@ namespace Server.SkillHandlers
             m.CloseGump(typeof(TrackWhoGump));
             m.SendGump(new TrackWhatGump(m));
 
+            if (m.SpecClasse == SpecClasse.Ranger)
+            {
+                if (m.SpecLevel == 1)
+                {
+                    return TimeSpan.FromSeconds(6.0);
+                }
+                else if (m.SpecLevel == 2)
+                {
+                    return TimeSpan.FromSeconds(5.5);
+                }
+                else if (m.SpecLevel == 3)
+                {
+                    return TimeSpan.FromSeconds(5.0);
+                }
+                else if (m.SpecLevel == 4)
+                {
+                    return TimeSpan.FromSeconds(4.0);
+                }
+                else if (m.SpecLevel == 5)
+                {
+                    return TimeSpan.FromSeconds(3.5);
+                }
+            }
             return TimeSpan.FromSeconds(7.0); // 7 second delay before beign able to re-use a skill
         }
 
