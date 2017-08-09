@@ -82,16 +82,16 @@ namespace Server.Spells.Zulu.EarthSpells
                     }
 
                     damage *= this.GetDamageScalar(m);
-                var test = m.GetRandomPoint3D(5);
+                var Position = m.GetRandomPoint3D(5);
 
                 for (int i = 0; i <= 4; i++ ) // check this one out later, havent tried it, its late, its probably ineffective on the server
                 {
-                    if (Map.Felucca.CanSpawnMobile(test.X, test.Y, test.Z) == true) // if this dont work, dont move the mob
+                    if (Map.Felucca.CanSpawnMobile(Position.X, Position.Y, Position.Z) == true) // if this dont work, dont move the mob
                     {
-                        m.MoveToWorld(test, Map.Felucca);
+                        m.MoveToWorld(Position, Map.Felucca); // moving the mob
                         break;
                     }
-                    test = m.GetRandomPoint3D(5); // get new cord
+                    Position = m.GetRandomPoint3D(5); // get new cord
                 }
 
                 m.PlaySound(0x108);

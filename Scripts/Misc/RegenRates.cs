@@ -216,6 +216,53 @@ namespace Server.Misc
                     rate = 7.0;
             }
 
+            // boosted mana regen rates somewhat for specced mages
+            if (from.SpecClasse == SpecClasse.Mage)
+            {
+                switch (from.SpecLevel)
+                {
+                    case 1:
+                        rate = +0.05;
+                        break;
+                    case 2:
+                        rate = +0.08;
+                        break;
+                    case 3:
+                        rate = +0.1;
+                        break;
+                    case 4:
+                        rate = +0.12;
+                        break;
+                    case 5:
+                        rate = +0.14;
+                        break;
+                }
+
+                // doesnt seem to work as i want it to, meditation seems to slow down the mana regen rate ^^
+                /* if (from.Meditating)
+                 {
+                     switch (from.SpecLevel)
+                     {
+                         case 1:
+                             rate = +0.7;
+                             break;
+                         case 2:
+                             rate = +0.9;
+                             break;
+                         case 3:
+                             rate = +1;
+                             break;
+                         case 4:
+                             rate = +1.2;
+                             break;
+                         case 5:
+                             rate = +1.5;
+                             break;
+                     }
+                 } */
+            }
+            if (from.Player) Console.WriteLine("Current Mana regen rate: " + rate);
+
             return TimeSpan.FromSeconds(rate);
         }
 
@@ -224,7 +271,7 @@ namespace Server.Misc
             if (ar == null || ar.ArmorAttributes.MageArmor != 0 || ar.Attributes.SpellChanneling != 0)
                 return 0.0;
 
-            switch ( ar.MeditationAllowance )
+            switch (ar.MeditationAllowance)
             {
                 default:
                 case ArmorMeditationAllowance.None:

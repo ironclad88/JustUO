@@ -21,6 +21,9 @@ namespace Server.SkillHandlers
             if (Core.AOS && item is BaseWeapon && ((BaseWeapon)item).Attributes.SpellChanneling != 0)
                 return true;
 
+            if (Core.AOS && item is BaseStaff) // can now meditate with staff equipped
+                return true;
+
             if (Core.AOS && item is BaseArmor && ((BaseArmor)item).Attributes.SpellChanneling != 0)
                 return true;
 
