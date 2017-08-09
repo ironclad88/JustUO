@@ -15,22 +15,23 @@ namespace Server.Commands
         [Description("Set level and spec.")]
         private static void Classe_OnCommand(CommandEventArgs e)
         {
-            try { 
-            Mobile m = e.Mobile;
-            string arguments = e.ArgString;
-           // Console.WriteLine(arguments);
-            string[] argsSplitted = arguments.Split(' ');
-            if (e.Length != 1)
+            try
             {
-                e.Mobile.SendMessage("setSpec <class name> <spec level>");
-            }
-            if (Convert.ToInt32(argsSplitted[1]) >= 7)
-            {
-                e.Mobile.SendMessage("to high spec entered. Max 6");
-            }
-            //Console.WriteLine(argsSplitted[0], argsSplitted[1]);
-            getClass(argsSplitted[0], Convert.ToInt32(argsSplitted[1]), m);
-            m.GetSpec();
+                Mobile m = e.Mobile;
+                string arguments = e.ArgString;
+                // Console.WriteLine(arguments);
+                string[] argsSplitted = arguments.Split(' ');
+                if (e.Length != 1)
+                {
+                    e.Mobile.SendMessage("setSpec <class name> <spec level>");
+                }
+                if (Convert.ToInt32(argsSplitted[1]) >= 7)
+                {
+                    e.Mobile.SendMessage("to high spec entered. Max 6");
+                }
+                //Console.WriteLine(argsSplitted[0], argsSplitted[1]);
+                getClass(argsSplitted[0], Convert.ToInt32(argsSplitted[1]), m);
+                m.GetSpec();
             }
             catch (Exception z)
             {
@@ -38,7 +39,8 @@ namespace Server.Commands
             }
         }
 
-        private static string getClass(string className, int level, Mobile player){
+        private static string getClass(string className, int level, Mobile player)
+        {
             /*
             int spec1 = 75;
             int spec2 = 90;
@@ -47,7 +49,7 @@ namespace Server.Commands
             int spec5 = 135;
             int spec6 = 150;
             */
-        
+
             foreach (Skill skill in player.Skills) // set all skills to 0
             {
                 if (skill.Cap < 0)
@@ -123,7 +125,7 @@ namespace Server.Commands
                 player.Skills.Provocation.Base = skillInc;
                 player.Skills.Herding.Base = skillInc;
                 player.Skills.Musicianship.Base = skillInc;
-                player.Skills.TasteID.Base = skillInc; 
+                player.Skills.TasteID.Base = skillInc;
             }
             else if (className == "Crafter" || className == "crafter")
             {
@@ -169,5 +171,5 @@ namespace Server.Commands
             return "";
         }
 
-        }
     }
+}

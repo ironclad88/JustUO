@@ -161,9 +161,9 @@ namespace Server.Engines.Harvest
                 oreAndStone.BonusResources = new BonusHarvestResource[]
                 {
                     new BonusHarvestResource(50, 1.0, "You found some elusive NEW ZULU ORE!", typeof(ZuluOre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty-30, 0.1, "You found a rare Ebon Twiligh Saphire!", typeof(ETSOre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty-30, 0.1, "You found a rare Dark Sable Ruby!", typeof(DSROre)),
-                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty-30, 0.1, "You found a rare Radiant Nimbus Diamond!", typeof(RNDOre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.ETS).AttributeInfo.Difficulty-30, 0.03, "You found a rare Ebon Twiligh Saphire!", typeof(ETSOre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.DSR).AttributeInfo.Difficulty-30, 0.03, "You found a rare Dark Sable Ruby!", typeof(DSROre)),
+                    new BonusHarvestResource(CraftResources.GetInfo(CraftResource.RND).AttributeInfo.Difficulty-30, 0.01, "You found a rare Radiant Nimbus Diamond!", typeof(RNDOre)),
                     new BonusHarvestResource(50, 5.0, "You found a diamond!", typeof(Diamond)),
                     new BonusHarvestResource(0, 5.0, "You found a piece of amber!", typeof(Amber)),
                     //new BonusHarvestResource(0, 88.7, null, null), //Nothing, THIS MUST BE LAST! JustZH: increased this a lot
